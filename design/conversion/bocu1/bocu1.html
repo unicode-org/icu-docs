@@ -78,8 +78,23 @@ by backing up to a reset point.</p>
 same bytes as in US-ASCII. Therefore, the charset must be specified with a
 signature byte sequence or in a higher-level protocol.</p>
 
+<p>As a single/lead byte, byte value FF is used as a special "reset-state-only" command.
+It does not encode any code point. FF is also a normal trail byte.<br>
+Having a "reset only" command allows simple concatenation of BOCU-1 byte streams.
+(All other BOCU-1 byte sequences would append some code point.)
+<em>Using FF to reset the state breaks the ordering!
+The use of FF resets is discouraged.</em>.<br>
+Byte stream concatenation without resetting with FF requires to scan back to
+a C0 control whose byte value is not used for trail bytes
+(last known reset to initial state);
+then decode to the end of the first stream and encode the first non-U+0020 code point
+of the second stream according to the current state;
+then append the rest of the second stream.
+The same procedure could be used to remove an FF reset command.</p>
+
 <h2>Signature byte sequence</h2>
-<p>An initial U+FEFF is encoded in BOCU-1 with the three bytes FC EE 27.</p>
+<p>An initial U+FEFF is encoded in BOCU-1 with the three bytes FB EE 28.</p>
+
 <h2>Encoding algorithm</h2>
 <p>The basic algorithm is as described in <a href="http://oss.software.ibm.com/icu/docs/papers/binary_ordered_compression_for_unicode.html">Binary
 Ordered Compression for Unicode</a>.</p>
@@ -152,6 +167,9 @@ BOCU-1. Use a command-line argument of &quot;?&quot; or &quot;-h&quot; for
 usage.</p>
 
 <h2>Changes</h2>
+<p>2002-apr-12: Use single/lead byte value FF as "reset only" without code point output.
+FF is still also used as a trail byte.</p>
+
 <p>2002-mar-20: Remove resetting at NL, LS, PS (see change from feb21). Reason:
 Resetting for them makes the algorithm more complicated without much gain. These
 characters are rarely used and their BOCU encoding still depends on the
@@ -162,6 +180,804 @@ byte instead of two.</p>
 <p>2002-feb-21: Change adjustment of prev to account for Hiragana (not
 128-aligned) and to reset at U+0085 (Newline), U+2028 (Line Separator) and
 U+2029 (Paragraph Separator).</p>
+
+<hr>
+  <h2>BOCU-1 performance</h2>
+  <p align="right">Markus Scherer<br>2002apr03</p>
+  <p>This document provides a performance comparison between
+    <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/conversion/bocu1/bocu1.html">BOCU-1</a>,
+    UTF-8, and <a href="http://www.unicode.org/unicode/reports/tr6/">SCSU</a>
+    when implemented as <a href="http://oss.software.ibm.com/icu/">ICU</a> converters,
+    which convert to and from UTF-16.</p>
+
+  <h2>Summary</h2>
+  <p>Values are relative to UTF-8.</p>
+  <table border="1">
+    <tr>
+      <th></th>
+      <th colspan="2">BOCU-1</th>
+      <th colspan="2">SCSU</th>
+    </tr>
+    <tr>
+      <th>Languages</th>
+      <th>Size of text</th>
+      <th>Time to convert<br>to/from UTF-16</th>
+      <th>Size of text</th>
+      <th>Time to convert<br>to/from UTF-16</th>
+    </tr>
+    <tr>
+      <th>English/French</th>
+      <td>100%</td>
+      <td>160..170%</td>
+      <td>100%</td>
+      <td>125%</td>
+    </tr>
+    <tr>
+      <th>Greek/Russian/Arabic/Hebrew</th>
+      <td>60%</td>
+      <td>65..70%</td>
+      <td>55%</td>
+      <td>70%</td>
+    </tr>
+    <tr>
+      <th>Hindi</th>
+      <td>40%</td>
+      <td>45%</td>
+      <td>40%</td>
+      <td>45%</td>
+    </tr>
+    <tr>
+      <th>Thai (<a href="#thai">see below</a>)</th>
+      <td>45%</td>
+      <td>60%</td>
+      <td>40%</td>
+      <td>55%</td>
+    </tr>
+    <tr>
+      <th>Japanese</th>
+      <td>60%</td>
+      <td>150%</td>
+      <td>55%</td>
+      <td>110%</td>
+    </tr>
+    <tr>
+      <th>Korean</th>
+      <td>75%</td>
+      <td>155%</td>
+      <td>85%</td>
+      <td>70%</td>
+    </tr>
+    <tr>
+      <th>Chinese</th>
+      <td>75%</td>
+      <td>165%</td>
+      <td>70%</td>
+      <td>65%</td>
+    </tr>
+  </table>
+  <p>(Smaller percentages are better. Percentages are rounded to the nearest 5%.)</p>
+
+  <p>The compression ratio is smaller for web pages (lots of ASCII in HTML).
+    The performance difference tends to be smaller for smaller buffers.
+    When the text is transmitted between machines (emails, web pages),
+    then the transmission time may swamp the conversion time.
+    Smaller text will then transmit faster.</p>
+
+  <h2>SCSU vs. BOCU-1</h2>
+  <ul>
+    <li>SCSU and BOCU-1 have similar compression characteristics.</li>
+    <li>SCSU tends to be faster than BOCU-1.</li>
+    <li>BOCU-1 is applicable in <em>many</em> more environments
+      (it is MIME-friendly, CVS-friendly, and has the same binary order as UTF-8).</li>
+    <li>The optimized ICU converter for BOCU-1 is somewhat less complex than the one for SCSU,
+      and the output is deterministic, unlike with SCSU.</li>
+  </ul>
+
+  <h2>Test setup</h2>
+  <p>The texts are the <a href="http://www.unicode.org/unicode/standard/WhatIsUnicode.html">"What is Unicode" pages from www.unicode.org</a>, except for Thai.
+    Note that english.html contains non-ASCII characters in the index sidebar.</p>
+
+  <p><a href="#thai" name="thai"></a>
+    The Thai text, <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icu/source/test/testdata/th18057.txt">th18057.txt</a>,
+    has a different structure: It is a Thai word list from ICU's test data, with one Thai word on each line.
+    Compared to the other texts, it contains only a few characters between CRLF.</p>
+
+  <p>This comparison uses full-fledged ICU converters for UTF-8, SCSU and BOCU-1.
+    "Full-fledged ICU converter" means that this is with the ICU conversion API,
+    designed for external encodings, as used e.g. by an XML parser or web browser.<br>
+    There are also ICU functions for transformations of in-process strings
+    between UTF-8/16/32 that have a little less overhead
+    (because they do not handle split-buffer conversions and customizable error handling).
+    Something like that could be written for BOCU-1;
+    I guess that the relative performance based on this would be similar to these numbers.</p>
+
+  <p>The test outputs the number of encoding bytes and
+    the time to roundtrip-convert from the internal UTF-16 form to the encoding and back.
+    The test machine is an IBM Thinkpad 570 (Pentium 2/366) with 192MB of RAM.</p>
+
+  <p>The ICU converter code for SCSU and BOCU-1 that is tested here
+    is not currently part of the ICU CVS.
+    The SCSU converter was optimized slightly (conversion function variants without offset handling).
+    The BOCU-1 converter is optimized compared to the reference code
+    in the design document.
+    Code very similar to this may become part of ICU in 2002.</p>
+
+  <hr>
+  <h2>Full results</h2>
+  <p>The output shows results for multiple files, for UTF-8, SCSU and BOCU-1 for each file.
+    For each file and encoding there are two sets of numbers, one measured with a large
+    intermediate buffer and one measured with a small intermediate buffer.
+    In each case, roundtrip conversions are performed for 2 seconds and the total time
+    is divided by the number of roundtrips.</p>
+
+<pre>
+# testing converter performance with file "arabic.html"
+no Unicode signature - using UTF-8
+number of code points                       9402 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 11192 B
+  roundtrip conversion time              709.154 &#956;s
+  average bytes/code point               1.19039 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 11192 B
+  roundtrip conversion time              1116.58 &#956;s
+  average bytes/code point               1.19039 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  9534 B  ( 85% of UTF-8)
+  roundtrip conversion time              778.212 &#956;s (109% of UTF-8)
+  average bytes/code point               1.01404 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  9534 B
+  roundtrip conversion time              1164.65 &#956;s
+  average bytes/code point               1.01404 B/cp
+
+# testing converter performance with file "arabic.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       2270 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  4035 B
+  roundtrip conversion time              337.073 &#956;s
+  average bytes/code point               1.77753 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  4035 B
+  roundtrip conversion time              508.123 &#956;s
+  average bytes/code point               1.77753 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  2375 B  ( 58% of UTF-8)
+  roundtrip conversion time              220.328 &#956;s ( 65% of UTF-8)
+  average bytes/code point               1.04626 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  2375 B
+  roundtrip conversion time              323.184 &#956;s
+  average bytes/code point               1.04626 B/cp
+
+# testing converter performance with file "english.html"
+no Unicode signature - using UTF-8
+number of code points                      14502 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 14695 B
+  roundtrip conversion time              755.631 &#956;s
+  average bytes/code point               1.01331 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 14695 B
+  roundtrip conversion time               1259.7 &#956;s
+  average bytes/code point               1.01331 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 14590 B  ( 99% of UTF-8)
+  roundtrip conversion time              1150.54 &#956;s (152% of UTF-8)
+  average bytes/code point               1.00607 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 14590 B
+  roundtrip conversion time              1713.43 &#956;s
+  average bytes/code point               1.00607 B/cp
+
+# testing converter performance with file "english.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       2975 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  2975 B
+  roundtrip conversion time              148.619 &#956;s
+  average bytes/code point                     1 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  2975 B
+  roundtrip conversion time              251.223 &#956;s
+  average bytes/code point                     1 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  2975 B  (100% of UTF-8)
+  roundtrip conversion time              242.559 &#956;s (163% of UTF-8)
+  average bytes/code point                     1 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  2975 B
+  roundtrip conversion time              359.415 &#956;s
+  average bytes/code point                     1 B/cp
+
+# testing converter performance with file "french.html"
+no Unicode signature - using UTF-8
+number of code points                      10432 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 10506 B
+  roundtrip conversion time              536.455 &#956;s
+  average bytes/code point               1.00709 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 10506 B
+  roundtrip conversion time              897.748 &#956;s
+  average bytes/code point               1.00709 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 10578 B  (100% of UTF-8)
+  roundtrip conversion time              846.154 &#956;s (157% of UTF-8)
+  average bytes/code point                 1.014 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 10578 B
+  roundtrip conversion time              1263.93 &#956;s
+  average bytes/code point                 1.014 B/cp
+
+# testing converter performance with file "french.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       3415 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  3488 B
+  roundtrip conversion time              188.281 &#956;s
+  average bytes/code point               1.02138 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  3488 B
+  roundtrip conversion time              305.797 &#956;s
+  average bytes/code point               1.02138 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  3559 B  (102% of UTF-8)
+  roundtrip conversion time              319.852 &#956;s (169% of UTF-8)
+  average bytes/code point               1.04217 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  3559 B
+  roundtrip conversion time               470.63 &#956;s
+  average bytes/code point               1.04217 B/cp
+
+# testing converter performance with file "greek.html"
+no Unicode signature - using UTF-8
+number of code points                      10544 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 13292 B
+  roundtrip conversion time              878.842 &#956;s
+  average bytes/code point               1.26062 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 13292 B
+  roundtrip conversion time              1386.92 &#956;s
+  average bytes/code point               1.26062 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 10760 B  ( 80% of UTF-8)
+  roundtrip conversion time              901.917 &#956;s (102% of UTF-8)
+  average bytes/code point               1.02049 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 10760 B
+  roundtrip conversion time              1340.21 &#956;s
+  average bytes/code point               1.02049 B/cp
+
+# testing converter performance with file "greek.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       3574 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  6313 B
+  roundtrip conversion time              516.541 &#956;s
+  average bytes/code point               1.76637 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  6313 B
+  roundtrip conversion time              782.116 &#956;s
+  average bytes/code point               1.76637 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  3736 B  ( 59% of UTF-8)
+  roundtrip conversion time              343.872 &#956;s ( 66% of UTF-8)
+  average bytes/code point               1.04533 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  3736 B
+  roundtrip conversion time              504.132 &#956;s
+  average bytes/code point               1.04533 B/cp
+
+# testing converter performance with file "hebrew.html"
+no Unicode signature - using UTF-8
+number of code points                       9168 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 10953 B
+  roundtrip conversion time              702.245 &#956;s
+  average bytes/code point                1.1947 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 10953 B
+  roundtrip conversion time              1102.28 &#956;s
+  average bytes/code point                1.1947 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  9375 B  ( 85% of UTF-8)
+  roundtrip conversion time              784.104 &#956;s (111% of UTF-8)
+  average bytes/code point               1.02258 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  9375 B
+  roundtrip conversion time              1167.55 &#956;s
+  average bytes/code point               1.02258 B/cp
+
+# testing converter performance with file "hebrew.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       2378 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  4150 B
+  roundtrip conversion time              354.799 &#956;s
+  average bytes/code point               1.74516 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  4150 B
+  roundtrip conversion time              525.437 &#956;s
+  average bytes/code point               1.74516 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  2544 B  ( 61% of UTF-8)
+  roundtrip conversion time              244.949 &#956;s ( 69% of UTF-8)
+  average bytes/code point               1.06981 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  2544 B
+  roundtrip conversion time              359.682 &#956;s
+  average bytes/code point               1.06981 B/cp
+
+# testing converter performance with file "hindi.html"
+no Unicode signature - using UTF-8
+number of code points                       9813 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 14549 B
+  roundtrip conversion time              1046.09 &#956;s
+  average bytes/code point               1.48263 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 14549 B
+  roundtrip conversion time              1656.64 &#956;s
+  average bytes/code point               1.48263 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 10033 B  ( 68% of UTF-8)
+  roundtrip conversion time              851.978 &#956;s ( 81% of UTF-8)
+  average bytes/code point               1.02242 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 10033 B
+  roundtrip conversion time              1263.72 &#956;s
+  average bytes/code point               1.02242 B/cp
+
+# testing converter performance with file "hindi.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       2993 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  7703 B
+  roundtrip conversion time              689.618 &#956;s
+  average bytes/code point               2.57367 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  7703 B
+  roundtrip conversion time              1067.52 &#956;s
+  average bytes/code point               2.57367 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  3149 B  ( 40% of UTF-8)
+  roundtrip conversion time              298.935 &#956;s ( 43% of UTF-8)
+  average bytes/code point               1.05212 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  3149 B
+  roundtrip conversion time              435.626 &#956;s
+  average bytes/code point               1.05212 B/cp
+
+# testing converter performance with file "japanese.html"
+no Unicode signature - using UTF-8
+number of code points                       7890 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 10726 B
+  roundtrip conversion time              702.417 &#956;s
+  average bytes/code point               1.35944 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 10726 B
+  roundtrip conversion time              1112.17 &#956;s
+  average bytes/code point               1.35944 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  9015 B  ( 84% of UTF-8)
+  roundtrip conversion time              1077.62 &#956;s (153% of UTF-8)
+  average bytes/code point               1.14259 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  9015 B
+  roundtrip conversion time              1464.18 &#956;s
+  average bytes/code point               1.14259 B/cp
+
+# testing converter performance with file "japanese.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       1584 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  4400 B
+  roundtrip conversion time               380.82 &#956;s
+  average bytes/code point               2.77778 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  4400 B
+  roundtrip conversion time              580.748 &#956;s
+  average bytes/code point               2.77778 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  2648 B  ( 60% of UTF-8)
+  roundtrip conversion time              567.302 &#956;s (148% of UTF-8)
+  average bytes/code point               1.67172 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  2648 B
+  roundtrip conversion time              691.883 &#956;s
+  average bytes/code point               1.67172 B/cp
+
+# testing converter performance with file "korean.html"
+no Unicode signature - using UTF-8
+number of code points                       8287 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 10401 B
+  roundtrip conversion time              681.758 &#956;s
+  average bytes/code point                1.2551 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 10401 B
+  roundtrip conversion time              1076.97 &#956;s
+  average bytes/code point                1.2551 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  9560 B  ( 91% of UTF-8)
+  roundtrip conversion time              1062.04 &#956;s (155% of UTF-8)
+  average bytes/code point               1.15361 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  9560 B
+  roundtrip conversion time              1494.03 &#956;s
+  average bytes/code point               1.15361 B/cp
+
+# testing converter performance with file "korean.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       1587 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  3659 B
+  roundtrip conversion time              328.427 &#956;s
+  average bytes/code point               2.30561 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  3659 B
+  roundtrip conversion time               500.49 &#956;s
+  average bytes/code point               2.30561 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  2753 B  ( 75% of UTF-8)
+  roundtrip conversion time              506.637 &#956;s (154% of UTF-8)
+  average bytes/code point               1.73472 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  2753 B
+  roundtrip conversion time               655.06 &#956;s
+  average bytes/code point               1.73472 B/cp
+
+# testing converter performance with file "russian.html"
+no Unicode signature - using UTF-8
+number of code points                      10869 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 13870 B
+  roundtrip conversion time              909.221 &#956;s
+  average bytes/code point               1.27611 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 13870 B
+  roundtrip conversion time              1457.82 &#956;s
+  average bytes/code point               1.27611 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                 11083 B  ( 79% of UTF-8)
+  roundtrip conversion time              922.192 &#956;s (101% of UTF-8)
+  average bytes/code point               1.01969 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                 11083 B
+  roundtrip conversion time              1376.38 &#956;s
+  average bytes/code point               1.01969 B/cp
+
+# testing converter performance with file "russian.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       3863 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  6856 B
+  roundtrip conversion time              554.667 &#956;s
+  average bytes/code point               1.77479 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  6856 B
+  roundtrip conversion time              845.028 &#956;s
+  average bytes/code point               1.77479 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  4025 B  ( 58% of UTF-8)
+  roundtrip conversion time              362.311 &#956;s ( 65% of UTF-8)
+  average bytes/code point               1.04194 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  4025 B
+  roundtrip conversion time              539.687 &#956;s
+  average bytes/code point               1.04194 B/cp
+
+# testing converter performance with file "s-chinese.html"
+no Unicode signature - using UTF-8
+number of code points                       7374 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  8882 B
+  roundtrip conversion time              539.687 &#956;s
+  average bytes/code point                1.2045 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  8882 B
+  roundtrip conversion time              872.007 &#956;s
+  average bytes/code point                1.2045 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  8358 B  ( 94% of UTF-8)
+  roundtrip conversion time              870.857 &#956;s (161% of UTF-8)
+  average bytes/code point               1.13344 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  8358 B
+  roundtrip conversion time              1233.37 &#956;s
+  average bytes/code point               1.13344 B/cp
+
+# testing converter performance with file "s-chinese.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       1056 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  2546 B
+  roundtrip conversion time              218.711 &#956;s
+  average bytes/code point               2.41098 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  2546 B
+  roundtrip conversion time              329.526 &#956;s
+  average bytes/code point               2.41098 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  1965 B  ( 77% of UTF-8)
+  roundtrip conversion time              360.511 &#956;s (164% of UTF-8)
+  average bytes/code point                1.8608 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  1965 B
+  roundtrip conversion time              469.584 &#956;s
+  average bytes/code point                1.8608 B/cp
+
+# testing converter performance with file "t-chinese.html"
+no Unicode signature - using UTF-8
+number of code points                       7420 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  8946 B
+  roundtrip conversion time              544.996 &#956;s
+  average bytes/code point               1.20566 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  8946 B
+  roundtrip conversion time              886.394 &#956;s
+  average bytes/code point               1.20566 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  8410 B  ( 94% of UTF-8)
+  roundtrip conversion time              877.587 &#956;s (161% of UTF-8)
+  average bytes/code point               1.13342 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  8410 B
+  roundtrip conversion time              1248.76 &#956;s
+  average bytes/code point               1.13342 B/cp
+
+# testing converter performance with file "t-chinese.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                       1066 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  2564 B
+  roundtrip conversion time              219.228 &#956;s
+  average bytes/code point               2.40525 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  2564 B
+  roundtrip conversion time              338.077 &#956;s
+  average bytes/code point               2.40525 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                  1979 B  ( 77% of UTF-8)
+  roundtrip conversion time              364.965 &#956;s (166% of UTF-8)
+  average bytes/code point               1.85647 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                  1979 B
+  roundtrip conversion time              479.381 &#956;s
+  average bytes/code point               1.85647 B/cp
+
+# testing converter performance with file "th18057.txt"
+detected signature for UTF-8 (removing 3 bytes)
+number of code points                     135723 cp
+platform endianness:                      little-endian
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                334025 B
+  roundtrip conversion time              31738.5 &#956;s
+  average bytes/code point               2.46108 B/cp
+
+* performance report for                   UTF-8:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                334025 B
+  roundtrip conversion time              46659.1 &#956;s
+  average bytes/code point               2.46108 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity              4096 B
+  number of encoding bytes                153648 B  ( 45% of UTF-8)
+  roundtrip conversion time              19735.3 &#956;s ( 62% of UTF-8)
+  average bytes/code point               1.13207 B/cp
+
+* performance report for                  BOCU-1:
+  intermediate buffer capacity                20 B
+  number of encoding bytes                153648 B
+  roundtrip conversion time                26440 &#956;s
+  average bytes/code point               1.13207 B/cp
+</pre>
 
 <hr>
   <p>Copyright (c) 2002 International Business Machines

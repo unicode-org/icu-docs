@@ -56,21 +56,23 @@
 /* bounding byte values for differences */
 #define BOCU1_MIN               0x21
 #define BOCU1_MIDDLE            0x90
-#define BOCU1_MAX               0xff
+#define BOCU1_MAX_LEAD          0xfe
+#define BOCU1_MAX_TRAIL         0xff
+#define BOCU1_RESET             0xff
 
 /* number of lead bytes */
-#define BOCU1_COUNT             (BOCU1_MAX-BOCU1_MIN+1)
+#define BOCU1_COUNT             (BOCU1_MAX_LEAD-BOCU1_MIN+1)
 
 /* adjust trail byte counts for the use of some C0 control byte values */
 #define BOCU1_TRAIL_CONTROLS_COUNT  20
 #define BOCU1_TRAIL_BYTE_OFFSET     (BOCU1_MIN-BOCU1_TRAIL_CONTROLS_COUNT)
 
 /* number of trail bytes */
-#define BOCU1_TRAIL_COUNT       (BOCU1_COUNT+BOCU1_TRAIL_CONTROLS_COUNT)
+#define BOCU1_TRAIL_COUNT       ((BOCU1_MAX_TRAIL-BOCU1_MIN+1)+BOCU1_TRAIL_CONTROLS_COUNT)
 
 /*
  * number of positive and negative single-byte codes
- * (not counting 0==BOCU1_MIDDLE)
+ * (counting 0==BOCU1_MIDDLE among the positive ones)
  */
 #define BOCU1_SINGLE            64
 
@@ -80,35 +82,35 @@
 #define BOCU1_LEAD_4            1
 
 /* The difference value range for single-byters. */
-#define BOCU1_REACH_POS_1   BOCU1_SINGLE
+#define BOCU1_REACH_POS_1   (BOCU1_SINGLE-1)
 #define BOCU1_REACH_NEG_1   (-BOCU1_SINGLE)
 
 /* The difference value range for double-byters. */
 #define BOCU1_REACH_POS_2   (BOCU1_REACH_POS_1+BOCU1_LEAD_2*BOCU1_TRAIL_COUNT)
-#define BOCU1_REACH_NEG_2   (-BOCU1_REACH_POS_2)
+#define BOCU1_REACH_NEG_2   (BOCU1_REACH_NEG_1-BOCU1_LEAD_2*BOCU1_TRAIL_COUNT)
 
 /* The difference value range for 3-byters. */
 #define BOCU1_REACH_POS_3   \
     (BOCU1_REACH_POS_2+BOCU1_LEAD_3*BOCU1_TRAIL_COUNT*BOCU1_TRAIL_COUNT)
 
-#define BOCU1_REACH_NEG_3   (-BOCU1_REACH_POS_3)
+#define BOCU1_REACH_NEG_3   (BOCU1_REACH_NEG_2-BOCU1_LEAD_3*BOCU1_TRAIL_COUNT*BOCU1_TRAIL_COUNT)
 
 /* The lead byte start values. */
-#define BOCU1_START_POS_2   (BOCU1_MIDDLE+BOCU1_SINGLE+1)
+#define BOCU1_START_POS_2   (BOCU1_MIDDLE+BOCU1_REACH_POS_1+1)
 #define BOCU1_START_POS_3   (BOCU1_START_POS_2+BOCU1_LEAD_2)
 #define BOCU1_START_POS_4   (BOCU1_START_POS_3+BOCU1_LEAD_3)
-     /* ==BOCU1_MAX */
+     /* ==BOCU1_MAX_LEAD */
 
 #define BOCU1_START_NEG_2   (BOCU1_MIDDLE+BOCU1_REACH_NEG_1)
 #define BOCU1_START_NEG_3   (BOCU1_START_NEG_2-BOCU1_LEAD_2)
 #define BOCU1_START_NEG_4   (BOCU1_START_NEG_3-BOCU1_LEAD_3)
      /* ==BOCU1_MIN+1 */
 
-/* The length of a byte sequence, according to the lead byte. */
+/* The length of a byte sequence, according to the lead byte (!=BOCU1_RESET). */
 #define BOCU1_LENGTH_FROM_LEAD(lead) \
     ((BOCU1_START_NEG_2<=(lead) && (lead)<BOCU1_START_POS_2) ? 1 : \
      (BOCU1_START_NEG_3<=(lead) && (lead)<BOCU1_START_POS_3) ? 2 : \
-     (BOCU1_MIN!=(lead) && (lead)!=BOCU1_MAX) ? 3 : 4)
+     (BOCU1_START_NEG_4<=(lead) && (lead)<BOCU1_START_POS_4) ? 3 : 4)
 
 /* The length of a byte sequence, according to its packed form. */
 #define BOCU1_LENGTH_FROM_PACKED(packed) \

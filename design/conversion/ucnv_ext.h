@@ -64,7 +64,7 @@
  *
  * Data structure:
  *
- * int32_t indexes[>=16];
+ * int32_t indexes[>=32];
  *
  *   Array of indexes and lengths etc. The length of the array is at least 16.
  *   The actual length is stored in indexes[0] to be forward compatible.
@@ -73,23 +73,35 @@
  *   from indexes[].
  *   Each length of an array is the number of array base units in that array.
  *
+ *   Some of the structures may not be present, in which case their indexes
+ *   and lengths are 0.
+ *
  *   Usage of indexes[i]:
  *   [0]  length of indexes[]
  *
+ *   // to Unicode table
  *   [1]  index of toUTable[] (array of uint32_t)
  *   [2]  length of toUTable[]
  *   [3]  index of toUUChars[] (array of UChar)
  *   [4]  length of toUUChars[]
  *
+ *   // from Unicode table, not for the initial code point
  *   [5]  index of fromUTableUChars[] (array of UChar)
  *   [6]  index of fromUTableValues[] (array of uint32_t)
  *   [7]  length of fromUTableUChars[] and fromUTableValues[]
  *   [8]  index of fromUBytes[] (array of char)
  *   [9]  length of fromUBytes[]
  *
- *   [10]..[14] reserved
- *   [15] number of bytes for the entire extension structure
- *   [>15] reserved; there are indexes[0] indexes
+ *   // from Unicode trie for initial-code point lookup
+ *   [10] index of fromUStage12[] (combined array of uint16_t for stages 1 & 2)
+ *   [11] length of stage 1 portion of fromUStage12[]
+ *   [12] length of fromUStage12[]
+ *   [13] index of fromUStage3[] (array of uint32_t like fromUTableValues[])
+ *   [14] length of fromUStage3[]
+ *
+ *   [15]..[30] reserved
+ *   [31] number of bytes for the entire extension structure
+ *   [>31] reserved; there are indexes[0] indexes
  *
  *
  * uint32_t toUTable[];
@@ -99,12 +111,24 @@
  *   Each section contains one word with the number of following words and
  *   a default value for when the lookup in this section yields no match.
  *
+ *   A section is sorted in ascending order of input bytes,
+ *   allowing for fast linear or binary searches.
+ *   The builder may store entries for a contiguous range of byte values
+ *   (compare difference between the first and last one with count),
+ *   which then allows for direct array access.
+ *   The builder should always do this for the initial table section.
+ *
+ *   Entries may have 0 values, see below.
+ *   No two entries in a section have the same byte values.
+ *
  *   Each uint32_t contains an input byte value in bits 31..24 and the
  *   corresponding lookup value in bits 23..0.
  *   Interpret the value as follows:
- *     if(value<0x1f0000) {
+ *     if(value==0) {
+ *       no match, see below
+ *     } else if(value<0x1f0000) {
  *       partial match - use value as index to the next toUTable section
- *       and match the next unit; (0 indexes toUTable[0])
+ *       and match the next unit; (value indexes toUTable[value])
  *     } else {
  *       if(bit 23 set) {
  *         roundtrip;
@@ -129,6 +153,8 @@
  *   If the value is 0, then the search has to return a shorter match with an
  *   earlier default value as the result, or result in "unmappable" even for the
  *   initial bytes.
+ *   If the value is 0 for the initial toUTable entry, then the initial byte
+ *   does not start any mapping input.
  *
  *
  * UChar toUUChars[];
@@ -147,9 +173,11 @@
  *   and fromUTableValues[].
  *
  *   Interpret a value as follows:
- *     if(value<=0xffffff) { (bits 31..24 are 0)
+ *     if(value==0) {
+ *       no match, see below
+ *     } else if(value<=0xffffff) { (bits 31..24 are 0)
  *       partial match - use value as index to the next fromUTable section
- *       and match the next unit; (0 indexes fromUTable[0])
+ *       and match the next unit; (value indexes fromUTable[value])
  *     } else {
  *       if(bit 31 set) {
  *         roundtrip;
@@ -174,51 +202,56 @@
  *   earlier default value as the result, or result in "unmappable" even for the
  *   initial UChars.
  *
+ *   If the from Unicode trie is present, then the from Unicode search tables
+ *   are not used for initial code points.
+ *   In this case, the first entries (index 0) in the tables are not used
+ *   (reserved, set to 0) because a value of 0 is used in trie results
+ *   to indicate no mapping.
+ *
+ *
+ * uint16_t fromUStage12[];
+ *
+ *   Stages 1 & 2 of a trie that maps an initial code point.
+ *   Indexes in stage 1 are all offset by the length of stage 1 so that the
+ *   same array pointer can be used for both stages.
+ *   If (c>>10)>=(length of stage 1) then c does not start any mapping.
+ *   Same bit distribution as for regular conversion tries.
+ *
+ *
+ * uint32_t fromUStage3[];
+ *
+ *   Stage 3 of the trie. It contains words in the same format
+ *   as fromUTableValues[].
+ *   Use a stage 3 granularity of 1, which allows for 64k stage 3 entries.
+ *
  *
  * char fromUBytes[];
  *
  *   Contains fromUnicode mapping results, stored as sequences of chars.
  *   Indexes and lengths stored in the fromUTableValues[].
- *
- * -------------------------------------------------------------
- *
- * TODO
- *
- * Extension mappings may be slow, especially for large extensions with
- * many mappings and some relatively common characters.
- * In addition to the sorted tables, there could be additional tables to speed
- * up at least the lookup of the initial code unit.
- * These are backward compatible additions because the sorted tables would
- * remain.
- *
- * Examples:
- * - A hash table that results in an index into the actual, sorted table.
- *   Probably most useful for fromUnicode conversion where there could be
- *   thousands of code units in the top table.
- * - A contiguous table of code units, from some lowest to highest unit,
- *   that can be looked up as an array. Unused code units would need to be
- *   marked as such, otherwise each unit entry comes with an index into the
- *   actual top table.
- *   Probably most useful for toUnicode conversion where lead bytes are
- *   often one or two groups of contiguous bytes.
- *   This might even be useful for the top toUnicode table by default.
  */
 enum {
-    _CNV_EXT_INDEXES_LENGTH,
+    _CNV_EXT_INDEXES_LENGTH,            /* 0 */
 
-    _CNV_EXT_TO_U_INDEX,
+    _CNV_EXT_TO_U_INDEX,                /* 1 */
     _CNV_EXT_TO_U_LENGTH,
     _CNV_EXT_TO_U_UCHARS_INDEX,
     _CNV_EXT_TO_U_UCHARS_LENGTH,
 
-    _CNV_EXT_FROM_U_UCHARS_INDEX,
+    _CNV_EXT_FROM_U_UCHARS_INDEX,       /* 5 */
     _CNV_EXT_FROM_U_VALUES_INDEX,
     _CNV_EXT_FROM_U_LENGTH,
     _CNV_EXT_FROM_U_BYTES_INDEX,
     _CNV_EXT_FROM_U_BYTES_LENGTH,
 
-    _CNV_EXT_SIZE=15,
-    _CNV_EXT_INDEXES_MIN_LENGTH=16
+    _CNV_EXT_FROM_U_STAGE_12_INDEX,     /* 10 */
+    _CNV_EXT_FROM_U_STAGE_1_LENGTH,
+    _CNV_EXT_FROM_U_STAGE_12_LENGTH,
+    _CNV_EXT_FROM_U_STAGE_3_INDEX,
+    _CNV_EXT_FROM_U_STAGE_3_LENGTH,     /* 14 */
+
+    _CNV_EXT_SIZE=31,
+    _CNV_EXT_INDEXES_MIN_LENGTH=32
 };
 
 enum {

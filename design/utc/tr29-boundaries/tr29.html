@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="en-us">
-<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <link rel="stylesheet" href="http://www.unicode.org/reports/reports.css" type="text/css">
 <title>UAX #29: Text Boundaries</title>
@@ -27,7 +27,7 @@
 <table class="header" width="100%">
   <tr>
     <td class="icon"><a href="http://www.unicode.org">
-    <img align="middle" alt="[Unicode]" border="0" src="http://www.unicode.org/webscripts/logo60s2.gif" width="34" height="33"></a>&nbsp;&nbsp;<a class="bar" href="http://www.unicode.org/unicode/reports">Technical 
+    <img align="middle" alt="[Unicode]" border="0" src="http://www.unicode.org/webscripts/logo60s2.gif" width="34" height="33"></a>&nbsp;&nbsp;<a class="bar" href="http://www.unicode.org/reports/">Technical 
     Reports</a></td>
   </tr>
   <tr>
@@ -37,7 +37,7 @@
 <div class="body">
   <h2 align="center">Unicode Standard Annex #29</h2>
   <h1 align="right">Text Boundaries</h1>
-  <table class="wide" border="1" width="100%">
+  <table class="wide" border="1" width="95%">
     <tr>
       <td>Version</td>
       <td><span>4.1.0</span></td>
@@ -48,7 +48,7 @@
     </tr>
     <tr>
       <td>Date</td>
-      <td>2005-03-23</td>
+      <td>2005-03-25</td>
     </tr>
     <tr>
       <td>This Version</td>
@@ -57,8 +57,8 @@
     </tr>
     <tr>
       <td>Previous Version</td>
-      <td class="old_changed"><a href="http://www.unicode.org/reports/tr29/tr29-8.html">
-      http://www.unicode.org/reports/tr29/tr29-8.html</a></td>
+      <td class="old_changed">
+		<a href="http://www.unicode.org/reports/tr29/tr29-6.html">http://www.unicode.org/reports/tr29/tr29-6.html</a></td>
     </tr>
     <tr>
       <td>Latest Version</td>
@@ -67,15 +67,15 @@
     <tr>
       <td>Revision</td>
       <td>
-      <p class="old_changed">9</td>
+      <p class="old_changed"><a href="#Modifications">9</a></td>
     </tr>
   </table>
   <p><br>
   </p>
   <h3><i>Summary</i></h3>
-  <p><i><em>This document describes guidelines </em>for determining default boundaries between 
+  <p><i>This document describes guidelines for determining default boundaries between 
   certain significant text elements: grapheme clusters (“user characters”), words, and sentences. 
-  For line-break boundaries, see <a href="http://www.unicode.org/unicode/reports/tr14/">UAX #14: 
+  For line-break boundaries, see <a href="http://www.unicode.org/reports/tr14/">UAX #14: 
   Line Breaking Properties</a>.</i></p>
   <h3><i>Status</i></h3>
   <p><i>This document has been reviewed by Unicode members and other interested parties, and has 
@@ -89,38 +89,44 @@
     document corresponds to the version number of the Unicode Standard at the last point that the 
     UAX document was updated.</i></p>
   </blockquote>
-  <p class="old_changed"><i>Please submit corrigenda and other comments with the online reporting 
+  <p><i>Please submit corrigenda and other comments with the online reporting 
   form [<a href="#Feedback">Feedback</a>]. Related information that is useful in understanding this 
   document is found in <a href="#References">References</a>. For the latest version of the Unicode 
   Standard see [<a href="#Unicode">Unicode</a>]. For a list of current Unicode Technical Reports see 
   [<a href="#Reports">Reports</a>]. For more information about versions of the Unicode Standard, see 
   [<a href="#Versions">Versions</a>].</i></p>
   <h3><i>Contents</i></h3>
-  <blockquote>
-    <dl>
-      <dt><span style="font-style: normal"><a href="#Introduction">1 Introduction</a> </span></dt>
-      <dd><a href="#Notation">1.1 Notation</a></dd>
-      <dt><span style="font-style: normal"><a href="#Conformance">2 Conformance</a></span></dt>
-      <dt><span style="font-style: normal"><a href="#Grapheme_Cluster_Boundaries">3 Grapheme Cluster 
-      Boundaries</a></span></dt>
-      <dt><span style="font-style: normal"><a href="#Word_Boundaries">4 Word Boundaries</a></span></dt>
-      <dt><span style="font-style: normal"><a href="#Sentence_Boundaries">5 Sentence Boundaries</a></span></dt>
-      <dt><span style="font-style: normal"><a href="#Implementation_Notes">6 Implementation Notes</a></span></dt>
-      <dd><a href="#Normalization">6.1 Normalization</a></dd>
-      <dd><a href="#Grapheme_Cluster_and_Format_Rules">6.2 Grapheme Cluster and Format Rules</a></dd>
-      <dd><a href="#Regular_Expressions">6.3 Regular Expressions</a></dd>
-      <dd><a href="#Random_Access">6.4 Random Access</a></dd>
-      <dd><a href="#Tailoring">6.5 Tailoring</a></dd>
-      <dt><span style="font-style: normal"><a href="#Testing">7 Testing</a></span></dt>
-      <dt><span style="font-style: normal"><a href="#Acknowledgements">Acknowledgements</a></span></dt>
-      <dt><span style="font-style: normal"><a href="#References">References</a></span></dt>
-      <dt><span style="font-style: normal"><a href="#Modifications">Modifications</a></span></dt>
-    </dl>
-  </blockquote>
+
+
+    <ul class="toc">
+      <li>1&nbsp;<a href="#Introduction">Introduction</a>
+      <ul class="toc">
+      <li>1.1&nbsp;<a href="#Notation">Notation</a></li>
+      </ul></li>
+      <li>2&nbsp;<a href="#Conformance">Conformance</a></li>
+      <li>3&nbsp;<a href="#Grapheme_Cluster_Boundaries">Grapheme Cluster Boundaries</a></li>
+      <li>4&nbsp;<a href="#Word_Boundaries">Word Boundaries</a></li>
+      <li>5&nbsp;<a href="#Sentence_Boundaries">Sentence Boundaries</a></li>
+      <li>6&nbsp;<a href="#Implementation_Notes">Implementation Notes</a>
+      <ul class="toc">
+      <li>6.1&nbsp;<a href="#Normalization">Normalization</a></li>
+      <li>6.2&nbsp;<a href="#Grapheme_Cluster_and_Format_Rules">Grapheme Cluster and Format Rules</a></li>
+      <li>6.3&nbsp;<a href="#Regular_Expressions">Regular Expressions</a></li>
+      <li>6.4&nbsp;<a href="#Random_Access">Random Access</a></li>
+      <li>6.5&nbsp;<a href="#Tailoring">Tailoring</a></li>
+      </ul></li>
+      <li>7&nbsp;<a href="#Testing">Testing</a></li>
+      <li><a href="#Acknowledgements">Acknowledgements</a></li>
+      <li><a href="#References">References</a></li>
+      <li><a href="#Modifications">Modifications</a></li>
+    </ul>
+
+
+  <hr>
   <h2>1 <a name="Introduction">Introduction</a></h2>
   <p>This document describes guidelines for determining default boundaries between certain 
   significant text elements: grapheme clusters (“user characters”), words, and sentences. It updates 
-  most of <a href="http://www.unicode.org/unicode/uni2book/ch05.pdf">5.15 Locating Text Element 
+  most of <a href="http://www.unicode.org/versions/Unicode4.0.0/ch05.pdf">5.15 Locating Text Element 
   Boundaries</a> except for the line-break boundaries, which are covered <span>in [<a href="#LineBreak">LineBreak</a>]</span>.</p>
   <p>A string of Unicode-encoded text often needs to be broken up into text elements 
   programmatically. Common examples of text elements include what users think of as characters, 
@@ -140,7 +146,7 @@
   <p>The default boundary determination mechanism <span>specified in this document</span> provides a 
   straightforward and efficient way to determine some of the most significant boundaries in text: 
   grapheme clusters (what end-users usually think of as characters), words, and sentences. (Line 
-  boundaries are to be found in <a href="http://www.unicode.org/unicode/reports/tr14/">UAX #14: Line 
+  boundaries are to be found in <a href="http://www.unicode.org/reports/tr14/">UAX #14: Line 
   Breaking Properties</a>.)</p>
   <p>The large character set of the Unicode Standard and its representational power place 
   requirements on both the specification of text element boundaries and the underlying 
@@ -210,7 +216,7 @@
   <p>Each rule consists of a left side, a boundary symbol, and a right side. Either of the sides can 
   be empty. The left and right sides use the boundary property values in regular expressions. For 
   more information on regular expression syntax used, see
-  <a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18: Unicode Regular Expression 
+  <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression 
   Guidelines</a>.</p>
   <p>The boundary symbols are:</p>
   <table border="0" class="syntax">
@@ -250,7 +256,7 @@
   called a <i>grapheme cluster</i>. For example, “G” + <i>acute-accent</i> is a grapheme cluster: it 
   is thought of as a single character by users, yet is actually represented by two Unicode code 
   points. For more information on the ambiguity in the term <i>character</i>, see
-  <a href="http://www.unicode.org/unicode/reports/tr17/">UTR #17: Character Encoding Model</a> [<a href="#Reports">Reports</a>].</p>
+  <a href="http://www.unicode.org/reports/tr17/">UTR #17: Character Encoding Model</a> [<a href="#Reports">Reports</a>].</p>
   <p>Grapheme clusters include, but are not limited to, character sequences such as (g + °), 
   digraphs such as Slovak “ch”, and sequences with letter modifiers such as k<sup>w</sup>. Grapheme 
   cluster boundaries are important for collation, regular-expressions, and counting “character” 
@@ -263,7 +269,7 @@
     <p><b>Note:</b> In previous documentation, default grapheme clusters were previously referred to 
     as “locale-independent graphemes”. The term <i>cluster</i> has been added to emphasize that the 
     term <i>grapheme</i> as used differently in linguistics. For simplicity and to align with
-    <a href="http://www.unicode.org/unicode/reports/tr10/">UTS #10: Unicode Collation Algorithm</a>&nbsp; 
+    <a href="http://www.unicode.org/reports/tr10/">UTS #10: Unicode Collation Algorithm</a>&nbsp; 
     [<a href="#Reports">Reports</a>], the terms <i>default</i> and <i>tailored</i> are used in 
     preference to <i>locale-independent</i> and <i>locale-dependent</i>, respectively.</p>
   </blockquote>
@@ -280,7 +286,7 @@
   grapheme cluster, a part of a grapheme clusters, or a sequence of more than one grapheme clusters.</p>
   <p>In those rare circumstances where end-users need character counts, the counts should correspond 
   to the grapheme cluster boundaries. Grapheme clusters are also used in searching and matching; for 
-  more information, see <a href="http://www.unicode.org/unicode/reports/tr10/">UTS #10: Unicode 
+  more information, see <a href="http://www.unicode.org/reports/tr10/">UTS #10: Unicode 
   Collation Algorithm</a>&nbsp; [<a href="#Reports">Reports</a>].</p>
   <p>The principal requirements for default grapheme cluster boundaries are the handling of 
   non-spacing marks and Hangul conjoining jamo. Boundaries may be further tailored for requirements 
@@ -315,7 +321,7 @@
   display. For example, the sequence &lt;f, i&gt; may be displayed as a single glyph on the screen, but 
   would still be two grapheme clusters.</p>
   <p>For more information on the use of grapheme clusters, see
-  <a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18: Unicode Regular Expression 
+  <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression 
   Guidelines</a>&nbsp; [<a href="#Reports">Reports</a>].</p>
   <blockquote>
     <p><b>Note: </b>As with the other default specifications, implementations are free to override 
@@ -1197,7 +1203,7 @@
   </blockquote>
   <p>Such a regular expression can also be turned into a fast deterministic finite-state machine. 
   For more information on Unicode Regular Expressions, see
-  <a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18: Unicode Regular Expression 
+  <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression 
   Guidelines</a> [<a href="#Reports">Reports</a>].</p>
   <h3><a name="Random_Access">6.4 Random Access</a></h3>
   <p>A further complication is introduced by random access. When iterating through a string from 
@@ -1247,7 +1253,7 @@
   that subsequent calls for next/previous boundaries merely return the cached values. Similarly Lao 
   characters can be mapped to a different special property value, causing a different engine to be 
   invoked.</p>
-  <h2>7. <a name="Testing">Testing</a></h2>
+  <h2>7 <a name="Testing">Testing</a></h2>
   <p>There is no requirement by Unicode-conformant implementations to implement these default 
   boundaries. As with the other default specifications, implementations are also free to override 
   (tailor) the results to meet the requirements of different environments or particular languages. 
@@ -1299,7 +1305,7 @@
     <tr>
       <td width="1" class="noborder">[<a name="FAQ">FAQ</a>]</td>
       <td class="noborder">Unicode Frequently Asked Questions<br>
-      <a href="http://www.unicode.org/unicode/faq/">http://www.unicode.org/unicode/faq/<br>
+      <a href="http://www.unicode.org/faq/">http://www.unicode.org/unicode/faq/<br>
       </a><i>For answers to common questions on technical issues.</i></td>
     </tr>
     <tr>
@@ -1316,8 +1322,7 @@
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="LineBreak">LineBreak</a>]</td>
       <td class="noborder" valign="top">UAX #14: Line Breaking Properties<br>
-      <a href="http://www.unicode.org/unicode/reports/tr14/">
-      http://www.unicode.org/unicode/reports/tr14/</a> </td>
+      <a href="http://www.unicode.org/reports/tr14/">http://www.unicode.org/reports/tr14/</a> </td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1"><span>[<a name="Props">Props</a>]</span></td>
@@ -1364,8 +1369,8 @@
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="UCD">UCD</a>]</td>
       <td class="noborder" valign="top">Unicode Character Database.<br>
-      <a href="http://www.unicode.org/ucd">http://www.unicode.org/ucd<br>
-      </a><i>For an overview of the Unicode Character Database and a list of its associated files</i></td>
+      <a href="http://www.unicode.org/ucd/">http://www.unicode.org/ucd/</a><i><br>
+		For an overview of the Unicode Character Database and a list of its associated files</i></td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="Unicode">Unicode</a>]</td>
@@ -1376,8 +1381,9 @@
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="Versions">Versions</a>]</td>
       <td class="noborder" valign="top">Versions of the Unicode Standard<br>
-      <a href="http://www.unicode.org/standard/versions">http://www.unicode.org/standard/versions<br>
-      </a><i>For information on version numbering, and citing and referencing the Unicode Standard, 
+      <a href="http://www.unicode.org/versions/">
+		http://www.unicode.org/standard/versions/</a><br>
+		<i>For information on version numbering, and citing and referencing the Unicode Standard, 
       the Unicode Character Database, and Unicode Technical Reports.</i></td>
     </tr>
   </table>

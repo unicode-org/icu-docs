@@ -26,8 +26,8 @@ h2           { page-break-before: always }
 <body>
 
 <h1 align="center">ICU Collation Design Documentation</h1>
-<h3 align="center">Version #16e</h3>
-<h3 align="center">2002-07-25</h3>
+<h3 align="center">Version #16f</h3>
+<h3 align="center">2002-10-29</h3>
 <h3 align="center"><i>Feedback: <a href="mailto:mark.davis@us.ibm.com">mailto:mark.davis@us.ibm.com</a></i></h3>
 <h3 align="center">(<a href="ICU_collation_design.htm">Latest Version</a>)</h3>
 <hr width="50%">
@@ -148,6 +148,13 @@ h2           { page-break-before: always }
       <li><a href="#Compressed_Primary_Weights">Compressed Primary Weights</a></li>
     </ol>
   </li>
+      <li><a href="#Later_Work">Later work</a>
+	<ol>
+	  <li><a href="#Latin-1_improvement">Further improving Latin-1 performance</a></li>
+	  <li><a href="#Copy_UCA">Copying UCA ranges to tailoring</a></li>
+	  <li><a href="#suppressContractions">Suppressing UCA contractions</a></li>
+	</ol>
+      </li>
 </ol>
 <ul>
   <li><a href="#Appendix_1">Appendix 1: Japanese Sort Order</a></li>
@@ -3296,6 +3303,33 @@ position changes once characters are added after Yi. Here is the list of possibi
   gap, then we are more robust regarding changes in the UCA.
 </blockquote>
 <hr>
+    <h2 align = "left"><a name="Later_Work">Later work</h2>
+	<ol>
+	  <li><a name="Latin-1_improvement">Further improving Latin-1 performance</a></li>
+      <p align="left">In order to further improve the performance of strcoll function for Latin-1 based languages, the following optimization is used. At the initalization time, a table of resolved CEs is built. It has resolved primary, secondary and tertiary values. Since it contains 32-bit values, a fair deal of expansions can also be stored. Contractions up to size 2 are handled (this is OK, since most real world contractions are up to size 2. If a part of CE cannot fit, a bail out value is written.</p>
+      <p align="left">Table is regenerated if the processing of CEs is changed due to the attributes. Regeneration is triggered by changing the value of French secondary and case first attributes, as these effectively either change the CE values or the distribution of the CEs.</p>
+    <p align="left>If the initialization of the table is successful (only reason to fail is if there are other special CEs except contractions and expansions), strcoll can branch to the fast loop after doing common prefixing. If, however, the first characters to be compared are outside the latin-1 range, the conventional loop is used. Fast loop supports the following attributes: strength up to tertiary, French secondary and case first. If other attributes are different from the default UCA state (alternate handling set to shifted, case level on, hiragana quaternary on etc.), conventional loop is also used.</p>
+      <p align="left">Fast loop goes through the code points of strings and uses code point values to index the array containing resolved CEs. If a non latin-1 code point, bail out CE or a unknown special CE are encountered, we bail out to the conventional loop. Existence of contractions are marked. Primary loop handles both zero terminated and strings with specified length. After the primary loop, two things are known: the size of the string and that all the special CEs are contractions. The secondary loop is therefore simpler, except that if French secondary is turned on, we iterate over the strings backwards. Existence of contractions makes French secondary processing impossible in the fast loop, so we bail out if this is the case. Tertiary loop is the simplest.</p>
+      <p align="left">Each of these loops does the following:</p>
+    <pre>
+while source CE is ignorable and there are more characters
+  fetch the source CE
+  note end of source
+while the target CE is ignorable there are more characters
+  fetch the target CE
+  note end of target
+
+if one of strings is finished and the other is not, return the result
+
+if CEs are equal, repeat
+otherwise, compare top bytes, if different, return the result, if same shift left and repeat
+    </pre>
+	  <li><a name="Copy_UCA">Copying UCA ranges to tailoring</a></li>
+      <p align="left">A special option is introduced to allow for copying of ranges in the UCA to the tailoring. The syntax is [optimize &ltUnicodeSet&gt]. You can have as many optimize statementes as you like, the result is the union of all the sets specified. The effect of this is that the CE values for all the code points specified in the set will be copied to the tailoring, similarly to what is already done for latin-1. Primary effect of this is the improvement of performance for locales that have a lot of implicit values, like Korean. Drawback is that the tailoring size grows. This modification does not have a significant effect on the code points that have normal CE values, as all we save is one trie lookup and an 'if'. This modification does not affect the sorting order.</p>
+	  <li><a name="suppressContractions">Suppressing UCA contractions</a></li>
+      <p align="left">Another new options allows for explicit suppressing of contractions defined in the UCA. The problem with contractions is that they have a very complicated processing and they also slow down initial code point of a contraction. In cyrillic based languages there are several contraction in the UCA. They are all started by very frequent letters, like cyrillic 'a'. Also, these contractions are here to support characters that are not used in modern languages. As a net result, collation of cyrillic based languages, like Russian, Ukrainian or Serbian is unneccessarily slowed down. Suppressing contractions changes the collation order. Syntax is [suppressContractions &ltUnicodeSet&gt]. You can have as many statements as you like in a rule. The result is a union of specified sets. For every code point in the suppression set, if there is a UCA contraction, a single code point CE value is copied to the tailoring.</p>
+	</ol>
+
 <h2 align="left"><a name="Appendix_1">Appendix 1</a>: Japanese Sort Order</h2>
 <p align="left">The following is the result of a test of sorting in Microsoft Office, for comparison.</p>
 <p align="left">1:LEVEL base chars, length<br>

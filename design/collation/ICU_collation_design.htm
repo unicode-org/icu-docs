@@ -25,7 +25,7 @@ th           { background-color: #CCCCFF }
 <body>
 
 <h1 align="center">ICU Collation Design Documentation</h1>
-<h2 align="center">Draft #13d, MD/2000-01-17</h2>
+<h2 align="center">Draft #14, MD/2000-01-17</h2>
 <h2 align="center"><font color="#0000FF">See <a href="#Modifications">Modifications</a></font></h2>
 This document describes the proposed revisions to Collation in ICU. Readers 
 should already be familiar with <a
@@ -1117,7 +1117,7 @@ buffer. It is used by both the sort-key generator and for the incremental string
 comparison. Because two strings are &quot;live&quot; at the same time in 
 comparison, we will pass in a parameter block (allocated on the stack) with 
 state information for each string. This is called a <a name="Context">Context</a>:<o:p>
-  </o:p>                                                       
+  </o:p>                                                         
 </p> 
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
@@ -1618,14 +1618,28 @@ CE.</p>
 otherwise just return.</p>
 <h3><a name="Implicit_CEs">Implicit CEs</a></h3>
 <p>If a character is not explicitly in the UCA table, then it is assigned an <i>implicit</i> 
-CE which is generated from the code point. This is used for all Yi, Hangul and 
-CJK ideographs, as well as all unassigned code points. In these generated CEs 
-there is always a gap at least one (for possible later insertion), and with no 
-zero bytes in the primaries. The implicit CEs use an optimized form that uses 
-primary weights from Dxxx to EFFF. Basic code points (0000..FFFF) get a 24-bit 
-primary weight (which turns into a long CE), while supplementary code points 
-(10000..10FFFF) get a 32 bit primary weight (which turns into 2 standard CEs). 
-Since the latter will be rare, this does not represent a performance issue.</p>
+CE which is generated from the code point.</p>
+<blockquote>
+  <p><b>Note: </b>As per <a
+  href="http://www.unicode.org/unicode/reports/tr10/#IllegalCodePoints">UCA 
+  7.1.1 lllegal code points</a>, all values xxFFFE and xxFFFF are ignored, as 
+  are all <b><i>unpaired</i></b> surrogates. The code to do this (after fetching 
+  the complete code point) is:</p>
+  <blockquote>
+    <pre>if ((codePoint &amp; 0xFFFE) == 0xFFFE || (0xD800 &lt;= codePoint &amp;&amp; codePoint &lt;= 0xDC00)) {
+    return 0;  // illegal code value, use completely ignoreable!
+}
+</pre>
+  </blockquote>
+</blockquote>
+<p>Implicit CEs are used for all Yi, Hangul and CJK ideographs, as well as all 
+unassigned code points. In these generated CEs there is always a gap at least 
+one (for possible later insertion), and with no zero bytes in the primaries. The 
+implicit CEs use an optimized form that uses primary weights from Dxxx to EFFF. 
+Basic code points (0000..FFFF) get a 24-bit primary weight (which turns into a 
+long CE), while supplementary code points (10000..10FFFF) get a 32 bit primary 
+weight (which turns into 2 standard CEs). Since the latter will be rare, this 
+does not represent a performance issue.</p>
 <blockquote>
   <p><b>Note: </b>These values are generated on the fly, not stored in the 
   tables; and <i>only</i> if there is no explicit table entry for the code 

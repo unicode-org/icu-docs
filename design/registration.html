@@ -1,0 +1,130 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Registration</title>
+</head>
+
+<body>
+
+<h1>Registration</h1>
+<h2>Draft 2001-08-27</h2>
+<p>Registration is used to customize ICU services. This allows applications, for
+example, to effectively modify the US locale to use a slightly different date
+format, or collation. Once modified, any call (in that address space) will
+return the different service. This also allows ICU to emulate the behavior of OS
+services such as Windows, where the current locale may in fact have
+customizations.</p>
+<p>In practice, this works as follows. Suppose we have the service xxx
+(collation, format, ...), and call:</p>
+<blockquote>
+  <pre>uxxx_registerInstance(X, myLocale);</pre>
+</blockquote>
+<p>What this does is clone X and add it to an internal registry for the service.
+By performing this action, the results should be <i>just as if </i>X were in the
+myLocale resource bundle for the service; overriding what was there (if
+anything). That affects what happens with getInstance in any subsequent calls,
+as shown in the table below.</p>
+<blockquote>
+  <p><b>Note: </b>For each <i>resource bundle</i>, there is a <i>resource cache</i>.
+  This caches strings, arrays of strings, etc. Normal resource fallback is used.</p>
+  <p>For each <i>service</i>, there is a <i>service cache</i>. This is different
+  than the RB cache, since it contains objects (or C pseudo objects) of the type
+  returned by getInstance on that service. The match is exact; no fallbacks.</p>
+  <p>It is important to distinguish these two caches.</p>
+</blockquote>
+<table border="1" width="100%">
+  <tr>
+    <th width="14%" rowspan="2">Locale</th>
+    <th width="14%" rowspan="2">RB contains</th>
+    <th width="72%" colspan="5">What getInstance returns in each case<br>
+      after we register X for:</th>
+  </tr>
+  <tr>
+    <th width="14%">root</th>
+    <th width="14%">fr</th>
+    <th width="14%">fr_BE</th>
+    <th width="15%">fr_BE_Brussels</th>
+    <th width="15%">fr_BE_Brussels_Q<br>
+      (RB doesn't exist)</th>
+  </tr>
+  <tr>
+    <th width="14%">root</th>
+    <td width="14%" align="center"><i>Y</i></td>
+    <td width="14%" align="center">X</td>
+    <td width="14%" align="center">Y</td>
+    <td width="14%" align="center">Y</td>
+    <td width="15%" align="center">Y</td>
+    <td width="15%" align="center">Y</td>
+  </tr>
+  <tr>
+    <th width="14%">fr</th>
+    <td width="14%" align="center"><i>&lt;empty&gt;</i></td>
+    <td width="14%" align="center">X</td>
+    <td width="14%" align="center">X</td>
+    <td width="14%" align="center">Y</td>
+    <td width="15%" align="center">Y</td>
+    <td width="15%" align="center">Y</td>
+  </tr>
+  <tr>
+    <th width="14%">fr_BE</th>
+    <td width="14%" align="center"><i>Z</i></td>
+    <td width="14%" align="center">Z</td>
+    <td width="14%" align="center">Z</td>
+    <td width="14%" align="center">X</td>
+    <td width="15%" align="center">Z</td>
+    <td width="15%" align="center">Z</td>
+  </tr>
+  <tr>
+    <th width="14%">fr_BE_Brussels</th>
+    <td width="14%" align="center"><i>&lt;empty&gt;</i></td>
+    <td width="14%" align="center">X</td>
+    <td width="14%" align="center">X</td>
+    <td width="14%" align="center">X</td>
+    <td width="15%" align="center">X</td>
+    <td width="15%" align="center">Z</td>
+  </tr>
+  <tr>
+    <th width="14%">fr_BE_Brussels_Q</th>
+    <td width="14%" align="center"><i>n/a</i></td>
+    <td width="14%" align="center">X</td>
+    <td width="14%" align="center">X</td>
+    <td width="14%" align="center">X</td>
+    <td width="15%" align="center">X</td>
+    <td width="15%" align="center">X</td>
+  </tr>
+</table>
+<p>The most straightforward way to code this is to add one step to the
+implementation of getInstance, which will then look like the following (Step D
+is the only new step):</p>
+<p>A. Let <i>L_request</i> be the requested locale<br>
+B. Look in the service cache under <i>L-request</i>. If there is anything,
+return a clone of it.*<br>
+C. Do the normal resource lookup, and get two pieces of information:</p>
+<blockquote>
+  <p>a. <i>R</i> = the resource<br>
+  b. <i>L_found</i> = the resource bundle that we got the resource out of.</p>
+</blockquote>
+<p><i>D. Probe the registry list from L_request up to L_found. If there is
+anything matching, set R to that thing.<br>
+</i>E. Cache <i>R</i> in the service cache under <i>L_request</i>, and return a
+clone of it.*</p>
+<blockquote>
+  <p>* the cloning must be done <b>unless</b> the service object is immutable.</p>
+</blockquote>
+<p>This also means that registerInstance should flush the cache of service
+objects (we could be smarter and only flush part of it, but it is simpler to
+just flush it all, and in practice the performance cost isn't worth the
+complication).</p>
+<p>This is pretty straightforward. There is one wrinkle. If we didn't find a
+resource bundle in the normal chain (e.g. because fr, fr_BE... don't exist),
+then we fallback to the default locale. Then in step D you have to search, not
+from L_request up to L_found, but from defaultLocale up to L_found.</p>
+<p>A test needs to be added that basically does the above chart, to verify the
+behavior.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,583 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Arbitrary-Precision Binary-Ordered Numbers</title>
+<style>body         { font-family: serif; background-color: #FFFFFF }
+</style>
+</head>
+
+<body>
+
+<h1>Arbitrary-Precision Ordered Numbers</h1>
+<p>M. Davis, 2004-05-08</p>
+<p>The APON format provides a representation for numbers as a sequence of bytes. It provides for an an unlimited exponent size, arbitrary precision of mantissa, and importantly,
+preserves numeric order; that is, an unsigned byte-by-byte comparison will return the same order as the original numbers. One other important feature of this format is that it has
+parsable length. Thus a sequence of such numbers can be serialized and recovered without any other structure being required, such as the length of each separate number.</p>
+<p>The format uses a series of exponent bytes, followed by a series of mantissa bytes. The first bit is the sign bit (s), where 1 = non-negative. First we discuss the format for
+positive numbers, then we'll show how negatives are represented. The next bit is the i bit, which is 1 for <font size="3">&#8734; or NaN, otherwise zero. </font>For clarity, i<font size="3">n
+all the examples below the sign and i bits are boldface.</font></p>
+<p><font size="3">If the i bit is on, then the rest of the first byte is zero, and the subsequent mantissa indicates whether or not it is a NaN, and what kind of NaN it is. In that
+case, the first byte has the following form. (We'll get to the format of the mantissa later.)</font></p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><b>1</b></td>
+          <td><b>1</b></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p><font size="3">If the number is neither </font><font size="3">&#8734; nor NaN, c</font><font size="3">hange the number into exponent/mantissa form, </font><font size="3">whereby
+if the number is zero, then the exponent is zero and mantissa is zero; otherwise the exponent is such that the mantissa is greater than or equal to 0.5 and strictly less than 1.
+Thus 2.25 becomes 0.5625 × 2<sup>2</sup>, and zero become 0.0 × 2<sup>0</sup>.</font></p>
+<p>The regular exponent consists of an exponent sign bit (z) followed by a set of exponent continuation bits (k) followed by exponent value bits (e). These are packed into a series
+of bytes, after the s and i bits.</p>
+<table border="1" cellspacing="0" cellpadding="4" align="right">
+  <caption><b>Table 1.<br>
+    Signed Exponents</b></caption>
+  <tr>
+    <th>number</th>
+    <th>z</th>
+    <th>e</th>
+  </tr>
+  <tr>
+    <td><font size="3">15</font></td>
+    <td>1</td>
+    <td>1111</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>1</td>
+    <td>1110</td>
+  </tr>
+  <tr>
+    <td>...</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1</td>
+    <td>0001</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>1</td>
+    <td>0000</td>
+  </tr>
+  <tr>
+    <td>-1</td>
+    <td>0</td>
+    <td>1111</td>
+  </tr>
+  <tr>
+    <td>-2</td>
+    <td>0</td>
+    <td>1110</td>
+  </tr>
+  <tr>
+    <td>...</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>-15</td>
+    <td>0</td>
+    <td>0001</td>
+  </tr>
+  <tr>
+    <td><font size="3">-16</font></td>
+    <td>0</td>
+    <td>0000</td>
+  </tr>
+</table>
+<p>The z bit is 1 for non-negative, 0 for negative. If the exponent value is negative, then it is subtracted from 1, then the bits are inverted (this is just the normal two's
+complement form). Thus for the single-byte case (A) below, the interpretation is as in Table 1.</p>
+<p>The continuation bits are each associated with one byte of the exponent, with 1 indicating a non-final byte, and 0 for the final byte.</p>
+<p>A. A single-byte exponent has the following form, with 1 sign bit, 1 i bit, 1 z bit, 1 continuation bit (0), and 4 bits of exponent. This is likely to cover most numbers in
+common usage, since 2<sup>16</sup> allows for numbers up to over 10<sup>5</sup>. For clarity, i<font size="3">n the examples below </font>the continuation bit is underlined.</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><b>1</b></td>
+          <td><b>0</b></td>
+          <td>z</td>
+          <td><u>0</u></td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>B. A double-byte exponent has the following form, with 1 s bit, 1 i bit, 1 z bit, 2 continuation bits, and 3 + 8 bits of exponent: numbers up to about 10<sup>616</sup>. It
+covers all numbers expressible with single- or double-precision IEEE numbers (float and double in C).</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><b>1</b></td>
+          <td><b>0</b></td>
+          <td>z</td>
+          <td><u>1</u></td>
+          <td><u>0</u></td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>C. A 3-byte exponent has the following form, with 1 s bit, 1 z bit, 3 continuation bits (110), and 2 + 8 + 8 bits of effective exponent: numbers up to about 10<sup>78913</sup>.
+This covers all numbers expressible with the proposed IEEE binary128 (and many more).</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><b>1</b></td>
+          <td><b>0</b></td>
+          <td>z</td>
+          <td><u>1</u></td>
+          <td><u>1</u></td>
+          <td><u>0</u></td>
+          <td>e</td>
+          <td>e</td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>D. The same process can be applied indefinitely. Each byte form of length N will have an s bit, an i bit, a z bit, plus N continuation bits, plus 7*N-3 bits of effective
+exponent. (While it is extremely unlikely that such long exponents would ever be used, the format does allow for them.) Note that the continuation bits may go into successive
+bytes. Thus the 7 byte exponent would have the following form:</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><b>1</b></td>
+          <td><b>0</b></td>
+          <td>z</td>
+          <td><u>1</u></td>
+          <td><u>1</u></td>
+          <td><u>1</u></td>
+          <td><u>1</u></td>
+          <td><u>1</u></td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><u>1</u></td>
+          <td><u>0</u></td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+        </tr>
+      </table>
+    </td>
+    <td>...</td>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+          <td>e</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>The exponent bits must use the shortest form that can contain them, and must be right-justified among all the exponent bits. Thus an exponent of 1 will be:</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><b>1</b></td>
+          <td><b>0</b></td>
+          <td>1</td>
+          <td><u>0</u></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>An exponent of -35 will be:</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><b>1</b></td>
+          <td><b>0</b></td>
+          <td>0</td>
+          <td><u>1</u></td>
+          <td><u>0</u></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>This format preserves ordering, since if two exponents have the same number of bytes, the ordering will be determined correctly from the exponent bits (since the length bits are
+identical). If two exponents have different numbers of bytes, then the larger number will be ordered first. For example, double-byte form in B will always be greater than the
+single-byte form in A.</p>
+<p>The exponent bytes are then followed by 1 or more mantissa bytes (shown in italic). These represent a binary fraction greater than or equal to zero, and less than 1. In all
+cases other than zero, the first mantissa bit will be one.</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i><u>c</u></i></td>
+        </tr>
+      </table>
+    </td>
+    <td>...</td>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i>m</i></td>
+          <td><i><u>c</u></i></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>The low-order bit of each byte is a mantissa continuation bit. It is set to 1 if the byte is not the final byte, and zero otherwise. As opposed to the exponent, the mantissa
+bits are <i>left</i>-justified. That is, the mantissa 0.75, which is 0.11 in binary, would be expressed as the following (notice the zero continuation bit):</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td><u>0</u></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>This produces the right ordering among the bytes. When you are comparing two numbers byte for byte:</p>
+<ol>
+  <li>If the bytes are equal in the c bit, then they are either both continuations or both final.
+    <ol>
+      <li>If they are both final, then the numbers are ordered according to the rest of the byte.</li>
+      <li>If they are both continuations, then if the rest of the byte is equal, then a comparison will continue. If not, then that byte determines the ordering.</li>
+    </ol>
+  </li>
+  <li>If the bytes are unequal in the c bit, then one is terminating.
+    <ol>
+      <li>If the rest of the byte is equal, then the non-terminating sequence is greater.</li>
+      <li>Otherwise the rest of the bits will determine the order.</li>
+    </ol>
+  </li>
+</ol>
+<p>Thus we get the following ordering:</p>
+<p>[5<sub>0</sub>]&nbsp; &lt; [5<sub>1</sub>][1<sub>0</sub>] &lt; [5<sub>1</sub>][1<sub>1</sub>]... &lt; [5<sub>1</sub>][2<sub>0</sub>] &lt; [6<sub>0</sub>]</p>
+<p>To encode negative numbers, every byte in the format is inverted. Thus the number 2.6875 turns into exponent = 2, mantissa = 0.671875, and results in the following.</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><b>1</b></td>
+          <td><b>0</b></td>
+          <td>0</td>
+          <td><u>0</u></td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><i>1</i></td>
+          <td><i>0</i></td>
+          <td><i>1</i></td>
+          <td><i>0</i></td>
+          <td><i>1</i></td>
+          <td><i>1</i></td>
+          <td><i>0</i></td>
+          <td><i><u>0</u></i></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>The number -1.3515625 is just the above, with every bit inverted:</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><b>0</b></td>
+          <td><b>1</b></td>
+          <td>1</td>
+          <td><u>1</u></td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><i>0</i></td>
+          <td><i>1</i></td>
+          <td><i>0</i></td>
+          <td><i>1</i></td>
+          <td><i>0</i></td>
+          <td><i>0</i></td>
+          <td><i>1</i></td>
+          <td><i><u>0</u></i></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>This will maintain the ordering, since all negative values are less than all positive values, and if a &lt; b, then -a &gt; -b.</p>
+<p>One other feature of this format is that it has parsable length. Thus a sequence of such numbers can be serialized and recovered without any other structure being required. Such
+parsing needs to look at the sign bit, and invert bytes if it was on. The exponent length is computable from the exponent continuation bits; the end of the mantissa is the last
+byte that has a final zero bit (e.g. the last byte with an even value).</p>
+<p>Note: there are various ways to pack the numbers more tightly, while preserving order and parsable length, but they do not appear to be worth the extra processing required.</p>
+<h2>Decimal APON</h2>
+<p>With suitable modifications, the above method can be used to express decimal numbers (whereby decimal fractions can be precisely represented, as in BCD). The simplest method of
+doing that is to view the number as a base-100 value, and thus the exponent is the number of significant elements (in 100-element chunks) before the decimal point (negative for
+fractions). Thus 123.456 would have an exponent of 2, and a mantissa of &lt;01&gt;&lt;13&gt;&lt;45&gt;&lt;60&gt;. Using 100 elements leaves room for the mantissa continuation bit:
+each byte will have 200 possible values. The exponent is coded as above. Thus</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#00FFFF">
+  <tr>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><b>1</b></td>
+          <td><b>0</b></td>
+          <td><u>0</u></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><i>1</i></td>
+          <td><i>0</i></td>
+          <td><i>1</i></td>
+          <td><i>0</i></td>
+          <td><i>1</i></td>
+          <td><i>1</i></td>
+          <td><i>0</i></td>
+          <td><i><u>0</u></i></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>represents an exponent of 2, and a mantissa of &lt;86&gt;, thus 8600. For normal usages of numbers, it is extremely unlikely that more than 1 byte of exponent will be required,
+since that can express up to 100<sup>63</sup>, which is over a <a href="http://www.onelook.com/?w=googol">googol</a>.</p>
+<p>As above, DAPON numbers can be compared with one another, and the correct ordering will result. However, a DAPON number <i>cannot</i> be correctly compared against an APON
+number.</p>
+<h2>Restricted Byte Values</h2>
+<p>This format can also be adapted to situations where not all of the possible byte values are available for use, such as in restricted environments. The number of byte values can
+be used as a radix, much like for BCD. Thus supposed there were 125 possible byte values: 3, 5, ... 254. In that case half of the values would be used for the c bit, leaving 62
+possible values for the mantissa. Then the mantissa is expressed as a number a * 62<sup>-1</sup> + b * 62<sup>-2</sup> ... The exponent is treated in a similar fashion. The
+inversion process would be not a bit-inversion, but a subtraction from the number of byte values (in this case, 125). Once the resulting sequence of numbers is determined, the the
+values are mapped to the possible byte values. Thus 0 =&gt; 3, 1 =&gt; 5, etc.</p>
+<p>If the numbers are to maintain either binary (or decimal precision), then the radix must be chosen to be the largest power of 2 (or 10, respectively) that fits within the
+allowable values.</p>
+<h2>References</h2>
+<ul>
+  <li><a class="external" title="http://grouper.ieee.org/groups/754/" href="http://grouper.ieee.org/groups/754/">IEEE 754: Standard for Binary Floating-Point Arithmetic</a></li>
+  <li><a href="http://754r.ucbtest.org/drafts/754r.html">Draft Revised 754</a></li>
+</ul>
+<table bordercolor="#000000" cellspacing="0" cellpadding="1" width="551" border="1">
+  <tbody>
+    <tr>
+      <td>
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="center"><font size="3" face="Times New Roman, serif">Parameter</font></p>
+      </td>
+      <td>
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="center"><font size="3" face="Times New Roman, serif">binary32</font></p>
+      </td>
+      <td>
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="center"><font size="3" face="Times New Roman, serif">binary64</font></p>
+      </td>
+      <td>
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="center"><font size="3" face="Times New Roman, serif">binary128</font></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="center"><font size="3" face="Times New Roman, serif"><i>p</i> digits</font></p>
+      </td>
+      <td sdnum="1033;0;@" sdval="0">
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="right"><font size="3" face="Times New Roman, serif">24</font></p>
+      </td>
+      <td sdnum="1033;0;@" sdval="0">
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="right"><font size="3" face="Times New Roman, serif">53</font></p>
+      </td>
+      <td sdnum="1033;0;@" sdval="0">
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="right"><font size="3" face="Times New Roman, serif">113</font></p>
+      </td>
+    </tr>
+    <tr>
+      <td><font size="3" face="Times New Roman, serif">(pos) exponent bits</font></td>
+      <td sdnum="1033;0;@" sdval="0"><font size="3" face="Times New Roman, serif">7</font></td>
+      <td sdnum="1033;0;@" sdval="1023"><font size="3" face="Times New Roman, serif">10</font></td>
+      <td sdnum="1033;0;@" sdval="0"><font size="3" face="Times New Roman, serif">16</font></td>
+    </tr>
+    <tr>
+      <td>
+        <p class="western" style="TEXT-DECORATION: none" align="center"><font size="3" face="Times New Roman, serif"><i>emax</i></font></p>
+      </td>
+      <td sdnum="1033;0;@" sdval="0">
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="right"><font size="3" face="Times New Roman, serif">+127</font></p>
+      </td>
+      <td sdnum="1033;0;@" sdval="1023">
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="right"><font size="3" face="Times New Roman, serif">+1023</font></p>
+      </td>
+      <td sdnum="1033;0;@" sdval="0">
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="right"><font size="3" face="Times New Roman, serif">+16383</font></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p class="western" style="TEXT-DECORATION: none" align="center"><font size="3" face="Times New Roman, serif"><i>emin</i></font></p>
+      </td>
+      <td sdnum="1033;0;@" sdval="0">
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="right">–<font size="3" face="Times New Roman, serif">126</font></p>
+      </td>
+      <td sdnum="1033;0;@" sdval="0">
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="right">–<font size="3" face="Times New Roman, serif">1022</font></p>
+      </td>
+      <td sdnum="1033;0;@" sdval="0">
+        <p class="western" style="FONT-STYLE: normal; TEXT-DECORATION: none" align="right">–<font size="3" face="Times New Roman, serif">16382</font></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>

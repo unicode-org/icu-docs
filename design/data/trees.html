@@ -9,7 +9,7 @@
 <body>
 
 <h1>Ideas for multiple resource trees for ICU data</h1>
-<p>ICU has one &quot;tree&quot; for locale data, i.e., each locale resource
+<p>ICU has one &quot;tree&quot; for its locale-based data (of course, applications can have other trees for their own locale-based data). That is, each locale resource
 bundle has a name consisting of only the locale ID, so that we cannot
 distinguish between a &quot;de&quot; bundle for collation and a &quot;de&quot;
 bundle for RBNF (RuleBasedNumberFormat), for example.</p>
@@ -26,6 +26,10 @@ take essentially two parameters for the naming, with a third mostly implied:</p>
     for resource bundles, &quot;cnv&quot; for conversion tables, &quot;icu&quot;
     for miscellaneous files, &quot;brk&quot; for break iterator files...</li>
 </ol>
+<p>This design does not allow us to modularize the use of ICU, that is, to
+easily cut out certain types of locale-based data. (For more about
+modularization, see <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/modularization/icu_modularization_overview.html">http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/modularization/icu_modularization_overview.html</a>)
+It is also not easy to support per-service enumerations of supported locale IDs.</p>
 <h2>Design</h2>
 <p>We leave the APIs unchanged syntactically and parse
 another separator in the &quot;basename&quot; part of the &quot;path/basename&quot;
@@ -45,7 +49,7 @@ prepended, but will be placed in separate folders. Source file folders need not
 be organized along the same structure though.</p>
 <p>Using folders like this probably means that most of our data build tools
 (e.g., genrb) need not be modified. The makefiles specify the appropriate source
-and destination folders, and not give a package name to the build tools.
+and destination folders, and do <u>not</u> give a package name to (most of) the build tools.
 Dependencies of binary output files on text input files can be simplified
 because the file basenames now match, without package name prefixes.</p>
 <p>For example, source/data/locales/de.txt will be split, and the collation part

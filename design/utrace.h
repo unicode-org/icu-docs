@@ -14,11 +14,32 @@
 *   created by: Markus W. Scherer
 *
 *   Definitions for ICU tracing/logging.
+*
+*   Public API header.
+*
+*   This is currently a design document.
+*   Latest Version: http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/utrace.h
+*   CVS: http://oss.software.ibm.com/cvs/icu/icuhtml/design/utrace.h
+*
+*   Various notes:
+*   - using a trace level variable to only call trace functions
+*     when the level is sufficient
+*   - using the same variable for tracing on/off to never make a function
+*     call when off
+*   - the function number is put into a local variable by the entry macro
+*     and used implicitly to avoid copy&paste/typing mistakes by the developer
+*   - the application must call utrace_setFunctions() and pass in
+*     implementations for the trace functions
+*   - ICU trace macros call ICU functions that route through the function
+*     pointers if they have been set;
+*     this avoids an indirection at the call site
+*     (which would cost more code for another check and for the indirection)
 */
 
 #ifndef __UTRACE_H__
 #define __UTRACE_H__
 
+#include <stdarg.h>
 #include "unicode/utypes.h"
 
 /* Trace severity levels */
@@ -59,6 +80,14 @@ utrace_level;
 #define UTRACE_LEVEL(level) (utrace_level>=(level))
 
 /**
+ * Setter for the trace level.
+ * @param traceLevel A UTraceLevel value.
+ * @draft ICU 2.8
+ */
+U_CAPI void U_EXPORT2
+utrace_setLevel(int32_t traceLevel);
+
+/**
  * Trace statement for the entry point of a function.
  * Stores the function number in a local variable.
  * In C code, must be placed immediately after the last variable declaration.
@@ -74,7 +103,7 @@ utrace_level;
     }
 
 /**
- * Trace statement for each entry point of a function that has a UTRACE_ENTRY()
+ * Trace statement for each exit point of a function that has a UTRACE_ENTRY()
  * statement.
  *
  * @draft ICU 2.8
@@ -85,8 +114,26 @@ utrace_level;
     }
 
 /**
+ * Trace function for the entry point of a function.
+ * Do not use directly, use UTRACE_ENTRY instead.
+ * @param fnNumber The UTraceFunctionNumber for the current function.
+ * @internal
+ */
+U_CAPI void U_EXPORT2
+utrace_entry(int32_t fnNumber);
+
+/**
+ * Trace function for each exit point of a function.
+ * Do not use directly, use UTRACE_EXIT instead.
+ * @param fnNumber The UTraceFunctionNumber for the current function.
+ * @internal
+ */
+U_CAPI void U_EXPORT2
+utrace_exit(int32_t fnNumber);
+
+/**
  * Trace function used inside functions that have a UTRACE_ENTRY() statement.
- * Use UTRACE_DATAX() macros if possible.
+ * Do not use directly, use UTRACE_DATAX() macros instead.
  *
  * ICU trace format string syntax
  *
@@ -160,7 +207,7 @@ utrace_level;
  * @param level The trace level for this message.
  * @param fmt The trace format string.
  *
- * @draft ICU 2.8
+ * @internal
  */
 U_CAPI void U_EXPORT2
 utrace_data(int32_t utraceFnNumber, int32_t level, const char *fmt, ...);
@@ -294,6 +341,24 @@ utrace_data(int32_t utraceFnNumber, int32_t level, const char *fmt, ...);
     if(UTRACE_LEVEL(level)) { \
         utrace_data(utraceFnNumber, (level), (fmt), (a), (b), (c), (d), (e), (f), (g), (h), (i)); \
     }
+
+/* Trace function pointers from the application ----------------------------- */
+
+typedef void U_CALLCONV
+UTraceEntry(const void *context, int32_t fnNumber);
+
+typedef void U_CALLCONV
+UTraceExit(const void *context, int32_t fnNumber);
+
+typedef void U_CALLCONV
+UTraceData(const void *context, int32_t fnNumber, int32_t level,
+           const char *fmt, va_list args);
+
+U_CAPI void U_EXPORT2
+utrace_setFunctions(const void *context,
+                    UTraceEntry *e, UTraceExit *x, UTraceData *d,
+                    int32_t traceLevel,
+                    UErrorCode *pErrorCode);
 
 /* Trace function numbers --------------------------------------------------- */
 

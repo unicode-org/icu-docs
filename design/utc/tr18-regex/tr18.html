@@ -29,13 +29,12 @@
   </tr>
 </table>
 <div class="body">
-  <h2 align="center"><span class="changedspan">Proposed Update </span>Unicode Technical <span>
-  Standard </span>#18</h2>
+  <h2 align="center">Unicode Technical <span>Standard </span>#18</h2>
   <h1 align="right">Unicode Regular Expressions</h1>
   <table class="wide" border="1" width="100%">
     <tr>
       <td width="20%">Version</td>
-      <td><span class="changedspan">10</span></td>
+      <td><span>11</span></td>
     </tr>
     <tr>
       <td>Authors</td>
@@ -43,17 +42,17 @@
     </tr>
     <tr>
       <td>Date</td>
-      <td><span class="changedspan">2004-10-12</span></td>
+      <td><span>2005-01-15</span></td>
     </tr>
     <tr>
       <td>This Version</td>
-      <td><span class="changedspan"><a href="http://www.unicode.org/reports/tr18/tr18-10.html">
-      http://www.unicode.org/reports/tr18/tr18-10.html</a></span></td>
+      <td><span><a href="http://www.unicode.org/reports/tr18/tr18-11.html">
+      http://www.unicode.org/reports/tr18/tr18-11.html</a></span></td>
     </tr>
     <tr>
       <td>Previous Version</td>
-      <td><span class="changedspan"><a href="http://www.unicode.org/reports/tr18/tr18-9.html">
-      http://www.unicode.org/reports/tr18/tr18-9.html</a></span></td>
+      <td><span><a href="http://www.unicode.org/reports/tr18/tr18-10.html">
+      http://www.unicode.org/reports/tr18/tr18-10.html</a></span></td>
     </tr>
     <tr>
       <td>Latest Version</td>
@@ -61,7 +60,7 @@
     </tr>
     <tr>
       <td>Tracking Number</td>
-      <td><span class="changedspan"><a href="#Modifications">10</a></span></td>
+      <td><a href="#Modifications">11</a></td>
     </tr>
   </table>
   <p><br>
@@ -70,11 +69,10 @@
   <p><i><em>This document describes guidelines for how to adapt regular expression engines to use 
   Unicode.</em></i></p>
   <h3><i>Status</i></h3>
-  <p><span class="changedspan"><i>This document is a proposed update of a previously approved 
-  Unicode Technical Standard. Publication does not imply endorsement by the Unicode Consortium. This 
-  is a draft document which may be updated, replaced, or superseded by other documents at any time. 
-  This is not a stable document; it is inappropriate to cite this document as other than a work in 
-  progress.</i></span></p>
+  <p><span><i>This document is a proposed update of a previously approved Unicode Technical 
+  Standard. Publication does not imply endorsement by the Unicode Consortium. This is a draft 
+  document which may be updated, replaced, or superseded by other documents at any time. This is not 
+  a stable document; it is inappropriate to cite this document as other than a work in progress.</i></span></p>
   <blockquote>
     <p><i><b>A Unicode Technical Standard (UTS)</b> is an independent specification. Conformance to 
     the Unicode Standard does not imply conformance to any UTS.</i></p>
@@ -265,35 +263,35 @@ ESCAPE := &quot;\&quot;</pre>
   <p>Where string offsets are used in examples, they are from zero to n (the length of the string), 
   and indicate positions <i>between</i> characters. Thus in &quot;abcde&quot;, the substring from 2 to 4 
   includes the two characters &quot;cd&quot;.</p>
-  <p><span class="changedspan">We also define the following notation for use here and in other 
-  Unicode documents:</span></p>
+  <p><span>We also define the following notation for use here and in other Unicode documents:</span></p>
   <table class="syntax">
     <tr>
-      <td><span class="changedspan"><code>\n</code></span></td>
-      <td><span class="changedspan">As used within regular expressions, expands to the text matching 
-      the <b>n</b>th parenthesized group in regular expression. (<font SIZE="3">à</font> la Perl)</span></td>
+      <td><span><code>\n</code></span></td>
+      <td><span>As used within regular expressions, expands to the text matching the <b>n</b>th 
+      parenthesized group in regular expression. (<font SIZE="3">à</font> la Perl). Note that most</span> 
+      engines limit n to be [1-9]; thus \456 would be the reference to the 4th group followed by the 
+      literal &#39;56&#39;.</td>
     </tr>
     <tr>
-      <td><span class="changedspan"><code>$n</code></span></td>
-      <td><span class="changedspan">As used within replacement strings for regular expressions, 
-      expands to the text matching the <b>n</b>th parenthesized group in a corresponding regular 
-      expression. The value of $0 is the entire expression.(<font SIZE="3"> à</font> la Perl)</span></td>
+      <td><span><code>$n</code></span></td>
+      <td><span>As used within replacement strings for regular expressions, expands to the text 
+      matching the <b>n</b>th parenthesized group in a corresponding regular expression. The value 
+      of $0 is the entire expression.(<font SIZE="3"> à</font> la Perl)</span></td>
     </tr>
     <tr>
-      <td><span class="changedspan"><code>$xyz</code></span></td>
-      <td><span class="changedspan">As used within regular expressions or replacement strings, 
-      expands to an assigned variable value. The &#39;xyz&#39; is of the form of an identifier. For example, 
-      given<br>
+      <td><span><code>$xyz</code></span></td>
+      <td><span>As used within regular expressions or replacement strings, expands to an assigned 
+      variable value. The &#39;xyz&#39; is of the form of an identifier. For example, given<br>
       $greek_lower = [[:greek:]&amp;[:lowercase:]], the regular expression pattern &quot;ab$greek_lower&quot; is 
       equivalent to &quot;ab[[:greek:]&amp;[:lowercase:]]&quot;.</span></td>
     </tr>
   </table>
   <blockquote>
-    <p><span class="changedspan"><b>Note: </b>Since any character could occur as a literal in a 
-    regular expression, when regular expression syntax is embedded within other syntax it can be 
-    difficult to determine where the end of the regex expression is. Common practice is to allow the 
-    user to choose a delimiter like &#39;/&#39; in /ab(c)*/. The user can then simply choose a delimiter 
-    that is not in the particular regular expression.</span></p>
+    <p><span><b>Note: </b>Since any character could occur as a literal in a regular expression, when 
+    regular expression syntax is embedded within other syntax it can be difficult to determine where 
+    the end of the regex expression is. Common practice is to allow the user to choose a delimiter 
+    like &#39;/&#39; in /ab(c)*/. The user can then simply choose a delimiter that is not in the particular 
+    regular expression.</span></p>
   </blockquote>
   <h3>0.2 <a name="Conformance">Conformance</a></h3>
   <p>The following describes the possible ways that an implementation can claim conformance to this 
@@ -326,7 +324,7 @@ ESCAPE := &quot;\&quot;</pre>
     <dl>
       <dd><a href="#Hex_notation">RL1.1 Hex Notation</a></dd>
       <dd><a href="#Categories">RL1.2 Properties</a><br>
-      <span class="changedspan"><a href="#Categories">RL1.2a Compatibility Properties</a></span></dd>
+      <span><a href="#Categories">RL1.2a Compatibility Properties</a></span></dd>
       <dd><a href="#Subtraction_and_Intersection">RL1.3 Subtraction and Intersection</a></dd>
       <dd><a href="#Simple_Word_Boundaries">RL1.4 Simple Word Boundaries</a></dd>
       <dd><a href="#Simple_Loose_Matches">RL1.5 Simple Loose Matches</a></dd>
@@ -367,7 +365,6 @@ ESCAPE := &quot;\&quot;</pre>
       <dd><a href="#Tailored_Ranges">RL3.5 Tailored Ranges</a></dd>
       <dd><a href="#Context_Matching">RL3.6 Context Matching</a></dd>
       <dd><a href="#Partial_Matches">RL3.7 Incremental Matches</a></dd>
-      <dd><a href="#Unicode_Set_Sharing">RL3.8 Unicode Set Sharing</a></dd>
       <dd><a href="#Possible_Match_Sets">RL3.9 Possible Match Sets</a></dd>
       <dd><a href="#Folded_Matching">RL3.10 Folded Matching</a></dd>
       <dd><a href="#Submatchers">RL3.11 Submatchers</a></dd>
@@ -558,22 +555,21 @@ U_LONG_MARK := &quot;U&quot;</pre>
       </td>
     </tr>
     <tr>
-      <td class="rule_body"><span class="changedspan"><b>RL1.2a&nbsp;</b></span></td>
-      <td class="rule_body"><span class="changedspan"><span style="background-color: #FFFF00"><b>
-      Compatibility</b></span><b> Properties</b></span></td>
+      <td class="rule_body"><span><b>RL1.2a&nbsp;</b></span></td>
+      <td class="rule_body"><span><span L><b>Compatibility</b></span><b> Properties</b></span></td>
     </tr>
     <tr>
       <td class="rule_body">&nbsp;</td>
-      <td class="rule_body"><span class="changedspan">To meet this requirement, an implementation 
-      shall provide the properties listed in <a href="#Compatibility_Properties">Annex C. 
-      Compatibility Properties</a>, with the property values as listed there. Such an implementation 
-      shall document whether it is using the Standard Recommendation or POSIX-compatible properties.</span></td>
+      <td class="rule_body"><span>To meet this requirement, an implementation shall provide the 
+      properties listed in <a href="#Compatibility_Properties">Annex C. Compatibility Properties</a>, 
+      with the property values as listed there. Such an implementation shall document whether it is 
+      using the Standard Recommendation or POSIX-compatible properties.</span></td>
     </tr>
   </table>
-  <p>Of <span class="changedspan">the properties in RL1.2</span>, only General Category and Script 
-  have multiple values; the rest are binary. An implementation that does not support non-binary 
-  enumerated properties can essentially &quot;flatten&quot; the enumerated type. Thus, for example, instead of 
-  \p{script=latin} the syntax could be \p{script_latin}.</p>
+  <p>Of <span>the properties in RL1.2</span>, only General Category and Script have multiple values; 
+  the rest are binary. An implementation that does not support non-binary enumerated properties can 
+  essentially &quot;flatten&quot; the enumerated type. Thus, for example, instead of \p{script=latin} the 
+  syntax could be \p{script_latin}.</p>
   <h4>General Category Property</h4>
   <p>The most basic overall character property is the General Category, which is a basic 
   categorization of Unicode characters into: <i>Letters, Punctuation, Symbols, Marks, Numbers, 
@@ -992,7 +988,7 @@ SEP := &quot;&quot;            // no separator = union
       <ol>
         <li>The class of <code>&lt;word_character&gt;</code> includes all the Alphabetic values from the 
         Unicode character database, from
-        <a href="http://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> [<a href="#UData">UData</a>]<span class="changedspan">, 
+        <a href="http://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> [<a href="#UData">UData</a>]<span>, 
         plus the U+200C ZERO WIDTH NON-JOINER and U+200D ZERO WIDTH JOINER</span>. See also
         <a href="#Compatibility_Properties">Annex C: Compatibility Properties</a>.</li>
         <li>Non-spacing marks are never divided from their base characters, and otherwise ignored in 
@@ -1062,19 +1058,19 @@ SEP := &quot;&quot;            // no separator = union
   <p>The behavior of these may also differ depending one whether one is in a &quot;multiline&quot; mode or 
   not. For more information, see <i>Anchors and Other &quot;Zero-Width Assertions&quot;</i> in Chapter 3 of [<a href="#Friedl">Friedl</a>].</p>
   <p class="changed">A newline sequence is defined to be any of the following:</p>
-  <p align="center"><code>\u000A | <span class="changedspan">\u000B | </span>\u000C | \u000D | 
-  \u0085 | \u2028 | \u2029 | \u000D\u000A</code></p>
+  <p align="center"><code>\u000A | <span>\u000B | </span>\u000C | \u000D | \u0085 | \u2028 | \u2029 
+  | \u000D\u000A</code></p>
   <ol>
     <li><b>Logical line number</b>
     <ul>
-      <li>The line number is increased by one for each occurrence of <span class="changedspan">a 
-      newline sequence</span>. </li>
+      <li>The line number is increased by one for each occurrence of <span>a newline sequence</span>.
+      </li>
       <li>Note that different implementations may call the first line either line zero or line one.</li>
     </ul>
     </li>
     <li><b>Logical beginning of line (often &quot;^&quot;)</b>
     <ul>
-      <li>SOL is at the start of a file or string, and also immediately following any occurrence of<span class="changedspan"> 
+      <li>SOL is at the start of a file or string, and also immediately following any occurrence of<span> 
       a newline sequence.</span></li>
     </ul>
     <ul>
@@ -1085,7 +1081,7 @@ SEP := &quot;&quot;            // no separator = union
     </li>
     <li><b>Logical end of line (often &quot;$&quot;)</b>
     <ul>
-      <li>EOL at the end of a file or string, and also immediately preceding a final occurrence of<span class="changedspan"> 
+      <li>EOL at the end of a file or string, and also immediately preceding a final occurrence of<span> 
       a newline sequence.</span></li>
       <li>There is no empty line within the sequence <code>\u000D\u000A</code>.</li>
       <li>SOL and EOL are not symmetric because of multiline mode: EOL can be interpreted in at 
@@ -1100,19 +1096,23 @@ SEP := &quot;&quot;            // no separator = union
     </li>
     <li><b>Arbitrary character pattern (often &quot;.&quot;)</b>
     <ul>
-      <li>Should <i>not</i> match any of <span class="changedspan">&nbsp;the newline sequences.</span></li>
+      <li>Should <i>not</i> match any of <span>&nbsp;the newline sequences.</span></li>
       <li>In &quot;multiline mode&quot;, these <i>would</i> match, and <code>\u000D\u000A</code> matches as if 
       it were a single character.</li>
-      <li>Note that ^.*$ (an empty line pattern) should not match the empty string within the 
-      sequence <code>\u000D\u000A</code>, but should match the empty string within the reversed 
-      sequence <code>\u000A\u000D</code>.</li>
+      <li>Note that ^$ (an empty line pattern) should not match the empty string within the sequence
+      <code>\u000D\u000A</code>, but should match the empty string within the reversed sequence
+      <code>\u000A\u000D</code>.</li>
     </ul>
     </li>
   </ol>
   <p>It is strongly recommended that there be a regular expression meta-character, such as &quot;\R&quot;, for 
   matching all line ending characters and sequences listed above (e.g. in #1). It would thus be 
-  shorthand for <code>([\u000A<span class="changedspan">\u000B</span>\u000C\u000D\u0085\u2028\u2029] 
-  | \u000D\u000A)</code>.</p>
+  shorthand for <code>([\u000A<span>\u000B</span>\u000C\u000D\u0085\u2028\u2029] | \u000D\u000A)</code>.</p>
+  <blockquote>
+    <p><b>Note: </b>It may be more consistent and efficient to externalize the newline logic and 
+    request the input data be normalized to transform all newline sequences into a single newline 
+    character before regular expression processing.</p>
+  </blockquote>
   <p>For more information on line breaking, see [<a href="#LineBreak">LineBreak</a>].</p>
   <h3><a name="Supplementary_Characters">1.7 Code Points</a></h3>
   <p>A fundamental requirement is that Unicode text be interpreted semantically by code point, not 
@@ -1215,7 +1215,7 @@ SEP := &quot;&quot;            // no separator = union
   <ol>
     <li value="2">Expand the regular expression internally into a more generalized regular 
     expression that takes canonical equivalence into account. For example, the expression <code>[a-z 
-    ä]</code> can be internally turned into <code>[a-z ä]&nbsp;|&nbsp;(a&nbsp;\u0308)</code>. While this can be 
+    ä]</code> can be internally turned into <code>([a-z ä]&nbsp;|&nbsp;(a&nbsp;\u0308))</code>. While this can be 
     faster, it may also be substantially more difficult to generate expressions capturing all of the 
     possible equivalent sequences. </li>
   </ol>
@@ -1441,7 +1441,7 @@ SEP := &quot;&quot;            // no separator = union
   <h3>2.6 <a name="Wildcard_Properties">Wildcard Properties</a></h3>
   <table class="noborder">
     <tr>
-      <td class="rule_head">RL2.5</td>
+      <td class="rule_head">RL2.6</td>
       <td class="rule_head">Wildcard Properties</td>
     </tr>
     <tr>
@@ -1459,7 +1459,8 @@ SEP := &quot;&quot;            // no separator = union
     underbar are significant; it is presumed that people will use regular-expression features to 
     ignore these if desired.</p>
   </blockquote>
-  <p><i>Examples, where &quot;.*&quot; matches any character, | is alternation, and (...) is grouping:</i></p>
+  <p><i>Examples, where &quot;.*&quot; matches any sequence of zero or more characters, | is alternation, and 
+  (...) is grouping:</i></p>
   <table class="example">
     <tr>
       <td><b><code>\p{name=/LATIN LETTER.*P/}</code> is equivalent to:</b></td>
@@ -1662,15 +1663,18 @@ ITEM := \v{EXACT}     // match all levels, normal state</pre>
   </table>
   <p>Tailored character ranges will include tailored grapheme clusters, as discussed above. This 
   broadens the set of grapheme clusters — in traditional Spanish, for example, <code>[b-d]</code> 
-  would match against &quot;<code>ch</code>&quot;.</p>
+  would match against &quot;<code>c</code>&quot; and against &quot;<code>ch</code>&quot;. That is because in that 
+  collation, &quot;<code>ch</code>&quot; sorts as a single letter between &quot;<code>c</code>&quot; and &quot;<code>d</code>&quot;.</p>
   <blockquote>
     <p><b>Note: </b>this is another reason why a property for all characters <code>\p{Any}</code> is 
     needed—it is possible for a locale&#39;s collation to not have <code>[\u0000-\U0010FFFF]</code> 
     encompass all characters.</p>
   </blockquote>
-  <p>Languages may also vary whether they consider lowercase below uppercase or the reverse. This 
-  can have some surprising results: <code>[a-Z]</code> may not match anything if <i>Z &lt; a</i> in 
-  that locale!</p>
+  <p>Tailored ranges can be quite difficult to implement properly, and can have very unexpected 
+  results in practice. For example, languages may also vary whether they consider lowercase below 
+  uppercase or the reverse. This can have some surprising results: <code>[a-Z]</code> may not match 
+  anything if <i>Z &lt; a</i> in that locale. Thus people should be cautious about implementing this 
+  feature.</p>
   <h3>3.6 <a name="Context_Matching">Context Matching</a></h3>
   <table class="noborder">
     <tr>
@@ -1835,21 +1839,10 @@ ITEM := \v{EXACT}     // match all levels, normal state</pre>
     additional characters were added.</li>
   </ul>
   <h3>3.8 <a name="Unicode_Set_Sharing">Unicode Set Sharing</a></h3>
-  <table class="noborder">
-    <tr>
-      <td class="rule_head">RL3.8</td>
-      <td class="rule_head">Unicode Set Sharing</td>
-    </tr>
-    <tr>
-      <td class="rule_body"></td>
-      <td class="rule_body"><i>To meet this requirement, an implementation shall provide for shared 
-      storage of Unicode sets.</i></td>
-    </tr>
-  </table>
   <p>For script transliteration and similar applications, there may be a hundreds of regular 
   expressions, sharing a number of Unicode sets in common. These Unicode sets, such as <code>[\p{Alphabetic} 
   - \p{Latin}]</code>, could take a fair amount of memory, since they would typically be expanded 
-  into an internal memory representation that allows for fast lookup. If these sets separately 
+  into an internal memory representation that allows for fast lookup. If these sets are separately 
   stored, this means an excessive memory burden.</p>
   <p>To reduce the storage requirements, an API may allow regular expressions to share storage of 
   these and other constructs, by having a &#39;pool&#39; of data associated with a set of compiled regular 
@@ -2125,75 +2118,18 @@ static int getLocaleCharacterEnd(String s,
 }</pre>
   <h2>Annex C: <a name="Compatibility_Properties">Compatibility Properties</a></h2>
   <p>The following are recommended assignments for compatibility property names, for use in Regular 
-  Expressions.<span class="changedspan"> There are two alternatives: the Standard Recommendation and 
-  the POSIX Compatible versions. The latter is modified to meet the formal requirements of [POSIX], 
-  and also to maintain (as much as possible compatibility) with the usage in practice. So, for 
-  example, \p{Lowercase} and \p{Uppercase} remove anything not in <b>alpha</b>, since one of the 
-  POSIX requirements is that <b>alpha</b> contain <b>lower</b> and <b>upper</b> <font SIZE="3">—</font> 
-  and there are a few Unicode Symbols that are Lowercase bug not included in Alphabetic.</span></p>
-  <p class="reviewnote"><span class="changedspan"><b>Note to Reviewers: </b>Not only do we want to 
-  match the &#39;letter of the law&#39; for POSIX, we also<br>
-  want to try to also match the prevailing practice, insofar as that can be<br>
-  expressed as consistent combinations of Unicode properties. Ideally we would not have two columns 
-  different alternatives for assignment. There are, however, a few problems with that, for which we 
-  would especially appreciate feedback:</span></p>
-  <ol>
-    <li>
-    <p class="reviewnote">First is that certain properties have the same names in POSIX and in 
-    Unicode: alpha, upper, lower (these are short-name aliases in Unicode). Unfortunately, POSIX 
-    imposes a constraint that is not met by the Unicode properties, so there is a mismatch between 
-    what what would be natural and what must be done for POSIX requirements. The problem arises 
-    because of the following characters. The options are to subtract these from upper, add them to 
-    alpha, or change the Unicode properties so that Alphabetic contains Uppercase.<ul>
-      <li>
-      <pre><span class="changedspan">24B6..24CF # So [26] CIRCLED LATIN CAPITAL LETTER A..CIRCLED LATIN CAPITAL LETTER Z</span></pre>
-      </li>
-    </ul>
-    </li>
-    <li>
-    <p class="reviewnote">POSIX also imposes some unreasonable requirements on digit: there can be 
-    at most 20. And our feedback is that for many UNIX implementations, anything but the ASCII 
-    digits will cause at least some programs to choke.</li>
-    <li>
-    <p class="reviewnote">The table below adds symbols (where possible) to punct, since that matches 
-    the &quot;POSIX locale&quot; (the default). POSIX does allow other languages to change that; the question 
-    is what gives the best compatibility. Another alternative is to add just the symbols in the 
-    ASCII range.</li>
-    <li>
-    <p class="reviewnote">We have gotten feedback that -- while not a formal requirement in POSIX -- 
-    graph should include all assigned characters but cntrl and blank. So we should add Format 
-    characters either to cntrl or to graph, or split them on a case-by case basis between those two 
-    categories. These include:<ul>
-      <li>
-      <pre><span class="changedspan">00AD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOFT HYPHEN
-0600..0603&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [4] ARABIC NUMBER SIGN..ARABIC SIGN SAFHA
-06DD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ARABIC END OF AYAH
-070F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SYRIAC ABBREVIATION MARK
-17B4..17B5&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [2] KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
-200B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ZERO WIDTH SPACE
-200E..200F&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [2] LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
-202A..202E&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [5] LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
-2060..2063&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [4] WORD JOINER..INVISIBLE SEPARATOR
-206A..206F&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [6] INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
-FEFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ZERO WIDTH NO-BREAK SPACE
-FFF9..FFFB&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR
-ANNOTATION TERMINATOR
-1D173..1D17A&nbsp;&nbsp; # Cf&nbsp;&nbsp; [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END
-PHRASE
-E0001&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LANGUAGE TAG
-E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
-</pre>
-      </li>
-    </ul>
-    </li>
-  </ol>
-  <p class="reviewnote">Are there any other changes in the POSIX column that would promote 
-  compatibility?</p>
+  Expressions.<span> There are two alternatives: the Standard Recommendation and the POSIX 
+  Compatible versions. </span>Applications should use the former wherever possible. The latter is 
+  modified to meet the formal requirements of [POSIX], and also to maintain (as much as possible) 
+  compatibility with the POSIX usage in practice. That involves some compromises, since POSIX does 
+  not have as fine-grained a set of character properties as in the Unicode Standard, and also has 
+  some additional constraints. So, for example, POSIX does not allow more than 20 characters to be 
+  categorized as digits, whereas there are many more than 20 digit characters in Unicode.</p>
   <table border="1" cellspacing="0" cellpadding="2">
     <tr>
       <th class="heading">Property</th>
-      <th class="heading"><span class="changedspan">Standard Recommendation</span></th>
-      <th class="heading"><span class="changedspan">POSIX Compatible</span></th>
+      <th class="heading"><span>Standard Recommendation</span></th>
+      <th class="heading"><span>POSIX Compatible</span></th>
       <th class="heading">Comments</th>
     </tr>
     <tr>
@@ -2201,7 +2137,7 @@ E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
       <td class="recommended">\p{Alphabetic}</td>
       <td class="recommended">\p{Alphabetic}</td>
       <td>Alphabetic includes more than gc = Letter. Note that marks (Me, Mn, Mc) are required for 
-      words of many languages. While they could be applied to non-alphabetics, their principle use 
+      words of many languages. While they could be applied to non-alphabetics, their principal use 
       is on alphabetics. See
       <a href="http://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt">
       DerivedCoreProperties</a> [<a href="#UCD">UCD</a>] for Alphabetic, also
@@ -2220,14 +2156,13 @@ E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
     <tr>
       <td><b><a name="upper">upper</a></b></td>
       <td class="recommended">\p{Uppercase}</td>
-      <td class="recommended">\p{Uppercase}<br>
-      <span class="changedspan">&amp; \p{alpha}</span></td>
+      <td class="recommended">\p{Uppercase}</td>
       <td>Uppercase includes more than gc = Uppercase_Letter (Lu).</td>
     </tr>
     <tr>
       <td><b><a name="punct">punct</a></b></td>
       <td class="recommended">\p{gc=Punctuation}</td>
-      <td class="recommended"><span class="changedspan">\p{gc=Punctuation}<br>
+      <td class="recommended"><span>\p{gc=Punctuation}<br>
       \p{gc=Symbol}<br>
       - \p{alpha}</span></td>
       <td>POSIX adds symbols. Not recommended generally, due to the confusion of having <i>punct</i> 
@@ -2237,7 +2172,7 @@ E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
       <td><b><a name="digit">digit</a><br>
       (\d)</b></td>
       <td class="recommended">\p{gc=Decimal_Number}</td>
-      <td class="recommended"><span class="changedspan">[0..9]</span></td>
+      <td class="recommended"><span>[0..9]</span></td>
       <td>Non-decimal numbers (like Roman numerals) are normally excluded. In U4.0+, the recommended 
       column is the same as gc = Decimal_Number (Nd). See
       <a href="http://www.unicode.org/Public/UNIDATA/extracted/DerivedNumericType.txt">
@@ -2247,8 +2182,8 @@ E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
       <td><b><a name="xdigit">xdigit</a></b><br>
       </td>
       <td class="recommended">\p{gc=Decimal_Number}<br>
-      <span class="changedspan">\p{Hex_Digit}</span></td>
-      <td class="recommended"><span class="changedspan">[0-9 A-F a-f]</span></td>
+      <span>\p{Hex_Digit}</span></td>
+      <td class="recommended"><span>[0-9 A-F a-f]</span></td>
       <td>Hex_Digit contains 0-9 A-F, fullwidth and halfwidth, upper and lowercase.</td>
     </tr>
     <tr>
@@ -2287,13 +2222,11 @@ E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
       <td class="recommended">[^<br>
       \p{space}<br>
       \p{gc=Control}<br>
-      \p{gc=Format}<br>
       \p{gc=Surrogate}<br>
       \p{gc=Unassigned}]</td>
       <td class="recommended">[^<br>
       \p{space}<br>
       \p{gc=Control}<br>
-      \p{gc=Format}<br>
       \p{gc=Surrogate}<br>
       \p{gc=Unassigned}]</td>
       <td><i>Warning: </i>the set to the left is defined by <i>excluding </i>space, controls, etc. 
@@ -2304,10 +2237,10 @@ E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
     <tr>
       <td><b>print</b></td>
       <td class="recommended">\p{graph}<br>
-      <span class="changedspan">\p{blank}<br>
+      <span>\p{blank}<br>
       - \p{cntrl}</span></td>
       <td class="recommended">\p{graph}<br>
-      <span class="changedspan">\p{blank}<br>
+      <span>\p{blank}<br>
       - \p{cntrl}</span></td>
       <td>Includes graph and space-like characters.</td>
     </tr>
@@ -2318,7 +2251,7 @@ E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
       \p{gc=Mark}<br>
       \p{digit}<br>
       \p{gc=Connector_Punctuation}</td>
-      <td class="recommended"><span class="changedspan">n/a</span></td>
+      <td class="recommended"><span>n/a</span></td>
       <td>This is only an approximation to Word Boundaries (see <a href="#b">b</a> below). The 
       Connector Punctuation is added in for programming language identifiers, thus adding &quot;_&quot; and 
       similar characters.</td>
@@ -2326,7 +2259,7 @@ E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
     <tr>
       <td><b>\<a name="X">X</a></b></td>
       <td class="recommended">Default Grapheme Clusters</td>
-      <td class="recommended"><span class="changedspan">n/a</span></td>
+      <td class="recommended"><span>n/a</span></td>
       <td>See [<a href="#Boundaries">Boundaries</a>], also
       <a href="http://www.unicode.org/reports/tr29/GraphemeClusterBreakTest.html">
       GraphemeClusterBreakTest</a>. Other functions are used for programming language identifier 
@@ -2335,7 +2268,7 @@ E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
     <tr>
       <td><b>\<a name="b">b</a></b></td>
       <td class="recommended">Default Word Boundaries</td>
-      <td class="recommended"><span class="changedspan">n/a</span></td>
+      <td class="recommended"><span>n/a</span></td>
       <td>If there is a requirement that \b align with \w, then it would use the approximation above 
       instead. See [<a href="#Boundaries">Boundaries</a>], also
       <a href="http://www.unicode.org/reports/tr29/WordBreakTest.html">WordBreakTest</a>.<p>Note 
@@ -2515,25 +2448,49 @@ E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
   </table>
   <p>&nbsp; </p>
   <h2><a name="Acknowledgments">Acknowledgments</a></h2>
-  <p>Thanks to Jeffrey Friedl, Andy Heninger, Alan Liu, Kent Karlsson, Jarkko Hietaniemi, Gurusamy 
-  Sarathy, Henry Spencer, Tom Watson, and Kento Tamura for their feedback on the document.</p>
+  <p>Thanks to Jeffrey Friedl, Andy Heninger, Peter Linsley, Alan Liu, Kent Karlsson, Jarkko 
+  Hietaniemi, Gurusamy Sarathy, Henry Spencer, Tom Watson, and Kento Tamura for their feedback on 
+  the document.</p>
   <h2><a name="Modifications">Modifications</a></h2>
   <p>The following summarizes modifications from the previous version of this document.</p>
   <table class="noborder">
     <tr>
-      <td width="1" class="noborder"><span class="changedspan"><a name="TrackingNumber9">10</a></span></td>
+      <td width="1" class="noborder"><a name="TrackingNumber11">11</a></td>
       <td class="noborder">
       <ul>
-        <li><span class="changedspan">R1.4, item 2 changed for ZW(N)J</span></li>
-        <li><span class="changedspan"><span style="background-color: #FFFF00">Added conformance 
-        clause to allow a claim of conformance to the Compatibility properties.</span></span></li>
-        <li><span class="changedspan"><span style="background-color: #FFFF00">Split the 
-        Compatibility properties into two, to allow for regular vs. strict POSIX properties.</span></span></li>
-        <li><span class="changedspan"><span style="background-color: #FFFF00">Added other notation 
-        for use here and in other Unicode Standards</span></span></li>
-        <li><span class="changedspan"><span style="background-color: #FFFF00">Added vertical tab to 
-        newline sequences. Reorganized text slightly to only list codepoints once.</span></span></li>
-        <li><span class="changedspan"><span style="background-color: #FFFF00">Minor Editing</span></span></li>
+        <li>Annex C:<ul>
+          <li>Clarified first paragraph and removed review notes.</li>
+          <li>Changed <i>upper</i> definition in Annex C, since the UTC has changed the properties 
+          so that it will always be the case (from 4.1.0 onward) that Alphabetic ⊇ Uppercase and 
+          Alphabetic ⊇ Lowercase</li>
+          <li>Added \p{gc=Format} to graph, for better compatibility with POSIX usage.</li>
+        </ul>
+        </li>
+        <li>Added a caution about use of Tailored Ranges, and a note about the option of 
+        pre-normalization with newlines.</li>
+        <li>Removed conformance clause for Unicode Set Sharing</li>
+        <li>Misc Edits, including:<ul>
+          <li>Added note on limit of 1-9 for \n</li>
+          <li>Fixed ^.*$ to ^$</li>
+          <li>Added parentheses to ([a-z ä] | (a \u0308))</li>
+        </ul>
+        </li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td width="1" class="noborder"><span><a name="TrackingNumber9">10</a></span></td>
+      <td class="noborder">
+      <ul>
+        <li><span>R1.4, item 2 changed for ZW(N)J</span></li>
+        <li><span><span L>Added conformance clause to allow a claim of conformance to the 
+        Compatibility properties.</span></span></li>
+        <li><span><span L>Split the Compatibility properties into two, to allow for regular vs. 
+        strict POSIX properties.</span></span></li>
+        <li><span><span L>Added other notation for use here and in other Unicode Standards</span></span></li>
+        <li><span><span L>Added vertical tab to newline sequences. Reorganized text slightly to only 
+        list codepoints once.</span></span></li>
+        <li><span><span L>Minor Editing</span></span></li>
       </ul>
       </td>
     </tr>

@@ -42,7 +42,7 @@ around the present. Moreover, even if these problems don't occur, there is the i
     </tr>
     <tr>
       <td>UNIX_TIME</td>
-      <td>int32</td>
+      <td>int32 or int64</td>
       <td>seconds</td>
       <td>Jan 1, 1970</td>
     </tr>
@@ -166,8 +166,8 @@ enough range, and be slightly more precise, but that does not seem to be worth b
 udatetime UDateTime.from(double otherTime, Selector selector);
 udatetime UDateTime.from(long otherTime, Selector selector);
 
-BigDecimal UDateTime.BigDecimalFrom(udatetime otherTime, Selector selector);
-BigDecimal UDateTime.BigDecimalFrom(udatetime otherTime, Selector selector);
+BigDecimal UDateTime.BigDecimalFrom(double otherTime, Selector selector);
+BigDecimal UDateTime.BigDecimalFrom(long otherTime, Selector selector);
 
 <font color="#0000FF">// conversion from 'universal time scale'
 </font>

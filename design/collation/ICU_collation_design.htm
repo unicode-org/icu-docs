@@ -9,9 +9,15 @@
 <style>
 <!--
 body         { font-family: Times New Roman }
+.primary     { background-color: #80FF80; text-align: Center; font-size: 80% }
+.secondary   { background-color: #8080FF; text-align: Center; font-size: 80% }
+.tertiary    { background-color: #FF8080; text-align: Center; font-size: 80% }
+.case        { background-color: #80FFFF; text-align: Center; font-size: 80% }
+.flag        { background-color: #FF0000; text-align: Center; font-size: 80% }
 .q           { font-style: italic; font-weight: bold }
 p            { font-family: Times New Roman }
 li           { font-family: Times New Roman }
+th           { background-color: #CCCCFF }
 -->
 </style>
 </head>
@@ -19,8 +25,10 @@ li           { font-family: Times New Roman }
 <body>
 
 <h1 align="center">ICU Collation Design Documentation</h1>
-<h2 align="center">Draft #11, MD</h2>
-<h3 align="center">2000-12-12</h3>
+<p align="center"><b><font color="#FF0000" size="4">Note: this is a rough draft. 
+Please look at the <a href="#Modifications">Modifications</a></font></b></p>
+<h2 align="center">Draft #12, MD</h2>
+<h3 align="center">2000-01-12</h3>
 This document describes the proposed revisions to Collation in ICU. Readers 
 should already be familiar with <a
 href="http://www.unicode.org/unicode/reports/tr10/">UTS #10: Unicode Collation 
@@ -29,7 +37,9 @@ be seen at <a
 href="http://www.unicode.org/unicode/reports/tr10/charts/Collation00.html">Collation 
 Charts</a>.
 <p>This document is liberally sprinkled with code fragments. These are meant to 
-be illustrative, and will not necessarily match the final implementation.</p>
+be illustrative, and will not necessarily match the final implementation. The 
+organization of the text could be improved, but we probably won't take the time 
+to do it until later.</p>
 <h2>Contents</h2>
 <ul>
   <li><a href="#Requirements">Requirements</a></li>
@@ -42,9 +52,11 @@ be illustrative, and will not necessarily match the final implementation.</p>
   <li><a href="#Rule_Syntax">Rule Syntax</a></li>
   <li><a href="#Versioning">Versioning</a></li>
   <li><a href="#API">API</a></li>
+  <li><a href="#Issues">Issues</a></li>
   <li><a href="#FAQ">FAQ</a></li>
   <li><a href="#Appendix_1">Appendix 1: Japanese Sort Order</a></li>
   <li><a href="#Appendix_2">Appendix 2: Compressing Primary Weights</a></li>
+  <li><a href="#Modifications">Modifications</a></li>
 </ul>
 <h2><a name="Requirements">Requirements</a></h2>
 <p>The rest of the document proceeds as if all the following requirements and 
@@ -168,13 +180,17 @@ Main items (not in priority order)
 <p>A collation table, whether UCA or a tailored table, contains the following 
 subtables. It is in a flattened form that can be loaded as a DLL or into 
 read-only shared memory. The header contains offsets to all the other subtables, 
-plus various information that is used in processing, such as the 
-maximumPrimaryFactor. A CE is a uint32_t. A UChar is 16 bits.</p>
+plus the number of items in each subtable, plus various information that is used 
+in processing, such as the maximumPrimaryFactor. A CE is a uint32_t. A UChar is 
+16 bits.</p>
 <blockquote>
   <p><b>NOTE: we make the processing faster by having offsets everywhere in the 
   table be from the very start of the whole table, not from the start of the 
-  each subtable! Because the offsets to the Expansion table have only 20 bits, 
-  we put that one first.</b></p>
+  each subtable!</b></p>
+  <p><b>The order of the subtables is not determined: with one exception: 
+  because the offsets to the Expansion table have only 20 bits, we put that one 
+  first. The position of each table would be determined by looking up the offset 
+  in the header.</b></p>
 </blockquote>
 <table border="0" cellspacing="0" cellpadding="4">
   <tr>
@@ -187,10 +203,22 @@ maximumPrimaryFactor. A CE is a uint32_t. A UChar is 16 bits.</p>
           <td width="100%">info...</td>
         </tr>
         <tr>
-          <td width="100%">offset to Trie·Index</td>
+          <td width="100%">Expansions offset</td>
         </tr>
         <tr>
-          <td width="100%">offset to Trie·Data</td>
+          <td width="100%">Expansions count</td>
+        </tr>
+        <tr>
+          <td width="100%">Main·Index offset</td>
+        </tr>
+        <tr>
+          <td width="100%">Main·Index count</td>
+        </tr>
+        <tr>
+          <td width="100%">Main·Data offset</td>
+        </tr>
+        <tr>
+          <td width="100%">Main·Data count</td>
         </tr>
         <tr>
           <td width="100%">...</td>
@@ -219,7 +247,7 @@ maximumPrimaryFactor. A CE is a uint32_t. A UChar is 16 bits.</p>
     <td align="center" valign="top">
       <table border="1" width="1%">
         <tr>
-          <th width="100%">Trie·Index</th>
+          <th width="100%">Main·Index</th>
         </tr>
         <tr>
           <td width="100%">index</td>
@@ -235,7 +263,7 @@ maximumPrimaryFactor. A CE is a uint32_t. A UChar is 16 bits.</p>
     <td align="center" valign="top">
       <table border="1" width="1%">
         <tr>
-          <th width="100%">Trie·Data</th>
+          <th width="100%">Main·Data</th>
         </tr>
         <tr>
           <td width="100%">CE</td>
@@ -356,56 +384,62 @@ maximumPrimaryFactor. A CE is a uint32_t. A UChar is 16 bits.</p>
 element. ICU uses a single 32-bit value in the code and tables to represent 
 this. Sometimes the values are overloaded in the tables, depending where they 
 are used.</p>
-<h4 align="left">Normal</h4>
-<p align="left">The normal CE is of the following form (where P = primary, S = 
-secondary, C = case, T = tertiary). The primary does not start with F, and the 
-least significant 8 bits are not Fx. The Case bit can be used to form an extra 
-Japanese weight level, or considered part of the tertiary weight. In either 
-case, a parameter can be used to invert it, thus changing whether small is 
-before large or the reverse. That parameter can be either set in the rules or by 
-a set call.</p>
+<p align="left">All of these are mechanisms for encoding a fractional collation 
+element (FCE: see <a href="#Fractional_Collation_Elements">Long Collation 
+Elements</a>) into 32-bit chunks, in a way that can be easily used in generating 
+sort keys. The different forms of CE are distinguished by a Flag bit (F). In the 
+following diagrams, P = primary, S = secondary, C = case, T = tertiary, F = 
+Flag1, G = Flag2.</p>
+<h4 align="left">Unflagged (F = 0)</h4>
+<p align="left">The normal CE is of the following form. The Case bit can be used 
+to form an extra Japanese weight level, or considered part of the tertiary 
+weight. In either case, a parameter can be used to invert it, thus changing 
+whether small is before large or the reverse. That parameter can be either set 
+in the rules or by a set call. The first nybble of the primary can never be F; 
+this constraint is maintained by the data builder.</p>
 <div align="center">
   <center>
   <table border="1" cellspacing="1">
     <tr>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#CCFF99" align="center"><font size="2">C</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="flag"><font size="2">F</font></td>
+      <td class="case"><font size="2">C</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
     </tr>
     <tr>
-      <td bgcolor="#00FF00" colspan="16" align="center">16 bit primary</td>
-      <td bgcolor="#66FF66" colspan="8" align="center">8 bit secondary</td>
-      <td bgcolor="#CCFF99" align="center"><font size="2">1</font></td>
-      <td bgcolor="#FFFF66" colspan="7" align="center">7 bit tert.</td>
+      <td colspan="16" class="primary">16b</td>
+      <td colspan="8" class="secondary">8b</td>
+      <td class="flag">&nbsp;0</td>
+      <td class="case">&nbsp;?</td>
+      <td colspan="6" class="tertiary">7b</td>
     </tr>
   </table>
   </center>
@@ -416,250 +450,187 @@ a set call.</p>
   only be zero if the primary is zero. This constraint is managed by the data 
   builder.</p>
 </blockquote>
-<h4 align="left">Long Primary</h4>
-<p align="left">The Long Primary CE is of the following form. The primary does 
-not start with F, and the least significant 8 bits have the value Fx. The 
-primary is considered to be 24 bits, the secondary is 4 bits and the tertiary is 
-a constant = UNMARKED. The value of CASE is 0. (The actual value of the 
-secondary is incremented by MIN_VALUE, providing more bits.)</p>
-<div align="center">
-  <center>
-  <table border="1" cellspacing="1">
-    <tr>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">S</font></td>
-    </tr>
-    <tr>
-      <td bgcolor="#00FF00" colspan="24" align="center">24 bit primary</td>
-      <td bgcolor="#FF0000" align="center" colspan="4">flag</td>
-      <td bgcolor="#FFFF66" colspan="4" align="center">4b s.&nbsp;</td>
-    </tr>
-  </table>
-  </center>
-</div>
-<blockquote>
-  <p align="left"><i>Note: </i>this form will never be generated unless a 24-bit 
-  primary weight is required. This constraint is managed by the data builder. 
-  That also ensures that it meets UCA validity constraints.</p>
-</blockquote>
-<h4 align="left">Continuation</h4>
-<p align="left">The Continuation CE is of the following form. It is the same as 
-the normal primary, except that the first nybble of the primary is F. 
-Continuation CEs can <i>only</i> occur in Expansions (although not all Expansion 
-CEs will be Continuations).</p>
+<h4 align="left">Continuation (F = 1, G = 0)</h4>
+<p align="left">The Continuation CE is of the following form.Continuation CEs 
+can <i>only</i> occur in Expansions (although not all Expansion CEs will be 
+Continuations). The case bit is never necessary in Continuations.</p>
 <div align="center">
   <table border="1" cellspacing="1">
     <tr>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#CCFF99" align="center"><font size="2">C</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="primary"><font size="2">P</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="secondary"><font size="2">S</font></td>
+      <td class="flag"><font size="2">F</font></td>
+      <td class="flag"><font size="2">G</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
+      <td class="tertiary"><font size="2">T</font></td>
     </tr>
     <tr>
-      <td bgcolor="#FF0000" colspan="4" align="center">flag</td>
-      <td bgcolor="#00FF00" colspan="12" align="center">16 bit primary</td>
-      <td bgcolor="#66FF66" colspan="8" align="center">8 bit secondary</td>
-      <td bgcolor="#CCFF99" align="center"><font size="2">1</font></td>
-      <td bgcolor="#FFFF66" colspan="7" align="center">7 bit tert.</td>
+      <td colspan="16" class="primary">16b</td>
+      <td colspan="8" class="secondary">8b</td>
+      <td class="flag">&nbsp;1</td>
+      <td class="flag">0</td>
+      <td colspan="6" class="tertiary">6b</td>
     </tr>
   </table>
 </div>
-<p align="left">To test whether a ce is a continuation CE, we use:</p>
-<div align="left">
-  <pre align="left">if (ce &gt;= MIN_CONTINUATION) ...</pre>
-</div>
-<blockquote>
-  <p align="left"><i>Note: </i>Continuations are only used as an implementation 
-  mechanism for representing CEs that don't fit in 32 bits in the data tables. 
-  See <a href="#Fractional_Collation_Elements">Long Collation Elements</a>.</p>
-</blockquote>
-<h4 align="left">Long Continuation</h4>
-<p align="left">The Long Continuation CE is of the following form. This is the 
-same as the long primary CE, except that the first nybble of the primary is F. 
-Long continuation CEs can <i>only</i> occur in Expansions (although not all 
-Expansion CEs will be Continuations).</p>
-<div align="center">
-  <table border="1" cellspacing="1">
-    <tr>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">S</font></td>
-      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">S</font></td>
-    </tr>
-    <tr>
-      <td bgcolor="#FF0000" colspan="4" align="center">flag</td>
-      <td bgcolor="#00FF00" colspan="20" align="center">24 bit primary</td>
-      <td bgcolor="#FF0000" align="center" colspan="4">flag</td>
-      <td bgcolor="#FFFF66" colspan="4" align="center">4b s.&nbsp;</td>
-    </tr>
-  </table>
-</div>
-<blockquote>
-  <p align="left"><i>Note: </i>Continuations are only used as an implementation 
-  mechanism for representing CEs that don't fit in 32 bits in the data tables. 
-  See <a href="#Fractional_Collation_Elements">Long Collation Elements</a>.</p>
-</blockquote>
+<h4 align="left">Long Primary (F = 1, G = 1)</h4>
+<p align="left">The Long Primary CE is of the following form. The value of the 
+secondary and case are implicit.</p>
+<table border="1" cellspacing="1">
+  <tr>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="primary">P</td>
+    <td class="flag"><font size="2">F</font></td>
+    <td class="flag"><font size="2">G</font></td>
+    <td bgcolor="#FFFF66" class="tertiary"><font size="2">T</font></td>
+    <td bgcolor="#FFFF66" class="tertiary"><font size="2">T</font></td>
+    <td bgcolor="#FFFF66" class="tertiary"><font size="2">T</font></td>
+    <td bgcolor="#FFFF66" class="tertiary"><font size="2">T</font></td>
+    <td bgcolor="#FFFF66" class="tertiary"><font size="2">T</font></td>
+    <td bgcolor="#FFFF66" class="tertiary"><font size="2">T</font></td>
+  </tr>
+  <tr>
+    <td colspan="24" class="primary">24b</td>
+    <td class="flag">1</td>
+    <td class="flag">1</td>
+    <td bgcolor="#FFFF66" colspan="6" class="tertiary">6b</td>
+  </tr>
+</table>
+<p align="left">This form will <i>never</i> be generated unless:</p>
+<ul>
+  <li>
+    <p align="left">a 24-bit primary weight is required,</li>
+  <li>
+    <p align="left">the tertiary fixs in 6 bits,</li>
+  <li>
+    <p align="left">the secondary is UNMARKED</li>
+  <li>
+    <p align="left">the case is ZERO.</li>
+</ul>
+<p align="left">This constraint is managed by the data builder. That also 
+ensures that it meets UCA validity constraints.</p>
 <h4 align="left">Special</h4>
 <p align="left">The special CE is of the following form (where T = tag, d = 
 data). The first nybble is F, to distinguish it from a Primary or Long Primary. 
-These are only used internal to the data table, and never collide with 
-Continuation CEs.</p>
+These are only used internal to the data table.</p>
 <table border="1" cellspacing="1">
   <tr>
-    <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-    <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-    <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-    <td width="3%" bgcolor="#FF0000" align="center"><font size="2">1</font></td>
-    <td width="3%" bgcolor="#00FFFF" align="center"><font size="2">T</font></td>
-    <td width="3%" bgcolor="#00FFFF" align="center"><font size="2">T</font></td>
-    <td width="3%" bgcolor="#00FFFF" align="center"><font size="2">T</font></td>
-    <td width="3%" bgcolor="#00FFFF" align="center"><font size="2">T</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
-    <td width="3%" bgcolor="#008080" align="center"><font size="2">d</font></td>
+    <td class="flag">F</td>
+    <td class="flag">F</td>
+    <td class="flag">F</td>
+    <td class="flag">F</td>
+    <td class="case">T</td>
+    <td class="case">T</td>
+    <td class="case">T</td>
+    <td class="case">T</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
+    <td class="primary">d</td>
   </tr>
   <tr>
-    <td bgcolor="#FF0000" align="center" colspan="4">4b flag</td>
-    <td bgcolor="#00FFFF" align="center" colspan="4">4b Tag</td>
-    <td bgcolor="#008080" align="center" colspan="24">24 bit data</td>
+    <td colspan="4" class="flag">4b</td>
+    <td colspan="4" class="case">4b Tag</td>
+    <td colspan="24" class="primary">24 bit data</td>
   </tr>
 </table>
 <p>The tags have the values:</p>
 <table border="1">
   <tr>
-    <td>0</td>
-    <td>NOT_FOUND_TAG</td>
+    <th align="left">NOT_FOUND_TAG</th>
+    <td><b>0</b></td>
   </tr>
   <tr>
-    <td>1</td>
-    <td>EXPANSION_TAG</td>
+    <th align="left">EXPANSION_TAG</th>
+    <td><b>1</b></td>
   </tr>
   <tr>
-    <td>2</td>
-    <td>CONTRACTION_TAG</td>
+    <th align="left">CONTRACTION_TAG</th>
+    <td><b>2</b></td>
   </tr>
   <tr>
-    <td>3</td>
-    <td>THAI_TAG</td>
+    <th align="left">THAI_TAG</th>
+    <td><b>3</b></td>
   </tr>
   <tr>
-    <td>4</td>
-    <td>CHARSET_TAG</td>
+    <th align="left">CHARSET_TAG</th>
+    <td><b>4</b></td>
   </tr>
   <tr>
-    <td>5</td>
-    <td>SURROGATE_TAG</td>
+    <th align="left">SURROGATE_TAG</th>
+    <td><b>5</b></td>
   </tr>
   <tr>
-    <td>6+</td>
-    <td>reserved</td>
+    <th align="left">reserved</th>
+    <td><b>6+</b></td>
   </tr>
 </table>
 </center>
@@ -668,36 +639,45 @@ Continuation CEs.</p>
   <pre align="left">if (ce &gt;= MIN_SPECIAL) ...</pre>
 </div>
 <h2 align="left"><a name="Forming_Sort_Keys">Forming Sort Keys</a></h2>
-<pre align="left">const int MIN_CONTINUATION = 0xF0000000;
+<pre align="left">const int FLAG_MASK = 0x80;
+const int FLAG_MASK2 = 0x40;
+const int CASE_MASK = 0x40;
+const int FLAGS_MASK = FLAG_MASK | FLAG_MASK2;
+
 const int MIN_SPECIAL = 0xF0000000;
-const int LONG_CE = 0x7F;
 const int MIN_VALUE = 0x02;
-const int UNMARKED = 0x03;</pre>
+const int UNMARKED = 0x03;
+</pre>
 <p align="left">The following sample shows how this would work in practice. (ScriptOrder 
 will be explained later).</p>
 <div align="left">
-  <pre>// once we have a cc
+  <pre>// once we have a cc. Special CEs have already been handled.
 
-wt = ce &amp; TERTIARY_MASK; // tertiary
-ws = (ce &gt;&gt;= 8) &amp; 0xFF; // secondary
-wp3 = 0; // third primary
-wp2 = (ce &gt;&gt;= 8) &amp; 0xFF; // second primary
-wp1 = (ce &gt;&gt;= 8); // first primary</pre>
-</div>
-<div align="left">
-  <pre>if (wt == LONG_CE) {
-  wp3 = ws;
-  ws = (wt &amp; 0x0F) + MIN_VALUE;
-  wt = UNMARKED;
+wt = ce &amp; 0xFF;
+ws = (ce &gt;&gt; 8) &amp; 0xFF;
+wp3 = 0;
+wp2 = (ce &gt;&gt; 16) &amp; 0xFF; // second primary byte
+wp1 = (ce &gt;&gt; 24); // first primary byte
+
+if (ce &amp; FLAG_MASK) {
+  if (ce &amp; FLAG_MASK2) {
+    wp3 = ws;
+    ws = UNMARKED;
+  }
+  wt ^= FLAGS_MASK; // clear bits in tertiary
 }
-if (caseUpper) wt ^= 0x80; // invert upper/lower
+
+if (caseUpper) wt ^= CASE_MASK; // invert upper/lower
+if (scriptOrder != null &amp;&amp; (ce &amp; FLAGS_MASK != FLAG_MASK)) {
+  wp1 = scriptOrder[wp1];
+}
 
 if (alternate == SHIFTED &amp;&amp; wp1 &lt; VARIABLE_MAX &amp;&amp; wp1 &gt; 0) {
   // all other values are skipped
   *quarternary++ = wp1;
   if (wp2 != 0) *quarternary++ = wp2;
-} else {
-  if (wp1 != 0) *primary++ = scriptOrder[wp1];
+} else { // normal
+  if (wp1 != 0) *primary++ = wp1;
   if (wp2 != 0) *primary++ = wp2;
   if (strength &gt;= SECONDARY) {
     if (ws != 0) {
@@ -888,7 +868,7 @@ buffer. It is used by both the sort-key generator and for the incremental string
 comparison. Because two strings are &quot;live&quot; at the same time in 
 comparison, we will pass in a parameter block (allocated on the stack) with 
 state information for each string. This is called a <a name="Context">Context</a>:<o:p>
-  </o:p>                            
+  </o:p>                                         
 </p> 
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
@@ -1082,10 +1062,22 @@ if (len == 0) // go until terminated
   }
 }</pre>
 </div>
+<table border="1" width="100%">
+  <tr>
+    <td width="100%" bgcolor="#FFFF66">
+      <p align="left"><b><font color="#FF0000">Important: </font></b>when 
+      processing backwards, expansion CEs have to be fed out backwards as well. 
+      This is where the continuations are important: unlike the others they are <b><i>not</i></b> 
+      reversed. That is, if an expansion consists of&nbsp; <code><b>A B B2 B3 C 
+      D</b></code> (where <code><b>B2</b></code> and <code><b>B3</b></code> are 
+      continuations), then the reversed order is <code><b>D C B B2 B3 A</b></code>!</td>
+  </tr>
+</table>
 <h3 align="left">Contraction (max size 2<sup>24</sup>)</h3>
 <p align="left">[TBD] The contraction tables consist of two parts, one 16 bits 
 wide (uchars) and the other 32 bits wide (CEs). The first uchar in each section 
-is actually a delta offset, not a uchar.</p>
+is actually a delta offset, not a uchar. It is to be added to the current 
+position in the table to get to the real offset.</p>
 <table border="0" cellspacing="0" cellpadding="4">
   <tr>
     <td width="25%" align="center" valign="top">
@@ -1240,12 +1232,12 @@ is actually a delta offset, not a uchar.</p>
 </table>
 <p align="left">From the original CE, we use the data as an offset into the 
 Contraction UChars table. If backwards is on (a programmatic setting for 
-searching), we add the backwards offset to out position, otherwise we advance 
-one. We grab a character from the source. We search the characters (which are in 
-sorted order). If a target char &gt;= source char, return the defaultCE (which 
-may be expansion) If target char == source char, get the corresponding result. 
-If it is a contraction, extract the offset and keep looping. Otherwise return 
-that result (may be expansion).</p>
+searching), we add the backwards offset delta to out position, otherwise we 
+advance one. We grab a character from the source. We search the characters 
+(which are in sorted order). If a target char &gt;= source char, return the 
+defaultCE (which may be expansion) If target char == source char, get the 
+corresponding result. If it is a contraction, extract the offset and keep 
+looping. Otherwise return that result (may be expansion).</p>
 <p align="left">The defaultCE needs to be the concatenation of the CEs we would 
 have gotten if we had not had a contraction. Sample pseudo code:</p>
 <div align="left">
@@ -1375,7 +1367,7 @@ few bits to that, and use that to index into the SurrogateTrieData to get the
 CE.</p>
 <p align="left">If that CE is an expansion or contraction, handle those cases, 
 otherwise just return.</p>
-<h3>Implicit CEs</h3>
+<h3><a name="Implicit_CEs">Implicit CEs</a></h3>
 <p>If a character is not explicitly in the UCA table, then it is assigned an <i>implicit</i> 
 CE which is generated from the code point. This is used for all Yi, Hangul and 
 CJK ideographs, as well as all unassigned code points. In these generated CEs 
@@ -1391,24 +1383,24 @@ Since the latter will be rare, this does not represent a performance issue.</p>
   points.</p>
 </blockquote>
 <h4>Basic CP:</h4>
-<p>Distribute the bits as follows. The resulting primary uses 3 bytes in sort 
-keys.</p>
-<blockquote>
-  <div align="left">
-    <pre>codepoint = xxxxyyyy yyyzzzzz</pre>
-  </div>
-  <div align="left">
-    <pre>CE = 1101xxxx 1yyyyyyy zzzzz100 11110001</pre>
-  </div>
-</blockquote>
+<p>Distribute the bits as follows, using a Long CE. The resulting primary uses 3 
+bytes in sort keys.</p>
+<pre>CP = xxxxyyyy yyyzzzzz</pre>
+<pre>CE = 1101xxxx 1yyyyyyy zzzzz100 11000000</pre>
+<pre>CE = 0xD0 80 04 C3 | (CP &amp; 0xF000) &lt;&lt; 12 | (CP &amp; 0x0FFF) &lt;&lt; 11</pre>
+<p>There is no provision for secondary elements in Long CEs. This is not an 
+issue for implicit CEs, but does affect tailoring. Inserting a character with 
+secondary difference after an undefined element will use 2 CEs in that case: an 
+Unflagged CE and a Continuation CE.</p>
 <h4>Supplementary CP:</h4>
 <p>First subtract 10000 from CP, then distribute the 20 remaining bits as 
 follows.&nbsp; The resulting primary uses 3 bytes in sort keys.</p>
-<blockquote>
-  <pre>codepoint = wwww xxxxxxxy yyyzzzzz</pre>
-  <pre>CE1 = 1110wwww 1xxxxxxx UNMARKED UNMARKED</pre>
-  <pre>CE2 = 1111yyyy zzzzz100 00000000 00000000</pre>
-</blockquote>
+<pre>CP  = wwww xxxxxxxy yyyyyyzz</pre>
+<pre>CE1 = 1110wwww 1xxxxxxx 1yyyyyyy 11000011 (long CE)</pre>
+<pre>CE2 = zz100000 00000000 00000000 10000000 (continuation CE)</pre>
+<pre>CE1 = 0xE0 80 80 C3 | (CP &amp; 0xF0000) &lt;&lt; 8 | (CP &amp; 0x0FE00) &lt;&lt; 7 | (CP &amp; 0x001FC) &lt;&lt; 6;</pre>
+<pre>CE2 = 0x20 00 00 80 | (CP &amp; 0x00003) &lt;&lt; 30;</pre>
+<p>&nbsp;</p>
 <p>In both cases, the primary gap is larger than one, which allows more elements 
 to be inserted (in tailoring) without using extension CEs. Suppose that qqqqq is 
 zzzzz + 1; then here are the possible insertion values, marked with *. (The 
@@ -1425,9 +1417,7 @@ qqqqq011 *
 qqqqq100</pre>
 </blockquote>
 <p>The secondary gap is 14 elements for basic CPs and the normal 254 elements 
-for supplementary CPs. There is no provision for tertiary elements in basic CPs. 
-Thus, inserting a character with tertiary difference after an undefined element 
-will generate 2 CEs.</p>
+for supplementary CPs.</p>
 <h4>Comparison to UCA</h4>
 <p>Except for CJK and Hangul, this results in sort keys that are 1 byte shorter 
 per basic code point than what is described in UCA. The basic CJK and Hangul 
@@ -1734,6 +1724,199 @@ based off of the <i>implicit</i> value that X would have. In processing the
 rules in the implementation, we may give X the implicit value in the 
 intermediate data structure, then remove it when we finally store into the flat 
 file to save space.</p>
+<h3><a name="Details_on_Generation">Details on Generation</a></h3>
+<p>Here's how generation works, logically. (For now, ignore the distinctions 
+between levels of difference). The actual implementation will tokenize the rules 
+first, and work on that data structure. For all of the following discussion</p>
+<ul>
+  <li>the relations , and ; are converted into &lt;&lt;&lt; and &lt;&lt;. </li>
+  <li>* stands for any of the relations =, &lt;, &lt;&lt;, &lt;&lt;&lt;, &gt;, 
+    &gt;&gt;, &gt;&gt;&gt;. </li>
+  <li>The <i>polarity</i> for &lt;, &lt;&lt;, &lt;&lt;&lt; and = is POSITIVE, 
+    for &gt;, &gt;&gt;, &gt;&gt;&gt; is NEGATIVE.</li>
+  <li>The operations of &lt;, &gt; are stronger than &lt;&lt;, &gt;&gt;, which 
+    are strong than &lt;&lt;&lt;, &gt;&gt;&gt;, which are stronger than =.</li>
+</ul>
+<h4>Token List Generation:</h4>
+<p><b>NOTE: I think this can be simplified in implementation, but here is a 
+first pass.</b></p>
+<ul>
+  <li>Build a list of lists of tokens. Each token has a strength, value (set of 
+    characters), and optionally an expansion. Each list also has two additional 
+    fields
+    <ul>
+      <li>firstPolarity, with the values POSITIVE, NEGATIVE, and UNKNOWN.</li>
+      <li>baseCE, nextCE, previousCE, with values set in the next phase.</li>
+    </ul>
+  </li>
+  <li>As you process,
+    <ul>
+      <li>you first convert all expansions into normal form. Examples:
+        <ul>
+          <li>If &quot;xy&quot; doesn't occur earlier in the list or in the UCA, 
+            convert &amp;xy * c * d * ... into &amp;x * c/y * d * ...</li>
+          <li>Note: reset values can <i>never have</i> expansions, although they 
+            can cause the very next item to have one. They may be contractions, 
+            if they are found earlier in the list.</li>
+        </ul>
+      </li>
+      <li>you consider both the relation and the value, e.g. ...<u>&lt; x</u> 
+        ...</li>
+      <li>suppose you have two tokens X = list[i][j] and Y = list[k][m]. Then X 
+        is later than Y if i &gt; k, or if i == k and j &gt; m.</li>
+      <li>you keep a LAST pointer to some element in one of the lists.</li>
+      <li>when inserting a token relative to LAST:
+        <ul>
+          <li>If LAST is not a head, insert <i>before</i> LAST if the polarity 
+            is NEGATIVE, <i>after</i> otherwise.
+            <ul>
+              <li>If you insert X before LAST, swap the strengths of X and LAST.</li>
+            </ul>
+          </li>
+          <li>If LAST is a head, look at the set of heads with values equal to 
+            LAST's (there may be more than one)
+            <ol>
+              <li>First find or make a compatible list.
+                <ul>
+                  <li>If one of them has the same priority as the relation, 
+                    choose that.</li>
+                  <li>Otherwise if one has firstPolarity = UNKNOWN, choose that.</li>
+                  <li>Otherwise create a new list, copy a LAST as the first 
+                    item, set firstPolarity = UNKNOWN, and choose that.</li>
+                </ul>
+              </li>
+              <li>Next insert the token.
+                <ul>
+                  <li>If firstPolarity is NEGATIVE, add the item at the <i>end</i> 
+                    of the list.</li>
+                  <li>Otherwise if the firstPolarity is UNKNOWN, set 
+                    firstPolarity to the relation's, add the token after the 
+                    head.</li>
+                  <li>Otherwise add the item right after the head.</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Whenever you have a reset:
+    <ul>
+      <li>If the value is in a token in one of the lists, set LAST to the latest 
+        such token.</li>
+      <li>Otherwise (i.e., not in the list), create a new list, set 
+        firstPolarity = UNKNOWN, make a token from the reset value, put it at 
+        the start of the list, and set LAST to the new token.</li>
+    </ul>
+  </li>
+  <li>Otherwise (i.e., you don't have a reset):
+    <ul>
+      <li>If the value is the same as an existing <i>non-head</i> token in one 
+        of the lists, remove the existing token from the list, and insert it 
+        relative to LAST, and set LAST to the new token.</li>
+      <li>Otherwise (value not same, or only same as head token), make a new 
+        token and insert it relative to LAST, and set LAST to the new token.</li>
+    </ul>
+  </li>
+</ul>
+<p>At the end of this process, you will end up with a list of lists of tokens. 
+Note: you may end up with head tokens duplicating other values. You will never 
+end up with two non-heads with the same value.</p>
+<h4>Assigning CEs</h4>
+<ul>
+  <li>Delete any lists with polarity == UNKNOWN.</li>
+  <li>Use the <b>UCA</b> table to find the baseCE for the values at the heads of 
+    each list. Mask that value according to the strength of the first item after 
+    the head.
+    <ul>
+      <li>[Need to flesh this out more] </li>
+    </ul>
+  </li>
+  <li>If baseCEs are identical for any lists, combine them if they have the same 
+    polarity.
+    <ul>
+      <li>polarity == POSITIVE: insert all but the head of the later list just 
+        after the head in the earlier list, and delete the later list.</li>
+      <li>polarity == NEGATIVE: insert all but the head of the later list at the 
+        end of the earlier list, and delete the later list.</li>
+    </ul>
+  </li>
+  <li>Use the <b>UCA Proximate CE</b> table to find the next and previous CEs 
+    for the values at the heads of each list.</li>
+  <li>Merge the conflicting lists. Lists x and y conflict if firstPolarity(x) == 
+    POSITIVE, firstPolarity(y) == NEGATIVE, and nextCE(x) == previousCE(y).
+    <ul>
+      <li>Merge them by inserting all but the head of y at the end of x, and 
+        deleting y.</li>
+    </ul>
+  </li>
+  <li>You now have a set of lists that don't conflict. Assign CEs to all the 
+    items in the list based on the strengths of the relationships and the room 
+    available between previousCE and nextCE. </li>
+</ul>
+<p><b>UCA Proximate CE Table</b></p>
+<p>This is a table used only for generating Tailoring tables, and is so kept 
+separate from the UCA. It consists of all the FCEs in the UCA in sorted order, 
+with duplicates removed, in the following format:</p>
+<table border="1">
+  <tr>
+    <td width="50%" colspan="2">fast binary header</td>
+  </tr>
+  <tr>
+    <td width="25%">CE0a</td>
+    <td width="25%">CE0b</td>
+  </tr>
+  <tr>
+    <td width="25%">CE1a</td>
+    <td width="25%">CE1b</td>
+  </tr>
+  <tr>
+    <td width="25%">...</td>
+    <td width="25%">...</td>
+  </tr>
+  <tr>
+    <td width="25%">CEna</td>
+    <td width="25%">CEnb</td>
+  </tr>
+</table>
+<p align="left">Each FCE is stored as two Unflagged CEs, a and b. If there is no 
+need for a continuation, CEb is zero. We add two terminating elements, the 
+lowest possible CE and greatest possible CE at the start and end of the table to 
+ensure we have bracketing values. To find next and previous, we take baseCE, and 
+binary search for it in this table.</p>
+<blockquote>
+  <p align="left"><b>Note: ICU syntax has the following effect. </b></p>
+  <table border="1">
+    <tr>
+      <th width="50%">Source</th>
+      <th width="50%">Result</th>
+    </tr>
+    <tr>
+      <td width="50%">....&nbsp; x &lt;&lt;&lt; X &lt;&lt; Y &lt; w ... <font
+        color="#FF0000">&amp; x &lt; z</font></td>
+      <td width="50%">....&nbsp; x <font color="#FF0000">&lt; z</font> 
+        &lt;&lt;&lt; X &lt;&lt; Y &lt; w ...</td>
+    </tr>
+  </table>
+  <p align="left">That is, the z is inserted right after the x, no matter what 
+  the original strength was between x and any following item. The strength 
+  difference for the following item is then applied with respect to z. If you 
+  want to get the effect of inserting z after all the primary-equal items, you 
+  should use the syntax:</p>
+  <table border="1">
+    <tr>
+      <th width="50%">Source</th>
+      <th width="50%">Result</th>
+    </tr>
+    <tr>
+      <td width="50%">....&nbsp; x &lt;&lt;&lt; X &lt;&lt; Y &lt; w ... <font
+        color="#FF0000">&amp; w &gt; z</font></td>
+      <td width="50%">....&nbsp; x &lt;&lt;&lt; X &lt;&lt; Y <font
+        color="#FF0000">&lt; z</font> &lt; w ...</td>
+    </tr>
+  </table>
+</blockquote>
 <h2 align="left"><a name="UCA_Processing">UCA Processing</a></h2>
 <p align="left">The UCA data table only specifies relative ordering among 
 weights. We are free to redistribute the weight values as long as the relative 
@@ -1849,7 +2032,8 @@ compatibility, unknown command keywords are ignored.</p>
 <div align="left">
   <pre>[rearrange 0E40,0E41,0E42,0E43,0E44,0EC0,0EC1,0EC2,0EC3,0EC4]
 [alternate shifted]
-[backwards 2]</pre>
+[backwards 2]
+[variable top]</pre>
 </div>
 <ul>
   <li>
@@ -1859,6 +2043,10 @@ compatibility, unknown command keywords are ignored.</p>
   <li>
     <p align="left">For backwards compability, a &quot;@&quot; is interpreted as 
     &quot;[backwards 2]&quot;.</li>
+  <li>
+    <p align="left">You can have [variable top] in place of a letter, e.g. '9' 
+    &lt; [variable top]. This causes all non-zero primary weights at or below 
+    that value to be variable.</li>
 </ul>
 <h3 align="left">Extensions</h3>
 <h4 align="left">Normalization</h4>
@@ -2153,6 +2341,128 @@ the others are extensions.</p>
 
 uint8_t  cvt_getColVersion(Converter cvt);</pre>
 </div>
+<h1><a name="Issues">Issues</a></h1>
+<p>The following section lists issues and possible future additions.</p>
+<h3>Parameterized SHIFTED(post 1.8 possibility, but current implication)</h3>
+<p>We could offer a further variation on Variable. Instead of having SHIFTED 
+always shift the primary down to the 4th level, we could allow it to shift to 
+the 3rd level or second level. (Note: ICU 1.6 used 3rd level), before all other 
+elements at that level. Here is an example of the difference it would make.</p>
+<table border="1">
+  <tr>
+    <th width="33%">Not Ignored</th>
+    <th width="33%">Shifted to 3rd</th>
+    <th width="34%">Shifted to 4th</th>
+  </tr>
+  <tr>
+    <td align="center">di silva<br>
+      di Silva<br>
+      Di silva<br>
+      Di Silva<br>
+      disilva<br>
+      diSilva<br>
+      Disilva<br>
+      DiSilva</td>
+    <td align="center">di silva<br>
+      di Silva<br>
+      disilva<br>
+      diSilva<br>
+      Di silva<br>
+      Di Silva<br>
+      Disilva<br>
+      DiSilva</td>
+    <td align="center">di silva<br>
+      disilva<br>
+      di Silva<br>
+      diSilva<br>
+      Di silva<br>
+      Disilva<br>
+      Di Silva<br>
+      DiSilva</td>
+  </tr>
+</table>
+<p align="left">Although this is an algorithymic change, to allow for the 
+possibility of adding this in the future we need to reserve one additional value 
+in the Fractional UCA table on the 2nd and 3rd levels, a value that is before 
+UNMARKED. This means that UNMARKED goes to 04. Any variable primary that is 
+shifted down will be appended to that value.</p>
+<p align="left"><i>Example:</i></p>
+<table border="1">
+  <tr>
+    <th width="50%" align="right">&nbsp;</th>
+    <td width="50%">P</td>
+    <td width="50%">S</td>
+    <td width="50%">T</td>
+    <td width="50%">Q</td>
+  </tr>
+  <tr>
+    <th align="right">Original CE</th>
+    <td>05</td>
+    <td>92</td>
+    <td>31</td>
+    <td>N/A*</td>
+  </tr>
+  <tr>
+    <th align="right">Shifted to level 2</th>
+    <td>00</td>
+    <td>02 05</td>
+    <td>02 92</td>
+    <td>N/A*</td>
+  </tr>
+  <tr>
+    <th align="right">Shifted to level 3</th>
+    <td>00</td>
+    <td>00</td>
+    <td>00</td>
+    <td>N/A*</td>
+  </tr>
+  <tr>
+    <th align="right">Shifted to level 4</th>
+    <td>00</td>
+    <td>00</td>
+    <td>00</td>
+    <td>05</td>
+  </tr>
+</table>
+<p align="left"><font size="-1">* Note that unless variable handling is on, 
+there is no 4th level generated. This is separate from whether there is an 
+IDENTICAL level added, which is always simply (normalized) code points.</font></p>
+<p align="left">To allow for the future possibility of putting variables after 
+all other values at that level, we should also reserve the highest value. Here 
+is the resulting table of values for secondaries and tertiaries.</p>
+<p align="left">IGNORABLE = 00<br>
+SEPARATOR FOR LEVELS = 01<br>
+RESERVED FOR SHIFTING = 02<br>
+GAP FOR TAILORING = 03<br>
+UNMARKED = 04<br>
+GAP FOR TAILORING = 05<br>
+GREATEST UCA = FC<br>
+GAP FOR TAILORING = FD, FE<br>
+RESERVED FOR SHIFTING = FF</p>
+<h3 align="left">Fixed Positions (post 1.8 possibility)</h3>
+<p align="left">The following are special items that can be used as reset 
+values, so that Tailoring tables do not have to change when UCA adds more 
+characters. For example, in tailoring all of CJK one can start with &amp; [last] 
+&lt; .... to have all CJK at the end. If we had &amp;{yi syllable xxx} &lt; ..., 
+then their position changes once characters are added after Yi. Here is the list 
+of possibilities.</p>
+<ul>
+  <li>
+    <p align="left">[last] last CE in the UCA table</li>
+  <li>
+    <p align="left">[first] first CE in the UCA table</li>
+  <li>
+    <p align="left">[last variable] last variable value</li>
+  <li>
+    <p align="left">[last primary ignorable] largest CE for primary ignorable</li>
+  <li>
+    <p align="left">[last secondary ignorable] largest CE for secondary 
+    ignorable</li>
+  <li>
+    <p align="left">[last tertiary ignorable] largest CE for tertiary ignorable<br>
+  </li>
+</ul>
+<hr>
 <h2 align="left"><a name="FAQ">FAQ</a></h2>
 <p class="q" align="left">Q: The small/large kana differences: should that be 
 set in the rules or by API?</p>
@@ -2338,14 +2648,14 @@ transformed into a sequence of one <i>or more</i> standard collation elements:</
 <p class="a" align="left"><i>Example:</i></p>
 <table border="1">
   <tr>
-    <td width="33%">Fraction Collation Element</td>
-    <td width="33%">UCA Collation Element</td>
-    <td width="33%">In Sort Key</td>
+    <th>Fraction Collation Element</th>
+    <th>UCA Collation Element</th>
+    <th>In Sort Key</th>
   </tr>
   <tr>
-    <td width="33%">[12 02 C4, 78, 03]</td>
-    <td width="33%">[1202.7802.0302], [.C402.0000.0000]</td>
-    <td width="33%">[1202 C402 <b>0000</b> 7802 <b>0000</b> 0302]</td>
+    <td>[12 02 C4, 78, 03]</td>
+    <td>[1202.7802.0302], [.C402.0000.0000]</td>
+    <td>[12 02 C4 02 <b>00 00</b> 78 02 <b>00 00</b> 03 02]</td>
   </tr>
 </table>
 <p class="a" align="left">Using this transformation, two fractional collation 
@@ -2487,17 +2797,25 @@ How can I use this continuation/tailoring method with bytes instead of wydes?</p
 odd-byte-length weights, leave the bytes zero. When composing the sort key, just 
 omit any zero bytes when composing the sort key. Use <b>01</b> for the 
 LEVEL_SEPARATOR. Thus the above example would become the considerably shorter 
-key!</p>
+key below:</p>
 <table border="1">
   <tr>
-    <td width="33%">Fraction Collation Element</td>
-    <td width="33%">UCA Collation Element</td>
-    <td width="33%">In Sort Key</td>
+    <th>&nbsp;</th>
+    <th>Fraction Collation Element</th>
+    <th>UCA Collation Element</th>
+    <th>In Sort Key</th>
   </tr>
   <tr>
-    <td width="33%">[12 02 C4, 78, 03]</td>
-    <td width="33%">[1202.7800.0300], [.C400.0000.0000]</td>
-    <td width="33%">[12 02 C4&nbsp; <b>01</b> 78 <b>01</b> 03]</td>
+    <th>Old</th>
+    <td>[12 02 C4, 78, 03]</td>
+    <td>[1202.7802.0302], [.C402.0000.0000]</td>
+    <td>[12 02 C4 02 <b>00 00</b> 78 02 <b>00 00</b> 03 02]</td>
+  </tr>
+  <tr>
+    <th>New</th>
+    <td>[12 02 C4, 78, 03]</td>
+    <td>[1202.7800.0300], [.C400.0000.0000]</td>
+    <td>[12 02 C4&nbsp; <b>01</b> 78 <b>01</b> 03]</td>
   </tr>
 </table>
 <p class="a" align="left">&nbsp;<a
@@ -2633,6 +2951,23 @@ bytes of primaries), we would have an extra byte comparison,&nbsp; boolean test,
 and byte set per character. On the other hand, the memory requirements for sort 
 keys would probably be reduced sufficiently that it would be an overall win. 
 (This would be especially true for disk-based sort indexes!)</p>
+<h2><a name="Modifications">Modifications</a></h2>
+<p>These summarize modifications from the previous version.</p>
+<ul>
+  <li>Tailoring syntax for changing the variable range was missing, so that was 
+    added.</li>
+  <li>When going backwards, expansion CEs must be reversed, with continuation 
+    CEs handled specially.</li>
+  <li>Added subtable counts to header. Made clear that tables are not in 
+    predetermined order. Changed Trie to Main, since there may be multiple Trie 
+    tables.</li>
+  <li>Made more clear that offset in contraction UChar table is a delta</li>
+  <li>Added [last] syntax for Tailoring.</li>
+  <li>Added <a href="#Issues">Issues</a> section</li>
+  <li>Modified the bit distribution in <a href="#CollationElements">CollationElements</a></li>
+  <li>Modified the generation of <a href="#Implicit_CEs">Implicit_CEs</a></li>
+  <li>Added <a href="#Details_on_Generation">Details_on_Generation</a></li>
+</ul>
 <hr>
 <p align="center"><i>Copyright © 2000, IBM Corp. All Rights Reserved.</i></p>
 

@@ -1,0 +1,70 @@
+<!-- DTD for ICU resource bundles -->
+<!-- some element and attribute names are truncated to save space -->
+
+<!-- a resource bundle has a name (locale ID if it is a locale resource bundle)
+     and contains one table (see below) -->
+<!ELEMENT resourceBundle (table)>
+
+<!-- the name must only contain "invariant" characters
+     (subset of ASCII graphic characters) -->
+<!ATTLIST resourceBundle name CDATA #REQUIRED>
+
+<!-- a macro for "any one of the possible resource elements" -->
+<!ENTITY % anyElement "(str|int|bin|importBin|array|table)">
+
+<!-- a table, i.e. an array of (key, value) pairs
+     where the values are arbitrary resource elements;
+     all direct sub-elements must have key attributes -->
+<!ELEMENT table (%anyElement;)*>
+
+<!-- all resource elements have an optional key attribute;
+     it must be present in elements that are directly nested in a <table>
+     but must not be present in elements that are directly nested in an <array>;
+     the key attribute must only contain "invariant" characters
+     (subset of ASCII graphic characters) -->
+
+<!-- string -->
+<!ELEMENT str EMPTY>
+<!ATTLIST str val CDATA #REQUIRED>
+
+<!-- 32-bit integer,
+     could allow -2^31..2^32-1 to reach all signed and unsigned 32-bit values;
+     could allow a decimal number and 0x followed by a hexadecimal number -->
+<!ELEMENT int EMPTY>
+<!ATTLIST int val CDATA #REQUIRED>
+
+<!-- simple binary data, the val attribute must contain pairs of hex digits -->
+<!ELEMENT bin EMPTY>
+<!ATTLIST bin val NMTOKENS #REQUIRED>
+
+<!-- binary data imported from a local file -->
+<!ELEMENT importBin EMPTY>
+<!ATTLIST importBin filename CDATA #REQUIRED>
+
+<!-- a simple array of arbitrary resource elements;
+     all direct sub-elements must not have key attributes -->
+<!ELEMENT array (%anyElement;)*>
+
+<!-- This is an example of an XML file that is valid with this DTD
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE resourceBundle
+  SYSTEM "http://oss.software.ibm.com/icu/dtd/resourceBundle.dtd">
+<resourceBundle name="eo">
+  <table>
+    <int key="a" val="2"/>
+    <str key="s" val="Vladimir"/>
+    <str key="s2" val="Markus"/>
+    <int key="i" val="22"/>
+    <array key="array">
+      <int val="20"/>
+      <str val="Andy"/>
+      <str val="Andy2"/>
+    </array>
+    <bin key="b" val="fe ff 0a b5"/>
+    <importBin key="bb" filename="/something.jpeg"/>
+    <table key="t">
+      <int key="t0" val="21"/>
+    </table>
+  </table>
+</resourceBundle>
+-->

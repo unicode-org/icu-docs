@@ -1,6 +1,6 @@
 <html><head><TITLE>ucnv_toUnicode</TITLE></head>
 <body>
-<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> CAPI  void  U_EXPORT2  ucnv_toUnicode (UConverter * converter, UChar ** target, const UChar * targetLimit, const char **source, const char *sourceLimit, int32_t* offsets, bool_t flush, <!2><A HREF="#DOC.301">UErrorCode</A> * err) </H2><BLOCKQUOTE>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> U_CAPI  void  U_EXPORT2  ucnv_toUnicode (UConverter * converter, UChar ** target, const UChar * targetLimit, const char **source, const char *sourceLimit, int32_t* offsets, bool_t flush, <!2><A HREF="#DOC.320">UErrorCode</A> * err) </H2><BLOCKQUOTE>
 
 Converts an array of codepage characters into an array of unicode characters
 </BLOCKQUOTE>
@@ -33,12 +33,12 @@ e.g: <TT>offsets[3]</TT> is equal to 6, it means that the <TT>target[3]</TT> was
 For output data carried across calls -1 will be placed for offsets.
 <br><B>flush</B> -  TRUE if the buffer is the last buffer and the conversion will finish
 in this call, FALSE otherwise. 
-<br><B>err</B> -  the error code status  <TT>ILLEGAL_ARGUMENT_ERROR</TT> will be returned if the
+<br><B>err</B> -  the error code status  <TT>U_ILLEGAL_ARGUMENT_ERROR</TT> will be returned if the
 converter is <TT>NULL</TT>, or if <TT>targetLimit</TT> and <TT>sourceLimit</TT> are misaligned.
 <br><DT><B>See Also:</B><DD><!1><A HREF="ucnv_toUChars.html">ucnv_toUChars</A>
 <br>ucnv_getNextUChar
 <br>ucnv_convert
-<br><!2><A HREF="#DOC.143">ucnv_setFromUCallBack</A><br></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<br><!2><A HREF="#DOC.158">ucnv_setFromUCallBack</A><br></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
 <A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
 <P Align=Center><I>this page has been generated automatically by doc++</I>
 <P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>

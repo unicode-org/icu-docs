@@ -124,7 +124,7 @@ and therefore its implementation omitted from this sample code.</li>
 &nbsp;         UBiDiLevel level;
 &nbsp; 
 &nbsp;         count=ubidi_countRuns(para, pErrorCode);
-&nbsp;         if(SUCCESS(*pErrorCode)) {
+&nbsp;         if(U_SUCCESS(*pErrorCode)) {
 &nbsp;             if(styleRunCount&lt;=1) {
 &nbsp;                 Style style=styleRuns[0].style;
 &nbsp; 
@@ -154,7 +154,7 @@ and therefore its implementation omitted from this sample code.</li>
 &nbsp;                      UErrorCode *pErrorCode) {
 &nbsp;     UBiDi *para;
 &nbsp; 
-&nbsp;     if(pErrorCode==NULL || FAILURE(*pErrorCode) || length&lt;=0) {
+&nbsp;     if(pErrorCode==NULL || U_FAILURE(*pErrorCode) || length&lt;=0) {
 &nbsp;         return;
 &nbsp;     }
 &nbsp; 
@@ -164,7 +164,7 @@ and therefore its implementation omitted from this sample code.</li>
 &nbsp;     ubidi_setPara(para, text, length,
 &nbsp;                   textDirection ? UBIDI_DEFAULT_RTL : UBIDI_DEFAULT_LTR,
 &nbsp;                   NULL, pErrorCode);
-&nbsp;     if(SUCCESS(*pErrorCode)) {
+&nbsp;     if(U_SUCCESS(*pErrorCode)) {
 &nbsp;         UBiDiLevel paraLevel=1&ubidi_getParaLevel(para);
 &nbsp;         StyleRun styleRun={ length, styleNormal };
 &nbsp;         int width;
@@ -201,7 +201,7 @@ and therefore its implementation omitted from this sample code.</li>
 &nbsp;                                  styleRuns, styleRunStart, &styleRunLimit,
 &nbsp;                                  &width);
 &nbsp;                     ubidi_setLine(para, start, limit, line, pErrorCode);
-&nbsp;                     if(SUCCESS(*pErrorCode)) {
+&nbsp;                     if(U_SUCCESS(*pErrorCode)) {
 &nbsp;                         // prepare rendering a new line
 &nbsp;                         // from either left or right
 &nbsp;                         startLine(paraLevel, width);

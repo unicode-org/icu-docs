@@ -93,36 +93,60 @@ characters in a UnicodeString</I>
 <LI><A HREF="Unicode.html">Unicode</A> <I>
 The Unicode class allows you to query the properties associated with individual 
 Unicode character values</I>
+<LI><A HREF="UnicodeSet.html">UnicodeSet</A> <I>
+A mutable set of Unicode characters</I>
 <LI><A HREF="UnicodeString.html">UnicodeString</A> <I>
 UnicodeString is a concrete implementation of the abstract class 
 UnicodeText</I>
 </UL>
 <H2>Functions, Macros</H2>
 <UL>
-<LI><!2><A HREF="#DOC.23">icu_digitsAfterDecimal</A> <I>
+<LI><A HREF="addTest.html">addTest</A> <I>
+Add a test to the subtree</I>
+<LI><!2><A HREF="#DOC.14">getTest</A> <I>
+Retreive a specific subtest (subtree)
+</I>
+<LI><!2><A HREF="#DOC.34">icu_digitsAfterDecimal</A> <I>
 Returns the number of digits after the decimal point in a double number x</I>
-<LI><A HREF="icu_isBigEndian.html">icu_isBigEndian</A> <I>
-Retrun true if this platform is big-endian, that is, if the number
-0x1234 is stored 0x12, 0x34 in memory</I>
 <LI><A HREF="icu_isNaN.html">icu_isNaN</A> <I>
 Platform utilities isolates the platform dependencies of the
 libarary</I>
-<LI><!2><A HREF="#DOC.22">icu_log10</A> <I>
+<LI><!2><A HREF="#DOC.33">icu_log10</A> <I>
 Returns the common log of the double value d</I>
 <LI><A HREF="icu_tzset.html">icu_tzset</A> <I>
 Time zone utilities
 
 Wrappers for C runtime library functions relating to timezones</I>
+<LI><A HREF="log_err.html">log_err</A> <I>
+Log an error message</I>
+<LI><A HREF="log_info.html">log_info</A> <I>
+Log an informational message</I>
+<LI><A HREF="log_verbose.html">log_verbose</A> <I>
+Log a verbose informational message</I>
+<LI><A HREF="processArgs.html">processArgs</A> <I>
+Processes the command line arguments</I>
+<LI><!2><A HREF="#DOC.12">runTests</A> <I>
+Run a subtree of tests</I>
+<LI><A HREF="scsu_compress.html">scsu_compress</A> <I>
+Compress a Unicode character array into a byte array</I>
+<LI><A HREF="scsu_decompress.html">scsu_decompress</A> <I>
+Decompress a byte array into a Unicode character array</I>
+<LI><A HREF="scsu_init.html">scsu_init</A> <I>
+Initialize a UnicodeCompressor</I>
+<LI><A HREF="scsu_reset.html">scsu_reset</A> <I>
+Reset the compressor to its initial state</I>
+<LI><!2><A HREF="#DOC.11">showTests</A> <I>
+Show the names of all nodes</I>
 <LI><A HREF="u_austrcpy.html">u_austrcpy</A> <I>
 Copy ustring to a byte string encoded in the default codepage</I>
 <LI><A HREF="u_charCellWidth.html">u_charCellWidth</A> <I>
 Returns a value indicating the display-cell width of the character
 when used in Asian text, according to the Unicode standard (see p</I>
-<LI><!2><A HREF="#DOC.109">u_charDigitValue</A> <I>
+<LI><!2><A HREF="#DOC.124">u_charDigitValue</A> <I>
 Retrives the decimal numeric value of a digit character</I>
 <LI><A HREF="u_charDirection.html">u_charDirection</A> <I>
 Returns the linguistic direction property of a character</I>
-<LI><!2><A HREF="#DOC.110">u_charScript</A> <I>
+<LI><!2><A HREF="#DOC.125">u_charScript</A> <I>
 
 Returns the script associated with a character</I>
 <LI><A HREF="u_charType.html">u_charType</A> <I>
@@ -130,7 +154,7 @@ Returns a value indicating a character category according to Unicode
 2</I>
 <LI><A HREF="u_formatMessage.html">u_formatMessage</A> <I>
 Format a message for a locale</I>
-<LI><!2><A HREF="#DOC.121">u_getVersion</A> <I>
+<LI><!2><A HREF="#DOC.136">u_getVersion</A> <I>
 
 The function is used to get the Unicode standard Version that is used
 </I>
@@ -186,13 +210,13 @@ Normalize a string</I>
 Parse a message</I>
 <LI><A HREF="u_strcat.html">u_strcat</A> <I>
 Concatenate two ustrings</I>
-<LI><!2><A HREF="#DOC.289">u_strchr</A> <I>
+<LI><!2><A HREF="#DOC.308">u_strchr</A> <I>
 Find the first occurrence of a specified character in a ustring</I>
-<LI><!2><A HREF="#DOC.290">u_strcmp</A> <I>
+<LI><!2><A HREF="#DOC.309">u_strcmp</A> <I>
 Compare two ustrings for bitwise equality</I>
 <LI><A HREF="u_strcpy.html">u_strcpy</A> <I>
 Copy a ustring</I>
-<LI><!2><A HREF="#DOC.286">u_strlen</A> <I>
+<LI><!2><A HREF="#DOC.305">u_strlen</A> <I>
 Determine the length of an array of UChar
 </I>
 <LI><A HREF="u_strncat.html">u_strncat</A> <I>
@@ -336,11 +360,11 @@ Set a UCalendar's current date</I>
 Set a UCalendar's current time in millis</I>
 <LI><A HREF="ucal_setTimeZone.html">ucal_setTimeZone</A> <I>
 Set the TimeZone used by a UCalendar</I>
-<LI><!2><A HREF="#DOC.126">ucnv_close</A> <I>
+<LI><!2><A HREF="#DOC.141">ucnv_close</A> <I>
 Deletes the unicode converter</I>
-<LI><!2><A HREF="#DOC.150">ucnv_countAvailable</A> <I>
+<LI><!2><A HREF="#DOC.165">ucnv_countAvailable</A> <I>
 returns the number of available converters</I>
-<LI><!2><A HREF="#DOC.148">ucnv_flushCache</A> <I>
+<LI><!2><A HREF="#DOC.163">ucnv_flushCache</A> <I>
 SYSTEM API
 Iterates through every cached converter and frees all the unused ones</I>
 <LI><A HREF="ucnv_fromUChars.html">ucnv_fromUChars</A> <I>
@@ -352,18 +376,18 @@ Transcodes an array of unicode characters to an array of codepage characters</I>
 provides a string containing the internal name (based on the alias file) of the converter</I>
 <LI><A HREF="ucnv_getCCSID.html">ucnv_getCCSID</A> <I>
 Gets a codepage number associated with the converter</I>
-<LI><!2><A HREF="#DOC.151">ucnv_getDefaultName</A> <I>
+<LI><!2><A HREF="#DOC.166">ucnv_getDefaultName</A> <I>
 returns the current default converter name</I>
-<LI><!2><A HREF="#DOC.134">ucnv_getDisplayName</A> <I>
+<LI><!2><A HREF="#DOC.149">ucnv_getDisplayName</A> <I>
 Returns the display name of the converter passed in based on the Locale passed in,
 in the case the locale contains no display name, the internal ASCII name will be
 filled in</I>
-<LI><!2><A HREF="#DOC.141">ucnv_getFromUCallBack</A> <I>
+<LI><!2><A HREF="#DOC.156">ucnv_getFromUCallBack</A> <I>
 Gets the current callback function used by the converter when illegal or invalid sequence found</I>
-<LI><!2><A HREF="#DOC.129">ucnv_getInvalidChars</A> <I>
+<LI><!2><A HREF="#DOC.144">ucnv_getInvalidChars</A> <I>
 Fills in the output parameter, errBytes, with the error characters from the
 last failing conversion</I>
-<LI><!2><A HREF="#DOC.130">ucnv_getInvalidUChars</A> <I>
+<LI><!2><A HREF="#DOC.145">ucnv_getInvalidUChars</A> <I>
 Fills in the output parameter, errChars, with the error characters from the
 last failing conversion</I>
 <LI><A HREF="ucnv_getMaxCharSize.html">ucnv_getMaxCharSize</A> <I>
@@ -376,19 +400,19 @@ Gets the name of the converter (zero-terminated)</I>
 Gets a codepage platform associated with the converter</I>
 <LI><A HREF="ucnv_getStarters.html">ucnv_getStarters</A> <I>
 Gets the "starter" bytes for the converters of type MBCS
-will fill in an <TT>ILLEGAL_ARGUMENT_ERROR</TT> if converter passed in
+will fill in an <TT>U_ILLEGAL_ARGUMENT_ERROR</TT> if converter passed in
 is not MBCS</I>
-<LI><!2><A HREF="#DOC.127">ucnv_getSubstChars</A> <I>
+<LI><!2><A HREF="#DOC.142">ucnv_getSubstChars</A> <I>
 Fills in the output parameter, subChars, with the substitution characters
 as multiple bytes</I>
-<LI><!2><A HREF="#DOC.140">ucnv_getToUCallBack</A> <I>
+<LI><!2><A HREF="#DOC.155">ucnv_getToUCallBack</A> <I>
 Gets the current calback function used by the converter when illegal or invalid sequence found</I>
 <LI><A HREF="ucnv_getType.html">ucnv_getType</A> <I>
 Gets the type of conversion associated with the converter
 e</I>
 <LI><A HREF="ucnv_open.html">ucnv_open</A> <I>
 Creates a UConverter object with the names specified as a C string</I>
-<LI><!2><A HREF="#DOC.125">ucnv_openCCSID</A> <I>
+<LI><!2><A HREF="#DOC.140">ucnv_openCCSID</A> <I>
 Creates a UConverter object using a CCSID number</I>
 <LI><A HREF="ucnv_openU.html">ucnv_openU</A> <I>
 Creates a Unicode converter with the names specified as unicode string</I>
@@ -396,12 +420,12 @@ Creates a Unicode converter with the names specified as unicode string</I>
 Resets the state of stateful conversion to the default state</I>
 <LI><A HREF="ucnv_setDefaultName.html">ucnv_setDefaultName</A> <I>
 sets the current default converter name</I>
-<LI><!2><A HREF="#DOC.143">ucnv_setFromUCallBack</A> <I>
+<LI><!2><A HREF="#DOC.158">ucnv_setFromUCallBack</A> <I>
 Gets the current callback function used by the converter when illegal or invalid sequence found
 </I>
 <LI><A HREF="ucnv_setSubstChars.html">ucnv_setSubstChars</A> <I>
 Sets the substitution chars when converting from unicode to a codepage</I>
-<LI><!2><A HREF="#DOC.142">ucnv_setToUCallBack</A> <I>
+<LI><!2><A HREF="#DOC.157">ucnv_setToUCallBack</A> <I>
 Gets the current callback function used by the converter when illegal or invalid sequence found
 </I>
 <LI><A HREF="ucnv_toUChars.html">ucnv_toUChars</A> <I>
@@ -444,7 +468,7 @@ Generate a hash code for a collation key</I>
 Get the ordering priority of the next collation element in the text</I>
 <LI><A HREF="ucol_open.html">ucol_open</A> <I>
 Open a UCollator for comparing strings</I>
-<LI><!2><A HREF="#DOC.183">ucol_openElements</A> <I>
+<LI><!2><A HREF="#DOC.199">ucol_openElements</A> <I>
 Open the collation elements for a string</I>
 <LI><A HREF="ucol_openRules.html">ucol_openRules</A> <I>
 Open a UCollator for comparing strings</I>
@@ -504,37 +528,37 @@ Set the UNumberFormat associated with an UDateFormat</I>
 Set the symbols associated with an UDateFormat</I>
 <LI><A HREF="udat_toPattern.html">udat_toPattern</A> <I>
 Extract the pattern from a UDateFormat</I>
-<LI><!2><A HREF="#DOC.239">uloc_countAvailable</A> <I>
+<LI><!2><A HREF="#DOC.255">uloc_countAvailable</A> <I>
 
 Gets the size of the all available locale list</I>
 <LI><A HREF="uloc_getAvailable.html">uloc_getAvailable</A> <I>
 
 Gets the specified locale from a list of all available locales</I>
-<LI><!2><A HREF="#DOC.228">uloc_getCountry</A> <I>
+<LI><!2><A HREF="#DOC.244">uloc_getCountry</A> <I>
 
 Gets the  country code for the specified locale</I>
-<LI><!2><A HREF="#DOC.242">uloc_getDataDirectory</A> <I>
+<LI><!2><A HREF="#DOC.258">uloc_getDataDirectory</A> <I>
 
 Gets the directory containing the locale data files</I>
-<LI><!2><A HREF="#DOC.225">uloc_getDefault</A> <I>
+<LI><!2><A HREF="#DOC.241">uloc_getDefault</A> <I>
 
 Gets the system's default locale</I>
-<LI><!2><A HREF="#DOC.235">uloc_getDisplayCountry</A> <I>
+<LI><!2><A HREF="#DOC.251">uloc_getDisplayCountry</A> <I>
 
 Gets the country name suitable for display for the specified locale</I>
-<LI><!2><A HREF="#DOC.234">uloc_getDisplayLanguage</A> <I>
+<LI><!2><A HREF="#DOC.250">uloc_getDisplayLanguage</A> <I>
 
 Gets the language name suitable for display for the specified locale</I>
-<LI><!2><A HREF="#DOC.237">uloc_getDisplayName</A> <I>
+<LI><!2><A HREF="#DOC.253">uloc_getDisplayName</A> <I>
 
 Gets the full name suitable for display for the specified locale</I>
-<LI><!2><A HREF="#DOC.236">uloc_getDisplayVariant</A> <I>
+<LI><!2><A HREF="#DOC.252">uloc_getDisplayVariant</A> <I>
 
 Gets the variant code suitable for display for the specified locale</I>
-<LI><!2><A HREF="#DOC.232">uloc_getISO3Country</A> <I>
+<LI><!2><A HREF="#DOC.248">uloc_getISO3Country</A> <I>
 
 Gets the ISO country code for the specified locale</I>
-<LI><!2><A HREF="#DOC.231">uloc_getISO3Language</A> <I>
+<LI><!2><A HREF="#DOC.247">uloc_getISO3Language</A> <I>
 
 Gets the ISO language code for the specified locale</I>
 <LI><A HREF="uloc_getISOCountries.html">uloc_getISOCountries</A> <I>
@@ -543,22 +567,22 @@ Gets a list of all available 2-letter country codes defined in ISO 639</I>
 <LI><A HREF="uloc_getISOLanguages.html">uloc_getISOLanguages</A> <I>
 
 Gets a list of all available language codes defined in ISO 639</I>
-<LI><!2><A HREF="#DOC.227">uloc_getLanguage</A> <I>
+<LI><!2><A HREF="#DOC.243">uloc_getLanguage</A> <I>
 
 Gets the language code for the specified locale</I>
-<LI><!2><A HREF="#DOC.233">uloc_getLCID</A> <I>
+<LI><!2><A HREF="#DOC.249">uloc_getLCID</A> <I>
 
 Gets the Win32 LCID value for the specified locale</I>
-<LI><!2><A HREF="#DOC.230">uloc_getName</A> <I>
+<LI><!2><A HREF="#DOC.246">uloc_getName</A> <I>
 
 Gets the full name for the specified locale</I>
-<LI><!2><A HREF="#DOC.229">uloc_getVariant</A> <I>
+<LI><!2><A HREF="#DOC.245">uloc_getVariant</A> <I>
 
 Gets the variant code for the specified locale</I>
-<LI><!2><A HREF="#DOC.243">uloc_setDataDirectory</A> <I>
+<LI><!2><A HREF="#DOC.259">uloc_setDataDirectory</A> <I>
 
 Sets the directory containing the locale data files</I>
-<LI><!2><A HREF="#DOC.226">uloc_setDefault</A> <I>
+<LI><!2><A HREF="#DOC.242">uloc_setDefault</A> <I>
 
 Sets the system's default locale</I>
 <LI><A HREF="unum_clone.html">unum_clone</A> <I>
@@ -599,26 +623,26 @@ Set the symbols associated with a UNumberFormat</I>
 Set a text attribute associated with a UNumberFormat</I>
 <LI><A HREF="unum_toPattern.html">unum_toPattern</A> <I>
 Extract the pattern from a UNumberFormat</I>
-<LI><!2><A HREF="#DOC.284">ures_close</A> <I>
+<LI><!2><A HREF="#DOC.303">ures_close</A> <I>
 close a resource bundle, all pointers returned from the various ures_getXXX calls
 on this particular bundle are INVALID henceforth</I>
-<LI><!2><A HREF="#DOC.283">ures_countArrayItems</A> <I>
+<LI><!2><A HREF="#DOC.302">ures_countArrayItems</A> <I>
 
 
 </I>
-<LI><!2><A HREF="#DOC.279">ures_get</A> <I>
+<LI><!2><A HREF="#DOC.298">ures_get</A> <I>
 
 returns a resource string, given a resource bundle and a key
 </I>
-<LI><!2><A HREF="#DOC.281">ures_get2dArrayItem</A> <I>
+<LI><!2><A HREF="#DOC.300">ures_get2dArrayItem</A> <I>
 returns a resource string which is part of a 2D array, given a resource bundle
 a key to the array and the index pair of the desired string
 </I>
-<LI><!2><A HREF="#DOC.280">ures_getArrayItem</A> <I>
+<LI><!2><A HREF="#DOC.299">ures_getArrayItem</A> <I>
 returns a resource string which is part of an array, given a resource bundle
 a key to the array and the index of the desired string
 </I>
-<LI><!2><A HREF="#DOC.282">ures_getTaggedArrayItem</A> <I>
+<LI><!2><A HREF="#DOC.301">ures_getTaggedArrayItem</A> <I>
 returns a resource string which is part of a tagged array, given a resource bundle
 a key to the array and the key of the desired string</I>
 <LI><A HREF="ures_getVersionNumber.html">ures_getVersionNumber</A> <I>
@@ -632,29 +656,38 @@ their corresponding keys</I>
 </UL>
 <H2>Variables</H2>
 <UL>
-<LI><A HREF="ClassID.html">ClassID</A> <I>
-ClassID is used to identify classes without using RTTI, since RTTI
-is not yet supported by all C++ compilers</I>
+<LI><!2><A HREF="#DOC.10">ERR_MSG</A> <I>
+Set this to zero to disable log_verbose() messages, otherwise
+nonzero to see log_verbose() messages</I>
+<LI><A HREF="ERROR_COUNT.html">ERROR_COUNT</A> <I>
+Count of errors from all tests</I>
 <LI><A HREF="UBiDi.html">UBiDi</A> <I>
 Forward declaration of the <code>UBiDi</code> structure for the declaration of
 the API functions</I>
 <LI><A HREF="UBiDiLevel.html">UBiDiLevel</A> <I>
 UBiDiLevel is the type of the level values in this
 BiDi implementation</I>
-<LI><!2><A HREF="#DOC.35">UBreakIterator</A> <I>A text-break iterator </I>
-<LI><!2><A HREF="#DOC.51">UCalendar</A> <I>A calendar </I>
+<LI><!2><A HREF="#DOC.51">UBreakIterator</A> <I>A text-break iterator </I>
+<LI><!2><A HREF="#DOC.67">UCalendar</A> <I>A calendar </I>
 <LI><A HREF="UCHAR_MAX_VALUE.html">UCHAR_MAX_VALUE</A> <I>
 The maximum value a UChar can have</I>
 <LI><A HREF="UCHAR_MIN_VALUE.html">UCHAR_MIN_VALUE</A> <I>
 The minimum value a UChar can have</I>
-<LI><!2><A HREF="#DOC.181">UCollationElements</A> <I>The UCollationElements struct </I>
-<LI><!2><A HREF="#DOC.154">UCollator</A> <I>A collator </I>
-<LI><!2><A HREF="#DOC.197">UDateFormat</A> <I>A date formatter </I>
-<LI><!2><A HREF="#DOC.218">UDateFormatSymbols</A> <I>Date format symbols </I>
-<LI><A HREF="UNumberFormat.html">UNumberFormat</A> <I>
-Number Format C API  Provides functions for
-formatting and parsing a number</I>
-<LI><!2><A HREF="#DOC.275">UResourceBundle</A> <I>A UResourceBundle </I>
+<LI><A HREF="UClassID.html">UClassID</A> <I>
+UClassID is used to identify classes without using RTTI, since RTTI
+is not yet supported by all C++ compilers</I>
+<LI><!2><A HREF="#DOC.168">UCNV_NUMBER_OF_SUPPORTED_CONVERTER_TYPES</A> <I>Number of converter types for which we have conversion routines</I>
+<LI><!2><A HREF="#DOC.197">UCollationElements</A> <I>The UCollationElements struct </I>
+<LI><!2><A HREF="#DOC.170">UCollator</A> <I>A collator </I>
+<LI><A HREF="UDate.html">UDate</A> <I>
+Date and Time data type</I>
+<LI><!2><A HREF="#DOC.213">UDateFormat</A> <I>A date formatter </I>
+<LI><!2><A HREF="#DOC.234">UDateFormatSymbols</A> <I>Date format symbols </I>
+<LI><!2><A HREF="#DOC.268">UNumberFormat</A> <I>A number formatter </I>
+<LI><!2><A HREF="#DOC.294">UResourceBundle</A> <I>A UResourceBundle </I>
+<LI><!2><A HREF="#DOC.9">VERBOSITY</A> <I>
+Set this to zero to disable log_verbose() messages, otherwise
+nonzero to see log_verbose() messages</I>
 </UL>
 <H2>Macros</H2>
 <UL>
@@ -662,27 +695,28 @@ formatting and parsing a number</I>
 ICU package code version number</I>
 <LI><A HREF="U_COMMON_API.html">U_COMMON_API</A> <I>
 Control of symbol import/export</I>
-<LI><!2><A HREF="BiDialgorithmforICU.html#DOC.33.25">UBIDI_DEFAULT_LTR</A> <I>If there is no strong character, then set the paragraph level to 0 (left-to-right). </I>
-<LI><!2><A HREF="BiDialgorithmforICU.html#DOC.33.26">UBIDI_DEFAULT_RTL</A> <I>If there is no strong character, then set the paragraph level to 1 (right-to-left). </I>
-<LI><!2><A HREF="BiDialgorithmforICU.html#DOC.33.28">UBIDI_LEVEL_OVERRIDE</A> <I>Bit flag for level input: overrides directional properties. </I>
-<LI><!2><A HREF="BiDialgorithmforICU.html#DOC.33.27">UBIDI_MAX_EXPLICIT_LEVEL</A> <I>Maximum explicit embedding level
+<LI><!2><A HREF="BiDialgorithmforICU.html#DOC.49.25">UBIDI_DEFAULT_LTR</A> <I>If there is no strong character, then set the paragraph level to 0 (left-to-right). </I>
+<LI><!2><A HREF="BiDialgorithmforICU.html#DOC.49.26">UBIDI_DEFAULT_RTL</A> <I>If there is no strong character, then set the paragraph level to 1 (right-to-left). </I>
+<LI><!2><A HREF="BiDialgorithmforICU.html#DOC.49.28">UBIDI_LEVEL_OVERRIDE</A> <I>Bit flag for level input: overrides directional properties. </I>
+<LI><!2><A HREF="BiDialgorithmforICU.html#DOC.49.27">UBIDI_MAX_EXPLICIT_LEVEL</A> <I>Maximum explicit embedding level
 (The maximum resolved level can be up to <code>UBIDI_MAX_EXPLICIT_LEVEL+1</code>).</I>
-<LI><!2><A HREF="#DOC.37">UBRK_DONE</A> <I>Value indicating all text boundaries have been returned</I>
-<LI><!2><A HREF="#DOC.187">UCOL_NULLORDER</A> <I>This indicates the last element in a UCollationElements has been consumed</I>
-<LI><!2><A HREF="#DOC.184">UCOL_PRIMARYMASK</A> <I>Bit mask for primary collation strength </I>
-<LI><!2><A HREF="#DOC.185">UCOL_SECONDARYMASK</A> <I>Bit mask for secondary collation strength </I>
-<LI><!2><A HREF="#DOC.186">UCOL_TERTIARYMASK</A> <I>Bit mask for tertiary collation strength </I>
-<LI><!2><A HREF="#DOC.223">uloc_ENGLISH</A> <I>
+<LI><!2><A HREF="#DOC.53">UBRK_DONE</A> <I>Value indicating all text boundaries have been returned</I>
+<LI><!2><A HREF="#DOC.203">UCOL_NULLORDER</A> <I>This indicates the last element in a UCollationElements has been consumed</I>
+<LI><!2><A HREF="#DOC.200">UCOL_PRIMARYMASK</A> <I>Bit mask for primary collation strength </I>
+<LI><!2><A HREF="#DOC.201">UCOL_SECONDARYMASK</A> <I>Bit mask for secondary collation strength </I>
+<LI><!2><A HREF="#DOC.202">UCOL_TERTIARYMASK</A> <I>Bit mask for tertiary collation strength </I>
+<LI><!2><A HREF="#DOC.239">ULOC_ENGLISH</A> <I>
 
 Useful constants for language</I>
-<LI><!2><A HREF="#DOC.224">uloc_FRANCE</A> <I>
+<LI><!2><A HREF="#DOC.240">ULOC_FRANCE</A> <I>
 
 Useful constants for country</I>
 <LI><A HREF="ULocale.html">ULocale</A> <I>
 
 A <code>Locale</code> object represents a specific geographical, political,
 or cultural region</I>
-<LI><!2><A HREF="#DOC.270">UNFSYMBOLSMAXSIZE</A> <I>The maximum size for a textual number format symbol </I>
+<LI><!2><A HREF="#DOC.289">UNFSYMBOLSMAXSIZE</A> <I>The maximum size for a textual number format symbol </I>
+<LI><!2><A HREF="#DOC.38">USCSU_BUFSIZE</A> <I>The size of the internal buffer for a UnicodeCompressor </I>
 </UL>
 <H2>Enums, Unions, Structs</H2>
 <UL>
@@ -696,23 +730,21 @@ or cultural region</I>
 <LI><A HREF="UCalendarLimitType.html">UCalendarLimitType</A> <I>Possible limit values for a UCalendar </I>
 <LI><A HREF="UCalendarMonths.html">UCalendarMonths</A> <I>Possible months in a UCalendar</I>
 <LI><A HREF="UCalendarType.html">UCalendarType</A> <I>Possible types of UCalendars </I>
-<LI><!2><A HREF="#DOC.94">UCellWidth</A> <I>
+<LI><!2><A HREF="#DOC.109">UCellWidth</A> <I>
 Values returned by the u_getCellWidth() function</I>
-<LI><!2><A HREF="#DOC.91">UCharCategory</A> <I>
+<LI><!2><A HREF="#DOC.106">UCharCategory</A> <I>
 Data for enumerated Unicode general category types</I>
-<LI><A HREF="UCharDigitPair.html">UCharDigitPair</A> <I>
-The Unicode C API allows you to query the properties associated with individual 
-Unicode character values</I>
-<LI><!2><A HREF="#DOC.92">UCharDirection</A> <I>
+<LI><!2><A HREF="#DOC.107">UCharDirection</A> <I>
 This specifies the language directional property of a character set</I>
-<LI><!2><A HREF="#DOC.93">UCharScript</A> <I>
+<LI><!2><A HREF="#DOC.108">UCharScript</A> <I>
 Script range as defined in the Unicode standard</I>
 <LI><A HREF="UCollationResult.html">UCollationResult</A> <I>Possible values for a comparison result </I>
 <LI><A HREF="UCollationStrength.html">UCollationStrength</A> <I>Possible collation strengths </I>
 <LI><A HREF="UDateFormatStyle.html">UDateFormatStyle</A> <I>The possible date/time format styles </I>
 <LI><A HREF="UDateFormatSymbolType.html">UDateFormatSymbolType</A> <I>The possible types of date format symbols </I>
-<LI><!2><A HREF="#DOC.301">UErrorCode</A> <I>Error code to replace exception handling </I>
+<LI><!2><A HREF="#DOC.320">UErrorCode</A> <I>Error code to replace exception handling </I>
 <LI><A HREF="UFieldPosition.html">UFieldPosition</A> <I>A struct representing a range of text containing a specific field </I>
+<LI><A HREF="UnicodeCompressor.html">UnicodeCompressor</A> <I>The UnicodeCompressor struct </I>
 <LI><A HREF="UNormalizationMode.html">UNormalizationMode</A> <I>Possible collation normalization modes </I>
 <LI><A HREF="UNormalizationOption.html">UNormalizationOption</A> <I>Possible normalization options </I>
 <LI><A HREF="UNumberFormatAttribute.html">UNumberFormatAttribute</A> <I>The possible UNumberFormat numeric attributes </I>

@@ -18,101 +18,101 @@ savings
 
 <DL>
 <DL>
-<DT><h3>Public Classes</h3><DD><DT><A HREF="#DOC.32.29"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EDisplayType</B> </B>
+<DT><h3>Public Classes</h3><DD><DT><A HREF="#DOC.48.29"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EDisplayType</B> </B>
  <DD><I>
 Enum for use with getDisplayName</I>
 </DL><DL>
-<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.32.1"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>*  <B>createTimeZone</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& ID) </B>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.48.1"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>*  <B>createTimeZone</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& ID) </B>
  <DD><I>
 Creates a <code>TimeZone</code> for the given ID</I>
-<DT><A HREF="#DOC.32.2"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  <!1><A HREF="UnicodeString.html">UnicodeString</A>**  const  <B>createAvailableIDs</B>(int32_t rawOffset, int32_t& numIDs) </B>
+<DT><A HREF="#DOC.48.2"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  <!1><A HREF="UnicodeString.html">UnicodeString</A>**  const  <B>createAvailableIDs</B>(int32_t rawOffset, int32_t& numIDs) </B>
  <DD><I>
 Returns a list of time zone IDs, one for each time zone with a given GMT offset</I>
-<DT><A HREF="#DOC.32.3"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  <!1><A HREF="UnicodeString.html">UnicodeString</A>**  const  <B>createAvailableIDs</B>(int32_t& numIDs) </B>
+<DT><A HREF="#DOC.48.3"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  <!1><A HREF="UnicodeString.html">UnicodeString</A>**  const  <B>createAvailableIDs</B>(int32_t& numIDs) </B>
  <DD><I>
 Returns a list of all time zone IDs supported by the TimeZone class (i</I>
-<DT><A HREF="#DOC.32.4"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>*  <B>createDefault</B>(void) </B>
+<DT><A HREF="#DOC.48.4"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>*  <B>createDefault</B>(void) </B>
  <DD><I>
 Creates a new copy of the default TimeZone for this host</I>
-<DT><A HREF="#DOC.32.5"> <IMG BORDER=0 SRC=icon1.gif></A> static  void  <B>adoptDefault</B>(<!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>* zone) </B>
+<DT><A HREF="#DOC.48.5"> <IMG BORDER=0 SRC=icon1.gif></A> static  void  <B>adoptDefault</B>(<!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>* zone) </B>
  <DD><I>
 Sets the default time zone (i</I>
-<DT><A HREF="#DOC.32.6"> <IMG BORDER=0 SRC=icon1.gif></A> static  void  <B>setDefault</B>(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& zone) </B>
+<DT><A HREF="#DOC.48.6"> <IMG BORDER=0 SRC=icon1.gif></A> static  void  <B>setDefault</B>(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& zone) </B>
  <DD><I>
 Same as adoptDefault(), except that the TimeZone object passed in is NOT adopted;
 the caller remains responsible for deleting it</I>
-<DT><A HREF="#DOC.32.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& that) const  </B>
+<DT><A HREF="#DOC.48.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& that) const  </B>
  <DD><I>
 Returns true if the two TimeZones are equal</I>
-<DT><A HREF="#DOC.32.8"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>operator!=</B>(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& that) const  </B>
+<DT><A HREF="#DOC.48.8"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>operator!=</B>(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& that) const  </B>
  <DD><I>
 Returns true if the two TimeZones are NOT equal; that is, if operator==() returns
 false</I>
-<DT><A HREF="#DOC.32.9"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>getOffset</B>(uint8_t era, int32_t year, int32_t month, int32_t day, uint8_t dayOfWeek, int32_t millis, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+<DT><A HREF="#DOC.48.9"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>getOffset</B>(uint8_t era, int32_t year, int32_t month, int32_t day, uint8_t dayOfWeek, int32_t millis, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const  </B>
  <DD><I>
 Returns the TimeZone's adjusted GMT offset (i</I>
-<DT><A HREF="#DOC.32.10"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>getOffset</B>(uint8_t era, int32_t year, int32_t month, int32_t day, uint8_t dayOfWeek, int32_t milliseconds, int32_t monthLength, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+<DT><A HREF="#DOC.48.10"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>getOffset</B>(uint8_t era, int32_t year, int32_t month, int32_t day, uint8_t dayOfWeek, int32_t milliseconds, int32_t monthLength, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const  </B>
  <DD><I>
 Gets the time zone offset, for current date, modified in case of
 daylight savings</I>
-<DT><A HREF="#DOC.32.11"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setRawOffset</B>(int32_t offsetMillis) </B>
+<DT><A HREF="#DOC.48.11"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setRawOffset</B>(int32_t offsetMillis) </B>
  <DD><I>
 Sets the TimeZone's raw GMT offset (i</I>
-<DT><A HREF="#DOC.32.12"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>getRawOffset</B>(void) const  </B>
+<DT><A HREF="#DOC.48.12"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>getRawOffset</B>(void) const  </B>
  <DD><I>
 Returns the TimeZone's raw GMT offset (i</I>
-<DT><A HREF="#DOC.32.13"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getID</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A>& ID) const  </B>
+<DT><A HREF="#DOC.48.13"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getID</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A>& ID) const  </B>
  <DD><I>
 Fills in "ID" with the TimeZone's ID</I>
-<DT><A HREF="#DOC.32.14"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setID</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& ID) </B>
+<DT><A HREF="#DOC.48.14"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setID</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& ID) </B>
  <DD><I>
 Sets the TimeZone's ID to the specified value</I>
-<DT><A HREF="#DOC.32.15"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getDisplayName</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
+<DT><A HREF="#DOC.48.15"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getDisplayName</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
  <DD><I>
 Returns a name of this time zone suitable for presentation to the user
 in the default locale</I>
-<DT><A HREF="#DOC.32.16"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getDisplayName</B>(const Locale& locale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
+<DT><A HREF="#DOC.48.16"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getDisplayName</B>(const Locale& locale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
  <DD><I>
 Returns a name of this time zone suitable for presentation to the user
 in the specified locale</I>
-<DT><A HREF="#DOC.32.17"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getDisplayName</B>(bool_t daylight, <!2><A HREF="TimeZone.html#DOC.32.29">EDisplayType</A> style, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
+<DT><A HREF="#DOC.48.17"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getDisplayName</B>(bool_t daylight, <!2><A HREF="TimeZone.html#DOC.48.29">EDisplayType</A> style, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
  <DD><I>
 Returns a name of this time zone suitable for presentation to the user
 in the default locale</I>
-<DT><A HREF="#DOC.32.18"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getDisplayName</B>(bool_t daylight, <!2><A HREF="TimeZone.html#DOC.32.29">EDisplayType</A> style, const Locale& locale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
+<DT><A HREF="#DOC.48.18"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getDisplayName</B>(bool_t daylight, <!2><A HREF="TimeZone.html#DOC.48.29">EDisplayType</A> style, const Locale& locale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
  <DD><I>
 Returns a name of this time zone suitable for presentation to the user
 in the specified locale</I>
-<DT><A HREF="#DOC.32.19"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>useDaylightTime</B>(void) const  </B>
+<DT><A HREF="#DOC.48.19"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>useDaylightTime</B>(void) const  </B>
  <DD><I>
 Queries if this time zone uses daylight savings time</I>
-<DT><A HREF="#DOC.32.20"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>inDaylightTime</B>(UDate date, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+<DT><A HREF="#DOC.48.20"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>inDaylightTime</B>(<!1><A HREF="UDate.html">UDate</A> date, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const  </B>
  <DD><I>
 Queries if the given date is in daylight savings time in
 this time zone</I>
-<DT><A HREF="#DOC.32.21"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>hasSameRules</B>(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& other) const  </B>
+<DT><A HREF="#DOC.48.21"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>hasSameRules</B>(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& other) const  </B>
  <DD><I>
 Returns true if this zone has the same rule and offset as another zone</I>
-<DT><A HREF="#DOC.32.22"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>*  <B>clone</B>(void) const  </B>
+<DT><A HREF="#DOC.48.22"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>*  <B>clone</B>(void) const  </B>
  <DD><I>
 Clones TimeZone objects polymorphically</I>
-<DT><A HREF="#DOC.32.23"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="ClassID.html">ClassID</A>  <B>getStaticClassID</B>(void) </B>
+<DT><A HREF="#DOC.48.23"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="UClassID.html">UClassID</A>  <B>getStaticClassID</B>(void) </B>
  <DD><I>
 Return the class ID for this class</I>
-<DT><A HREF="#DOC.32.24"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="ClassID.html">ClassID</A>  <B>getDynamicClassID</B>(void) const  </B>
+<DT><A HREF="#DOC.48.24"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UClassID.html">UClassID</A>  <B>getDynamicClassID</B>(void) const  </B>
  <DD><I>
 Returns a unique class ID POLYMORPHICALLY</I>
-<DT><A HREF="#DOC.32.32"> <IMG BORDER=0 SRC=icon1.gif></A> static  void  <B>deleteTimeZone</B>(void*) </B>
+<DT><A HREF="#DOC.48.32"> <IMG BORDER=0 SRC=icon1.gif></A> static  void  <B>deleteTimeZone</B>(void*) </B>
  <DD><I>
 Delete function for fgHashtable</I>
 </DL><DL>
-<DT><h3>Protected Methods</h3><DD><DT><A HREF="#DOC.32.25"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>TimeZone</B>() </B>
+<DT><h3>Protected Methods</h3><DD><DT><A HREF="#DOC.48.25"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>TimeZone</B>() </B>
  <DD><I>
 Default constructor</I>
-<DT><A HREF="#DOC.32.30"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>TimeZone</B>(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& source) </B>
+<DT><A HREF="#DOC.48.30"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>TimeZone</B>(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& source) </B>
  <DD><I>
 Copy constructor</I>
-<DT><A HREF="#DOC.32.31"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>&  <B>operator=</B>(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& right) </B>
+<DT><A HREF="#DOC.48.31"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>&  <B>operator=</B>(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& right) </B>
  <DD><I>
 Default assignment operator</I>
 </DL></DL>
@@ -198,8 +198,8 @@ for Japanese Standard Time ("Asia/Tokyo").
 <DL>
 
 <A NAME="createTimeZone">
-<A NAME ="DOC.32.1">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>*  createTimeZone(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& ID)</B></TT>
+<A NAME ="DOC.48.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>*  createTimeZone(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& ID)</B></TT>
 <DD>
 Creates a <code>TimeZone</code> for the given ID
 <DL><DT><B>Returns:</B><DD>the specified <code>TimeZone</code>, or the GMT zone if the given ID
@@ -209,7 +209,7 @@ cannot be understood.
 such as "GMT-8:00".
 <br></DL><P>
 <A NAME="createAvailableIDs">
-<A NAME ="DOC.32.2">
+<A NAME ="DOC.48.2">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  const  <!1><A HREF="UnicodeString.html">UnicodeString</A>**  const  createAvailableIDs(int32_t rawOffset, int32_t& numIDs)</B></TT>
 <DD>
 Returns a list of time zone IDs, one for each time zone with a given GMT offset.
@@ -233,7 +233,7 @@ specified, NULL is returned.
 <br><B>numIDs</B> -      Receives the number of items in the array that is returned.
 <br></DL><P>
 <A NAME="createAvailableIDs">
-<A NAME ="DOC.32.3">
+<A NAME ="DOC.48.3">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  const  <!1><A HREF="UnicodeString.html">UnicodeString</A>**  const  createAvailableIDs(int32_t& numIDs)</B></TT>
 <DD>
 Returns a list of all time zone IDs supported by the TimeZone class (i.e., all
@@ -247,8 +247,8 @@ supported by the TimeZone class.
 <DT><B>Parameters:</B><DD><B>numIDs</B> -   Receives the number of zone IDs returned.
 <br></DL><P>
 <A NAME="createDefault">
-<A NAME ="DOC.32.4">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>*  createDefault(void)</B></TT>
+<A NAME ="DOC.48.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>*  createDefault(void)</B></TT>
 <DD>
 Creates a new copy of the default TimeZone for this host. Unless the default time
 zone has already been set using adoptDefault() or setDefault(), the default is
@@ -262,8 +262,8 @@ and made the default.
 object returned.
 </DL><P>
 <A NAME="adoptDefault">
-<A NAME ="DOC.32.5">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  void  adoptDefault(<!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>* zone)</B></TT>
+<A NAME ="DOC.48.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  void  adoptDefault(<!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>* zone)</B></TT>
 <DD>
 Sets the default time zone (i.e., what's returned by getDefault()) to be the
 specified time zone.  If NULL is specified for the time zone, the default time
@@ -273,8 +273,8 @@ passed in; the clent is no longer responsible for deleting it.
 
 <DL><DT><B>Parameters:</B><DD><B>zone</B> -   A pointer to the new TimeZone object to use as the default.<br></DL><P>
 <A NAME="setDefault">
-<A NAME ="DOC.32.6">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  void  setDefault(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& zone)</B></TT>
+<A NAME ="DOC.48.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  void  setDefault(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& zone)</B></TT>
 <DD>
 Same as adoptDefault(), except that the TimeZone object passed in is NOT adopted;
 the caller remains responsible for deleting it.
@@ -282,8 +282,8 @@ the caller remains responsible for deleting it.
 
 <DL><DT><B>Parameters:</B><DD><B>zone</B> -   The given timezone.<br></DL><P>
 <A NAME="operator==">
-<A NAME ="DOC.32.7">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& that) const </B></TT>
+<A NAME ="DOC.48.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& that) const </B></TT>
 <DD>
 Returns true if the two TimeZones are equal.  (The TimeZone version only compares
 IDs, but subclasses are expected to also compare the fields they add.)
@@ -294,8 +294,8 @@ otherwise.
 <DT><B>Parameters:</B><DD><B>that</B> -   The TimeZone object to be compared with.
 <br></DL><P>
 <A NAME="operator!=">
-<A NAME ="DOC.32.8">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  operator!=(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& that) const </B></TT>
+<A NAME ="DOC.48.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  operator!=(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& that) const </B></TT>
 <DD>
 Returns true if the two TimeZones are NOT equal; that is, if operator==() returns
 false.
@@ -306,8 +306,8 @@ otherwise.
 <DT><B>Parameters:</B><DD><B>that</B> -   The TimeZone object to be compared with.
 <br></DL><P>
 <A NAME="getOffset">
-<A NAME ="DOC.32.9">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int32_t  getOffset(uint8_t era, int32_t year, int32_t month, int32_t day, uint8_t dayOfWeek, int32_t millis, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<A NAME ="DOC.48.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int32_t  getOffset(uint8_t era, int32_t year, int32_t month, int32_t day, uint8_t dayOfWeek, int32_t millis, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const </B></TT>
 <DD>
 Returns the TimeZone's adjusted GMT offset (i.e., the number of milliseconds to add
 to GMT to get local time in this time zone, taking daylight savings time into
@@ -328,8 +328,8 @@ and time fields are in GMT, NOT local time.
 <br><B>millis</B> -      The reference date's milliseconds in day, UTT (NOT local time).
 <br></DL><P>
 <A NAME="getOffset">
-<A NAME ="DOC.32.10">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int32_t  getOffset(uint8_t era, int32_t year, int32_t month, int32_t day, uint8_t dayOfWeek, int32_t milliseconds, int32_t monthLength, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<A NAME ="DOC.48.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int32_t  getOffset(uint8_t era, int32_t year, int32_t month, int32_t day, uint8_t dayOfWeek, int32_t milliseconds, int32_t monthLength, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const </B></TT>
 <DD>
 Gets the time zone offset, for current date, modified in case of
 daylight savings. This is the offset to add *to* UTC to get local time.
@@ -345,7 +345,7 @@ Month is 0-based. e.g., 0 for January.
 <br><B>monthLength</B> -  the length of the given month in days.
 <br></DL><P>
 <A NAME="setRawOffset">
-<A NAME ="DOC.32.11">
+<A NAME ="DOC.48.11">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setRawOffset(int32_t offsetMillis)</B></TT>
 <DD>
 Sets the TimeZone's raw GMT offset (i.e., the number of milliseconds to add
@@ -354,7 +354,7 @@ to GMT to get local time, before taking daylight savings time into account).
 
 <DL><DT><B>Parameters:</B><DD><B>offsetMillis</B> -   The new raw GMT offset for this time zone.<br></DL><P>
 <A NAME="getRawOffset">
-<A NAME ="DOC.32.12">
+<A NAME ="DOC.48.12">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int32_t  getRawOffset(void) const </B></TT>
 <DD>
 Returns the TimeZone's raw GMT offset (i.e., the number of milliseconds to add
@@ -364,7 +364,7 @@ to GMT to get local time, before taking daylight savings time into account).
 <DL><DT><B>Returns:</B><DD>The TimeZone's raw GMT offset.
 </DL><P>
 <A NAME="getID">
-<A NAME ="DOC.32.13">
+<A NAME ="DOC.48.13">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  getID(<!1><A HREF="UnicodeString.html">UnicodeString</A>& ID) const </B></TT>
 <DD>
 Fills in "ID" with the TimeZone's ID.
@@ -374,7 +374,7 @@ Fills in "ID" with the TimeZone's ID.
 <DT><B>Parameters:</B><DD><B>ID</B> -   Receives this TimeZone's ID.
 <br></DL><P>
 <A NAME="setID">
-<A NAME ="DOC.32.14">
+<A NAME ="DOC.48.14">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setID(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& ID)</B></TT>
 <DD>
 Sets the TimeZone's ID to the specified value.  This doesn't affect any other
@@ -389,13 +389,13 @@ Los Angeles.  They're still those for New York.  Only the ID has changed.)
 
 <DL><DT><B>Parameters:</B><DD><B>ID</B> -   The new timezone ID.<br></DL><P>
 <A NAME="EDisplayType">
-<A NAME ="DOC.32.29">
+<A NAME ="DOC.48.29">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  EDisplayType</B></TT>
 <DD>
 Enum for use with getDisplayName
 <DL></DL><P>
 <A NAME="getDisplayName">
-<A NAME ="DOC.32.15">
+<A NAME ="DOC.48.15">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  getDisplayName(<!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const </B></TT>
 <DD>
 Returns a name of this time zone suitable for presentation to the user
@@ -408,7 +408,7 @@ then this method returns a string in the format
 <DL><DT><B>Returns:</B><DD>the human-readable name of this time zone in the default locale.
 </DL><P>
 <A NAME="getDisplayName">
-<A NAME ="DOC.32.16">
+<A NAME ="DOC.48.16">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  getDisplayName(const Locale& locale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const </B></TT>
 <DD>
 Returns a name of this time zone suitable for presentation to the user
@@ -423,8 +423,8 @@ or in the default locale if the given locale is not recognized.
 <DT><B>Parameters:</B><DD><B>locale</B> -  the locale in which to supply the display name.
 <br></DL><P>
 <A NAME="getDisplayName">
-<A NAME ="DOC.32.17">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  getDisplayName(bool_t daylight, <!2><A HREF="TimeZone.html#DOC.32.29">EDisplayType</A> style, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const </B></TT>
+<A NAME ="DOC.48.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  getDisplayName(bool_t daylight, <!2><A HREF="TimeZone.html#DOC.48.29">EDisplayType</A> style, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const </B></TT>
 <DD>
 Returns a name of this time zone suitable for presentation to the user
 in the default locale.
@@ -437,8 +437,8 @@ then this method returns a string in the format
 <br><B>style</B> -  either <code>LONG</code> or <code>SHORT</code>
 <br></DL><P>
 <A NAME="getDisplayName">
-<A NAME ="DOC.32.18">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  getDisplayName(bool_t daylight, <!2><A HREF="TimeZone.html#DOC.32.29">EDisplayType</A> style, const Locale& locale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const </B></TT>
+<A NAME ="DOC.48.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  getDisplayName(bool_t daylight, <!2><A HREF="TimeZone.html#DOC.48.29">EDisplayType</A> style, const Locale& locale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const </B></TT>
 <DD>
 Returns a name of this time zone suitable for presentation to the user
 in the specified locale.
@@ -453,7 +453,7 @@ or in the default locale if the given locale is not recognized.
 <br><B>locale</B> -  the locale in which to supply the display name.
 <br></DL><P>
 <A NAME="useDaylightTime">
-<A NAME ="DOC.32.19">
+<A NAME ="DOC.48.19">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  useDaylightTime(void) const </B></TT>
 <DD>
 Queries if this time zone uses daylight savings time
@@ -461,8 +461,8 @@ Queries if this time zone uses daylight savings time
 false, otherwise.
 </DL><P>
 <A NAME="inDaylightTime">
-<A NAME ="DOC.32.20">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  inDaylightTime(UDate date, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<A NAME ="DOC.48.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  inDaylightTime(<!1><A HREF="UDate.html">UDate</A> date, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const </B></TT>
 <DD>
 Queries if the given date is in daylight savings time in
 this time zone
@@ -471,8 +471,8 @@ false, otherwise.
 <DT><B>Parameters:</B><DD><B>date</B> -  the given UDate.
 <br></DL><P>
 <A NAME="hasSameRules">
-<A NAME ="DOC.32.21">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  hasSameRules(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& other) const </B></TT>
+<A NAME ="DOC.48.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  hasSameRules(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& other) const </B></TT>
 <DD>
 Returns true if this zone has the same rule and offset as another zone.
 That is, if this zone differs only in ID, if at all.
@@ -482,8 +482,8 @@ with the possible exception of the ID
 <DT><B>Parameters:</B><DD><B>other</B> -  the <code>TimeZone</code> object to be compared with
 <br></DL><P>
 <A NAME="clone">
-<A NAME ="DOC.32.22">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>*  clone(void) const </B></TT>
+<A NAME ="DOC.48.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>*  clone(void) const </B></TT>
 <DD>
 Clones TimeZone objects polymorphically. Clients are responsible for deleting
 the TimeZone object cloned.
@@ -492,8 +492,8 @@ the TimeZone object cloned.
 <DL><DT><B>Returns:</B><DD>A new copy of this TimeZone object.
 </DL><P>
 <A NAME="getStaticClassID">
-<A NAME ="DOC.32.23">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="ClassID.html">ClassID</A>  getStaticClassID(void)</B></TT>
+<A NAME ="DOC.48.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="UClassID.html">UClassID</A>  getStaticClassID(void)</B></TT>
 <DD>
 Return the class ID for this class.  This is useful only for
 comparing to a return value from getDynamicClassID().  For example:
@@ -506,8 +506,8 @@ comparing to a return value from getDynamicClassID().  For example:
 <DL><DT><B>Returns:</B><DD>The class ID for all objects of this class.
 </DL><P>
 <A NAME="getDynamicClassID">
-<A NAME ="DOC.32.24">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="ClassID.html">ClassID</A>  getDynamicClassID(void) const </B></TT>
+<A NAME ="DOC.48.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UClassID.html">UClassID</A>  getDynamicClassID(void) const </B></TT>
 <DD>
 Returns a unique class ID POLYMORPHICALLY. Pure virtual method. This method is to
 implement a simple version of RTTI, since not all C++ compilers support genuine
@@ -516,7 +516,7 @@ RTTI. Polymorphic operator==() and clone() methods call this method.
 Concrete subclasses of TimeZone must implement getDynamicClassID() and also a
 static method and data member:
 <pre>
-.     static ClassID getStaticClassID() { return (ClassID)&fgClassID; }
+.     static UClassID getStaticClassID() { return (UClassID)&fgClassID; }
 .     static char fgClassID;
 </pre>
 
@@ -524,25 +524,25 @@ static method and data member:
 same class ID. Objects of other classes have different class IDs.
 </DL><P>
 <A NAME="TimeZone">
-<A NAME ="DOC.32.25">
+<A NAME ="DOC.48.25">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  TimeZone()</B></TT>
 <DD>
 Default constructor.  ID is initialized to the empty string.
 <DL></DL><P>
 <A NAME="TimeZone">
-<A NAME ="DOC.32.30">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  TimeZone(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& source)</B></TT>
+<A NAME ="DOC.48.30">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  TimeZone(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& source)</B></TT>
 <DD>
 Copy constructor
 <DL></DL><P>
 <A NAME="operator=">
-<A NAME ="DOC.32.31">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>&  operator=(const <!2><A HREF="TimeZone.html#DOC.32.30">TimeZone</A>& right)</B></TT>
+<A NAME ="DOC.48.31">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>&  operator=(const <!2><A HREF="TimeZone.html#DOC.48.30">TimeZone</A>& right)</B></TT>
 <DD>
 Default assignment operator
 <DL></DL><P>
 <A NAME="deleteTimeZone">
-<A NAME ="DOC.32.32">
+<A NAME ="DOC.48.32">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  void  deleteTimeZone(void*)</B></TT>
 <DD>
 Delete function for fgHashtable

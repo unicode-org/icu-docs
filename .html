@@ -38,6 +38,53 @@ each character of an international string</I>
 The <code>Collator</code> class performs locale-sensitive
 <code>String</code> comparison</I>
 <DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=ERROR_COUNT.html><B>ERROR_COUNT</B></A> 
+ <DD><I>
+Count of errors from all tests</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>T_CTEST_EXPORT_API  extern  int  <B>VERBOSITY</B>
+ <DD><I>
+Set this to zero to disable log_verbose() messages, otherwise
+nonzero to see log_verbose() messages</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>T_CTEST_EXPORT_API  extern  int  <B>ERR_MSG</B>
+ <DD><I>
+Set this to zero to disable log_verbose() messages, otherwise
+nonzero to see log_verbose() messages</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>T_CTEST_API  void  <B>showTests</B>( const TestNode *root)
+ <DD><I>
+Show the names of all nodes</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>T_CTEST_API  void  <B>runTests</B>( const TestNode* root)
+ <DD><I>
+Run a subtree of tests</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=addTest.html><B>addTest</B></A> 
+ <DD><I>
+Add a test to the subtree</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>T_CTEST_API  const  TestNode*  <B>getTest</B>(const TestNode* root, const char *path)
+ <DD><I>
+Retreive a specific subtest (subtree)
+</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=log_err.html><B>log_err</B></A> 
+ <DD><I>
+Log an error message</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=log_info.html><B>log_info</B></A> 
+ <DD><I>
+Log an informational message</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=log_verbose.html><B>log_verbose</B></A> 
+ <DD><I>
+Log a verbose informational message</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=processArgs.html><B>processArgs</B></A> 
+ <DD><I>
+Processes the command line arguments</I>
+<DT>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=DateFormat.html><B>DateFormat</B></A> 
  <DD><I>
 DateFormat is an abstract class for a family of classes that convert dates and
@@ -106,11 +153,11 @@ and its subclasses to keep track of the current position during parsing</I>
 Platform utilities isolates the platform dependencies of the
 libarary</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int16_t  U_EXPORT2  <B>icu_log10</B>(double d)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int16_t  U_EXPORT2  <B>icu_log10</B>(double d)
  <DD><I>
 Returns the common log of the double value d</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>icu_digitsAfterDecimal</B>(double x)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>icu_digitsAfterDecimal</B>(double x)
  <DD><I>
 Returns the number of digits after the decimal point in a double number x</I>
 <DT>
@@ -119,11 +166,6 @@ Returns the number of digits after the decimal point in a double number x</I>
 Time zone utilities
 
 Wrappers for C runtime library functions relating to timezones</I>
-<DT>
-<IMG BORDER=0 SRC=icon1.gif> <A HREF=icu_isBigEndian.html><B>icu_isBigEndian</B></A> 
- <DD><I>
-Retrun true if this platform is big-endian, that is, if the number
-0x1234 is stored 0x12, 0x34 in memory</I>
 <DT>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=ResourceBundle.html><B>ResourceBundle</B></A> 
  <DD><I>
@@ -134,6 +176,28 @@ locale</I>
  <DD><I>
 A concrete subclass of CharacterIterator that iterates over the
 characters in a UnicodeString</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>#define <B>USCSU_BUFSIZE</B>
+ <DD><I>The size of the internal buffer for a UnicodeCompressor </I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=UnicodeCompressor.html><B>UnicodeCompressor</B></A> 
+ <DD><I>The UnicodeCompressor struct </I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=scsu_init.html><B>scsu_init</B></A> 
+ <DD><I>
+Initialize a UnicodeCompressor</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=scsu_reset.html><B>scsu_reset</B></A> 
+ <DD><I>
+Reset the compressor to its initial state</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=scsu_compress.html><B>scsu_compress</B></A> 
+ <DD><I>
+Compress a Unicode character array into a byte array</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=scsu_decompress.html><B>scsu_decompress</B></A> 
+ <DD><I>
+Decompress a byte array into a Unicode character array</I>
 <DT>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=SimpleTimeZone.html><B>SimpleTimeZone</B></A> 
  <DD><I>
@@ -363,11 +427,6 @@ Clear all fields in a UCalendar</I>
  <DD><I>
 Determine a limit for a field in a UCalendar</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif> <A HREF=UCharDigitPair.html><B>UCharDigitPair</B></A> 
- <DD><I>
-The Unicode C API allows you to query the properties associated with individual 
-Unicode character values</I>
-<DT>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=.5.html><B></B></A> 
  <DD><I>
 The Unicode C API allows you to query the properties associated with individual 
@@ -467,11 +526,11 @@ when used in Asian text, according to the Unicode standard (see p</I>
 Returns a value indicating a character category according to Unicode
 2</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>u_charDigitValue</B>(UChar c)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>u_charDigitValue</B>(UChar c)
  <DD><I>
 Retrives the decimal numeric value of a digit character</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  <!2><A HREF="#DOC.93">UCharScript</A>  U_EXPORT2  <B>u_charScript</B>(UChar ch)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  <!2><A HREF="#DOC.108">UCharScript</A>  U_EXPORT2  <B>u_charScript</B>(UChar ch)
  <DD><I>
 
 Returns the script associated with a character</I>
@@ -527,7 +586,7 @@ The given character is mapped to its uppercase equivalent according to Unicode
 The given character is mapped to its titlecase equivalent according to Unicode
 2</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  const  char*  U_EXPORT2  <B>u_getVersion</B>(void)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  const  char*  U_EXPORT2  <B>u_getVersion</B>(void)
  <DD><I>
 
 The function is used to get the Unicode standard Version that is used
@@ -546,15 +605,15 @@ Creates a UConverter object with the names specified as a C string</I>
  <DD><I>
 Creates a Unicode converter with the names specified as unicode string</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  UConverter*  U_EXPORT2  <B>ucnv_openCCSID</B>(int32_t codepage, UCNV_PLATFORM platform, <!2><A HREF="#DOC.301">UErrorCode</A> * err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  UConverter*  U_EXPORT2  <B>ucnv_openCCSID</B>(int32_t codepage, UConverterPlatform platform, <!2><A HREF="#DOC.320">UErrorCode</A> * err)
  <DD><I>
 Creates a UConverter object using a CCSID number</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  void  U_EXPORT2  <B>ucnv_close</B>(UConverter * converter)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  void  U_EXPORT2  <B>ucnv_close</B>(UConverter * converter)
  <DD><I>
 Deletes the unicode converter</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  void  U_EXPORT2  <B>ucnv_getSubstChars</B>(const UConverter * converter, char *subChars, int8_t * len, <!2><A HREF="#DOC.301">UErrorCode</A> * err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  void  U_EXPORT2  <B>ucnv_getSubstChars</B>(const UConverter * converter, char *subChars, int8_t * len, <!2><A HREF="#DOC.320">UErrorCode</A> * err)
  <DD><I>
 Fills in the output parameter, subChars, with the substitution characters
 as multiple bytes</I>
@@ -563,12 +622,12 @@ as multiple bytes</I>
  <DD><I>
 Sets the substitution chars when converting from unicode to a codepage</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  void  U_EXPORT2  <B>ucnv_getInvalidChars</B>(const UConverter * converter, char *errBytes, int8_t * len, <!2><A HREF="#DOC.301">UErrorCode</A> * err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  void  U_EXPORT2  <B>ucnv_getInvalidChars</B>(const UConverter * converter, char *errBytes, int8_t * len, <!2><A HREF="#DOC.320">UErrorCode</A> * err)
  <DD><I>
 Fills in the output parameter, errBytes, with the error characters from the
 last failing conversion</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  void  U_EXPORT2  <B>ucnv_getInvalidUChars</B>(const UConverter * converter, char *errUChars, int8_t * len, <!2><A HREF="#DOC.301">UErrorCode</A> * err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  void  U_EXPORT2  <B>ucnv_getInvalidUChars</B>(const UConverter * converter, char *errUChars, int8_t * len, <!2><A HREF="#DOC.320">UErrorCode</A> * err)
  <DD><I>
 Fills in the output parameter, errChars, with the error characters from the
 last failing conversion</I>
@@ -585,7 +644,7 @@ Returns the maximum length of bytes used by a character</I>
  <DD><I>
 Returns the minimum byte length for characters in this codepage</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>ucnv_getDisplayName</B>(const UConverter * converter, const char *displayLocale, UChar * displayName, int32_t displayNameCapacity, <!2><A HREF="#DOC.301">UErrorCode</A> * err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>ucnv_getDisplayName</B>(const UConverter * converter, const char *displayLocale, UChar * displayName, int32_t displayNameCapacity, <!2><A HREF="#DOC.320">UErrorCode</A> * err)
  <DD><I>
 Returns the display name of the converter passed in based on the Locale passed in,
 in the case the locale contains no display name, the internal ASCII name will be
@@ -611,23 +670,23 @@ e</I>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=ucnv_getStarters.html><B>ucnv_getStarters</B></A> 
  <DD><I>
 Gets the "starter" bytes for the converters of type MBCS
-will fill in an <TT>ILLEGAL_ARGUMENT_ERROR</TT> if converter passed in
+will fill in an <TT>U_ILLEGAL_ARGUMENT_ERROR</TT> if converter passed in
 is not MBCS</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  UCNV_ToUCallBack  U_EXPORT2  <B>ucnv_getToUCallBack</B>(const UConverter * converter)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  UConverterToUCallback  U_EXPORT2  <B>ucnv_getToUCallBack</B>(const UConverter * converter)
  <DD><I>
 Gets the current calback function used by the converter when illegal or invalid sequence found</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  UCNV_FromUCallBack  U_EXPORT2  <B>ucnv_getFromUCallBack</B>(const UConverter * converter)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  UConverterFromUCallback  U_EXPORT2  <B>ucnv_getFromUCallBack</B>(const UConverter * converter)
  <DD><I>
 Gets the current callback function used by the converter when illegal or invalid sequence found</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  UCNV_ToUCallBack  U_EXPORT2  <B>ucnv_setToUCallBack</B>(UConverter * converter, UCNV_ToUCallBack action, <!2><A HREF="#DOC.301">UErrorCode</A> * err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  UConverterToUCallback  U_EXPORT2  <B>ucnv_setToUCallBack</B>(UConverter * converter, UConverterToUCallback action, <!2><A HREF="#DOC.320">UErrorCode</A> * err)
  <DD><I>
 Gets the current callback function used by the converter when illegal or invalid sequence found
 </I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  UCNV_FromUCallBack  U_EXPORT2  <B>ucnv_setFromUCallBack</B>(UConverter * converter, UCNV_FromUCallBack action, <!2><A HREF="#DOC.301">UErrorCode</A> * err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  UConverterFromUCallback  U_EXPORT2  <B>ucnv_setFromUCallBack</B>(UConverter * converter, UConverterFromUCallback action, <!2><A HREF="#DOC.320">UErrorCode</A> * err)
  <DD><I>
 Gets the current callback function used by the converter when illegal or invalid sequence found
 </I>
@@ -650,7 +709,7 @@ with the specified Unicode converter</I>
 Transcode the source string in codepage encoding to the target string in
 Unicode encoding</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>ucnv_flushCache</B>(void)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>ucnv_flushCache</B>(void)
  <DD><I>
 SYSTEM API
 Iterates through every cached converter and frees all the unused ones</I>
@@ -659,17 +718,20 @@ Iterates through every cached converter and frees all the unused ones</I>
  <DD><I>
 provides a string containing the internal name (based on the alias file) of the converter</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>ucnv_countAvailable</B>(void)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>ucnv_countAvailable</B>(void)
  <DD><I>
 returns the number of available converters</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  const  char*  U_EXPORT2  <B>ucnv_getDefaultName</B>(void)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  const  char*  U_EXPORT2  <B>ucnv_getDefaultName</B>(void)
  <DD><I>
 returns the current default converter name</I>
 <DT>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=ucnv_setDefaultName.html><B>ucnv_setDefaultName</B></A> 
  <DD><I>
 sets the current default converter name</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <B>UCNV_NUMBER_OF_SUPPORTED_CONVERTER_TYPES</B>
+ <DD><I>Number of converter types for which we have conversion routines</I>
 <DT>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=.6.html><B></B></A> 
  <DD><I>
@@ -789,7 +851,7 @@ Generate a hash code for a collation key</I>
 The UCollationElements  is used as an iterator to walk through
 each character of an international string</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  <!2><A HREF="#DOC.181">UCollationElements</A>*  <B>ucol_openElements</B>( const <!2><A HREF="#DOC.154">UCollator</A> *coll, const UChar *text, int32_t textLength, <!2><A HREF="#DOC.301">UErrorCode</A> *status)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  <!2><A HREF="#DOC.197">UCollationElements</A>*  <B>ucol_openElements</B>( const <!2><A HREF="#DOC.170">UCollator</A> *coll, const UChar *text, int32_t textLength, <!2><A HREF="#DOC.320">UErrorCode</A> *status)
  <DD><I>
 Open the collation elements for a string</I>
 <DT>
@@ -946,77 +1008,77 @@ Set the symbols associated with an UDateFormat</I>
 A <code>Locale</code> represents a specific geographical, political,
 or cultural region</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>#define <B>uloc_ENGLISH</B>
+<IMG BORDER=0 SRC=icon1.gif>#define <B>ULOC_ENGLISH</B>
  <DD><I>
 
 Useful constants for language</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>#define <B>uloc_FRANCE</B>
+<IMG BORDER=0 SRC=icon1.gif>#define <B>ULOC_FRANCE</B>
  <DD><I>
 
 Useful constants for country</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  const  char*  U_EXPORT2  <B>uloc_getDefault</B>(void)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  const  char*  U_EXPORT2  <B>uloc_getDefault</B>(void)
  <DD><I>
 
 Gets the system's default locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  void  U_EXPORT2  <B>uloc_setDefault</B>(const char* localeID, <!2><A HREF="#DOC.301">UErrorCode</A>* status)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  void  U_EXPORT2  <B>uloc_setDefault</B>(const char* localeID, <!2><A HREF="#DOC.320">UErrorCode</A>* status)
  <DD><I>
 
 Sets the system's default locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>uloc_getLanguage</B>(const char* localeID, char* language, int32_t languageCapacity, <!2><A HREF="#DOC.301">UErrorCode</A>* err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>uloc_getLanguage</B>(const char* localeID, char* language, int32_t languageCapacity, <!2><A HREF="#DOC.320">UErrorCode</A>* err)
  <DD><I>
 
 Gets the language code for the specified locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>uloc_getCountry</B>(const char* localeID, char* country, int32_t countryCapacity, <!2><A HREF="#DOC.301">UErrorCode</A>* err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>uloc_getCountry</B>(const char* localeID, char* country, int32_t countryCapacity, <!2><A HREF="#DOC.320">UErrorCode</A>* err)
  <DD><I>
 
 Gets the  country code for the specified locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>uloc_getVariant</B>(const char* localeID, char* variant, int32_t variantCapacity, <!2><A HREF="#DOC.301">UErrorCode</A>* err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>uloc_getVariant</B>(const char* localeID, char* variant, int32_t variantCapacity, <!2><A HREF="#DOC.320">UErrorCode</A>* err)
  <DD><I>
 
 Gets the variant code for the specified locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>uloc_getName</B>(const char* localeID, char* name, int32_t nameCapacity, <!2><A HREF="#DOC.301">UErrorCode</A>* err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>uloc_getName</B>(const char* localeID, char* name, int32_t nameCapacity, <!2><A HREF="#DOC.320">UErrorCode</A>* err)
  <DD><I>
 
 Gets the full name for the specified locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  const  char*  U_EXPORT2  <B>uloc_getISO3Language</B>(const char* localeID)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  const  char*  U_EXPORT2  <B>uloc_getISO3Language</B>(const char* localeID)
  <DD><I>
 
 Gets the ISO language code for the specified locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  const  char*  U_EXPORT2  <B>uloc_getISO3Country</B>(const char* localeID)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  const  char*  U_EXPORT2  <B>uloc_getISO3Country</B>(const char* localeID)
  <DD><I>
 
 Gets the ISO country code for the specified locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  uint32_t  U_EXPORT2  <B>uloc_getLCID</B>(const char* localeID)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  uint32_t  U_EXPORT2  <B>uloc_getLCID</B>(const char* localeID)
  <DD><I>
 
 Gets the Win32 LCID value for the specified locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>uloc_getDisplayLanguage</B>(const char* locale, const char* inLocale, UChar* language, int32_t languageCapacity, <!2><A HREF="#DOC.301">UErrorCode</A>* status)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>uloc_getDisplayLanguage</B>(const char* locale, const char* inLocale, UChar* language, int32_t languageCapacity, <!2><A HREF="#DOC.320">UErrorCode</A>* status)
  <DD><I>
 
 Gets the language name suitable for display for the specified locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>uloc_getDisplayCountry</B>(const char* locale, const char* inLocale, UChar* country, int32_t countryCapacity, <!2><A HREF="#DOC.301">UErrorCode</A>* status)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>uloc_getDisplayCountry</B>(const char* locale, const char* inLocale, UChar* country, int32_t countryCapacity, <!2><A HREF="#DOC.320">UErrorCode</A>* status)
  <DD><I>
 
 Gets the country name suitable for display for the specified locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>uloc_getDisplayVariant</B>(const char* locale, const char* inLocale, UChar* variant, int32_t variantCapacity, <!2><A HREF="#DOC.301">UErrorCode</A>* status)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>uloc_getDisplayVariant</B>(const char* locale, const char* inLocale, UChar* variant, int32_t variantCapacity, <!2><A HREF="#DOC.320">UErrorCode</A>* status)
  <DD><I>
 
 Gets the variant code suitable for display for the specified locale</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>uloc_getDisplayName</B>(const char* localeID, const char* inLocaleID,  UChar* result, int32_t maxResultSize, <!2><A HREF="#DOC.301">UErrorCode</A>* err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>uloc_getDisplayName</B>(const char* localeID, const char* inLocaleID,  UChar* result, int32_t maxResultSize, <!2><A HREF="#DOC.320">UErrorCode</A>* err)
  <DD><I>
 
 Gets the full name suitable for display for the specified locale</I>
@@ -1026,7 +1088,7 @@ Gets the full name suitable for display for the specified locale</I>
 
 Gets the specified locale from a list of all available locales</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>uloc_countAvailable</B>(void)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>uloc_countAvailable</B>(void)
  <DD><I>
 
 Gets the size of the all available locale list</I>
@@ -1041,15 +1103,18 @@ Gets a list of all available language codes defined in ISO 639</I>
 
 Gets a list of all available 2-letter country codes defined in ISO 639</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  const  char*  U_EXPORT2  <B>uloc_getDataDirectory</B>(void)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  const  char*  U_EXPORT2  <B>uloc_getDataDirectory</B>(void)
  <DD><I>
 
 Gets the directory containing the locale data files</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  void  U_EXPORT2  <B>uloc_setDataDirectory</B>(const char* newDirectory)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  void  U_EXPORT2  <B>uloc_setDataDirectory</B>(const char* newDirectory)
  <DD><I>
 
 Sets the directory containing the locale data files</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=UFieldPosition.html><B>UFieldPosition</B></A> 
+ <DD><I>A struct representing a range of text containing a specific field </I>
 <DT>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=.14.html><B></B></A> 
  <DD><I>
@@ -1068,15 +1133,22 @@ Parse a message</I>
 The Unicode class allows you to query the properties associated with individual 
 Unicode character values</I>
 <DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=UnicodeSet.html><B>UnicodeSet</B></A> 
+ <DD><I>
+A mutable set of Unicode characters</I>
+<DT>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=UnicodeString.html><B>UnicodeString</B></A> 
  <DD><I>
 UnicodeString is a concrete implementation of the abstract class 
 UnicodeText</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif> <A HREF=UNumberFormat.html><B>UNumberFormat</B></A> 
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=.15.html><B></B></A> 
  <DD><I>
 Number Format C API  Provides functions for
 formatting and parsing a number</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>typedef  void*  <B>UNumberFormat</B>
+ <DD><I>A number formatter </I>
 <DT>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=UNumberFormatStyle.html><B>UNumberFormatStyle</B></A> 
  <DD><I>The possible number format styles</I>
@@ -1169,7 +1241,7 @@ Get the symbols associated with a UNumberFormat</I>
  <DD><I>
 Set the symbols associated with a UNumberFormat</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif> <A HREF=.15.html><B></B></A> 
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=.16.html><B></B></A> 
  <DD><I>
 C API representing a collection of resource information pertaining to a given
 locale</I>
@@ -1191,36 +1263,36 @@ their corresponding keys</I>
 Opens a UResourceBundle, from which users can extract strings by using
 their corresponding keys</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  const  UChar*  U_EXPORT2  <B>ures_get</B>(const <!2><A HREF="#DOC.275">UResourceBundle</A>* resourceBundle, const char* resourceTag, <!2><A HREF="#DOC.301">UErrorCode</A>* status)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  const  UChar*  U_EXPORT2  <B>ures_get</B>(const <!2><A HREF="#DOC.294">UResourceBundle</A>* resourceBundle, const char* resourceTag, <!2><A HREF="#DOC.320">UErrorCode</A>* status)
  <DD><I>
 
 returns a resource string, given a resource bundle and a key
 </I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  const  UChar*  U_EXPORT2  <B>ures_getArrayItem</B>(const <!2><A HREF="#DOC.275">UResourceBundle</A>* resourceBundle, const char* resourceTag, int32_t resourceIndex, <!2><A HREF="#DOC.301">UErrorCode</A>* status)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  const  UChar*  U_EXPORT2  <B>ures_getArrayItem</B>(const <!2><A HREF="#DOC.294">UResourceBundle</A>* resourceBundle, const char* resourceTag, int32_t resourceIndex, <!2><A HREF="#DOC.320">UErrorCode</A>* status)
  <DD><I>
 returns a resource string which is part of an array, given a resource bundle
 a key to the array and the index of the desired string
 </I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  const  UChar*  U_EXPORT2  <B>ures_get2dArrayItem</B>(const <!2><A HREF="#DOC.275">UResourceBundle</A>* resourceBundle, const char* resourceTag, int32_t rowIndex, int32_t columnIndex, <!2><A HREF="#DOC.301">UErrorCode</A>* status)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  const  UChar*  U_EXPORT2  <B>ures_get2dArrayItem</B>(const <!2><A HREF="#DOC.294">UResourceBundle</A>* resourceBundle, const char* resourceTag, int32_t rowIndex, int32_t columnIndex, <!2><A HREF="#DOC.320">UErrorCode</A>* status)
  <DD><I>
 returns a resource string which is part of a 2D array, given a resource bundle
 a key to the array and the index pair of the desired string
 </I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  const  UChar*  U_EXPORT2  <B>ures_getTaggedArrayItem</B>(const <!2><A HREF="#DOC.275">UResourceBundle</A>* resourceBundle, const char* resourceTag, const char* itemTag, <!2><A HREF="#DOC.301">UErrorCode</A>* status)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  const  UChar*  U_EXPORT2  <B>ures_getTaggedArrayItem</B>(const <!2><A HREF="#DOC.294">UResourceBundle</A>* resourceBundle, const char* resourceTag, const char* itemTag, <!2><A HREF="#DOC.320">UErrorCode</A>* status)
  <DD><I>
 returns a resource string which is part of a tagged array, given a resource bundle
 a key to the array and the key of the desired string</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>ures_countArrayItems</B>(const <!2><A HREF="#DOC.275">UResourceBundle</A>* resourceBundle, const char* resourceKey, <!2><A HREF="#DOC.301">UErrorCode</A>* err)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>ures_countArrayItems</B>(const <!2><A HREF="#DOC.294">UResourceBundle</A>* resourceBundle, const char* resourceKey, <!2><A HREF="#DOC.320">UErrorCode</A>* err)
  <DD><I>
 
 
 </I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  void  U_EXPORT2  <B>ures_close</B>(<!2><A HREF="#DOC.275">UResourceBundle</A>* resourceBundle)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  void  U_EXPORT2  <B>ures_close</B>(<!2><A HREF="#DOC.294">UResourceBundle</A>* resourceBundle)
  <DD><I>
 close a resource bundle, all pointers returned from the various ures_getXXX calls
 on this particular bundle are INVALID henceforth</I>
@@ -1229,7 +1301,7 @@ on this particular bundle are INVALID henceforth</I>
  <DD><I>
 Return the version number associated with this ResourceBundle</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>u_strlen</B>(const UChar *s)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>u_strlen</B>(const UChar *s)
  <DD><I>
 Determine the length of an array of UChar
 </I>
@@ -1242,11 +1314,11 @@ Concatenate two ustrings</I>
  <DD><I>
 Concatenate two ustrings</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  UChar*  U_EXPORT2  <B>u_strchr</B>(const UChar *s, UChar c)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  UChar*  U_EXPORT2  <B>u_strchr</B>(const UChar *s, UChar c)
  <DD><I>
 Find the first occurrence of a specified character in a ustring</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif>CAPI  int32_t  U_EXPORT2  <B>u_strcmp</B>(const UChar *s1, const UChar *s2)
+<IMG BORDER=0 SRC=icon1.gif>U_CAPI  int32_t  U_EXPORT2  <B>u_strcmp</B>(const UChar *s1, const UChar *s2)
  <DD><I>
 Compare two ustrings for bitwise equality</I>
 <DT>
@@ -1278,12 +1350,13 @@ Copy ustring to a byte string encoded in the default codepage</I>
  <DD><I>
 ICU package code version number</I>
 <DT>
-<IMG BORDER=0 SRC=icon1.gif> <A HREF=UFieldPosition.html><B>UFieldPosition</B></A> 
- <DD><I>A struct representing a range of text containing a specific field </I>
-<DT>
-<IMG BORDER=0 SRC=icon1.gif> <A HREF=ClassID.html><B>ClassID</B></A> 
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=UDate.html><B>UDate</B></A> 
  <DD><I>
-ClassID is used to identify classes without using RTTI, since RTTI
+Date and Time data type</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=UClassID.html><B>UClassID</B></A> 
+ <DD><I>
+UClassID is used to identify classes without using RTTI, since RTTI
 is not yet supported by all C++ compilers</I>
 <DT>
 <IMG BORDER=0 SRC=icon1.gif> <A HREF=U_COMMON_API.html><B>U_COMMON_API</B></A> 

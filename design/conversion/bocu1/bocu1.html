@@ -30,7 +30,8 @@ a problem in low-bandwidth environments such as wireless networks for handheld
 systems.</p>
 <p><a href="http://www.unicode.org/unicode/reports/tr6/">SCSU</a> was created as a Unicode compression scheme with a byte/code point ratio
 similar to language-specific codepages. It has not been widely adopted although
-it fulfills the criteria for an IANA charset and is registered as one. SCSU is not suitable for MIME text/* types, i.e.,
+it fulfills the criteria for an IANA charset and is registered as one. SCSU is not suitable for MIME
+&quot;text&quot; media types, i.e.,
 it cannot be used directly in emails and similar protocols. SCSU requires a
 complicated encoder design for good performance.</p>
 <p>BOCU-1 combines the wide applicability of UTF-8 with the compactness of SCSU.
@@ -39,7 +40,7 @@ It is useful for short strings and maintains code point order.</p>
 <p>BOCU-1 is a stateful, byte-oriented, encoding of Unicode. Like SCSU it can be
 classified as a Character Encoding Scheme (CES) or as a Transfer Encoding Syntax
 (TES). It is a &quot;charset&quot; according to IANA, and it is suitable for
-MIME text/*.</p>
+MIME &quot;text&quot; media types.</p>
 <p>BOCU-1 is more complicated than UTF-8 but much simpler than SCSU. Its
 inter-character state consists of a single integer. It is deterministic, i.e.,
 the
@@ -56,13 +57,14 @@ which allows the compression of large, sorted lists of strings.</p>
 <p>The C0 control codes NUL, CR and LF and nine others are encoded with the same
 byte values as in US-ASCII, and those byte values are used <em>only </em>for the
 encoding of these twelve C0 control codes. This makes BOCU-1 suitable for MIME
-text/* types, directly usable in emails and generally &quot;friendly&quot; for
+&quot;text&quot; media types, directly usable in emails and generally &quot;friendly&quot; for
 ASCII-based tools. The SUB control and its byte value 1A is included in this set
 to avoid problems in DOS/Windows/OS/2 systems where 1A is interpreted as an
 end-of-file marker in text mode.</p>
 
 <p>The state is reset at each C0 control (U+0000..U+001F, includes CR, LF, TAB).
-CRLF-separated lines do not affect each other's encoding. This makes BOCU-1 usable
+CRLF-separated lines do not affect each other's encoding. Together with BOCU-1
+being deterministic, this allows line-based file comparisons (diff) and makes BOCU-1 usable
 with RCS, CVS and other source-code control systems (unlike SCSU). This also allows some
 limited random access.</p>
 

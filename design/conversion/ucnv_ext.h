@@ -179,6 +179,29 @@
  *
  *   Contains fromUnicode mapping results, stored as sequences of chars.
  *   Indexes and lengths stored in the fromUTableValues[].
+ *
+ * -------------------------------------------------------------
+ *
+ * TODO
+ *
+ * Extension mappings may be slow, especially for large extensions with
+ * many mappings and some relatively common characters.
+ * In addition to the sorted tables, there could be additional tables to speed
+ * up at least the lookup of the initial code unit.
+ * These are backward compatible additions because the sorted tables would
+ * remain.
+ *
+ * Examples:
+ * - A hash table that results in an index into the actual, sorted table.
+ *   Probably most useful for fromUnicode conversion where there could be
+ *   thousands of code units in the top table.
+ * - A contiguous table of code units, from some lowest to highest unit,
+ *   that can be looked up as an array. Unused code units would need to be
+ *   marked as such, otherwise each unit entry comes with an index into the
+ *   actual top table.
+ *   Probably most useful for toUnicode conversion where lead bytes are
+ *   often one or two groups of contiguous bytes.
+ *   This might even be useful for the top toUnicode table by default.
  */
 enum {
     _CNV_EXT_INDEXES_LENGTH,

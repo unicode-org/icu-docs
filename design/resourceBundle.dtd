@@ -10,40 +10,60 @@
 <!ATTLIST resourceBundle name CDATA #REQUIRED>
 
 <!-- a macro for "any one of the possible resource elements" -->
-<!ENTITY % anyElement "(str|int|bin|importBin|array|table)">
-
-<!-- a table, i.e. an array of (key, value) pairs
-     where the values are arbitrary resource elements;
-     all direct sub-elements must have key attributes -->
-<!ELEMENT table (%anyElement;)*>
+<!ENTITY % anyElement "(str|int|intVector|bin|importBin|array|table)">
 
 <!-- all resource elements have an optional key attribute;
      it must be present in elements that are directly nested in a <table>
      but must not be present in elements that are directly nested in an <array>;
      the key attribute must only contain "invariant" characters
-     (subset of ASCII graphic characters) -->
+     (subset of ASCII graphic characters) and must not be empty -->
 
-<!-- string -->
+<!-- also note that if an empty value is desired in an NMTOKENS attribute,
+     then the entire attribute must be omitted because NMTOKENS requires
+     at least one NMTOKEN if there is an attribute -->
+
+<!-- a table, i.e., an array of zero or more (key, value) pairs
+     where the values are arbitrary resource elements;
+     all direct sub-elements must have key attributes -->
+<!ELEMENT table (%anyElement;)*>
+<!ATTLIST table key CDATA #IMPLIED>
+
+<!-- a simple array of zero or more arbitrary resource elements;
+     all direct sub-elements must not have key attributes -->
+<!ELEMENT array (%anyElement;)*>
+<!ATTLIST array key CDATA #IMPLIED>
+
+<!-- string,
+     may contain any Unicode characters and may be empty;
+     note CDATA parsing rules in XML:
+     all sequences of whitespace get replaced by single spaces U+0020;
+     if multiple spaces or CR or LF are intended, then
+     they must be written as NCRs &#x20; &#xd; &#xa; etc. -->
 <!ELEMENT str EMPTY>
-<!ATTLIST str val CDATA #REQUIRED>
+<!ATTLIST str key CDATA #IMPLIED
+              val CDATA #IMPLIED>
 
 <!-- 32-bit integer,
-     could allow -2^31..2^32-1 to reach all signed and unsigned 32-bit values;
-     could allow a decimal number and 0x followed by a hexadecimal number -->
+     value range: -2^31..2^32-1 to reach all signed and unsigned 32-bit values;
+     value format: decimal number or C-style hexadecimal with a 0x prefix -->
 <!ELEMENT int EMPTY>
-<!ATTLIST int val CDATA #REQUIRED>
+<!ATTLIST int key CDATA #IMPLIED
+              val NMTOKEN #REQUIRED>
+
+<!-- a vector of zero or more 32-bit integers -->
+<!ELEMENT intVector EMPTY>
+<!ATTLIST intVector key CDATA #IMPLIED
+                    val NMTOKENS #IMPLIED>
 
 <!-- simple binary data, the val attribute must contain pairs of hex digits -->
 <!ELEMENT bin EMPTY>
-<!ATTLIST bin val NMTOKENS #REQUIRED>
+<!ATTLIST bin key CDATA #IMPLIED
+              val NMTOKENS #IMPLIED>
 
 <!-- binary data imported from a local file -->
 <!ELEMENT importBin EMPTY>
-<!ATTLIST importBin filename CDATA #REQUIRED>
-
-<!-- a simple array of arbitrary resource elements;
-     all direct sub-elements must not have key attributes -->
-<!ELEMENT array (%anyElement;)*>
+<!ATTLIST importBin key CDATA #IMPLIED
+                    filename CDATA #REQUIRED>
 
 <!-- This is an example of an XML file that is valid with this DTD
 <?xml version="1.0" encoding="utf-8"?>
@@ -54,17 +74,32 @@
     <int key="a" val="2"/>
     <str key="s" val="Vladimir"/>
     <str key="s2" val="Markus"/>
-    <int key="i" val="22"/>
+    <int key="i" val="0x22"/>
+    <str key="emptyString" val=""/>
+    <str key="anotherEmptyString"/>
+    <intVector key="iv" val="20 21 -1 0x7f"/>
+    <intVector key="emptyIntegerVector"/>
     <array key="array">
       <int val="20"/>
       <str val="Andy"/>
       <str val="Andy2"/>
+      <bin val="fe ff 0a b5"/>
+      <intVector val="20 21 -1 0x7f"/>
+      <importBin filename="/other.jpeg"/>
+      <str/><str val=""/><!-- two empty strings -->
+      <bin/><!-- empty binary -->
+      <intVector/><!-- empty integer vector -->
+      <array/><!-- empty array -->
+      <table/><!-- empty table -->
     </array>
+    <array key="emptyArray"/>
     <bin key="b" val="fe ff 0a b5"/>
+    <bin key="emptyBinary"/>
     <importBin key="bb" filename="/something.jpeg"/>
     <table key="t">
-      <int key="t0" val="21"/>
+      <int key="t0" val="-21"/>
     </table>
+    <table key="emptyTable"/>
   </table>
 </resourceBundle>
 -->

@@ -196,7 +196,7 @@ encodeBocu1(int32_t *pPrev, int32_t c) {
  *
  * @param pRx pointer to the decoder state structure
  * @param b lead byte;
- *          BOCU1_MIN<=b<BOCU1_START_NEG_2 or BOCU1_START_POS_2<=b<BOCU1_MAX
+ *          BOCU1_MIN<=b<BOCU1_START_NEG_2 or BOCU1_START_POS_2<=b<=BOCU1_MAX_LEAD
  * @return -1 (state change only)
  *
  * @see decodeBocu1
@@ -211,7 +211,7 @@ decodeBocu1LeadByte(Bocu1Rx *pRx, uint8_t b) {
             /* two bytes */
             c=((int32_t)b-BOCU1_START_POS_2)*BOCU1_TRAIL_COUNT+BOCU1_REACH_POS_1+1;
             count=1;
-        } else if(b<BOCU1_MAX) {
+        } else if(b<BOCU1_START_POS_4) {
             /* three bytes */
             c=((int32_t)b-BOCU1_START_POS_3)*BOCU1_TRAIL_COUNT*BOCU1_TRAIL_COUNT+BOCU1_REACH_POS_2+1;
             count=2;
@@ -265,6 +265,10 @@ decodeBocu1TrailByte(Bocu1Rx *pRx, uint8_t b) {
             pRx->count=0;
             return -99;
         }
+#if BOCU1_MAX_TRAIL<0xff
+    } else if(b>BOCU1_MAX_TRAIL) {
+        return -99;
+#endif
     } else {
         t=(int32_t)b-BOCU1_TRAIL_BYTE_OFFSET;
     }
@@ -359,6 +363,10 @@ decodeBocu1(Bocu1Rx *pRx, uint8_t b) {
             c=prev+((int32_t)b-BOCU1_MIDDLE);
             pRx->prev=bocu1Prev(c);
             return c;
+        } else if(b==BOCU1_RESET) {
+            /* only reset the state, no code point */
+            pRx->prev=BOCU1_ASCII_PREV;
+            return -1;
         } else {
             return decodeBocu1LeadByte(pRx, b);
         }

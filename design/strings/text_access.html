@@ -16,6 +16,8 @@ Andy Heninger, Deborah Goldsmith, George Rhoten,<br>
 Mark Davis, Markus Scherer, Steven Loomis</p>
 <p>This version: <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/strings/text_access.html">http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/strings/text_access.html</a></p>
 <p>All versions: <a href="http://oss.software.ibm.com/cvs/icu/icuhtml/design/strings/text_access.html">http://oss.software.ibm.com/cvs/icu/icuhtml/design/strings/text_access.html</a></p>
+<p>Addition 2004-jul-22: <a href="#Native_Indexes">Native Indexes</a> and Issue
+for chunk lifetime</p>
 <h2>Problem Description and Goals</h2>
 <p>ICU APIs operating on text accept either strings with contiguous storage of
 UChars (UTF-16 code unit strings) or abstract APIs with per-character function
@@ -39,7 +41,8 @@ all relevant services and provide efficient access to text contents.</p>
 <p>As a basic parameter, text continues to be mainly processed in the UTF-16
 encoding form; while the API should allow for an implementation to convert other
 kinds of text (especially UTF-8), this will not be particularly handled by the
-API itself.</p>
+API itself. <i>(But see the later idea for <a href="#Native_Indexes">Native
+Indexes</a> below.)</i></p>
 <h3>Types of Text</h3>
 <p>The following types of text should be able to be handled efficiently:</p>
 <ul>
@@ -201,6 +204,11 @@ UBool access(
       only has two arguments (index and p); seems clumsy-looking though.</td>
   </tr>
 </table>
+<p><b>Issue for chunk lifetime: </b>It is probably necessary to assume that a
+chunk is only valid until the next call to the access() method, to allow a
+provider to reuse the buffer or change the text allocation. It might be useful
+to be able to determine (see getType() below) if chunks have a longer lifetime,
+until the text accessor is not used any more.</p>
 <h2>Text Handling APIs for Service Implementations</h2>
 <p>Service implementation code would normally not use the UTextAccessor API
 directly, but with wrappers that use either C++ inline code (preferred) or
@@ -257,6 +265,215 @@ class CharIterator {
     // convenience wrappers for length(), access(), extract()?
     // getChunkStart(), getChunkLimit() for the current chunk?
 };</pre>
+
+<h2><a name="Native_Indexes" href="#Native_Indexes">Native Indexes</a></h2>
+<p>Idea: Support UTF-8 and UTF-32 text (and other well-behaved codepages) with
+native indexes into such text.</p>
+<p>While ICU and much Unicode-aware software works on UTF-16 text internally,
+some other Unicode software works with UTF-8/32, and text storage (in files,
+databases and protocols) usually uses UTF-8 and other codepages. It is possible,
+and necessary for efficient operation, to convert the text to one internal
+format, but it would help efficiency and usefulness a lot if text indexes and
+offsets were in terms of native text units. For example, a BreakIterator or
+regular expression engine operating on UTF-8 text really needs to deliver UTF-8 indexes
+in order to be useful, and index into the text using UTF-8 indexes to be
+efficient.</p>
+<p>Despite the possibility for support of native indexes, the API must present
+the portions of text as chunks of UChars so that the inline wrappers work
+efficiently (no virtual function calls!) and native UTF-16 text is handled in
+the most efficient way.</p>
+<p>It may not be necessary for the interesting service implementations (BreakIterator,
+regex and such) to know <i>absolute </i>UTF-16 indexes (counting from the
+beginning of the text) at all. Of course, next() and next32() would work on a
+chunk of UChars and thus move in UChar and code point intervals, but it may be
+sufficient to only operate on native indexes in getIndex() and setIndex(). This
+would make text provider implementations much more efficient when absolute
+UTF-16 indexes are not trivial and efficient to compute.</p>
+<p>Some code may require UTF-16 indexes and should have a way to test on the
+text access API if the provider uses UTF-16 or native indexes. See the getType()
+method proposal below.</p>
+<p>The main decision to be made is whether a modified API which can handle
+native indexes is worth the effort, weighing the implementation effort (and
+performance decrease for actual UTF-16 text, if such a decrease could not be
+avoided) against the benefit of handling non-UTF-16 text well, especially
+UTF-8/32.</p>
+<h3>Index Semantics</h3>
+<ul>
+  <li>Most indexes on the API would be &quot;native&quot; indexes. They would be
+    UTF-16 indexes when that is the actual underlying storage and when native
+    indexes correspond 1:1 to UTF-16 indexes (e.g., for most single-byte codepages, ASCII portions of
+    UTF-8 text, and BMP portions of UTF-32 text).</li>
+  <li>The result of calling access() would indicate whether indexes related to
+    the chunk are &quot;native&quot; (need translation) or in terms of UTF-16.</li>
+  <li>Logically, text starts at index 0, is contiguous, and has a (native) length.</li>
+  <li>Indexes probably need to be monotonous, i.e., no reordering.</li>
+  <li>Indexes may not need to be contiguous, i.e., there may be
+    index-unreachable parts of the native storage (e.g., for SI/SO controls in
+    stateful text).</li>
+  <li>Indexes are only valid on index-translatable boundaries, and chunks need
+    to start and end on such boundaries. (No need to require code point
+    boundaries. This allows for chunks starting and
+    ending in the middle of a surrogate pair for UTF-16, SCSU, CESU-8,
+    simplifying buffer handling.)</li>
+</ul>
+<h3>Impact on Text Access API</h3>
+<p><b>access() </b>method: Probably best with a fill-in struct and returning a
+boolean value like the third option above. It would need additional output
+parameters because the chunk length would not correspond to (limitIndex-startIndex)
+any more, and because translating chunk positions into native indexes, including
+finding the UChar chunk position corresponding to the requestIndex, would not be
+trivial. If no index map is provided, then the chunk positions correspond 1:1 to
+native indexes.</p>
+
+<ul>
+  <li>In:
+    <ul>
+      <li>int32_t requestIndex: Requested index to be in the returned chunk</li>
+      <li>pointer to fill-in struct for all output values except the boolean
+        &quot;ok/failure&quot;</li>
+    </ul>
+  </li>
+  <li>Out:
+    <ul>
+      <li>Boolean &quot;ok/failure&quot; as above</li>
+      <li>int32_t startIndex (native)</li>
+      <li>int32_t limitIndex (native)</li>
+      <li>const UChar *chunkPtr</li>
+      <li>int32_t index16 (UChar index into the chunk; relative to chunkPtr and
+        corresponding to requestIndex)</li>
+      <li>int32_t chunkLength16 (number of UChars at chunkPtr)</li>
+      <li>const int32_t *indexMap (has chunkLength16+1 entries mapping chunk
+        positions to native indexes)<br>
+        (if NULL, then chunk positions correspond 1:1 to native indexes; see
+        issue discussion below)</li>
+      <li>int32_t startIndex16 (startIndex translated into an absolute UTF-16
+        index)<br>
+        (not sure this is necessary, see section introduction above; should be
+        allowed to be set to &lt;0 for &quot;don't know&quot;)</li>
+    </ul>
+  </li>
+</ul>
+<p>Note: There is redundant information. If an index map is used, then
+startIndex=indexMap[0] and limitIndex=indexMap[chunkLength16]. If an index map
+is not used, then index16=requestIndex-startIndex.</p>
+
+<p><b>Issue for 1:1 indexes: </b>It should be allowed to use an index map only
+some of the time, to operate faster on portions of the text where an index map
+is not necessary. The API could have one of two semantics: <b>a) </b>If
+no index map is provided, then all indexes returned by access() would be
+interpreted as UTF-16 indexes; this would work only for <i>initial </i>ASCII
+portions of UTF-8, for example. <b>b) </b>If no index map is provided, then the
+chunk positions correspond 1:1 to native indexes (chunkLength16=(limitIndex-startIndex),
+index16=(requestIndex-startIndex) etc.) but the absolute indexes may not
+correspond 1:1 (i.e., the native startIndex need not be the same as the
+corresponding UTF-16 index); this would allow to handle any initial <i>or
+intermediate </i>ASCII portion of UTF-8 or BMP portion of UTF-32 without an
+index map.</p>
+
+<p>Option b) may really help efficiency when there are few non-ASCII characters
+in UTF-8 text or few supplementary ones in UTF-32. On the other hand, for UTF-32
+this may not matter much since supplementary characters may be so rare that
+option a) would work almost as well. (Non-ASCII text in UTF-8 is of course very
+common.)</p>
+
+<p><b>Issue for index map contents: </b>We probably need to have valid indexes
+in every position of the indexMap. Should the indexes in there be chunk-relative
+(like in the ICU converter API) or should they be absolute native indexes? The
+former would mesh more easily with ICU converters but require an addition of the
+startIndex to get an absolute index; the latter would be a little easier to use.</p>
+
+<p><b>Issue for setIndex() (including charAt() etc.): </b>As proposed above, the
+indexMap would very efficiently support getIndex() operations &mdash; the index would
+simply be looked up in the indexMap, using the current chunk position. Without a
+reverse index map, setIndex() (and charAt() etc.) would be more expensive, requiring a
+linear or binary search of the indexMap to find the corresponding chunk
+position. (Relatively fast for short chunks.) With a reverse index map, setIndex()
+would be cheap and the above-proposed index16 output parameter
+for the access() method could be removed, but the access() method implementation
+would have to do more work and provide yet another buffer (which would have a different length:
+(limitIndex-startIndex+1)).</p>
+
+<p>It is expected that getIndex() may be used often, especially in regular
+expressions, while setIndex() may be used relatively less often. Options: a)
+Leave proposal as is. b) Add a reverse index map. c) Add a method that
+translates an index (between the current chunk's startIndex and limitIndex) into
+the chunk position. d) Assume that even getIndex() will be rare and handle it
+with another method.</p>
+
+<h3>Other Text Access API Methods</h3>
+
+<p><b>length() </b>method: Return length in native units. Needs to be renamed to
+lengthEx() or similar because of semantic collision with Replaceable.length().</p>
+
+<p><b>extract() </b>method: Needs more parameters because the number of
+extracted UChars is not the same as (limit-start) any more. Therefore, it also
+becomes incompatible with Replaceable.extract() and should be renamed extractEx()
+or similar.</p>
+
+<p>Probable signature: int32_t extractEx([this, ] int32_t start<sub>native</sub>,
+int32_t limit<sub>native</sub>, UChar *dest, int32_t destCapacity) returning the
+actual number of UChars which may exceed destCapacity (preflighting). Return 0
+if there are no UChars to extract.</p>
+
+<p><b>getType() </b>method - new proposal: We probably need a function returning
+a bit set (uint32_t) for &quot;unusual&quot; features of the text provider.
+There should be flags for:</p>
+
+<ul>
+  <li>Default: all bits 0</li>
+  <li>Uses non-UTF-16 indexes (allow a user of UTextAccessor to reject such text
+    if the implementation can't handle it)</li>
+  <li>Absolute UTF-16 indexes not available (if access() has a startIndex16
+    output parameter; in this case, startIndex16 may be set to -1)</li>
+  <li>The length() method is [in]expensive (not sure how to make use of this,
+    but easy to return as a bit flag)</li>
+  <li>Chunks returned by the access() method stay valid as long as the text
+    object is used (read-only, not when using replace() or copy() on
+    Replaceable), as opposed to chunks becoming invalidated when access() is
+    called again</li>
+</ul>
+<h3>Native Indexes vs. Replaceable</h3>
+
+<p>Without native indexes, the text access API overlaps with Replaceable; only
+the access() function needs to be added to Replaceable to make it a superset.
+There are compatibility issues with extending the API, see above.</p>
+
+<p>With native indexes, the desired semantics and method signatures differ from
+those of Replaceable. The existing Replaceable methods need to continue to work
+with UTF-16 indexes. Native-index versions of the replace() and maybe copy()
+methods need to be added. Text providers implementing both UTF-16 and native
+index semantics are more complicated.</p>
+
+<p>(In addition to taking native indexes, replace() would probably have to
+return by how much the limit index changes as a result of the text replacement,
+so that the API user can adjust higher indexes and continue to operate on the
+text. This number is not predictable from the number of UChars and may not be
+the same as (limit-start) when such text was extracted from somewhere else if
+the native text has a stateful encoding.)</p>
+
+<p>Note for existing users of Replaceable: If setIndex() is not trivial/cheap
+(see issue above), then a good implementation would need to try to avoid using
+charAt() and char32At() and rather favor iteration-style wrapper methods like
+current() and next().</p>
+
+<p>There are two options for Replaceable:</p>
+
+<p>Replaceable could get more functions as necessary. Advantage: No change to
+the signature of existing APIs like Transliterator. Disadvantage: Mixing
+semantics in one API. Also, most of the work to make sure an implementation can
+handle native indexes is probably in the implementation, rather than in adding
+overloads using a new text API.</p>
+
+<p>Alternatively, a clean new API (e.g., ReplaceableEx) could be introduced with
+only the new methods. It would remove charAt() and char32At() (which are now
+done by the wrapper class). It would eliminate the question of how to extend the
+old [U]Replaceable APIs. It would avoid mixing semantics and forcing
+native-index implementations to also implement the older UTF-16-index-only
+methods. It would require new overloads to APIs that now use Replaceable, if and
+when their implementation can handle native indexes. Some methods (e.g.,
+length()) may still want to be renamed to avoid collision and confusion with
+common names or with old Replaceable names in classes implementing both
+interfaces.</p>
 
 </body>
 

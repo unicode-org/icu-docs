@@ -42,7 +42,7 @@
     </tr>
     <tr>
       <td>Date</td>
-      <td><span>2005-01-15</span></td>
+      <td><span>2005-04-01</span></td>
     </tr>
     <tr>
       <td>This Version</td>
@@ -51,15 +51,15 @@
     </tr>
     <tr>
       <td>Previous Version</td>
-      <td><span><a href="http://www.unicode.org/reports/tr18/tr18-10.html">
-      http://www.unicode.org/reports/tr18/tr18-10.html</a></span></td>
+      <td><a href="http://www.unicode.org/reports/tr18/tr18-9.html">
+      http://www.unicode.org/reports/tr18/tr18-9.html</a></td>
     </tr>
     <tr>
       <td>Latest Version</td>
       <td><a href="http://www.unicode.org/reports/tr18/">http://www.unicode.org/reports/tr18/</a></td>
     </tr>
     <tr>
-      <td>Tracking Number</td>
+      <td>Revision</td>
       <td><a href="#Modifications">11</a></td>
     </tr>
   </table>
@@ -531,8 +531,8 @@ U_LONG_MARK := &quot;U&quot;</pre>
   binary property and a value of the Line_Break enumeration, so \p{Alphabetic} would mean the binary 
   property, and \p{Line Break:Alphabetic} or \p{Line_Break=Alphabetic} would mean the enumerated 
   property. There are two exceptions to this: the properties <i>Script</i> and <i>General Category</i> 
-  commonly have the property name omitted. Thus \p{Not_Assigned} is equivalent to 
-  \p{General_Category = Not_Assigned}, and \p{Greek} is equivalent to \p{Script:Greek}.</p>
+  commonly have the property name omitted. Thus \p{Not_Assigned} is equivalent to \p{General_Category 
+  = Not_Assigned}, and \p{Greek} is equivalent to \p{Script:Greek}.</p>
   <table class="noborder">
     <tr>
       <td class="rule_head">RL1.2</td>
@@ -588,8 +588,8 @@ U_LONG_MARK := &quot;U&quot;</pre>
   of the subcategory in lowercase. For example, <i>Lu</i> stands for <i>Uppercase Letter</i>.</p>
   <blockquote>
     <p><b>Note: </b>Since it is recommended that the property syntax be lenient as to spaces, 
-    casing, hyphens and underbars, any of the following should be equivalent: \p{Lu}, \p{lu}, 
-    \p{uppercase letter}, \p{uppercase letter}, \p{Uppercase_Letter}, and \p{uppercaseletter}</p>
+    casing, hyphens and underbars, any of the following should be equivalent: \p{Lu}, \p{lu}, \p{uppercase 
+    letter}, \p{uppercase letter}, \p{Uppercase_Letter}, and \p{uppercaseletter}</p>
   </blockquote>
   <p>The General Category property values are listed below. For more information on the meaning of 
   these values, see <a href="http://www.unicode.org/Public/UNIDATA/UCD.html">UCD.html</a> [<a href="#UDataDoc">UDataDoc</a>].</p>
@@ -894,8 +894,8 @@ U_LONG_MARK := &quot;U&quot;</pre>
   <h3><a name="Subtraction_and_Intersection">1.3 Subtraction</a> and Intersection</h3>
   <p>As discussed above, character properties are essential with a large character set. In addition, 
   there needs to be a way to &quot;subtract&quot; characters from what is already in the list. For example, 
-  one may want to include all non-ASCII letters without having to list every character in <code>
-  \p{letter}</code> that is not one of those 52.</p>
+  one may want to include all non-ASCII letters without having to list every character in <code>\p{letter}</code> 
+  that is not one of those 52.</p>
   <table class="noborder">
     <tr>
       <td class="rule_head">RL1.3</td>
@@ -921,8 +921,8 @@ SEP := &quot;&quot;            // no separator = union
     </tr>
   </table>
   <p>Implementations may also choose to offer other set operations, such as
-  <a href="http://mathworld.wolfram.com/SymmetricDifference.html">symmetric difference</a>: 
-  [\p{letter} ⊖ \p{ascii}]</p>
+  <a href="http://mathworld.wolfram.com/SymmetricDifference.html">symmetric difference</a>: [\p{letter} 
+  ⊖ \p{ascii}]</p>
   <p><b>Note:</b> In the sample syntax used here:</p>
   <ol>
     <li>The symbol &quot;-&quot; between two characters still means a range, not a set-difference. That is:
@@ -977,9 +977,9 @@ SEP := &quot;&quot;            // no separator = union
   <a name="Simple_Word_Boundaries">1.4 Simple Word Boundaries</a></h3>
   <p>Most regular expression engines allow a test for word boundaries (such as by &quot;\b&quot; in Perl). 
   They generally use a very simple mechanism for determining word boundaries: one example of that 
-  would be having word boundaries between any pair of characters where one is a <code>
-  &lt;word_character&gt;</code> and the other is not, or at the start and end of a string. This is not 
-  adequate for Unicode regular expressions.</p>
+  would be having word boundaries between any pair of characters where one is a <code>&lt;word_character&gt;</code> 
+  and the other is not, or at the start and end of a string. This is not adequate for Unicode 
+  regular expressions.</p>
   <table class="noborder">
     <tr>
       <td class="rule_head">RL1.4</td>
@@ -1113,9 +1113,10 @@ SEP := &quot;&quot;            // no separator = union
   matching all line ending characters and sequences listed above (e.g. in #1). It would thus be 
   shorthand for <code>([\u000A<span>\u000B</span>\u000C\u000D\u0085\u2028\u2029] | \u000D\u000A)</code>.</p>
   <blockquote>
-    <p><b>Note: </b>It may be more consistent and efficient to externalize the newline logic and 
-    request the input data be normalized to transform all newline sequences into a single newline 
-    character before regular expression processing.</p>
+    <p><b>Note: </b>For some implementations, there may be a performance impact in recognizing CRLF 
+    as a single entity, such as with an arbitrary pattern character (&quot;.&quot;). To account for that, an 
+    implementation may satisfy R1.6 if there is a mechanism available for converting the sequence 
+    CRLF to a single line boundary character before regex processing.</p>
   </blockquote>
   <p>For more information on line breaking, see [<a href="#LineBreak">LineBreak</a>].</p>
   <h3><a name="Supplementary_Characters">1.7 Code Points</a></h3>
@@ -1314,8 +1315,7 @@ SEP := &quot;&quot;            // no separator = union
   <ul>
     <li><code>[\p{letter} - \p{ascii}]</code> is equivalent to <code>[\p{letter} &amp; [^\p{ascii}]]</code></li>
     <li><code>[\p{letter} &amp; \p{ascii}]</code> is equivalent to <code>[\p{letter} - [^\p{ascii}]]</code></li>
-    <li><code>[[a\q{rr}] - [a\q{rr}]]</code> is <i>not </i>equivalent to <code>[[a\q{rr}] &amp; 
-    [^a\q{rr}]]</code></li>
+    <li><code>[[a\q{rr}] - [a\q{rr}]]</code> is <i>not </i>equivalent to <code>[[a\q{rr}] &amp; [^a\q{rr}]]</code></li>
   </ul>
   <h3><a name="Default_Word_Boundaries">2.3 Default Word Boundaries</a></h3>
   <table class="noborder">
@@ -1845,10 +1845,10 @@ ITEM := \v{EXACT}     // match all levels, normal state</pre>
   </ul>
   <h3>3.8 <a name="Unicode_Set_Sharing">Unicode Set Sharing</a></h3>
   <p>For script transliteration and similar applications, there may be a hundreds of regular 
-  expressions, sharing a number of Unicode sets in common. These Unicode sets, such as <code>
-  [\p{Alphabetic} - \p{Latin}]</code>, could take a fair amount of memory, since they would 
-  typically be expanded into an internal memory representation that allows for fast lookup. If these 
-  sets are separately stored, this means an excessive memory burden.</p>
+  expressions, sharing a number of Unicode sets in common. These Unicode sets, such as <code>[\p{Alphabetic} 
+  - \p{Latin}]</code>, could take a fair amount of memory, since they would typically be expanded 
+  into an internal memory representation that allows for fast lookup. If these sets are separately 
+  stored, this means an excessive memory burden.</p>
   <p>To reduce the storage requirements, an API may allow regular expressions to share storage of 
   these and other constructs, by having a &#39;pool&#39; of data associated with a set of compiled regular 
   expressions.</p>
@@ -1935,10 +1935,10 @@ rules.add(&quot;Ψ&quot;, &quot;PS&quot;);
   flexible way to provide such support is to provide a general mechanism for overriding the way that 
   regular expressions match literals.</p>
   <p>One way to do this is to use <i>folding</i> functions. These are functions that map strings to 
-  strings, and are idempotent (applying a function more than once produces the same result: <i>
-  f(f(x)) = f(x)</i>. There are two parts to this: (a) allow folding functions to be registered, and 
-  (b) extend patterns so that registered folding functions can be activated. During the span of text 
-  in which a folding function is activated, both the pattern literals and the input text will be 
+  strings, and are idempotent (applying a function more than once produces the same result: <i>f(f(x)) 
+  = f(x)</i>. There are two parts to this: (a) allow folding functions to be registered, and (b) 
+  extend patterns so that registered folding functions can be activated. During the span of text in 
+  which a folding function is activated, both the pattern literals and the input text will be 
   processed according to the folding before comparing. For example:</p>
   <pre><span class="CComment">// Folds katakana and hiragana together</span>
 class KanaFolder implements RegExFolder {
@@ -2457,7 +2457,7 @@ static int getLocaleCharacterEnd(String s,
   Hietaniemi, Gurusamy Sarathy, Henry Spencer, Tom Watson, and Kento Tamura for their feedback on 
   the document.</p>
   <h2><a name="Modifications">Modifications</a></h2>
-  <p>The following summarizes modifications from the previous version of this document.</p>
+  <p>The following summarizes modifications from the previous revision of this document.</p>
   <table class="noborder">
     <tr>
       <td width="1" class="noborder"><a name="TrackingNumber11">11</a></td>
@@ -2556,7 +2556,7 @@ static int getLocaleCharacterEnd(String s,
       </td>
     </tr>
   </table>
-  <p class="copyright">Copyright © 2000-2004 Unicode, Inc. All Rights Reserved. The Unicode 
+  <p class="copyright">Copyright © 2000-2005 Unicode, Inc. All Rights Reserved. The Unicode 
   Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors 
   or omissions. No liability is assumed for incidental and consequential damages in connection with 
   or arising out of the use of the information or programs contained or accompanying this technical 

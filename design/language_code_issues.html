@@ -1,0 +1,503 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Language Code Mess</title>
+<style>
+<!--
+.changed2    { background-color: #FFFF00; border-style: dotted; border-width: 1px }
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" style="margin:2em">
+
+<h1 align="center">Language Code Issues</h1>
+<p align="center">M. Davis, 2003.04.10</p>
+<p>The current situation with regards to language codes and locale codes is a a
+bit of a mess. We are looking at migrating ICU to use RFC 3066 instead of ISO
+639 alone, and find a number of problems. Our goal is to identify the language
+codes and region codes used in practice in Windows and other platforms, and
+account for any missing ones so that people can communicate locale information
+correctly, without loss of data because of missing or mismatched language codes.
+The issues that we turned up, or were pointed out to us by others, are of
+interest not only for ICU but also to a broader audience.</p>
+<p>In the body of this document, we will refer to a number of different
+standards. Here are links to them:</p>
+<ul>
+  <li><a href="http://www.ietf.org/rfc/rfc3066.txt">RFC 3066</a> (language
+    codes)
+    <ul>
+      <li><a href="http://www.iana.org/assignments/language-tags">RFC 3066 --
+        Language code assignments</a></li>
+    </ul>
+  </li>
+  <li><a href="http://lcweb.loc.gov/standards/iso639-2/">ISO 639</a> (language
+    codes)
+    <ul>
+      <li><a href="http://www.loc.gov/standards/iso639-2/langcodes.html">Actual
+        List</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.iso.org/iso/en/prods-services/iso3166ma/index.html">ISO
+    3166</a> (region codes)
+    <ul>
+      <li><a href="http://www.iso.org/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html">Actual
+        List</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.evertype.com/standards/iso15924/">ISO 15924</a>
+    (script codes: <i>draft</i>)
+    <ul>
+      <li><a href="http://www.evertype.com/standards/iso15924/document/dis15924.pdf">Older
+        version with Actual List</a></li>
+    </ul>
+  </li>
+  <li><a class="btmlink" href="http://www.bsi-global.com/Portfolio+of+Products+and+Services/Books+Guides/Consumer/th42090.xalter">ISO
+    4217</a> (currency codes)
+    <ul>
+      <li><a href="http://www.bsi-global.com/Technical+Information/Publications/_Publications/tig90x.doc">Actual
+        List</a> (may not work in the future, since BSI wants £205 for the
+        list).</li>
+    </ul>
+  </li>
+  <li>Windows <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemGlobalizationCultureInfoClassTopic.asp">Culture
+    Info</a> (with&nbsp; mappings from RFC 3066-style codes to LCIDs)</li>
+  <li>Samples of language usage across countries:
+    <ul>
+      <li><a href="http://www.worldlanguage.com/Languages/Uzbek.htm">Uzbek</a></li>
+      <li><a href="http://www.worldlanguage.com/Languages/Azeri.htm">Azeri</a></li>
+    </ul>
+  </li>
+</ul>
+<h2><a name="Missing_Languages">Missing Languages</a></h2>
+<p>The usual basis for a locale code is a combination of language code and
+region code, sometimes augmented with variants. The language code could either
+be drawn from ISO 639 or from RFC 3066, but there are problems with both. RFC
+3066 codes are actually a superset of ISO 636 codes, with one of the following
+formats:</p>
+<p><b><a name="Current_RFC_3066_Formats">Current RFC 3066 Formats</a></b></p>
+<ol>
+  <li><i>&quot;i-&quot; &lt;iana_registered_code&gt;</i></li>
+  <li><i>&quot;x-&quot; &lt;private_use_code&gt;</i></li>
+  <li><i>&lt;iso_639_code&gt;</i></li>
+  <li><i>&lt;iso_639_code&gt; &quot;-&quot; &lt;iso_3166_code&gt;</i></li>
+</ol>
+<p>The possible formats are a bit broader than this, but these are the only
+important ones in practice.</p>
+<p>As far as we are concerned — <i>as a completely practical matter</i> —
+two languages are different if they require substantially different localized
+resources. Distinctions according to spoken form are important in some contexts,
+but the written form is <i>by far and away</i> the most important issue for data
+interchange. Unfortunately, this is not the principle used in ISO 639, which has
+the fairly unproductive notion that only spoken language matters (it is also not
+completely consistent about this, however). If the use of languages happens to
+correspond to region boundaries expressed as ISO 639 country codes, then we can
+use RFC 3066 to express the difference, but in many cases this is not true. For
+example, both simplified and traditional Chinese are used in Hong Kong S.A.R.;
+both Cyrillic and Latin are used in Serbia, Azerbaijan, and Uzbekistan; Indic
+languages are customarily written in different scripts, etc.</p>
+<p>ISO 15924 contains script codes that could be used, in some cases, to
+distinguish future language codes in these cases. Unfortunately, RFC 3066 does
+not permit the productive use of script codes for these cases; each example has
+to be separately registered, which can take quite a while. <span class="changed2">(There
+is good reason for this: ISO 15924 was not ready in time for RFC 3066 to refer
+to it!)</span></p>
+<p>ISO 15924 does not yet help with simplified Chinese vs. traditional Chinese.
+ISO 15924 does allow for <i>variant</i> scripts, such as Latf for the Fraktur
+variant of Latin, or Latg for the Gaelic variant. We would need variant codes
+for Chinese (Hani) corresponding to simplified and traditional (such as <i>Hans</i>
+and <i>Hant</i>) if script codes were used to address the above problem. Thus we
+would end up with language codes like <i>zh-Hans</i> or <i>az-Latn</i>.</p>
+<blockquote>
+  <p class="changed2"><b>Note: </b>15924 uses a change in the last letter,
+  typically, to indicate variants. So <i>Hans</i> and <i>Hant</i> would be more
+  likely choices than other possibilities like <i>Hsim</i> and <i>Htra.</i> ISO
+  15924 also tends to use titlecase, but in RFC 3066 (and in practice) case
+  differences should be ignored. They can, however, be used in running text to
+  make the codes more distinctive.</p>
+</blockquote>
+<p>Windows provides codes for languages that are not in RFC 3066 in <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemGlobalizationCultureInfoClassTopic.asp">Culture
+Info</a>, which is an update to the Windows <i><a href="http://www.microsoft.com/globaldev/getWR/DIS_v2/default.mspx">Developing
+International Software, 2nd Edition</a>.</i> That book claims to use RFC 1766
+codes (the predecessor of RFC 3066) for the Culture Names (i.e. locale codes).
+However, it has codes like <i>az-AZ-Cryl</i> that don't follow the RFC and not
+in the current registrations.</p>
+<blockquote>
+  <p><b>Note: </b>The above web page corrects the text to say&nbsp; these codes
+  are &quot;based on RFC 3066&quot;. It also alters the codes to the form <i>La-uz-UZ</i>
+  (for Uzbek using the Latin script), and supplies codes like <i>zh-CHS</i> and <i>zh-CHT</i>
+  for simplified and traditional Chinese. However, a <a href="http://www-124.ibm.com/icu/dropbox/C-sharp-LocaleNames.html"><i>programmatic
+  test</i></a> of the locale codes, using .NET Version 1.0, gives codes in the
+  same format as the book.</p>
+</blockquote>
+<h3><a name="Best_Format">Best Format</a></h3>
+<p class="changed2">We strongly recommend codes of the form <i>uz-Latn-UZ</i> or
+<i>zh-Hans-HK</i>, with the script in the middle.</p>
+<p class="changed2">The use of the language codes of the form <i>La-uz-UZ</i>
+cited above is not optimal. The bare &quot;La&quot; definitely violates RFC
+3066; it can't even be registered, since it uses 2 letters, and relies on case
+distinctions to separate scripts from countries, which is fragile. The
+four-letter form for the script would be consistent with RFC 3066, and would not
+be confused in a case-insensitive environment.</p>
+<p class="changed2">But even if the two-letter form is changed to four, the form
+<i>Latn-uz-UZ</i> is not particularly good. At first glance, it might seem that
+script is a &quot;greater&quot; difference than language, and should be at the
+top level. But in practice, the differences between languages are greater than
+those between scripts. The ordering of script after base language is also better
+for resource inheritance chains used in systems like Java or ICU. In those
+chains, one strips off trailing subtags to find the resource parent. Any missing
+resource, such as string, is inherited from the parent. The resource chain for
+some samples is shown in (I).</p>
+<table border="1" cellspacing="0" cellpadding="2">
+  <caption>
+    <p class="changed2"><b>I. Top Script</b></p>
+  </caption>
+  <tr>
+    <td align="center" colspan="2" class="changed2">
+      <p class="changed2"><i>Latn</i></td>
+    <td align="center" colspan="2" class="changed2">
+      <p class="changed2"><i>Cryl</i></td>
+  </tr>
+  <tr>
+    <td align="center" class="changed2">
+      <p class="changed2"><i>Latn-az</i></td>
+    <td align="center" class="changed2">
+      <p class="changed2"><i>Latn-uz</i></td>
+    <td align="center" class="changed2">
+      <p class="changed2"><i>Cryl-az</i></td>
+    <td align="center" class="changed2">
+      <p class="changed2"><i>Cryl-uz</i></td>
+  </tr>
+  <tr>
+    <td align="center" width="25%" class="changed2">
+      <p class="changed2"><i>Latn-az-AZ</i></td>
+    <td align="center" width="25%" class="changed2">
+      <p class="changed2"><i>Latn-uz-UZ</i></td>
+    <td align="center" width="25%" class="changed2">
+      <p class="changed2"><i>Cryl-az-AZ</i></td>
+    <td align="center" width="25%" class="changed2">
+      <p class="changed2"><i>Cryl-uz-UZ</i></td>
+  </tr>
+</table>
+<p class="changed2">But an isolated <i>Cyrl</i> or <i>Latn</i> at the top is
+just not very productive. Inheritance with this type of structure doesn't work
+in practice, because no common resources would be inherited in common, at the
+top level, between <i>Latn-uz-UZ</i> and <i>Latn-az-AZ</i>. Missing strings
+would fall back to a completely different language; and in practice an Uzbek is
+far less likely to understand information from a different language than that in
+a different script.</p>
+<p class="changed2">The use of the form <i>uz-UZ-Latn</i> is also not optimal,
+as we see when we look at resource inheritance chains. Suppose we have resources
+for both Simplified and Traditional Chinese in Hong Kong, Simplified in China
+and Traditional in Taiwan:</p>
+<table border="1" cellspacing="0" cellpadding="2">
+  <caption>
+    <p class="changed2"><b>II. Bottom Script</b></p>
+  </caption>
+  <tr>
+    <td align="center" colspan="4">
+      <p class="changed2"><i>zh</i></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <p class="changed2"><i>zh-CN</i></td>
+    <td align="center" colspan="2">
+      <p class="changed2"><i>zh-HK</i></td>
+    <td align="center">
+      <p class="changed2"><i>zh-TW</i></td>
+  </tr>
+  <tr>
+    <td align="center" width="25%">
+      <p class="changed2"><i>zh-CN-Hans</i></td>
+    <td align="center" width="25%">
+      <p class="changed2"><i>zh-HK-Hans</i></td>
+    <td align="center" width="25%">
+      <p class="changed2"><i>zh-HK-Hant</i></td>
+    <td align="center" width="25%">
+      <p class="changed2"><i>zh-TW-Hant</i></td>
+  </tr>
+</table>
+<p class="changed2">The key different is at the difference between rows 2 and 3.
+In (II) above, these can vary by script; in (III) below these only vary by
+region.</p>
+<table border="1" cellspacing="0" cellpadding="2">
+  <caption>
+    <p class="changed2"><b>III. Middle Script</b></p>
+  </caption>
+  <tr>
+    <td colspan="4" align="center">
+      <p class="changed2"><i>zh</i></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <p class="changed2"><i>zh-Hans</i></td>
+    <td colspan="2" align="center">
+      <p class="changed2"><i>zh-Hant</i></td>
+  </tr>
+  <tr>
+    <td align="center" width="25%">
+      <p class="changed2"><i>zh-Hans-CN</i></td>
+    <td align="center" width="25%">
+      <p class="changed2"><i>zh-Hans-HK</i></td>
+    <td align="center" width="25%">
+      <p class="changed2"><i>zh-Hant-HK</i></td>
+    <td align="center" width="25%">
+      <p class="changed2"><i>zh-Hant-TW</i></td>
+  </tr>
+</table>
+<p class="changed2">The typical differences between regions tend to be rather
+small, thus allowing inheritance, whereas the differences between scripts are
+huge. So if a string is missing at level 3 in (III), at least it gets the right
+script when inheriting from the parent. And typically differences from the
+parent are small, allowing most strings to be shared. In case (II), the
+resources will have <i>some</i> script in <i>zh-HK</i>: the child with a
+different script cannot effectively inherit any strings. And if a string is
+missing at level 3, it gets the <i>wrong</i> script when inheriting from the
+parent. These differences get even more pronounced when there are many different
+countries sharing the same script variant.</p>
+<p class="changed">This also fits with the pattern used for <i>yi-latn</i> in <a href="http://www.iana.org/assignments/language-tags">RFC
+3066 -- Language code assignments</a>. Interestingly, there have not yet been
+any 3066 assignments of the form &lt;639_code&gt;-&lt;four-letter-code&gt;, so
+there would not be any possibility of collisions (if we move quickly).</p>
+<p class="changed2">In a sense, on can think of the forms <i>uz-Latn-UZ</i> or <i>zh-Hans-HK</i>,
+with the script in the middle, as being &quot;big-endian&quot;; supplying the
+most significant information first, and following on with progressive
+refinements. This is in line with the current practice in RFC 3066 of language
+then region. Not coincidentally, this also works the best with resource
+inheritance.</p>
+<p class="changed">Matching is the other consideration for the ordering of the
+tags. Harald mentions the following goals:</p>
+<ul>
+  <li>
+    <p class="changed">matching all Azeri-language docs in Latin, no matter what
+    country variant they come from</li>
+  <li>
+    <p class="changed">matching all Azerbajan-style documents, no matter which
+    script they use</li>
+</ul>
+<p class="changed">The codes <i>az-Latn</i> and <i>az-Cryl</i> are essentially
+variants of an ISO 639 language code, and could themselves have country
+variants. Thus in practice we would need to register each code combined with
+whatever regions made sense, and end up with: <i>az-Latn, az-Latn-AZ, az-Cryl,
+az-Cryl-AZ,...</i> in addition to the current <i>az, az-AZ</i>. Thus all of the
+matching options would be available.</p>
+<h3 class="changed2"><a name="Plan_of_Action">Plan of Action</a></h3>
+<p>In any event, the important step is to get the missing written language codes
+registered. Ideally, there would simply be ISO 639 codes for the missing written
+languages, but failing that, the first steps would be:</p>
+<ol>
+  <li>
+    <p>Register script variants for Chinese (<i>Hani</i>) corresponding to
+    simplified and traditional (such as <i>Hans</i> and <i>Hant</i>) for ISO
+    15924.</p>
+  </li>
+  <li>
+    <p>Register RFC 3066 codes for <span class="changed">the 24 combinations
+    needed in the short term</span>:</p>
+    <ol>
+      <li><i>zh-(Hans,Hant), zh-(Hans,Hant)-HK</i></li>
+      <li><i>az-(Latn,Cryl), az-(Latn,Cryl)-AZ</i></li>
+      <li><i>uz-(Latn,Cryl), uz-(Latn,Cryl)-UZ</i></li>
+      <li><i>sr-(Latn,Cryl), sr-(Latn,Cryl)-YU</i>
+        <ul>
+          <li>
+            <p>On the country code for Serbian, see <a href="http://www.niso.org/standards/resources/3166.html#serbia">3166
+            Question on Serbia</a>.</p>
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <p>This is a minimal list, and does not include all the possible
+    combinations of country codes to indicate possible orthographic or spelling
+    distinctions, on the pattern of other 3066 codes:</p>
+    <ul>
+      <li>for zh-*: HK, MO, CN, SG, TW, US,...</li>
+      <li>for az-*: AZ, IR, ...</li>
+      <li>for uz-*: AF, KZ, KG, TJ, TM, UZ, ...</li>
+      <li>for sr-*: YU, BA, MK, HR, ...</li>
+    </ul>
+    <p>Nor does it encompass all the cases where different scripts are used,
+    such as for bibliographic use for transliterations.</p>
+  </li>
+  <li>Start the ball rolling on a 3066bis that would allow the productive use of
+    script codes, allowing the formats in addition to the <a href="#Current_RFC_3066_Formats">Current
+    RFC 3066 Formats</a>:
+    <ol start="5">
+      <li>
+        <p class="changed"><i>&lt;iso_639_code&gt; &quot;-&quot;
+        &lt;iso_15924_code&gt;</i></li>
+      <li>
+        <p class="changed"><i>&lt;iso_639_code&gt; &quot;-&quot;
+        &lt;iso_15924_code&gt; &quot;-&quot; &lt;iso_3166_code&gt;</i></li>
+    </ol>
+  </li>
+</ol>
+<p>It may take some time to do #3, so it is important to do #2 first to meet the
+immediate requirements.</p>
+<p class="changed"><b>Note:</b> In practice, as Peter Edberg remarks, one ends
+up having to have a default for <i>zh</i> found alone (e.g. simplified), when
+used in a resource lookup. However, when used as a matching string (see above),
+one would not make the assumption. If we didn't care about matching, initially,
+we may be able to get by by with just the following 12 combinations in #2. (Or
+perhaps fewer, if we limit the Chinese cases to those in actual use in systems,
+e.g. HK.)</p>
+<ol>
+  <li>
+    <p class="changed"><i>zh-Hant, zh-Hant-(HK,MO,CN,SG,TW)</i></li>
+  <li>
+    <p class="changed"><i>az-Latn, az-Latn-AZ</i></li>
+  <li>
+    <p class="changed"><i>uz-Latn, uz-Latn-UZ</i></li>
+  <li>
+    <p class="changed"><i>sr-Latn, sr-Latn-SP</i></li>
+</ol>
+<p class="changed">We do need Step #3 eventually, for matching purposes, and
+since the ways in which languages can be used with different scripts is not
+closed. Roozbeh points out, for example, that az-Arab and uz-Arab are both used.
+But there was a reason that RFC 3066 allowed productive use of Language + Region
+codes: it saves a good detail of time and effort to not have to register all the
+combinations that anyone wants. Many different languages can be written in
+multiple scripts, and if one counts all the regions that they could be used in,
+it would be far better to make this a generative machanism, like it is with ISO
+Language + Region codes.</p>
+<h2><a name="Resolving_Ambiguities">Resolving Ambiguities</a></h2>
+<p>ICU already supports RFC 3066 codes of forms (1)-(3) in <a href="#Current_RFC_3066_Formats">Current
+RFC 3066 Formats</a>; the types of codes not yet supported are of the form:</p>
+<ol start="4">
+  <li><i>&lt;iso_639_code&gt; &quot;-&quot; &lt;iso_3166_code&gt;</i>.</li>
+</ol>
+<p>One reason for the hesitation in supporting (4) was that there is not a clean
+line between language codes and locale codes, nor a clean line between the sorts
+of data is associated with either one. (See <a href="#Language_vs_Locale_Codes">Language
+vs. Locale Codes</a>.) Here is our recommendation for supporting (4) by
+disambiguating problematic cases. Take the following two examples:</p>
+<ol>
+  <li><i>zh-TW-HK,</i> could be either:
+    <ol>
+      <li type="a">lang = <i>zh-TW</i>, region = <i>HK</i>, no variant, or</li>
+      <li type="a">lang = <i>zh</i>, region = <i>TW</i>, variant = <i>HK</i></li>
+    </ol>
+  </li>
+  <li><i>zh-TW,</i> could be either:
+    <ol>
+      <li type="a">lang = <i>zh-TW</i>, no region, or</li>
+      <li type="a">lang = <i>zh</i>, region = <i>TW</i></li>
+    </ol>
+  </li>
+</ol>
+<p>To match the mostly likely usage, we propose interpreting these as (1a) and
+(2b). That is, if we have <i>x-y-z-...</i> (where trailing fields might be
+missing), we check <i>y</i> and <i>z</i> to see which are valid 2 or 3 letter
+region codes. If <i>y</i> and <i>z </i>are both valid region codes, we use (1a),
+otherwise we use (1b).</p>
+<p>As far as resource data goes, we would use the following typical hierarchy
+for such complex cases. The inheritance goes from the bottom up.</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="0" cellpadding="4">
+    <tr>
+      <td colspan="3" align="center"><font size="4"><b>zh<br>
+        </b></font><i>lang: zh<br>
+        </i>no region<br>
+        no currency<br>
+        other data: simp. chinese</td>
+    </tr>
+    <tr>
+      <td align="center" width="33%"><font size="4">zh-TW</font><font size="4"><b><br>
+        </b></font><i>lang: zh-TW<br>
+        region: TW<br>
+        </i>currency: TWD<br>
+        other data: trad-chinese</td>
+      <td align="center" width="33%"><font size="4">zh-CN</font><b><font size="4"><br>
+        </font></b><i>lang: zh<br>
+        region: CN<br>
+        </i>currency: CNY<br>
+        other data: inherited</td>
+      <td align="center" width="33%"><font size="4">zh-HK</font><b><font size="4"><br>
+        </font></b><i>lang: zh<br>
+        region: HK<br>
+        </i>currency: HKD<br>
+        other data: inherited</td>
+    </tr>
+    <tr>
+      <td align="center"><font size="4">zh-TW-HK</font><b><font size="4"><br>
+        </font></b><i>lang: zh-TW<br>
+        region: HK<br>
+        </i>currency: HKD<br>
+        other data: inherited</td>
+      <td align="center">&nbsp;</td>
+      <td align="center">&nbsp;</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p>When resolving locale names, we would map <i>x-y-y</i> to <i>x-y</i>, so <i>zh-TW-TW</i>
+would map to <i>zh-TW</i>. We can also alias a whole resource bundle (such as
+for <i>zh-CN-HK</i>) to another resource bundle (such as <i>zh-HK</i>). It would
+be good, however, to have a canonical mapping to shortest language names, so
+that such explicit aliasing would not be necessary, and the locales could be
+transformed to a canonical form before lookup. This would also be needed in
+dealing with cases like vs <i>az-AZ, az-Latn-AZ</i>, and <i>az-Cryl-AZ</i> ,
+also for cases where either the two letter or three letter ISO 639 or 3166 codes
+are supplied.</p>
+<p>Of course, the situation would be far easier if there were separate ISO 639
+codes or RFC 3066 codes for simplified Chinese and traditional Chinese, as
+discussed above. We would then have <i>zh-Hant-HK</i> instead of <i>zh-TW-HK</i>,
+etc., with fewer ambiguities. <span class="changed">We would still need to have
+some kind of lookup to get a unique form (<i>zh-Hant-TW</i> =&gt; <i>zh-TW</i>),
+as discussed by Peter Edberg, but that would not be particularly onerous.</span></p>
+<p>In ICU, we have two variant codes with two letters: <i>AL</i> and <i>NY</i>.
+In both cases, we make longer names for these aliases, and will grandfather in
+locale data that has these two codes. (<i>NY</i> is not an issue; it is present
+for backwards compatibility, and does not match an existing region. <i>AL</i> is
+used in <i>sv_FI_AL</i>; but it is extremely unlikely that anyone would need
+&quot;Swedish as spoken in Finland, used in Albania&quot;, so there is little
+loss in special casing this one.)</p>
+<h3><a name="Language_vs_Locale_Codes">Language vs. Locale Codes</a></h3>
+<p class="changed">Part of the fuzziness around this whole topic is that people
+have very slippery notions of what distinguishes a language code vs. a locale
+code. The problem is that both are somewhat nebulous concepts.</p>
+<p class="changed"><i>In practice, </i>many people use RFC 3066 codes to mean
+locale codes instead of strictly language codes. It is easy to see why this came
+about; because RFC 3066 includes an explicit region (country) code, for most
+people it was sufficient for use as a locale code as well. For example, when
+typical web software receives an RFC 3066 code, it use it as a locale code.
+Other typical software will do the same: in practice, language codes and locale
+codes are treated interchangeably. Some people recommend distinguishing on the
+basis of &quot;-&quot; vs &quot;_&quot; (e.g. <i>zh-TW</i> for language code, <i>zh_TW</i>
+for locale code), but in practice that does not work because of the free
+variation out in the world in the use of these separators. Notice that Windows,
+for example, uses &quot;-&quot; as a separator in its locale codes. So
+pragmatically we are forced to treat &quot;-&quot; and &quot;_&quot; as
+equivalent.</p>
+<p class="changed">Another reason for the conflation of these codes is that very
+little data in most systems is distinguished by region alone; currency codes and
+measurement systems being some of the few. Sometimes date or number formats are
+mentioned as regional, but that really doesn't make much sense. If I saw the
+sentence &quot;You will have to adjust the value to &#2407;,&#2408;&#2409;&#2410;.&#2411;&#2412;&#2413;
+from &#2797;&#2791;,&#2792;&#2793;&#2794;.&#2795;&#2796;&quot; (using Indic
+digits), I would say that sentence is simply not English. Number format is far
+more closely associated with language than it is with region. The same is true
+for date formats: I would never expect to see intermixed a date in the format
+&quot;2003&#24180;4&#26376;1&#26085;&quot; (using Kanji) in text purporting to
+be purely English. There are regional differences in date and number format —
+differences which can be important — but those are different in kind than
+other language differences between regions.</p>
+<p>Notice also that currency <i>codes</i> are different than currency <i>localizations</i>.
+The currency localizations are typically in the language-based resource bundles,
+not in the region-based resource bundles. Thus, the resource bundle <i>en_US</i>
+will contain the currency code USD; the resource bundle <i>en</i> will contain
+no currency code, but will contain the localized mappings in English for a range
+of different currency codes: USD =&gt; $, RUR =&gt; Rub, etc. (In protocols, the
+currency codes should always accompany any currency amounts; otherwise the data
+is ambiguous, and software is forced to use the user's locale to guess at the
+currency. But that is subject for a different document, <span class="changed"><a href="jit_localization.html">JIT
+Localization</a><span>.)</span></span></p>
+
+</body>
+
+</html>

@@ -231,88 +231,88 @@
  *   Indexes and lengths stored in the fromUTableValues[].
  */
 enum {
-    _CNV_EXT_INDEXES_LENGTH,            /* 0 */
+    UCNV_EXT_INDEXES_LENGTH,            /* 0 */
 
-    _CNV_EXT_TO_U_INDEX,                /* 1 */
-    _CNV_EXT_TO_U_LENGTH,
-    _CNV_EXT_TO_U_UCHARS_INDEX,
-    _CNV_EXT_TO_U_UCHARS_LENGTH,
+    UCNV_EXT_TO_U_INDEX,                /* 1 */
+    UCNV_EXT_TO_U_LENGTH,
+    UCNV_EXT_TO_U_UCHARS_INDEX,
+    UCNV_EXT_TO_U_UCHARS_LENGTH,
 
-    _CNV_EXT_FROM_U_UCHARS_INDEX,       /* 5 */
-    _CNV_EXT_FROM_U_VALUES_INDEX,
-    _CNV_EXT_FROM_U_LENGTH,
-    _CNV_EXT_FROM_U_BYTES_INDEX,
-    _CNV_EXT_FROM_U_BYTES_LENGTH,
+    UCNV_EXT_FROM_U_UCHARS_INDEX,       /* 5 */
+    UCNV_EXT_FROM_U_VALUES_INDEX,
+    UCNV_EXT_FROM_U_LENGTH,
+    UCNV_EXT_FROM_U_BYTES_INDEX,
+    UCNV_EXT_FROM_U_BYTES_LENGTH,
 
-    _CNV_EXT_FROM_U_STAGE_12_INDEX,     /* 10 */
-    _CNV_EXT_FROM_U_STAGE_1_LENGTH,
-    _CNV_EXT_FROM_U_STAGE_12_LENGTH,
-    _CNV_EXT_FROM_U_STAGE_3_INDEX,
-    _CNV_EXT_FROM_U_STAGE_3_LENGTH,     /* 14 */
+    UCNV_EXT_FROM_U_STAGE_12_INDEX,     /* 10 */
+    UCNV_EXT_FROM_U_STAGE_1_LENGTH,
+    UCNV_EXT_FROM_U_STAGE_12_LENGTH,
+    UCNV_EXT_FROM_U_STAGE_3_INDEX,
+    UCNV_EXT_FROM_U_STAGE_3_LENGTH,     /* 14 */
 
-    _CNV_EXT_SIZE=31,
-    _CNV_EXT_INDEXES_MIN_LENGTH=32
+    UCNV_EXT_SIZE=31,
+    UCNV_EXT_INDEXES_MIN_LENGTH=32
 };
 
 enum {
     /* need a limit for state buffers */
-    _CNV_EXT_MAX_LENGTH=16;
+    UCNV_EXT_MAX_LENGTH=16
 };
 
 /* toUnicode helpers -------------------------------------------------------- */
 
-#define _CNV_EXT_TO_U_BYTE_SHIFT 24
-#define _CNV_EXT_TO_U_VALUE_MASK 0xffffff
-#define _CNV_EXT_TO_U_MIN_CODE_POINT 0x1f0000
-#define _CNV_EXT_TO_U_MAX_CODE_POINT 0x2fffff
-#define _CNV_EXT_TO_U_ROUNDTRIP_FLAG ((uint32_t)1<<23)
-#define _CNV_EXT_TO_U_INDEX_MASK 0x3ffff
-#define _CNV_EXT_TO_U_LENGTH_SHIFT 18
-#define _CNV_EXT_TO_U_LENGTH_OFFSET 12
+#define UCNV_EXT_TO_U_BYTE_SHIFT 24
+#define UCNV_EXT_TO_U_VALUE_MASK 0xffffff
+#define UCNV_EXT_TO_U_MIN_CODE_POINT 0x1f0000
+#define UCNV_EXT_TO_U_MAX_CODE_POINT 0x2fffff
+#define UCNV_EXT_TO_U_ROUNDTRIP_FLAG ((uint32_t)1<<23)
+#define UCNV_EXT_TO_U_INDEX_MASK 0x3ffff
+#define UCNV_EXT_TO_U_LENGTH_SHIFT 18
+#define UCNV_EXT_TO_U_LENGTH_OFFSET 12
 
 /* maximum number of indexed UChars */
-#define _CNV_EXT_TO_U_MAX_LENGTH 19
+#define UCNV_EXT_TO_U_MAX_LENGTH 19
 
-#define _CNV_EXT_TO_U_MAKE_WORD(byte, value) ((uint32_t)(byte)<<_CNV_EXT_TO_U_BYTE_SHIFT)|(value))
+#define UCNV_EXT_TO_U_MAKE_WORD(byte, value) ((uint32_t)(byte)<<UCNV_EXT_TO_U_BYTE_SHIFT)|(value))
 
-#define _CNV_EXT_TO_U_GET_BYTE(word) ((word)>>_CNV_EXT_TO_U_BYTE_SHIFT)
-#define _CNV_EXT_TO_U_GET_VALUE(word) ((word)&_CNV_EXT_TO_U_VALUE_MASK)
+#define UCNV_EXT_TO_U_GET_BYTE(word) ((word)>>UCNV_EXT_TO_U_BYTE_SHIFT)
+#define UCNV_EXT_TO_U_GET_VALUE(word) ((word)&UCNV_EXT_TO_U_VALUE_MASK)
 
-#define _CNV_EXT_TO_U_IS_PARTIAL(value) ((value)<_CNV_EXT_TO_U_MIN_CODE_POINT)
-#define _CNV_EXT_TO_U_GET_PARTIAL_INDEX(value) (value)
+#define UCNV_EXT_TO_U_IS_PARTIAL(value) ((value)<UCNV_EXT_TO_U_MIN_CODE_POINT)
+#define UCNV_EXT_TO_U_GET_PARTIAL_INDEX(value) (value)
 
-#define _CNV_EXT_TO_U_IS_ROUNDTRIP(value) (((value)&_CNV_EXT_TO_U_ROUNDTRIP_FLAG)!=0)
-#define _CNV_EXT_TO_U_MASK_ROUNDTRIP(value) ((value)&~_CNV_EXT_TO_U_ROUNDTRIP_FLAG)
+#define UCNV_EXT_TO_U_IS_ROUNDTRIP(value) (((value)&UCNV_EXT_TO_U_ROUNDTRIP_FLAG)!=0)
+#define UCNV_EXT_TO_U_MASK_ROUNDTRIP(value) ((value)&~UCNV_EXT_TO_U_ROUNDTRIP_FLAG)
 
 /* use after masking off the roundtrip flag */
-#define _CNV_EXT_TO_U_IS_CODE_POINT(value) ((value)<=_CNV_EXT_TO_U_MAX_CODE_POINT)
-#define _CNV_EXT_TO_U_GET_CODE_POINT(value) ((value)-_CNV_EXT_TO_U_MIN_CODE_POINT)
+#define UCNV_EXT_TO_U_IS_CODE_POINT(value) ((value)<=UCNV_EXT_TO_U_MAX_CODE_POINT)
+#define UCNV_EXT_TO_U_GET_CODE_POINT(value) ((value)-UCNV_EXT_TO_U_MIN_CODE_POINT)
 
-#define _CNV_EXT_TO_U_GET_INDEX(value) ((value)&_CNV_EXT_TO_U_INDEX_MASK)
-#define _CNV_EXT_TO_U_GET_LENGTH(value) (((value)>>_CNV_EXT_TO_U_LENGTH_SHIFT)-_CNV_EXT_TO_U_LENGTH_OFFSET)
+#define UCNV_EXT_TO_U_GET_INDEX(value) ((value)&UCNV_EXT_TO_U_INDEX_MASK)
+#define UCNV_EXT_TO_U_GET_LENGTH(value) (((value)>>UCNV_EXT_TO_U_LENGTH_SHIFT)-UCNV_EXT_TO_U_LENGTH_OFFSET)
 
 /* fromUnicode helpers ------------------------------------------------------ */
 
-#define _CNV_EXT_FROM_U_LENGTH_SHIFT 24
-#define _CNV_EXT_FROM_U_ROUNDTRIP_FLAG ((uint32_t)1<<31)
-#define _CNV_EXT_FROM_U_DATA_MASK 0xffffff
+#define UCNV_EXT_FROM_U_LENGTH_SHIFT 24
+#define UCNV_EXT_FROM_U_ROUNDTRIP_FLAG ((uint32_t)1<<31)
+#define UCNV_EXT_FROM_U_DATA_MASK 0xffffff
 
 /* at most 3 bytes in the lower part of the value */
-#define _CNV_EXT_FROM_U_MAX_DIRECT_LENGTH 3
+#define UCNV_EXT_FROM_U_MAX_DIRECT_LENGTH 3
 
 /* maximum number of indexed bytes */
-#define _CNV_EXT_FROM_U_MAX_LENGTH 0x7f
+#define UCNV_EXT_FROM_U_MAX_LENGTH 0x7f
 
-#define _CNV_EXT_FROM_U_IS_PARTIAL(value) (((value)>>_CNV_EXT_FROM_U_LENGTH_SHIFT)==0)
-#define _CNV_EXT_FROM_U_GET_PARTIAL_INDEX(value) (value)
+#define UCNV_EXT_FROM_U_IS_PARTIAL(value) (((value)>>UCNV_EXT_FROM_U_LENGTH_SHIFT)==0)
+#define UCNV_EXT_FROM_U_GET_PARTIAL_INDEX(value) (value)
 
-#define _CNV_EXT_FROM_U_IS_ROUNDTRIP(value) (((value)&_CNV_EXT_FROM_U_ROUNDTRIP_FLAG)!=0)
-#define _CNV_EXT_FROM_U_MASK_ROUNDTRIP(value) ((value)&~_CNV_EXT_FROM_U_ROUNDTRIP_FLAG)
+#define UCNV_EXT_FROM_U_IS_ROUNDTRIP(value) (((value)&UCNV_EXT_FROM_U_ROUNDTRIP_FLAG)!=0)
+#define UCNV_EXT_FROM_U_MASK_ROUNDTRIP(value) ((value)&~UCNV_EXT_FROM_U_ROUNDTRIP_FLAG)
 
 /* use after masking off the roundtrip flag */
-#define _CNV_EXT_FROM_U_GET_LENGTH(value) ((value)>>_CNV_EXT_FROM_U_LENGTH_SHIFT)
+#define UCNV_EXT_FROM_U_GET_LENGTH(value) ((value)>>UCNV_EXT_FROM_U_LENGTH_SHIFT)
 
 /* get bytes or bytes index */
-#define _CNV_EXT_FROM_U_GET_DATA(value) ((value)&_CNV_EXT_FROM_U_DATA_MASK)
+#define UCNV_EXT_FROM_U_GET_DATA(value) ((value)&UCNV_EXT_FROM_U_DATA_MASK)
 
 #endif

@@ -11,10 +11,16 @@
 <h1>ICU Data Loading Redesign</h1>
 <p align="right">Markus Scherer, San José 2002-feb-05</p>
 <p>Result of a meeting of the IBM San José ICU team with Yves Arrouye,
-RealNames, on 2002-jan-30 at IBM San José.</p>
+RealNames, on 2002-jan-30 at IBM San José. Summary by Markus, followed by <a href="#yves_minutes">minutes
+by Yves</a>.</p>
+<p>Also <a href="#available_open">below</a>: Meeting minutes of a meeting among
+members of the IBM ICU team about, among other things, consistency of
+uxyz_getAvailable() vs. uxyz_open().</p>
 <h2>Basics &amp; Terminology</h2>
 <p>Much of this has been around since ICU 1.4, although we made changes for 1.5
-and 2.0.</p>
+and 2.0. Please see the <a href="http://oss.software.ibm.com/icu/userguide/icudata.html">ICU
+Data</a> chapter in the <a href="http://oss.software.ibm.com/icu/userguide/">User's
+Guide</a>.</p>
 <p>The general assumption is that data for both ICU and for ICU applications is
 packaged into &quot;common data files&quot; with Tables of Contents, in the form
 of either DLLs or .dat files.</p>
@@ -66,7 +72,7 @@ global variable: cache/registry of common files, associates string (path/basenam
     can be set with udata_setAppData() for application data
     otherwise self-registering while loading, see below
 
-udata_open(path_basename, name, type) { // all strings; type=&quot;res&quot; for RBs
+udata_open(path_basename, name, type) { // all arguments are char* strings; type=&quot;res&quot; for RBs
     search for last '/' in path_basename, split into path and basename
 
     // look for single-data-piece file
@@ -129,12 +135,13 @@ leaves 22 characters not counting the prefix, meaning that source filenames
 should typically not be longer than 22 characters.</p>
 <h2>Enumerating data pieces</h2>
 <p>We are thinking about enumerating ICU data pieces like locale data RBs,
-transliterator RBs, etc. In an IBM ICU-only meeting on 2002-feb-04, we decided
+transliterator RBs, etc. In an <a href="#available_open"> IBM ICU-only meeting on
+2002-feb-04</a>, we decided
 to keep filenames distinguishable. RBs with &quot;t_...&quot; will be used for
 transliterators. RBs with locale data will not have &quot;(single
 letter)_&quot;. Future non-locale data RBs will have filenames that start with a
 single letter, followed by an underscore.</p>
-<h2>Yves' summary of the meeting</h2>
+<h2><a name="#yves_minutes" href="#yves_minutes">Yves' summary of the meeting</a></h2>
 <p>(Email from Yves Arrouye, RealNames, from 2002-jan-30)</p>
 <pre>
 Thanks for having me. It was interesting and fruitful.
@@ -224,7 +231,7 @@ resource *ures_open(const char *tag, const char *loc) {
     return res;
 }
 
-(and since I don't read myelf again I may have missed something. But it
+(and since I don't read myself again I may have missed something. But it
 *has* to look simple because it *is* simple).
 
 Issues that we haven't discussed, because they are minor:
@@ -272,6 +279,788 @@ you want with great pleasure.
 
 YA
 </pre>
+<hr>
+<p>Related topic:</p>
+
+<p><a name="#available_open" href="#available_open">IBM ICU team meeting about experimental locales</a>,
+and about how to keep uxyz_getAvailable() consistent with what uxyz_open() can
+find, at least at one point in the lifetime of a process.</p>
+
+<address style="margin-left:3.0pt;text-indent:-26.0pt;mso-list:l0 level1 lfo1;
+tab-stops:4.0pt list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">I.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+ZH-TW">Meeting notes (Steven R. Loomis)</span></b><b style="mso-bidi-font-weight:
+normal"><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA"><o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:0pt;tab-stops:4.0pt 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">Feb 3, 2002 - Locales,
+  experimental, etc<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:39.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 40.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">A.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Issue<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">what locales are we standing behind? <o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">API isssue: either,<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">we don’t include the experimental ones, or<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">b.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">we have an API that gives you the version<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">3.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Another issue: adding files to installed ICU.<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:39.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 40.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">B.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Two issues - want these in sync<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">What things are built?<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">What things are available?<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:39.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 40.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">C.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Don’t build experimental locales by default<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:39.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 40.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">D.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Adding files to installed ICU<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Could iterate across available items.. <o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">In the search path also<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">b.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></b><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">I.e. , look in<span style="mso-spacerun: yes">&nbsp; </span>udata
+  , and then in .res files<b style="mso-bidi-font-weight:normal"><o:p>
+  </o:p>
+  </b></span>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Two models<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Drop in [“Option (1)”]<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level5 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">add x.res- anyplace in S</span><span style="font-size:
+10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:ZH-TW">earch
+  </span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">P</span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:ZH-TW">ath</span><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA"><o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level5 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Two options<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Available next time ICU starts<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">b.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">immediately<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">c.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">undefined<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level5 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">3.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Requiremets<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">iterate at runtime over SP<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level5 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">4.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Issue <o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">b.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Install<span style="mso-spacerun: yes">&nbsp; </span>[“option
+  (2)”]<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level5 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">options<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">[“Option 2alpha”] Drop in and edit some index file,
+  or<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">b.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">[“Option 2Beta”] Run some install program<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">c.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">[“Option 2Gamma”] Do at install time, run some
+  no-UI program, “update ICU”<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">c.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">registry [ “option (3)” ]<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level5 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">ucnv_register(“fr_BF”, &amp;data ...)<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level5 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Probably want this anyways<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">3.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Ways of making uloc_getAvailable() work<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">use provided list<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">b.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">use a cache of things on disk<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">c.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">use a registration model - user can add things in code<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">d.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">If you know the name, and we see it on disk, we can add
+  it to a runtime supplement<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:39.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 40.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">E.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Locale Elements<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Filenames- <o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">icudt20b_<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>.....<span style="mso-spacerun: yes">&nbsp;
+  </span><span style="mso-spacerun:
+yes">&nbsp;</span>.typ<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">b.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Name transliterators:<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>t_<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">c.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Use script names like Deva instead of Devanagari<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">d.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></b><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Haven’t released a build with the rename yet, can
+  change.<b style="mso-bidi-font-weight:normal"><o:p>
+  </o:p>
+  </b></span>
+</address>
+<address style="margin-left:39.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 40.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">F.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">Action Items<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.1<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">G.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">[<b style="mso-bidi-font-weight:normal">ram</b>]Move
+  experimental locales to extras<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Graduate selected locales as time permits<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Module<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">“extras”<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:219.0pt;text-indent:-26.0pt;mso-list:l0 level5 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 220.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">“code”<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:255.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 256.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Could put XML converter here<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:219.0pt;text-indent:-26.0pt;mso-list:l0 level5 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 220.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">“data”<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:255.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 256.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">“translit”<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:255.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 256.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">b.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">“locales”<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:255.0pt;text-indent:-26.0pt;mso-list:l0 level6 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 256.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">c.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">“mappings/README” - “Go look in chardata”<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:255.0pt;text-indent:1.0pt;tab-stops:36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">&nbsp;<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">H.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">[<b style="mso-bidi-font-weight:normal">ram/alan</b>]Rename
+  translit source files to “t_”, and possibility shorten by using script
+  abbreviations.<span style="mso-spacerun: yes">&nbsp; </span>Keep under 22
+  chars including<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>‘t_’<span style="mso-spacerun: yes">&nbsp;
+  </span>+ ‘.txt’<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">( remember:<span style="mso-spacerun: yes">&nbsp; </span>‘icudt20b_’<span style="mso-spacerun: yes">&nbsp;
+  </span>goes on the beginning of all output files )<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">I.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">[<b style="mso-bidi-font-weight:normal">andy</b>]
+  Document inconsistency in API and Users Guide <o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Include every type of file, including Translit,
+  Converters, andLocale Bundles<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA"><span style="mso-spacerun: yes">&nbsp;</span>say
+  ‘must update these specific files’, and how to do it.<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">3.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Scenarios<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">“I can’t touch ICU, but I want to add a file”<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">b.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">“I want to add a file to base ICU”<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">4.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">[<b style="mso-bidi-font-weight:normal">alan]</b>
+  Document Format for alias table<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">J.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">[<b style="mso-bidi-font-weight:normal">George</b>] <o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Snapshot users guide, add version # of ICU4C and ICU4J:
+  “2.0”<span style="mso-spacerun: yes">&nbsp; </span>[<b style="mso-bidi-font-weight:
+normal">srl</b>] put in footer.<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><i style="mso-bidi-font-style:normal"><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">“We should have: a publication date , and something that says ‘this
+  refers to ICU 2.0”</span></i><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">.<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">3.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">Put Zip of documentation on website<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">2.2<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">4.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">[<b style="mso-bidi-font-weight:normal">srl/markus</b>]
+  Have a function for iterating the directories, implement 1c<o:p>
+  </o:p>
+  </span>
+</address>
+<address style="margin-left:183.0pt;text-indent:-26.0pt;mso-list:l0 level4 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 180.0pt 184.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">a.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></b><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">POSIX: use autoconf for dirent, etc.<b style="mso-bidi-font-weight:normal"><o:p>
+  </o:p>
+  </b></span>
+</address>
+<address style="margin-left:75.0pt;text-indent:-26.0pt;mso-list:l0 level1 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 76.0pt 108.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">II.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">Exemplar chars<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">A.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">Ram: where do I get this?<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">B.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">Mark sent out the data.<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:111.0pt;text-indent:-26.0pt;mso-list:l0 level2 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 112.0pt 144.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">C.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">Example<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">es.res:<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>ExemplarChars {
+  “[a-z{ch}{ll}]” ]<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">scandinavian: ExemplarChars { “a-zåä{ae}ø” ]<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">3.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">mt: ExemplarChars { “[a-z{c.}{h/}{g.}{gh/}{z.}àìùèò]-[cy]”}<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address style="margin-left:147.0pt;text-indent:-26.0pt;mso-list:l0 level3 lfo1;
+tab-stops:list 18.0pt left 36.0pt 72.0pt 108.0pt 144.0pt 148.0pt 180.0pt 216.0pt 252.0pt 288.0pt 324.0pt 360.0pt 396.0pt 432.0pt 468.0pt 504.0pt 540.0pt 576.0pt">
+  <b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;font-family:
+&quot;Palatino Linotype&quot;;mso-fareast-language:JA">4.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">syr: ExemplarChars { “[[:Syrc:]]” }<o:p>
+  </o:p>
+  </span></b>
+</address>
+<address>
+  <span style="font-size:10.0pt;font-family:&quot;Palatino Linotype&quot;;
+mso-fareast-language:JA">&nbsp;<o:p>
+  </o:p>
+  </span>
+</address>
+<p class="MsoNormal"><span style="font-family:&quot;Palatino Linotype&quot;;mso-fareast-language:
+JA">&nbsp;<o:p>
+</o:p>
+</span></p>
 <p>&nbsp;</p>
 
 </body>

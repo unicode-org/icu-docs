@@ -1,0 +1,1387 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="stylesheet" href="http://www.unicode.org/reports/reports.css" type="text/css">
+<title>UAX #29: Text Boundaries</title>
+<style type="text/css">
+<!--
+.right       { text-align: Right }
+.symbol      { font-size: 90%; font-family: Arial Unicode MS }
+.left        { text-align: Left }
+.center      { text-align: Center }
+.example2    { background-color: #FFFF99 }
+.charlist    { font-size: 90%; font-family: monospace }
+.pairItem    { text-align: Center }
+.lbclass     { text-align: Center }
+-->
+</style>
+</head>
+
+<body bgcolor="#ffffff">
+
+<table class="header" width="100%">
+  <tr>
+    <td class="icon"><a href="http://www.unicode.org">
+    <img align="middle" alt="[Unicode]" border="0" src="http://www.unicode.org/webscripts/logo60s2.gif" width="34" height="33"></a>&nbsp;&nbsp;<a class="bar" href="http://www.unicode.org/unicode/reports">Technical 
+    Reports</a></td>
+  </tr>
+  <tr>
+    <td class="gray">&nbsp;</td>
+  </tr>
+</table>
+<div class="body">
+  <h2 align="center"><span class="changedspan">Proposed Update </span>Unicode Standard Annex #29</h2>
+  <h1 align="right">Text Boundaries</h1>
+  <table class="wide" border="1" width="100%">
+    <tr>
+      <td>Version</td>
+      <td><span class="changedspan">4.1 (proposed)</span></td>
+    </tr>
+    <tr>
+      <td>Authors</td>
+      <td>Mark Davis (<a href="mailto:mark.davis@us.ibm.com">mark.davis@us.ibm.com</a>)</td>
+    </tr>
+    <tr>
+      <td>Date</td>
+      <td>2004-10-12</td>
+    </tr>
+    <tr>
+      <td>This Version</td>
+      <td class="old_changed"><a href="http://www.unicode.org/reports/tr29/tr29-7.html">
+      http://www.unicode.org/reports/tr29/tr29-7.html</a></td>
+    </tr>
+    <tr>
+      <td>Previous Version</td>
+      <td class="old_changed"><a href="http://www.unicode.org/reports/tr29/tr29-6.html">
+      http://www.unicode.org/reports/tr29/tr29-6.html</a></td>
+    </tr>
+    <tr>
+      <td>Latest Version</td>
+      <td><a href="http://www.unicode.org/reports/tr29">http://www.unicode.org/reports/tr29</a></td>
+    </tr>
+    <tr>
+      <td>Tracking Number</td>
+      <td>
+      <p class="old_changed"><a href="#Modifications">7</a></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <h3><i>Summary</i></h3>
+  <p><i><em>This document describes guidelines </em>for determining default boundaries between 
+  certain significant text elements: grapheme clusters (“user characters”), words, and sentences. 
+  For line-break boundaries, see <a href="http://www.unicode.org/unicode/reports/tr14/">UAX #14: 
+  Line Breaking Properties</a>.</i></p>
+  <h3><i>Status</i></h3>
+  <p class="changed"><span class="changedspan"><i>This document is a proposed update of a previously 
+  approved Unicode Standard Annex. Publication does not imply endorsement by the Unicode Consortium. 
+  This is a draft document which may be updated, replaced, or superseded by other documents at any 
+  time. This is not a stable document; it is inappropriate to cite this document as other than a 
+  work in progress.</i></span></p>
+  <blockquote>
+    <p align="left" class="old_changed"><i><b>A Unicode Standard Annex (UAX)</b> forms an integral 
+    part of the Unicode Standard, but is published as a separate document. The Unicode Standard may 
+    require conformance to normative content in a Unicode Standard Annex, if so specified in the 
+    Conformance chapter of that version of the Unicode Standard. The version number of a UAX 
+    document corresponds to the version number of the Unicode Standard at the last point that the 
+    UAX document was updated.</i></p>
+  </blockquote>
+  <p class="old_changed"><i>Please submit corrigenda and other comments with the online reporting 
+  form [<a href="#Feedback">Feedback</a>]. Related information that is useful in understanding this 
+  document is found in <a href="#References">References</a>. For the latest version of the Unicode 
+  Standard see [<a href="#Unicode">Unicode</a>]. For a list of current Unicode Technical Reports see 
+  [<a href="#Reports">Reports</a>]. For more information about versions of the Unicode Standard, see 
+  [<a href="#Versions">Versions</a>].</i></p>
+  <h3><i>Contents</i></h3>
+  <blockquote>
+    <dl>
+      <dt><a href="#Introduction">1 Introduction</a> </dt>
+      <dd><a href="#Notation">1.1 Notation</a></dd>
+      <dt><a href="#Conformance">2 Conformance</a></dt>
+      <dt><a href="#Grapheme_Cluster_Boundaries">3 Grapheme Cluster Boundaries</a></dt>
+      <dt><a href="#Word_Boundaries">4 Word Boundaries</a></dt>
+      <dt><a href="#Sentence_Boundaries">5 Sentence Boundaries</a></dt>
+      <dt><a href="#Implementation_Notes">6 Implementation Notes</a></dt>
+      <dd><a href="#Normalization">6.1 Normalization</a></dd>
+      <dd><a href="#Grapheme_Cluster_and_Format_Rules">6.2 Grapheme Cluster and Format Rules</a></dd>
+      <dd><a href="#Regular_Expressions">6.3 Regular Expressions</a></dd>
+      <dd><a href="#Random_Access">6.4 Random Access</a></dd>
+      <dd><a href="#Tailoring">6.5 Tailoring</a></dd>
+      <dt><a href="#Testing">7 Testing</a></dt>
+      <dt><a href="#Acknowledgements">Acknowledgements</a></dt>
+      <dt><a href="#References">References</a></dt>
+      <dt><a href="#Modifications">Modifications</a></dt>
+    </dl>
+  </blockquote>
+  <h2>1 <a name="Introduction">Introduction</a></h2>
+  <p>This document describes guidelines for determining default boundaries between certain 
+  significant text elements: grapheme clusters (“user characters”), words, and sentences. It updates 
+  most of <a href="http://www.unicode.org/unicode/uni2book/ch05.pdf">5.15 Locating Text Element 
+  Boundaries</a> except for the line-break boundaries, which are covered in
+  <a href="http://www.unicode.org/unicode/reports/tr14/">UAX #14: Line Breaking Properties</a>.</p>
+  <p>A string of Unicode-encoded text often needs to be broken up into text elements 
+  programmatically. Common examples of text elements include what users think of as characters, 
+  words, lines (more precisely, where line breaks are allowed), and sentences. The precise 
+  determination of text elements may vary according to orthographic conventions for a given script 
+  or language. The goal of matching user perceptions cannot always be met exactly because the text 
+  alone does not always contain enough information to unambiguously decide boundaries. For example, 
+  the <em>period</em> (U+002E <span style="font-variant: small-caps">full stop</span>) is used 
+  ambiguously, sometimes for end-of-sentence purposes, sometimes for abbreviations, and sometimes 
+  for numbers. In most cases, however, programmatic text boundaries can match user perceptions quite 
+  closely, or at least not surprise the user. </p>
+  <p>Rather than concentrate on algorithmically searching for text elements themselves, a simpler 
+  and more useful computation looks instead at detecting the <i>boundaries</i> (or <i>breaks</i>) 
+  between those text elements. The determination of those boundaries is often critical to the 
+  performance of general software, so it is important to be able to make such a determination as 
+  quickly as possible.</p>
+  <p>The default boundary determination mechanism provides a straightforward and efficient way to 
+  determine some of the most significant boundaries in text: grapheme clusters (what end-users 
+  usually think of as characters), words, and sentences. (Line boundaries are to be found in
+  <a href="http://www.unicode.org/unicode/reports/tr14/">UAX #14: Line Breaking Properties</a>.)</p>
+  <p>Boundary determination builds upon the uniform character representation of the Unicode 
+  Standard, while handling the large number of characters and special features such as combining 
+  marks and conjoining jamo in an effective manner. As this mechanism lends itself to a completely 
+  data-driven implementation, it can be tailored to particular orthographic conventions or user 
+  preferences without recoding.</p>
+  <p>The large character set of the Unicode Standard and its representational power place 
+  requirements on both the specification of text element boundaries and the underlying 
+  implementation. The specification needs to allow for the designation of large sets of characters 
+  sharing the same characteristics (for example, uppercase letters), while the implementation must 
+  provide quick access and matches to those large sets. The mechanism also must handle special 
+  features of the Unicode Standard, such as combining or nonspacing marks and conjoining jamo.</p>
+  <h3>1.1 <a name="Notation">Notation</a></h3>
+  <p>A boundary specification defines boundary property values used in that specification, then 
+  lists the rules for boundaries in terms of those property values. The characters having those 
+  property values are specified as a list, where each element of the list is: </p>
+  <ul>
+    <li>A literal character</li>
+    <li>A range of literal characters</li>
+    <li>All characters satisfying a given condition, using properties defined in the Unicode 
+    Character Database [<a href="#UCD">UCD</a>]:
+    <ul>
+      <li>Non-boolean property values are given as <i>&lt;property&gt;=&lt;property value&gt;</i>, such as 
+      General_Category = Titlecase_Letter.</li>
+      <li>Boolean properties are given as <i>&lt;property&gt;=true</i>, such as<br>
+      Uppercase = true.</li>
+      <li>Other conditions are specified textually in terms of UCD properties.</li>
+    </ul>
+    </li>
+    <li>Boolean combinations of the above</li>
+    <li>The two special identifiers <i>sot</i> and <i>eot</i> stand for start and end of text 
+    respectively.</li>
+  </ul>
+  <p><span class="changedspan">In the table assigning the boundary property values, all of the 
+  values are intended to be disjoint except for the special value <b>Any</b>. In case of conflict, 
+  rows higher in the table have precedence in terms of assigning property values to characters.</span></p>
+  <p>The rules are numbered for reference and are applied in order in order to determine whether 
+  there is a boundary at a given offset. That is, there is an implicit “otherwise” at the front of 
+  each rule following the first. So logically the rules are processed from top to bottom. As soon as 
+  a rule matches and produces a boundary status (boundary or no-boundary) for that offset, the 
+  process is terminated. </p>
+  <p>Each rule consists of a left side, a boundary symbol, and a right side. Either of the sides can 
+  be empty. The left and right sides use the boundary property values in regular expressions. For 
+  more information on regular expression syntax used, see
+  <a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18: Unicode Regular Expression 
+  Guidelines</a>.</p>
+  <p>The boundary symbols are:</p>
+  <table border="0" class="syntax">
+    <tr>
+      <td>÷</td>
+      <td>Boundary (allow break here)</td>
+    </tr>
+    <tr>
+      <td>×</td>
+      <td>No Boundary (do not allow break here)</td>
+    </tr>
+    <tr>
+      <td>→</td>
+      <td>Treat whatever on the left side as if it were what is on the right side.</td>
+    </tr>
+  </table>
+  <p>An <i>underscore </i>(“_”) is used to indicate a space in examples.</p>
+  <p>As in other cases, these are a <i>logical</i> description of the processes: implementations can 
+  achieve the same results without using code or data that follows these rules step-by-step. In 
+  particular, many production-grade implementations will use a state-table approach. In that case, 
+  the performance does not depend on the complexity or number of rules. The only feature that does 
+  affect performance is the number of characters that may match <i>after</i> the boundary position 
+  in a rule that is matched. </p>
+  <p>Some additional constraints are reflected in the specification. These constraints make the 
+  implementation significantly simpler and more efficient and have not been found to be limitations 
+  for natural language use. <span class="old_changed">In particular, the rules are designed so that 
+  they can be implemented with a deterministic finite-state machine.</span></p>
+  <ol>
+    <li><i>Single boundaries. </i>Each rule has exactly one boundary position. Because of constraint 
+    (1), this restriction is more a limitation on the specification methods, because a rule with two 
+    boundaries could generally be expressed as two rules. For example, “ab ÷ cd ÷ ef” could be 
+    broken into “ab ÷ cd” and “cd ÷ ef”.</li>
+    <li><i>Ignore degenerates. </i>No special provisions are made to get marginally better behavior 
+    for degenerate cases that never occur in practice, such as an <i>A</i> followed by an Indic 
+    combining mark.</li>
+  </ol>
+  <p>Different issues are present with different types of boundaries, as the following discussion 
+  and examples should make clear.</p>
+  <h2>2 <a name="Conformance">Conformance</a></h2>
+  <p>This is informative material. There are many different ways to divide text elements 
+  corresponding to grapheme clusters, words and sentences, and the Unicode Standard and this 
+  document do not restrict the ways in which implementations can do this.</p>
+  <p>This specification is a <i>default</i> mechanism; more sophisticated engines can and should 
+  tailor it for particular locales or environments. For example, good Thai, Lao, Chinese, or 
+  Japanese word-break boundaries require the use of dictionary lookup, analogous to English 
+  hyphenation. An implementation therefore may need to provide means to override or subclass the 
+  default mechanism described in this document. Note that tailoring can <i>either</i> add boundary 
+  positions <i>or</i> remove boundary positions, compared to the default specified here.</p>
+  <p>To maintain canonical equivalence, all of the following specifications are defined on NFD text, 
+  as defined in <a href="http://www.unicode.org/reports/tr15/">UAX #15: Unicode Normalization Forms</a> 
+  [<a href="#Reports">Reports</a>]. A boundary exists in non-NFD text just in case it would occur at 
+  the corresponding position in NFD text. However, this is only a logical specification; in practice 
+  implementations can avoid normalization and achieve the same results. For more information, see
+  <a href="#Implementation_Notes">§6 Implementation Notes</a>.</p>
+  <h2><a name="Grapheme_Cluster_Boundaries">3 Grapheme Cluster Boundaries</a></h2>
+  <p>One or more Unicode characters may make up what the user thinks of as a character or basic unit 
+  of the language. To avoid ambiguity with the computer use of the term <i>character,</i> this is 
+  called a <i>grapheme cluster</i>. For example, “G” + <i>acute-accent</i> is a grapheme cluster: it 
+  is thought of as a single character by users, yet is actually represented by two Unicode code 
+  points. For more information on the ambiguity in the term <i>character</i>, see
+  <a href="http://www.unicode.org/unicode/reports/tr17/">UTR #17: Character Encoding Model</a> [<a href="#Reports">Reports</a>].</p>
+  <p>Grapheme clusters include, but are not limited to, combining character sequences such as (g + 
+  °), digraphs such as Slovak “ch”, and sequences with letter modifiers such as k<sup>w</sup>. 
+  Grapheme cluster boundaries are important for collation, regular-expressions, and counting 
+  “character” positions within text.&nbsp; Word boundaries, line boundaries and sentence boundaries 
+  do not occur within a grapheme cluster. In this section, the Unicode Standard provides a 
+  determination of where the default grapheme boundaries fall in a string of characters. This 
+  algorithm can be tailored for specific locales or other customizations, which is what is done in 
+  providing contracting characters in collation tailoring tables.</p>
+  <blockquote>
+    <p><b>Note:</b> In previous documentation, default grapheme clusters were previously referred to 
+    as “locale-independent graphemes”. The term <i>cluster</i> has been added to emphasize that the 
+    term <i>grapheme</i> as used differently in linguistics. For simplicity and to align with
+    <a href="http://www.unicode.org/unicode/reports/tr10/">UTS #10: Unicode Collation Algorithm</a>&nbsp; 
+    [<a href="#Reports">Reports</a>], the terms <i>default</i> and <i>tailored</i> are used in 
+    preference to <i>locale-independent</i> and <i>locale-dependent</i>, respectively.</p>
+  </blockquote>
+  <p>As far as a user is concerned, the underlying representation of text is not important, but it 
+  is important that an editing interface present a uniform implementation of what the user thinks of 
+  as characters. Grapheme clusters commonly commonly behave as units in terms of mouse selection, 
+  arrow key movement, backspacing, and so on. When this is done, for example, and an accented 
+  character is represented by a combining character sequence, then using the right arrow key would 
+  skip from the start of the base character to the end of the last combining character.</p>
+  <p>However, in some cases editing a grapheme cluster element by element may be the preferred way. 
+  For example, a system might have <i>backspace</i> delete by code point, while the <i>delete </i>
+  key may delete an entire cluster. Moreover, there is not a one-to-one relationship between 
+  grapheme clusters and keys on a keyboard. A single key on a keyboard may correspond to: a whole 
+  grapheme cluster, a part of a grapheme clusters, or a sequence of more than one grapheme clusters.</p>
+  <p>In those rare circumstances where end-users need character counts, the counts should correspond 
+  to the grapheme cluster boundaries.</p>
+  <p>The principal requirements for default grapheme cluster boundaries are the handling of 
+  combining marks and Hangul conjoining jamo. Boundaries may be further tailored for requirements of 
+  different languages, such as the addition of “ch” for Slovak, or Indic, Thai or Tibetan character 
+  clusters.</p>
+  <p>A default grapheme cluster normally begins with a base character. Exceptions are when a 
+  combining mark is at the start of text, or it is preceded by a control (or format) character.
+  <span class="old_changed">In place of a single base character, a Hangul Syllable composed of one 
+  or more characters may serve as the base. </span>For the rules defining the default boundaries, 
+  see <i><a href="#Default_Grapheme_Cluster_Table">Table 1, Default Grapheme Cluster Boundaries</a></i><a href="#Default_Grapheme_Cluster_Table">
+  </a>below. <span class="old_changed">For more information on the composition of Hangul Syllables 
+  see [<a href="#Unicode">Unicode</a>].</span></p>
+  <blockquote>
+    <p class="old_changed"><b>Note:</b> The boundary between default grapheme clusters can be 
+    determined by just the two adjacent characters. See <a href="#Testing">7 Testing</a> for a chart 
+    showing the interactions of pairs of characters.</p>
+  </blockquote>
+  <p><b><i>Degenerate Cases.</i> </b>As with other definitions in Chapter 5 and elsewhere, these 
+  definitions are designed to be simple to implement. They need to provide an algorithmic 
+  determination of the valid, default grapheme clusters, and exclude sequences that are normally not 
+  considered default grapheme clusters. However, they do <i>not</i> have to catch edge cases that 
+  will not occur in practice.</p>
+  <p>The definition of default grapheme clusters is not meant to exclude the use of more 
+  sophisticated definitions of tailored grapheme clusters where appropriate: definitions that more 
+  precisely match the user expectations within individual languages. For example, “ch” may be 
+  considered a grapheme cluster in Slovak. It is, however, designed to provide a much more accurate 
+  match to overall user expectations for <i>characters</i> than is provided by individual Unicode 
+  code points.</p>
+  <p><b><i>Display of Grapheme Clusters.</i> </b>Grapheme clusters are not the same as ligatures. 
+  For example, the grapheme cluster “ch” in Slovak is not normally a ligature, and conversely, the 
+  ligature “fi” is not a grapheme cluster. Default grapheme clusters do not necessarily reflect text 
+  display. For example, the sequence &lt;f, i&gt; may be displayed as a single glyph on the screen, but 
+  would still be two grapheme clusters.</p>
+  <p>For more information on the use of grapheme clusters, see
+  <a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18: Unicode Regular Expression 
+  Guidelines</a>&nbsp; [<a href="#Reports">Reports</a>].</p>
+  <blockquote>
+    <p><b>Note: </b>As with the other default specifications, implementations are free to override 
+    (tailor) the results to meet the requirements of different environments or particular languages.</p>
+  </blockquote>
+  <p align="center"><b>Table 1. <a name="Default_Grapheme_Cluster_Table">Default Grapheme Cluster 
+  Boundaries</a></b></p>
+  <table cellspacing="0" cellpadding="4" border="0">
+    <caption class="left"><span style="color: black">Boundary Property Values</span></caption>
+    <tr>
+      <td valign="top"><b><a name="CR">CR</a></b></td>
+      <td><span class="charlist">U+000D CARRIAGE RETURN (CR)</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="LF">LF</a></b></td>
+      <td><span class="charlist">U+000A LINE FEED (LF)</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Control">Control</a></b></td>
+      <td>General_Category = Line Separator (Zl), or<br>
+      General_Category = Paragraph Separator (Zp), or<br>
+      General_Category = Control (Cc), or<br>
+      General_Category = Format (Cf)<br>
+      <span class="old_changed"><i>and not </i><span class="charlist">U+000D CARRIAGE RETURN (CR)</span><br>
+      <i>and not </i><span class="charlist">U+000A LINE FEED (LF)<br>
+      </span></span><span class="changedspan"><i>and not </i>U+200C ZERO WIDTH NON-JOINER (ZWNJ) <br>
+      <i>and not </i>U+200D ZERO WIDTH JOINER (ZWJ) </span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Extend">Extend</a></b></td>
+      <td>
+      <p class="old_changed">Grapheme_Extend = true</td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="L">L</a></b></td>
+      <td><span class="old_changed">Hangul_Syllable_Type=L, e.g.:</span><span class="charlist"><br>
+      U+1100 (</span><span class="symbol">ᄀ</span><span class="charlist">) HANGUL CHOSEONG KIYEOK<br>
+      ..U+1159 (ᅙ) HANGUL CHOSEONG YEORINHIEUH<br>
+      U+115F (</span><span class="symbol">ᅟ</span><span class="charlist">) HANGUL CHOSEONG FILLER</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="V">V</a></b></td>
+      <td><span class="old_changed">Hangul_Syllable_Type=V, e.g.:</span><br>
+      <span class="charlist">U+1160 (</span><span class="symbol">ᅠ</span><span class="charlist">) 
+      HANGUL JUNGSEONG FILLER<br>
+      ..U+11A2 (</span><span class="symbol">ᆢ</span><span class="charlist">) HANGUL JUNGSEONG 
+      SSANGARAEA</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="T">T</a></b></td>
+      <td><span class="old_changed">Hangul_Syllable_Type=T, e.g.:</span><br>
+      <span class="charlist">U+11A8 (</span><span class="symbol">ᆨ</span><span class="charlist">) 
+      HANGUL JONGSEONG KIYEOK<br>
+      ..U+11F9 (</span><span class="symbol">ᇹ</span><span class="charlist">) HANGUL JONGSEONG 
+      YEORINHIEUH</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="LV">LV</a></b></td>
+      <td><span class="old_changed">Hangul_Syllable_Type=LV, e.g.:</span><br>
+      <span class="charlist">U+AC00 (</span><span class="symbol">가</span><span class="charlist">) 
+      HANGUL SYLLABLE GA<br>
+      U+AC1C (</span><span class="symbol">개</span><span class="charlist">) HANGUL SYLLABLE GAE<br>
+      U+AC38 (</span><span class="symbol">갸</span><span class="charlist">) HANGUL SYLLABLE GYA<br>
+      ...</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="LVT">LVT</a></b></td>
+      <td><span class="old_changed">Hangul_Syllable_Type=LVT, e.g.:</span><br>
+      <span class="charlist">U+AC01 (</span><span class="symbol">각</span><span class="charlist">) 
+      HANGUL SYLLABLE GAG<br>
+      U+AC02 (</span><span class="symbol">갂</span><span class="charlist">) HANGUL SYLLABLE GAGG<br>
+      U+AC03 (</span><span class="symbol">갃</span><span class="charlist">) HANGUL SYLLABLE GAGS<br>
+      U+AC04 (</span><span class="symbol">간</span><span class="charlist">) HANGUL SYLLABLE GAN<br>
+      ...</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Any">Any</a></b></td>
+      <td>Any character (includes all of the above)</td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <table cellspacing="0" cellpadding="4" border="0">
+    <caption class="left">Boundary Rules</caption>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Break at the start and end of text.</i></td>
+    </tr>
+    <tr>
+      <td class="right" width="45%">sot</td>
+      <td class="center">÷</td>
+      <td width="40%"></td>
+      <td class="right">(1)</td>
+    </tr>
+    <tr>
+      <td class="right"></td>
+      <td class="center">÷</td>
+      <td>eot</td>
+      <td class="right">(2)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break between a CR and LF. Otherwise break before and after 
+      controls.</i></td>
+    </tr>
+    <tr>
+      <td class="right">CR</td>
+      <td class="center">×</td>
+      <td>LF</td>
+      <td class="right">(3)</td>
+    </tr>
+    <tr>
+      <td class="right">( Control | CR | LF )</td>
+      <td class="center">÷</td>
+      <td></td>
+      <td class="right">(4)</td>
+    </tr>
+    <tr>
+      <td class="right"></td>
+      <td class="center">÷</td>
+      <td>( Control | CR | LF )</td>
+      <td class="right">(5)</td>
+    </tr>
+    <tr>
+      <td align="right" colspan="4">
+      <p align="left"><i>Do not break Hangul syllable sequences.</i></td>
+    </tr>
+    <tr>
+      <td class="right">L</td>
+      <td class="center">×</td>
+      <td>( L | V | LV | LVT )</td>
+      <td class="right">(6)</td>
+    </tr>
+    <tr>
+      <td class="right">( LV | V )</td>
+      <td class="center">×</td>
+      <td>( V | T )</td>
+      <td class="right">(7)</td>
+    </tr>
+    <tr>
+      <td class="right">( LVT | T)</td>
+      <td class="center">×</td>
+      <td>T</td>
+      <td class="right">(8)</td>
+    </tr>
+    <tr>
+      <td align="right" colspan="4">
+      <p align="left"><i>Do not break before extending characters.</i></td>
+    </tr>
+    <tr>
+      <td class="right">&nbsp;</td>
+      <td class="center">×</td>
+      <td>Extend</td>
+      <td class="right">(9)</td>
+    </tr>
+    <tr>
+      <td align="right" colspan="4">
+      <p align="left"><i>Otherwise, break everywhere.</i></td>
+    </tr>
+    <tr>
+      <td class="right">Any</td>
+      <td class="center">÷</td>
+      <td>Any</td>
+      <td class="right">(10)</td>
+    </tr>
+  </table>
+  <p>&nbsp; </p>
+  <h2><a name="Word_Boundaries">4 Word Boundaries</a></h2>
+  <p>Word boundaries are used in a number of different contexts. The most familiar ones are 
+  double-click mouse selection, “move to next word” control-arrow keys, and “Whole Word Search” (WWS) 
+  for search and replace. They are also used in database queries, to determine whether elements are 
+  within a certain number of words of one another.</p>
+  <p>Word boundaries can also be used in so-called <i>intelligent cut and paste</i>. With this 
+  feature, if the user cuts a piece of text on word boundaries, adjacent spaces are collapsed to a 
+  single space. For example, cutting “quick” from “The_quick_fox” would leave “The_&nbsp;_fox”. 
+  Intelligent cut and paste collapses this text to “The_fox”.</p>
+  <p align="left">Here is an example of word boundaries.</p>
+  <div align="center">
+    <table cellspacing="0" cellpadding="0" border="1">
+      <caption class="left"><i>Example 1: Word Boundaries</i></caption>
+      <tr>
+        <td>The</td>
+        <td>&nbsp;</td>
+        <td>quick</td>
+        <td>&nbsp;</td>
+        <td>(</td>
+        <td>“</td>
+        <td>brown</td>
+        <td>”</td>
+        <td>)</td>
+        <td>&nbsp;</td>
+        <td>fox</td>
+        <td>&nbsp;</td>
+        <td>can’t</td>
+        <td>&nbsp;</td>
+        <td>jump</td>
+        <td>&nbsp;</td>
+        <td>32.3</td>
+        <td>&nbsp;</td>
+        <td>feet</td>
+        <td>,</td>
+        <td>&nbsp;</td>
+        <td>right</td>
+        <td>?</td>
+      </tr>
+    </table>
+  </div>
+  <p>There is a boundary, for example, on either side of the word <i>brown</i>. These are the 
+  boundaries that users would expect, for example, if they chose WWS. Matching <i>brown</i> with WWS 
+  works, since there is a boundary on either side. Matching <i>brow</i> doesn’t. Matching <i>“brown”</i> 
+  also works, since there are boundaries between the parentheses and the quotation marks.</p>
+  <p>For proximity tests, one sees whether, for example, “monster” is within 3 words of “truck”. 
+  That is done with the above boundaries by ignoring any words that do not contain a letter, as in 
+  Example 2 below. Thus for proximity, “fox” is within three words of “quick”. This same technique 
+  can be used for “get next/previous word” commands or keyboard arrow-keys. Letters are not the only 
+  characters that can be used to determine the “significant” words: different implementations may 
+  include other types of characters such as digits, or perform other analysis of the characters.</p>
+  <div align="center">
+    <table cellspacing="0" cellpadding="0" border="1">
+      <caption class="left"><i>Example 2: Extracted Words</i></caption>
+      <tr>
+        <td>The</td>
+        <td>quick</td>
+        <td>brown</td>
+        <td>fox</td>
+        <td>can’t</td>
+        <td>jump</td>
+        <td>32.3</td>
+        <td>feet</td>
+        <td>right</td>
+      </tr>
+    </table>
+  </div>
+  <p>The word boundaries are related to the line boundaries, but are distinct: there are some 
+  word-break boundaries that are not line-break boundaries and vice-versa. However, it is relatively 
+  seldom that a line-break boundary is not a word-break boundary. One example is a word containing a 
+  SHY (soft hyphen). It will break across lines, yet is a single word.</p>
+  <blockquote>
+    <p><b>Note: </b>As with the other default specifications, implementations are free to override 
+    (tailor) the results to meet the requirements of different environments or particular languages.</p>
+    <p><span class="changedspan">In particular, the characters with the Line_Break property values 
+    of Contingent_Break (CB), Complex_Context (SA/South East Asian), and XX (Unknown) are assigned 
+    word boundary property values based on criteria outside of the scope of this document. </span>
+    </p>
+  </blockquote>
+  <p align="center"><b>Table 2. <a name="Default_Word_Boundaries">Default Word Boundaries</a></b></p>
+  <table cellspacing="0" cellpadding="4" border="0">
+    <caption class="left"><span style="color: black">Boundary Property Values</span></caption>
+    <tr>
+      <td valign="top"><b><a name="Format">Format</a></b></td>
+      <td>General_Category = Format (Cf)</td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Katakana">Katakana</a></b></td>
+      <td>Script = KATAKANA, <i>or<br>
+      </i>Any of the following:<br>
+      <span class="charlist">U+30FC (</span><span class="symbol">ー</span><span class="charlist">) 
+      KATAKANA-HIRAGANA PROLONGED SOUND MARK<br>
+      U+FF70 (</span><span class="symbol">ｰ</span><span class="charlist">) HALFWIDTH 
+      KATAKANA-HIRAGANA PROLONGED SOUND MARK<br>
+      U+FF9E (</span><span class="symbol">ﾞ</span><span class="charlist">) HALFWIDTH KATAKANA VOICED 
+      SOUND MARK<br>
+      U+FF9F (</span><span class="symbol">ﾟ</span><span class="charlist">) HALFWIDTH KATAKANA 
+      SEMI-VOICED SOUND MARK</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="ALetter">ALetter</a></b></td>
+      <td>Alphabetic = true, <span class="old_changed"><i>or<br>
+      </i></span><span class="changedspan">U+00A0 ( ) NO-BREAK SPACE, (NBSP) </span><i>
+      <span class="changedspan">or</span></i><span class="changedspan"><br>
+      </span><span class="charlist">U+05F3 (</span><span class="symbol">׳</span><span class="charlist">) 
+      HEBREW PUNCTUATION GERESH</span><font size="2"><br>
+      </font><i>and not </i>Ideographic = true<br>
+      <i>and not</i> Katakana = true<i><br>
+      and not</i> Script = Thai<br>
+      <i>and not</i> Script = Lao<br>
+      <i>and not</i> Script = Hiragana<br>
+      <span class="changedspan"><i>and not </i>GRAPHEME EXTEND = true</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="MidLetter">MidLetter</a></b></td>
+      <td>Any of the following:<br>
+      <span class="charlist">U+0027 (</span><span class="symbol">&#39;</span><span class="charlist">) 
+      APOSTROPHE<br>
+      U+00B7 (</span><span class="symbol">·</span><span class="charlist">) MIDDLE DOT<br>
+      U+05F4 (<span class="symbol">״</span>) HEBREW PUNCTUATION GERSHAYIM</span><br>
+      <span class="charlist">U+2019 (</span><span class="symbol">’</span><span class="charlist">) 
+      RIGHT SINGLE QUOTATION MARK (curly apostrophe)<br>
+      U+2027 (</span><span class="symbol">‧</span><span class="charlist">) HYPHENATION POINT</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="MidNumLet">MidNumLet</a></b></td>
+      <td>Any of the following:<span class="charlist"><br>
+      U+002E (</span><span class="symbol">.</span><span class="charlist">) FULL STOP (period)<br>
+      U+003A (</span><span class="symbol">:</span><span class="charlist">) COLON (used in Swedish)</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="MidNum">MidNum</a></b></td>
+      <td>Line_Break = Infix_Numeric<br>
+      <i>and not</i> MidNumLet = true</td>
+    </tr>
+    <tr>
+      <td valign="top" class="old_changed"><b><a name="Numeric">Numeric</a></b></td>
+      <td class="old_changed">Line_Break = Numeric</td>
+    </tr>
+    <tr>
+      <td valign="top"><span class="changedspan"><b><a name="Any">Any</a></b></span></td>
+      <td><span class="changedspan">Any character (includes all of the above)</span></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <table cellspacing="0" cellpadding="4" border="0">
+    <caption class="left">Boundary Rules</caption>
+    <tr>
+      <td class="right" width="85%" colspan="3">
+      <p style="text-align: left"><span class="changedspan">Assign each code point with line break 
+      property values of CB, SA, SG, and XX to one of the above boundary property values depending 
+      on criteria outside the scope of this algorithm. Characters with other line break properties 
+      are assigned values directly according to the above table.</span></td>
+      <td class="right"><span class="changedspan">(0)</span></td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Break at the start and end of text.</i></td>
+    </tr>
+    <tr>
+      <td class="right" width="45%">sot</td>
+      <td class="center">÷</td>
+      <td width="40%"></td>
+      <td class="right">(1)</td>
+    </tr>
+    <tr>
+      <td class="right"></td>
+      <td class="center">÷</td>
+      <td>eot</td>
+      <td class="right">(2)</td>
+    </tr>
+    <tr>
+      <td align="right" colspan="4">
+      <p align="left"><i>Treat a grapheme cluster as if it were a single character: the first 
+      character of the cluster.</i></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="right" class="right">GC</td>
+      <td align="right">
+      <p class="center">→</td>
+      <td align="right">FC</td>
+      <td class="right">(3)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Ignore <span class="old_changed">trailing</span> Format characters. That 
+      is, ignore Format characters in all subsequent rules (except the last rule).</i></td>
+    </tr>
+    <tr>
+      <td class="right">X Format*</td>
+      <td class="center">→</td>
+      <td>X</td>
+      <td class="right">(4)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break between most letters.</i></td>
+    </tr>
+    <tr>
+      <td class="right">ALetter</td>
+      <td class="center">×</td>
+      <td>ALetter</td>
+      <td class="right">(5)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break letters across certain punctuation.</i></td>
+    </tr>
+    <tr>
+      <td class="right">ALetter</td>
+      <td class="center">×</td>
+      <td>(MidLetter | MidNumLet) ALetter</td>
+      <td class="right">(6)</td>
+    </tr>
+    <tr>
+      <td class="right">ALetter (MidLetter | MidNumLet)</td>
+      <td class="center">×</td>
+      <td>ALetter</td>
+      <td class="right">(7)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break within sequences of digits, or digits adjacent to letters 
+      (&#39;3a&#39;, or &#39;A3&#39;).</i></td>
+    </tr>
+    <tr>
+      <td class="right">Numeric</td>
+      <td class="center">×</td>
+      <td>Numeric</td>
+      <td class="right">(8)</td>
+    </tr>
+    <tr>
+      <td class="right">ALetter</td>
+      <td class="center">×</td>
+      <td>Numeric</td>
+      <td class="right">(9)</td>
+    </tr>
+    <tr>
+      <td class="right">Numeric</td>
+      <td class="center">×</td>
+      <td>ALetter</td>
+      <td class="right">(10)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break within sequences like: ‘3.2’ or &#39;3,456.789&#39;.</i></td>
+    </tr>
+    <tr>
+      <td class="right">Numeric (MidNum | MidNumLet)</td>
+      <td class="center">×</td>
+      <td>Numeric</td>
+      <td class="right">(11)</td>
+    </tr>
+    <tr>
+      <td class="right">Numeric</td>
+      <td class="center">×</td>
+      <td>(MidNum | MidNumLet) Numeric</td>
+      <td class="right">(12)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break between Katakana.</i></td>
+    </tr>
+    <tr>
+      <td class="right">Katakana</td>
+      <td class="center">×</td>
+      <td>Katakana</td>
+      <td class="right">(13)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Otherwise, break everywhere (including around ideographs).</i></td>
+    </tr>
+    <tr>
+      <td class="right">Any</td>
+      <td class="center">÷</td>
+      <td>Any</td>
+      <td class="right">(14)</td>
+    </tr>
+  </table>
+  <p><br>
+  <b>Notes:</b> </p>
+  <ul>
+    <li>
+    <p align="left">Unfortunately not all issues can be resolved across languages (or even within a 
+    language, since there are ambiguities). The goal is to have as workable a default as possible; 
+    tailored engines can be more sophisticated about these matters.</li>
+    <li>
+    <p align="left">For Thai, Lao, Khmer, Mynmar, and other scripts that don&#39;t use typically use 
+    spaces between words, a good implementation should not just depend on the default word boundary 
+    specification, but should use a more sophisticated mechanism, as in LineBreak. Ideographic 
+    scripts such as Japanese and Chinese are even more complex. Where Hangul text is written without 
+    spaces, the same applies. However, in the absence of such a more sophisticated mechanism, the 
+    above at least supplies a well-defined default.</li>
+    <li>
+    <p align="left">The hard hyphen is a tricky case. It is quite common for separate words to be 
+    connected with a hyphen: out-of-the-box, under-the-table, Anglo-american, etc. A significant 
+    number are hyphenated names: Smith-Hawkins, etc. When people do a “Whole Word” search or query, 
+    they expect to find the word within those hyphens. While there are some cases where they are 
+    separate words (usually to resolve some ambiguity such as re-sort vs. resort) it’s better 
+    overall to keep the hard hyphen out of the default definition.</li>
+    <li>
+    <p align="left">Apostrophe is another tricky case. Usually considered part of one word (“can’t”, 
+    “aujourd’hui”) it may also be considered two (“l’objectif”). Also, one cannot easily distinguish 
+    the cases where it is used as a quotation mark from those where it is used as an apostrophe, so 
+    one should not include leading or trailing apostrophes. In some languages, such as French and 
+    Italian, tailoring it to break words when the character after the apostrophe is a vowel may 
+    yield better results in more cases. This can be done by adding a rule 5a:</p>
+    <table cellspacing="0" cellpadding="4" border="0">
+      <tr>
+        <td colspan="4">
+        <p align="left"><i>Break between hyphens and vowels (French, Italian)</i></td>
+      </tr>
+      <tr>
+        <td class="right" width="45%">hyphens</td>
+        <td class="center">÷</td>
+        <td width="40%">vowels</td>
+        <td class="right">(5a)</td>
+      </tr>
+    </table>
+    <p>and defining appropriate property values for hyphens and vowels.<br>
+    </li>
+    <li>
+    <p align="left">Certain cases like colon in words (c:a) are included even though they may be 
+    specific to relatively small user communities (Swedish) because they don’t occur otherwise in 
+    normal text, and so don’t cause a problem for other languages.</li>
+    <li>
+    <p align="left">For Hebrew, a tailoring may include a double quotation mark between letters, 
+    since legacy data may contain that in place of <span class="charlist">U+05F4 (״) gershayim</span>. 
+    This can be done by adding double quotation mark to MidLetter.</li>
+    <li>
+    <p align="left">Format characters are ignored if they are interior. Thus &lt;LRM&gt;&lt;letter&gt; will 
+    break, and &lt;letter&gt;&lt;LRM&gt; will break, but there is no break in &lt;letter&gt;&lt;LRM&gt;&lt;letter&gt;.</li>
+  </ul>
+  <h2><a name="Sentence_Boundaries">5 Sentence Boundaries</a></h2>
+  <p>Sentence boundaries are often used for triple-click or some other method of selecting or 
+  iterating through blocks of text that are larger than single words. They are also used to 
+  determine whether words occur within the same sentence in database queries.</p>
+  <p>Plain text provides inadequate information for determining good sentence boundaries. Periods, 
+  for example, can either signal the end of a sentence, indicate abbreviations, or be used for 
+  decimal points. One cannot, without much more sophisticated analysis, distinguish between the two 
+  following cases:</p>
+  <blockquote>
+    <table cellspacing="0" cellpadding="0" border="1">
+      <tr>
+        <td>He said, “Are you going?”&nbsp;</td>
+        <td>John shook his head.</td>
+      </tr>
+    </table>
+    <p><br>
+    </p>
+    <table cellspacing="0" cellpadding="0" border="1">
+      <tr>
+        <td>“Are you going?” John asked.</td>
+      </tr>
+    </table>
+  </blockquote>
+  <p class="MsoNormal" style="MARGIN-TOP: 6pt; TEXT-ALIGN: justify">Without analyzing the text 
+  semantically, it is impossible to be certain which of these usages is intended (and sometimes 
+  ambiguities still remain). However, in a large majority of cases, a straightforward mechanism 
+  works well.</p>
+  <blockquote>
+    <p><b>Note: </b>As with the other default specifications, implementations are free to override 
+    (tailor) the results to meet the requirements of different environments or particular languages.</p>
+  </blockquote>
+  <p align="center"><b>Table 3. <a name="Default_Sentence_Boundaries">Default Sentence Boundaries</a></b></p>
+  <table cellspacing="0" cellpadding="4" border="0">
+    <caption class="left"><span style="color: black">Boundary Property Values</span></caption>
+    <tr>
+      <td valign="top"><b><a name="Sep">Sep</a></b></td>
+      <td>Any of the following characters:<br>
+      <span class="charlist">U+000A LINE FEED (LF)<br>
+      U+000D CARRIAGE RETURN (CR)<br>
+      U+0085 NEXT LINE (NEL)<br>
+      U+2028 LINE SEPARATOR (LS)<br>
+      U+2029 PARAGRAPH SEPARATOR (PS)</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Format</b></td>
+      <td>General_Category = Format (Cf)</td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Sp">Sp</a></b></td>
+      <td>Whitespace = true<br>
+      <i>and not </i>Sep = true</td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Lower">Lower</a></b></td>
+      <td>Lowercase = true</td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Upper">Upper</a></b></td>
+      <td>General_Category = Titlecase_Letter (Lt), <i>or</i><br>
+      Uppercase = true</td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="OLetter">OLetter</a></b></td>
+      <td>Alphabetic = true, <i><span class="old_changed">or<br>
+      </span></i><span class="changedspan">U+00A0 ( ) NO-BREAK SPACE (NBSP), </span><i>
+      <span class="changedspan">or</span></i><br>
+      <span class="charlist">U+05F3 (׳) HEBREW PUNCTUATION GERESH<br>
+      </span><i>and not </i>Lower = true<br>
+      <i>and not </i>Upper = true<br>
+      <span class="changedspan"><i>and not </i>GRAPHEME EXTEND = true</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Numeric</b></td>
+      <td>Linebreak = Numeric (NU)</td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="ATerm">ATerm</a></b></td>
+      <td>Any of the following characters:<br>
+      <span class="charlist">U+002E (</span><span class="symbol">.</span><span class="charlist">) 
+      FULL STOP</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="STerm">STerm</a></b></td>
+      <td>STerm = true</td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Close">Close</a></b></td>
+      <td>General_Category = Open_Punctuation (Po), <i>or</i><br>
+      General_Category = Close_Punctuation (Pe), <i>or</i><br>
+      Linebreak = Quotation (QU)<br>
+      <span class="old_changed"><i>and not </i><span class="charlist">U+05F3 (׳) HEBREW PUNCTUATION 
+      GERESH<br>
+      </span><i>and not </i>ATerm=true<br>
+      <i>and not </i>STerm = true</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><span class="changedspan"><b><a name="Any">Any</a></b></span></td>
+      <td><span class="changedspan">Any character (includes all of the above)</span></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <table cellspacing="0" cellpadding="4" border="0">
+    <caption class="left">Boundary Rules</caption>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Break at the start and end of text.</i></td>
+    </tr>
+    <tr>
+      <td class="right" width="45%">sot</td>
+      <td class="center">÷</td>
+      <td width="40%"></td>
+      <td class="right">(1)</td>
+    </tr>
+    <tr>
+      <td class="right"></td>
+      <td class="center">÷</td>
+      <td>eot</td>
+      <td class="right">(2)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Break after paragraph separators.</i></td>
+    </tr>
+    <tr>
+      <td align="right" class="right">Sep</td>
+      <td class="center">÷</td>
+      <td></td>
+      <td class="right">(3)</td>
+    </tr>
+    <tr>
+      <td align="right" colspan="4">
+      <p align="left"><i>Treat a grapheme cluster as if it were a single character: the first 
+      character of the cluster.</i></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="right" class="right">GC</td>
+      <td align="right">
+      <p class="center">→</td>
+      <td align="right">FC</td>
+      <td class="right">(4)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Ignore <span class="old_changed">trailing</span> Format characters. That 
+      is, ignore Format characters in all subsequent rules.</i></td>
+    </tr>
+    <tr>
+      <td class="right">X Format*</td>
+      <td class="center">→</td>
+      <td>X</td>
+      <td class="right">(5)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break after ambiguous terminators like period, if immediately 
+      followed by a number or lowercase letter, is between uppercase letters, or if the first 
+      following letter (optionally after certain punctuation) is lowercase. For example, a period 
+      may be an abbreviation or numeric period, and not mark the end of a sentence.</i></td>
+    </tr>
+    <tr>
+      <td class="right">ATerm</td>
+      <td class="center">×</td>
+      <td>Numeric</td>
+      <td class="right">(6)</td>
+    </tr>
+    <tr>
+      <td class="right">Upper ATerm</td>
+      <td class="center">×</td>
+      <td>Upper</td>
+      <td class="right">(7)</td>
+    </tr>
+    <tr>
+      <td class="right">ATerm Close* Sp*</td>
+      <td class="center">×</td>
+      <td>( ¬(OLetter | Upper | Lower | Sep) )* Lower</td>
+      <td class="right">(8)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Break after sentence terminators, but include closing punctuation, trailing 
+      spaces, and (optionally) a paragraph separator.</i></td>
+    </tr>
+    <tr>
+      <td class="right">( STerm | ATerm ) Close*</td>
+      <td class="center">×</td>
+      <td>( Close | Sp | Sep )</td>
+      <td class="right">(9)</td>
+    </tr>
+    <tr>
+      <td class="right">( STerm | ATerm ) Close* Sp</td>
+      <td class="center">×</td>
+      <td>( Sp | Sep )</td>
+      <td class="right">(10)</td>
+    </tr>
+    <tr>
+      <td class="right">( STerm | ATerm ) Close* Sp*</td>
+      <td class="center">÷</td>
+      <td></td>
+      <td class="right">(11)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Otherwise, do not break</i></td>
+    </tr>
+    <tr>
+      <td class="right">Any</td>
+      <td class="center">×</td>
+      <td>Any</td>
+      <td class="right">(12)</td>
+    </tr>
+  </table>
+  <p><b>Notes:</b></p>
+  <ul>
+    <li>
+    <p align="left">Rules 6-8 are designed to forbid breaks within strings like:</p>
+    <table cellspacing="0" cellpadding="0" border="1">
+      <tr>
+        <td class="center">c.d&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="center">3.4</td>
+      </tr>
+      <tr>
+        <td class="center">U.S.</td>
+      </tr>
+      <tr>
+        <td class="center">... the resp. leaders are ...</td>
+      </tr>
+      <tr>
+        <td class="center">... etc.)’&nbsp;‘(the ...</td>
+      </tr>
+    </table>
+    <p align="left">while permitting breaks in strings like:</p>
+    <table cellspacing="0" cellpadding="0" border="1">
+      <tr>
+        <td class="right">&nbsp;She said “See spot run.”&nbsp;</td>
+        <td>John shook his head. ...</td>
+      </tr>
+      <tr>
+        <td class="right">... etc.</td>
+        <td>它们指...</td>
+      </tr>
+      <tr>
+        <td class="right">...理数字.</td>
+        <td>它们指...</td>
+      </tr>
+    </table>
+    <p align="left">As discussed above, they cannot detect cases like “Mr. Jones”; more 
+    sophisticated tailoring would be required for that.</li>
+  </ul>
+  <h2><a name="Implementation_Notes">6 Implementation Notes</a></h2>
+  <h3>6.1 <a name="Normalization">Normalization</a></h3>
+  <p>Although boundaries are specified in terms of NFD text, in practice normalization is not 
+  required. The Grapheme Cluster specification has a number of features to are to ensure that the 
+  same results are returned for canonically equivalent text. It will not break within a sequence of 
+  non-spacing marks, which is the only part that can reorder in the formation of NFD. Nor is there 
+  ever a break between a base character and subsequent non-spacing marks. It also has a special set 
+  of characters marked as having the Extend property value, such as <span class="charlist">U+09BE (
+  </span><span class="symbol">◌া</span><span class="charlist"> ) BENGALI VOWEL SIGN AA</span>, to 
+  deal with particular compositions.</p>
+  <p>The other default boundary specifications never break within grapheme clusters, and always use 
+  a consistent property value for each grapheme cluster as a whole.</p>
+  <h3>6.2 <a name="Grapheme_Cluster_and_Format_Rules">Grapheme Cluster and Format Rules</a></h3>
+  <p>The first rule for the default word and sentence specifications is to treat a grapheme cluster 
+  as a single character: the first character of the cluster. This would be equivalent to making the 
+  following changes to the subsequent rules.</p>
+  <ul>
+    <li>Add rules 1, 3-4 from <a href="#Default_Grapheme_Cluster_Table">Table 1 Default Grapheme 
+    Cluster Table</a> to disallow breaking between Hangul syllables or CRLF.
+    <ul>
+      <li>Note: neither word nor sentence specifications distinguish between L, V, T, LV, or LVT; 
+      nor between CR and LF, nor does it matter whether there is a sequence of these or a single 
+      one.</li>
+    </ul>
+    </li>
+    <li>Insert Extend* after every boundary property value — except after the final property after 
+    the break symbol.
+    <ul>
+      <li>Thus <span class="example2">&nbsp;X Y × Z W&nbsp;</span> becomes
+      <ul>
+        <li><span class="example2">&nbsp;X <u>Extend*</u> Y <u>Extend*</u> × Z <u>Extend*</u> W&nbsp;</span></li>
+      </ul>
+      </li>
+      <li>Thus <span class="example2">&nbsp;X Y ×&nbsp;</span> becomes
+      <ul>
+        <li><span class="example2">&nbsp;X <u>Extend*</u> Y <u>Extend*</u> ×&nbsp;</span></li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <p>The other special rule for the word and sentence specifications is to ignore interior Format 
+  characters. This would be equivalent to making the following further changes to the affected 
+  subsequent rules.</p>
+  <ul>
+    <li>If the break symbol is a no-break sign (×), insert Format* after each Extend*, and after the 
+    break symbol — except where there is nothing after the break symbol.
+    <ul>
+      <li>Thus <span class="example2">&nbsp;X Extend* Y Extend* × Z Extend* W&nbsp;</span> becomes
+      <ul>
+        <li><span class="example2">&nbsp;X Extend* <u>Format*</u> Y Extend* <u>Format*</u> × <u>Format*</u> 
+        Z Extend* <u>Format*</u> W&nbsp;</span></li>
+      </ul>
+      </li>
+      <li>Thus <span class="example2">&nbsp;X Extend* Y Extend* ×&nbsp;</span> becomes
+      <ul>
+        <li><span class="example2">&nbsp;X Extend* <u>Format*</u> Y Extend* ×&nbsp;</span></li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+    <li>If the break symbol is a break sign (÷), insert Format* after each Extend* — except not 
+    before the break symbol.
+    <ul>
+      <li>Thus <span class="example2">&nbsp;X Extend* Y Extend* ÷ Z Extend* W&nbsp;</span> becomes
+      <ul>
+        <li><span class="example2">&nbsp;X Extend* <u>Format*</u> Y Extend* ÷ Z Extend* <u>Format*</u> W&nbsp;</span></li>
+      </ul>
+      </li>
+      <li>Thus <span class="example2">&nbsp;X Extend* Y Extend* ÷&nbsp;</span> becomes
+      <ul>
+        <li><span class="example2">&nbsp;X Extend* <u>Format*</u> Y Extend* ÷&nbsp;</span></li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <h3>6.3 <a name="Regular_Expressions">Regular Expressions</a></h3>
+  <p>The above rules can be converted into a regular expression that will produce the same results. 
+  The regular expression must be evaluated starting at a known boundary (such as the start of the 
+  text), and take the longest match (except in the case of Sentence boundaries, where the shortest 
+  match needs to be used).</p>
+  <p>The conversion into a regular expression is fairly straightforward, although it takes a little 
+  thought. For example, <a href="#Default_Grapheme_Cluster_Table">Table 1. Default Grapheme Cluster 
+  Boundaries</a> can be transformed into the following regular expression:</p>
+  <blockquote>
+    <p><span class="charlist">&nbsp; Control<br>
+    | CR LF<br>
+    | ( !Control? | L+ | T+ | L* ( LV? V+ | LV | LVT ) T* ) Extend*</span></p>
+  </blockquote>
+  <p>Such a regular expression can also be turned into a fast deterministic finite-state machine. 
+  For more information on Unicode Regular Expressions, see
+  <a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18: Unicode Regular Expression 
+  Guidelines</a> [<a href="#Reports">Reports</a>].</p>
+  <h3><a name="Random_Access">6.4 Random Access</a></h3>
+  <p>A further complication is introduced by random access. When iterating through a string from 
+  beginning to end, a regular expression / state machine works well. From each boundary to find the 
+  next boundary is very fast. By constructing a state table for the reverse direction from the same 
+  specification of the rules, reverse iteration is possible.</p>
+  <p>However, suppose that the user wants to iterate starting at a random point in the text, or 
+  detect whether a random point in the text is a boundary. If the starting point does not provide 
+  enough context to allow the correct set of rules to be applied, then one could fail to find a 
+  valid boundary point. For example, suppose a user clicked after the first space after the question 
+  mark in “Are_you_there? _ _ No,_I&#39;m_not”. On a forward iteration searching for a sentence 
+  boundary, one would fail to find the boundary before the “N”, because the “?” hadn’t been seen 
+  yet.</p>
+  <p>A second set of rules to determine a “safe” starting point provides a solution. Iterate 
+  backward with this second set of rules until a safe starting point is located, then iterate 
+  forward from there. Iterate forward to find boundaries that were located between the safe point 
+  and the starting point; discard these. The desired boundary is the first one that is not less than 
+  the starting point. The safe rules must be designed so that they function correctly no matter what 
+  the starting point is, so they have to be conservative in terms of finding boundaries: only 
+  finding those boundaries that can be determined by a small context.</p>
+  <p align="center">
+  <img src="images/random_access.gif" alt="random acces diagram" width="246" height="138"></p>
+  <p>This process would represent a significant performance cost if it had to be performed on every 
+  search. However, this functionality can be wrapped up in an iterator object, which preserves the 
+  information regarding whether it currently is at a valid boundary point. Only if it is reset to an 
+  arbitrary location in the text is this extra backup processing performed. The iterator may even 
+  cache local values that it has already traversed.</p>
+  <h3>6.5 <a name="Tailoring">Tailoring</a></h3>
+  <p>State machines can also be combined with a code-based or table-based tailoring mechanism. For 
+  typical Unicode state machines, a Unicode character is typically passed to a mapping table that 
+  maps characters to boundary property values. This mapping can use an efficient mechanism such as a 
+  trie. Once a boundary property value is produced, then it is passed to the state machine.</p>
+  <p>The simplest customization is just to adjust the values coming out of the character mapping 
+  table. For example, to mark the appropriate quotation marks for a given language as having the 
+  Close sentence boundary property, artificial property values can be introduced for different 
+  quotation marks. A table can be applied after the main mapping table to map those artificial 
+  character property values to the real ones. To change languages, a different small table is 
+  substituted. The only real cost is then an extra array look-up.</p>
+  <p>For code-based tailoring a different special range of property values can be added. The state 
+  machine is set up so that any special property value causes the state machine to halt, and return 
+  a particular exception value. When this exception value is detected, the higher-level process can 
+  call specialized code according to whatever the exceptional value is. This can all be encapsulated 
+  so that it is transparent to the caller.</p>
+  <p>For example, Thai characters can be mapped to a special property value. When the state machine 
+  halts for one of these values, then a Thai word-break engine is invoked internally, to produce 
+  boundaries within the subsequent string of Thai characters. These boundaries can then be cached so 
+  that subsequent calls for next/previous boundaries merely return the cached values. Similarly Lao 
+  characters can be mapped to a different special property value, causing a different engine to be 
+  invoked.</p>
+  <h2>7. <a name="Testing">Testing</a></h2>
+  <p>There is no requirement by Unicode-conformant implementations to implement these default 
+  boundaries. As with the other default specifications, implementations are also free to override 
+  (tailor) the results to meet the requirements of different environments or particular languages. 
+  For those who do implement the default boundaries as specified above, and wish to check that that 
+  their implementation matches that specification, three test files have been made available.</p>
+  <p>These tests cannot be exhaustive, because of the sheer combinatorics; but they do provide 
+  samples that test all pairs of property values, using a representative character for each value, 
+  plus certain other sequences.</p>
+  <table border="1">
+    <tr>
+      <th>Test Data</th>
+      <th>Chart</th>
+    </tr>
+    <tr>
+      <td><a href="GraphemeClusterBreakTest.txt">GraphemeClusterBreakTest.txt</a></td>
+      <td><a href="GraphemeClusterBreakTest.html">GraphemeClusterBreakTest.html</a></td>
+    </tr>
+    <tr>
+      <td><a href="WordBreakTest.txt">WordBreakTest.txt</a></td>
+      <td><a href="WordBreakTest.html">WordBreakTest.html</a></td>
+    </tr>
+    <tr>
+      <td><a href="SentenceBreakTest.txt">SentenceBreakTest.txt</a></td>
+      <td><a href="SentenceBreakTest.html">SentenceBreakTest.html</a></td>
+    </tr>
+  </table>
+  <p>A sample HTML file is also available that shows various combinations in chart form. The header 
+  cells of the chart consist of a property value, followed by a representative code point number. 
+  The body cells in the chart show the <i>break status</i>: whether a break occurs between the row 
+  property value and the column property value. If the browser supports tool-tips, then hovering the 
+  mouse over the code point number will show the character name, general category, line break, and 
+  script property values. Hovering over the break status will display the number of the rule 
+  responsible for that status.</p>
+  <blockquote>
+    <p class="old_changed"><b>Note:</b> To determine a boundary it is <i>not</i> sufficient to just 
+    test the two adjacent characters, except for the case of the default grapheme clusters.</p>
+  </blockquote>
+  <p>The chart may be followed by some test cases. These test cases consist of various strings with 
+  the break status between each pair of characters shown by blue lines for breaks, and whitespace 
+  for non-breaks. Hovering over each character (with tool-tips enabled) shows the character name and 
+  property value; hovering over the break status shows the number of the rule responsible for that 
+  status.</p>
+  <h2><a name="Acknowledgements">Acknowledgements</a></h2>
+  <p>Thanks to Ted Hopp, Andy Heninger, Michael Kaplan, Steve Tolkin, Ken Whistler, and Eric Mader 
+  for their feedback on previous versions of this document.</p>
+  <h2><a name="References">References</a></h2>
+  <table class="noborder" cellspacing="0" cellpadding="4">
+    <tr>
+      <td width="1" class="noborder">[<a name="FAQ">FAQ</a>]</td>
+      <td class="noborder">Unicode Frequently Asked Questions<br>
+      <a href="http://www.unicode.org/unicode/faq/">http://www.unicode.org/unicode/faq/<br>
+      </a><i>For answers to common questions on technical issues.</i></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="Feedback">Feedback</a>]</td>
+      <td class="noborder" valign="top">Reporting Errors and Requesting Information Online<i><br>
+      </i><a href="http://www.unicode.org/reporting.html">http://www.unicode.org/reporting.html</a></td>
+    </tr>
+    <tr>
+      <td width="1" class="noborder">[<a name="Glossary">Glossary</a>]</td>
+      <td class="noborder">Unicode Glossary<a href="http://www.unicode.org/glossary/"><br>
+      http://www.unicode.org/glossary/<br>
+      </a><i>For explanations of terminology used in this and other documents.</i></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="Reports">Reports</a>]</td>
+      <td class="noborder" valign="top">Unicode Technical Reports<br>
+      <a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/<br>
+      </a><i>For information on the status and development process for technical reports, and for a 
+      list of technical reports.</i></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="UCD">UCD</a>]</td>
+      <td class="noborder" valign="top">Unicode Character Database.<br>
+      <a href="http://www.unicode.org/ucd">http://www.unicode.org/ucd<br>
+      </a><i>For an overview of the Unicode Character Database and a list of its associated files</i></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="Unicode">Unicode</a>]</td>
+      <td class="noborder" valign="top">The Unicode Consortium.
+      <a href="http://www.unicode.org/uni2book/u2.html">The Unicode Standard, Version 4.0</a>. 
+      Reading, MA, Addison-Wesley, 2003. 0-321-18578-1.</td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="Versions">Versions</a>]</td>
+      <td class="noborder" valign="top">Versions of the Unicode Standard<br>
+      <a href="http://www.unicode.org/standard/versions">http://www.unicode.org/standard/versions<br>
+      </a><i>For information on version numbering, and citing and referencing the Unicode Standard, 
+      the Unicode Character Database, and Unicode Technical Reports.</i></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <h2><a name="Modifications">Modifications</a></h2>
+  <p>The following summarizes modifications from the previous versions of this document.</p>
+  <p><span class="changedspan"><b>Tracking Number 7.</b></span></p>
+  <ul>
+    <li><span class="changedspan">Incorporated corrigendum for Hangul_Syllable_Type=L explanation, 
+    and adjusted for the change in status of the Joiner characters.</span></li>
+    <li><span class="changedspan">Added override for CB, SA, SG, and XX in wordbreak.</span></li>
+    <li><span class="changedspan">Added &#39;Any&#39; entries, and note about precedence.</span></li>
+    <li><span class="changedspan">Added NBSP, and removed GRAPHEME EXTEND = true from the &#39;alphabetics&#39;.</span></li>
+  </ul>
+  <h3>Tracking Number 6.</h3>
+  <ul>
+    <li>Changed <a href="#STerm">Term</a> to be the 4.0.1 UCD property STerm. Note: the new property 
+    provides minor corrections as well.</li>
+  </ul>
+  <h3 class="old_changed">Tracking Number 4.</h3>
+  <ul>
+    <li>
+    <p class="old_changed">Updated boilerplate.</li>
+    <li>
+    <p class="old_changed">Use the Grapheme_Extend property. Dropped note on Other_Grapheme_Extend, 
+    since those changes are in UCD 4.0.0</li>
+    <li>
+    <p class="old_changed">Deleted note on relation to 3.0 text. Replace reference to 3.2 with one 
+    to 4.0.</li>
+    <li>
+    <p class="old_changed">Replaced the lists of Korean chars by reference to the 
+    Hangul_Syllable_Type, with the lists kept as examples. Added reference to the UCD.</li>
+    <li>
+    <p class="old_changed">Simplified ALetter and OLetter, since some characters are changing from 
+    Sk to Lm, and thus get included; other Sk are not really candidates for words.</li>
+    <li>
+    <p class="old_changed">Subtracted characters from certain classes so they wouldn&#39;t overlap:
+    <ul>
+      <li>
+      <p class="old_changed">CR and LF from Control in Grapheme Break</li>
+      <li>
+      <p class="old_changed">Soft hyphen from MidLetter in Word Break (since it is Cf in 4.0)</li>
+      <li>
+      <p class="old_changed">ATerm, Term and <span class="charlist">GERESH</span> from Close in 
+      Sentence Break</li>
+    </ul>
+    </li>
+    <li>
+    <p class="old_changed">Added note about finite-state machine; highlighted notes about adjacent 
+    characters.</li>
+    <li>
+    <p class="old_changed">Fixed the term &quot;interior&quot; (didn&#39;t match the rules); and some character 
+    names.</li>
+  </ul>
+  <h3>Tracking Number 3.</h3>
+  <ul>
+    <li>Removal of two open issues, resolved by UTC</li>
+    <li>Changed name of &#39;character class&#39; to &#39;property value&#39; for consistency</li>
+    <li>Other_Grapheme_Extend now includes characters for canonical closure</li>
+    <li>Minor changes to some other property values</li>
+    <li>Some additional notes on tailoring words for French, Italian, and Hebrew</li>
+    <li>Added <a href="#Testing">7 Testing</a></li>
+    <li>Minor editing</li>
+  </ul>
+  <h3>Tracking Number 2.</h3>
+  <ul>
+    <li>Simplified grapheme cluster.</li>
+    <li>Handled format characters appropriately.</li>
+    <li>Removed Hiragana × Hiragana from word break, as well as prefix/posfix for numbers (since 
+    they should not block whole-word search).</li>
+    <li>Modified sentence break to catch edge conditions.</li>
+    <li>Added conformance section, with more warnings throughout that these specifications need to 
+    be tailored for different languages/orthographic conventions.</li>
+    <li>Tightened up the specifications of the character classes.</li>
+    <li>Clarified the rule process.</li>
+    <li>Added explanations of the interaction with normalization.</li>
+    <li>Added an implementation section (incorporating the previous Random Access section).</li>
+  </ul>
+  <hr width="50%">
+  <p class="copyright"><font size="-1">Copyright © 2000-2004 Unicode, Inc. All Rights Reserved. The 
+  Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no liability 
+  for errors or omissions. No liability is assumed for incidental and consequential damages in 
+  connection with or arising out of the use of the information or programs contained or accompanying 
+  this technical report. The Unicode <a href="http://www.unicode.org/copyright.html">Terms of Use</a> 
+  apply.</font></p>
+  <p class="copyright">Unicode and the Unicode logo are trademarks of Unicode, Inc., and are 
+  registered in some jurisdictions.</div>
+
+</body>
+
+</html>

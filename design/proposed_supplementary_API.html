@@ -1,0 +1,335 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Proposed Supplementary API (JSR 204)</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>Proposed Supplementary API (JSR 204)</h1>
+<p><i>Mark Davis, 2003-06-04</i></p>
+<h2>Character</h2>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <td colspan="2" bgcolor="#ccccff"><font size="3"><b>Field Summary</b></font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#CODEPOINT_MIN_VALUE">CODEPOINT_MIN_VALUE</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The lowest
+      Unicode code point value. (0)</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html#MAX_VALUE">CODE_POINT_MAX_VALUE</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The highest
+      Unicode code point value according to the Unicode Standard. (0x10FFFF)</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html#SUPPLEMENTARY_MIN_VALUE">SUPPLEMENTARY_MIN_VALUE</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The minimum
+      value for Supplementary code points (0x10000)</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#SURROGATE_MIN_VALUE">SURROGATE_MIN_VALUE</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surrogate
+      minimum value (0xD800)</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_MIN_VALUE">LEAD_SURROGATE_MIN_VALUE</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lead surrogate
+      minimum value (0xD800)</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_MAX_VALUE">LEAD_SURROGATE_MAX_VALUE</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lead surrogate
+      maximum value (0xDBFF)</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_MIN_VALUE">TRAIL_SURROGATE_MIN_VALUE</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trail
+      surrogate minimum value (0xDC00)</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_MAX_VALUE">TRAIL_SURROGATE_MAX_VALUE</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trail
+      surrogate maximum value (0xDFFF)</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#SURROGATE_MAX_VALUE">SURROGATE_MAX_VALUE</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maximum
+      surrogate value (0xDFFF)</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr class="TableHeadingColor" bgcolor="#ccccff">
+    <td colspan="2"><font size="3"><b>Nested Class Summary</b></font></td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;class</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.StringComparator.html">UTF16StringComparator</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UTF16 string
+      comparator class.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr class="TableHeadingColor" bgcolor="#ccccff">
+    <td colspan="2"><font size="+2"><b>Method Summary</b></font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html#getCodePoint(char)">getCodePoint</a></b>(char&nbsp;char16)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
+      code point corresponding to the UTF16 character.</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html#getCodePoint(char, char)">getCodePoint</a></b>(char&nbsp;lead,
+      char&nbsp;trail)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns a code
+      point corresponding to the two UTF16 characters.</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#getCharCount(int)">getCharCount</a></b>(int&nbsp;char32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines how
+      many chars this char32 requires.</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;char</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#getLeadSurrogate(int)">getLeadSurrogate</a></b>(int&nbsp;char32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
+      lead surrogate.</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;char</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#getTrailSurrogate(int)">getTrailSurrogate</a></b>(int&nbsp;char32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
+      trail surrogate.</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;boolean</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#isLeadSurrogate(char)">isLeadSurrogate</a></b>(char&nbsp;char16)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines
+      whether the character is a lead surrogate.</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;boolean</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#isSurrogate(char)">isSurrogate</a></b>(char&nbsp;char16)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines
+      whether the code value is a surrogate.</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;boolean</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#isTrailSurrogate(char)">isTrailSurrogate</a></b>(char&nbsp;char16)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines
+      whether the character is a trail surrogate.</td>
+  </tr>
+</table>
+<p>Other property methods on Character need overloads for int, as in <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html">ICU4J's
+UCharacter.html</a>.</p>
+<h2>CharSequence</h2>
+<p><i>[Or String and StringBuffer, if not possible there.]</i></p>
+<p><i>Note: all offsets are char offsets, except in </i><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findOffsetFromCodePoint(java.lang.String, int)">findOffsetFromCodePoint</a></b></code></p>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <td colspan="2" bgcolor="#ccccff"><font size="3"><b>Field Summary</b></font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#SINGLE_CHAR_BOUNDARY">SINGLE_CHAR_BOUNDARY</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value returned
+      in <code><a href="#bounds(java.lang.String, int)">bounds(offset)</a></code>.
+      The substring bounds for the codepoint that contains charAt(offset) are
+      (offset, offset+1).&nbsp; That is, offset is at the start of a BMP
+      character (single char).</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value returned
+      in <code><a href="#bounds(java.lang.String, int)">bounds(offset)</a></code>.
+      The substring bounds for the codepoint that contains charAt(offset) are
+      (offset, offset+2). That is, offset is at the start of a surrogate pair.</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a></b></code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value returned
+      in <code><a href="#bounds(java.lang.String, int)">bounds(offset)</a></code>.
+      The substring bounds for the codepoint that contains charAt(offset) are
+      (offset-1, offset+1).&nbsp; That is, offset is in the middle of a
+      surrogate pair.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table border="1" cellspacing="0" cellpadding="2" width="100%">
+  <tr class="TableHeadingColor" bgcolor="#ccccff">
+    <td colspan="2"><font size="3"><b>Method Summary</b></font></td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#bounds(java.lang.String, int)">bounds32</a></b>(int&nbsp;offset16)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
+      type of the boundaries around the char at offset16.</td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#charAt(java.lang.String, int)">char32At</a></b>(int&nbsp;offset16)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extract a
+      single UTF-32 value from a string. If offset is in the middle of a
+      codepoint, returns that code point.</td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#countCodePoint(java.lang.String)">length32</a></b>()</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of
+      codepoints in a UTF16 String. Equivalent to <code>findCodePointOffset(length())</code></td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a></b>(int&nbsp;offset16)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
+      UTF-32 offset corresponding to the first UTF-32 boundary at or after the
+      given UTF-16 offset.</td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findOffsetFromCodePoint(java.lang.String, int)">findOffsetFromCodePoint</a></b>(int&nbsp;offset32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
+      UTF-16 offset that corresponds to a UTF-32 offset.</td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#getCharCount(int)">getCharCount</a></b>(int
+      offset)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines how
+      many chars the codepoint at offset requires. If offset is in the middle of
+      a codepoint, returns 2, otherwise one.</td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>static
+      java.lang.String</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#valueOf(int)">value32Of</a></b>(int&nbsp;char32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convenience
+      method corresponding to String.valueOf(char).</td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.String</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#replace(java.lang.String, int, int)">replace</a></b>(int&nbsp;oldChar32,
+      int&nbsp;newChar32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns a new
+      UTF16 format Unicode string resulting from replacing all occurrences of
+      oldChar32 in source with newChar32.</td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.String</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#replace(java.lang.String, java.lang.String, java.lang.String)">replace</a></b>(java.lang.String&nbsp;oldStr,
+      java.lang.String&nbsp;newStr)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns a new
+      UTF16 format Unicode string resulting from replacing all occurrences of
+      oldStr in source with newStr.</td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="center" width="1%" colspan="2"><code><b>Utilities
+      for Speed</b></code></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>boolean</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#hasMoreCodePointsThan(java.lang.String, int)">hasMoreCodePointsThan</a></b>(int&nbsp;number)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Check if the
+      string contains more Unicode code points than a certain number. Equivalent
+      to but <i>much</i> faster than: <code>str.<a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#countCodePoint(java.lang.String)">length32</a>()
+      &gt; number</code></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#moveCodePointOffset(java.lang.String, int, int)">moveCodePointOffset</a></b>(java.lang.String&nbsp;source,
+      int&nbsp;offset16, int&nbsp;shift32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shifts
+      offset16 by the argument number of code points. Equivalent to but <i>much</i>
+      faster than: <code>str.findOffsetFromCodePoint(str.findCodePointOffset(offset16)
+      + shift32)</code></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.String</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#valueOf(java.lang.String, int)">value32Of</a></b>(int&nbsp;offset16)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convenience
+      method corresponding to, but much faster than, <code>String.valueOf(myString.charAt(offset16))</code></td>
+  </tr>
+</table>
+<blockquote>
+  <p>Note: Some existing methods need to be modified to work with
+  supplementaries, such as:</p>
+  <blockquote>
+    <p><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#reverse(java.lang.StringBuffer)">reverse</a></b>()&nbsp;&nbsp;&nbsp;
+    </code>It needs to not reverse surrogate-pairs.<code><br>
+    indexOf()&nbsp;&nbsp;&nbsp; Interpret int as codepoint<br>
+    lastIndexOf()</code></p>
+  </blockquote>
+</blockquote>
+<h2>StringBuffer</h2>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr class="TableHeadingColor" bgcolor="#ccccff">
+    <td colspan="2"><font size="3"><b>Method Summary</b></font></td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.StringBuffer</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#append(java.lang.StringBuffer, int)">append</a>32</b>(int&nbsp;char32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append a
+      single UTF-32 value to the end of a StringBuffer. Equivalent to but faster
+      than: <code>append(String.value32Of(char32))</code></td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.StringBuffer</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#delete(java.lang.StringBuffer, int)">delete</a>32</b>(int&nbsp;offset16)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Removes the
+      codepoint at the specified position in this target (shortening target by 1
+      character if the codepoint is a non-supplementary, 2 otherwise).
+      Equivalent to (but faster than):<br>
+      <code>int start = offset - (bounds() == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
+      ? 1 : 0);<br>
+      int end = offset + (bounds() == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a>
+      ? 2 : 1);<br>
+      delete(start, end);</code></td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.StringBuffer</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#insert(java.lang.StringBuffer, int, int)">insert</a>32</b>(int&nbsp;offset16,
+      int&nbsp;char32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inserts char32
+      codepoint into target at (or before) the argument offset16. Equivalent to
+      but faster than:<br>
+      <code>int start = offset - (bounds() == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
+      ? 1 : 0);<br>
+      </code><code>insert(String.value32Of(char32), start);</code></td>
+  </tr>
+  <tr class="TableRowColor" bgcolor="white">
+    <td valign="top" align="right" width="1%"><font size="-1"><code>void</code></font></td>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#setCharAt(java.lang.StringBuffer, int, int)">setChar32At</a></b>(int&nbsp;offset16,
+      int&nbsp;char32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set a code
+      point into a UTF16 position. Equivalent to but faster than: <code>delete(offset16);<br>
+      insert(String.value32Of(char32), offset16);</code></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

@@ -26,14 +26,18 @@ h2           { page-break-before: always }
 <body>
 
 <h1 align="center">ICU Collation Design Documentation</h1>
-<h3 align="center">Version #16</h3>
-<h3 align="center">2000-03-19</h3>
+<h3 align="center">Version #16a</h3>
+<h3 align="center">2000-03-22</h3>
 <h3 align="center"><i><a href="mailto:mark.davis@us.ibm.com">mailto:mark.davis@us.ibm.com</a></i></h3>
 <h3 align="center">(<a href="ICU_collation_design.htm">Latest Version</a>)</h3>
 <hr width="50%">
 <h2 class="bb">Contents</h2>
 <ol>
-  <li><a href="#Introduction">Introduction</a></li>
+  <li><a href="#Introduction">Introduction</a>
+    <ol>
+      <li><a href="#Code_Links">Source Code Links</a></li>
+    </ol>
+  </li>
   <li><a href="#CollationElementFormat">Collation Elements</a>
     <ol>
       <li><a href="#Fractional_Collation_Elements">Fractional Collation Elements</a></li>
@@ -124,7 +128,19 @@ h2           { page-break-before: always }
       <li><a href="#Registration">Registration</a></li>
     </ol>
   </li>
-  <li><a href="#API">API</a></li>
+  <li><a href="#API">API</a>
+    <ol>
+      <li><a href="#General_Attribute_API">General Attribute API</a></li>
+      <li><a href="#Memory_API">Memory API</a></li>
+      <li><a href="#Rule_Retrieval_API">Rule Retrieval API</a></li>
+      <li><a href="#Custom_Data_API">Custom Data API</a></li>
+      <li><a href="#Sort_Key_API">Sort Key API</a></li>
+      <li><a href="#Script_Order_API">Script Order API</a></li>
+      <li><a href="#Charset_Ordering_API">Charset Ordering API</a></li>
+      <li><a href="#Loose_Match_Utility">Loose Match API</a></li>
+      <li><a href="#Merge_Comparison_API">Merge Comparison API</a></li>
+    </ol>
+  </li>
   <li><a href="#Issues">Issues</a>
     <ol>
       <li><a href="#Parameterized_SHIFTED">Parameterized SHIFTED</a></li>
@@ -163,8 +179,7 @@ the &quot;correct&quot; order for their language. This involves features like
 multiple strength levels, contracting characters, and expanding characters, plus 
 oddities such as French secondaries or Thai reordering. We will not dive into a 
 discussion of these features; instead, readers must first read and be familiar 
-with the following documents. <i>Without such preparation, the rest of this 
-document will make little sense.</i></p>
+with the following documents.</p>
 <ul>
   <li>
     <p align="left"><i>Section 5.17 Sorting and Searching</i> from <i>The 
@@ -178,16 +193,61 @@ document will make little sense.</i></p>
     </ul>
   </li>
 </ul>
-<p>This document is liberally sprinkled with code fragments. These are meant to 
-be illustrative, and will not necessarily track or match the final 
-implementation, nor even necessarily be consistent with one another.</p>
+<p align="center"><b>&nbsp;<i>Without being familiar with these documents, the 
+rest of this document will make little sense.</i></b></p>
 <blockquote>
   <p align="left"><i><b>Note: </b>This is a working document, and often does not 
   have the cleanest exposition. It has evolved with the development project, and 
-  documents most heavily the parts that we found to be the trickiest.</i></p>
+  documents most heavily the parts that we found to be the trickiest. </i>See <a
+  href="#Modifications">Modifications</a> for the latest document changes.</p>
 </blockquote>
-<p align="left">See <a href="#Modifications">Modifications</a> for the latest 
-changes.</p>
+<h3>1.1 <a name="Code_Links">Source Code Links</a></h3>
+<p>This document is liberally sprinkled with code fragments. These are meant to 
+be illustrative, and will not necessarily track or match the final 
+implementation, nor even necessarily be consistent with one another! The actual 
+code can be found in the following list.</p>
+<h4>API</h4>
+<ul>
+  <li><a
+    href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/unicode/ucol.h">ucol.h</a> 
+    (C collator), <a
+    href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/unicode/coll.h">coll.h</a>, 
+    <a
+    href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/unicode/tblcoll.h">tblcoll.h</a> 
+    (C++ version)</li>
+  <li><a
+    href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/unicode/ucoleitr.h">ucoleitr.h</a>&nbsp; 
+    (C collation element iterator), <a
+    href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/unicode/coleitr.h">coleitr.h</a> 
+    (C++ version)</li>
+</ul>
+<h4>Internals</h4>
+<ul>
+  <li><a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol.cpp">ucol.cpp</a>, 
+    <a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_imp.h">ucol_imp.h</a> 
+    (main runtime implementation)</li>
+  <li><a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_bld.cpp">ucol_bld.cpp</a>, 
+    <a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_bld.h">ucol_bld.h</a> 
+    (coordinates building of rule-based collator from rules)</li>
+  <li><a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_cnt.cpp">ucol_cnt.cpp</a>, 
+    <a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_cnt.h">ucol_cnt.h</a> 
+    (handles building of contraction table)</li>
+  <li><a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_elm.cpp">ucol_elm.cpp</a>, 
+    <a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_elm.h">ucol_elm.h</a> 
+    (handles all other building: flat table, expansions, etc.)</li>
+  <li><a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_tok.c">ucol_tok.c</a>, 
+    <a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_tok.h">ucol_tok.h</a> 
+    (takes rules string and produces list of tokens)</li>
+  <li><a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_wgt.c">ucol_wgt.c</a>, 
+    <a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucol_wgt.h">ucol_wgt.h</a> 
+    (generates CEs for tailoring)</li>
+  <li><a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/ucoleitr.cpp">ucoleitr.cpp</a> 
+    (collation element iterator)</li>
+  <li><a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/coll.cpp">coll.cpp</a>, 
+    <a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/coleitr.cpp">coleitr.cpp</a>, 
+    <a href="http://oss.software.ibm.com/cvs/icu/icu/source/i18n/tblcoll.cpp">tblcoll.cpp</a> 
+    (C++ wrappers)</li>
+</ul>
 <h2 align="left">2 <a name="Collation_Elements">Collation Elements</a></h2>
 <p align="left">The fundamental data element used in collation is the collation 
 element (CE). The basic algorithm for sort keys is to fetch a collation element 
@@ -727,7 +787,7 @@ variable. (This saves having a bit per CE!) If a CE is variable, we support the
 Shifted Option from the UCA in constructing. We process the UCA table to ensure 
 that VARIABLE_MAX&nbsp; has a zero second byte for simplicity, but a tailored or 
 parametric Variable_Max may have two bytes. (We do impose the restriction that 
-it can't have more.) </p>
+it can't have more.)</p>
 <p align="left">The quarternary is computed based on the setting. With shifted, 
 then it is skipped if the ce is entirely zero, equal to the primary if variable, 
 and otherwise equal to FF. (In the UCA this is FFFF, but we can make it a 
@@ -1509,7 +1569,7 @@ Boyer-Moore international search algorithm.</p>
 <p align="left">Because two strings are &quot;live&quot; at the same time in 
 comparison, we will pass in a parameter block (allocated on the stack) with 
 state information for each string to getCE. This is called a <a name="Context">Context</a>:<o:p>          
-  </o:p>                                                                          
+  </o:p>                                                                             
 </p> 
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
@@ -1582,8 +1642,8 @@ canonical reordering.</p>
   <li>The raw canonical decomposition may or may not be in NFD. It depends on 
     whether there will be any combining marks that are not in canonical order.</li>
 </ul>
-<p>Define a string to be in <i>restricted form C or D (FCD)</i> if its raw 
-canonical decomposition is of form NFD.</p>
+<p>Define a string to be in <i>fast C or D (FCD)</i> if its raw canonical 
+decomposition is of form NFD.</p>
 <ul>
   <li>FCD is <i>not</i> a Normalization Form, since there is <b>no</b> 
     uniqueness -- it is just defined here for the purposes of collation.</li>
@@ -2371,18 +2431,20 @@ if (cp &lt; SLimit) { // since it is unsigned, catchs zero case too
   } else { // Jamo is Special
 
     // do recursive processing of L, V, and T with fetchCE (but T only if not equal to TBase!!)
-    // Since fetchCE returns a CE, and (potentially) stuffs items into the ce buffer,
-    // this is how it is done.
 
-    int firstCE = fetchCE(L, ...);
-    int* lastExpansion = expansionBufferEnd++; // set pointer, leave gap!
-    *lastExpansion = fetchCE(V,...);
+    bufferEnd = tempBuffer;
+    *bufferEnd++ = L;
+    *bufferEnd++ = V;
     if (T != TBase) {
-      lastExpansion = expansionBufferEnd++; // set pointer, leave gap!
-      *lastExpansion = fetchCE(T,...);
+      *bufferEnd++ = T;
     }
+    return fetchCE(... tempBuffer, p, ...); // loops, stuffing remaining CEs into expansion buffer.
   }
 }</pre>
+<p>Note that because of this special processing of Hangul Syllables, we do not 
+allow contractions between Hangul Syllables and other characters. That is, you 
+can't have the contraction like:</p>
+<p align="center">&amp; z &lt; 각x</p>
 <h3 align="left">5.7 <a name="Charset_Ordering">Charset Ordering</a> (post 1.8)</h3>
 <p align="left">To save space, we can use Charset Ordering. This is to account 
 for the case where CJK characters are essentially just sorted in character set 
@@ -3358,7 +3420,7 @@ two semantic changes.</p>
     UCA, instead of NFKD. However, we offer more options: the decomposition can 
     be set on or off in the tailoring.</li>
 </ol>
-<h3>General attribute handling API:</h3>
+<h3>10.1 <a name="General_Attribute_API">General Attribute API</a></h3>
 <h4>C API</h4>
 <pre>void ucol_setAttribute(
   UCollator *coll,
@@ -3415,7 +3477,7 @@ They are summarized in the following list:</p>
 value of the attribute to the default set by the tailoring rules. Attribute 
 values that are inappropriate for the particular attribute types result in 
 U_ILLEGAL_ARGUMENT_ERROR.</p>
-<h3>Memory</h3>
+<h3>10.2 <a name="Memory_API">Memory API</a></h3>
 <p>We add a safeClone, so that people can more easily manage collators among 
 threads. We will allow stack allocation. If created on the stack, the close 
 function does not free the main storage (but may free internal storage). We can 
@@ -3430,7 +3492,7 @@ nothing needs doing.</p>
 <pre><font face="Courier New" color="#000000" size="2">Collator* safeClone(void);</font></pre>
 <p align="left">In the future, we could add an open function that allows stack 
 allocation.</p>
-<h3>Rule retrieval</h3>
+<h3>10.3 <a name="Rule_Retrieval_API">Rule Retrieval API</a></h3>
 <p>The new API can return either the full UCA rule set plus the tailoring (the 
 getRules API will just return the tailoring).</p>
 <h4>C API</h4>
@@ -3443,7 +3505,7 @@ getRules API will just return the tailoring).</p>
 <p>The delta parameter is from the following range:</p>
 <pre>UCOL_TAILORING_ONLY,
 UCOL_FULL_RULES</pre>
-<h3>Custom data handling for string comparison</h3>
+<h3>10.4 <a name="Custom_Data_API">Custom Data API</a></h3>
 <p>We allow user to supply their own function for fetching characters.
 <h4>C API</h4>
 <pre>U_CAPI UCollationResult ucol_strcollinc(const UCollator *coll, 
@@ -3460,7 +3522,7 @@ ForwardCharacterIterator class:</p>
 <pre>virtual EComparisonResult compare(
   ForwardCharacterIterator &amp;source,
   ForwardCharacterIterator &amp;target);</pre>
-<h3>Sort key array retrieval (C++ only)</h3>
+<h3>10.5 <a name="Sort_Key_API">Sort Key API </a>(C++ only)</h3>
 <p>In order to have the same functionality as in C, the C++ API gets the 
 following functions:
 <pre>virtual int32_t getSortKey(
@@ -3475,7 +3537,7 @@ virtual int32_t getSortKey(
   int32_t resultLength) const;</pre>
 <p>These API store the sort key in an uint8_t (e.g. byte) array. The functions 
 do the standard preflighting.</p>
-<h3 align="left">Script Order (post 1.8)</h3>
+<h3 align="left">10.6 <a name="Script_Order_API">Script Order API</a> (post 1.8)</h3>
 <div align="left">
   <pre>char* temp = &quot;\u03B1, \u044F, f&quot;;
 // use unescape to put into uchar* tempu;
@@ -3512,7 +3574,8 @@ overridden one as slave:</p>
 </blockquote>
 <p align="left">Before execution, these characters are used to form a permuting 
 scriptOrder array, as described in the implementation section.</p>
-<h3 align="left">Charset Ordering (post 1.8)</h3>
+<h3 align="left">10.7 <a name="Charset_Ordering_API">Charset Ordering API</a> 
+(post 1.8)</h3>
 <p align="left">The following methods need to be added to charset converters, 
 before we can support the charset feature.</p>
 <div align="left">
@@ -3534,27 +3597,113 @@ the others are extensions.</p>
 
 uint8_t  cvt_getColVersion(Converter cvt);</pre>
 </div>
-<h3 align="left"><a name="Loose_Match_Utility">Loose Match Utility</a> (post 
+<h3 align="left">10.8 <a name="Loose_Match_Utility">Loose Match API</a> (post 
 1.8)</h3>
 <p align="left">This is a useful utility function for searching within a sorted 
 list of sort keys. It takes a sort key and a level (greater than 1), and 
-produces upper- and lower-bound sort keys respectively. These values are such 
-that lowerBound &lt;= sortKey &lt; upperbound can be used for a loose match at 
-the requested level. For example, take a sort key for &quot;Smith&quot;. The 
+produces upper- or lower-bound sort keys respectively. That is, it can be used 
+to select values such that lowerBound &lt;= sortKey &lt; upperbound, <i>at the 
+requested level</i>. For example, take a sort key for &quot;Smith&quot;. The 
 generated lowerbound and upperbound sort keys for level 3 would match everything 
 from &quot;smith&quot; to &quot;SMITH&quot;, with any ignorable characters. If 
 the level were 2, then it would match any of those, plus any combination with 
-accents.</p>
+accents. By using bounds from different keys, larger ranges can be selected.</p>
 <ul>
   <li>
-    <p align="left">The lowerbound is easy. Copy the input key up to the 01 
-    terminating the requested level. Append a 00 and stop.</li>
+    <p align="left">The <span style="font-variant: small-caps">inclusive</span> 
+    lower bound is easy. Copy the input key up to the 01 terminating the 
+    requested level. Append a 00 and stop.</li>
   <li>
-    <p align="left">The upperbound is only slightly harder. Do the same as the 
-    lower bound, but then start backing up through the bytes. If a byte is 
-    neither FF nor 01, add one and stop. Otherwise, set it to 00 and continue to 
-    the previous byte.</li>
+    <p align="left">The <span style="font-variant: small-caps">exclusive </span>upper 
+    bound is only slightly harder. Do the same as the lower bound, but then 
+    start backing up through the bytes. If a byte is neither FF nor 01, add one 
+    and stop. Otherwise, set it to 00 and continue to the previous byte.</li>
 </ul>
+<p align="left">Doing <span style="font-variant: small-caps">exclusive </span>lower 
+bound or <span style="font-variant: small-caps">inclusive</span> upper bound 
+would take a bit more thought.</p>
+<h3 align="left">10.9 <a name="Merge_Comparison_API">Merge Comparison API</a> 
+(post 1.8)</h3>
+<p align="left">This is a useful utility function for combining fields in a 
+database. When sorting multiple fields, such as lastName and firstName, there 
+are two alternatives. The first is to sort simply by lastName, then sort within 
+lastNames by first name. That, however, leads to normally undesired results. For 
+example, consider the following (where alternates are SHIFTED).</p>
+<blockquote>
+  <p align="left">diSilva, John<br>
+  diSilva, Fred<br>
+  di Silva, John<br>
+  di Silva, Fred<br>
+  dísilva, John<br>
+  dísilva, Fred</p>
+</blockquote>
+<p align="left">The problem is that substantially primary-different first names 
+should swamp tertiary-different (or secondary-different) last names. One course 
+of action is to sort the first fields only by primary difference. However, this 
+will result in non-primary differences in the last name being ignored when they 
+shouldn't be:</p>
+<blockquote>
+  <p align="left">diSilva, John<br>
+  dísilva, John<br>
+  di Silva, John<br>
+  di Silva, Fred<br>
+  diSilva, Fred<br>
+  dísilva, Fred</p>
+</blockquote>
+<p align="left">Notice in the second example that the first names are now 
+correctly ordered, but ignoring differences in accent, case or spacing in the 
+first names causes them to come out in essentially random order. There are two 
+solutions to this. First is to sort a calculated field, which is lastName + 
+separator + firstName, where the separator is chosen to be a character that has 
+a non-ignorable primary weight, and sorts lower than anything that could be in 
+lastName. For example, the following have the lowest UCA non-zero, non-primary 
+weights (depending on the alternate weight setting):</p>
+<ul>
+  <li>
+    <p align="left">U+02D0 MODIFIER LETTER TRIANGULAR COLON (if SHIFTED)</li>
+  <li>
+    <p align="left">U+0009 HORIZONTAL TABULATION (if not SHIFTED)</li>
+</ul>
+<p align="left">However, that is not the most satisfactory result, since (a) you 
+may have the sort keys for lastName and firstName already and don't want to 
+waste time recomputing them, and (b) you have to make sure that lastName cannot 
+not contain the separator character.</p>
+<p align="left">An alternative is to have a mergeSortKeys function. This takes a 
+list of sort keys, and concatenates them together <i>level-by-level</i>. For 
+example, given:</p>
+<ul>
+  <li>
+    <p align="left"><b>aa bb cc 01 dd ee ff gg 01 hh ii 00</b></li>
+  <li>
+    <p align="left"><font color="#0000FF"><b>jj kk 01 mm nn oo 01 pp qq rr 00</b></font></li>
+  <li>
+    <p align="left"><font color="#003300"><b>ss tt uu vv 01 ww xx 01 yy zz 00</b></font></li>
+</ul>
+<p align="left">The result is one sort key that has each of the primary levels, 
+then each of the secondary levels, and so on. Each list of weights at each level 
+is separated with a 01.</p>
+<ul>
+  <li>
+    <p align="left"><b>aa bb cc 01 </b><font color="#0000FF"><b>jj kk 01 </b></font><font
+    color="#003300"><b>ss tt uu vv 01 </b></font><b>dd ee ff gg 01 </b><font
+    color="#0000FF"><b>mm nn oo 01 </b></font><font color="#003300"><b>ww xx 01 </b></font><b><font
+    color="#003300">h</font>h ii 00</b> <font color="#0000FF"><b>pp qq rr 0 </b></font><font
+    color="#003300"><b>yy zz 00</b></font></li>
+</ul>
+<p align="left">If this function is used, then the correct sorting can be 
+produced for multiple fields. All the level information is taken into account:</p>
+<blockquote>
+  <p align="left">diSilva, John<br>
+  di Silva, John<br>
+  dísilva, John<br>
+  diSilva, Fred<br>
+  di Silva, Fred<br>
+  dísilva, Fred</p>
+</blockquote>
+<p align="left">A similar function is available for string comparison, that 
+compares one list of strings against another. For both sort keys and string 
+comparison, the client must ensure that the same number of strings are being 
+compared on either side. </p>
 <h1>11 <a name="Issues">Issues</a></h1>
 <p>The following section lists issues and possible future additions.</p>
 <h3>11.1 <a name="Parameterized_SHIFTED">Parameterized SHIFTED</a> (post 1.8 
@@ -3566,6 +3715,7 @@ elements at that level. Here is an example of the difference it would make.</p>
 <table border="1">
   <tr>
     <th width="33%">Not Ignored</th>
+    <th width="33%">Shifted to 2rd</th>
     <th width="33%">Shifted to 3rd</th>
     <th width="34%">Shifted to 4th</th>
   </tr>
@@ -3574,11 +3724,24 @@ elements at that level. Here is an example of the difference it would make.</p>
       di Silva<br>
       Di silva<br>
       Di Silva<br>
+      <font color="#FF0000"><b>Dickens</b></font><br>
       disilva<br>
       diSilva<br>
       Disilva<br>
       DiSilva</td>
-    <td align="center">di silva<br>
+    <td align="center"><font color="#FF0000"><b>Dickens</b></font><span
+      style="background-color: #FF0000"><br>
+      </span>di silva<br>
+      di Silva<br>
+      Di silva<br>
+      Di Silva<br>
+      disilva<br>
+      diSilva<br>
+      Disilva<br>
+      DiSilva</td>
+    <td align="center"><font color="#FF0000"><b>Dickens</b></font><span
+      style="background-color: #FF0000"><br>
+      </span>di silva<br>
       di Silva<br>
       disilva<br>
       diSilva<br>
@@ -3586,7 +3749,9 @@ elements at that level. Here is an example of the difference it would make.</p>
       Di Silva<br>
       Disilva<br>
       DiSilva</td>
-    <td align="center">di silva<br>
+    <td align="center"><font color="#FF0000"><b>Dickens</b></font><span
+      style="background-color: #FF0000"><br>
+      </span>di silva<br>
       disilva<br>
       di Silva<br>
       diSilva<br>
@@ -3979,6 +4144,7 @@ Main items (not in priority order)
 <h3>Version 16</h3>
 <ul>
   <li>General cleanup, reorganization.</li>
+  <li>16b: added <a href="#Merge_Comparison_API">Merge Comparison API</a></li>
 </ul>
 <h3>Version 15</h3>
 <ul>

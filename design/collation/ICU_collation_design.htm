@@ -25,10 +25,8 @@ th           { background-color: #CCCCFF }
 <body>
 
 <h1 align="center">ICU Collation Design Documentation</h1>
-<p align="center"><b><font color="#FF0000" size="4">Note: this is a rough draft. 
-Please look at the <a href="#Modifications">Modifications</a></font></b></p>
-<h2 align="center">Draft #12, MD</h2>
-<h3 align="center">2000-01-12</h3>
+<h2 align="center">Draft #13d, MD/2000-01-17</h2>
+<h2 align="center"><font color="#0000FF">See <a href="#Modifications">Modifications</a></font></h2>
 This document describes the proposed revisions to Collation in ICU. Readers 
 should already be familiar with <a
 href="http://www.unicode.org/unicode/reports/tr10/">UTS #10: Unicode Collation 
@@ -41,13 +39,26 @@ be illustrative, and will not necessarily match the final implementation. The
 organization of the text could be improved, but we probably won't take the time 
 to do it until later.</p>
 <h2>Contents</h2>
+<p><i>Note: Not all subsections are listed in the contents.</i></p>
 <ul>
   <li><a href="#Requirements">Requirements</a></li>
   <li><a href="#Performance">Performance</a></li>
-  <li><a href="#Data_Tables">Data Tables</a></li>
+  <li><a href="#Data_Tables">Data Tables</a>
+    <ul>
+      <li><a href="#Compression">Compression</a></li>
+    </ul>
+  </li>
   <li><a href="#Forming_Sort_Keys">Forming Sort Keys</a></li>
-  <li><a href="#Fetching_CEs">Fetching CEs</a></li>
-  <li><a href="#Flat_File">Flat File</a></li>
+  <li><a href="#Fetching_CEs">Fetching CEs</a>
+    <ul>
+      <li><a href="#Implicit_CEs">Implicit CEs</a></li>
+    </ul>
+  </li>
+  <li><a href="#Flat_File">Flat File</a>
+    <ul>
+      <li><a href="#Details_on_Generation">Details on Generation</a></li>
+    </ul>
+  </li>
   <li><a href="#UCA_Processing">UCA Processing</a></li>
   <li><a href="#Rule_Syntax">Rule Syntax</a></li>
   <li><a href="#Versioning">Versioning</a></li>
@@ -56,6 +67,7 @@ to do it until later.</p>
   <li><a href="#FAQ">FAQ</a></li>
   <li><a href="#Appendix_1">Appendix 1: Japanese Sort Order</a></li>
   <li><a href="#Appendix_2">Appendix 2: Compressing Primary Weights</a></li>
+  <li>Appendix 3: Data Files</li>
   <li><a href="#Modifications">Modifications</a></li>
 </ul>
 <h2><a name="Requirements">Requirements</a></h2>
@@ -68,8 +80,8 @@ functionality may be in 1.7, if it is easier to integrate then.)</p>
 <ol>
   <li>All of the current features will be maintained (with one semantic change 
     -- see API).</li>
-  <li>Improve performance to be satisfactory for Lotus Notes. First priority is 
-    string compare, next is sortkey. (perf)</li>
+  <li>Improve performance to the requisite level. First priority is string 
+    compare, next is sortkey. (perf)</li>
   <li>Fix Japanese tailoring data to be more MS Office compatible [but see 1.8 
     for complete story] (data)
     <ul>
@@ -115,8 +127,8 @@ functionality may be in 1.7, if it is easier to integrate then.)</p>
   </li>
   <li>Provide parametric case reversal, e.g. upper before lower or lower before 
     upper (function: for Danish std)</li>
-  <li>Ignore accents (actually ignore accents &amp; non-case variants while not 
-    ignoring case bit) (function)</li>
+  <li>Ignore accents (actually ignore all levels <i><b>except</b></i> Primary 
+    and Case Level) (function)</li>
   <li>Provide better surrogate support (req. for GB 18030 and Unicode 3.1)</li>
   <li>Use compression techniques for shorter sort-keys, reducing memory and 
     database footprint (perf, footprint)</li>
@@ -137,9 +149,9 @@ functionality may be in 1.7, if it is easier to integrate then.)</p>
   <li>Registration of Collations.</li>
   <li>Tailoring to add characters <i>before</i> other characters.</li>
 </ol>
-<p>These are not completely described here, but sufficient information should be 
-provided so that we don't make design decisions that would make them harder to 
-do in the future.</p>
+<p>These options are not completely described here, but sufficient information 
+should be provided so that we don't make design decisions that would make them 
+harder (or impossible) to do in the future.</p>
 <h2><a name="Performance">Performance</a></h2>
 Main items (not in priority order)
 <ul>
@@ -171,6 +183,7 @@ Main items (not in priority order)
     <ul>
       <li>Avoid normalization where possible. Use QuickCheck for this.</li>
       <li>Use fast-path for non-normalization case.</li>
+      <li>Speed up the main normalization code.</li>
     </ul>
   </li>
   <li>Comparisons will be done against Win32 SDK CompareString() and LCMapString() 
@@ -641,8 +654,10 @@ These are only used internal to the data table.</p>
 <h2 align="left"><a name="Forming_Sort_Keys">Forming Sort Keys</a></h2>
 <pre align="left">const int FLAG_MASK = 0x80;
 const int FLAG_MASK2 = 0x40;
-const int CASE_MASK = 0x40;
+const int CASE_MASK = FLAG_MASK2;
 const int FLAGS_MASK = FLAG_MASK | FLAG_MASK2;
+const int CONTINUATION_MASK = FLAG_MASK;
+const int LONG_PRIMARY_MASK = FLAG_MASK | FLAG2_MASK;
 
 const int MIN_SPECIAL = 0xF0000000;
 const int MIN_VALUE = 0x02;
@@ -660,16 +675,19 @@ wp2 = (ce &gt;&gt; 16) &amp; 0xFF; // second primary byte
 wp1 = (ce &gt;&gt; 24); // first primary byte
 
 if (ce &amp; FLAG_MASK) {
-  if (ce &amp; FLAG_MASK2) {
+  if (ce &amp; FLAG_MASK2) { // long primary
     wp3 = ws;
     ws = UNMARKED;
+    if (scriptOrder != null) {
+      wp1 = scriptOrder[wp1];
+    }
+  } // otherwise it would be continuation
+  wt &amp;= ~FLAGS_MASK; // clear bits in tertiary
+} else { // normal CE
+  if (caseUpper) wt ^= CASE_MASK; // invert upper/lower
+  if (scriptOrder != null) {
+    wp1 = scriptOrder[wp1];
   }
-  wt ^= FLAGS_MASK; // clear bits in tertiary
-}
-
-if (caseUpper) wt ^= CASE_MASK; // invert upper/lower
-if (scriptOrder != null &amp;&amp; (ce &amp; FLAGS_MASK != FLAG_MASK)) {
-  wp1 = scriptOrder[wp1];
 }
 
 if (alternate == SHIFTED &amp;&amp; wp1 &lt; VARIABLE_MAX &amp;&amp; wp1 &gt; 0) {
@@ -680,28 +698,22 @@ if (alternate == SHIFTED &amp;&amp; wp1 &lt; VARIABLE_MAX &amp;&amp; wp1 &gt; 0)
   if (wp1 != 0) *primary++ = wp1;
   if (wp2 != 0) *primary++ = wp2;
   if (strength &gt;= SECONDARY) {
-    if (ws != 0) {
-      if (frenchSecondary) {
-        // special handling
-      }
-      *secondary++ = ws;
-    }
+    if (ws != 0) *secondary++ = ws;
     if (strength &gt;= TERTIARY) {
       if (wt != 0) *tertiary++
-      if (strength &gt;= QUARTERNARY &amp;&amp; alternate == SHIFTED &amp;&amp; wp1 &gt; 0) *quarternary++ = 0xFF;
+      if (strength &gt;= QUARTERNARY 
+       &amp;&amp; alternate == SHIFTED &amp;&amp; wp1 &gt; 0) *quarternary++ = 0xFF;
     }
   }
 }</pre>
 </div>
-<p align="left">TERTIARY_MASK is set to either 0x7F or 0xFF, depending on 
-whether we want to include the case bit or not.</p>
-<p align="left">One twist. If the FrenchSecondary flag is turned on, then the 
-secondary values in the continuation CEs are reversed. This is so that when the 
-secondary buffer itself is reversed (see below), the continuation values come 
-out in the right order. This is done by the following pseudocode (where 
-specialHandling is above)</p>
+<p align="left"><i><b>One twist. </b></i>If the FrenchSecondary flag is turned 
+on, then the secondary values in the continuation CEs are reversed. This is so 
+that when the secondary buffer itself is reversed (see below), the continuation 
+values come out in the right order. This is done by the following pseudocode 
+(where specialHandling is above)</p>
 <div align="left">
-  <pre align="left">if (ce &gt;= MIN_CONTINUATION_VALUE) {
+  <pre align="left">if ((ce &amp; FLAGS_MASK) == CONTINUATION_MASK) {
   if (frenchStartPtr == null) frenchStartPtr = secondary - 1;
   frenchEndPtr = secondary + 1;
 } else if (frenchStartPtr != null) {
@@ -796,23 +808,260 @@ come out in the same order as they were put in. This requires more than simply
 distinguishing strings that are the same for the primary, secondary and tertiary 
 weights. A common solution is to append the record number to the sort key. If 
 this were done, a similar kind of &quot;quoting&quot; would need to be done.</p>
-<h3 align="left">Compression</h3>
+<h3 align="left"><a name="Compression">Compression</a></h3>
 <p align="left">We will use the technique discussed in UCA to reduce the length 
-of sort keys that contain multiple COMMON weights. Instead of:</p>
+of sort keys that contain a series of common weights in non-primary positions. 
+This produces very significant reductions in sort key size, since most 
+secondary, tertiary, and quarternary weights are UNMARKED. <i>For compression of 
+primary weights weights, see <a href="#Appendix_2">Appendix_2</a>.</i></p>
+<p align="left">We make sure there are no real weights that are both greater 
+than COMMON (abbreviated by C below) and less than or equal to COMMON_TOP (abbr. 
+T). Then look at a series of COMMON bytes followed by bytes H (higher than C) or 
+L (lower than C), or nothing. Here is the ordering, and the compression that 
+also produces that ordering. For illustration, the gap between T and has been 
+artificially set to a small number to illustrate what happens if the normal 
+compression range is exceeded.</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="1" cellpadding="4">
+    <tr>
+      <th colspan="5">Original</th>
+      <th colspan="3">Result</th>
+    </tr>
+    <tr>
+      <td class="secondary" width="12%">C</td>
+      <td class="secondary" width="12%">H</td>
+      <td class="secondary" width="12%">&nbsp;</td>
+      <td class="secondary" width="12%">&nbsp;</td>
+      <td class="secondary" width="12%">&nbsp;</td>
+      <td class="case" width="12%">T</td>
+      <td class="case" width="12%">H</td>
+      <td class="case" width="12%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">H</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="case">T-1</td>
+      <td class="case">H</td>
+      <td class="case">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">H</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="case">T-2</td>
+      <td class="case">H</td>
+      <td class="case">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">H</td>
+      <td class="case">T-3</td>
+      <td class="case">C</td>
+      <td class="case">H</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">L</td>
+      <td class="case">C+3</td>
+      <td class="case">C</td>
+      <td class="case">L</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="case">C+3</td>
+      <td class="case">C</td>
+      <td class="case">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">L</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="case">C+2</td>
+      <td class="case">L</td>
+      <td class="case">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">L</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="case">C+2</td>
+      <td class="case">L</td>
+      <td class="case">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="case">C+2</td>
+      <td class="case">&nbsp;</td>
+      <td class="case">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">L</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="case">C+1</td>
+      <td class="case">L</td>
+      <td class="case">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">C</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="case">C+1</td>
+      <td class="case">&nbsp;</td>
+      <td class="case">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">L</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="case">C</td>
+      <td class="case">L</td>
+      <td class="case">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="secondary">C</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="secondary">&nbsp;</td>
+      <td class="case">C</td>
+      <td class="case">&nbsp;</td>
+      <td class="case">&nbsp;</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p align="left">To do this in code, we replace a statement like:</p>
 <div align="left">
   <pre>*secondary++ = ws;</pre>
 </div>
 <p align="left">we write:</p>
 <div align="left">
-  <pre>if (ws  == COMMON2 &amp;&amp; COMMON2  &lt;= secondary[-1] &amp;&amp; secondary[-1] &lt; COMMON_MAX2)
-  ++secondary[-1]; // simply increment!!
-else *secondary++ = ws;</pre>
+  <pre>if (ws  == COMMON2) {
+  ++count2;
+} else {
+  if (count2 &gt; 0) {
+    writeCompressed2();
+    count2 = 0;
+  }
+  *secondary++ = ws;
+}
+
+void writeCompressed2() {
+  if (ws &gt; COMMON2) { // not necessary for 4th level.
+    while (count2 &gt;= MAX_TOP2) {
+      *secondary++ = COMMON_TOP2 - TOP_COUNT2;
+      count2 -= TOP_COUNT2;
+    }
+    *secondary++ = COMMON_TOP2 - count2;
+  } else {
+    while (count2 &gt;= BOT_COUNT2) {
+      *secondary++ = COMMON_BOT2 + BOT_COUNT2;
+      count2 -= BOT_COUNT2;
+    }
+    *secondary++ = COMMON_BOT2 + count2;
+  }
+}</pre>
 </div>
-<p align="left">The values for COMMON_S, COMMON_T and COMMON_LIMIT_Q are 
-constant: 02, 02, FF.</p>
-<p align="left">The values for COMMON_Q and COMMON_LIMIT_S, COMMON_LIMIT_T are 
-generated when processing a table, and stored in the header.</p>
-<p align="left">[TBD: Add diagram of how this works.]</p>
+<p align="left"><b>Note: if count2 &gt; 0, then </b>writeCompressed <b>also</b> 
+needs to be called at the very end of the sortkey generation. Similar code is 
+used for tertiaries and quarternaries, with different values for the constants. 
+MAX_TOP is derived from the other values:</p>
+<ul>
+  <li>
+    <p align="left">BOT_COUNT = COMMON_TOP - COMMON_BOT - 1 - TOP_COUNT</li>
+</ul>
+<p align="left">The choice of how much space to put in MAX_TOP vs MAX_BOT 
+depends on the relative frequency of H vs L bytes following. Remember that 
+&quot;nothing&quot; counts as an L byte. Here are the values (in hex).</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="1" cellpadding="4">
+    <tr>
+      <th>const</th>
+      <th>Secondary</th>
+      <th>Tertiary</th>
+      <th>Quarternaries</th>
+    </tr>
+    <tr>
+      <th>COMMON</th>
+      <td>03</td>
+      <td>03</td>
+      <td>FF</td>
+    </tr>
+    <tr>
+      <th>COMMON_TOP</th>
+      <td>81</td>
+      <td>84</td>
+      <td>FF</td>
+    </tr>
+    <tr>
+      <th>COMMON_BOT</th>
+      <td>03</td>
+      <td>03</td>
+      <td>2A*</td>
+    </tr>
+    <tr>
+      <th>TOP_COUNT</th>
+      <td>40</td>
+      <td>40</td>
+      <td>0</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p align="left">Secondaries</p>
+<ul>
+  <li>
+    <p align="left">In the processing of the secondaries for the Fractional UCA, 
+    we will allocate the above gap.</li>
+</ul>
+<p align="left">Tertiaries</p>
+<ul>
+  <li>
+    <p align="left">We will take the 7 bits from tertiaries (including the case 
+    bits) from a CE, and add 0x80 to all values above 03. That will produce the 
+    gap.</li>
+</ul>
+<p align="left">Quarternaries:</p>
+<ul>
+  <li>
+    <p align="left">Since there are never any higher bytes than FF, TOP_COUNT in 
+    that case is zero, and the code could be slightly simpler (</li>
+  <li>
+    <p align="left">TOP_COUNT is computed from VariableTop. Take the first byte 
+    of VariableTop, and add 1 to it.</li>
+</ul>
 <h3 align="left">Stack Buffers</h3>
 <p align="left">We can use stack buffers for almost all cases. The vast majority 
 of sorted strings are fairly small, so we optimize for that. Here's how.</p>
@@ -868,7 +1117,7 @@ buffer. It is used by both the sort-key generator and for the incremental string
 comparison. Because two strings are &quot;live&quot; at the same time in 
 comparison, we will pass in a parameter block (allocated on the stack) with 
 state information for each string. This is called a <a name="Context">Context</a>:<o:p>
-  </o:p>                                         
+  </o:p>                                                       
 </p> 
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
@@ -1384,27 +1633,18 @@ Since the latter will be rare, this does not represent a performance issue.</p>
 </blockquote>
 <h4>Basic CP:</h4>
 <p>Distribute the bits as follows, using a Long CE. The resulting primary uses 3 
-bytes in sort keys.</p>
-<pre>CP = xxxxyyyy yyyzzzzz</pre>
-<pre>CE = 1101xxxx 1yyyyyyy zzzzz100 11000000</pre>
-<pre>CE = 0xD0 80 04 C3 | (CP &amp; 0xF000) &lt;&lt; 12 | (CP &amp; 0x0FFF) &lt;&lt; 11</pre>
+bytes in sort keys, and has a tertiary of 03 (UNMARKED).</p>
+<pre>CP =                   xxxxyyyy yyyzzzzz</pre>
+<pre>CE = 1101xxxx 1yyyyyyy zzzzz100 11000011</pre>
+<pre>CE = 0xD08004C3 | (CP &amp; 0xF000) &lt;&lt; 12 | (CP &amp; 0x0FFF) &lt;&lt; 11;</pre>
 <p>There is no provision for secondary elements in Long CEs. This is not an 
 issue for implicit CEs, but does affect tailoring. Inserting a character with 
 secondary difference after an undefined element will use 2 CEs in that case: an 
 Unflagged CE and a Continuation CE.</p>
-<h4>Supplementary CP:</h4>
-<p>First subtract 10000 from CP, then distribute the 20 remaining bits as 
-follows.&nbsp; The resulting primary uses 3 bytes in sort keys.</p>
-<pre>CP  = wwww xxxxxxxy yyyyyyzz</pre>
-<pre>CE1 = 1110wwww 1xxxxxxx 1yyyyyyy 11000011 (long CE)</pre>
-<pre>CE2 = zz100000 00000000 00000000 10000000 (continuation CE)</pre>
-<pre>CE1 = 0xE0 80 80 C3 | (CP &amp; 0xF0000) &lt;&lt; 8 | (CP &amp; 0x0FE00) &lt;&lt; 7 | (CP &amp; 0x001FC) &lt;&lt; 6;</pre>
-<pre>CE2 = 0x20 00 00 80 | (CP &amp; 0x00003) &lt;&lt; 30;</pre>
-<p>&nbsp;</p>
-<p>In both cases, the primary gap is larger than one, which allows more elements 
-to be inserted (in tailoring) without using extension CEs. Suppose that qqqqq is 
-zzzzz + 1; then here are the possible insertion values, marked with *. (The 
-values at ** can be used iff qqqqq != 0.)</p>
+<p>The primary gap is larger than one, which allows more elements to be inserted 
+(in tailoring) without using extension CEs. Suppose that we have a Basic CP with 
+qqqqq is zzzzz + 1; then here are the possible insertion values, marked with *. 
+(The values at ** can be used iff qqqqq != 0.)</p>
 <blockquote>
   <pre>zzzzz100
 zzzzz101 *
@@ -1416,8 +1656,16 @@ qqqqq010 *
 qqqqq011 *
 qqqqq100</pre>
 </blockquote>
-<p>The secondary gap is 14 elements for basic CPs and the normal 254 elements 
-for supplementary CPs.</p>
+<h4>Supplementary CP:</h4>
+<p>First subtract 10000 from CP, then distribute the 20 remaining bits as 
+follows.&nbsp; The tertiary is UNMARKED. The resulting primary uses 3 bytes in 
+sort keys.</p>
+<pre>CP  =              wwww xxxxxxxy yyyyyyzz</pre>
+<pre>CE1 = 1110wwww xxxxxxx1 00000011 00000011 // normal</pre>
+<pre>CE2 = 1yyyyyyy zz100000 00000000 10000000 // continuation</pre>
+<pre>CE1 = 0xE0010303 | (CP &amp; 0xFFE00) &lt;&lt; 8;</pre>
+<pre>CE2 = 0x80200080 | (CP &amp; 0x001FF) &lt;&lt; 22;</pre>
+<p>There's a large gap for customizing.</p>
 <h4>Comparison to UCA</h4>
 <p>Except for CJK and Hangul, this results in sort keys that are 1 byte shorter 
 per basic code point than what is described in UCA. The basic CJK and Hangul 
@@ -1453,12 +1701,12 @@ Here is how they would be generated:</p>
 <p>However, if the gap is at least 8 at the Undefined position, then effectively 
 3 bits from the first primary can be stolen, and all values would have only 1 
 Long Extension CE, and take only 5 bytes in the sort key.</p>
-<h3 align="left">Charset Ordering</h3>
+<h3 align="left">Charset Ordering (post 1.8)</h3>
 <p align="left">To save space, we can use Charset Ordering. This is to account 
 for the case where CJK characters are essentially just sorted in character set 
 order, e.g. by JIS order. To do this, we would add functions to character set 
 converters, as described in the API section.</p>
-<h3 align="left">Script Order</h3>
+<h3 align="left">Script Order (post 1.8)</h3>
 <p align="left">ScriptOrder uses an optional array to reorder the top bytes of 
 primary keys. A valid ScriptOrder array must map 00 to 00, and Fx to Fx, and 
 variable primaries to variable primaries. Other bytes it is free to rearrange, 
@@ -1476,229 +1724,20 @@ like the UCA data. We will have a function that writes out that format into a
 flat file.</p>
 <p align="left">When we build a tailoring, we make the following modifications 
 to the current code. Note that this is not an area where we will spend time 
-improving performance, since 99% of the time this is done at ICU build time.</p>
-<p align="left">The current code builds an ordered list of items in the 
-tailoring, where each item is an object containing the character(s), an 
-indication of the strength difference, plus a special field for contracting 
-characters. Once it is done, it assigns CEs to those characters based on the 
-ordering and strength, putting the CE's into a trie table plus data structures 
-for expanding, contracting, etc.</p>
-<p align="left">The difference is that a RESET no longer needs to have a 
-preexisting character, since that comes out of the UCA. Resets with characters 
-already in the table are handled just like now. For the non-preexisting ones, we 
-add new items for RESET, with a strength flag to each item that indicates 
-whether it is a RESET or not, and the contents are the characters reset to. 
-These just go at the end of the list (logically, each list starting with a RESET 
-would be a different table, but to minimize the code difference we do it this 
-way). When we go through the table setting up CEs, at each RESET we grab the 
-current value of the UCA for those characters.</p>
-<p align="left">Example:</p>
-<p align="left">&amp;z &lt; å &lt; ö &amp; åe &lt; æ &amp; q &lt; m</p>
-<p align="left">This generates items:</p>
-<table border="1" cellspacing="0" cellpadding="4">
-  <tr>
-    <th width="33%">
-      <p align="left">Strength</p>
-    </th>
-    <th width="33%">
-      <p align="left">Chars</p>
-    </th>
-    <th width="33%">
-      <p align="left">Expansion</p>
-    </th>
-  </tr>
-  <tr>
-    <td width="33%">
-      <p align="left">RESET</p>
-    </td>
-    <td width="33%">
-      <p align="left">z</p>
-    </td>
-    <td width="33%">
-      <p align="left">null</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%">
-      <p align="left">Primary</p>
-    </td>
-    <td width="33%">
-      <p align="left">å</p>
-    </td>
-    <td width="33%">
-      <p align="left">null</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%">
-      <p align="left">Primary</p>
-    </td>
-    <td width="33%">
-      <p align="left">æ</p>
-    </td>
-    <td width="33%">
-      <p align="left">e</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%">
-      <p align="left">Primary</p>
-    </td>
-    <td width="33%">
-      <p align="left">ö</p>
-    </td>
-    <td width="33%">
-      <p align="left">null</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%">
-      <p align="left">RESET</p>
-    </td>
-    <td width="33%">
-      <p align="left">q</p>
-    </td>
-    <td width="33%">
-      <p align="left">null</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%">
-      <p align="left">Primary</p>
-    </td>
-    <td width="33%">
-      <p align="left">m</p>
-    </td>
-    <td width="33%">
-      <p align="left">null</p>
-    </td>
-  </tr>
-</table>
-<p align="left">When we assign CEs to these, we will get something like the 
-following (assuming the values of CE's for 'z' and 'q' from a processed UCA (see 
-below)).</p>
-<table border="1" cellspacing="0" cellpadding="4" width="333">
-  <tr>
-    <th rowspan="2" width="66">
-      <p align="left">Input Char</p>
-    </th>
-    <th colspan="4" width="255">
-      <p align="left">Collation Element</p>
-    </th>
-  </tr>
-  <tr>
-    <th width="66">
-      <p align="left">Primary</p>
-    </th>
-    <th width="66">
-      <p align="left">Secondary</p>
-    </th>
-    <th width="66">
-      <p align="left">Case</p>
-    </th>
-    <th width="67">
-      <p align="left">Tertiary</p>
-    </th>
-  </tr>
-  <tr>
-    <td width="66">
-      <p align="left">m</p>
-    </td>
-    <td width="66">
-      <p align="left">2801</p>
-    </td>
-    <td width="66">
-      <p align="left">03</p>
-    </td>
-    <td width="66">
-      <p align="left">0</p>
-    </td>
-    <td width="67">
-      <p align="left">03</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="66">
-      <p align="left">q</p>
-    </td>
-    <td width="66">
-      <p align="left"><b>27</b></p>
-    </td>
-    <td width="66">
-      <p align="left">03</p>
-    </td>
-    <td width="66">
-      <p align="left">0</p>
-    </td>
-    <td width="67">
-      <p align="left">03</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="66">
-      <p align="left">z</p>
-    </td>
-    <td width="66">
-      <p align="left"><b>4E</b></p>
-    </td>
-    <td width="66">
-      <p align="left">03</p>
-    </td>
-    <td width="66">
-      <p align="left">0</p>
-    </td>
-    <td width="67">
-      <p align="left">03</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="66">
-      <p align="left">å</p>
-    </td>
-    <td width="66">
-      <p align="left">4F01</p>
-    </td>
-    <td width="66">
-      <p align="left">03</p>
-    </td>
-    <td width="66">
-      <p align="left">0</p>
-    </td>
-    <td width="67">
-      <p align="left">03</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="66">
-      <p align="left">æ</p>
-    </td>
-    <td colspan="4" width="255">
-      <p align="left">Fxxxxxx (offset to contraction table)</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="66">
-      <p align="left">ö</p>
-    </td>
-    <td width="66">
-      <p align="left">4F03</p>
-    </td>
-    <td width="66">
-      <p align="left">03</p>
-    </td>
-    <td width="66">
-      <p align="left">0</p>
-    </td>
-    <td width="67">
-      <p align="left">03</p>
-    </td>
-  </tr>
-</table>
-<p align="left">When incrementing primary values, we will not cross high byte 
-boundaries except where there is only a single-byte primary. That is to ensure 
-that the script reordering will continue to work. To take care of the case where 
-we want to add something <i>before</i> the first character in a script, we will 
-support an additional feature.</p>
+improving performance, since 99% of the time this is done at ICU build time. The 
+current code builds an ordered list of items in the tailoring, where each item 
+is an object containing the character(s), an indication of the strength 
+difference, plus a special field for contracting characters. Once it is done, it 
+assigns CEs to those characters based on the ordering and strength, putting the 
+CE's into a trie table plus data structures for expanding, contracting, etc. 
+Instead of this, we will build <i>multiple</i> lists, where each list is 
+anchored to a position in the UCA.</p>
+<p>We will allow &quot;&amp; X &lt; Y&quot;, where X is <i>not</i> explicitly 
+defined. (In ICU 1.6 and previous, this is disallowed). In that case, Y will 
+give a value that is based off of the <i>implicit</i> value that X would have. 
+In processing the rules in the implementation, we may give X the implicit value 
+in the intermediate data structure, then remove it when we finally store into 
+the flat file to save space.</p>
 <p align="left">Since we are tailoring the UCA, we could have call to insert 
 elements <i>before</i> a given UCA element. Currently, that would have to be 
 done by finding the previous element in the table, and inserting after. That is, 
@@ -1706,52 +1745,211 @@ to insert x with a primary difference before 'a', we have to know that '9'' is
 before it in the UCA, and say &amp;'9' &lt; x. To insert with a secondary 
 difference, there is no good mechanism. To address this, we will add '&lt;&lt;' 
 as equivalent to ';', and '&lt;&lt;&lt;' as equivalent to ','; we then add the 
-reverse syntax defined for each of these operators, and thus say &amp;a &gt;&gt; 
-x.</p>
-<blockquote>
-  <p align="left">This makes a substantial code change, because of the way reset 
-  works above. No longer would we depend on RESET being the first in the series, 
-  so we will&nbsp; have to probably break the item list into separate parts. So 
-  this part is optional.</p>
-</blockquote>
+reverse syntax defined for each of these operators, and thus be able to say 
+&amp;a &gt;&gt; x.</p>
 <p align="left">Once the tailoring table is completely built, we will add any 
 UCA characters in the range 0..FF that are not there already. At a slight 
-increase in table size, that guarantees the minimal code path for most cases.</p>
-<p>A second difference compared to the old data generation is that we will allow 
-&quot;&amp; X &lt; Y&quot;, where X is <i>not</i> explicitly defined. (In ICU 
-1.6 and previous, this is disallowed). In that case, Y will give a value that is 
-based off of the <i>implicit</i> value that X would have. In processing the 
-rules in the implementation, we may give X the implicit value in the 
-intermediate data structure, then remove it when we finally store into the flat 
-file to save space.</p>
+increase in table size, that guarantees the minimal code path for many cases. We 
+will also close the file under canonical decomposition, so that turning off 
+decomposition can be done in certain circumstances for performance. We will 
+close the file under compatibility decomposition, so that when you tailor a 
+letter, the compatibility characters containing it are also moved. E.g. if we 
+put &amp; z &lt; i, then the &quot;fi&quot; ligature will then sort after &quot;fz&quot;.</p>
 <h3><a name="Details_on_Generation">Details on Generation</a></h3>
 <p>Here's how generation works, logically. (For now, ignore the distinctions 
 between levels of difference). The actual implementation will tokenize the rules 
-first, and work on that data structure. For all of the following discussion</p>
+first, and work on that data structure. For all of the following discussion:</p>
 <ul>
-  <li>the relations , and ; are converted into &lt;&lt;&lt; and &lt;&lt;. </li>
+  <li>the relations , and ; are converted into &lt;&lt;&lt; and &lt;&lt;.</li>
   <li>* stands for any of the relations =, &lt;, &lt;&lt;, &lt;&lt;&lt;, &gt;, 
-    &gt;&gt;, &gt;&gt;&gt;. </li>
+    &gt;&gt;, &gt;&gt;&gt;.</li>
   <li>The <i>polarity</i> for &lt;, &lt;&lt;, &lt;&lt;&lt; and = is POSITIVE, 
     for &gt;, &gt;&gt;, &gt;&gt;&gt; is NEGATIVE.</li>
   <li>The operations of &lt;, &gt; are stronger than &lt;&lt;, &gt;&gt;, which 
     are strong than &lt;&lt;&lt;, &gt;&gt;&gt;, which are stronger than =.</li>
 </ul>
-<h4>Token List Generation:</h4>
-<p><b>NOTE: I think this can be simplified in implementation, but here is a 
-first pass.</b></p>
+<h4>Data Structures</h4>
+<div align="center">
+  <center>
+  <table border="0" cellspacing="0" cellpadding="4">
+    <tr>
+      <td width="25%" align="center" valign="top">
+        <table border="1">
+          <caption><b>ListList</b></caption>
+          <tr>
+            <td width="100%">ListHeader0</td>
+          </tr>
+          <tr>
+            <td width="100%">ListHeader1</td>
+          </tr>
+          <tr>
+            <td width="100%">ListHeader2</td>
+          </tr>
+          <tr>
+            <td width="100%">...</td>
+          </tr>
+          <tr>
+            <td width="100%">...</td>
+          </tr>
+          <tr>
+            <td width="100%">&nbsp;...</td>
+          </tr>
+        </table>
+      </td>
+      <td width="25%" align="center" valign="top">
+        <table border="1">
+          <caption><b>ListHeader</b></caption>
+          <tr>
+            <td width="100%">Token* firstPositive</td>
+          </tr>
+          <tr>
+            <td width="100%">Token* lastPositive</td>
+          </tr>
+          <tr>
+            <td width="100%">Token* firstNegative</td>
+          </tr>
+          <tr>
+            <td width="100%">Token* lastNegative</td>
+          </tr>
+          <tr>
+            <td width="100%">Token* reset</td>
+          </tr>
+          <tr>
+            <td width="100%">CE baseCE</td>
+          </tr>
+          <tr>
+            <td width="100%">CE nextCE</td>
+          </tr>
+          <tr>
+            <td width="100%">CE previousCE</td>
+          </tr>
+          <tr>
+            <td width="100%">Strength strongestP</td>
+          </tr>
+          <tr>
+            <td width="100%">Strength strongestN</td>
+          </tr>
+        </table>
+      </td>
+      <td width="25%" align="center" valign="top">
+        <table border="1">
+          <caption><b>Token</b></caption>
+          <tr>
+            <td width="100%">Token* previous</td>
+          </tr>
+          <tr>
+            <td width="100%">Token* next</td>
+          </tr>
+          <tr>
+            <td width="100%">StrRep source</td>
+          </tr>
+          <tr>
+            <td width="100%">StrRep expansion</td>
+          </tr>
+          <tr>
+            <td width="100%">Strength strength</td>
+          </tr>
+          <tr>
+            <td width="100%">Polarity polarity</td>
+          </tr>
+        </table>
+        &nbsp;
+        <table border="1">
+          <caption><b>CharsToken</b></caption>
+          <tr>
+            <td width="100%">Hashtable for mapping<br>
+              from chars to tokens</td>
+          </tr>
+        </table>
+      </td>
+      <td width="25%" align="center" valign="top">
+        <table border="1">
+          <caption><b>CEtoStr</b></caption>
+          <tr>
+            <td width="50%" colspan="2">fast binary header</td>
+          </tr>
+          <tr>
+            <td width="25%">CE0a</td>
+            <td width="25%">CE0b</td>
+            <td width="25%">StrCRep</td>
+          </tr>
+          <tr>
+            <td width="25%">CE1a</td>
+            <td width="25%">CE1b</td>
+            <td width="25%">StrCRep</td>
+          </tr>
+          <tr>
+            <td width="25%">...</td>
+            <td width="25%">...</td>
+            <td width="25%">...</td>
+          </tr>
+          <tr>
+            <td width="25%">CEna</td>
+            <td width="25%">CEnb</td>
+            <td width="25%">StrCRep</td>
+          </tr>
+        </table>
+        &nbsp;
+        <table border="1">
+          <caption><b>StringContinue</b></caption>
+          <tr>
+            <td width="50%">uChar[x]</td>
+          </tr>
+        </table>
+    </tr>
+    <tr>
+      <td width="25%" align="left" valign="top"><i>list of list of tokens</i></td>
+      <td width="25%" align="left" valign="top"><i>header for token list</i></td>
+      <td width="25%" align="left" valign="top"><i>tokens,<br>
+        mapping to chars</i></td>
+      <td width="25%" align="left" valign="top"><i>mapping to:<br>
+        next, previous CEs, characters between CEs</i>
+    </tr>
+  </table>
+  </center>
+</div>
+<p><b>Notes:</b></p>
 <ul>
-  <li>Build a list of lists of tokens. Each token has a strength, value (set of 
-    characters), and optionally an expansion. Each list also has two additional 
-    fields
+  <li>StrRep is an int. Top 8 bits are length, bottom 24 bits are an offset into 
+    the <b>Rules</b> string. This saves string allocations.</li>
+  <li><b>CEtoStr</b>
     <ul>
-      <li>firstPolarity, with the values POSITIVE, NEGATIVE, and UNKNOWN.</li>
-      <li>baseCE, nextCE, previousCE, with values set in the next phase.</li>
+      <li>This is a table used only for generating Tailoring tables, and is so 
+        kept separate from the UCA. It consists of all the FCEs in the UCA in 
+        sorted order, in the following format:</li>
+      <li>
+        <p align="left">Each FCE is stored as two Unflagged CEs, a and b. If 
+        there is no need for a continuation, CEb is zero. We add two terminating 
+        elements, the lowest possible CE and greatest possible CE at the start 
+        and end of the table to ensure we have bracketing values. To find next 
+        and previous, we take baseCE, and binary search for it in this table. 
+        There is a fast binary header, supporting completely unrolled binary 
+        search.</li>
+      <li>
+        <p align="left">StrCRep is either a codepoint, or if the top byte is 
+        non-zero, is a StrRep pointing into StringContinue. If one CE 
+        corresponds to two character strings, both are listed in StringContinue, 
+        separated by FFFF. If a string has an expansion, that uses FFFE as a 
+        delimiter. Example:
+        <ul>
+          <li>
+            <p align="left">CE_Reverse</li>
+        </ul>
+      </li>
     </ul>
   </li>
-  <li>As you process,
+</ul>
+<p><b>Processing Description</b></p>
+<ol>
+  <li>Build a ListList. Each list has a header, which contains two lists 
+    (positive and negative), a reset token, a baseCE, nextCE, and previousCE. 
+    The lists and reset may be null.</li>
+  <li>As you process, you keep a LAST pointer that points to the last token you 
+    handled.</li>
+  <li>Consider each item: relation, source, and expansion: e.g. ...<u>&lt; x / y</u> 
+    ...
     <ul>
-      <li>you first convert all expansions into normal form. Examples:
+      <li>First convert all expansions into normal form. Examples:
         <ul>
           <li>If &quot;xy&quot; doesn't occur earlier in the list or in the UCA, 
             convert &amp;xy * c * d * ... into &amp;x * c/y * d * ...</li>
@@ -1760,163 +1958,191 @@ first pass.</b></p>
             if they are found earlier in the list.</li>
         </ul>
       </li>
-      <li>you consider both the relation and the value, e.g. ...<u>&lt; x</u> 
-        ...</li>
-      <li>suppose you have two tokens X = list[i][j] and Y = list[k][m]. Then X 
-        is later than Y if i &gt; k, or if i == k and j &gt; m.</li>
-      <li>you keep a LAST pointer to some element in one of the lists.</li>
-      <li>when inserting a token relative to LAST:
+    </ul>
+  </li>
+  <li>Lookup each [source,&nbsp; expansion] in the CharsToToken map, and find a 
+    sourceToken</li>
+  <li>If the relation is a reset:
+    <ul>
+      <li>If sourceToken is null
         <ul>
-          <li>If LAST is not a head, insert <i>before</i> LAST if the polarity 
-            is NEGATIVE, <i>after</i> otherwise.
-            <ul>
-              <li>If you insert X before LAST, swap the strengths of X and LAST.</li>
-            </ul>
-          </li>
-          <li>If LAST is a head, look at the set of heads with values equal to 
-            LAST's (there may be more than one)
-            <ol>
-              <li>First find or make a compatible list.
-                <ul>
-                  <li>If one of them has the same priority as the relation, 
-                    choose that.</li>
-                  <li>Otherwise if one has firstPolarity = UNKNOWN, choose that.</li>
-                  <li>Otherwise create a new list, copy a LAST as the first 
-                    item, set firstPolarity = UNKNOWN, and choose that.</li>
-                </ul>
-              </li>
-              <li>Next insert the token.
-                <ul>
-                  <li>If firstPolarity is NEGATIVE, add the item at the <i>end</i> 
-                    of the list.</li>
-                  <li>Otherwise if the firstPolarity is UNKNOWN, set 
-                    firstPolarity to the relation's, add the token after the 
-                    head.</li>
-                  <li>Otherwise add the item right after the head.</li>
-                </ul>
-              </li>
-            </ol>
-          </li>
+          <li>Create new list, create new sourceToken, make the baseCE from 
+            source, put the sourceToken in ListHeader of the new list</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>Whenever you have a reset:
+  <li>Otherwise (when relation != reset)
     <ul>
-      <li>If the value is in a token in one of the lists, set LAST to the latest 
-        such token.</li>
-      <li>Otherwise (i.e., not in the list), create a new list, set 
-        firstPolarity = UNKNOWN, make a token from the reset value, put it at 
-        the start of the list, and set LAST to the new token.</li>
+      <li>If sourceToken is null, create new one, otherwise remove sourceToken 
+        from where it was.</li>
+      <li>If LAST is a reset
+        <ul>
+          <li>insert sourceToken at the head of either the positive list or the 
+            negative list, depending on the polarity of relation.</li>
+          <li>set the polarity of sourceToken to be the same as the list you put 
+            it in.</li>
+        </ul>
+      </li>
+      <li>Otherwise (when LAST is not a reset)
+        <ul>
+          <li>if polarity (LAST) == polarity(relation), insert sourceToken <b>after</b> 
+            LAST, otherwise insert <b>before</b>.</li>
+          <li>when inserting after or before, search to the next position with 
+            the same strength in that direction. (This is called <a
+            href="#Postpone_Insertion">postpone insertion</a>).</li>
+        </ul>
+      </li>
     </ul>
   </li>
-  <li>Otherwise (i.e., you don't have a reset):
-    <ul>
-      <li>If the value is the same as an existing <i>non-head</i> token in one 
-        of the lists, remove the existing token from the list, and insert it 
-        relative to LAST, and set LAST to the new token.</li>
-      <li>Otherwise (value not same, or only same as head token), make a new 
-        token and insert it relative to LAST, and set LAST to the new token.</li>
-    </ul>
-  </li>
-</ul>
+  <li>After all this, set LAST to point to sourceToken, and goto step 3.</li>
+</ol>
 <p>At the end of this process, you will end up with a list of lists of tokens. 
-Note: you may end up with head tokens duplicating other values. You will never 
-end up with two non-heads with the same value.</p>
-<h4>Assigning CEs</h4>
+To do the next phase, we need the following relations:</p>
 <ul>
-  <li>Delete any lists with polarity == UNKNOWN.</li>
-  <li>Use the <b>UCA</b> table to find the baseCE for the values at the heads of 
-    each list. Mask that value according to the strength of the first item after 
-    the head.
+  <li>
+    <p align="left">previousCE(ce, strength) and nextCE(ce, strength), using <b>CEtoStr</b>. 
+    Examples:
     <ul>
-      <li>[Need to flesh this out more] </li>
+      <li>
+        <p align="left">[11 . 8 . C]&nbsp; &lt;= previousCE(X,1)</li>
+      <li>
+        <p align="left">[13 . 4 . 4]</li>
+      <li>
+        <p align="left">[13 . 4 . A]&nbsp; &lt;= previousCE(X,2)</li>
+      <li>
+        <p align="left">[13 . 6 . 1]</li>
+      <li>
+        <p align="left">[13 . 6 . 4]&nbsp; &lt;= previousCE(X,3)</li>
+      <li>
+        <p align="left"><b>[13 . 6 . 9]&nbsp; &lt;= X</b></li>
+      <li>
+        <p align="left">[13 . 6 . C] &lt;= nextCE(X,3)</li>
+      <li>
+        <p align="left">[13 . 6 . E]</li>
+      <li>
+        <p align="left">[13 . 7 . 3] &lt;= nextCE(X,2)</li>
+      <li>
+        <p align="left">[13 . 7 . A]</li>
+      <li>
+        <p align="left">[15 . 3 . 3] &lt;= nextCE(X,1)</li>
     </ul>
   </li>
-  <li>If baseCEs are identical for any lists, combine them if they have the same 
-    polarity.
-    <ul>
-      <li>polarity == POSITIVE: insert all but the head of the later list just 
-        after the head in the earlier list, and delete the later list.</li>
-      <li>polarity == NEGATIVE: insert all but the head of the later list at the 
-        end of the earlier list, and delete the later list.</li>
-    </ul>
-  </li>
-  <li>Use the <b>UCA Proximate CE</b> table to find the next and previous CEs 
-    for the values at the heads of each list.</li>
-  <li>Merge the conflicting lists. Lists x and y conflict if firstPolarity(x) == 
-    POSITIVE, firstPolarity(y) == NEGATIVE, and nextCE(x) == previousCE(y).
-    <ul>
-      <li>Merge them by inserting all but the head of y at the end of x, and 
-        deleting y.</li>
-    </ul>
-  </li>
-  <li>You now have a set of lists that don't conflict. Assign CEs to all the 
-    items in the list based on the strengths of the relationships and the room 
-    available between previousCE and nextCE. </li>
 </ul>
-<p><b>UCA Proximate CE Table</b></p>
-<p>This is a table used only for generating Tailoring tables, and is so kept 
-separate from the UCA. It consists of all the FCEs in the UCA in sorted order, 
-with duplicates removed, in the following format:</p>
-<table border="1">
-  <tr>
-    <td width="50%" colspan="2">fast binary header</td>
-  </tr>
-  <tr>
-    <td width="25%">CE0a</td>
-    <td width="25%">CE0b</td>
-  </tr>
-  <tr>
-    <td width="25%">CE1a</td>
-    <td width="25%">CE1b</td>
-  </tr>
-  <tr>
-    <td width="25%">...</td>
-    <td width="25%">...</td>
-  </tr>
-  <tr>
-    <td width="25%">CEna</td>
-    <td width="25%">CEnb</td>
-  </tr>
-</table>
-<p align="left">Each FCE is stored as two Unflagged CEs, a and b. If there is no 
-need for a continuation, CEb is zero. We add two terminating elements, the 
-lowest possible CE and greatest possible CE at the start and end of the table to 
-ensure we have bracketing values. To find next and previous, we take baseCE, and 
-binary search for it in this table.</p>
-<blockquote>
-  <p align="left"><b>Note: ICU syntax has the following effect. </b></p>
-  <table border="1">
+<h4>Assigning CEs</h4>
+<ol>
+  <li>Find the strongest strength in each list, and set strongestP and 
+    strongestN accordingly in the headers.</li>
+  <li>Eliminate the negative lists by doing the following for each non-null 
+    negative list:
+    <ul>
+      <li>if previousCE(baseCE, strongestN) != some ListHeader X's baseCE, 
+        create new ListHeader X</li>
+      <li>reverse the list, add to the end of X's positive list. Reset the 
+        strength of the first item you add, based on the stronger strength 
+        levels of the two lists.</li>
+    </ul>
+  </li>
+  <li>For each ListHeader with a non-null positive list:
+    <ul>
+      <li>Find all character strings with CEs between the baseCE and the 
+        next/previous CE, at the strength of the first token. Add these to the 
+        tailoring.
+        <ul>
+          <li>That is, if UCA has ...&nbsp; x &lt;&lt;&lt; X &lt;&lt; x' 
+            &lt;&lt;&lt; X' &lt; y ..., and the tailoring has &amp; x &lt; z...</li>
+          <li>Then we change the tailoring to &amp; x&nbsp; &lt;&lt;&lt; X 
+            &lt;&lt; x' &lt;&lt;&lt; X' &lt; z ...</li>
+        </ul>
+      </li>
+      <li>Allocate CEs for each token in the list, based on the total number N 
+        of the largest level difference, and the gap G between baseCE and nextCE 
+        at that level. The relation * between the last item and nextCE is the 
+        same as the strongest strength.</li>
+      <li>Example: baseCE &lt; a &lt;&lt; b &lt;&lt;&lt; q &lt;&lt; c &lt; d 
+        &lt; e * nextCE(X,1)
+        <ul>
+          <li>There are 3 primary items: a, d, e. Fit them into the primary gap. 
+            Then fit b and c into the secondary gap between a and d, then fit q 
+            into the tertiary gap between b and c.</li>
+        </ul>
+      </li>
+      <li>Example: baseCE &lt;&lt; b &lt;&lt;&lt; q &lt;&lt; c * nextCE(X,2)
+        <ul>
+          <li>There are 2 secondary items: b, c. Fit them into the secondary 
+            gap. Then fit q into the tertiary gap between b and c.</li>
+        </ul>
+      </li>
+      <li>When incrementing primary values, we will not cross high byte 
+        boundaries except where there is only a single-byte primary. That is to 
+        ensure that the script reordering will continue to work.</li>
+    </ul>
+  </li>
+</ol>
+<h4>Produce Canonical Closure</h4>
+<ul>
+  <li>For each Unicode character with a canonical decomposition (e.g. å), check 
+    to see if any of the decomposed characters (a, °) are tailored. If so, then 
+    the appropriate tailoring expansion is added (å = a °).</li>
+  <li>For each Unicode character with a compatibility decomposition (e.g. 
+    circled-a), check to see if any of the decomposed characters are tailored. 
+    If so, then the appropriate tailoring expansion is added (circled-a = a), 
+    but with the tertiary value set according to the table in UCA.</li>
+  <li>Note: the UCA already contains closures for the non-tailored items.</li>
+</ul>
+<h4>Add all Latin-1</h4>
+<ul>
+  <li>Copy all the UCA mappings for Latin-1 characters that are not tailored 
+    into the tailoring. This also does not require any gap processing.</li>
+  <li>The goal is performance, as described above.</li>
+</ul>
+<h3 align="left">Get Rules</h3>
+<p align="left">The API for get rules will return just the tailoring rules (we 
+store this with the flat file). The API for get full rules will get the UCA 
+rules (we generate and store this with the UCA flat file), then appends the 
+tailoring rules.</p>
+<h3 align="left"><b><a name="Postpone_Insertion">Postpone Insertion</a></b></h3>
+<p align="left">ICU 1.6 and below used <i>direct insertion</i> for tailoring, as 
+shown below. The plan is to use <i>postpone insertion</i> for 1.8.</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="1" cellpadding="4">
     <tr>
-      <th width="50%">Source</th>
-      <th width="50%">Result</th>
+      <th>&nbsp;</th>
+      <th>Source</th>
+      <th>Result</th>
     </tr>
     <tr>
-      <td width="50%">....&nbsp; x &lt;&lt;&lt; X &lt;&lt; Y &lt; w ... <font
-        color="#FF0000">&amp; x &lt; z</font></td>
-      <td width="50%">....&nbsp; x <font color="#FF0000">&lt; z</font> 
-        &lt;&lt;&lt; X &lt;&lt; Y &lt; w ...</td>
+      <th>UCA</th>
+      <td><b>...&nbsp; x &lt;&lt;&lt; X &lt;&lt; x' &lt;&lt;&lt; X' &lt; y ...</b></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <th>Direct Insertion</th>
+      <td><font color="#FF0000"><b>&amp; x &lt; z</b></font></td>
+      <td><b>...&nbsp; x <font color="#FF0000">&lt; z</font> &lt;&lt;&lt; X 
+        &lt;&lt; x' &lt;&lt;&lt; X'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt; y</b></td>
+    </tr>
+    <tr>
+      <th>Postpone Insertion</th>
+      <td><font color="#FF0000"><b>&amp; x &lt;: z</b></font></td>
+      <td><b>...&nbsp; x&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt;&lt; X &lt;&lt; x' 
+        &lt;&lt;&lt; X' <font color="#FF0000">&lt; z</font> &lt; y</b></td>
     </tr>
   </table>
-  <p align="left">That is, the z is inserted right after the x, no matter what 
-  the original strength was between x and any following item. The strength 
-  difference for the following item is then applied with respect to z. If you 
-  want to get the effect of inserting z after all the primary-equal items, you 
-  should use the syntax:</p>
-  <table border="1">
-    <tr>
-      <th width="50%">Source</th>
-      <th width="50%">Result</th>
-    </tr>
-    <tr>
-      <td width="50%">....&nbsp; x &lt;&lt;&lt; X &lt;&lt; Y &lt; w ... <font
-        color="#FF0000">&amp; w &gt; z</font></td>
-      <td width="50%">....&nbsp; x &lt;&lt;&lt; X &lt;&lt; Y <font
-        color="#FF0000">&lt; z</font> &lt; w ...</td>
-    </tr>
-  </table>
-</blockquote>
+  </center>
+</div>
+<p align="left">The reason we didn't originally use postpone is that it is 
+relatively easy to emulate. For example, in the above case, <b><font
+color="#FF0000">&amp; X' &lt; z</font></b> is the equivalent of <b><font
+color="#FF0000">&amp; x &lt;: z</font></b>. However, it is not easy to emulate 
+direct insertion with postpone insertion: in the above case you would have to 
+use <font color="#FF0000"><b>&amp; x &lt;: z &lt;&lt;&lt;: X &lt;&lt;: x' 
+&lt;&lt;&lt;: X'</b></font> to emulate <b><font color="#FF0000">&amp;x &lt; z</font></b>. 
+However, postpone insertion is probably more intuitive, is more stable under new 
+versions of UCA, and works better with the large number of variant characters in 
+UCA. In practice, given the tailoring rules from the old ICU, this will actually 
+produce results that more compatible than if we retained direct insertion.</p>
 <h2 align="left"><a name="UCA_Processing">UCA Processing</a></h2>
 <p align="left">The UCA data table only specifies relative ordering among 
 weights. We are free to redistribute the weight values as long as the relative 
@@ -1989,17 +2215,10 @@ read-only table, we will preprocess the data so that we:</p>
   </table>
   </center>
 </div>
-<p align="left">An example processed UCA table is found at <a
-href="draft_processed_UCA.zip">draft_processed_UCA.txt (zipped)</a>. The format is:</p>
-<div align="left">
-  <blockquote>
-    <pre align="left">code; fractional_ce  # uca_ce # name</pre>
-  </blockquote>
-</div>
-<p align="left">For information on the fractional_ce, see <a
-href="#Fractional_Collation_Elements">Fractional Collation Elements</a>. There 
-are extra tabs between the levels, just to make it easier to see transitions in 
-weight length.</p>
+<p align="left"><i><b>A draft processed UCA table is found in <a
+href="#Appendix_3">Appendix 3: Data Files</a>. For information on the 
+fractional_ce, see <a href="#Fractional_Collation_Elements">Fractional Collation 
+Elements</a>.</b></i></p>
 <p align="left">Once we process the UCA data, we will write it out in a compact, 
 efficient form using the function described in <a href="#Flat_File">Flat File</a>.</p>
 <h4 align="left">Japanese Collation</h4>
@@ -2343,7 +2562,8 @@ uint8_t  cvt_getColVersion(Converter cvt);</pre>
 </div>
 <h1><a name="Issues">Issues</a></h1>
 <p>The following section lists issues and possible future additions.</p>
-<h3>Parameterized SHIFTED(post 1.8 possibility, but current implication)</h3>
+<h3><a name="Parameterized_SHIFTED">Parameterized SHIFTED</a> (post 1.8 
+possibility, but current implication)</h3>
 <p>We could offer a further variation on Variable. Instead of having SHIFTED 
 always shift the primary down to the 4th level, we could allow it to shift to 
 the 3rd level or second level. (Note: ICU 1.6 used 3rd level), before all other 
@@ -2462,6 +2682,9 @@ of possibilities.</p>
     <p align="left">[last tertiary ignorable] largest CE for tertiary ignorable<br>
   </li>
 </ul>
+<h3 align="left">Compressed Primary Weights</h3>
+<p align="left">We need to decide whether we are compressing primary weights or 
+not. See <a href="#Compression">Compression</a> and <a href="#Appendix_2">Appendix_2</a>.</p>
 <hr>
 <h2 align="left"><a name="FAQ">FAQ</a></h2>
 <p class="q" align="left">Q: The small/large kana differences: should that be 
@@ -2875,7 +3098,8 @@ Level 4 = katakana, hiragana, choo-on kigoo</p>
 <h2 align="left"><a name="Appendix_2">Appendix 2</a>: Compressing Primary 
 Weights</h2>
 <p>The following describes a possible mechanism for compressing primary weights 
-in sort keys. It is not fully thought out, so is given here as an appendix.</p>
+in sort keys. We will investigate the performance/storage tradeoff before using. 
+For compression of non-secondary weights, see <a href="#Compression">Compression</a>.</p>
 <h4>Mechanism</h4>
 <p>Generally we will have longish sequences of letters from the same script. 
 They will usually share the same first few bytes of primary, and differ in the 
@@ -2951,6 +3175,29 @@ bytes of primaries), we would have an extra byte comparison,&nbsp; boolean test,
 and byte set per character. On the other hand, the memory requirements for sort 
 keys would probably be reduced sufficiently that it would be an overall win. 
 (This would be especially true for disk-based sort indexes!)</p>
+<h2><a name="Appendix_3">Appendix 3: Data Files</a></h2>
+<p>The following data files are included for reference:</p>
+<p><a href="FractionalUCA.zip">FractionalUCA.txt (zipped)</a></p>
+<blockquote>
+  <p>Table of Fractional CEs generated from UCA. The format is described in the 
+  header:</p>
+  <div align="left">
+    <blockquote>
+      <pre align="left">code; fractional_ce  # uca_ce # name</pre>
+    </blockquote>
+  </div>
+  <p align="left">&nbsp;There are extra tabs between the levels, just to make it 
+  easier to see transitions in weight length.</p>
+</blockquote>
+<p><a href="CollationTest_NON_IGNORABLE.zip">CollationTest_NON_IGNORABLE.txt (zipped)</a></p>
+<blockquote>
+  <p>Contains list of lines in UCA sorted order, for testing collation (with the 
+  variables set to NON_IGNORABLE)</p>
+</blockquote>
+<p><a href="CheckCollationValidity.html">CheckCollationValidity.html</a></p>
+<blockquote>
+  <p>List of possible problems in UCA</p>
+</blockquote>
 <h2><a name="Modifications">Modifications</a></h2>
 <p>These summarize modifications from the previous version.</p>
 <ul>
@@ -2963,10 +3210,12 @@ keys would probably be reduced sufficiently that it would be an overall win.
     tables.</li>
   <li>Made more clear that offset in contraction UChar table is a delta</li>
   <li>Added [last] syntax for Tailoring.</li>
-  <li>Added <a href="#Issues">Issues</a> section</li>
   <li>Modified the bit distribution in <a href="#CollationElements">CollationElements</a></li>
   <li>Modified the generation of <a href="#Implicit_CEs">Implicit_CEs</a></li>
   <li>Added <a href="#Details_on_Generation">Details_on_Generation</a></li>
+  <li>Added details on <a href="#Compression">Compression</a></li>
+  <li>Added <a href="#Issues">Issues</a> section. This needs to be reviewed and 
+    discussed!</li>
 </ul>
 <hr>
 <p align="center"><i>Copyright © 2000, IBM Corp. All Rights Reserved.</i></p>

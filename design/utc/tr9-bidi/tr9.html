@@ -8,7 +8,7 @@
 <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <title>UAX #9: The Bidirectional Algorithm</title>
-<style>
+<style type="text/css">
 <!--
 div.Section1
 	{page:Section1;}
@@ -29,12 +29,12 @@ div.Section1
   </tr>
 </table>
 <div class="body">
-  <h2 align="center"><font color="#ff0000">Proposed Update </font>Unicode Standard Annex #9</h2>
+  <h2 align="center">Unicode Standard Annex #9</h2>
   <h1>The Bidirectional Algorithm</h1>
   <table border="1" cellpadding="2" width="95%">
     <tr>
       <td valign="top" width="20%">Version</td>
-      <td valign="top">Unicode 4.1 (draft)</td>
+      <td valign="top">Unicode 4.1.0</td>
     </tr>
     <tr>
       <td valign="top">Authors</td>
@@ -42,7 +42,7 @@ div.Section1
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top" class="old_changed">2004-12-27</td>
+      <td valign="top">2005-03-23</td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
@@ -60,8 +60,8 @@ div.Section1
       http://www.unicode.org/reports/tr9/</a></td>
     </tr>
     <tr>
-      <td valign="top">Tracking Number</td>
-      <td valign="top">14</td>
+      <td valign="top"><span>Revision</span></td>
+      <td valign="top"><span>15</span></td>
     </tr>
   </table>
   <p><br>
@@ -70,26 +70,21 @@ div.Section1
   <p><i>This document describes specifications for the positioning of characters flowing from right 
   to left, such as Arabic or Hebrew.</i></p>
   <h3><i>Status</i></h3>
-  <p class="changed"><i>This document is a <span class="changed"><font color="#ff0000">proposed 
-  update</font> of a <b>previously approved</b></span><b> </b><span class="changed"><b>Unicode 
-  Standard Annex</b> </span>. Publication does not imply endorsement by the Unicode Consortium. This 
-  is a draft document which may be updated, replaced, or superseded by other documents at any time. 
-  This is not a stable document; it is inappropriate to cite this document as other than a work in 
-  progress.</i></p>
+  <p Revision><i>This document has been reviewed by Unicode members and other interested parties, 
+  and has been approved for publication by the Unicode Consortium. This is a stable document and may 
+  be used as reference material or cited as a normative reference by other specifications.</i></p>
   <blockquote>
-    <p class="old_changed"><i><b>A Unicode Standard Annex (UAX)</b> forms an integral part of the 
-    Unicode Standard, but is published as a separate document. The Unicode Standard may require 
-    conformance to normative content in a Unicode Standard Annex, if so specified in the Conformance 
-    chapter of that version of the Unicode Standard. The version number of a UAX document 
-    corresponds to the version number of the Unicode Standard at the last point that the UAX 
-    document was updated.</i></p>
+    <p><i><b>A Unicode Standard Annex (UAX)</b> forms an integral part of the Unicode Standard, but 
+    is published as a separate document. The Unicode Standard may require conformance to normative 
+    content in a Unicode Standard Annex, if so specified in the Conformance chapter of that version 
+    of the Unicode Standard. The version number of a UAX document corresponds to the version number 
+    of the Unicode Standard at the last point that the UAX document was updated.</i></p>
   </blockquote>
-  <p class="old_changed"><i>Please submit corrigenda and other comments with the online reporting 
-  form [<a href="#Feedback">Feedback</a>]. Related information that is useful in understanding this 
-  document is found in <a href="#References">References</a>. For the latest version of the Unicode 
-  Standard see [<a href="#Unicode">Unicode</a>]. For a list of current Unicode Technical Reports see 
-  [<a href="#Reports">Reports</a>]. For more information about versions of the Unicode Standard, see 
-  [<a href="#Versions">Versions</a>].</i></p>
+  <p><i>Please submit corrigenda and other comments with the online reporting form [<a href="#Feedback">Feedback</a>]. 
+  Related information that is useful in understanding this document is found in
+  <a href="#References">References</a>. For the latest version of the Unicode Standard see [<a href="#Unicode">Unicode</a>]. 
+  For a list of current Unicode Technical Reports see [<a href="#Reports">Reports</a>]. For more 
+  information about versions of the Unicode Standard, see [<a href="#Versions">Versions</a>].</i></p>
   <h3><i>Contents</i></h3>
   <blockquote>
     <dl>
@@ -152,7 +147,7 @@ div.Section1
   direction, then the ordering of the display text is unambiguous. However, when bidirectional text 
   (a mixture of left-to-right and right-to-left horizontal text) is present, some ambiguities can 
   arise in determining the ordering of the displayed characters.</p>
-  <p>This section describes the algorithm used to determine the directionality for bidirectional 
+  <p>This document describes the algorithm used to determine the directionality for bidirectional 
   Unicode text. The algorithm extends the implicit model currently employed by a number of existing 
   implementations and adds explicit format codes for special circumstances. In most cases, there is 
   no need to include additional information with the text to obtain correct display ordering.</p>
@@ -273,8 +268,8 @@ div.Section1
   </ul>
   <p>The algorithm only reorders text within a paragraph; characters in one paragraph have no effect 
   on characters in a different paragraph. Paragraphs are divided by the Paragraph Separator or 
-  appropriate Newline Function <span class="old_changed">(for guidelines on the handling of CR, LF, 
-  and CRLF, see <i>Section 4.4, Directionality </i>and <i>Section 5.8, Newline Guidelines</i>)</span>. 
+  appropriate Newline Function <span>(for guidelines on the handling of CR, LF, and CRLF, see <i>
+  Section 4.4, Directionality </i>and <i>Section 5.8, Newline Guidelines </i></span>of [<a href="#Unicode">Unicode</a>]<span>)</span>. 
   Paragraphs may also be determined by higher-level protocols: for example, the text in two 
   different cells of a table will be in different paragraphs.</p>
   <p>Combining characters always attach to the preceding base character in the memory 
@@ -387,7 +382,7 @@ div.Section1
   </div>
   <p><a name="BD7">BD7</a>. A <i>level run</i> is a maximal substring of characters that have the 
   same embedding level. It is maximal in that no character immediately before or after the substring 
-  has the same level <span class="changedspan">(a level run is also known as a <i>directional run)</i>.</span></p>
+  has the same level <span>(a level run is also known as a <i>directional run)</i>.</span></p>
   <h4>Example</h4>
   <p>In the following examples, case is used to indicate different implicit character types for 
   those unfamiliar with right-to-left letters. Uppercase letters stand for right-to-left characters 
@@ -404,7 +399,9 @@ div.Section1
   <h3>3.2 <a name="Bidirectional_Character_Types">Bidirectional Character Types</a></h3>
   <p>The normative bidirectional character types for each character are specified in the
   <a href="http://www.unicode.org/Public/UNIDATA/">Unicode Character Database</a> <a href="#UCD">[UCD]</a> 
-  and are summarized in Table&nbsp;3-7.</p>
+  and are summarized in Table&nbsp;3-7. <span>This is a summary only: there are exceptions to the general 
+  scope. For example, certain characters such as U+0CBF KANNADA VOWEL SIGN I are given Type L 
+  (instead of NSM) to preserve canonical equivalence.</span></p>
   <div align="center">
     <center>
     <table border="0" cellspacing="0" cellpadding="2" width="100%" class="noBorder">
@@ -414,126 +411,124 @@ div.Section1
       </tr>
       <tr>
         <td align="CENTER" class="noborder">
-        <table border="1" cellspacing="1" cellpadding="2" height="781">
+        <table border="1" cellspacing="1" cellpadding="2">
           <tr>
-            <th valign="TOP" align="LEFT" height="20">
+            <th valign="TOP" align="LEFT">
             <p align="LEFT">Category</th>
-            <th valign="TOP" align="LEFT" height="20">
+            <th valign="TOP" align="LEFT">
             <p align="LEFT">Type</th>
-            <th valign="TOP" align="LEFT" height="20">
+            <th valign="TOP" align="LEFT">
             <p align="LEFT">Description</th>
-            <th valign="TOP" align="LEFT" height="20">
-            <p align="LEFT"><span class="old_changed">General </span>Scope</th>
+            <th valign="TOP" align="LEFT">
+            <p align="LEFT"><span>General </span>Scope</th>
           </tr>
           <tr>
-            <th rowspan="7" align="LEFT" height="268">
+            <th rowspan="7" align="LEFT">
             <p align="LEFT">Strong</th>
-            <td valign="TOP" height="40"><b>L</b></td>
-            <td valign="TOP" height="40">Left-to-Right</td>
-            <td valign="TOP" height="40">LRM, Most alphabetic, syllabic, Han ideographic characters, 
-            digits that are neither European nor Arabic<span class="old_changed">, ...</span></td>
+            <td valign="TOP"><b>L</b></td>
+            <td valign="TOP">Left-to-Right</td>
+            <td valign="TOP">LRM, Most alphabetic, syllabic, Han ideographic characters, digits that 
+            are neither European nor Arabic<span>, ...</span></td>
           </tr>
           <tr>
-            <td valign="TOP" height="40"><b>LRE</b></td>
-            <td valign="TOP" height="40">Left-to-Right Embedding</td>
-            <td valign="TOP" height="40">LRE</td>
+            <td valign="TOP"><b>LRE</b></td>
+            <td valign="TOP">Left-to-Right Embedding</td>
+            <td valign="TOP">LRE</td>
           </tr>
           <tr>
-            <td valign="TOP" height="20"><b>LRO</b></td>
-            <td valign="TOP" height="20">Left-to-Right Override</td>
-            <td valign="TOP" height="20">LRO</td>
+            <td valign="TOP"><b>LRO</b></td>
+            <td valign="TOP">Left-to-Right Override</td>
+            <td valign="TOP">LRO</td>
           </tr>
           <tr>
-            <td valign="TOP" height="20"><b>R</b></td>
-            <td valign="TOP" height="20">Right-to-Left</td>
-            <td valign="TOP" height="20">RLM, Hebrew alphabet, most punctuation specific to that 
-            script<span class="old_changed">, ...</span></td>
+            <td valign="TOP"><b>R</b></td>
+            <td valign="TOP">Right-to-Left</td>
+            <td valign="TOP">RLM, Hebrew alphabet, most punctuation specific to that script<span>, 
+            ...</span></td>
           </tr>
           <tr>
-            <td valign="TOP" height="40"><b>AL</b></td>
-            <td valign="TOP" height="40">Right-to-Left Arabic</td>
-            <td valign="TOP" height="40">Arabic, Thaana, and Syriac alphabets, most punctuation 
-            specific to those scripts<span class="old_changed">, ...</span></td>
+            <td valign="TOP"><b>AL</b></td>
+            <td valign="TOP">Right-to-Left Arabic</td>
+            <td valign="TOP">Arabic, Thaana, and Syriac alphabets, most punctuation specific to 
+            those scripts<span>, ...</span></td>
           </tr>
           <tr>
-            <td valign="TOP" height="40"><b>RLE</b></td>
-            <td valign="TOP" height="40">Right-to-Left Embedding</td>
-            <td valign="TOP" height="40">RLE</td>
+            <td valign="TOP"><b>RLE</b></td>
+            <td valign="TOP">Right-to-Left Embedding</td>
+            <td valign="TOP">RLE</td>
           </tr>
           <tr>
-            <td valign="TOP" height="20"><b>RLO</b></td>
-            <td valign="TOP" height="20">Right-to-Left Override</td>
-            <td valign="TOP" height="20">RLO</td>
+            <td valign="TOP"><b>RLO</b></td>
+            <td valign="TOP">Right-to-Left Override</td>
+            <td valign="TOP">RLO</td>
           </tr>
           <tr>
-            <th rowspan="8" align="LEFT" height="317">
+            <th rowspan="8" align="LEFT">
             <p align="LEFT">Weak</th>
-            <td valign="TOP" height="20"><b>PDF</b></td>
-            <td valign="TOP" height="20">Pop Directional Format</td>
-            <td valign="TOP" height="20">PDF</td>
+            <td valign="TOP"><b>PDF</b></td>
+            <td valign="TOP">Pop Directional Format</td>
+            <td valign="TOP">PDF</td>
           </tr>
           <tr>
-            <td valign="TOP" height="21"><b>EN</b></td>
-            <td valign="TOP" height="21">European Number</td>
-            <td valign="TOP" height="21">European digits, Eastern Arabic-Indic digits, ...</td>
+            <td valign="TOP"><b>EN</b></td>
+            <td valign="TOP">European Number</td>
+            <td valign="TOP">European digits, Eastern Arabic-Indic digits, ...</td>
           </tr>
           <tr>
-            <td valign="TOP" height="40"><b>ES</b></td>
-            <td valign="TOP" height="40">European Number Separator</td>
-            <td valign="TOP" height="40">Plus Sign, Minus Sign</td>
+            <td valign="TOP"><b>ES</b></td>
+            <td valign="TOP">European Number Separator</td>
+            <td valign="TOP">Plus Sign, Minus Sign</td>
           </tr>
           <tr>
-            <td valign="TOP" height="40"><b>ET</b></td>
-            <td valign="TOP" height="40">European Number Terminator</td>
-            <td valign="TOP" height="40">Degree, Currency symbols, ...</td>
+            <td valign="TOP"><b>ET</b></td>
+            <td valign="TOP">European Number Terminator</td>
+            <td valign="TOP">Degree, Currency symbols, ...</td>
           </tr>
           <tr>
-            <td valign="TOP" height="20"><b>AN</b></td>
-            <td valign="TOP" height="20">Arabic Number</td>
-            <td valign="TOP" height="20">Arabic-Indic digits, Arabic decimal &amp; thousands separators, 
-            ...</td>
+            <td valign="TOP"><b>AN</b></td>
+            <td valign="TOP">Arabic Number</td>
+            <td valign="TOP">Arabic-Indic digits, Arabic decimal &amp; thousands separators, ...</td>
           </tr>
           <tr>
-            <td valign="TOP" height="40"><b>CS</b></td>
-            <td valign="TOP" height="40">Common Number Separator</td>
-            <td valign="TOP" height="40">Colon, Comma, Full Stop (Period), Non-breaking space, ...</td>
+            <td valign="TOP"><b>CS</b></td>
+            <td valign="TOP">Common Number Separator</td>
+            <td valign="TOP">Colon, Comma, Full Stop (Period), Non-breaking space, ...</td>
           </tr>
           <tr>
-            <td valign="TOP" height="40"><b>NSM</b></td>
-            <td valign="TOP" height="40">Non-Spacing Mark</td>
-            <td valign="TOP" height="40">Characters marked Mn (Non-Spacing Mark) and Me (Enclosing 
-            Mark) in the Unicode Character Database.</td>
+            <td valign="TOP"><b>NSM</b></td>
+            <td valign="TOP">Non-Spacing Mark</td>
+            <td valign="TOP">Characters marked Mn (Non-Spacing Mark) and Me (Enclosing Mark) in the 
+            Unicode Character Database.</td>
           </tr>
           <tr>
-            <td valign="TOP" height="40"><b>BN</b></td>
-            <td valign="TOP" height="40">Boundary Neutral</td>
-            <td valign="TOP" height="40"><span class="old_changed">Most </span>formatting and 
-            control characters, other than those explicitly given types above.</td>
+            <td valign="TOP"><b>BN</b></td>
+            <td valign="TOP">Boundary Neutral</td>
+            <td valign="TOP"><span>Most </span>formatting and control characters, other than those 
+            explicitly given types above.</td>
           </tr>
           <tr>
-            <th rowspan="4" align="LEFT" height="144">
+            <th rowspan="4" align="LEFT">
             <p align="LEFT">Neutral</th>
-            <td valign="TOP" height="40"><b>B</b></td>
-            <td valign="TOP" height="40">Paragraph Separator</td>
-            <td valign="TOP" height="40">Paragraph Separator, appropriate Newline Functions, 
-            higher-protocol paragraph determination.</td>
+            <td valign="TOP"><b>B</b></td>
+            <td valign="TOP">Paragraph Separator</td>
+            <td valign="TOP">Paragraph Separator, appropriate Newline Functions, higher-protocol 
+            paragraph determination.</td>
           </tr>
           <tr>
-            <td valign="TOP" height="20"><b>S</b></td>
-            <td valign="TOP" height="20">Segment Separator</td>
-            <td valign="TOP" height="20">Tab</td>
+            <td valign="TOP"><b>S</b></td>
+            <td valign="TOP">Segment Separator</td>
+            <td valign="TOP">Tab</td>
           </tr>
           <tr>
-            <td valign="TOP" height="40"><b>WS</b></td>
-            <td valign="TOP" height="40">Whitespace</td>
-            <td valign="TOP" height="40">Space, Figure Space, Line Separator, Form Feed, General 
-            Punctuation Spaces, ...</td>
+            <td valign="TOP"><b>WS</b></td>
+            <td valign="TOP">Whitespace</td>
+            <td valign="TOP">Space, Figure Space, Line Separator, Form Feed, General Punctuation 
+            Spaces, ...</td>
           </tr>
           <tr>
-            <td valign="TOP" height="20"><b>ON</b></td>
-            <td valign="TOP" height="20">Other Neutrals</td>
-            <td valign="TOP" height="20">All other characters, including OBJECT REPLACEMENT 
-            CHARACTER.</td>
+            <td valign="TOP"><b>ON</b></td>
+            <td valign="TOP">Other Neutrals</td>
+            <td valign="TOP">All other characters, including OBJECT REPLACEMENT CHARACTER.</td>
           </tr>
         </table>
         </td>
@@ -543,25 +538,21 @@ div.Section1
   </div>
   <ul>
     <li>The term European digits is used to refer to decimal forms common in Europe and elsewhere, 
-    and Arabic-Indic digits to refer to the native Arabic forms. (See Section&nbsp;8.2, Arabic, for more 
-    details on naming digits.)</li>
+    and Arabic-Indic digits to refer to the native Arabic forms. (See <i>Section&nbsp;8.2, Arabic</i> of 
+    [<a href="#Unicode">Unicode</a>], for more details on naming digits.)</li>
     <li>Unassigned characters are given strong types in the algorithm. This is an explicit exception 
     to the general Unicode conformance requirements with respect to unassigned characters. As 
-    characters become assigned in the future, these bidirectional types may change.
-    <span class="old_changed">For assignments to character types see </span>
-    <span class="changedspan">DerivedBidiClass.txt in </span>the <span class="old_changed">
+    characters become assigned in the future, these bidirectional types may change. <span>For 
+    assignments to character types see </span><span>DerivedBidiClass.txt in </span>the <span>
     <a href="#UCD">[UCD]</a>.</span></li>
     <li>Private use characters can be assigned different values by a conformant implementation.</li>
     <li>For the purpose of the bidirectional algorithm, inline objects (such as graphics) are 
     treated as if they are an OBJECT REPLACEMENT CHARACTER (U+FFFC).</li>
-    <li>
-    <p class="old_changed">As of Unicode 4.0, the Bidirectional Character Types of a few Indic 
-    characters were altered so that the Bidirectional Algorithm preserves
-    <a name="canonical_equivalence">canonical equivalence</a>. That is, two canonically equivalent 
-    strings will result in equivalent ordering after applying the algorithm. This invariant will be 
-    maintained in the future.</p>
-    <p class="old_changed">Note, however, that the Bidirectional Algorithm does <i>not</i> preserve 
-    compatibility equivalence.</li>
+    <li>As of Unicode 4.0, the Bidirectional Character Types of a few Indic characters were altered 
+    so that the Bidirectional Algorithm preserves <a name="canonical_equivalence">canonical 
+    equivalence</a>. That is, two canonically equivalent strings will result in equivalent ordering 
+    after applying the algorithm. This invariant will be maintained in the future.<p>Note, however, 
+    that the Bidirectional Algorithm does <i>not</i> preserve compatibility equivalence.</li>
   </ul>
   <p>Table&nbsp;3-8 lists additional abbreviations used in the examples and internal character types used 
   in the algorithm.</p>
@@ -690,11 +681,10 @@ div.Section1
     correctly.
     <p>See <a href="#Implementation_Notes">5. Implementation Notes</a> for information on 
     implementing the algorithm without removing the formatting codes.</li>
-    <li>
-    <p class="old_changed">The Zero Width Joiner and Non Joiner affect the shaping of the adjacent 
-    characters; those that are adjacent in the original backing-store order, even though those 
-    characters may end up being rearranged to be non-adjacent by the BIDI algorithm. For more 
-    information, see <a href="#Joiners">Joiners</a>.</li>
+    <li>The Zero Width Joiner and Non Joiner affect the shaping of the adjacent characters; those 
+    that are adjacent in the original backing-store order, even though those characters may end up 
+    being rearranged to be non-adjacent by the BIDI algorithm. For more information, see
+    <a href="#Joiners">Joiners</a>.</li>
   </ul>
   <p><i><a name="X10">X10</a>. The remaining rules are applied to each run of characters at the same 
   level. For each run, determine the <i>start-of-level-run</i> (<b>sor</b>) and <i>end-of-level-run</i> 
@@ -805,11 +795,13 @@ R  N  EN =&gt; R  R  EN
 
 EN N  R  =&gt; EN R  R</pre>
   </blockquote>
+  <p><span>Note that any AN or EN remaining after W7 will be in an right-to-left context.</span></p>
   <p><i><a name="N2">N2</a>. Any remaining neutrals take the embedding direction.</i></p>
   <blockquote>
     <pre>N =&gt; e</pre>
   </blockquote>
-  <p>Assume in this example that <i>eor</i> is L, and <i>sor</i> is R:</p>
+  <p>Assume in this example that <i>eor</i> is L, and <i>sor</i> is R. <span>Then an application of 
+  N1 and N2 yields the following:</span></p>
   <blockquote>
     <pre>L   N <i>eor</i> =&gt; L   L <i>eor</i>
 
@@ -885,7 +877,8 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
   applied to the paragraph.</i></p>
   <p>The process of breaking a paragraph into one or more lines that fit within particular bounds is 
   outside the scope of the bidirectional algorithm. Where character shaping is involved, it can be 
-  somewhat more complicated (see Section 8.2 Arabic). Logically there are the following steps: </p>
+  somewhat more complicated (see <i>Section 8.2 Arabic</i> of [<a href="#Unicode">Unicode</a>]). 
+  Logically there are the following steps: </p>
   <ul>
     <li>The levels of the text are determined according to the bidirectional algorithm.</li>
     <li>The characters are shaped into glyphs according to their context <i>(taking the embedding 
@@ -914,19 +907,19 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
   visual end of the line (in the paragraph direction). Tabulation will always have a consistent 
   direction within a paragraph.</p>
   <p><i><a name="L2">L2</a>. From the highest level found in the text to the lowest odd level on 
-  each line<span class="old_changed">, including intermediate levels not actually present in the 
-  text, </span>reverse any contiguous sequence of characters that are at that level or higher.</i></p>
+  each line<span>, including intermediate levels not actually present in the text, </span>reverse 
+  any contiguous sequence of characters that are at that level or higher.</i></p>
   <p>This reverses a progressively larger series of substrings. The following four examples 
-  illustrate this. <span class="old_changed">In these examples, the paragraph embedding level for 
-  the first and third examples is assumed to be 0 (left to right direction), and for the second and 
-  fourth is assumed to be 1 (right to left direction).</span></p>
-  <h5><span class="old_changed">Example 1 (embedding level = 0)</span></h5>
+  illustrate this. <span>In these examples, the paragraph embedding level for the first and third 
+  examples is assumed to be 0 (left to right direction), and for the second and fourth is assumed to 
+  be 1 (right to left direction).</span></p>
+  <h5><span>Example 1 (embedding level = 0)</span></h5>
   <pre><b>Memory:</b>              car means CAR.
 
 <b>Resolved levels:</b>     00000000001110
 
 <b>Reverse level 1:</b>     car means RAC.</pre>
-  <h5><span class="old_changed">Example 2 (embedding level = 1)</span></h5>
+  <h5><span>Example 2 (embedding level = 1)</span></h5>
   <pre><b>Memory:</b>              car MEANS CAR.
 
 <b>Resolved levels:</b>     22211111111111
@@ -934,7 +927,7 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
 <b>Reverse level 2:</b>     rac MEANS CAR.
 
 <b>Reverse levels 1-2:</b>  .RAC SNAEM car</pre>
-  <h5><span class="old_changed">Example 3 (embedding level = 0)</span></h5>
+  <h5><span>Example 3 (embedding level = 0)</span></h5>
   <pre><b>Memory:</b>              he said &quot;car MEANS CAR.&quot;
 
 <b>Resolved levels:</b>     000000000222111111111100
@@ -942,7 +935,7 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
 <b>Reverse level 2:</b>     he said &quot;rac MEANS CAR.&quot;
 
 <b>Reverse levels 1-2:</b>  he said &quot;RAC SNAEM car.&quot;</pre>
-  <h5><span class="old_changed">Example 4 (embedding level = 1)</span></h5>
+  <h5><span>Example 4 (embedding level = 1)</span></h5>
   <pre><b>Memory:</b>              DID YOU SAY ‘he said &quot;car MEANS CAR&quot;’?
 
 <b>Resolved levels:</b>     11111111111112222222224443333333333211
@@ -965,113 +958,108 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
   right-to-left scripts overhang to the right (thus assuming that the characters will be applied to 
   right-to-left base characters). With such fonts, the display ordering of the marks and base glyphs 
   may need to be adjusted when combining marks are applied to &quot;unmatching&quot; base characters. See <i>
-  Section 5.14, Rendering Non-Spacing Marks</i> for more information.</p>
+  Section 5.14, Rendering Non-Spacing Marks</i> of [<a href="#Unicode">Unicode</a>] for more 
+  information.</p>
   <p><i><a name="L4">L4</a>. A character that possesses the mirrored property as specified by 
-  Section&nbsp;4.7, Mirrored, must be depicted by a mirrored glyph if the resolved directionality of that 
-  character is R.</i></p>
+  Section&nbsp;4.7, Mirrored of [<a href="#Unicode">Unicode</a>] must be depicted by a mirrored glyph if 
+  the resolved directionality of that character is R.</i></p>
   <p>For example, U+0028 left parenthesis—which is interpreted in the Unicode Standard as an opening 
   parenthesis—appears as &quot;<b>(</b>&quot; when its resolved level is even, and as the mirrored glyph &quot;<b>)</b>&quot; 
   when its resolved level is odd.</p>
-  <h3 class="old_changed">3.5 <a name="Shaping">Shaping</a></h3>
-  <p class="old_changed">Shaping is logically applied <i>after</i> the bidirectional algorithm is 
-  used, and limited to characters within the same directional run. For example, suppose that we have 
-  the following string of Arabic characters in memory as characters 1, 2, 3, and 4, and where the 
-  first two characters are overridden to be LTR. To show both paragraph directions, the next two are 
-  embedded, but with the normal RTL direction.</p>
+  <h3>3.5 <a name="Shaping">Shaping</a></h3>
+  <p>Shaping is logically applied <i>after</i> the bidirectional algorithm is used, and limited to 
+  characters within the same directional run. For example, suppose that we have the following string 
+  of Arabic characters in memory as characters 1, 2, 3, and 4, and where the first two characters 
+  are overridden to be LTR. To show both paragraph directions, the next two are embedded, but with 
+  the normal RTL direction.</p>
   <blockquote>
     <div align="center">
       <center>
       <table cellspacing="0" cellpadding="4" border="1">
         <tr>
           <td>
-          <p class="old_changed" align="center">1</td>
+          <p align="center">1</td>
           <td>
-          <p class="old_changed" align="center">2</td>
+          <p align="center">2</td>
           <td>
-          <p class="old_changed" align="center">3</td>
+          <p align="center">3</td>
           <td>
-          <p class="old_changed" align="center">4</td>
+          <p align="center">4</td>
         </tr>
         <tr>
           <td>
-          <p class="old_changed" align="center"><font size="6">ج</font><br>
+          <p align="center"><font size="6">ج</font><br>
           <tt>062C<br>
           JEEM</tt></td>
           <td>
-          <p class="old_changed" align="center"><font size="6">ع</font><br>
+          <p align="center"><font size="6">ع</font><br>
           <tt>0639<br>
           AIN</tt></td>
           <td>
-          <p class="old_changed" align="center"><font size="6">ل</font><br>
+          <p align="center"><font size="6">ل</font><br>
           <tt>0644<br>
           LAM</tt></td>
           <td>
-          <p class="old_changed" align="center"><font size="6">م</font><br>
+          <p align="center"><font size="6">م</font><br>
           <tt>0645<br>
           MEEM</tt></td>
         </tr>
         <tr>
           <td>
-          <p class="old_changed" align="center"><b>L</b></td>
+          <p align="center"><b>L</b></td>
           <td>
-          <p class="old_changed" align="center"><b>L</b></td>
+          <p align="center"><b>L</b></td>
           <td>
-          <p class="old_changed" align="center"><b>R</b></td>
+          <p align="center"><b>R</b></td>
           <td>
-          <p class="old_changed" align="center"><b>R</b></td>
+          <p align="center"><b>R</b></td>
         </tr>
       </table>
       </center>
     </div>
   </blockquote>
-  <p class="old_changed">One can use embedding codes to get this effect in plain text, or use markup 
-  in HTML, as in the examples below. (The red text would be for the right-to-left paragraph 
-  direction.)</p>
+  <p>One can use embedding codes to get this effect in plain text, or use markup in HTML, as in the 
+  examples below. (The red text would be for the right-to-left paragraph direction.)</p>
   <ul>
-    <li>
-    <p class="old_changed">LRM<font color="#FF0000">/RLM</font> LRO&nbsp;<i>JEEM&nbsp;AIN</i>&nbsp;PDF RLO&nbsp;<i>LAM&nbsp;MEEM</i>&nbsp;PDF</li>
-    <li>
-    <p class="old_changed">&lt;p dir=&quot;ltr&quot;<font color="#FF0000">/&quot;rtl&quot;</font>&gt;LRO&nbsp;<i>JEEM&nbsp;AIN</i>&nbsp;PDF 
-    RLO&nbsp;<i>LAM&nbsp;MEEM</i>&nbsp;PDF&lt;/p&gt;</li>
-    <li>
-    <p class="old_changed">&lt;p dir=&quot;ltr&quot;<font color="#FF0000">/&quot;rtl&quot;</font>&gt;&lt;bdo&nbsp;dir=&quot;ltr&quot;&gt;<i>JEEM&nbsp;AIN</i>&lt;/bdo&gt;&lt;bdo&nbsp;dir=&quot;rtl&quot;&gt;<i>LAM&nbsp;MEEM</i>&lt;/bdo&gt;&lt;/p&gt;</li>
+    <li>LRM<font color="#FF0000">/RLM</font> LRO&nbsp;<i>JEEM&nbsp;AIN</i>&nbsp;PDF RLO&nbsp;<i>LAM&nbsp;MEEM</i>&nbsp;PDF</li>
+    <li>&lt;p dir=&quot;ltr&quot;<font color="#FF0000">/&quot;rtl&quot;</font>&gt;LRO&nbsp;<i>JEEM&nbsp;AIN</i>&nbsp;PDF RLO&nbsp;<i>LAM&nbsp;MEEM</i>&nbsp;PDF&lt;/p&gt;</li>
+    <li>&lt;p dir=&quot;ltr&quot;<font color="#FF0000">/&quot;rtl&quot;</font>&gt;&lt;bdo&nbsp;dir=&quot;ltr&quot;&gt;<i>JEEM&nbsp;AIN</i>&lt;/bdo&gt;&lt;bdo&nbsp;dir=&quot;rtl&quot;&gt;<i>LAM&nbsp;MEEM</i>&lt;/bdo&gt;&lt;/p&gt;</li>
   </ul>
-  <p class="old_changed">The resulting shapes will be the following, according to the paragraph 
-  direction:</p>
+  <p>The resulting shapes will be the following, according to the paragraph direction:</p>
   <div align="center">
     <center>
     <table cellspacing="0" cellpadding="8" border="1">
       <tr>
         <th width="50%">
-        <p class="old_changed" align="center">Left-Right Paragraph</th>
+        <p align="center">Left-Right Paragraph</th>
         <th width="50%">
-        <p class="old_changed" align="center">Right-Left Paragraph</th>
+        <p align="center">Right-Left Paragraph</th>
       </tr>
       <tr>
         <td width="50%">
         <table cellspacing="0" cellpadding="4" border="1">
           <tr>
             <td>
-            <p class="old_changed" align="center"><font color="#00ff00"><b>1</b></font></td>
+            <p align="center"><font color="#00ff00"><b>1</b></font></td>
             <td>
-            <p class="old_changed" align="center"><font color="#00ff00"><b>2</b></font></td>
+            <p align="center"><font color="#00ff00"><b>2</b></font></td>
             <td>
-            <p class="old_changed" align="center"><font color="#ff0000"><b>4</b></font></td>
+            <p align="center"><font color="#ff0000"><b>4</b></font></td>
             <td>
-            <p class="old_changed" align="center"><font color="#ff0000"><b>3</b></font></td>
+            <p align="center"><font color="#ff0000"><b>3</b></font></td>
           </tr>
           <tr>
             <td>
-            <p class="old_changed" align="center"><font size="6">ﺞ</font><tt><br>
+            <p align="center"><font size="6">ﺞ</font><tt><br>
             JEEM-F</tt></td>
             <td>
-            <p class="old_changed" align="center"><font size="6">ﻋ</font><tt><br>
+            <p align="center"><font size="6">ﻋ</font><tt><br>
             AIN-I</tt></td>
             <td>
-            <p class="old_changed" align="center"><font size="6">ﻢ</font><tt><br>
+            <p align="center"><font size="6">ﻢ</font><tt><br>
             MEEM-F</tt></td>
             <td>
-            <p class="old_changed" align="center"><font size="6">ﻟ</font><tt><br>
+            <p align="center"><font size="6">ﻟ</font><tt><br>
             LAM-I</tt></td>
           </tr>
         </table>
@@ -1080,26 +1068,26 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
         <table cellspacing="0" cellpadding="4" border="1">
           <tr>
             <td>
-            <p class="old_changed" align="center"><font color="#ff0000"><b>4</b></font></td>
+            <p align="center"><font color="#ff0000"><b>4</b></font></td>
             <td>
-            <p class="old_changed" align="center"><font color="#ff0000"><b>3</b></font></td>
+            <p align="center"><font color="#ff0000"><b>3</b></font></td>
             <td>
-            <p class="old_changed" align="center"><font color="#00ff00"><b>1</b></font></td>
+            <p align="center"><font color="#00ff00"><b>1</b></font></td>
             <td>
-            <p class="old_changed" align="center"><font color="#00ff00"><b>2</b></font></td>
+            <p align="center"><font color="#00ff00"><b>2</b></font></td>
           </tr>
           <tr>
             <td>
-            <p class="old_changed" align="center"><font size="6">ﻢ</font><tt><br>
+            <p align="center"><font size="6">ﻢ</font><tt><br>
             MEEM-F</tt></td>
             <td>
-            <p class="old_changed" align="center"><font size="6">ﻟ</font><tt><br>
+            <p align="center"><font size="6">ﻟ</font><tt><br>
             LAM-I</tt></td>
             <td>
-            <p class="old_changed" align="center"><font size="6">ﺞ</font><tt><br>
+            <p align="center"><font size="6">ﺞ</font><tt><br>
             JEEM-F</tt></td>
             <td>
-            <p class="old_changed" align="center"><font size="6">ﻋ</font><tt><br>
+            <p align="center"><font size="6">ﻋ</font><tt><br>
             AIN-I</tt></td>
           </tr>
         </table>
@@ -1116,8 +1104,8 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
       <td valign="top" class="noborder"><i>C1.</i></td>
       <td valign="top" class="noborder"><i>In the absence of a permissible higher-level protocol, a 
       process that renders text shall display all visible representations of characters (excluding 
-      format characters) in the order described by Section <a href="#Basic_Display_Algorithm">3. 
-      Basic Display Algorithm</a> of this specification. In particular, this includes definitions
+      format characters) in the order described by <a href="#Basic_Display_Algorithm">Section 3. 
+      Basic Display Algorithm </a>of this specification. In particular, this includes definitions
       <a href="#BD1">BD1</a>- <a href="#BD7">BD7</a> and steps </i><a href="#P1">P1</a>-<a href="#P3">P3</a>,
       <a href="#X1">X1</a>-<a href="#X10">X10</a>, <a href="#W1">W1</a>-<a href="#W7">W7</a>,
       <a href="#N1">N1</a>-<a href="#N2">N2</a>, <a href="#I1">I1</a>-<a href="#I2">I2</a>, and
@@ -1136,9 +1124,9 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
     <tr>
       <td valign="top" class="noborder"><i>C2.</i></td>
       <td valign="top" class="noborder"><i>The only permissible higher-level protocols are those 
-      listed in Section </i><a href="#Higher-Level_Protocols">4.3. Higher-Level Protocols</a>:
-      <a href="#HL1">HL1</a>, <a href="#HL1">HL2</a>, <a href="#HL3">HL3</a>, <a href="#HL4">HL4</a>,
-      <a href="#HL5">HL5</a>, and <a href="#HL6">HL6</a>.</td>
+      listed in <a href="#Higher-Level_Protocols">Section </a></i><a href="#Higher-Level_Protocols">
+      4.3. Higher-Level Protocols</a>: <a href="#HL1">HL1</a>, <a href="#HL1">HL2</a>,
+      <a href="#HL3">HL3</a>, <a href="#HL4">HL4</a>, <a href="#HL5">HL5</a>, and <a href="#HL6">HL6</a>.</td>
     </tr>
   </table>
   <blockquote>
@@ -1147,10 +1135,10 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
   </blockquote>
   <h3>4.1. <a name="Boundary_Neutrals">Boundary Neutrals</a></h3>
   <p>The goal in marking a format or control character as BN is that it have no effect on the rest 
-  of the algorithm. <span class="old_changed">(ZWJ and ZWNJ are exceptions; see <a href="#X9">X9</a>).</span> 
-  Since the precise ordering of format characters with respect to others is not required for 
-  conformance, implementations are free to handle them in different ways for efficiency as long as 
-  the ordering of the other characters is preserved.</p>
+  of the algorithm. <span>(ZWJ and ZWNJ are exceptions; see <a href="#X9">X9</a>).</span> Since the 
+  precise ordering of format characters with respect to others is not required for conformance, 
+  implementations are free to handle them in different ways for efficiency as long as the ordering 
+  of the other characters is preserved.</p>
   <h3>4.2. <a name="Explicit_Formatting_Codes">Explicit Formatting Codes</a></h3>
   <p>As with any Unicode characters, systems do not have to support any particular explicit 
   directional formatting code (although it is not generally useful to include a terminating code 
@@ -1302,22 +1290,20 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
   </ul>
   <p>Implementations that display visible representations of format characters will want to adjust 
   this process in order to position the format characters optimally for editing.</p>
-  <h3 class="old_changed">5.3. <a name="Joiners">Joiners</a></h3>
-  <p class="old_changed">As described under <a href="#X9">X9</a>, the Zero Width Joiner and Non 
-  Joiner affect the shaping of the adjacent characters—those that are adjacent in the original 
-  backing-store order—even though those characters may end up being rearranged to be non-adjacent by 
-  the BIDI algorithm. In order to determine the joining behavior of a particular character after 
-  applying the BIDI algorithm, there are two main strategies.</p>
+  <h3>5.3. <a name="Joiners">Joiners</a></h3>
+  <p>As described under <a href="#X9">X9</a>, the Zero Width Joiner and Non Joiner affect the 
+  shaping of the adjacent characters—those that are adjacent in the original backing-store 
+  order—even though those characters may end up being rearranged to be non-adjacent by the BIDI 
+  algorithm. In order to determine the joining behavior of a particular character after applying the 
+  BIDI algorithm, there are two main strategies.</p>
   <ul>
-    <li>
-    <p class="old_changed">When shaping, an implementation can refer back to the original backing 
-    store to see if there were adjacent ZWNJ or ZWJ characters.</li>
-    <li>
-    <p class="old_changed">Alternatively, the implementation can replace ZWJ and ZWNJ by an 
-    out-of-band character property associated with those adjacent characters, so that the 
-    information does not interfere with the BIDI algorithm and the information is preserved across 
-    rearrangement of those characters. Once the BIDI algorithm has been applied, that out-of-band 
-    information can then be used for proper shaping.</li>
+    <li>When shaping, an implementation can refer back to the original backing store to see if there 
+    were adjacent ZWNJ or ZWJ characters.</li>
+    <li>Alternatively, the implementation can replace ZWJ and ZWNJ by an out-of-band character 
+    property associated with those adjacent characters, so that the information does not interfere 
+    with the BIDI algorithm and the information is preserved across rearrangement of those 
+    characters. Once the BIDI algorithm has been applied, that out-of-band information can then be 
+    used for proper shaping.</li>
   </ul>
   <h3>5.4. <a name="Vertical_Text">Vertical Text</a><a name="bk3"></a></h3>
   <p>In the case of vertical line orientation, the bidirectional algorithm is still used to 
@@ -1368,10 +1354,9 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
 
 <b>Display:</b> ?‘he said &quot;!RETAW DEEN I&quot;, and expired.’ YAS UOY DID</pre>
   <h3>Migrating from 2.0 to 3.0</h3>
-  <p>In the Unicode 3.0 Character Database, new bidirectional character types
-  <span class="old_changed">were</span> introduced to make the body of the algorithm depend only on 
-  the types of characters, and not on the character values. The changes from the 2.0 bidirectional 
-  types are listed in Table 3-9:</p>
+  <p>In the Unicode 3.0 Character Database, new bidirectional character types <span>were</span> 
+  introduced to make the body of the algorithm depend only on the types of characters, and not on 
+  the character values. The changes from the 2.0 bidirectional types are listed in Table 3-9:</p>
   <div align="center">
     <center>
     <table border="1" cellspacing="2" cellpadding="0">
@@ -1408,7 +1393,7 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
   </div>
   <p>Implementations that use older property tables can adjust to the modifications in the 
   bidirectional algorithm by algorithmically remapping the above characters to the new types.</p>
-  <h2 align="left">7. <a name="Mirroring">Mirroring</a></h2>
+  <h2 align="left">6. <a name="Mirroring">Mirroring</a></h2>
   <p>The mirrored property is important to ensure that the correct character codes are used for the 
   desired semantic. This is of particular importance where the name of a character does not indicate 
   the intended semantic, such as with <code>U+0028 &quot;(&quot; LEFT PARENTHESIS</code>. While the name 
@@ -1428,7 +1413,7 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
   Instead, mirror glyphs are those acceptable as mirrors within the normal parameters of the font in 
   which they are represented<font size="3">.</font></p>
   <p><font size="3">In implementation, sometimes pairs of characters are acceptable mirrors for one 
-  another: for example</font>, <code>U+0028 &quot;(&quot; LEFT PARENTHESIS</code> and <code>U+0029 &quot;<span class="old_changed">)</span>&quot; 
+  another: for example</font>, <code>U+0028 &quot;(&quot; LEFT PARENTHESIS</code> and <code>U+0029 &quot;<span>)</span>&quot; 
   RIGHT PARENTHESIS</code> or <code>U+22E0 &quot;</code>⋠<code>&quot; DOES NOT PRECEDE OR EQUAL</code> and
   <code>U+22E1 &quot;</code>⋡<code>&quot; DOES NOT SUCCEED OR EQUAL</code>. Other characters such as <code>
   U+2231 &quot;</code>∱<code>&quot; CLOCKWISE INTEGRAL</code> do not have corresponding characters that can be 
@@ -1436,14 +1421,14 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
   lists the paired characters with acceptable mirror glyphs. A comment in the file indicates where 
   the pairs are &quot;best fit&quot;: they should be acceptable in rendering, although ideally the mirrored 
   glyphs may have somewhat different shapes.</p>
-  <h2 class="old_changed"><a name="Acknowledgements">Acknowledgements</a></h2>
-  <p class="old_changed">Thanks to the following people for their contributions to the Bidirectional 
-  Algorithm or for their feedback on earlier versions of this document: Alaa Ghoneim (علاء غنيم), 
-  Ahmed Talaat (أحمد طلعت), Asmus Freytag, Avery Bishop, Behdad Esfahbod (بهداد اسفهبد), Doug Felt, 
-  Eric Mader, Gidi Shalom-Bendor (גידי שלום-בן דור), Isai Scheinberg, Israel Gidali (ישראל גידלי), 
-  Joe Becker, John McConnell, Jonathan Kew, Jonathan Rosenne (יונתן רוזן), Khaled Sherif (خالد شريف), 
-  Kamal Mansour (كمال منصور), Kenneth Whistler, Maha Hassan (مها حسن), Markus Scherer, Martin Dürst, 
-  Mati Allouche (מתתיהו &nbsp;אלוש), Michel Suignard, Mike Ksar<span class="changedspan"> (<span lang="AR-JO">ميشيل 
+  <h2><a name="Acknowledgements">Acknowledgements</a></h2>
+  <p>Thanks to the following people for their contributions to the Bidirectional Algorithm or for 
+  their feedback on earlier versions of this document: Alaa Ghoneim (علاء غنيم), Ahmed Talaat (أحمد 
+  طلعت), Asmus Freytag, Avery Bishop, Behdad Esfahbod (بهداد اسفهبد), Doug Felt, Eric Mader, <span>
+  Ernest Cline, </span>Gidi Shalom-Bendor (גידי שלום-בן דור), Isai Scheinberg, Israel Gidali (ישראל 
+  גידלי), Joe Becker, John McConnell, Jonathan Kew, Jonathan Rosenne (יונתן רוזן), Khaled Sherif (خالد 
+  شريف), Kamal Mansour (كمال منصور), Kenneth Whistler, Maha Hassan (مها حسن), Markus Scherer, Martin 
+  Dürst, Mati Allouche (מתתיהו &nbsp;אלוש), Michel Suignard, Mike Ksar<span> (<span lang="AR-JO">ميشيل 
   قصار</span>)</span>, Murray Sargent, Paul Nelson, Rick McGowan, Roozbeh Pournader (روزبه پورنادر), 
   Steve Atkin, and Thomas Milo (تُومَاسْ مِيلُو).</p>
   <h2><a name="References">References</a></h2>
@@ -1489,108 +1474,89 @@ R   N <i>eor</i> =&gt; R   e <i>eor</i>
       the Unicode Character Database, and Unicode Technical Reports.</i></td>
     </tr>
     <tr>
-      <td class="noborder" valign="top" width="1"><span class="changedspan">Derived</span></td>
-      <td class="noborder" valign="top"><span class="changedspan">Fix this and add 
-      DerivedBidiClass.txt [add pointer]</span></td>
+      <td class="noborder" valign="top" width="1"><span>Derived</span></td>
+      <td class="noborder" valign="top"><span>Fix this and add DerivedBidiClass.txt [add pointer]</span></td>
     </tr>
   </table>
   <h2><a name="Modifications">Modifications</a></h2>
-  <p>The following summarizes modifications from the previous version of this document.</p>
-  <table border="0" width="100%" cellspacing="4" class="noborder" style="border-collapse: collapse" cellpadding="0">
-    <tr>
-      <td valign="top" width="1" class="noborder"><a name="TrackingNumber13">14</a></td>
-      <td valign="top" class="noborder">
-      <ul>
-        <li>
-        <p class="changed">Aliased directional run and level run</li>
-        <li>
-        <p class="changed">Pointed to DerivedBidiClass.txt for unassigned character assignments.</li>
-      </ul>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top" width="1" class="noborder"><a name="TrackingNumber13">13</a></td>
-      <td valign="top" class="noborder">
-      <ul>
-        <li><a href="#Bidirectional_Conformance">4. Bidirectional Conformance</a>: added explicit 
-        clauses.</li>
-        <li><a href="#Higher-Level_Protocols">4.3. Higher-Level Protocols</a>:
-        <ul>
-          <li>Added clarifying text, and renumbered options.</li>
-          <li>Removed option regarding number shaping (since it was irrelevant to bidirectional 
-          ordering).</li>
-          <li>Broadened the ability to override on the basis of context, and clarified number 
-          handling.</li>
-          <li>Made clear that bidi could be applied to segments</li>
-        </ul>
-        </li>
-        <li><a href="#3.1_Bidirectional_Behavior">1. Introduction</a>: added note that the changes 
-        in <a href="#Bidirectional_Conformance">4. Bidirectional Conformance</a> override clause C13 
-        of Unicode 4.0 [<a href="#Unicode">Unicode</a>], and tighten the conformance requirements 
-        from what they had been previously.</li>
-        <li>Minor editing for clarification.</li>
-      </ul>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top" width="1" class="noborder"><a name="TrackingNumber11">11</a></td>
-      <td valign="top" class="noborder">
-      <ul>
-        <li>Updated for Unicode 4.0.</li>
-        <li>Added note on <a href="#canonical_equivalence">canonical equivalence</a></li>
-        <li>Added <a href="#Joiners">Joiners</a> section on ZWJ and ZWNJ</li>
-        <li>Clarified <a href="#L2">L2</a> and examples following.</li>
-        <li>Added a section on the interaction of <a href="#Shaping">shaping</a> and bidirectional 
-        reordering.</li>
-        <li>Moved lists for unassigned characters into UCD.html (also now explicit in 
-        DerivedBidiClass.txt)</li>
-        <li>Updated references for Newline Guidelines (since the UAX is incorporated into the 4.0 
-        book)</li>
-        <li>The first two sections were rearranged, with <a href="#Reference_Code">Reference Code</a> 
-        going into <a href="#Implementation_Notes">Implementation Notes</a>, and
-        <a href="#Mirroring">Mirroring</a> in its own section at the end.
-        <ul>
-          <li>This is <i>not</i> highlighted in the proposed text.</li>
-        </ul>
-        </li>
-        <li>Sections were renumbered and the table of contents is more detailed.
-        <ul>
-          <li>This is <i>not</i> highlighted in the proposed text.</li>
-        </ul>
-        </li>
-        <li>Misc editing.</li>
-      </ul>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top" width="1" class="noborder"><a name="TrackingNumber10">10</a></td>
-      <td valign="top" class="noborder">
-      <ul>
-        <li>Updated for Unicode 3.2.</li>
-        <li>Updated UAX boilerplate in the status section.</li>
-      </ul>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top" width="1" class="noborder"><a name="TrackingNumber9">9</a></td>
-      <td valign="top" class="noborder">
-      <ul>
-        <li>Clarified the language of <a href="#P2">P2</a></li>
-        <li>Corrected the implementation note on &quot;Retaining Format Codes&quot; in
-        <a href="#Implementation_Notes">Implementation Notes</a></li>
-        <li>Minor editing</li>
-      </ul>
-      </td>
-    </tr>
-  </table>
-  <p><br>
-  </p>
+  <p>The following summarizes modifications from previous revisions of this document.</p>
+  <h3><b>Revision <a name="TrackingNumber15">15</a></b>:</h3>
+  <ul>
+    <li><span>Minor editing</span></li>
+    <li><span>Fixed Section Number for Mirroring</span></li>
+    <li><span>Changed &quot;Tracking Number&quot; to Revision</span></li>
+    <li><span>Added note on U+0CBF KANNADA VOWEL SIGN I</span></li>
+    <li><span>Added note after N1, and clarified example after N2.</span></li>
+    <li><span>Fixed references to sections of the Unicode Standard</span></li>
+  </ul>
+  <h3><b>Revision </b><a name="TrackingNumber14">14</a>:</h3>
+  <ul>
+    <li><span>Aliased directional run and level run</span></li>
+    <li><span>Pointed to DerivedBidiClass.txt for unassigned character assignments.</span></li>
+  </ul>
+  <h3><b>Revision </b><a name="TrackingNumber13">13</a>:</h3>
+  <ul>
+    <li><a href="#Bidirectional_Conformance">4. Bidirectional Conformance</a>: added explicit 
+    clauses.</li>
+    <li><a href="#Higher-Level_Protocols">4.3. Higher-Level Protocols</a>:
+    <ul>
+      <li>Added clarifying text, and renumbered options.</li>
+      <li>Removed option regarding number shaping (since it was irrelevant to bidirectional 
+      ordering).</li>
+      <li>Broadened the ability to override on the basis of context, and clarified number handling.</li>
+      <li>Made clear that bidi could be applied to segments</li>
+    </ul>
+    </li>
+    <li><a href="#3.1_Bidirectional_Behavior">1. Introduction</a>: added note that the changes in
+    <a href="#Bidirectional_Conformance">4. Bidirectional Conformance</a> override clause C13 of 
+    Unicode 4.0 [<a href="#Unicode">Unicode</a>], and tighten the conformance requirements from what 
+    they had been previously.</li>
+    <li>Minor editing for clarification.</li>
+  </ul>
+  <h3><b>Revision </b><a name="TrackingNumber11">11</a>:</h3>
+  <ul>
+    <li>Updated for Unicode 4.0.</li>
+    <li>Added note on <a href="#canonical_equivalence">canonical equivalence</a></li>
+    <li>Added <a href="#Joiners">Joiners</a> section on ZWJ and ZWNJ</li>
+    <li>Clarified <a href="#L2">L2</a> and examples following.</li>
+    <li>Added a section on the interaction of <a href="#Shaping">shaping</a> and bidirectional 
+    reordering.</li>
+    <li>Moved lists for unassigned characters into UCD.html (also now explicit in 
+    DerivedBidiClass.txt)</li>
+    <li>Updated references for Newline Guidelines (since the UAX is incorporated into the 4.0 book)</li>
+    <li>The first two sections were rearranged, with <a href="#Reference_Code">Reference Code</a> 
+    going into <a href="#Implementation_Notes">Implementation Notes</a>, and <a href="#Mirroring">
+    Mirroring</a> in its own section at the end.
+    <ul>
+      <li>This is <i>not</i> highlighted in the proposed text.</li>
+    </ul>
+    </li>
+    <li>Sections were renumbered and the table of contents is more detailed.
+    <ul>
+      <li>This is <i>not</i> highlighted in the proposed text.</li>
+    </ul>
+    </li>
+    <li>Misc editing.</li>
+  </ul>
+  <h3><b>Revision </b><a name="TrackingNumber10">10</a>:</h3>
+  <ul>
+    <li>Updated for Unicode 3.2.</li>
+    <li>Updated UAX boilerplate in the status section.</li>
+  </ul>
+  <h3><b>Revision </b><a name="TrackingNumber9">9</a>:</h3>
+  <ul>
+    <li>Clarified the language of <a href="#P2">P2</a></li>
+    <li>Corrected the implementation note on &quot;Retaining Format Codes&quot; in
+    <a href="#Implementation_Notes">Implementation Notes</a></li>
+    <li>Minor editing</li>
+  </ul>
   <hr>
-  <p class="copyright">Copyright © 2000-2004 Unicode, Inc. All Rights Reserved. The Unicode 
-  Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors 
-  or omissions. No liability is assumed for incidental and consequential damages in connection with 
-  or arising out of the use of the information or programs contained or accompanying this technical 
-  report. The Unicode <a href="http://www.unicode.org/copyright.html">Terms of Use</a> apply.</p>
+  <p class="copyright">Copyright © 2000-200<span>5</span> Unicode, Inc. All Rights Reserved. The 
+  Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no liability 
+  for errors or omissions. No liability is assumed for incidental and consequential damages in 
+  connection with or arising out of the use of the information or programs contained or accompanying 
+  this technical report. The Unicode <a href="http://www.unicode.org/copyright.html">Terms of Use</a> 
+  apply.</p>
   <p class="copyright">Unicode and the Unicode logo are trademarks of Unicode, Inc., and are 
   registered in some jurisdictions.</div>
 

@@ -651,7 +651,7 @@ public class UGtoHtml {
         copyFile("html-template/icu.css", "html/icu.css");
         copyFile("html-template/images/w24.gif", "html/images/w24.gif");    // The ICU Unicode World Logo
         copyFile("OO/images/note.gif", "html/images/note.gif");  // The little yellow "note" image.
-        copyFile("html-template/images/ibm_logo.gif", "html/images/ibm_logo.gif");
+        copyFile("html-template/images/hlines.gif", "html/images/hlines.gif");
         copyFile("html-template/images/gr100.gif", "html/images/gr100.gif");
         copyFile("html-template/images/c.gif", "html/images/c.gif");
 

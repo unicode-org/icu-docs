@@ -260,17 +260,23 @@
   upper and lower case typically ignore the differences in case, <i>unless</i> there are no other 
   differences in the text.</p>
   <p><span class="changedspan">It is important to ensure that collation meets user expectations as 
-  fully as possible. Sorting &quot;Søren&quot; after &quot;Sozar&quot; in a long list — if that is not expected in the 
-  user&#39;s language — will cause problems. A user will look for &quot;Søren&quot; between &quot;Sorem&quot; and &quot;Soret&quot;,
-  <i>not</i> see it on the page, and assume it isn&#39;t there — fooled by the fact that it is on a 
-  completely different page. In matching, the same can occur, which can have cause significant 
-  problems for software customers; and as with database selection, the user may not realize what he 
-  is missing. See <a href="#Other_Applications_of_Collation">1.5 Other Applications of Collation</a>.</span></p>
-  <p><span class="changedspan">With Unicode being deployed so widely, this is even more important; 
-  multilingual data becomes the rule, not the exception. A French company with customers all over 
-  Europe is going to have names from many different languages — French, German, Polish, Swedish, 
-  etc. If a German employee sets the sorting (or matching / selecting) language to be German, then 
-  the names need to show up in the order appropriate for German, even though there will be many 
+  fully as possible. For example, in the majority of Latin languages, ø sorts as an accented variant 
+  of o, meaning that most users would expect ø alongside o. However, there are a few languages 
+  (Norwegian and Danish for example) that sort ø as a unique sorting element after z. Sorting &quot;Søren&quot; 
+  after &quot;Sylt&quot; in a long list — that is, as would be expected in Norwegian or Danish — will cause 
+  problems if the user expects ø as a variant of o. A user will look for &quot;Søren&quot; between &quot;Sorem&quot; and 
+  &quot;Soret&quot;, <i>not</i> see it in the selection, and assume the string is missing - fooled by the fact 
+  that it has sorted in a completely different location. In matching, the same can occur, which can 
+  cause significant problems for software customers; and as with database selection, the user may 
+  not realize what he is missing. See <a href="#Other_Applications_of_Collation">1.5 Other 
+  Applications of Collation</a>.<br>
+  <br>
+  With Unicode being deployed so widely, multilingual data becomes the rule, not the exception. 
+  Furthermore, it is increasingly common to see users with many different sorting expectations 
+  accessing the data. For example, a French company with customers all over Europe will include 
+  names from many different languages - French, German, Polish, Swedish, etc. If a German employee 
+  at this French company accesses the data, the customer names need to show up in the order that 
+  meets this employee&#39;s expectations — that is, in a German order — even though there will be many 
   different accented characters that do not normally appear in German text.</span></p>
   <p>For scripts and characters outside the use of a particular language, explicit rules may not 
   exist. For example, Swedish and French have clear and different rules on sorting ä (either after z 
@@ -3315,10 +3321,10 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   </p>
   <h2><a name="Searching"></a>8 Searching and Matching (Informative)</h2>
   <p>The collation elements can also be used for matching string and for searching for strings, so 
-  that a proper native-language match is produced. For example, &quot;ß&quot; will properly match against 
-  &quot;ss&quot;. Users of search algorithms should be allowed to modify the comparison strength, thus 
-  excluding differences at less significant levels. This is especially useful for searching, but can 
-  also apply to comparison.</p>
+  that a proper native-language match is produced. For example, &quot;ß&quot; will properly match against &quot;ss&quot;. 
+  Users of search algorithms should be allowed to modify the comparison strength, thus excluding 
+  differences at less significant levels. This is especially useful for searching, but can also 
+  apply to comparison.</p>
   <p>Excluding differences at Level 3 has the effect of ignoring case and compatibility format 
   distinctions between letters when searching. Excluding differences at Level 2 has the effect of 
   ignoring accentual distinctions when searching.</p>
@@ -3359,8 +3365,8 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   </ol>
   <p>The following definitions come into play:</p>
   <p><b>DS1. </b>Define <i>S[start,end]</i> to be the substring of S that includes the character 
-  after the offset <i>start</i> up to the character before offset <i>end</i>. For example, if S is 
-  &quot;abcd&quot;, then S[1,3] is &quot;bc&quot;.</p>
+  after the offset <i>start</i> up to the character before offset <i>end</i>. For example, if S is &quot;abcd&quot;, 
+  then S[1,3] is &quot;bc&quot;.</p>
   <p>Suppose there is a collation C, a pattern string P and a target string Q. C has some particular 
   set of attributes, such as a strength setting, and choice of variable weighting.</p>
   <p><b>DS2. </b>There is a <i>match</i> according to C for P within Q[<i>s,e</i>] if and only if C 
@@ -3425,17 +3431,16 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   <p><b>DS6.</b> The <i>first forward match</i> for P in Q starting at <i>b</i> is the least offset
   <i>s</i> greater than or equal to <i>b</i> such that for some <i>e</i>, P matches within Q[s,e].</p>
   <p><b>DS7.</b> The <i>first backward match</i> for P in Q starting at <i>b</i> is the greatest 
-  offset <i>e</i> less than or equal to <i>b</i> such that for some <i>s</i>, P matches within 
-  Q[s,e].</p>
+  offset <i>e</i> less than or equal to <i>b</i> such that for some <i>s</i>, P matches within Q[s,e].</p>
   <p><span class="changedspan">In DS6 and DS7, matches can be minimal, medial, or maximal; the only 
   requirement is that the combination in use in DS6 and DS7 be specified. Of course, a possible 
   match can also be rejected on the basis of other conditions, such as being grapheme-complete or 
   applying Whole Word Search, as described in [<a href="#Breaks">Breaks</a>]). </span></p>
   <h2><a name="Acknowledgements">Acknowledgements</a></h2>
   <p>Thanks to Åke Persson, Kent Karlsson, Roozbeh Pournader, Vladimir Weinstein, and Richard Gillam 
-  for their feedback on previous versions of this document, and Cathy Wissink for her contributions 
-  to the text,<span class="changedspan"> and to Jianping Yang and Claire Ho for their contributions 
-  on matching</span>.</p>
+  for their feedback on previous versions of this document, and Cathy Wissink for her
+  <span class="changedspan">many</span> contributions to the text,<span class="changedspan"> and to 
+  Jianping Yang and Claire Ho for their contributions on matching</span>.</p>
   <h2><a name="References">References</a></h2>
   <table class="noborder" cellpadding="8">
     <tr>

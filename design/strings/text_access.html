@@ -18,6 +18,7 @@ Mark Davis, Markus Scherer, Steven Loomis</p>
 <p>All versions: <a href="http://oss.software.ibm.com/cvs/icu/icuhtml/design/strings/text_access.html">http://oss.software.ibm.com/cvs/icu/icuhtml/design/strings/text_access.html</a></p>
 <p>Addition 2004-jul-22: <a href="#Native_Indexes">Native Indexes</a> and Issue
 for chunk lifetime</p>
+<p>Addition 2004-oct-06: <a href="#2004-oct-06">Design meeting notes</a></p>
 <h2>Problem Description and Goals</h2>
 <p>ICU APIs operating on text accept either strings with contiguous storage of
 UChars (UTF-16 code unit strings) or abstract APIs with per-character function
@@ -50,6 +51,7 @@ Indexes</a> below.)</i></p>
   <li>UChar * with NUL-termination</li>
   <li>UnicodeString (essentially the same as UChar * with length)</li>
   <li>Text stored in discontiguous chunks of UChars</li>
+  <li>SBCS text (text with 1:1 mappings to UTF-16)</li>
   <li>UTF-8 text (to a lesser degree)</li>
 </ul>
 <h3>Candidate Services</h3>
@@ -474,6 +476,73 @@ when their implementation can handle native indexes. Some methods (e.g.,
 length()) may still want to be renamed to avoid collision and confusion with
 common names or with old Replaceable names in classes implementing both
 interfaces.</p>
+
+<h2><a name="2004-oct-06">Design Meeting Notes 2004-oct-06</a></h2>
+<p>Attendees: Same as initial meeting, and also Ken Krugler, Vladimir Weinstein,
+and Aki Inoue.</p>
+<p>The discussion centered around text access with native indexes.</p>
+<h3>Options for Access with Native Indexes</h3>
+<ol>
+  <li>In the case of native (=non-UTF-16) indexes, fetch each code point with a
+    function call to the text provider.</li>
+  <li>Even with native indexes, access() return a chunk of UTF-16 text (a UChar[]).<br>
+    Use two functions to map between UTF-16 and native indexes.<br>
+    Usage becomes more similar to UTF-16-index case (compared to option 1)
+    because we always work on a UChar[] buffer.</li>
+  <li>Same as 2, but access() return an index map for the UTF-16-&gt;native
+    index mapping, and use one provider function to map native-&gt;UTF-16.</li>
+  <li>Same as 3, but access() return two index maps for both index mappings.</li>
+</ol>
+<p><i>Agreement: </i>We will prototype option 2 first.</p>
+<h3>Scope of Index Mappings</h3>
+<p><i>Agreement: </i>Index mappings should be limited to the current buffer,
+that is, limited to the text most recently returned by the access() function.</p>
+<p>Map to native: Input native absolute start/limit indexes and chunk-relative
+UTF-16 offset (0 to chunk length, inclusive); output corresponding absolute
+native index.</p>
+<p>Map to UTF-16 index: Input native absolute start/limit indexes and absolute
+index-in-question (between the start and limit, inclusive); output
+chunk-relative UTF-16 offset.</p>
+<h3>Only Code Point Access</h3>
+<p>Historically, ICU and Java character iterators provided access functions for
+both UTF-16 code units and for Unicode code points. (For example, both charAt()
+and char32At() on several classes and interfaces.) Code unit access is natural
+for UTF-16 but very inconvenient for other encodings. Code point access should
+suffice for text processing.</p>
+<p><i>Agreement: </i>The new text access interface and its wrapper class will
+provide only code point access.</p>
+<p>This does not affect indexes &mdash; they will be either UTF-16 code unit indexes
+or native-storage-unit indexes, and will only be UTF-32 indexes if that's what
+&quot;native&quot; indexes are.</p>
+<p>This also does not affect substring access via access() and extract()
+functions, only the wrapper class and some index semantics: Indexes are
+translatable only at code point boundaries, which also requires that text chunks
+must start and end at code point boundaries.</p>
+<p>Some ICU implementation code has special optimizations for working on UTF-16
+text that explicitly accesses code units. Versions of these implementations that
+use the text access API would simply not use such UTF-16-specific optimizations.</p>
+<h3>Negotiate Access Pattern</h3>
+<p><i>Agreement: </i>There should be a way to communicate from the service code
+to the text provider certain hints about the service code's access pattern.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>A hint for whether small/medium/large buffers would be appropriate; this
+    could be a chunk size. This hint is only a suggestion, and a provider would
+    be allowed to ignore it completely.</li>
+  <li>A hint for the general access pattern: More random access or more
+    iterative.</li>
+  <li>A service may require using UTF-16 indexes. A provider working on
+    non-UTF-16-compatible text may choose to ignore this (in which case the
+    service code may reject the text object and stop with an error), or may be
+    able to use a slower, less efficient implementation which can handle UTF-16
+    indexes.</li>
+</ul>
+<p>This could be done as an extension of the getType() function proposed above:
+A function (&quot;exchangeTypes()&quot;? &quot;negotiateTypes()&quot;? &quot;exchangeProperties()&quot;?)
+could take a bit field argument from the service code and return a bit field
+value from the provider.</p>
 
 </body>
 

@@ -243,11 +243,11 @@
     </tr>
   </table>
   <h2>2. <a name="Default_Identifier_Syntax">Default Identifier Syntax</a></h2>
-  <p>The formal syntax provided here is intended to capture the general intent that an identifier 
-  consists of a string of characters that begins with a letter or an ideograph, and then includes 
-  any number of letters, ideographs, digits, or underscores. <span>It provides a definition of 
-  identifiers that is guaranteed to be backward compatible with each successive release of Unicode, 
-  but also makes available any appropriate Unicode characters.</span></p>
+  <p>The formal syntax provided here captures the general intent that an identifier consists of a 
+  string of characters beginning with a letter or an ideograph, and following with any number of 
+  letters, ideographs, digits, or underscores. <span>It provides a definition of identifiers that is 
+  guaranteed to be backward compatible with each successive release of Unicode, but also adds any 
+  appropriate new Unicode characters.</span></p>
   <h4>D1. Default Identifier Syntax</h4>
   <p><code>&lt;identifier&gt; := &lt;<span>ID_Start</span>&gt; &lt;<span>ID_Continue</span>&gt;*</code> </p>
   <p>Identifiers are defined by the following sets of character categories from the Unicode 
@@ -268,12 +268,12 @@
     <tr>
       <td><code><span>ID_Continue</span></code></td>
       <td><code><span>XID_Continue</span></code></td>
-      <td><b><code><span>ID_Start</span></code></b> pl<span>us </span>nonspacing marks, spacing 
-      combining marks, decimal numbers, connector punctuations, <span>stability extensions. <span>
-      These are also known simply as <i>Identifier Characters</i>, since they are a superset of the
-      </span></span><span><span><code><b>ID_Start</b></code></span>. The set of <span><code>ID_Start</code></span> 
-      characters minus the <span><code>ID_Continue</code></span> characters are known as <span>
-      <code>ID_Only_ Continue</code></span> characters.</span></td>
+      <td>All of the above, pl<span>us </span>nonspacing marks, spacing combining marks, decimal 
+      numbers, connector punctuations, <span>stability extensions. <span>These are also known simply 
+      as <i>Identifier Characters</i>, since they are a superset of the </span></span><span><span>
+      <code><b>ID_Start</b></code></span>. The set of <span><code>ID_Start</code></span> characters 
+      minus the <span><code>ID_Continue</code></span> characters are known as <span><code>ID_Only_ 
+      Continue</code></span> characters.</span></td>
     </tr>
   </table>
   <p>The innovations in the identifier syntax to cover the Unicode Standard include the following:
@@ -286,21 +286,19 @@
     <a href="#NFKC_Modifications">NFKC Modifications</a>.</li>
   </ul>
   <h3>2.1 Combining Marks</h3>
-  <p>Combining marks are accounted for in identifier syntax. A composed character sequence 
-  consisting of a base character followed by any number of combining marks must be valid for an 
-  identifier. This requirement results from the requirement for combining marks in the 
-  representation of many languages, and the conformance rules in Chapter 3 regarding interpretation 
-  of canonical-equivalent character sequences. </p>
-  <p>Enclosing combining marks (for example, <code>U+20DD..U+20E0</code>) are excluded from the 
-  syntactic definition of <code>ID_Continue</code>, because the composite characters that result 
-  from their composition with letters (for example, U+24B6 <span style="FONT-VARIANT: small-caps">
-  circled latin capital letter a</span>) are themselves not normally considered valid constituents 
-  of these identifiers.</p>
+  <p>Combining marks are accounted for in identifier syntax: a composed character sequence 
+  consisting of a base character followed by any number of combining marks is valid in an 
+  identifier. Combining marks are required in the representation of many languages, and the 
+  conformance rules in <i>Chapter 3, Conformance</i> of [<a href="#Unicode">Unicode</a>] require the 
+  interpretation of canonical-equivalent character sequences. </p>
+  <p>Enclosing combining marks (such as <code>U+20DD..U+20E0</code>) are excluded from the syntactic 
+  definition of <code>ID_Continue</code>, because the composite characters that result from their 
+  composition with letters are themselves not normally considered valid constituents of these 
+  identifiers. </p>
   <h3>2.2 Layout and Format Control Characters</h3>
   <p>Certain Unicode characters are used to control joining behavior, bidirectional ordering 
   control, and alternative formats for display. These have the General Category value of Cf. Unlike 
-  space characters or other delimiters, they do not serve to indicate word, line, or other unit 
-  boundaries.</p>
+  space characters or other delimiters, they do not indicate word, line, or other unit boundaries.</p>
   <p>While it is possible to ignore these characters in determining identifiers, the recommendation 
   is to not ignore them, and not permit them in identifiers except in special cases. This is because 
   of the possibility for confusion between two visually identical strings: see [<a href="#UAX36">UTR36</a>]. 
@@ -308,8 +306,8 @@
   characters in Indic words.</p>
   <h3>2.3 Specific Character Adjustments</h3>
   <p>Specific identifier syntaxes can be treated as tailorings of the generic syntax based on 
-  character properties. For example, SQL identifiers allow an underscore as an identifier part (but 
-  not as an identifier start); C identifiers allow an underscore as either an identifier part or an 
+  character properties. For example, SQL identifiers allow an underscore as an identifier part, but 
+  not as an identifier start; C identifiers allow an underscore as either an identifier part or an 
   identifier start. Specific languages may also want to exclude the characters that have a <code>
   decomposition_type</code> other than <code>canonical</code> or <code>none</code>, or to exclude 
   some subset of those, such as those with a <code>decomposition_type</code> equal to <code>font</code>.
@@ -387,12 +385,12 @@
     </tr>
   </table>
   <h2>3. <a name="Alternative_Identifier_Syntax">Alternative Identifier Syntax</a></h2>
-  <p>The down-side of working with the syntactic classes defined above is the storage space needed 
-  for the detailed definitions, plus the fact that with each new version of the Unicode Standard new 
-  characters are added, which an existing parser would not be able to recognize. In other words, the 
-  recommendations based on that table are not upwardly compatible. </p>
-  <p>One method to address this problem is to turn the question around. Instead of defining the set 
-  of code points that are allowed, define a small, fixed set of code points that are reserved for 
+  <p>The disadvantage of working with the syntactic classes defined above is the storage space 
+  needed for the detailed definitions, plus the fact that with each new version of the Unicode 
+  Standard new characters are added, which an existing parser would not be able to recognize. In 
+  other words, the recommendations based on that table are not upwardly compatible. </p>
+  <p>This problem can be addressed by turning the question around. Instead of defining the set of 
+  code points that are allowed, define a small, fixed set of code points that are reserved for 
   syntactic use and allow everything else (including unassigned code points) as part of an 
   identifier. All parsers written to this specification would behave the same way for all versions 
   of the Unicode Standard, because the classification of code points is fixed forever. </p>
@@ -440,10 +438,10 @@
   limited in the past, and forced to use clumsy combinations of ASCII characters for their syntax. 
   As Unicode becomes ubiquitous, some of these will start to use non-ASCII characters for their 
   syntax: first as more readable optional alternatives, then eventually as the standard syntax.</p>
-  <p>For forwards and backwards compatibility, it is very advantageous to have a fixed set of 
-  whitespace and syntax code points for use in patterns. This follows the recommendations that the 
-  Unicode Consortium made regarding completely stable identifiers, and the practice that is seen in 
-  XML 1.1 [<a href="#XML1.1">XML1.1</a>]. (In particular, the consortium committed to not allocating 
+  <p>For forward and backward compatibility, it is advantageous to have a fixed set of whitespace 
+  and syntax code points for use in patterns. This follows the recommendations that the Unicode 
+  Consortium made regarding completely stable identifiers, and the practice that is seen in XML 1.1 
+  [<a href="#XML1.1">XML1.1</a>]. (In particular, the consortium committed to not allocating 
   characters suitable for identifiers in the range 2190..2BFF, which is being used by XML 1.1.)</p>
   <p>With a fixed set of whitespace and syntax code points, a pattern language can then have a 
   policy requiring all possible syntax characters (even ones currently unused) to be quoted if they 
@@ -452,10 +450,10 @@
   systems will signal an error instead of silently producing the wrong results.</p>
   <blockquote>
     <p><i>Example:</i></p>
-    <p>In version 1.3 of program X, &#39;≈&#39; is a reserved syntax character, e.g. it doesn&#39;t perform an 
-    operation, but you have to quote it. In version 1.4, &#39;≈&#39; gets a real meaning, e.g. uppercase the 
-    subsequent characters. In this example, &#39;\&#39; <i>quotes</i> the next character; i.e., causes it to 
-    be treated as a literal instead of a syntax character.</p>
+    <p>In version 1.3 of program X, &#39;≈&#39; is a reserved syntax character, e.g. it does not perform an 
+    operation, but you have to quote it. In version 1.4, &#39;≈&#39; gets a real meaning, for example, 
+    &quot;uppercase the subsequent characters&quot;. In program X, &#39;\&#39; <i>quotes</i> the next character; that 
+    is, causes it to be treated as a literal instead of a syntax character.</p>
     <ul>
       <li>The pattern abc...\≈...xyz works on both version 1.3 and 1.4, and refers to the literal 
       character since it is quoted in both cases. </li>
@@ -469,13 +467,13 @@
   of course, override these recommendations (for example, adding or removing other characters for 
   compatibility in ASCII). </p>
   <p>For stability, the property values are absolutely invariant; not changing with successive 
-  versions of Unicode. Of course, this doesn&#39;t limit the ability of the Unicode Standard to add more 
-  symbol or whitespace characters, but the syntax and whitespace characters recommended for use in 
-  patterns would not change.</p>
+  versions of Unicode. Of course, this does not limit the ability of the Unicode Standard to add 
+  more symbol or whitespace characters, but the syntax and whitespace characters recommended for use 
+  in patterns will not change.</p>
   <p>When <i>generating</i> rules or patterns, all whitespace and syntax code points that are to be 
-  literals would require quoting (using whatever quoting mechanism is available). For readability, 
-  it is recommended practice to quote or escape all literal whitespace and default ignorable code 
-  points as well.</p>
+  literals require quoting, using whatever quoting mechanism is available. For readability, it is 
+  recommended practice to quote or escape all literal whitespace and default ignorable code points 
+  as well.</p>
   <blockquote>
     <p><i>Example: </i>consider the following, where the items in angle brackets indicate literal 
     characters.</p>
@@ -484,7 +482,7 @@
       WIDTH SPACE&gt;</span>y&nbsp; + z;</li>
     </ul>
     <p>Since <span style="font-variant: small-caps">&lt;SPACE&gt;</span> is a Pattern_White_Space 
-    character, it would require quoting. Since <span style="font-variant: small-caps">&lt;ZERO WIDTH 
+    character, it requires quoting. Because <span style="font-variant: small-caps">&lt;ZERO WIDTH 
     SPACE&gt;</span> is a default ignorable character, it should also be quoted for readability. So if 
     in this example \uXXXX is used for hex expression, but resolved before quoting, and single 
     quotes are used for quoting, this might be expressed as:</p>
@@ -500,10 +498,10 @@
     <tr>
       <td class="noborder">&nbsp;</td>
       <td class="noborder">To meet this requirement, an implementation shall use Pattern_White_Space 
-      characters as all and only those character interpreted as whitespace in parsing, and shall use 
-      Pattern_Syntax characters as all and only those characters with syntactic use.<p>Or, it shall 
-      declare that it uses a modification, and provide a precise list of characters that are added 
-      to or removed from the sets of code points defined by these properties.</p>
+      characters as all and only those characters interpreted as whitespace in parsing, and shall 
+      use Pattern_Syntax characters as all and only those characters with syntactic use.<p>Or, it 
+      shall declare that it uses a modification, and provide a precise list of characters that are 
+      added to or removed from the sets of code points defined by these properties.</p>
       <ul>
         <li>Note: all characters other than those defined by these properties would be available as 
         identifiers or literals.</li>
@@ -541,27 +539,26 @@
   </table>
   <p><span>This section discusses issues that must be taken into account when considering 
   normalization and case folding of identifiers in programming languages or scripting languages.
-  </span><font color="#000000"><span>Normalization can be used to avoid problems</span></font><span>
+  </span><font color="#000000"><span>Using normalization avoids many problems</span></font><span>
   </span><font color="#000000"><span>where apparently identical identifiers are not treated 
   equivalently. Such problems can appear both during compilation and during linking, in particular 
-  also across different programming languages.</span></font><span> To avoid such problems, 
-  programming languages can normalize identifiers before storing or comparing them. Generally if the 
-  programming language has case-sensitive identifiers then Normalization Form C may be used, while 
-  if the programming language has case-insensitive identifiers then Normalization Form KC may be 
-  more appropriate.</span></p>
+  across different programming languages.</span></font><span> To avoid such problems, programming 
+  languages can normalize identifiers before storing or comparing them. Generally if the programming 
+  language has case-sensitive identifiers then Normalization Form C is appropriate, while if the 
+  programming language has case-insensitive identifiers then Normalization Form KC is more 
+  appropriate.</span></p>
   <blockquote>
-    <p><span>Note: In mathematically oriented programming languages which make distinctive use of 
+    <p><span>Note: In mathematically-oriented programming languages which make distinctive use of 
     the Mathematical Alphanumeric Symbols such as </span><a href="?ch=1D400#here"><font size="-1">
-    <span>U+1D400 MATHEMATICAL BOLD CAPITAL A</span></font></a><span>, </span><span>NFKC</span><span> 
-    must not be used without filtering its application to not apply to those characters with the 
-    property value </span><code><span>decomposition_type=font</span></code><span>. For related 
-    information, see </span><a href="http://www.unicode.org/reports/tr30/"><span>UTR #30: Character 
-    Foldings</span></a><span>.</span></p>
+    <span>U+1D400 MATHEMATICAL BOLD CAPITAL A</span></font></a><span>, an application of NFKC must 
+    filter characters to exclude characters with the property value </span><code><span>
+    decomposition_type=font</span></code><span>. For related information, see </span>
+    <a href="http://www.unicode.org/reports/tr30/"><span>UTR #30: Character Foldings</span></a><span>.</span></p>
   </blockquote>
-  <p><span>If programming languages are using </span><span>NFKC</span><span> to level (&quot;fold&quot;) 
-  differences between characters, then they use the following modification of the identifier syntax 
-  from the Unicode Standard to deal with the idiosyncrasies of a small number of characters. These 
-  characters fall into three classes:</span></p>
+  <p><span>If programming languages are using </span><span>NFKC</span><span> to fold differences 
+  between characters, then they use the following modification of the identifier syntax from the 
+  Unicode Standard to deal with the idiosyncrasies of a small number of characters. These characters 
+  fall into three classes:</span></p>
   <h3><span><a name="NFKC_Modifications">NFKC Modifications</a></span></h3>
   <ol>
     <li><b><span>Middle Dot. </span></b><span>Because most Catalan legacy data will be encoded in 
@@ -591,8 +588,8 @@
     YPOGEGRAMMENI</span></code><span> and certain Arabic presentation forms have irregular 
     compatibility decompositions, and must be excluded from both </span><code><span>ID_Start</span></code><span> 
     and </span><code><span>ID_Continue</span></code><span>. It is recommended that all Arabic 
-    presentation forms be excluded from identifiers in any event, although only a few of them are 
-    required to be excluded for normalization to guarantee identifier closure. </span></li>
+    presentation forms be excluded from identifiers in any event, although only a few of them must 
+    be excluded for normalization to guarantee identifier closure. </span></li>
   </ol>
   <p><span>With these amendments to the identifier syntax, all identifiers are closed under all four 
   Normalization forms. This means that for any string S,</span></p>
@@ -615,12 +612,13 @@
   <blockquote>
     <p><b><span>Note: </span></b><span>Those programming languages with case-insensitive identifiers 
     should use the case </span><span>foldings</span><span> described in </span><i><span>Section 3.13 
-    Default Case Operations</span></i><span> to produce a case-insensitive normalized form.</span></p>
+    Default Case Operations</span></i><span> of [<a href="#Unicode">Unicode</a>] to produce a 
+    case-insensitive normalized form.</span></p>
   </blockquote>
-  <p><span>When source text (such as program source) is parsed for identifiers, the folding of 
-  distinctions (using case mapping or </span><span>NFKC</span><span>) must be delayed until after 
-  parsing has located the identifiers. Thus such folding of distinctions should not be applied to 
-  string literals or to comments in program source text.</span></p>
+  <p><span>When source text is parsed for identifiers, the folding of distinctions (using case 
+  mapping or </span><span>NFKC</span><span>) must be delayed until after parsing has located the 
+  identifiers. Thus such folding of distinctions should not be applied to string literals or to 
+  comments in program source text.</span></p>
   <p><span>The UCD provides support for handling case folding with normalization: the property 
   FC_NFKC_Closure</span><span> can be used in case folding, so that a case folding of an </span>
   <span>NFKC</span><span> string is itself normalized. These properties, and the files containing 

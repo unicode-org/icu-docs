@@ -1,0 +1,263 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Text Access API Design</title>
+</head>
+
+<body>
+
+<h1>Text Access API Design</h1>
+<p align="right">Design meeting 2004-jul-14 attendees:<br>
+Andy Heninger, Deborah Goldsmith, George Rhoten,<br>
+Mark Davis, Markus Scherer, Steven Loomis</p>
+<p>This version: <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/strings/text_access.html">http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/strings/text_access.html</a></p>
+<p>All versions: <a href="http://oss.software.ibm.com/cvs/icu/icuhtml/design/strings/text_access.html">http://oss.software.ibm.com/cvs/icu/icuhtml/design/strings/text_access.html</a></p>
+<h2>Problem Description and Goals</h2>
+<p>ICU APIs operating on text accept either strings with contiguous storage of
+UChars (UTF-16 code unit strings) or abstract APIs with per-character function
+calls (iterators and Replaceable). This is not optimal when the native string
+storage differs significantly:</p>
+<ul>
+  <li>Contiguous storage (UChar * or UnicodeString):<br>
+    When text is stored in discontiguous chunks, then it needs to be reallocated
+    and copied. This is very important when a large amount of text is to be
+    processed, for example when searching for a pattern in a large text document
+    stored inside a text editor or word processor etc.<br>
+    When it is stored in a different encoding form (or not in Unicode), then it
+    must be converted completely, although often only a small part of the text
+    needs to be processed.</li>
+  <li>Iterators &amp; Replaceable:<br>
+    These incur per-character function call overhead which is significant for
+    tight loops like in the break iteration code.</li>
+</ul>
+<p>The goal is to develop an abstract API for text access which can be used in
+all relevant services and provide efficient access to text contents.</p>
+<p>As a basic parameter, text continues to be mainly processed in the UTF-16
+encoding form; while the API should allow for an implementation to convert other
+kinds of text (especially UTF-8), this will not be particularly handled by the
+API itself.</p>
+<h3>Types of Text</h3>
+<p>The following types of text should be able to be handled efficiently:</p>
+<ul>
+  <li>UChar * with length</li>
+  <li>UChar * with NUL-termination</li>
+  <li>UnicodeString (essentially the same as UChar * with length)</li>
+  <li>Text stored in discontiguous chunks of UChars</li>
+  <li>UTF-8 text (to a lesser degree)</li>
+</ul>
+<h3>Candidate Services</h3>
+<p>We are looking at using the new API in the following service APIs and their
+implementations, in roughly descending order of importance based on expected
+usefulness:</p>
+<ol>
+  <li>Break iteration</li>
+  <li>String search</li>
+  <li>Regular expressions</li>
+  <li>Collation (used by string search)</li>
+  <li>Transforms (Transliterator API)</li>
+  <li>Date/time/number etc. parsing (because a caller may not know the end of
+    relevant text before parsing)</li>
+</ol>
+<h2>Text Access API</h2>
+<p>The basic, abstract API for text access should have the following
+characteristics:</p>
+<ul>
+  <li>Minimal, or nearly so</li>
+  <li>For ICU4C: C API (struct), not C++, because it needs to work with other C
+    APIs</li>
+  <li>Read-only access</li>
+  <li>Logically stateless (using const pointers in service APIs?), although some
+    implementations must maintain state for efficiency</li>
+  <li>Text is indexed using UChar (UTF-16 code unit) indexes as usual</li>
+  <li>Logically, text starts at index 0, is contiguous, and has a length</li>
+</ul>
+<p>Minimum fields and methods:</p>
+<pre>struct UTextAccessor {
+    // or just call it UTextAccess? something else?
+
+    int32_t size; /* =sizeof(UTextAccessor) for possible backward compatible extension */
+
+    /* there should be a few int32_t and void * fields
+     * like in UCharIterator to simplify implementations */
+
+    /*
+     * Returns the length of the text.
+     * May be expensive to compute!
+     * Not strictly minimally necessary, but needed for wrapping in existing
+     * iterators and Replaceable.
+     */
+    int32_t length(const UTextAccessor *t);
+
+    /*
+     * Access to a chunk of text; signature needs to be fleshed out during prototyping.
+     * Does not copy text but instead gives access to a portion of it.
+     *
+     * The intention is that for discontiguous storage the chunk would be an actual
+     * storage block used for storing the text.
+     * For contiguously stored text with known length, the whole text would be returned.
+     * For NUL-terminated text, the implementation may scan forward in exponentially
+     * larger chunks instead of finding the NUL right away.
+     *
+     * In: Text index; the returned chunk of text must contain the index.
+     * Out:
+     * - Pointer to chunk start
+     * - Start and limit indexes corresponding to the chunk;
+     *   it must be start&lt;=input index&lt;limit
+     * - Indication of success: If the input index is negative or &gt;=length then
+     *   failure needs to be indicated, probably by returning a NULL pointer
+     */
+    const UChar *access(const UTextAccessor *t, args);
+    // or getChunk() or similar
+
+    /*
+     * Copy a chunk of text into a buffer.
+     * Does it need a return value indicating success/failure?
+     * The signature shown here is the same as in UReplaceable.
+     * Not strictly minimally necessary; Replaceable has it.
+     */
+    void extract(const UTextAccessor *t,
+                 int32_t start, int32_t limit, UChar *dest);
+    // extract() is the method name in [U]Replaceable
+};</pre>
+<p><b>Replaceable/UReplaceable </b> need to be extended to have superset functionality
+of UTextAccessor, so that services that use these for read/write operations can
+take advantage of the faster per-chunk access for text matching. With the
+current design, this means adding an access() function to [U]Replaceable. This
+is an incompatible change; for C++ and Java, it may require a subclass
+(sub-interface); for C, we could add a function pointer but would have to call
+an existing function pointer to check for a newer implementation (e.g., check if
+charAt(magic index)==magic value). (Careful when wrapping a Replaceable into a
+UReplaceable to identify which of them is extended; may be safest to use
+different means or different magic values.)</p>
+<p><b>Issue for NUL-terminated strings</b>, which could be handled in one of two ways:</p>
+<ol>
+  <li>The UTextAccessor implementation handles NUL-termination. It needs to scan
+    forward for each chunk access to limit the chunk by either the NUL or some
+    size (which could be auto-adjustable).</li>
+  <li>The user of UTextAccessor handles NUL-termination; the access() method
+    would indicate if the limit is &quot;known good&quot; or if there may be a
+    NUL in the chunk (it may require that there not be a NUL at or before the
+    input index).<br>
+    This speeds up and simplifies the UTextAccessor implementation but needs
+    care on the user side. The wrappers proposed below would do this. It may
+    make sense if the wrapper functions could combine the NUL check with the
+    end-of-chunk check. With this, reading parts of the chunk before the
+    known-for-now limit would be just as fast as with a known text length, and
+    would not burden the UTextAccessor burden.</li>
+</ol>
+<p><b>Issue for access() method signature: </b> Should it return a pointer and two
+indexes, or two pointers, or...? Depends on most efficient wrapper code
+determined during prototyping (although it is called only once per chunk, and so
+redundant values could be calculated without much performance impact). For example:</p>
+<table border="1" cellpadding="4" cellspacing="4">
+  <tr>
+    <td>"Natural" signature; returns chunk start pointer or NULL if index is out of bounds
+<pre>const UChar *access(
+    const UTextAccessor *t,
+    int32_t index,
+    int32_t *pStart,
+    int32_t *pLimit,
+    UBool *pMayContainNUL);</pre></td>
+
+    <td>Signature with minimum number of arguments; returns NULL pointer if
+      index is out of bounds<pre>struct UTextAccessorChunk {
+    const UChar *chunk;
+    int32_t sizeOfThis;
+    // =sizeof(UTextAccessorChunk)
+    int32_t start, limit;
+    UBool mayContainNUL;
+};
+
+// const?
+TextAccessorChunk *access(
+    const UTextAccessor *t,
+    int32_t index);</pre></td>
+
+    <td>Signature with small number of arguments but also avoids copying of returned values
+      by using a fill-in; returns FALSE if index is out of bounds<pre>struct UTextAccessorChunk {
+    const UChar *chunk;
+    int32_t sizeOfThis;
+    // =sizeof(UTextAccessorChunk)
+    int32_t start, limit;
+    UBool mayContainNUL;
+};
+
+UBool access(
+    const UTextAccessor *t,
+    int32_t index,
+    UTextAccessorChunk *p);</pre></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>UTextAccessorChunk could also have a redundant const UChar *chunkLimit
+      pointer;<br>
+      it should have more UBool fields to avoid padding that may not be
+      detectable with sizeof().</td>
+    <td>UTextAccessorChunk could have the UTextAccessor pointer so that access()
+      only has two arguments (index and p); seems clumsy-looking though.</td>
+  </tr>
+</table>
+<h2>Text Handling APIs for Service Implementations</h2>
+<p>Service implementation code would normally not use the UTextAccessor API
+directly, but with wrappers that use either C++ inline code (preferred) or
+#define macros. (They would be final classes in Java.) Through inlining, the
+code would gain access to the input text that is very efficient (because of
+per-chunk function call amortization) and also convenient.</p>
+<p>There are two wrappers envisioned, one for random access and one for
+iteration. They could be merged into a single CharAccessor wrapper, given that
+the random access wrapper only adds two functions and the setup and convenience
+functions would overlap. (Slight problem: Semantics of mixing charAt() with
+next() with regards to handling the current index.)</p>
+<p>For maximum efficiency, the wrapper code should probably alias (not adopt)
+the text accessor pointer, and should assume (instead of check) that the text
+accessor pointer is set.</p>
+<p>The wrapper classes could be internal, but are expected to be made public.</p>
+<h3>Random Access Wrapper</h3>
+<pre>class CharAccessor {
+    // all-inline, and stack-allocatable
+    // constructors, get/set UTextAccessor, etc.
+
+    /*
+     * Returns the UTF-16 code unit (UChar) at the requested index,
+     * or U_SENTINEL (-1) if it is out of bounds.
+     */
+    inline UChar32 charAt(int32_t index);
+
+    /*
+     * Returns the code point at the requested index,
+     * or U_SENTINEL (-1) if it is out of bounds.
+     */
+    inline UChar32 char32At(int32_t index);
+
+    // convenience wrappers for length(), access(), extract()?
+    // getChunkStart(), getChunkLimit() for the current chunk?
+};</pre>
+<h3>Iterator Wrapper</h3>
+<pre>// careful not to clash with the different C API called UCharIterator
+// different name? merge with CharAccessor?
+class CharIterator {
+    // all-inline, and stack-allocatable
+    // constructors, get/set UTextAccessor, etc.
+    // needs to have state besides the current chunk: at least the current index
+    // for performance, may use a current-position pointer and chunk start/limit
+    // pointers and translate back into indexes only when necessary
+
+    // U_SENTINEL (-1) if out of bounds
+    inline UChar32 next();
+    inline UChar32 previous();
+
+    // next32(), previous32()
+    // set/get/move UChar index
+    // set/get/move code point index
+
+    // convenience wrappers for length(), access(), extract()?
+    // getChunkStart(), getChunkLimit() for the current chunk?
+};</pre>
+
+</body>
+
+</html>

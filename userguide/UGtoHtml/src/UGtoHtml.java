@@ -55,7 +55,6 @@ public class UGtoHtml {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setIgnoringComments(true);
             DocumentBuilder builder = factory.newDocumentBuilder();
-            // builder.setEntityResolver(er);
 
             // Parse the xml content from the OO file.
             //  Need to tell the parser where the Open Office DTD is located - 
@@ -241,10 +240,10 @@ public class UGtoHtml {
              } else if (xmlTag.equals("text:a") && !e.getAttribute("xlink:href").equals("")) {
                  String target = e.getAttribute("xlink:href");
                  // The target of a link may be to somewhere in another Open Office doc that we're
-                 //   converting.  Switch it to link to the html.
-                 String fixedTarget = target.replaceFirst("\\.sxw#", ".html#");
+                 //   converting.  Switch the .sxw to link to the html.
+                 String fixedTarget = target.replaceFirst("\\.sxw(?:(?=#)|$)", ".html");
                  fixedTarget = fixedTarget.replaceAll("&", "&amp;");
-                 fHtml.append("<a href=\"" + fixedTarget + "\">");                
+                 fHtml.append("<a href=\"" + fixedTarget + "\">");         
              } else if (xmlTag.equals("text:initial-creator")) {
              	// No action required.
             } else if (xmlTag.equals("text:bookmark")) {
@@ -630,29 +629,26 @@ public class UGtoHtml {
                 zipFile = new ZipFile("OO/userguide.sxg");
                 ZipEntry zipEntry = new ZipEntry("content.xml");
                 InputStream is = zipFile.getInputStream(zipEntry);
-                InputStreamReader isr = new InputStreamReader(is, "utf-8");
-                BufferedReader br = new BufferedReader(isr);
-                String s = null;
                 
-                // Regular expression to match the Open Office master doc element
-                //   specifying a chapter document that is included in the user guide.
-                //  Sample line, from which we want to extract "sync.sxw"
-                // <text:section text:style-name="Sect1" text:name="sync.sxw" text:protected="true">
-                Pattern pat = Pattern.compile("<text:section.*? text:name=\"(.*?)\"");
-                Matcher m = pat.matcher(s);
-                for (;;) {
-                    s = br.readLine();
-                    if (s==null) {
-                        break;                    
-                    }
-                    m.reset(s);
-                    if (m.find()) {
-                        String chapterFile = m.group(1);  // The  (captured text) from the match
-                        System.out.println(chapterFile);
-                        UGtoHtml This = new UGtoHtml();
-                        This.convertFile(chapterFile);
-                    }
-                    
+                // Set up an xml parser.
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                factory.setIgnoringComments(true);
+                DocumentBuilder builder = factory.newDocumentBuilder();
+
+                // Parse the xml content from the OO file.
+                //  Need to tell the parser where the Open Office DTD is located - 
+                //  The doc will reference it with a relative path in the document.
+                String entityBaseURL = "file:///" + new File("OODTD").getAbsolutePath() + "/";
+                Document doc = builder.parse(is, entityBaseURL);
+
+                NodeList inclList = doc.getElementsByTagName("text:section-source");
+                int  numSections = inclList.getLength();
+                for (int n=0; n<numSections; n++) {
+                    Element textSection = (Element)inclList.item(n);
+                    String chapterFile = textSection.getAttribute("xlink:href");
+                    System.out.println(chapterFile);
+                    UGtoHtml This = new UGtoHtml();
+                    This.convertFile(chapterFile);
                 }
                 
             }

@@ -229,6 +229,22 @@ like:</p>
 wants to strip the combining marks, that is easy to do afterwards; but you can't add them if they 
 are not in the data in the first place. The extra data is particularly useful for detecting 
 spoofing: see my document on Unicode Security Considerations.</p>
+<h2>Related Items</h2>
+<p>These are copied from mail on property topics:</p>
+<ul>
+  <li>U4.0.1 changes U+002F Solidus from ES to CS but leaves U+FF0F Fullwidth Solidus at ES. U+FF0F 
+  should probably have the same bidi class as its regular sibling.</li>
+  <li>There's another misclassification, this one for a relatively new character that we didn't 
+  think through correctly when adding: NNBSP needs to be changed from WS to CS (in analogy to NBSP). 
+  The reason is that in all scripts but Mongolian it acts like NBSP except for its width. In 
+  Mongolian it may be recognized in shaping (details to be forthcoming).</li>
+  <li>We should also address explicitly the situation of &lt;WJ, SP, WJ&gt; we say this is equivalent to 
+  NBSP. Clearly, that's not true for its bidi properties. We need to check the text to make sure 
+  that discrepancy is noted, for example by stating on page 387 &quot;for purposes of line breaking&quot; or 
+  some such qualifier, and noting: &quot;However, NBSP has a specific bidirectional behavior, which is 
+  different from this sequence (see UAX#9).&quot;<p>&nbsp;</li>
+</ul>
+<p>&nbsp;</p>
 
 </body>
 

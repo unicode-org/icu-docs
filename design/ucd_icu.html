@@ -9,551 +9,611 @@
 <body>
 
 <h1>Unicode Character Database properties in ICU APIs</h1>
+<p>Last update: 2002-jul-08 (ICU 2.2)</p>
 <p>The following table shows all Unicode Character Database properties (except
 for purely &quot;extracted&quot; ones and Unihan) and the corresponding ICU
 APIs. Most of the time, ICU4C provides functions in uchar.h and ICU4J provides
-parallel functions in the UCharacter class.</p>
-<p>N/I indicates if a property is normative or informative.</p>
+parallel functions in the UCharacter class. Most properties are also available via UnicodeSet APIs.</p>
 <p>See the <a href="http://www.unicode.org/unicode/onlinedat/online.html">Unicode
-Character Database</a> itself for comparison.</p>
-<p><em>Function names with a * are proposed, with names according to
-PropertyAliases.txt.<br>
-Unless otherwise noted, C names u_charXYZ correspond to Java names
-UCharacter.getXYZ and u_isBCD correspond to UCharacter.isBCD.<br>
-New APIs for binary properties are proposed as [u_]isU&lt;PropertyNameWithoutUnderlines&gt;.<br>
-Where there are no functions
-available nor proposed for a property, </em><b>none</b><em> is noted in the
-function column.</em></p>
+Character Database</a> itself for comparison. PropertyAliases.txt lists all properties by name and
+type.</p>
+<p>All properties are available in ICU4C. Most of them are available in ICU4J (marked with 'J' in
+the 'J' column) and also via C++/Java UnicodeSet APIs (marked with 'U' in the 'U' column). For
+properties that only contribute to &quot;real&quot; properties, the availability cells are marked
+with &quot;(c)&quot;.</p>
+<p>Most properties are available via functions u_hasBinaryProperty and u_getIntPropertyValue which
+take UProperty enum constants. (Java: UCharacter member functions without the &quot;u_&quot; prefix;
+UnicodeSet: long or short property names)</p>
+<p>The constant names include the long property name according to PropertyAliases.txt, e.g., <code>UCHAR_LINE_BREAK</code>.
+Corresponding property value enum constant names often contain the short property name and the long
+value name, e.g., <code>U_LB_LINE_FEED</code>. For enumeration/integer type properties, the
+enumeration result type is also listed here.</p>
   <table border="1">
     <tr>
       <th>UCD Name<br>
         (see PropertyAliases.txt)</th>
       <th>Type</th>
-      <th>N/I</th>
+      <th>J</th>
+      <th>U</th>
       <th>ICU4C uchar.h<br>ICU4J UCharacter</th>
       <th>UCD File (.txt)</th>
     </tr>
     <tr>
       <td>Age</td>
       <td>Unicode version</td>
-      <td>I</td>
-      <td>* C: u_charAge fills in UVersionInfo<br>
+      <td>J</td>
+      <td>-</td>
+      <td>C: u_charAge fills in UVersionInfo<br>
         Java: getAge returns a VersionInfo reference</td>
       <td>DerivedAge</td>
     </tr>
     <tr>
       <td>Alphabetic</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUAlphabetic</td>
+      <td>J</td>
+      <td>U</td>
+      <td>u_isUAlphabetic, UCHAR_ALPHABETIC</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>ASCII_Hex_Digit</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isUASCIIHexDigit</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_ASCII_HEX_DIGIT</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Bidi_Class</td>
-      <td>enum</td>
-      <td>N</td>
-      <td>u_charDirection</td>
+      <td>enum UCharDirection</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>u_charDirection, UCHAR_BIDI_CLASS</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Bidi_Control</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isUBidiControl</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_BIDI_CONTROL</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Bidi_Mirrored</td>
       <td>binary</td>
-      <td>N</td>
-      <td>u_isMirrored, * u_isUBidiMirrored (same, just consistent API name)</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>u_isMirrored, UCHAR_BIDI_MIRRORED</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Bidi_Mirroring_Glyph</td>
       <td>code point</td>
-      <td>I</td>
+      <td>J</td>
+      <td>&nbsp;</td>
       <td>u_charMirror</td>
       <td>BidiMirroring</td>
     </tr>
     <tr>
       <td>Block</td>
-      <td>enum (growing)</td>
-      <td>N</td>
-      <td>ublock_getCode</td>
+      <td>enum UBlockCode (growing)</td>
+      <td>-</td>
+      <td>&nbsp;</td>
+      <td>ublock_getCode, UCHAR_BLOCK</td>
       <td>Blocks</td>
     </tr>
     <tr>
       <td>Canonical_Combining_Class</td>
       <td>0..255</td>
-      <td>N</td>
-      <td>u_getCombiningClass</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>u_getCombiningClass, UCHAR_CANONICAL_COMBINING_CLASS</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Case_Folding</td>
       <td>Unicode string</td>
-      <td>N</td>
+      <td>J</td>
+      <td> &nbsp;</td>
       <td> u_strFoldCase (ustring.h)</td>
       <td>CaseFolding</td>
     </tr>
     <tr>
       <td>Composition_Exclusion</td>
       <td>binary</td>
-      <td>N</td>
-      <td>see Full_Composition_Exclusion (also internal to normalization service
-        (unorm.h))</td>
+      <td>(c)</td>
+      <td>(c)</td>
+      <td>contributes to Full_Composition_Exclusion</td>
       <td>CompositionExclusions</td>
     </tr>
     <tr>
       <td>Dash</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUDash</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_DASH</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td> Decomposition_Mapping</td>
       <td>Unicode string</td>
-      <td>N</td>
-      <td>internal to normalization service (unorm.h)</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>available via normalization API</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Decomposition_Type</td>
-      <td>enum</td>
-      <td>I</td>
-      <td><b>none</b></td>
-      <td>UnicodeData</td>
-    </tr>
-    <tr>
-      <td>Decimal digit value</td>
-      <td>0..9</td>
-      <td>N</td>
-      <td>u_charDigitValue</td>
+      <td>enum UDecompositionType</td>
+      <td>-</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_DECOMPOSITION_TYPE</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Default_Ignorable_Code_Point</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isUDefaultIgnorableCodePoint</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_DEFAULT_IGNORABLE_CODE_POINT</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>Deprecated</td>
       <td>binary</td>
-      <td>?</td>
-      <td>* u_isUDeprecated</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_DEPRECATED</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Diacritic</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUDiacritic</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_DIACRITIC</td>
       <td>PropList</td>
     </tr>
     <tr>
-      <td>Digit value</td>
-      <td>integer</td>
-      <td>N</td>
-      <td>* u_charAnyDigitValue(??)</td>
-      <td>UnicodeData</td>
-    </tr>
-    <tr>
       <td>East_Asian_Width</td>
-      <td>enum</td>
-      <td>I</td>
-      <td>* API with code point or string as input?? (similar to u_cellWidth but
-        not same, may deprecate u_cellWidth??)</td>
+      <td>enum UEastAsianWidth</td>
+      <td>-</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_EAST_ASIAN_WIDTH</td>
       <td>EastAsianWidth</td>
     </tr>
     <tr>
       <td>Expands_On_NF*</td>
       <td>binary</td>
-      <td>N</td>
-      <td><b>none</b></td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>available via normalization API (unorm.h)</td>
       <td>DerivedNormalizationProperties</td>
     </tr>
     <tr>
       <td>Extender</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUExtender</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_EXTENDER</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>FC_NFKC_Closure</td>
       <td>Unicode string</td>
-      <td>N</td>
-      <td>* unorm_charFCNFKCClosure (unorm.h)</td>
+      <td>-</td>
+      <td>&nbsp;</td>
+      <td>u_getFC_NFKC_Closure</td>
       <td>DerivedNormalizationProperties</td>
     </tr>
     <tr>
       <td>Full_Composition_Exclusion</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isUFullCompositionExclusion (also internal to normalization service
-        (unorm.h))</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_FULL_COMPOSITION_EXCLUSION</td>
       <td>DerivedNormalizationProperties</td>
     </tr>
     <tr>
       <td>General_ Category</td>
       <td>enum (&lt;= 32 values)</td>
-      <td>N</td>
-      <td>u_charType</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>u_charType, UCHAR_GENERAL_CATEGORY, UCharCategory</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Grapheme_Base</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUGraphemeBase</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_GRAPHEME_BASE</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>Grapheme_Extend</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUGraphemeExtend</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_GRAPHEME_EXTEND</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>Grapheme_Link</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUGraphemeLink</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_GRAPHEME_LINK</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>Hex_Digit</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUHexDigit</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_HEX_DIGIT</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Hyphen</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUHyphen</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_HYPHEN</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>ID_Continue</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUIDContinue</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_ID_CONTINUE</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>ID_Start</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUIDStart (similar to u_isIDStart)</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_ID_START</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>Ideographic</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUIdeographic</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_IDEOGRAPHIC</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>IDS_Binary_Operator</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isUIDSBinaryOperator</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_IDS_BINARY_OPERATOR</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>IDS_Triary_Operator</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isUIDSTrinaryOperator</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_IDS_TRINARY_OPERATOR</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>ISO_Comment</td>
       <td>ASCII string</td>
-      <td>I</td>
-      <td><b>none</b></td>
+      <td>-</td>
+      <td>&nbsp;</td>
+      <td>u_getISOComment</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Jamo Short Name</td>
       <td>ASCII string</td>
-      <td>N</td>
-      <td>internal to u_charName</td>
+      <td>(c)</td>
+      <td>(c)</td>
+      <td>contributes to Name</td>
       <td>Jamo</td>
     </tr>
     <tr>
       <td>Join_Control</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isUJoinControl</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_JOIN_CONTROL</td>
       <td>PropList</td>
     </tr>
     <tr>
-      <td>Joining_ Group</td>
-      <td>enum</td>
-      <td>N</td>
-      <td><b>none</b></td>
+      <td>Joining_Group</td>
+      <td>enum UJoiningGroup</td>
+      <td>-</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_JOINING_GROUP</td>
       <td>ArabicShaping</td>
     </tr>
     <tr>
-      <td>Joining_ Type</td>
-      <td>enum</td>
-      <td>N</td>
-      <td><b>none</b> (but see ushape.h u_shapeArabic and the layout engine)</td>
+      <td>Joining_Type</td>
+      <td>enum UJoiningType</td>
+      <td>-</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_JOINING_TYPE</td>
       <td>ArabicShaping</td>
     </tr>
     <tr>
       <td>Line_Break</td>
-      <td>enum</td>
-      <td>N</td>
-      <td>* u_charLineBreak</td>
+      <td>enum ULineBreak</td>
+      <td>-</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_LINE_BREAK</td>
       <td>LineBreak</td>
     </tr>
     <tr>
       <td>Logical_Order_Exception</td>
       <td>binary</td>
-      <td>?</td>
-      <td>* u_isULogicalOrderException</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_LOGICAL_ORDER_EXCEPTION</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Lowercase</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isULowercase</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>u_isULowercase, UCHAR_LOWERCASE</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>Lowercase_Mapping</td>
       <td>Unicode string + conditions</td>
-      <td>N</td>
-      <td> u_strToLower (ustring.h)</td>
+      <td>J</td>
+      <td> &nbsp;</td>
+      <td> available via u_strToLower (ustring.h)</td>
       <td>UnicodeData + SpecialCasing</td>
     </tr>
     <tr>
       <td>Math</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUMath</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_MATH</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>Name</td>
       <td>ASCII string</td>
-      <td>N</td>
-      <td>u_charName</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>u_charName(U_UNICODE_CHAR_NAME or U_EXTENDED_CHAR_NAME)</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>NF*_QuickCheck</td>
       <td>no/maybe/yes</td>
-      <td>N</td>
-      <td>* unorm_charQuickCheck (also internal to normalization service) (unorm.h)</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>available via&nbsp; unorm_quickCheck (unorm.h)</td>
       <td>DerivedNormalizationProperties</td>
     </tr>
     <tr>
       <td>Noncharacter_Code_Point</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isUNoncharacterCodePoint</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_NONCHARACTER_CODE_POINT, UTF_IS_UNICODE_NONCHAR (utf.h)</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Numeric_Type</td>
-      <td>enum</td>
-      <td>N</td>
-      <td><b>none</b></td>
+      <td>enum UNumericType</td>
+      <td>-</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_NUMERIC_TYPE</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Numeric_Value</td>
-      <td>fraction(?)</td>
-      <td>N</td>
-      <td>* C: u_charNumericValue (fractions)<br>
+      <td>double</td>
+      <td>(J)</td>
+      <td>&nbsp;</td>
+      <td>C: u_getNumericValue<br>
         Java: getNumericValue (only non-negative integers, no fractions)</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Other_Alphabetic</td>
       <td>binary</td>
-      <td>I</td>
-      <td>see Alphabetic</td>
+      <td>(c)</td>
+      <td>(c)</td>
+      <td>contributes to Alphabetic</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Other_Default_Ignorable_Code_Point</td>
       <td>binary</td>
-      <td>N</td>
-      <td>see Default_Ignorable_Code_Point</td>
+      <td>(c)</td>
+      <td>(c)</td>
+      <td>contributes to Default_Ignorable_Code_Point</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Other_Grapheme_Extend</td>
       <td>binary</td>
-      <td>N</td>
-      <td>see Grapheme_Extend</td>
+      <td>(c)</td>
+      <td>(c)</td>
+      <td>contributes to Grapheme_Extend</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Other_Lowercase</td>
       <td>binary</td>
-      <td>I</td>
-      <td>see Lowercase</td>
+      <td>(c)</td>
+      <td>(c)</td>
+      <td>contributes to Lowercase</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Other_Math</td>
       <td>binary</td>
-      <td>I</td>
-      <td>see Math</td>
+      <td>(c)</td>
+      <td>(c)</td>
+      <td>contributes to Math</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Other_Uppercase</td>
       <td>binary</td>
-      <td>I</td>
-      <td>see Uppercase</td>
+      <td>(c)</td>
+      <td>(c)</td>
+      <td>contributes to Uppercase</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Quotation_Mark</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUQuotationMark</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_QUOTATION_MARK</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Radical</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isURadical</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_RADICAL</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Script</td>
-      <td>enum (growing)</td>
-      <td>I</td>
-      <td>uscript_getCode (uscript.h)</td>
+      <td>enum UScriptCode (growing)</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>uscript_getCode (uscript.h), UCHAR_SCRIPT</td>
       <td>Scripts</td>
     </tr>
     <tr>
       <td>Simple_Case_Folding</td>
-      <td>Unicode string</td>
-      <td>N</td>
+      <td>code point</td>
+      <td>J</td>
+      <td>&nbsp;</td>
       <td>u_foldCase</td>
       <td>CaseFolding</td>
     </tr>
     <tr>
       <td>Simple_Lowercase_ Mapping</td>
       <td>code point</td>
-      <td>N</td>
+      <td>J</td>
+      <td>&nbsp;</td>
       <td>u_tolower</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Simple_Titlecase_ Mapping</td>
       <td>code point</td>
-      <td>N</td>
+      <td>J</td>
+      <td>&nbsp;</td>
       <td>u_totitle</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Simple_Uppercase_ Mapping</td>
       <td>code point</td>
-      <td>N</td>
+      <td>J</td>
+      <td>&nbsp;</td>
       <td>u_toupper</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Soft_Dotted</td>
       <td>binary</td>
-      <td>?</td>
-      <td>* u_isUSoftDotted</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_SOFT_DOTTED</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Special_Case_Condition</td>
       <td>Unicode string + conditions</td>
-      <td>N</td>
-      <td>internal to u_strToLower etc. (ustring.h)</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>available via u_strToLower etc. (ustring.h)</td>
       <td>SpecialCasing</td>
     </tr>
     <tr>
       <td>Terminal_Punctuation</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUTerminalPunctuation</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_TERMINAL_PUNCTUATION</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Titlecase_Mapping</td>
       <td>Unicode string + conditions</td>
-      <td>N</td>
+      <td>J</td>
+      <td>&nbsp;</td>
       <td>u_strToTitle (ustring.h)</td>
       <td>UnicodeData + SpecialCasing</td>
     </tr>
     <tr>
       <td>Unicode_1_Name</td>
       <td>ASCII string</td>
-      <td>I</td>
-      <td>u_charName</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>u_charName(U_UNICODE_10_CHAR_NAME or U_EXTENDED_CHAR_NAME)</td>
       <td>UnicodeData</td>
     </tr>
     <tr>
       <td>Unified_Ideograph</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isUUnifiedIdeograph</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_UNIFIED_IDEOGRAPH</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>Uppercase</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUUppercase</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>u_isUUppercase, UCHAR_UPPERCASE</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>Uppercase_Mapping</td>
       <td>Unicode string + conditions</td>
-      <td>N</td>
+      <td>J</td>
+      <td>&nbsp;</td>
       <td>u_strToUpper (ustring.h)</td>
       <td>UnicodeData + SpecialCasing</td>
     </tr>
     <tr>
       <td>White_Space</td>
       <td>binary</td>
-      <td>N</td>
-      <td>* u_isUWhiteSpace</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>u_isUWhiteSpace, UCHAR_WHITE_SPACE</td>
       <td>PropList</td>
     </tr>
     <tr>
       <td>XID_Continue</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUXIDContinue</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_XID_CONTINUE</td>
       <td>DerivedCoreProperties</td>
     </tr>
     <tr>
       <td>XID_Start</td>
       <td>binary</td>
-      <td>I</td>
-      <td>* u_isUXIDStart</td>
+      <td>J</td>
+      <td>&nbsp;</td>
+      <td>UCHAR_XID_START</td>
       <td>DerivedCoreProperties</td>
     </tr>
   </table>

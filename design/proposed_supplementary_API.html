@@ -335,14 +335,19 @@ should go on CharSequence itself, if possible).</i></p>
   <li>next <i>incorrectly</i> does the equivalent of not *(p++), but of *(++p).</li>
 </ul>
 <p>This doesn't extend well to cases where the next boundary is not simply
-adding an increment, since the function becomes less efficient. What we did in
-our C++ version (<a href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html">CharacterIterator.html</a>)&nbsp;
-was to have the equivalent of the following:</p>
+adding an increment, since the function becomes less efficient.</p>
+<p>There are two possibilities:</p>
+<p>1. In our ICU4J version: <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UCharacterIterator.html" target="classFrame">UCharacterIterator</a>,
+we simply produced a different iterator that used better semantics.</p>
+<p>2. Alternatively, we could modify <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/CharacterIterator.html">CharacterIterator.html</a>
+to add methods that deal with code points and address the next() issue by adding
+alternative methods. We did that in our C++ version, (<a href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html">CharacterIterator.html</a>)
+with the equivalent of the following:</p>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
-    <td valign="top" nowrap align="right">void</td>
-    <td valign="bottom"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>
-      ()</td>
+    <td valign="top" nowrap align="right"><code>int</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>
+      ()</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -353,31 +358,70 @@ was to have the equivalent of the following:</p>
       Returns: the start position of the iteration range</em></font></td>
   </tr>
   <tr>
-    <td valign="top" nowrap align="right">int&nbsp;</td>
-    <td valign="bottom"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a3">first32</a>
-      ()</td>
+    <td valign="top" nowrap align="right"><code>int&nbsp;</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a2">firstPostInc</a>
+      ()</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
-    <td><font size="-1"><em>Sets the iterator to refer to the first code point
-      in its iteration range, and returns that code unit. This can be used to
-      begin an iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a14">next32</a>().
-      </em></font><font size="-1"><em>Note that an iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a6">next32PostInc</a>(),
+    <td><em><font size="-1">Sets the iterator to refer to the first code unit in
+      its iteration range, returns that code unit, and moves the position to the
+      second code unit. This is an alternative to <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>()
+      for forward iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a5">nextPostInc</a>().<br>
+      Returns: the first code unit in its iteration range.</font></em></td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap align="right"><code>&nbsp;int</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a4">first32PostInc</a>
+      ()</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><em><font size="-1">Sets the iterator to refer to the first code point
+      in its iteration range, returns that code point, and moves the position to
+      the second code point.</font></em> <em><font size="-1">This is an
+      alternative to <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>()
+      for forward iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a6">next32PostInc</a>().<br>
+      Returns:</font></em> <em><font size="-1">the first code point in its
+      iteration range.</font></em></td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap align="right"><code>int</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a14">next32PostInc</a>
+      ()</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><em><font size="-1">Gets the current code point for returning and
+      advances to the next code point in the iteration range (toward endIndex()).
+      If there are no more code points to return, returns DONE.<br>
+      Returns: the current code point.</font></em></td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap align="right" bgcolor="#EEEEEE"><code>int&nbsp;</code></td>
+    <td valign="bottom" bgcolor="#EEEEEE"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a3">first32</a>
+      ()</code></td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEEEEE">&nbsp;</td>
+    <td bgcolor="#EEEEEE"><font size="-1"><em>Sets the iterator to refer to the
+      first code point in its iteration range, and returns that code unit. This
+      can be used to begin an iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a14">next32</a>().
+      Note that an iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a6">next32PostInc</a>(),
       beginning with, e.g., <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>()
       or <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a2">firstPostInc</a>(),
-      is more efficient.</em></font><font size="-1"><em><br>
-      </em></font><font size="-1"><em>Returns: the first code point in its
-      iteration range.</em></font></td>
+      is more efficient.<br>
+      Returns: the first code point in its iteration range.</em></font></td>
   </tr>
   <tr>
-    <td valign="top" nowrap align="right">int</td>
-    <td valign="bottom"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a14">next32</a>
-      ()</td>
+    <td valign="top" nowrap align="right" bgcolor="#EEEEEE"><code>int</code></td>
+    <td valign="bottom" bgcolor="#EEEEEE"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a14">next32</a>
+      ()</code></td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
-    <td><em><font size="-1">Advances to the next code point in the iteration
-      range (toward <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a19">endIndex</a>()),
+    <td bgcolor="#EEEEEE">&nbsp;</td>
+    <td bgcolor="#EEEEEE"><em><font size="-1">Advances to the next code point in
+      the iteration range (toward <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a19">endIndex</a>()),
       and returns that code point. If there are no more code points to return,
       returns DONE. Note that iteration with &quot;pre-increment&quot; semantics
       is less efficient than iteration with &quot;p</font></em><font size="-1"><em>ost-increment&quot;
@@ -385,54 +429,13 @@ was to have the equivalent of the following:</p>
       Returns: the next code point.</em></font></td>
   </tr>
   <tr>
-    <td valign="top" nowrap align="right" bgcolor="#EEEEEE">int&nbsp;</td>
-    <td valign="bottom" bgcolor="#EEEEEE"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a2">firstPostInc</a>
-      ()</td>
-  </tr>
-  <tr>
-    <td bgcolor="#EEEEEE">&nbsp;</td>
-    <td bgcolor="#EEEEEE"><em><font size="-1">Sets the iterator to refer to the
-      first code unit in its iteration range, returns that code unit, and moves
-      the position to the second code unit. This is an alternative to <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>()
-      for forward iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a5">nextPostInc</a>().<br>
-      Returns: the first code unit in its iteration range.</font></em></td>
-  </tr>
-  <tr>
-    <td valign="top" nowrap align="right" bgcolor="#EEEEEE">&nbsp;int</td>
-    <td valign="bottom" bgcolor="#EEEEEE"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a4">first32PostInc</a>
-      ()</td>
-  </tr>
-  <tr>
-    <td bgcolor="#EEEEEE">&nbsp;</td>
-    <td bgcolor="#EEEEEE"><em><font size="-1">Sets the iterator to refer to the
-      first code point in its iteration range, returns that code point, and
-      moves the position to the second code point.</font></em> <em><font size="-1">This
-      is an alternative to <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>()
-      for forward iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a6">next32PostInc</a>().<br>
-      Returns:</font></em> <em><font size="-1">the first code point in its
-      iteration range.</font></em></td>
-  </tr>
-  <tr>
-    <td valign="top" nowrap align="right" bgcolor="#EEEEEE">int</td>
-    <td valign="bottom" bgcolor="#EEEEEE"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a14">next32PostInc</a>
-      ()</td>
-  </tr>
-  <tr>
-    <td bgcolor="#EEEEEE">&nbsp;</td>
-    <td bgcolor="#EEEEEE"><em><font size="-1">Gets the current code point for
-      returning and advances to the next code point in the iteration range
-      (toward endIndex()). If there are no more code points to return, returns
-      DONE.<br>
-      Returns: the current code point.</font></em></td>
-  </tr>
-  <tr>
     <td valign="top" nowrap align="right">&nbsp;</td>
     <td valign="bottom">&nbsp;</td>
   </tr>
   <tr>
-    <td valign="top" nowrap align="right">&nbsp;int</td>
-    <td valign="bottom"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a8">setToEnd</a>
-      ()</td>
+    <td valign="top" nowrap align="right"><code>&nbsp;int</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a8">setToEnd</a>
+      ()</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -443,9 +446,9 @@ was to have the equivalent of the following:</p>
       Returns: the end position of the iteration range</em></font></td>
   </tr>
   <tr>
-    <td valign="top" nowrap align="right">int</td>
-    <td valign="bottom"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a7">last32</a>
-      ()</td>
+    <td valign="top" nowrap align="right"><code>int</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a7">last32</a>
+      ()</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -456,9 +459,9 @@ was to have the equivalent of the following:</p>
       last code point.</em></font></td>
   </tr>
   <tr>
-    <td valign="top" nowrap align="right">int </td>
-    <td valign="bottom"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a16">previous32</a>
-      ()</td>
+    <td valign="top" nowrap align="right"><code>int</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a16">previous32</a>
+      ()</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -473,10 +476,10 @@ was to have the equivalent of the following:</p>
     <td valign="bottom">&nbsp;</td>
   </tr>
   <tr>
-    <td valign="top" nowrap align="right">int</td>
-    <td valign="bottom"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a10">setIndex32</a>
+    <td valign="top" nowrap align="right"><code>int</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a10">setIndex32</a>
       (<a class="el" href="http://oss.software.ibm.com/icu/apiref/pwin32_8h.html#a31">int</a>
-      position)=0</td>
+      position)=0</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -485,14 +488,40 @@ was to have the equivalent of the following:</p>
       text-storage object the iterator refers to, and returns that code point.</em></font></td>
   </tr>
   <tr>
-    <td valign="top" nowrap align="right">int</td>
-    <td valign="bottom"><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a12">current32</a>
-      (void) const=0</td>
+    <td valign="top" nowrap align="right"><code>int</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a12">current32</a>
+      (void) const=0</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td><font size="-1"><em>Returns the code point the iterator currently refers
       to.</em></font></td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap align="center" colspan="2"><b><code>Utilities for
+      Speed</code></b></td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap align="right"><code>int</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a22">move</a>
+      (int delta, <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#s3">EOrigin</a>
+      origin)=0</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><font size="-1"><em>Moves the current position relative to the start or
+      end of the iteration range, or relative to the current position itself.</em></font></td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap align="right"><code>int</code></td>
+    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a23">move32</a>
+      (int delta, <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#s3">EOrigin</a>
+      origin)=0</code></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><font size="-1"><em>Moves the current position relative to the start or
+      end of the iteration range, or relative to the current position itself.</em></font></td>
   </tr>
 </table>
 <p>With these additions, you can adapt old loops straightforwardly, just by

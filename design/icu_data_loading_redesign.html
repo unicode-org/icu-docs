@@ -1,0 +1,279 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<title>ICU Data Loading Redesign</title>
+</head>
+
+<body>
+
+<h1>ICU Data Loading Redesign</h1>
+<p align="right">Markus Scherer, San José 2002-feb-05</p>
+<p>Result of a meeting of the IBM San José ICU team with Yves Arrouye,
+RealNames, on 2002-jan-30 at IBM San José.</p>
+<h2>Basics &amp; Terminology</h2>
+<p>Much of this has been around since ICU 1.4, although we made changes for 1.5
+and 2.0.</p>
+<p>The general assumption is that data for both ICU and for ICU applications is
+packaged into &quot;common data files&quot; with Tables of Contents, in the form
+of either DLLs or .dat files.</p>
+<p>Additional data may be supplied in per-data-piece files, up to the extent
+that there is no &quot;common&quot; file at all, or only an empty one.</p>
+<p>An important item on the API is what we used to call the &quot;basename&quot;:
+The package name, used as a filename for DLL or .dat, or optionally as a prefix
+for single files. The first argument in functions like udata_open() or ures_open()
+is a path/basename string. This string is taken apart into the path and the
+basename, split at the last separator ('/' or '\' on most platforms).</p>
+<p>The udata service caches common data files but not single-data-piece files.
+However, Individual data (whereever found) is cached in other services like
+resource bundles (ures), collation (ucol), etc.</p>
+<p>On the API, the path/basename argument is always NULL for ICU. The
+implementation uses the implicit search path (from ICU_DATA/u_setDataDirectory())
+and the ICU data basename (like &quot;icudt20b&quot;).</p>
+<h2>Problems with ICU 2.0 data loading</h2>
+<ul>
+  <li>Too many ways to find and load data</li>
+  <li>Very few people understand how it works</li>
+  <li>Extensibility is limited because data is found first in a
+    &quot;common&quot; file, so that a separate (newer) data piece file cannot
+    override the packaged data &mdash; we did this for performance</li>
+  <li>Confusing interaction of the ICU_DATA folder setting with application
+    data, especially when using &quot;files mode&quot; (ICU data in separate
+    files, not packaged into a &quot;common&quot; file)</li>
+</ul>
+<h2>Consensus for post-2.0 data loading</h2>
+<ul>
+  <li>There should be one search path for both ICU's and ICU application's data,
+    with 0 or more folders listed</li>
+  <li>In terms of finding data, a path is specified if there is a non-empty path
+    in the data loading arguments, or if the search path is not empty.</li>
+  <li>ICU will <i>only </i>look in a common file if <i>no </i>path or no
+    basename is specified.</li>
+  <li>ICU will look for single-data-piece files <i>before </i>common/package
+    files, but only if a path and a basename are specified. This allows maximum performance by
+    not specifying a path.</li>
+  <li>Single-data files will always have a prefix that is the same as the &quot;basename&quot;
+    (package name). This roughly mirrors Java RB filenames.&nbsp;</li>
+</ul>
+<p>Pseudo-code:</p>
+<pre>
+global variable: searchPath
+    set with ICU_DATA and/or u_setDataDirectory()
+
+global variable: cache/registry of common files, associates string (path/basename) with data pointer
+    can be set with udata_setCommonData() for ICU
+    can be set with udata_setAppData() for application data
+    otherwise self-registering while loading, see below
+
+udata_open(path_basename, name, type) { // all strings; type=&quot;res&quot; for RBs
+    search for last '/' in path_basename, split into path and basename
+
+    // look for single-data-piece file
+    if(path not empty) {
+        look for single file &quot;path/basename_name.type&quot;
+        return it if found, else go on
+    } else if(searchPath has at least one path) {
+        for each path in searchPath {
+            look for single file &quot;path/basename_name.type&quot;
+            return it if found, else continue loop
+        }
+    }
+
+    // look for common/packaged file, cache first
+    if(path_basename in cache/registry of common files) {
+        common=get from cache
+    } else if(path not empty) {
+        look for memory-mappable common file &quot;path/basename.dat&quot;
+        set common if found
+        if found, also add (&quot;path/basename&quot;, common) to cache/registry
+    } else if(searchPath has at least one path) {
+        for each path in searchPath {
+            look for memory-mappable common file &quot;path/basename.dat&quot;
+            set common if found and break, else continue loop
+            if found, also add (&quot;path/basename&quot;, common) to cache/registry
+        }
+    }
+
+    // look in the common file
+    if(common!=none) {
+        search common.ToC for &quot;name.type&quot;
+        return it if found, else go on
+    }
+
+    return not_found
+}
+</pre>
+<h2>Issues with this consensus</h2>
+<p>Vladimir brought up the following bootstrapping problem: At ICU build time,
+we do not have a common data file yet. Single ICU data files must be built with
+the &quot;basename_&quot; prefix. The package name would be
+&quot;icudt20b&quot;; a single-data filename would be
+&quot;icudt20b_fr_BE.res&quot;; currently, icudt20b.dat contains a ToC entry of
+&quot;fr_BE.res&quot;.<br>
+If we continue to not have the &quot;basename_&quot; prefix in the ToC in the
+packaged/common file, then the packaging must be made smart enough to remove the
+&quot;basename_&quot;. This should not be too hard.<br>
+Alternatively, we could keep the &quot;basename_&quot; in the ToC, which means
+that all files in a common file have the same such prefix, which is the same as
+the package name. Wastes a little bit of space.</p>
+<p>Always building with the &quot;basename_&quot; prefix means that we probably
+need to have a basename command line option for all build tools to avoid
+changing all of the source filenames; changing the source filenames would
+actually not work because the ICU data basename contains the ICU version number
+and the platform endianness/charset family.</p>
+<p>Filename length restrictions: We should keep all filenames, including for
+runtime data files that have the &quot;basename_&quot; prefix (9 characters), at
+&lt;=31 characters to not break MacOS more than necessary (and for sanity). This
+leaves 22 characters not counting the prefix, meaning that source filenames
+should typically not be longer than 22 characters.</p>
+<h2>Enumerating data pieces</h2>
+<p>We are thinking about enumerating ICU data pieces like locale data RBs,
+transliterator RBs, etc. In an IBM ICU-only meeting on 2002-feb-04, we decided
+to keep filenames distinguishable. RBs with &quot;t_...&quot; will be used for
+transliterators. RBs with locale data will not have &quot;(single
+letter)_&quot;. Future non-locale data RBs will have filenames that start with a
+single letter, followed by an underscore.</p>
+<h2>Yves' summary of the meeting</h2>
+<p>(Email from Yves Arrouye, RealNames, from 2002-jan-30)</p>
+<pre>
+Thanks for having me. It was interesting and fruitful.
+
+Here's my recap of things.
+
+Goal: design a way to load any kind of ICU-consumed data (resource bundles,
+converters, collators, etc..., being packaged or not) that is easy to
+understand, simple, and cover the following scenarios:
+
+Scenario 1: An application loads ICU data as well as its own data from the
+ICU data directory to which it has access.
+
+Scenario 2: An application loads ICU data from the read-only ICU data
+directory, as well as its own data from its own location(s).
+
+Scenario 3: An application provides in its own location(s) some data that
+needs to take precedence over the ICU data located in the ICU data
+directory. An example is an application wanting to keep ICU's root and fr_BE
+locales, but providing its own fr locale.
+
+We took the ures_open() call as the work example. ures_open() is called as
+ures_open(name, locale).
+
+After some (much) discussion, we agreed on the following idea:
+
+- As far as data loading goes, there is no difference between ICU owned data
+and application data. They both are data that ICU can manipulate, and
+treating them separately is hurting more than helping, making interfaces
+more complex and confusing.
+
+- The ICU data directory will be turned into a search path that may contain
+many directories. This means that applications can simply add to that search
+path in order to change where the data are loaded from. For instance, in the
+case of scenario 3, the application can simply prepend its own data
+directory to the path as well as supply an fr locale to have it found and
+shadow the ICU one, which would be found later in the path. Scenario 1 is
+covered with the path being simply the ICU data directory, and Scenario 2 is
+covered by having the application add its own directory, with the added
+flexibility of being able to choose whether it wants to be in front or
+behind ICU.
+
+- (We haven't said it but I think it's implicit). The path will have the
+syntax of paths on the platform. For instance, they'll be separated by
+semicolons on Windows, colons on UNIX, etc...
+
+- ICU will continue to look for individual files as well as packaged data.
+This means that the call ures_open(&quot;mydata&quot;, &quot;fr_BE&quot;) will look for a file
+named mydata_fr_BE.res or one called mydata.dat that contains an fr_BE
+locale. It will also do so in that order, and for each component of the
+path. If the first argument is an absolute path, however, that path, and
+only that path, will be used for the search.
+
+- Applications that never want the filesystem to be touched will be able to
+link against their data, and set the ICU data path to 0 (or NULL for those
+who haven't been bitten by NULL yet).
+
+- There is a single cache mapping parameters passed to ures_open() to chunks
+of memory (loaded data). That cache is checked first before looking into the
+search path (meaning that if the search path is 0, the cache is still
+checked). When one register application data (setAppData()) the cache is
+filled, so it also serves as a registry in this way. The keys in the cache
+are made of a combination of the arguments passed to ures_open().
+
+The following algorithm illustrates the new functionality in
+pseudo-whatever:
+
+resource *ures_open(const char *tag, const char *loc) {
+    resource *res = ures_checkcache(tag, loc);  /* look in cache */
+    if (!res) {
+       /* try_load() gets a path w/o extension, and a locale,
+          and returns 0 if cannot find the resource, or the res
+          if it found it, in which case the cache is updated. */
+
+       if (is_absolute_path(tag)) {
+		      res = try_load(tag, tag, loc);
+       } else {
+		      foreach dir in search_path() {
+		          if (!(res = try_load(dir, tag + &quot;_&quot; + loc, loc))) {
+		 		        if (res = try_load(dir, tag, loc)) {
+                       break;
+                   }
+               }
+           }
+		  }
+    }
+    return res;
+}
+
+(and since I don't read myelf again I may have missed something. But it
+*has* to look simple because it *is* simple).
+
+Issues that we haven't discussed, because they are minor:
+
+- What happens if there is a mydata_fr_BE.res file that does not contain an
+fr_BE locale. Should ICU continue to look for something, or bail out with an
+error? (I assumed the former in the above pseudo code.)
+
+- I personally think that we should keep the name ICU_DATA and let people
+make it a path. Not much to gain by forcing them to change the variable
+name.
+
+- It would be nice to deprecate u_setDataDirectory() and
+u_getDataDirectory() and rename them u_setDataSearchPath() and
+u_getDataSearchPath() or something. Now, while they are being deprecated, I
+think it is fair to make u_setDataDirectory() an alias to
+u_setDataSearchPath(), but that it would also be desirable to keep
+u_getDataDirectory()'s behavior to return $ICU_DATA if it is a single
+directory, otherwise the place where the ICU data was found in the search
+path (or the compile time default if it was linked in). That will make
+existing applications that dump stuff in the ICU data and then call
+u_getDataDirectory() to refer back to it, still work.
+
+- If you do not want to have this data loading opening handle endianness by
+naming convention (by appending something) then I think that we need to
+clearly document a preferred naming convention so that one's &quot;mem&quot; bundle,
+once transformed into &quot;meme.res&quot; for endianness, does not conflict with my
+&quot;meme&quot; bundle for which I forgot about setting the endianness. That is why
+it would be nice to have the tools and the data loading do that
+automatically for you. But that's minor.
+
+- When applications set the path, they can decide whether to be in front of
+behind the previous path. So my application could ship, say, with a
+converter, but put its directory *after* the existing path to indicate that
+I'd rather use the official ICU one if it exists (say in a later version)
+than my own one. Now, when applications link and call setAppData(), they put
+the name in the cache, and then there is no search done. I do not know if
+it's worth giving them the same flexibility there. (If all they care about
+is a before/after relationship, then they should either setAppData()
+immediately to be before, or first ures_open() and only setAppData() after
+it fails to be after. I think that covers 99% of the cases.)
+
+Again, it was nice to brainstorm with all of you. I'll do that again anytime
+you want with great pleasure.
+
+YA
+</pre>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

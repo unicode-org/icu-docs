@@ -9,7 +9,7 @@
 <!--
 td, th       { vertical-align: Top }
 .center      { text-align: Center }
-.smallcode   { font-size: 75% }
+.smallcode   { font-size: 67%; font-family: monospace }
 -->
 </style>
 </head>
@@ -40,60 +40,56 @@ set up to make distinctions among combining marks, nor many of the other Unicode
 <table border="1" cellspacing="0" cellpadding="2" align="right" bgcolor="#FFFFCC">
   <caption><b>Characters Mnemonics</b></caption>
   <tr>
-    <td class="smallcode"><code>HT</code></td>
-    <td class="smallcode"><code>U+0009 &lt;CHARACTER TABULATION&gt;</code></td>
+    <td class="smallcode">HT</td>
+    <td class="smallcode">U+0009 &lt;CHARACTER TABULATION&gt;</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>LF</code></td>
-    <td class="smallcode"><code>U+000A &lt;LINE FEED&gt;</code></td>
+    <td class="smallcode">LF</td>
+    <td class="smallcode">U+000A &lt;LINE FEED&gt;</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>VT</code></td>
-    <td class="smallcode"><code>U+000B &lt;LINE TABULATION&gt;</code></td>
+    <td class="smallcode">VT</td>
+    <td class="smallcode">U+000B &lt;LINE TABULATION&gt;</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>FF</code></td>
-    <td class="smallcode"><code>U+000C &lt;FORM FEED&gt;</code></td>
+    <td class="smallcode">FF</td>
+    <td class="smallcode">U+000C &lt;FORM FEED&gt;</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>CR</code></td>
-    <td class="smallcode"><code>U+000D &lt;CARRIAGE RETURN&gt;</code></td>
+    <td class="smallcode">CR</td>
+    <td class="smallcode">U+000D &lt;CARRIAGE RETURN&gt;</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>IS4</code></td>
-    <td class="smallcode"><code>U+001C &lt;INFORMATION SEPARATOR FOUR&gt;</code></td>
+    <td class="smallcode">IS4</td>
+    <td class="smallcode">U+001C &lt;INFORMATION SEPARATOR FOUR&gt;</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>IS3</code></td>
-    <td class="smallcode"><code>U+001D &lt;INFORMATION SEPARATOR THREE&gt;</code></td>
+    <td class="smallcode">IS3</td>
+    <td class="smallcode">U+001D &lt;INFORMATION SEPARATOR THREE&gt;</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>IS2</code></td>
-    <td class="smallcode"><code>U+001E &lt;INFORMATION SEPARATOR TWO&gt;</code></td>
+    <td class="smallcode">IS2</td>
+    <td class="smallcode">U+001E &lt;INFORMATION SEPARATOR TWO&gt;</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>IS1</code></td>
-    <td class="smallcode"><code>U+001F &lt;INFORMATION SEPARATOR ONE&gt;</code></td>
+    <td class="smallcode">IS1</td>
+    <td class="smallcode">U+001F &lt;INFORMATION SEPARATOR ONE&gt;</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>SP</code></td>
-    <td class="smallcode"><code>U+0020 SPACE</code></td>
+    <td class="smallcode">SP</td>
+    <td class="smallcode">U+0020 SPACE</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>LL</code></td>
-    <td class="smallcode"><code>U+005F (_) LOW LINE</code></td>
+    <td class="smallcode">LL</td>
+    <td class="smallcode">U+005F (_) LOW LINE</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>NEL</code></td>
-    <td class="smallcode"><code>U+0085 &lt;NEXT LINE&gt;</code></td>
+    <td class="smallcode">NEL</td>
+    <td class="smallcode">U+0085 &lt;NEXT LINE&gt;</td>
   </tr>
   <tr>
-    <td class="smallcode"><code>NBSP</code></td>
-    <td class="smallcode"><code>U+00A0 NO-BREAK SPACE</code></td>
-  </tr>
-  <tr>
-    <td class="smallcode"><code>ZWSP</code></td>
-    <td class="smallcode"><code>U+200B ZERO WIDTH SPACE</code></td>
+    <td class="smallcode">ZWSP</td>
+    <td class="smallcode">U+200B ZERO WIDTH SPACE</td>
   </tr>
 </table>
 <p align="left">However, many programs use the POSIX-style properties, so for
@@ -112,7 +108,10 @@ they upgrade beyond Unicode 3.x.</p>
   <li>The Java function names are methods on Character, unless otherwise noted.</li>
   <li>The Windows column lists CRT function, then .NET System.Char method, then
     equivalence.</li>
-  <li>The normal property abbreviations are used, e.g. <i>gc</i> for <a href="http://www.unicode.org/Public/UNIDATA/extracted/DerivedGeneralCategory.txt">General_Category</a>.</li>
+  <li>The normal property abbreviations are used, e.g. <i>gc</i> for <a href="http://www.unicode.org/Public/UNIDATA/extracted/DerivedGeneralCategory.txt">General_Category</a>.
+    See <a href="http://www.unicode.org/Public/UNIDATA/PropertyAliases.txt">PropertyAliases.txt</a>
+    and <a href="http://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt">PropertyValueAliases.txt</a>
+    for the abbreviations.</li>
   <li>For values of the General Category, see <a href="#General_Categories">General_Categories</a>.</li>
 </ul>
 <table border="1" cellspacing="0" cellpadding="2">
@@ -127,12 +126,12 @@ they upgrade beyond Unicode 3.x.</p>
   <tr>
     <td><b>punct</b><br>
       P</td>
-    <td><b>getType(...)</b><b><br>
+    <td><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a454"><b>u_charType</b></a><b><br>
       </b>gc=P</td>
-    <td><b>getType(...)</b><code><b><br>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#getType(char)"><b>getType</b></a><code><b><br>
       </b></code>gc=P</td>
-    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_ispunct.2c_.iswpunct.asp">iswpunct<br>
-      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsPunctuationTopic.asp">IsPunctuation</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_ispunct.2c_.iswpunct.asp"><br>
+    <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_ispunct.2c_.iswpunct.asp">iswpunct<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsPunctuationTopic.asp">IsPunctuation</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_ispunct.2c_.iswpunct.asp"><br>
       </a>gc=P</td>
     <td>\p{gc=P}</td>
     <td>&nbsp;</td>
@@ -140,13 +139,16 @@ they upgrade beyond Unicode 3.x.</p>
   <tr>
     <td><b>alpha</b><br>
       gc=L or M</td>
-    <td><b>u_isalpha</b><br>
+    <td><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a444"><b>u_isalpha</b></a><br>
+      gc=L
+      <p><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a430"><b>u_isUAlphabetic<br>
+      </b></a>Alphabetic=true</p>
+    </td>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#isLetter(char)"><b>isLetter</b></a><br>
       gc=L</td>
-    <td><b>isLetter</b><br>
-      gc=L</td>
-    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isalpha.2c_.iswalpha.asp">iswalpha<br>
+    <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isalpha.2c_.iswalpha.asp">iswalpha<br>
       </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsLetterTopic.asp">IsLetter<br>
-      </a>gc=L</td>
+      </a></b>gc=L</td>
     <td>\p{Alphabetic}<br>
       \p{gc=Mark}</td>
     <td>Alphabetic includes more than gc = Letter. Note that marks (Me, Mn, Mc)
@@ -158,12 +160,15 @@ they upgrade beyond Unicode 3.x.</p>
     <td><b>lower</b><br>
       gc=Ll<br>
     </td>
-    <td><b>u_islower</b><br>
+    <td><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a438"><b>u_islower</b></a><br>
+      gc=Ll
+      <p><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a431"><b>u_isULowercase<br>
+      </b></a>Lowercase=true</p>
+    </td>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#isLowerCase(char)"><b>isLowerCase</b></a><br>
       gc=Ll</td>
-    <td><b>isLowerCase</b><br>
-      gc=Ll</td>
-    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_islower.2c_.iswlower.asp">iswlower<br>
-      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsLowerTopic.asp">IsLower</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_islower.2c_.iswlower.asp"><br>
+    <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_islower.2c_.iswlower.asp">iswlower<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsLowerTopic.asp">IsLower</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_islower.2c_.iswlower.asp"><br>
       </a>gc=Ll</td>
     <td>\p{Lowercase}</td>
     <td>Lowercase includes more than gc = Lowercase_Letter (Ll). See <a href="http://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt">DerivedCoreProperties.txt</a>.</td>
@@ -171,11 +176,15 @@ they upgrade beyond Unicode 3.x.</p>
   <tr>
     <td><b>upper</b><br>
       gc=Lu</td>
-    <td><b>u_isupper</b></td>
-    <td><b>isUpperCase</b><br>
+    <td><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a439"><b>u_isupper<br>
+      </b></a>gc=Lu
+      <p><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a432"><b>u_isUUppercase<br>
+      </b></a>Uppercase=true</p>
+    </td>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#isUpperCase(char)"><b>isUpperCase</b></a><br>
       gc=Lu</td>
-    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isupper.2c_.iswupper.asp">iswupper<br>
-      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsUpperTopic.asp">IsUpper</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isupper.2c_.iswupper.asp"><br>
+    <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isupper.2c_.iswupper.asp">iswupper<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsUpperTopic.asp">IsUpper</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isupper.2c_.iswupper.asp"><br>
       </a>gc=Lu</td>
     <td>\p{Uppercase}</td>
     <td>Uppercase includes more than gc = Uppercase_Letter (Lu).<br>
@@ -186,12 +195,12 @@ they upgrade beyond Unicode 3.x.</p>
       gc=Nd
       <p><b>\d</b></p>
     </td>
-    <td><b>u_isdigit<br>
+    <td><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a441"><b>u_isdigit</b></a><b><br>
       </b>gc=Nd</td>
-    <td><b>isDigit</b><br>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#isDigit(char)"><b>isDigit</b></a><br>
       gc=Nd</td>
-    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isdigit.2c_.iswdigit.asp">iswdigit<br>
-      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsDigitTopic.asp">IsDigit</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isdigit.2c_.iswdigit.asp"><br>
+    <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isdigit.2c_.iswdigit.asp">iswdigit<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsDigitTopic.asp">IsDigit</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isdigit.2c_.iswdigit.asp"><br>
       </a>gc=Nd</td>
     <td>\p{gc=Nd}</td>
     <td>Non-decimal numbers (like Roman numerals) are normally excluded. In
@@ -201,8 +210,9 @@ they upgrade beyond Unicode 3.x.</p>
     <td><b>xdigit</b><br>
       0..9, A..F, a..f<br>
     </td>
-    <td><b>UCHAR_ASCII&#8203;_HEX_DIGIT</b><br>
-      0-9 A-F a-f
+    <td><b><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a434">u_getIntPropertyValue</a></b>
+      <p><b>UCHAR_ASCII&#8203;_HEX_DIGIT</b><br>
+      0-9 A-F a-f</p>
       <p><b>UCHAR&#8203;_HEX_DIGIT<br>
       </b>adds fullwidth</p>
     </td>
@@ -217,13 +227,13 @@ they upgrade beyond Unicode 3.x.</p>
     <td><b>alnum</b><br>
       gc=L or M or N<br>
     </td>
-    <td><b>u_isalnum</b><br>
+    <td><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a442"><b>u_isalnum</b></a><br>
       gc=L or Nd</td>
-    <td><b>isLetterOrDigit</b><br>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#isLetterOrDigit(char)"><b>isLetterOrDigit</b></a><br>
       gc=L or Nd</td>
-    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isalnum.2c_.iswalnum.asp">iswalnum<br>
+    <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isalnum.2c_.iswalnum.asp">iswalnum<br>
       </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsLetterOrDigitTopic.asp">IsLetterOrDigit<br>
-      </a>gc=L or Nd</td>
+      </a></b>gc=L or Nd</td>
     <td>\p{alpha}<br>
       \p{digit}</td>
     <td>Simple combination of other properties</td>
@@ -240,22 +250,23 @@ they upgrade beyond Unicode 3.x.</p>
     <td><b>cntrl</b><br>
       gc=C</td>
     <td><b>u_isISOControl<br>
-      </b>gc=Cc &amp; ASCII
-      <p><b>u_iscntrl()<br>
+      </b>gc=Cc
+      <p><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a447"><b>u_iscntrl</b></a><b><br>
       </b>gc=Cc or Cf or Zl or Zp</p>
     </td>
-    <td><b>isISOControl<br>
-      </b>gc=Cc &amp; ASCII</td>
-    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_iscntrl.2c_.iswcntrl.asp">iswcntrl<br>
-      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsControlTopic.asp">IsControl</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_iscntrl.2c_.iswcntrl.asp"><br>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#isISOControl(char)"><b>isISOControl</b></a><b><br>
+      </b>gc=Cc</td>
+    <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_iscntrl.2c_.iswcntrl.asp">iswcntrl<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsControlTopic.asp">IsControl</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_iscntrl.2c_.iswcntrl.asp"><br>
       </a>gc=Cc</td>
     <td>\p{gc=Control}</td>
-    <td>Does not include Format, since some of those are needed in the
-      representation of normal text.
+    <td>The recommendation does not include Format, since some of those are
+      needed in the representation of normal text.
       <p><b>Open Issue:</b> add&nbsp; \p{gc=Zl} \p{gc=Zp}, the most control-like
       of the Cf?</p>
       <p><b>Open Issue:</b> add all of \p{gc=C} - {space}, and make cntrl,
-      graph, space be a complete partition of Unicode?</p>
+      graph, space be a complete partition of Unicode? Doesn't really work for
+      surrogates (Cs), private-use (Co), unassigned (Cn).</p>
     </td>
   </tr>
   <tr>
@@ -263,9 +274,8 @@ they upgrade beyond Unicode 3.x.</p>
       gc=L or M or N or P or S or Co</td>
     <td>&#8709;</td>
     <td>&#8709;</td>
-    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isgraph.2c_.iswgraph.asp">isgraph,
-      iswgraph<br>
-      </a>not in .NET<a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isprint.2c_.iswprint.asp"><br>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isgraph.2c_.iswgraph.asp"><b>iswgraph<br>
+      </b></a>not in .NET<a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isprint.2c_.iswprint.asp"><br>
       </a>??</td>
     <td><b>All but:</b><br>
       [\p{space}<br>
@@ -275,17 +285,17 @@ they upgrade beyond Unicode 3.x.</p>
     <td>Perl is the same as excluding: Z, Cc, Cf, Cs, Cn.
       <p>POSIX: includes alpha, digit, punct, excludes cntrl</p>
       <p><b>Open Issue:</b> Also exclude Cf? Some Cf are clearly control-like,
-      while others may be intermixed as part of the orthography (ZWNJ, RTM).</p>
+      while others may be intermixed as part of the orthography (ZWNJ, RLM).</p>
     </td>
   </tr>
   <tr>
     <td><b>print</b><br>
       gc=graph + Zs</td>
-    <td><b>u_isprint()<br>
+    <td><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a448"><b>u_isprint</b></a><b><br>
       </b>All but gc=C</td>
     <td>&#8709;</td>
-    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isprint.2c_.iswprint.asp">iswprint<br>
-      </a>not in .NET<a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isprint.2c_.iswprint.asp"><br>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isprint.2c_.iswprint.asp"><b>iswprint<br>
+      </b></a>not in .NET<a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isprint.2c_.iswprint.asp"><br>
       </a>??</td>
     <td>\p{graph}<br>
       \p{space}</td>
@@ -304,27 +314,28 @@ they upgrade beyond Unicode 3.x.</p>
       Z or HT..CR
       <p><b>\s</b></p>
     </td>
-    <td><b>u_isWhitespace<br>
+    <td><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a446"><b>u_isWhitespace</b></a><b><br>
       = </b>Java_isWhitespace + NEL
       <p><b>u_isJavaSpaceChar<br>
-      = </b>Java_isSpace</p>
-      <p><b>u_isspace<br>
-      </b>= isSpace??</p>
-      <p><b>u_isUWhiteSpace<br>
-      </b>Unicode WhiteSpace</td>
-    <td><b>isWhitespace<br>
+      = </b>Java_isSpaceChar</p>
+      <p><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a445"><b>u_isspace</b></a><b><br>
+      </b>= Z +&nbsp; HT..CR, IS4..IS1</p>
+      <p><a class="el" href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html#a433"><b>u_isUWhiteSpace</b></a><b><br>
+      </b>Unicode White_Space</td>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#isWhitespace(char)"><b>isWhitespace</b></a><b><br>
       </b>Z +&nbsp; HT..CR, IS4..IS1<br>
-      - NBSP
-      <p><b>isSpaceChar:<br>
+      - no-break-whitespace
+      <p><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#isSpaceChar(char)"><b>isSpaceChar</b></a><b><br>
       </b>gc=Z</p>
-      <p><b>isSpace</b> (depre.):<br>
-      HT..CR</td>
-    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isspace.2c_.iswspace.asp">iswspace<br>
-      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsWhiteSpaceTopic.asp">IsWhiteSpace</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isspace.2c_.iswspace.asp"><br>
+      <p><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#isSpace(char)"><b>isSpace</b></a><br>
+      HT..CR<br>
+      <i>(deprecated)</i></td>
+    <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isspace.2c_.iswspace.asp">iswspace<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsWhiteSpaceTopic.asp">IsWhiteSpace</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isspace.2c_.iswspace.asp"><br>
       </a>gc=Z or HT..CR, NEL</td>
     <td>\p{Whitespace}</td>
     <td>See <a href="#Whitespace_Comparison">Whitespace_Comparison</a> for a
-      comparison of WhiteSpace to Z.
+      comparison of WhiteSpace to Z, and for no-break-whitespace.
       <p>See <a href="http://www.unicode.org/Public/UNIDATA/PropList.txt">PropList.txt</a>
       for the definition of Whitespace (also in U3.1, U3.2)</p>
       <p><b>Note: </b>ZWSP, while a Z character, is for line break control and
@@ -479,6 +490,24 @@ they upgrade beyond Unicode 3.x.</p>
         U+202F  # NARROW NO-BREAK SPACE
         U+205F  # MEDIUM MATHEMATICAL SPACE
         U+3000  # IDEOGRAPHIC SPACE</pre>
+<p>No-break-whitespace is defined to be \p{dt=nb}&amp;\p{Whitespace}. In Unicode
+4.0, it consists of the following 3 characters:</p>
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFCC">
+  <tr>
+    <td class="smallcode">NBSP</td>
+    <td class="smallcode">U+00A0 NO-BREAK SPACE</td>
+  </tr>
+  <tr>
+    <td class="smallcode">NNBSP</td>
+    <td class="smallcode">U+202F NARROW NO-BREAK SPACE</td>
+  </tr>
+  <tr>
+    <td class="smallcode">FSP</td>
+    <td class="smallcode">U+2007 FIGURE SPACE</td>
+  </tr>
+</table>
+<p>&nbsp;See <a href="http://www.unicode.org/Public/UNIDATA/extracted/DerivedDecompositionType.txt">DerivedDecompositionType.txt</a>
+for nb (nobreak) values for dt (decomposition type).</p>
 <h3><a name="General_Categories">General Categories</a></h3>
 <table>
   <tr>

@@ -1,0 +1,375 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="stylesheet" href="http://www.unicode.org/reports/reports.css" type="text/css">
+<title>UAX #29: Text Boundaries</title>
+<style type="text/css">
+<!--
+.right       { text-align: Right }
+.symbol      { font-size: 90%; font-family: Arial Unicode MS }
+.left        { text-align: Left }
+.center      { text-align: Center }
+.example2    { background-color: #FFFF99 }
+.charlist    { font-size: 90%; font-family: monospace }
+.pairItem    { text-align: Center }
+.lbclass     { text-align: Center }
+-->
+</style>
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class="body">
+  <p align="right"><b><font size="4">L2......</font></b></p>
+  <table border="1" cellpadding="4" cellspacing="0" style="border-collapse: collapse; border-width: 0" bordercolor="#111111" id="AutoNumber1">
+    <tr>
+      <td>Re</td>
+      <td>TR29 Corrections</td>
+    </tr>
+    <tr>
+      <td>From:</td>
+      <td>Mark Davis</td>
+    </tr>
+    <tr>
+      <td>Date:</td>
+      <td>2004-11-11</td>
+    </tr>
+  </table>
+  <p>Action 99-A57 was erroneously marked as done, and thus the changes that it encompassed did not 
+  make it into the posted proposed update of UAX 29. The following are the extracted portions of the 
+  UAX that are need to be changed so as to make the changes in 99-A57. In addition, the generation 
+  of the property files as per the UTC decision revealed cases where the properties were not 
+  orthogonal as defined, so their definitions needed to be adjusted.</p>
+  <p>Note that 99-A57 was created before the Katakana_or_hiragana script value was withdrawn, so the 
+  action had to be reinterpreted in that light.</p>
+  <p>This needs to be incorporated into a new public review of the UAX for Unicode 4.1.</p>
+  <hr>
+  <p align="center"><b>Table 2. <a name="Default_Word_Boundaries">Default Word Boundaries</a></b></p>
+  <table cellspacing="0" cellpadding="4" border="0">
+    <caption class="left"><span style="color: black">Boundary Property Values</span></caption>
+    <tr>
+      <td valign="top"><b><a name="Format">Format</a></b></td>
+      <td>General_Category = Format (Cf)<span><i><br>
+      <span class="changedspan">and not </span></i><span class="changedspan">U+200C ZERO WIDTH 
+      NON-JOINER (ZWNJ) <br>
+      <i>and not </i>U+200D ZERO WIDTH JOINER (ZWJ) </span></span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Katakana">Katakana</a></b></td>
+      <td>Script = KATAKANA, <i>or<br>
+      </i>Any of the following:<br>
+      <span class="changedspan">U+3031 (〱) VERTICAL KANA REPEAT MARK<br>
+      U+3032 (〲) VERTICAL KANA REPEAT WITH VOICED SOUND MARK<br>
+      U+3033 (〳) VERTICAL KANA REPEAT MARK UPPER HALF<br>
+      U+3034 (〴) VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF<br>
+      U+3035 (〵) VERTICAL KANA REPEAT MARK LOWER HALF<br>
+      U+309B (゛) KATAKANA-HIRAGANA VOICED SOUND MARK<br>
+      U+309C (゜) KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK<br>
+      U+30A0 (゠) KATAKANA-HIRAGANA DOUBLE HYPHEN</span><span class="charlist"><br>
+      U+30FC (</span><span class="symbol">ー</span><span class="charlist">) KATAKANA-HIRAGANA 
+      PROLONGED SOUND MARK<br>
+      U+FF70 (</span><span class="symbol">ｰ</span><span class="charlist">) HALFWIDTH 
+      KATAKANA-HIRAGANA PROLONGED SOUND MARK<br>
+      U+FF9E (</span><span class="symbol">ﾞ</span><span class="charlist">) HALFWIDTH KATAKANA VOICED 
+      SOUND MARK<br>
+      U+FF9F (</span><span class="symbol">ﾟ</span><span class="charlist">) HALFWIDTH KATAKANA 
+      SEMI-VOICED SOUND MARK</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="ALetter">ALetter</a></b></td>
+      <td>Alphabetic = true, <span class="old_changed"><i>or<br>
+      </i></span><span>U+00A0 ( ) NO-BREAK SPACE (NBSP) </span><i><span>or</span></i><span><br>
+      </span><span class="charlist">U+05F3 (</span><span class="symbol">׳</span><span class="charlist">) 
+      HEBREW PUNCTUATION GERESH</span><font size="2"><br>
+      </font><i>and not </i>Ideographic = true<br>
+      <i>and not</i> Katakana = true<i><br>
+      and not</i> Script = Thai<br>
+      <i>and not</i> Script = Lao<br>
+      <i>and not</i> Script = Hiragana<br>
+      <span><i>and not </i>GRAPHEME EXTEND = true</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="MidLetter">MidLetter</a></b></td>
+      <td>Any of the following:<br>
+      <span class="charlist">U+0027 (</span><span class="symbol">&#39;</span><span class="charlist">) 
+      APOSTROPHE<br>
+      U+00B7 (</span><span class="symbol">·</span><span class="charlist">) MIDDLE DOT<br>
+      U+05F4 (<span class="symbol">״</span>) HEBREW PUNCTUATION GERSHAYIM</span><br>
+      <span class="charlist">U+2019 (</span><span class="symbol">’</span><span class="charlist">) 
+      RIGHT SINGLE QUOTATION MARK (curly apostrophe)<br>
+      U+2027 (</span><span class="symbol">‧</span><span class="charlist">) HYPHENATION POINT<br>
+      </span><span class="changedspan">U+003A (:) COLON (used in Swedish)</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><span class="removedspan"><b><a name="MidNumLet">MidNumLet</a></b></span></td>
+      <td><span class="removedspan">Any of the following:<br>
+      U+002E (.) FULL STOP (period)<br>
+      U+003A (:) COLON (used in Swedish)</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="MidNum">MidNum</a></b></td>
+      <td>Line_Break = Infix_Numeric<span class="removedspan"><br>
+      <i>and not</i> MidNumLet = true<br>
+      </span><span class="changedspan"><i>and not </i>U+003A (:) COLON</span></td>
+    </tr>
+    <tr>
+      <td valign="top" class="old_changed"><b><a name="Numeric">Numeric</a></b></td>
+      <td class="old_changed">Line_Break = Numeric</td>
+    </tr>
+    <tr>
+      <td valign="top"><span class="changedspan"><b><a name="ExtendNumLet">ExtendNumLet</a></b></span></td>
+      <td><span class="changedspan">General_Category=Connector_Punctuation<br>
+      <i>and not </i>U+30FB KATAKANA MIDDLE DOT<br>
+      <i>and not </i>U+FF65 HALFWIDTH KATAKANA MIDDLE DOT</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><span><b><a name="Any">Any</a></b></span></td>
+      <td><span>Any character (includes all of the above)</span></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <table cellspacing="0" cellpadding="4" border="0">
+    <caption class="left">Boundary Rules</caption>
+    <tr>
+      <td class="right" width="85%" colspan="3">
+      <p style="text-align: left"><span>Assign each code point with line break property values of 
+      CB, SA, SG, and XX to one of the above boundary property values depending on criteria outside 
+      the scope of this algorithm. Characters with other line break properties are assigned values 
+      directly according to the above table.</span></td>
+      <td class="right"><span>(0)</span></td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Break at the start and end of text.</i></td>
+    </tr>
+    <tr>
+      <td class="right" width="45%">sot</td>
+      <td class="center">÷</td>
+      <td width="40%"></td>
+      <td class="right">(1)</td>
+    </tr>
+    <tr>
+      <td class="right"></td>
+      <td class="center">÷</td>
+      <td>eot</td>
+      <td class="right">(2)</td>
+    </tr>
+    <tr>
+      <td align="right" colspan="4">
+      <p align="left"><i>Treat a grapheme cluster as if it were a single character: the first 
+      character of the cluster.</i></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="right" class="right">GC</td>
+      <td align="right">
+      <p class="center">→</td>
+      <td align="right">FC</td>
+      <td class="right">(3)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Ignore <span class="old_changed">trailing</span> Format characters. That 
+      is, ignore Format characters in all subsequent rules (except the last rule).</i></td>
+    </tr>
+    <tr>
+      <td class="right">X Format*</td>
+      <td class="center">→</td>
+      <td>X</td>
+      <td class="right">(4)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break between most letters.</i></td>
+    </tr>
+    <tr>
+      <td class="right">ALetter</td>
+      <td class="center">×</td>
+      <td>ALetter</td>
+      <td class="right">(5)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break letters across certain punctuation.</i></td>
+    </tr>
+    <tr>
+      <td class="right">ALetter</td>
+      <td class="center">×</td>
+      <td><span class="removedspan">(</span>MidLetter<span class="removedspan"> | MidNumLet)</span> 
+      ALetter</td>
+      <td class="right">(6)</td>
+    </tr>
+    <tr>
+      <td class="right">ALetter <span class="removedspan">(</span>MidLetter<span class="removedspan"> 
+      | MidNumLet)</span></td>
+      <td class="center">×</td>
+      <td>ALetter</td>
+      <td class="right">(7)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break within sequences of digits, or digits adjacent to letters 
+      (&#39;3a&#39;, or &#39;A3&#39;).</i></td>
+    </tr>
+    <tr>
+      <td class="right">Numeric</td>
+      <td class="center">×</td>
+      <td>Numeric</td>
+      <td class="right">(8)</td>
+    </tr>
+    <tr>
+      <td class="right">ALetter</td>
+      <td class="center">×</td>
+      <td>Numeric</td>
+      <td class="right">(9)</td>
+    </tr>
+    <tr>
+      <td class="right">Numeric</td>
+      <td class="center">×</td>
+      <td>ALetter</td>
+      <td class="right">(10)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break within sequences like: ‘3.2’ or &#39;3,456.789&#39;.</i></td>
+    </tr>
+    <tr>
+      <td class="right">Numeric <span class="removedspan">(</span>MidNum<span class="removedspan"> | 
+      MidNumLet)</span></td>
+      <td class="center">×</td>
+      <td>Numeric</td>
+      <td class="right">(11)</td>
+    </tr>
+    <tr>
+      <td class="right">Numeric</td>
+      <td class="center">×</td>
+      <td><span class="removedspan">(</span>MidNum<span class="removedspan"> | MidNumLet)</span> 
+      Numeric</td>
+      <td class="right">(12)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Do not break between Katakana.</i></td>
+    </tr>
+    <tr>
+      <td class="right">Katakana</td>
+      <td class="center">×</td>
+      <td>Katakana</td>
+      <td class="right">(13)</td>
+    </tr>
+    <tr>
+      <td colspan="4"><span class="changedspan"><i>Do not break from extenders</i></span></td>
+    </tr>
+    <tr>
+      <td class="right"><span class="changedspan">(ALetter | Numeric | Katakana | ExtendNumLet)
+      </span></td>
+      <td class="center"><span class="changedspan">×</span></td>
+      <td><span class="changedspan">ExtendNumLet</span></td>
+      <td class="right"><span class="changedspan">(13a)</span></td>
+    </tr>
+    <tr>
+      <td class="right"><span class="changedspan">ExtendNumLet</span></td>
+      <td class="center"><span class="changedspan">×</span></td>
+      <td><span class="changedspan">(ALetter | Numeric | Katakana) </span></td>
+      <td class="right"><span class="changedspan">(13b)</span></td>
+    </tr>
+    <tr>
+      <td colspan="4">
+      <p align="left"><i>Otherwise, break everywhere (including around ideographs).</i></td>
+    </tr>
+    <tr>
+      <td class="right">Any</td>
+      <td class="center">÷</td>
+      <td>Any</td>
+      <td class="right">(14)</td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <hr>
+  <p align="center"><b>Table 3. <a name="Default_Sentence_Boundaries">Default Sentence Boundaries</a></b></p>
+  <table cellspacing="0" cellpadding="4" border="0">
+    <caption class="left"><span style="color: black">Boundary Property Values</span></caption>
+    <tr>
+      <td valign="top"><b><a name="Sep">Sep</a></b></td>
+      <td>Any of the following characters:<br>
+      <span class="charlist">U+000A LINE FEED (LF)<br>
+      U+000D CARRIAGE RETURN (CR)<br>
+      U+0085 NEXT LINE (NEL)<br>
+      U+2028 LINE SEPARATOR (LS)<br>
+      U+2029 PARAGRAPH SEPARATOR (PS)</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Format</b></td>
+      <td>General_Category = Format (Cf)<span><i><br>
+      <span class="changedspan">and not </span></i><span class="changedspan">U+200C ZERO WIDTH 
+      NON-JOINER (ZWNJ) <br>
+      <i>and not </i>U+200D ZERO WIDTH JOINER (ZWJ) </span></span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Sp">Sp</a></b></td>
+      <td>Whitespace = true<br>
+      <i>and not </i>Sep = true<br>
+      <span class="changedspan"><i>and not</i> U+00A0 ( ) NO-BREAK SPACE (NBSP)</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Lower">Lower</a></b></td>
+      <td>Lowercase = true<br>
+      <span class="changedspan"><span><i>and not </i>GRAPHEME EXTEND = true</span></span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Upper">Upper</a></b></td>
+      <td>General_Category = Titlecase_Letter (Lt), <i>or</i><br>
+      Uppercase = true</td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="OLetter">OLetter</a></b></td>
+      <td>Alphabetic = true, <i><span class="old_changed">or<br>
+      </span></i><span class="charlist">U+00A0 ( ) NO-BREAK SPACE (NBSP)</span><span>, </span><i>
+      <span>or</span></i><br>
+      <span class="charlist">U+05F3 (׳) HEBREW PUNCTUATION GERESH<br>
+      </span><i>and not </i>Lower = true<br>
+      <i>and not </i>Upper = true<br>
+      <span><i>and not </i>GRAPHEME EXTEND = true</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Numeric</b></td>
+      <td>Linebreak = Numeric (NU)</td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="ATerm">ATerm</a></b></td>
+      <td>Any of the following characters:<br>
+      <span class="charlist">U+002E (</span><span class="symbol">.</span><span class="charlist">) 
+      FULL STOP</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="STerm">STerm</a></b></td>
+      <td>STerm = true<br>
+      <span class="changedspan"><i>and not</i> ATerm = true</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a name="Close">Close</a></b></td>
+      <td>General_Category = Open_Punctuation (Po), <i>or</i><br>
+      General_Category = Close_Punctuation (Pe), <i>or</i><br>
+      Linebreak = Quotation (QU)<br>
+      <span class="old_changed"><i>and not </i><span class="charlist">U+05F3 (׳) HEBREW PUNCTUATION 
+      GERESH<br>
+      </span><i>and not </i>ATerm=true<br>
+      <i>and not </i>STerm = true</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><span><b><a name="Any">Any</a></b></span></td>
+      <td><span>Any character (includes all of the above)</span></td>
+    </tr>
+  </table>
+  <p><i><b>Note: the extra condition in STerm should really be repaired by removing ATerm from the 
+  definition of STerm in the Proplist file.</b></i></p>
+  <p>&nbsp;</div>
+
+</body>
+
+</html>

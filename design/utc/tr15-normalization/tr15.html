@@ -4,20 +4,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="en-us">
-<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <meta name="keywords" content="unicode, normalization, composition, decomposition">
 <meta name="description" content="Specifies the Unicode Normalization Formats">
 <title>UAX #15: Unicode Normalization</title>
 <link rel="stylesheet" href="http://www.unicode.org/reports/reports.css" type="text/css">
-<style type="text/css">
 
-<!--
-
-.foo         {  }
--->
-
-</style>
 </head>
 
 <body bgcolor="#ffffff">
@@ -35,7 +28,7 @@
 <div class="body">
   <h2 align="center">Unicode Standard Annex #15</h2>
   <h1>Unicode Normalization Forms</h1>
-  <table border="1" cellpadding="2" width="95%">
+  <table border="1" cellpadding="2" width="90%">
     <tr>
       <td valign="top" width="20%">Version</td>
       <td valign="top"><span>Unicode 4.1.0</span></td>
@@ -47,7 +40,7 @@
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top"><span>2005-03-23</span></td>
+      <td valign="top"><span>2005-03-25</span></td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
@@ -56,17 +49,17 @@
     </tr>
     <tr>
       <td valign="top">Previous Version</td>
-      <td valign="top"><a href="http://www.unicode.org/reports/tr15/tr15-24.html">
-      http://www.unicode.org/reports/tr15/tr15-24.html</a></td>
+      <td valign="top">
+		<a href="http://www.unicode.org/reports/tr15/tr15-23.html">
+		http://www.unicode.org/reports/tr15/tr15-23.html</a> </td>
     </tr>
     <tr>
       <td valign="top">Latest Version</td>
-      <td valign="top"><a href="http://www.unicode.org/reports/tr15">
-      http://www.unicode.org/reports/tr15</a></td>
+      <td valign="top"><a href="http://www.unicode.org/reports/tr15/">http://www.unicode.org/reports/tr15/</a></td>
     </tr>
     <tr>
       <td valign="top">Revision</td>
-      <td valign="top">25</td>
+      <td valign="top"><a href="#Modifications">25</a></td>
     </tr>
   </table>
   <p><br>
@@ -97,44 +90,49 @@
   For a list of current Unicode Technical Reports see [<a href="#Reports">Reports</a>]. For more 
   information about versions of the Unicode Standard, see [<a href="#Versions">Versions</a>].</i></p>
   <h3><i>Contents</i></h3>
-  <blockquote>
-    <dl>
-      <dt><a href="#Introduction">1. Introduction</a></dt>
-      <dd><i><a href="#Concatenation">1.1 Concatentation</a></i></dd>
-      <dt><a href="#Notation">2. Notation</a></dt>
-      <dt><a href="#Versioning">3. Versioning and Stability</a> </dt>
-      <dt><a href="#Conformance">4. Conformance</a> </dt>
-      <dt><a href="#Specification">5. Specification</a> </dt>
-      <dt><a href="#Primary_Exclusion_List_Table">6. Composition Exclusion Table</a> </dt>
-      <dt><a href="#Examples">Annex 1: Examples and Charts</a> </dt>
-      <dd><i><a href="#Common_Examples">A1.1 Common Examples</a></i></dd>
-      <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Canonical_Composition_Examples">A1.2 
-      Normalization Forms D and C Examples</a></dt>
-      <dd><i><a href="#Compatibility_Composition_Examples">A1.3 Normalization Forms KD and KC 
-      Examples</a></i></dd>
-      <dt><a href="#Design_Goals">Annex 2: Design Goals</a> </dt>
-      <dt><a href="#Implementation_Notes">Annex 3: Implementation Notes</a> </dt>
-      <dt><a href="#Decomposition">Annex 4: Decomposition</a> </dt>
-      <dt><a href="#Code_Sample">Annex 5: Code Sample</a> </dt>
-      <dt><a href="#Legacy_Encodings">Annex 6: Legacy Encodings</a> </dt>
-      <dt><a href="#Programming_Language_Identifiers">Annex 7: Programming Language Identifiers</a>
-      </dt>
-      <dt><a href="#Annex8">Annex 8: Detecting Normalization Forms</a> </dt>
-      <dt><a href="#Conformance_Testing">Annex 9: Conformance Testing (Normative)</a></dt>
-      <dt><a href="#Hangul">Annex 10: Hangul</a></dt>
-      <dd></dd>
-      <dd><i><a href="#common_constants">A10.1 Common Constants</a></i></dd>
-      <dd><i><a href="#hangul_decomposition">A10.2 Hangul Decomposition</a></i></dd>
-      <dd><i><a href="#hangul_composition">A10.3 Hangul Composition</a></i></dd>
-      <dd><i><a href="#hangul_character_names">A10.4 Hangul Character Names</a></i></dd>
-      <dt><a href="#Intellectual_Property_Annex">Annex 11: Intellectual Property</a></dt>
-      <dt><a href="#Corrigenda">Annex 12: Corrigenda</a></dt>
-      <dt><a href="#Canonical_Equivalence">Annex 13: Canonical Equivalence</a></dt>
-      <dt><a href="#Acknowledgements">Acknowledgements</a></dt>
-      <dt><a href="#References">References</a></dt>
-      <dt><a href="#Modifications">Modifications</a> </dt>
-    </dl>
-  </blockquote>
+ 
+
+    <ul class="toc">
+      <li>1&nbsp;<a href="#Introduction">Introduction</a>
+      <ul class="toc">
+      <li>1.1&nbsp;<a href="#Concatenation">Concatenation</a></li>
+      </ul></li>
+      <li>2&nbsp;<a href="#Notation">Notation</a></li>
+      <li>3&nbsp;<a href="#Versioning">Versioning and Stability</a></li>
+      <li>4&nbsp;<a href="#Conformance">Conformance</a></li>
+      <li>5&nbsp;<a href="#Specification">Specification</a></li>
+      <li>6&nbsp;<a href="#Primary_Exclusion_List_Table">Composition Exclusion Table</a></li>
+      <li>Annex 1:&nbsp;<a href="#Examples">Examples and Charts</a>
+      <ul class="toc">
+      <li>A1.1&nbsp;<a href="#Common_Examples">Common Examples</a></li>
+      <li>A1.2&nbsp;<a href="#Canonical_Composition_Examples">Normalization Forms D and C Examples</a></li>
+      <li>A1.3&nbsp;<a href="#Compatibility_Composition_Examples">Normalization Forms KD and KC Examples</a></li>
+      </ul></li>
+      <li>Annex 2:&nbsp;<a href="#Design_Goals">Design Goals</a></li>
+      <li>Annex 3:&nbsp;<a href="#Implementation_Notes">Implementation Notes</a></li>
+      <li>Annex 4:&nbsp;<a href="#Decomposition">Decomposition</a></li>
+      <li>Annex 5:&nbsp;<a href="#Code_Sample">Code Sample</a></li>
+      <li>Annex 6:&nbsp;<a href="#Legacy_Encodings">Legacy Encodings</a></li>
+      <li>Annex 7:&nbsp;<a href="#Programming_Language_Identifiers">Programming Language Identifiers</a></li>
+      <li>Annex 8:&nbsp;<a href="#Annex8">Detecting Normalization Forms</a></li>
+      <li>Annex 9:&nbsp;<a href="#Conformance_Testing">Conformance Testing (Normative)</a></li>
+      <li>Annex 10:&nbsp;<a href="#Hangul">Hangul</a>
+      <ul class="toc">
+      <li>A.10.1&nbsp;<a href="#common_constants">Common Constants</a></li>
+      <li>A.10.2&nbsp;<a href="#hangul_decomposition">Hangul Decomposition</a></li>
+      <li>A.10.3&nbsp;<a href="#hangul_composition">Hangul Composition</a></li>
+      <li>A.10.4&nbsp;<a href="#hangul_character_names">Hangul Character Names</a></li>
+      </ul></li>
+      <li>Annex 11:&nbsp;<a href="#Intellectual_Property_Annex">Intellectual Property</a></li>
+      <li>Annex 12:&nbsp;<a href="#Corrigenda">Corrigenda</a></li>
+      <li>Annex 13:&nbsp;<a href="#Canonical_Equivalence">Canonical Equivalence</a></li>
+      <li><a href="#Acknowledgements">Acknowledgements</a></li>
+      <li><a href="#References">References</a></li>
+      <li><a href="#Modifications">Modifications</a></li>
+    </ul>
+
+  <hr>
+
   <h2><a name="Introduction"></a>1 Introduction</h2>
   <p><i>The Unicode Standard</i> defines two equivalences between characters: canonical equivalence 
   and compatibility equivalence. Canonical equivalence is a basic equivalency between characters or 
@@ -252,7 +250,7 @@
   <p>The four normalization forms are <span>labeled as shown in </span><i><span>Table 1: 
   Normalization Forms</span></i><span>.</span></p>
   <p align="center"><span style="font-style: italic; ">Table 1: Normalization Forms</span></p>
-  <table width="98%" border="1" cellspacing="0" cellpadding="2">
+  <table border="1" cellspacing="0" cellpadding="2">
     <tr>
       <th align="left" height="20">
       <p align="LEFT">Title</th>
@@ -344,10 +342,10 @@
   <a href="#Programming_Language_Identifiers">Annex 7: Programming Language Identifiers</a>.</p>
   <p>To summarize the treatment of compatibility composites that were in the source text:</p>
   <ul>
-    <li>Both NFD and NFC maintain compatibility composites. </li>
-    <li>Neither NFKD nor NFKC maintain compatibility composites. </li>
+    <li>Both NFD and NFC maintain compatibility composites.</li>
+    <li>Neither NFKD nor NFKC maintain compatibility composites.</li>
     <li>None of the forms <i>generate</i> compatibility composites that were not in the source text.
-    </li>
+   </li>
   </ul>
   <blockquote>
     <p><b>Note: </b>Normalization Form KC does <i>not</i> attempt to map character sequences to 
@@ -464,7 +462,7 @@
   <p>In addition,</p>
   <ol>
     <li>A sequence of characters may be represented by using plus signs between the character names, 
-    or by using string notation. </li>
+    or by using string notation.</li>
     <li>An <i>offset into a Unicode string</i> is a number from 0 to <i>n</i>, where <i>n</i> is the 
     length of the string, and indicates a position that is logically between Unicode code units (or 
     at the very front or end in the case of 0 or <i>n</i> respectively).</li>
@@ -510,8 +508,8 @@
   the <i>composition version.</i> The composition<i> </i>version is defined to be <b>Version 3.1.0</b> 
   of&nbsp; the Unicode Character Database. For more information, see:</p>
   <ul>
-    <li>Versions of the Unicode Standard [<a href="#Versions">Versions</a>] </li>
-    <li>Unicode Character Database for Version 3.1 [<a href="#UCD">UCD</a>] </li>
+    <li>Versions of the Unicode Standard [<a href="#Versions">Versions</a>]</li>
+    <li>Unicode Character Database for Version 3.1 [<a href="#UCD">UCD</a>]</li>
   </ul>
   <p>To see what difference the composition version makes, suppose that a future version of Unicode 
   were to add the composite <i>Q-caron</i>. For an implementation that uses that future version of 
@@ -570,10 +568,10 @@
   <ul>
     <li>decomposing the string according to the canonical (or compatibility, respectively) mappings 
     of the Unicode Character Database that corresponds to the latest version of Unicode supported by 
-    the implementation, then </li>
+    the implementation, then</li>
     <li>composing the resulting string according to the <i>canonical</i> mappings of the composition 
     version of the Unicode Character Database by successively composing each unblocked character 
-    with the last starter. </li>
+    with the last starter.</li>
   </ul>
   <p><span style="font-style: italic; ">Figure 4: Composition Process</span> shows a sample of how 
   this works. The dark green cubes represent starters, and the light gray cubes represent 
@@ -604,10 +602,10 @@
   <ol>
     <li>Generate the <b><i>canonical</i></b> decomposition for the source string S according to the 
     decomposition mappings in the <i>latest supported</i> version of the Unicode Character Database.
-    </li>
+   </li>
     <li>Iterate through each character C in that decomposition, from first to last. If C is not 
     blocked from the last starter L, and it can be primary combined with L, then replace L by the 
-    composite L-C, and remove C. </li>
+    composite L-C, and remove C.</li>
   </ol>
   <p>The result of this process is a new string S&#39; which is in Normalization Form C.</p>
   <h3><a name="Normalization_Form_KC"></a>R2. Normalization Form KC</h3>
@@ -616,10 +614,10 @@
   <ol>
     <li>Generate the <b><i>compatibility</i></b> decomposition for the source string S according to 
     the decomposition mappings in the <i>latest supported</i> version of the Unicode Character 
-    Database. </li>
+    Database.</li>
     <li>Iterate through each character C in that decomposition, from first to last. If C is not 
     blocked from the last starter L, and it can be primary combined with L, then replace L by the 
-    composite L-C, and remove C. </li>
+    composite L-C, and remove C.</li>
   </ol>
   <p>The result of this process is a new string S&#39; which is in Normalization Form KC.</p>
   <h2><a name="Primary_Exclusion_List_Table"></a>6 Composition Exclusion Table</h2>
@@ -630,7 +628,7 @@
     <ul>
       <li>These <i>cannot</i> be computed from information in the Unicode Character Database.</li>
     </ul>
-    </li>
+   </li>
     <li><b>Post Composition Version: </b>precomposed characters that are added after Unicode 3.0
     <a href="#U30"><span>[U3.0]</span></a>. This set will be updated with each subsequent version of 
     Unicode. For more information, see <a href="#Versioning"><span>Section 3,</span> Versioning and 
@@ -638,19 +636,19 @@
     <ul>
       <li>These <i>cannot</i> be computed from information in the Unicode Character Database.</li>
     </ul>
-    </li>
+   </li>
     <li><b>Singletons: </b>characters having decompositions that consist of single characters (as 
     described below).
     <ul>
       <li>These <i>are</i> computed from information in the Unicode Character Database.</li>
     </ul>
-    </li>
+   </li>
     <li><b>Non-starter decompositions: </b>precomposed characters whose decompositions start with a 
     non-starter.
     <ul>
       <li>These <i>are</i> computed from information in the Unicode Character Database.</li>
     </ul>
-    </li>
+   </li>
   </ol>
   <p>Two characters may have the same canonical decomposition in the Unicode Character Database. <i>
   <span>Table 4: Same Canonical Decomposition</span></i> is an example of this.</p>
@@ -693,7 +691,7 @@
   <p>The examples in <span><i>Table 5: Identical Cases</i> illustrates</span> cases where the NFD 
   and NFKD are identical, and NFC and NFKC are identical.</p>
   <p align="center"><span style="font-style: italic; ">Table 5: Identical Cases</span></p>
-  <table border="1" cellspacing="1" cellpadding="1" width="100%">
+  <table border="1" cellspacing="1" cellpadding="1">
     <tr>
       <th valign="top" height="19" width="10"></th>
       <th valign="top" width="144">Original</th>
@@ -786,7 +784,7 @@
   <p><span><i>Table 6: Differing Examples</i> offers examples</span> of NFD and NFC that illustrate 
   how they differ from NFKD and NFKC, respectively.</p>
   <p align="center"><span style="font-style: italic; ">Table 6: Differing Examples</span></p>
-  <table border="1" cellspacing="1" cellpadding="1" width="100%">
+  <table border="1" cellspacing="1" cellpadding="1">
     <tr>
       <th valign="top" height="19" width="10"></th>
       <th valign="top" width="144">Original</th>
@@ -871,7 +869,7 @@
   </span><span style="font-style: italic; ">Table 7: Other Differing Examples</span> illustrate how 
   they differ from NFD and NFC, respectively.</p>
   <p align="center"><i><span>Table 7: Other Differing Examples</span></i></p>
-  <table border="1" cellspacing="1" cellpadding="1" width="100%">
+  <table border="1" cellspacing="1" cellpadding="1">
     <tr>
       <th valign="top" height="19" width="10"></th>
       <th valign="top" width="144">Original</th>
@@ -963,23 +961,23 @@
   <ol>
     <li>If two strings x and y are canonical equivalents, then
     <ul>
-      <li>toNFC(x) = toNFC(y) </li>
-      <li>toNFD(x) = toNFD(y) </li>
+      <li>toNFC(x) = toNFC(y)</li>
+      <li>toNFD(x) = toNFD(y)</li>
     </ul>
-    </li>
+   </li>
     <li>If two strings are compatibility equivalents, then
     <ul>
-      <li>toNFKC(x) = toNFKC(y) </li>
+      <li>toNFKC(x) = toNFKC(y)</li>
       <li>toNFKD(x) = toNFKD(y)</li>
     </ul>
-    </li>
+   </li>
     <li><span>All of the transformations are idempotent: that is,</span><ul>
       <li><span>toNFC(toNFC(x)) = toNFC(x)</span></li>
       <li><span>toNFD(toNFD(x)) = toNFD(x)</span></li>
       <li><span>toNFKC(toNFKC(x)) = toNFKC(x)</span></li>
       <li><span>toNFKD(toNFKD(x)) = toNFKD(x)</span></li>
     </ul>
-    </li>
+   </li>
   </ol>
   <p><span>Goal 1.3 falls out from Goal 1.2 and 1.1, but is stated here for clarity.</span></p>
   <h3>Goal 2: Stability</h3>
@@ -992,7 +990,7 @@
       <li><span>The only characters for which this is not true are those in the </span>
       <a href="#Primary_Exclusion_List_Table"><span>Section 6, Composition Exclusion Table</span></a><span>.</span></li>
     </ul>
-    </li>
+   </li>
     <li>Irrelevant combining marks should not affect the results of composition. See example <b>f</b> 
     in <a href="#Examples">Annex 1: Examples and Charts</a>, where the <i>horn</i> character does 
     not affect the results of composition.</li>
@@ -1007,7 +1005,7 @@
     <li>It is possible to implement efficient code for producing the Normalization Forms. In 
     particular, it should be possible to produce Normalization Form C very quickly from strings that 
     are already in Normalization Form C or are in Normalization Form D.<br>
-&nbsp; </li>
+&nbsp;</li>
     <li>Composition Forms do not have to produce the shortest possible results, because that can be 
     computationally expensive.</li>
   </ol>
@@ -1104,20 +1102,20 @@
 0107;LATIN SMALL LETTER C WITH ACUTE;...0;...0063 0301;...
 0301;COMBINING ACUTE ACCENT;...230;...
 0327;COMBINING CEDILLA;...202;...</pre>
-      </li>
+     </li>
       <li>Applying the canonical decomposition mappings results in &quot;a´c´¸&quot; <i>(a, acute, c, acute, 
       cedilla).</i>
       <ul>
         <li>This is because <tt>00E1</tt> <i>(a-acute)</i> has a canonical decomposition mapping to
         <tt>0061 0301</tt> <i>(a, acute)</i></li>
       </ul>
-      </li>
+     </li>
       <li>Applying the canonical ordering, results in &quot;a´c¸´&quot; <i>(a, acute, c, cedilla, acute).</i>
       <ul>
         <li>This is because <i>cedilla</i> has a lower combining class (202) than acute (230) does. 
         The positions of &#39;a&#39; and &#39;c&#39; are not affected, because they are starters.</li>
       </ul>
-      </li>
+     </li>
     </ol>
   </blockquote>
   <h2><a name="Code_Sample"></a>Annex 5: Code Sample</h2>
@@ -1162,19 +1160,19 @@
     <ul>
       <li>For example, ISO 8859-1 is prenormalized in NFC.</li>
     </ul>
-    </li>
+   </li>
     <li><i>Normalizable.</i> Although the set is not prenormalized, any string in the set <i>can</i> 
     be normalized to Form X.
     <ul>
       <li>For example, ISO 2022 (with a mixture of ISO 5426 and ISO 8859-1) is normalizable.</li>
     </ul>
-    </li>
+   </li>
     <li><i>Unnormalizable.</i> Some strings in the character set cannot be normalized into Form X.
     <ul>
       <li>For example, ISO 5426 is unnormalizable in NFC under common transcoders, because it 
       contains combining marks but not composites.</li>
     </ul>
-    </li>
+   </li>
   </ul>
   <h2><a name="Programming_Language_Identifiers"></a>Annex 7: Programming Language Identifiers</h2>
   <p><span>This section has been moved to [<a href="#UAX31">UTR 31</a>].</span></p>
@@ -1260,11 +1258,11 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
   be considered at all, either when normalizing or when testing normalization. Formally, each stable 
   code point CP fulfills all the following conditions:</p>
   <ol type="a">
-    <li>CP has canonical combining class 0, and </li>
+    <li>CP has canonical combining class 0, and</li>
     <li>CP is (as a single character) not changed by this normalization form, and<br>
-    <i>if N<span>F</span>C or NFKC, ALL of the following:</i> </li>
-    <li>CP can never compose with a previous character, and </li>
-    <li>CP can never compose with a following character, and </li>
+    <i>if N<span>F</span>C or NFKC, ALL of the following:</i></li>
+    <li>CP can never compose with a previous character, and</li>
+    <li>CP can never compose with a following character, and</li>
     <li>CP can never change if another character is added.</li>
   </ol>
   <p><i>Example: </i>In NFC, <i>a-breve</i> satisfies all but (e), but if you add an ogonek it 
@@ -1296,13 +1294,13 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
   Thus the Hangul canonical decompositions are fundamentally the same as the other canonical 
   decompositions in terms of the way they decompose. This analysis can also be used to produce more 
   compact code than what is given below.</span></p>
-  <h4><a name="common_constants">A10.1 Common Constants</a></h4>
+  <h4><span style="font-style: normal"><a name="common_constants">A10.1 Common Constants</a></span></h4>
   <pre>    static final int
         SBase = 0xAC00, LBase = 0x1100, VBase = 0x1161, TBase = 0x11A7,
         LCount = 19, VCount = 21, TCount = 28,
         NCount = VCount * TCount,   // 588
         SCount = LCount * NCount;   // 11172</pre>
-  <h4><a name="hangul_decomposition">A10.2 Hangul Decomposition</a></h4>
+  <h4><span style="font-style: normal"><a name="hangul_decomposition">A10.2 Hangul Decomposition</a></span></h4>
   <pre>    public static String decomposeHangul(char s) {
         int SIndex = s - SBase;
         if (SIndex &lt; 0 || SIndex &gt;= SCount) {
@@ -1317,7 +1315,7 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
         if (T != TBase) result.append((char)T);
         return result.toString();
     }</pre>
-  <h4><a name="hangul_composition">A10.3 Hangul Composition</a></h4>
+  <h4><span style="font-style: normal"><a name="hangul_composition">A10.3 Hangul Composition</a></span></h4>
   <p>Notice an important feature of Hangul composition: whenever the source string is not in 
   Normalization Form D, you can not just detect character sequences of the form &lt;L,&nbsp;V&gt; and 
   &lt;L,&nbsp;V,&nbsp;T&gt;. <span>It is also necessary to </span>catch the sequences of the form &lt;LV,&nbsp;T&gt;. To 
@@ -1382,7 +1380,7 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
   there is no possible syllable <i>nsa</i>. This results in the two syllables <i>men</i> and <i>sa.</i></p>
   <p>However, none of these additional transformations are considered part of the Unicode 
   Normalization Formats.</p>
-  <h4><a name="hangul_character_names">A10.4 Hangul Character Names</a></h4>
+  <h4><span style="font-style: normal"><a name="hangul_character_names">A10.4 Hangul Character Names</a></span></h4>
   <p>Hangul decomposition is also used to form the character names for the Hangul syllables. While 
   the sample code that illustrates this process is not directly related to normalization, it is 
   worth including because it is so similar to the decomposition code.</p>
@@ -1474,7 +1472,7 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
       <li>For example, for a Unicode 4.0 implementation to duplicate Unicode 3.2 results, exactly 5 
       characters must be mapped.</li>
     </ul>
-    </li>
+   </li>
     <li>In applying the normalization algorithm, handle any code points that were not defined in 
     Unicode Version X as if they were unassigned.
     <ul>
@@ -1483,7 +1481,7 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
       <li>The Derived_Age property in the Unicode Character Database [UCD] can be used for the set 
       of code points in question.</li>
     </ul>
-    </li>
+   </li>
   </ol>
   <p><span>There was a change in version 4.1 to correct a definitional problem with D2. For more 
   information, see <a href="http://www.unicode.org/review/pr-29.html">Public Review Issue #29</a>.</span></p>
@@ -1494,17 +1492,17 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
   transforms one string into another, this may also be called <i>preserving</i> canonical 
   equivalence. There are a number of important aspects to this concept:</p>
   <ul>
-    <li>The outputs are <i>not</i> required to be identical, only canonically equivalent. </li>
+    <li>The outputs are <i>not</i> required to be identical, only canonically equivalent.</li>
     <li><i>Not</i> all processes are required to respect canonical equivalence. For example:
     <ul>
       <li>A function that collects a set of the General_Category values present in a string will and 
       should produce a different value for &lt;<font face="Arial Unicode MS"><i>angstrom sign, 
       semicolon&gt;</i></font> above than for &lt;<i><font face="Arial Unicode MS">A, combining ring 
-      above, greek question mark&gt;</font></i>, even though they are canonically equivalent. </li>
+      above, greek question mark&gt;</font></i>, even though they are canonically equivalent.</li>
       <li>A function that does a binary comparison of strings will also find these two sequences 
       different.</li>
     </ul>
-    </li>
+   </li>
     <li>However, higher level processes that transform or compare strings, or perform other higher 
     level functions, must respect canonical equivalence or problems will result.</li>
   </ul>
@@ -1532,7 +1530,7 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
       <li>2<sub>X</sub> ≈ 3<sub>Y</sub></li>
       <li>1<sub>Y</sub> has no canonically equivalent offset in X</li>
     </ul>
-    </li>
+   </li>
   </ol>
   <p>The following are examples of processes that involve canonically equivalent strings <i>and/or</i> 
   offsets.</p>
@@ -1543,13 +1541,13 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
       <li><code>isWordBreak(</code>&lt;<i>A-ring, semicolon</i>&gt;, 1<code>)</code> = <code>isWordBreak(</code>&lt;<i>A, 
       ring, semicolon</i>&gt;, 2<code>)</code></li>
     </ul>
-    </li>
+   </li>
     <li>When <code>nextWordBreak(string, offset)</code> respects canonical equivalence,&nbsp; then
     <ul>
       <li><code>nextWordBreak(</code>&lt;<i>A-ring, semicolon</i>&gt;, 0<code>)</code> = 1 if and only if
       <code>nextWordBreak(</code>&lt;<i>A, ring, semicolon</i>&gt;, 0<code>)</code> = 2.</li>
     </ul>
-    </li>
+   </li>
   </ol>
   <p>Respecting canonical equivalence is related to, but different from, preserving a canonical 
   normalization form NFx (where NFx means either NFD or NFC). In a process that preserves a 
@@ -1560,22 +1558,22 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
   <p>In building a system that as a whole respects canonical equivalence, there are two basic 
   strategies, with some variations on the second strategy. These strategies are: </p>
   <ol type="A">
-    <li>Ensure that each system component respects canonical equivalence, </li>
+    <li>Ensure that each system component respects canonical equivalence,</li>
     <li>Ensure that each system component preserves NFx, and one of the following:
     <ol>
-      <li>Reject any non-NFx text on input to the whole system </li>
-      <li>Reject any non-NFx text on input to each component </li>
-      <li>Normalize to NFx all text on input to the whole system </li>
-      <li>Normalize to NFx all text on input to each component </li>
+      <li>Reject any non-NFx text on input to the whole system</li>
+      <li>Reject any non-NFx text on input to each component</li>
+      <li>Normalize to NFx all text on input to the whole system</li>
+      <li>Normalize to NFx all text on input to each component</li>
       <li>All three of the following:
       <ol type="a">
-        <li>Allow text to be marked as NFx when generated. </li>
-        <li>Normalize any unmarked text on input to each component to NFx </li>
+        <li>Allow text to be marked as NFx when generated.</li>
+        <li>Normalize any unmarked text on input to each component to NFx</li>
         <li>Reject any marked text that is not NFx</li>
       </ol>
-      </li>
+     </li>
     </ol>
-    </li>
+   </li>
   </ol>
   <p>There are trade-offs for each of these strategies. The best choice or mixture of strategies 
   will depend on the structure of the components and their interrelations, and how fine-grained or 
@@ -1584,15 +1582,15 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
   where it says &quot;normalize&quot; above, a good technique is to first check if normalization is required, 
   and only perform the extra processing if necessary.</p>
   <ul>
-    <li>Strategy A is the most robust, but may be less efficient. </li>
+    <li>Strategy A is the most robust, but may be less efficient.</li>
     <li>Strategy B1 &amp; B2 are the most efficient, but would reject some data, including that 
-    converted 1:1 from some legacy code pages. </li>
+    converted 1:1 from some legacy code pages.</li>
     <li>Strategy B3 does not have the problem of rejecting data. It can be more efficient than A: 
     because each component is assured that all of its input is in a particular normalization form, 
     it does not need to normalize, except internally. But it is less robust: any component that 
-    fails can &quot;leak&quot; unnormalized text into the rest of the system. </li>
+    fails can &quot;leak&quot; unnormalized text into the rest of the system.</li>
     <li>Strategy B4 is more robust than B1, but less efficient, because there are multiple points 
-    where text needs to be checked. </li>
+    where text needs to be checked.</li>
     <li>Strategy B5 can be a reasonable compromise; it is robust, but allows for all text input.</li>
   </ul>
   <h2><a name="Acknowledgements">Acknowledgements</a></h2>
@@ -1698,7 +1696,7 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
     <tr>
       <td valign="top" class="noborder">[<a name="Policies">Policies</a>]</td>
       <td valign="top" class="noborder">Unicode Policies<br>
-      <a href="http://www.unicode.org/policies">http://www.unicode.org/policies</a></td>
+      <a href="http://www.unicode.org/policies/">http://www.unicode.org/policies/</a></td>
     </tr>
     <tr>
       <td class="noborder" valign="top">[<a name="Reports">Reports</a>]</td>
@@ -1761,8 +1759,8 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
     <tr>
       <td class="noborder" valign="top">[<a name="Versions">Versions</a>]</td>
       <td class="noborder" valign="top">Versions of the Unicode Standard<br>
-      <a href="http://www.unicode.org/standard/versions">http://www.unicode.org/standard/versions<br>
-      </a><i>For information on version numbering, and citing and referencing the Unicode Standard, 
+      <a href="http://www.unicode.org/versions/">http://www.unicode.org/versions/</a><br>
+      <i>For information on version numbering, and citing and referencing the Unicode Standard, 
       the Unicode Character Database, and Unicode Technical Reports.</i></td>
     </tr>
   </table>
@@ -1783,7 +1781,7 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
       <li><span>changed D2 to add &quot;or higher&quot;</span></li>
       <li><span>Changed Goal 1 to clarify that it is a conformance requirement.</span></li>
     </ul>
-    </li>
+   </li>
     <li><span>Added section to Annex 10 to explain Hangul decomposition mappings.</span></li>
     <li><span>Numerous editorial changes</span></li>
   </ul>
@@ -1803,7 +1801,7 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
     <ul>
       <li>Note: this does not include people who contributed feedback to previous versions.</li>
     </ul>
-    </li>
+   </li>
     <li>Minor editing</li>
   </ul>
   <h3>Revision <a name="TrackingNumber22">22</a></h3>

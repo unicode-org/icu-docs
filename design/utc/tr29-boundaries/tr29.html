@@ -40,7 +40,7 @@
   <table class="wide" border="1" width="100%">
     <tr>
       <td>Version</td>
-      <td><span class="changedspan">4.1 (proposed)</span></td>
+      <td><span class="changedspan">4.1 (draft 2)</span></td>
     </tr>
     <tr>
       <td>Authors</td>
@@ -78,11 +78,10 @@
   For line-break boundaries, see <a href="http://www.unicode.org/unicode/reports/tr14/">UAX #14: 
   Line Breaking Properties</a>.</i></p>
   <h3><i>Status</i></h3>
-  <p class="changed"><span class="changedspan"><i>This document is a proposed update of a previously 
-  approved Unicode Standard Annex. Publication does not imply endorsement by the Unicode Consortium. 
-  This is a draft document which may be updated, replaced, or superseded by other documents at any 
-  time. This is not a stable document; it is inappropriate to cite this document as other than a 
-  work in progress.</i></span></p>
+  <p class="changed"><span><i>This document is a proposed update of a previously approved Unicode 
+  Standard Annex. Publication does not imply endorsement by the Unicode Consortium. This is a draft 
+  document which may be updated, replaced, or superseded by other documents at any time. This is not 
+  a stable document; it is inappropriate to cite this document as other than a work in progress.</i></span></p>
   <blockquote>
     <p align="left" class="old_changed"><i><b>A Unicode Standard Annex (UAX)</b> forms an integral 
     part of the Unicode Standard, but is published as a separate document. The Unicode Standard may 
@@ -175,10 +174,10 @@
     <li>The two special identifiers <i>sot</i> and <i>eot</i> stand for start and end of text 
     respectively.</li>
   </ul>
-  <p><span class="changedspan">In the table assigning the boundary property values, all of the 
-  values are intended to be disjoint except for the special value <b>Any</b>. In case of conflict, 
-  rows higher in the table have precedence in terms of assigning property values to characters. Data 
-  files containing a explicit assignments of the property values is found in [<a href="#Props">Props</a>].</span></p>
+  <p><span>In the table assigning the boundary property values, all of the values are intended to be 
+  disjoint except for the special value <b>Any</b>. In case of conflict, rows higher in the table 
+  have precedence in terms of assigning property values to characters. Data files containing a 
+  explicit assignments of the property values is found in [<a href="#Props">Props</a>].</span></p>
   <p>The rules are numbered for reference and are applied in order in order to determine whether 
   there is a boundary at a given offset. That is, there is an implicit “otherwise” at the front of 
   each rule following the first. So logically the rules are processed from top to bottom. As soon as 
@@ -337,7 +336,7 @@
       General_Category = Format (Cf)<br>
       <span class="old_changed"><i>and not </i><span class="charlist">U+000D CARRIAGE RETURN (CR)</span><br>
       <i>and not </i><span class="charlist">U+000A LINE FEED (LF)<br>
-      </span></span><span class="changedspan"><i>and not </i>U+200C ZERO WIDTH NON-JOINER (ZWNJ) <br>
+      </span></span><span><i>and not </i>U+200C ZERO WIDTH NON-JOINER (ZWNJ) <br>
       <i>and not </i>U+200D ZERO WIDTH JOINER (ZWJ) </span></td>
     </tr>
     <tr>
@@ -479,10 +478,11 @@
   </table>
   <p>&nbsp; </p>
   <h2><a name="Word_Boundaries">4 Word Boundaries</a></h2>
-  <p>Word boundaries are used in a number of different contexts. The most familiar ones are 
-  double-click mouse selection, “move to next word” control-arrow keys, and “Whole Word Search” (WWS) 
-  for search and replace. They are also used in database queries, to determine whether elements are 
-  within a certain number of words of one another.</p>
+  <p>Word boundaries are used in a number of different contexts. The most familiar ones are
+  <span class="changedspan">selection (</span>double-click mouse selection, or “move to next word” 
+  control-arrow keys<span class="changedspan">)</span>, and “Whole Word Search” (WWS) for search and 
+  replace. They are also used in database queries, to determine whether elements are within a 
+  certain number of words of one another.</p>
   <p>Word boundaries can also be used in so-called <i>intelligent cut and paste</i>. With this 
   feature, if the user cuts a piece of text on word boundaries, adjacent spaces are collapsed to a 
   single space. For example, cutting “quick” from “The_quick_fox” would leave “The_&nbsp;_fox”. 
@@ -550,11 +550,12 @@
   SHY (soft hyphen). It will break across lines, yet is a single word.</p>
   <blockquote>
     <p><b>Note: </b>As with the other default specifications, implementations are free to override 
-    (tailor) the results to meet the requirements of different environments or particular languages.</p>
-    <p><span class="changedspan">In particular, the characters with the Line_Break property values 
-    of Contingent_Break (CB), Complex_Context (SA/South East Asian), and XX (Unknown) are assigned 
-    word boundary property values based on criteria outside of the scope of this document. </span>
-    </p>
+    (tailor) the results to meet the requirements of different environments or particular languages.<span class="changedspan"> 
+    For some languages it may also be necessary in some cases to have different tailored word break 
+    rules for selection vs WWS.</span></p>
+    <p><span>In particular, the characters with the Line_Break property values of Contingent_Break 
+    (CB), Complex_Context (SA/South East Asian), and XX (Unknown) are assigned word boundary 
+    property values based on criteria outside of the scope of this document. </span></p>
   </blockquote>
   <p align="center"><b>Table 2. <a name="Default_Word_Boundaries">Default Word Boundaries</a></b></p>
   <table cellspacing="0" cellpadding="4" border="0">
@@ -567,8 +568,16 @@
       <td valign="top"><b><a name="Katakana">Katakana</a></b></td>
       <td>Script = KATAKANA, <i>or<br>
       </i>Any of the following:<br>
-      <span class="charlist">U+30FC (</span><span class="symbol">ー</span><span class="charlist">) 
-      KATAKANA-HIRAGANA PROLONGED SOUND MARK<br>
+      <span class="changedspan">U+3031 (〱) VERTICAL KANA REPEAT MARK<br>
+      U+3032 (〲) VERTICAL KANA REPEAT WITH VOICED SOUND MARK<br>
+      U+3033 (〳) VERTICAL KANA REPEAT MARK UPPER HALF<br>
+      U+3034 (〴) VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF<br>
+      U+3035 (〵) VERTICAL KANA REPEAT MARK LOWER HALF<br>
+      U+309B (゛) KATAKANA-HIRAGANA VOICED SOUND MARK<br>
+      U+309C (゜) KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK<br>
+      U+30A0 (゠) KATAKANA-HIRAGANA DOUBLE HYPHEN</span><span class="charlist"><br>
+      U+30FC (</span><span class="symbol">ー</span><span class="charlist">) KATAKANA-HIRAGANA 
+      PROLONGED SOUND MARK<br>
       U+FF70 (</span><span class="symbol">ｰ</span><span class="charlist">) HALFWIDTH 
       KATAKANA-HIRAGANA PROLONGED SOUND MARK<br>
       U+FF9E (</span><span class="symbol">ﾞ</span><span class="charlist">) HALFWIDTH KATAKANA VOICED 
@@ -579,8 +588,7 @@
     <tr>
       <td valign="top"><b><a name="ALetter">ALetter</a></b></td>
       <td>Alphabetic = true, <span class="old_changed"><i>or<br>
-      </i></span><span class="changedspan">U+00A0 ( ) NO-BREAK SPACE, (NBSP) </span><i>
-      <span class="changedspan">or</span></i><span class="changedspan"><br>
+      </i></span><span>U+00A0 ( ) NO-BREAK SPACE (NBSP) </span><i><span>or</span></i><span><br>
       </span><span class="charlist">U+05F3 (</span><span class="symbol">׳</span><span class="charlist">) 
       HEBREW PUNCTUATION GERESH</span><font size="2"><br>
       </font><i>and not </i>Ideographic = true<br>
@@ -588,7 +596,7 @@
       and not</i> Script = Thai<br>
       <i>and not</i> Script = Lao<br>
       <i>and not</i> Script = Hiragana<br>
-      <span class="changedspan"><i>and not </i>GRAPHEME EXTEND = true</span></td>
+      <span><i>and not </i>GRAPHEME EXTEND = true</span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="MidLetter">MidLetter</a></b></td>
@@ -599,26 +607,33 @@
       U+05F4 (<span class="symbol">״</span>) HEBREW PUNCTUATION GERSHAYIM</span><br>
       <span class="charlist">U+2019 (</span><span class="symbol">’</span><span class="charlist">) 
       RIGHT SINGLE QUOTATION MARK (curly apostrophe)<br>
-      U+2027 (</span><span class="symbol">‧</span><span class="charlist">) HYPHENATION POINT</span></td>
+      U+2027 (</span><span class="symbol">‧</span><span class="charlist">) HYPHENATION POINT<br>
+      </span><span class="changedspan">U+003A (:) COLON (used in Swedish)</span></td>
     </tr>
     <tr>
-      <td valign="top"><b><a name="MidNumLet">MidNumLet</a></b></td>
-      <td>Any of the following:<span class="charlist"><br>
-      U+002E (</span><span class="symbol">.</span><span class="charlist">) FULL STOP (period)<br>
-      U+003A (</span><span class="symbol">:</span><span class="charlist">) COLON (used in Swedish)</span></td>
+      <td valign="top"><span class="removedspan"><b><a name="MidNumLet">MidNumLet</a></b></span></td>
+      <td><span class="removedspan">Any of the following:<br>
+      U+002E (.) FULL STOP (period)<br>
+      U+003A (:) COLON (used in Swedish)</span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="MidNum">MidNum</a></b></td>
-      <td>Line_Break = Infix_Numeric<br>
-      <i>and not</i> MidNumLet = true</td>
+      <td>Line_Break = Infix_Numeric<span class="removedspan"><br>
+      <i>and not</i> MidNumLet = true</span></td>
     </tr>
     <tr>
       <td valign="top" class="old_changed"><b><a name="Numeric">Numeric</a></b></td>
       <td class="old_changed">Line_Break = Numeric</td>
     </tr>
     <tr>
-      <td valign="top"><span class="changedspan"><b><a name="Any">Any</a></b></span></td>
-      <td><span class="changedspan">Any character (includes all of the above)</span></td>
+      <td valign="top"><span class="changedspan"><b><a name="ExtendNumLet">ExtendNumLet</a></b></span></td>
+      <td><span class="changedspan">General_Category=Connector_Punctuation<br>
+      <i>and not </i>U+30FB KATAKANA MIDDLE DOT<br>
+      <i>and not </i>U+FF65 HALFWIDTH KATAKANA MIDDLE DOT</span></td>
+    </tr>
+    <tr>
+      <td valign="top"><span><b><a name="Any">Any</a></b></span></td>
+      <td><span>Any character (includes all of the above)</span></td>
     </tr>
   </table>
   <p>&nbsp;</p>
@@ -626,11 +641,11 @@
     <caption class="left">Boundary Rules</caption>
     <tr>
       <td class="right" width="85%" colspan="3">
-      <p style="text-align: left"><span class="changedspan">Assign each code point with line break 
-      property values of CB, SA, SG, and XX to one of the above boundary property values depending 
-      on criteria outside the scope of this algorithm. Characters with other line break properties 
-      are assigned values directly according to the above table.</span></td>
-      <td class="right"><span class="changedspan">(0)</span></td>
+      <p style="text-align: left"><span>Assign each code point with line break property values of 
+      CB, SA, SG, and XX to one of the above boundary property values depending on criteria outside 
+      the scope of this algorithm. Characters with other line break properties are assigned values 
+      directly according to the above table.</span></td>
+      <td class="right"><span>(0)</span></td>
     </tr>
     <tr>
       <td colspan="4">
@@ -689,11 +704,13 @@
     <tr>
       <td class="right">ALetter</td>
       <td class="center">×</td>
-      <td>(MidLetter | MidNumLet) ALetter</td>
+      <td><span class="removedspan">(</span>MidLetter<span class="removedspan"> | MidNumLet)</span> 
+      ALetter</td>
       <td class="right">(6)</td>
     </tr>
     <tr>
-      <td class="right">ALetter (MidLetter | MidNumLet)</td>
+      <td class="right">ALetter <span class="removedspan">(</span>MidLetter<span class="removedspan"> 
+      | MidNumLet)</span></td>
       <td class="center">×</td>
       <td>ALetter</td>
       <td class="right">(7)</td>
@@ -726,7 +743,8 @@
       <p align="left"><i>Do not break within sequences like: ‘3.2’ or &#39;3,456.789&#39;.</i></td>
     </tr>
     <tr>
-      <td class="right">Numeric (MidNum | MidNumLet)</td>
+      <td class="right">Numeric <span class="removedspan">(</span>MidNum<span class="removedspan"> | 
+      MidNumLet)</span></td>
       <td class="center">×</td>
       <td>Numeric</td>
       <td class="right">(11)</td>
@@ -734,7 +752,8 @@
     <tr>
       <td class="right">Numeric</td>
       <td class="center">×</td>
-      <td>(MidNum | MidNumLet) Numeric</td>
+      <td><span class="removedspan">(</span>MidNum<span class="removedspan"> | MidNumLet)</span> 
+      Numeric</td>
       <td class="right">(12)</td>
     </tr>
     <tr>
@@ -746,6 +765,21 @@
       <td class="center">×</td>
       <td>Katakana</td>
       <td class="right">(13)</td>
+    </tr>
+    <tr>
+      <td colspan="4"><span class="changedspan"><i>Do not break from extenders</i></span></td>
+    </tr>
+    <tr>
+      <td class="right"><span class="changedspan">(ALetter | Numeric | Katakana) </span></td>
+      <td class="center"><span class="changedspan">×</span></td>
+      <td><span class="changedspan">ExtendNumLet</span></td>
+      <td class="right"><span class="changedspan">(13a)</span></td>
+    </tr>
+    <tr>
+      <td class="right"><span class="changedspan">ExtendNumLet</span></td>
+      <td class="center"><span class="changedspan">×</span></td>
+      <td><span class="changedspan">(ALetter | Numeric | Katakana) </span></td>
+      <td class="right"><span class="changedspan">(13b)</span></td>
     </tr>
     <tr>
       <td colspan="4">
@@ -876,12 +910,11 @@
     <tr>
       <td valign="top"><b><a name="OLetter">OLetter</a></b></td>
       <td>Alphabetic = true, <i><span class="old_changed">or<br>
-      </span></i><span class="changedspan">U+00A0 ( ) NO-BREAK SPACE (NBSP), </span><i>
-      <span class="changedspan">or</span></i><br>
+      </span></i><span>U+00A0 ( ) NO-BREAK SPACE (NBSP), </span><i><span>or</span></i><br>
       <span class="charlist">U+05F3 (׳) HEBREW PUNCTUATION GERESH<br>
       </span><i>and not </i>Lower = true<br>
       <i>and not </i>Upper = true<br>
-      <span class="changedspan"><i>and not </i>GRAPHEME EXTEND = true</span></td>
+      <span><i>and not </i>GRAPHEME EXTEND = true</span></td>
     </tr>
     <tr>
       <td valign="top"><b>Numeric</b></td>
@@ -908,8 +941,8 @@
       <i>and not </i>STerm = true</span></td>
     </tr>
     <tr>
-      <td valign="top"><span class="changedspan"><b><a name="Any">Any</a></b></span></td>
-      <td><span class="changedspan">Any character (includes all of the above)</span></td>
+      <td valign="top"><span><b><a name="Any">Any</a></b></span></td>
+      <td><span>Any character (includes all of the above)</span></td>
     </tr>
   </table>
   <p>&nbsp;</p>
@@ -1271,9 +1304,9 @@
       </a><i>For explanations of terminology used in this and other documents.</i></td>
     </tr>
     <tr>
-      <td class="noborder" valign="top" width="1"><span class="changedspan">[<a name="Props">Props</a>]</span></td>
-      <td class="noborder" valign="top"><span class="changedspan"><i>
-      <a href="GraphemeClusterBreakProperty.txt">GraphemeClusterBreakProperty.txt</a><br>
+      <td class="noborder" valign="top" width="1"><span>[<a name="Props">Props</a>]</span></td>
+      <td class="noborder" valign="top"><span><i><a href="GraphemeClusterBreakProperty.txt">
+      GraphemeClusterBreakProperty.txt</a><br>
       <a href="WordBreakProperty.txt">WordBreakProperty.txt</a><br>
       <a href="SentenceBreakProperty.txt">SentenceBreakProperty.txt</a></i></span></td>
     </tr>
@@ -1308,14 +1341,14 @@
   </p>
   <h2><a name="Modifications">Modifications</a></h2>
   <p>The following summarizes modifications from the previous versions of this document.</p>
-  <p><span class="changedspan"><b>Tracking Number 7.</b></span></p>
+  <p><span><b>Tracking Number 7.</b></span></p>
   <ul>
-    <li><span class="changedspan">Incorporated corrigendum for Hangul_Syllable_Type=L explanation, 
-    and adjusted for the change in status of the Joiner characters.</span></li>
-    <li><span class="changedspan">Added override for CB, SA, SG, and XX in wordbreak.</span></li>
-    <li><span class="changedspan">Added &#39;Any&#39; entries, and note about precedence.</span></li>
-    <li><span class="changedspan">Added NBSP, and removed GRAPHEME EXTEND = true from the &#39;alphabetics&#39;.</span></li>
-    <li><span class="changedspan">Added data files with explicit property values.</span></li>
+    <li><span>Incorporated corrigendum for Hangul_Syllable_Type=L explanation, and adjusted for the 
+    change in status of the Joiner characters.</span></li>
+    <li><span>Added override for CB, SA, SG, and XX in wordbreak.</span></li>
+    <li><span>Added &#39;Any&#39; entries, and note about precedence.</span></li>
+    <li><span>Added NBSP, and removed GRAPHEME EXTEND = true from the &#39;alphabetics&#39;.</span></li>
+    <li><span>Added data files with explicit property values.</span></li>
   </ul>
   <h3>Tracking Number 6.</h3>
   <ul>

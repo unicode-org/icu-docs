@@ -1,0 +1,148 @@
+2003-Oct-01, 10:56am Pacific Time   (ICU PMC Meeting)
+
+ Action items with **
+
+Attendees
+=========
+Andy Heninger     (IBM)
+Deborah Goldsmith (Apple)
+Doug Felt         (IBM)
+Eric Mader        (IBM)
+George Rhoten     (IBM)
+Mark Davis        (IBM)
+Markus Scherer    (IBM)
+Ram Viswanadha    (IBM)
+Syn Wee Quek      (IBM)
+Tex Texin         (XenCraft)
+Vladimir Weinstein(IBM)
+Steven Loomis     (IBM) - notestaker
+
+
+==== script codes
+
+* goal: (Mark)
+  1.  use script codes from 3066 productively
+  2.  allow grandfathering 'goofy' codes, such as 'de-1901', 'cel-gaulish', 'de-1891', 'i-klingon',   ('sgn-be-fr' is French in Belgium, not Byelorussian).
+
+*  Deborah- 
+     similar problem, English names for languages such as 'japanese' instead of ja.   Canonicalization routine, with a table, remaps.  Some smarts:  zh-hans-cn (?) -> zh_cn, but zh-hans-tw - don't drop the "hans".   3 or 4 tables.
+
+*  Mark: resource bundle mechanism should still work, locales should still work,  getting country / language via API should still work. new API for getting script.  Difficulty to come up with a format that's inclusive of the grandfathered items.  Try to map to another locale.
+
+*  Don't want to drop information - but have resource bundles under the redundant name with an alias to the one without the redundant name.    But, this would not help applications - would require many bundles.
+
+*  May want an API that explicitly canonicalizes a locale name.   Perhaps, 'getRFC3066name'. would handle ICU locales
+
+* Issue,  'sgn-fr-be' could collide with a valid ICU locale.  better to map to "sgn-fr" as langauge, then "be" as language.
+  Or, sign language could be a script, and remap it to  fr_q-sgn_BE  -probably the cleanest.
+
+* Normal ICU api will just handle "2-3 letter language + 4 letter script + 2-3 letter country + variant"
+
+* Pro of using Canonical API:  1) Applications can use it, and 2) avoid combinatorics.
+  Con of using Canonical API: Java's Locale constructor remaps 'automagically' which creates unexpected behavior.  ( and also, our C locales are char* and not object).
+
+* uloc_getName() does some canonicalization in that it does casing and maps 3 to 2 letter codes.    We would want the "new canonicalization function" to do these functions.
+
+* issue -  [opening a bundle]
+
+* What we want to canonicalize
+  1. case,  dashes - underscores
+  2. 3-letter to 2-letter codes  
+  3. grandfathered whole strings into whole other strings
+  4. reducing redundancy
+  5. handle current ICU variant strings, ex.  ja_JP_TRADITIONAL -> ja_JP@calendar=traditional,  de__PHONEBOOK -> de@collation=phonebook, and PREEURO.   (could be handled in the same way as the others - because they are whole strings.;)
+
+* Markus: would make sense to move #2  (3-2 letter conversion) into the new canonicalization, and not use it behind the users' back.  Least surprise to user
+* Mark: But, the user could already create a resource bundle with the wrong case, and it could be un openable.
+* Steven: for example if an application has 'myapp_eng_US.res' it won't be openable because ures_open will look for en_US. It could be a warning that is turned off.
+
+* If the user knew to use canonicalization API explicitly where needed, and ICU never canonicalized, it would be very fast.
+
+* ( Our Resource Bundles are used as generic data stores - so not all names are valid locale IDs. )
+
+* MacOSX:  lproj format,  canonicalizes what's on disk and what's being looked for, and compares those strings.
+
+* We don't canonicalize what's in memory. 
+
+* we do have a function to open directly a bundle (ures_openDirect()) but it doesn't use fallbacks.
+
+* However: if we remove existing 
+
+** conclusion: 
+   1. existing uloc_getName() continues doing its current canonicalization - case, -_ and 3-letters.  (will TitleCase scripts)
+   2. new function will map grandfathered 3066 codes, current ICU codes containing variants, throw out redundancies like  en_Latn_US -> en_US
+   3. .NET names - would be handled in new function.  
+   4. (could be a new function for handling old Mac names)
+   5. old de__PHONEBOOK   will be handled in a nonbreaking way for resourcebundles
+
+==== ---- DisplayName ----
+
+Background (George): 
+* right now,  " language ( Country )",  and " language ( Country, Variant ) "
+  ex,  "norwegian ( Norway, Nynorsk )"
+
+* We could do:   "Chinese ( Simplified: China )"
+   (we liked this)
+
+* Ram: What about ICU4J ?  A: we are talking about what we want to do for both.  
+**  Since ICU4J uses the same data, we must make sure not to break ICU4J.  
+
+* Doug: Uneasy about doing another almost the same but different item (Locale) from Java, but if we do, it should be the same as what's on C. Perhaps a subclass. But will confuse users no matter what.
+
+==== 
+
+* Deborah: Q: Where to file locale data bugs?
+   1. email
+   2. ICU jitterbug
+   3. CXLDR jitterbug (ldml/openi18n)
+
+    A:  send email to George (/Ram) at this time, with changes preferably.   When things slow down, file jitterbugs.   LDML is generated from ICU at this point, so better to file bugs in ICU.
+
+
+===========
+===========
+4pm  2003 - Oct 1
+Attendees: 
+  George, Ram, Markus, Mark, Steven (scribe)
+
+issue: today we have:
+     %%TRADITIONAL { "Traditional" }
+     (which is bad - it is an overloaded term)
+
+Ram - proposal:
+   If we get in a locale 'es__TRADITIONAL' - map to es@collation=traditional
+    then we can dipslay it.
+
+* Types {
+    collation {
+              Phonebook { "phonebook" } }
+
+     Calendar {    Gregorian { "Gregorian" } }
+  }
+
+* Variants { 
+    } 
+* Scripts { 
+    
+   }
+
+-------------
+* Markus: 
+    We should use lowercase sub items of     Types { collation { phonebook { "xxx" } }  calendar {}   .. and  Keys { collation { "Collation" } }
+
+* Issue: currency- currency is usually uppercase. (EUR, GBP, USD etc.).  However, collation, calendar  are lowercase?
+    do we use de_DE@currency=EUR ?    Does LDML allow this?  What about currency=preeuro?
+
+* today: es_MX_TRADITIOANL formats as  espanol ( Mexico, Traditional )
+
+* what about @collation_options=AS_V3000
+
+** heavy canonicalize:
+  1. Keywords - canonicalized to lowercase.
+  2. don't lowercase the VALUE of keywords
+  3. sort keywords alphabetically
+
+** Displayname
+  ** 1. Mark will file RFE on choice format based locale.getDisplayName (layering issue)
+     2. For today:  espanol ( calendare=gregoriane, collatione=traditionale ) 
+   

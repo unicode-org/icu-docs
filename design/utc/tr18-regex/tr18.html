@@ -69,12 +69,12 @@
   <p><i><em>This document describes guidelines for how to adapt regular expression engines to use 
   Unicode.</em></i></p>
   <h3><i>Status</i></h3>
-  <p><span><i>This document is a proposed update of a previously approved Unicode Technical 
-  Standard. Publication does not imply endorsement by the Unicode Consortium. This is a draft 
-  document which may be updated, replaced, or superseded by other documents at any time. This is not 
-  a stable document; it is inappropriate to cite this document as other than a work in progress.</i></span></p>
+  <p><i>This document has been reviewed by Unicode members and other interested parties, and has 
+  been approved by the Unicode Technical Committee as a <b>Unicode Technical Standard</b>. This is a 
+  stable document and may be used as reference material or cited as a normative reference by other 
+  specifications.</i></p>
   <blockquote>
-    <p><i><b>A Unicode Technical Standard (UTS)</b> is an independent specification. Conformance to 
+    <p><i>A <b>Unicode Technical Standard (UTS)</b> is an independent specification. Conformance to 
     the Unicode Standard does not imply conformance to any UTS.</i></p>
   </blockquote>
   <p><i>Please submit corrigenda and other comments with the online reporting form [<a href="#Feedback">Feedback</a>]. 
@@ -85,10 +85,11 @@
   <h3><i>Contents</i></h3>
   <blockquote>
     <dl>
-      <dt><a href="#Introduction">0 Introduction</a></dt>
+      <dt><span style="font-style: normal"><a href="#Introduction">0 Introduction</a></span></dt>
       <dd><a href="#Notation">0.1 Notation</a></dd>
       <dd><a href="#Conformance">0.2 Conformance</a></dd>
-      <dt><a href="#Basic_Unicode_Support">1 Basic Unicode Support: Level 1</a></dt>
+      <dt><span style="font-style: normal"><a href="#Basic_Unicode_Support">1 Basic Unicode Support: 
+      Level 1</a></span></dt>
       <dd><a href="#Hex_notation">1.1 Hex notation</a></dd>
       <dd><a href="#Categories">1.2 Properties</a></dd>
       <dd><a href="#Subtraction_and_Intersection">1.3 Subtraction and Intersection</a></dd>
@@ -96,14 +97,15 @@
       <dd><a href="#Simple_Loose_Matches">1.5 Simple Loose Matches</a></dd>
       <dd><a href="#Line_Boundaries">1.6 Line Boundaries</a></dd>
       <dd><a href="#Supplementary_Characters">1.7 Supplementary Characters</a></dd>
-      <dt><a href="#Extended_Unicode_Support">2 Extended Unicode Support: Level 2</a></dt>
+      <dt><span style="font-style: normal"><a href="#Extended_Unicode_Support">2 Extended Unicode 
+      Support: Level 2</a></span></dt>
       <dd><a href="#Canonical_Equivalents">2.1 Canonical Equivalents</a></dd>
       <dd><a href="#Default_Grapheme_Clusters">2.2 Default Grapheme Clusters</a></dd>
       <dd><a href="#Default_Word_Boundaries">2.3 Default Word Boundaries</a></dd>
       <dd><a href="#Default_Loose_Matches">2.4 Default Loose Matches</a></dd>
       <dd><a href="#Name_Properties">2.5 Name Properties</a></dd>
       <dd><a href="#Wildcard_Properties">2.6 Wildcard Properties</a></dd>
-      <dt><a href="#Tailored_Support">3 Tailored Support: Level 3</a></dt>
+      <dt><span style="font-style: normal"><a href="#Tailored_Support">3 Tailored Support: Level 3</a></span></dt>
       <dd><a href="#Tailored_Properties">3.1 Tailored Punctuation</a></dd>
       <dd><a href="#Tailored_Graphemes_Clusters">3.2 Tailored Grapheme Clusters</a></dd>
       <dd><a href="#Tailored_Word_Boundaries">3.3 Tailored Word Boundaries</a></dd>
@@ -115,12 +117,14 @@
       <dd><a href="#Possible_Match_Sets">3.9 Possible Match Sets</a></dd>
       <dd><a href="#Folded_Matching">3.10 Folded Matching</a></dd>
       <dd><a href="#Submatchers">3.11 Submatchers</a></dd>
-      <dt><a href="#Character_Blocks">Annex A. Character Blocks</a></dt>
-      <dt><a href="#Sample_Collation_Character_Code">Annex B. Sample Collation Character Code</a></dt>
-      <dt><a href="#Compatibility_Properties">Annex C. Compatibility Properties</a></dt>
-      <dt><a href="#References">References</a></dt>
-      <dt><a href="#Acknowledgments">Acknowledgments</a></dt>
-      <dt><a href="#Modifications">Modifications</a></dt>
+      <dt><span style="font-style: normal"><a href="#Character_Blocks">Annex A. Character Blocks</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#Sample_Collation_Character_Code">Annex B. 
+      Sample Collation Character Code</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#Compatibility_Properties">Annex C. 
+      Compatibility Properties</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#References">References</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#Acknowledgments">Acknowledgments</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#Modifications">Modifications</a></span></dt>
     </dl>
   </blockquote>
   <h2>0 <a name="Introduction">Introduction</a></h2>
@@ -1057,7 +1061,7 @@ SEP := &quot;&quot;            // no separator = union
   character pattern that excludes line separator characters.</p>
   <p>The behavior of these may also differ depending one whether one is in a &quot;multiline&quot; mode or 
   not. For more information, see <i>Anchors and Other &quot;Zero-Width Assertions&quot;</i> in Chapter 3 of [<a href="#Friedl">Friedl</a>].</p>
-  <p class="changed">A newline sequence is defined to be any of the following:</p>
+  <p>A newline sequence is defined to be any of the following:</p>
   <p align="center"><code>\u000A | <span>\u000B | </span>\u000C | \u000D | \u0085 | \u2028 | \u2029 
   | \u000D\u000A</code></p>
   <ol>

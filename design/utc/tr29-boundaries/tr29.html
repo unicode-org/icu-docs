@@ -99,30 +99,31 @@
   <h3><i>Contents</i></h3>
   <blockquote>
     <dl>
-      <dt><a href="#Introduction">1 Introduction</a> </dt>
+      <dt><span style="font-style: normal"><a href="#Introduction">1 Introduction</a> </span></dt>
       <dd><a href="#Notation">1.1 Notation</a></dd>
-      <dt><a href="#Conformance">2 Conformance</a></dt>
-      <dt><a href="#Grapheme_Cluster_Boundaries">3 Grapheme Cluster Boundaries</a></dt>
-      <dt><a href="#Word_Boundaries">4 Word Boundaries</a></dt>
-      <dt><a href="#Sentence_Boundaries">5 Sentence Boundaries</a></dt>
-      <dt><a href="#Implementation_Notes">6 Implementation Notes</a></dt>
+      <dt><span style="font-style: normal"><a href="#Conformance">2 Conformance</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#Grapheme_Cluster_Boundaries">3 Grapheme Cluster 
+      Boundaries</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#Word_Boundaries">4 Word Boundaries</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#Sentence_Boundaries">5 Sentence Boundaries</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#Implementation_Notes">6 Implementation Notes</a></span></dt>
       <dd><a href="#Normalization">6.1 Normalization</a></dd>
       <dd><a href="#Grapheme_Cluster_and_Format_Rules">6.2 Grapheme Cluster and Format Rules</a></dd>
       <dd><a href="#Regular_Expressions">6.3 Regular Expressions</a></dd>
       <dd><a href="#Random_Access">6.4 Random Access</a></dd>
       <dd><a href="#Tailoring">6.5 Tailoring</a></dd>
-      <dt><a href="#Testing">7 Testing</a></dt>
-      <dt><a href="#Acknowledgements">Acknowledgements</a></dt>
-      <dt><a href="#References">References</a></dt>
-      <dt><a href="#Modifications">Modifications</a></dt>
+      <dt><span style="font-style: normal"><a href="#Testing">7 Testing</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#Acknowledgements">Acknowledgements</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#References">References</a></span></dt>
+      <dt><span style="font-style: normal"><a href="#Modifications">Modifications</a></span></dt>
     </dl>
   </blockquote>
   <h2>1 <a name="Introduction">Introduction</a></h2>
   <p>This document describes guidelines for determining default boundaries between certain 
   significant text elements: grapheme clusters (“user characters”), words, and sentences. It updates 
   most of <a href="http://www.unicode.org/unicode/uni2book/ch05.pdf">5.15 Locating Text Element 
-  Boundaries</a> except for the line-break boundaries, which are covered in
-  <a href="http://www.unicode.org/unicode/reports/tr14/">UAX #14: Line Breaking Properties</a>.</p>
+  Boundaries</a> except for the line-break boundaries, which are covered <span class="changedspan">
+  in [<a href="#LineBreak">LineBreak</a>]</span>.</p>
   <p>A string of Unicode-encoded text often needs to be broken up into text elements 
   programmatically. Common examples of text elements include what users think of as characters, 
   words, lines (more precisely, where line breaks are allowed), and sentences. The precise 
@@ -138,9 +139,10 @@
   between those text elements. The determination of those boundaries is often critical to the 
   performance of general software, so it is important to be able to make such a determination as 
   quickly as possible.</p>
-  <p>The default boundary determination mechanism provides a straightforward and efficient way to 
-  determine some of the most significant boundaries in text: grapheme clusters (what end-users 
-  usually think of as characters), words, and sentences. (Line boundaries are to be found in
+  <p>The default boundary determination mechanism <span class="changedspan">specified in this 
+  document</span> provides a straightforward and efficient way to determine some of the most 
+  significant boundaries in text: grapheme clusters (what end-users usually think of as characters), 
+  words, and sentences. (Line boundaries are to be found in
   <a href="http://www.unicode.org/unicode/reports/tr14/">UAX #14: Line Breaking Properties</a>.)</p>
   <p>Boundary determination builds upon the uniform character representation of the Unicode 
   Standard, while handling the large number of characters and special features such as non-spacing 
@@ -176,8 +178,9 @@
   </ul>
   <p><span>In the table assigning the boundary property values, all of the values are intended to be 
   disjoint except for the special value <b>Any</b>. In case of conflict, rows higher in the table 
-  have precedence in terms of assigning property values to characters. Data files containing a 
-  explicit assignments of the property values is found in [<a href="#Props">Props</a>].</span></p>
+  have precedence in terms of assigning property values to characters. Data files containing
+  <span class="removedspan">a </span>explicit assignments of the property values
+  <span class="changedspan">are</span> found in [<a href="#Props">Props</a>].</span></p>
   <p>The rules are numbered for reference and are applied in order in order to determine whether 
   there is a boundary at a given offset. That is, there is an implicit “otherwise” at the front of 
   each rule following the first. So logically the rules are processed from top to bottom. As soon as 
@@ -240,7 +243,7 @@
   [<a href="#Reports">Reports</a>]. A boundary exists in non-NFD text just in case it would occur at 
   the corresponding position in NFD text. However, this is only a logical specification; in practice 
   implementations can avoid normalization and achieve the same results. For more information, see
-  <a href="#Implementation_Notes">§6 Implementation Notes</a>.</p>
+  <a href="#Implementation_Notes">Section 6 <i>Implementation Notes</i></a>.</p>
   <h2><a name="Grapheme_Cluster_Boundaries">3 Grapheme Cluster Boundaries</a></h2>
   <p>One or more Unicode characters may make up what the user thinks of as a character or basic unit 
   of the language. To avoid ambiguity with the computer use of the term <i>character,</i> this is 
@@ -285,13 +288,13 @@
   non-spacing mark is at the start of text, or it is preceded by a control (or format) character.
   <span class="old_changed">In place of a single base character, a Hangul Syllable composed of one 
   or more characters may serve as the base. </span>For the rules defining the default boundaries, 
-  see <i><a href="#Default_Grapheme_Cluster_Table">Table 1, Default Grapheme Cluster Boundaries</a></i><a href="#Default_Grapheme_Cluster_Table">
+  see <i>Table 1, <a href="#Default_Grapheme_Cluster_Table">Default Grapheme Cluster Boundaries</a></i><a href="#Default_Grapheme_Cluster_Table">
   </a>below. <span class="old_changed">For more information on the composition of Hangul Syllables 
-  see [<a href="#Unicode">Unicode</a>].</span></p>
+  see </span><span class="changedspan">Chapter 3 of</span><span class="old_changed"> [<a href="#Unicode">Unicode</a>].</span></p>
   <blockquote>
     <p class="old_changed"><b>Note:</b> The boundary between default grapheme clusters can be 
-    determined by just the two adjacent characters. See <a href="#Testing">7 Testing</a> for a chart 
-    showing the interactions of pairs of characters.</p>
+    determined by just the two adjacent characters. See <a href="#Testing">Section 7 <i>Testing</i></a> 
+    for a chart showing the interactions of pairs of characters.</p>
   </blockquote>
   <p><b><i>Degenerate Cases.</i> </b>As with other definitions in Chapter 5 and elsewhere, these 
   definitions are designed to be simple to implement. They need to provide an algorithmic 
@@ -552,8 +555,8 @@
   <blockquote>
     <p><b>Note: </b>As with the other default specifications, implementations are free to override 
     (tailor) the results to meet the requirements of different environments or particular languages.<span class="changedspan"> 
-    For some languages it may also be necessary in some cases to have different tailored word break 
-    rules for selection vs Whole Word Search.</span></p>
+    For some languages it may also be necessary </span><span class="removedspan">in some cases</span><span class="changedspan"> 
+    to have different tailored word break rules for selection versus Whole Word Search.</span></p>
     <p><span>In particular, the characters with the Line_Break property values of Contingent_Break 
     (CB), Complex_Context (SA/South East Asian), and XX (Unknown) are assigned word boundary 
     property values based on criteria outside of the scope of this document. </span></p>
@@ -804,23 +807,24 @@
     language, since there are ambiguities). The goal is to have as workable a default as possible; 
     tailored engines can be more sophisticated about these matters.</li>
     <li>
-    <p align="left">For Thai, Lao, Khmer, Mynmar, and other scripts that don&#39;t use typically use 
+    <p align="left">For Thai, Lao, Khmer, Mynmar, and other scripts that do not use typically use 
     spaces between words, a good implementation should not just depend on the default word boundary 
     specification, but should use a more sophisticated mechanism, as in LineBreak. Ideographic 
     scripts such as Japanese and Chinese are even more complex. Where Hangul text is written without 
     spaces, the same applies. However, in the absence of such a more sophisticated mechanism, the 
     above at least supplies a well-defined default.</li>
     <li>
-    <p align="left">The hard hyphen is a tricky case. It is quite common for separate words to be 
-    connected with a hyphen: out-of-the-box, under-the-table, Anglo-american, etc. A significant 
-    number are hyphenated names: Smith-Hawkins, etc. When people do a Whole Word Search or query, 
-    they expect to find the word within those hyphens. While there are some cases where they are 
-    separate words (usually to resolve some ambiguity such as re-sort vs. resort) it’s better 
-    overall to keep the hard hyphen out of the default definition.</li>
+    <p align="left">The <span class="removedspan">hard</span> hyphen is a tricky case. It is quite 
+    common for separate words to be connected with a hyphen: out-of-the-box, under-the-table, 
+    Italian-American, etc. A significant number are hyphenated names: Smith-Hawkins, etc. When 
+    people do a Whole Word Search or query, they expect to find the word within those hyphens. While 
+    there are some cases where they are separate words (usually to resolve some ambiguity such as 
+    re-sort vs. resort) it’s better overall to keep the <span class="removedspan">hard</span> hyphen 
+    out of the default definition.</li>
     <li>
     <p align="left">Apostrophe is another tricky case. Usually considered part of one word (“can’t”, 
-    “aujourd’hui”) it may also be considered two (“l’objectif”). Also, one cannot easily distinguish 
-    the cases where it is used as a quotation mark from those where it is used as an apostrophe, so 
+    “aujourd’hui”) it may also be considered two (“l’objectif”). Also, one cannot easily distinguish
+    <span class="changedspan">its use as a quotation mark from its use</span> as an apostrophe, so 
     one should not include leading or trailing apostrophes. In some languages, such as French and 
     Italian, tailoring it to break words when the character after the apostrophe is a vowel may 
     yield better results in more cases. This can be done by adding a rule 5a:</p>
@@ -839,9 +843,10 @@
     <p>and defining appropriate property values for hyphens and vowels.<br>
     </li>
     <li>
-    <p align="left">Certain cases like colon in words (c:a) are included even though they may be 
-    specific to relatively small user communities (Swedish) because they don’t occur otherwise in 
-    normal text, and so don’t cause a problem for other languages.</li>
+    <p align="left">Certain cases like colon in words (c:a) are included <span class="changedspan">
+    in the default</span> even though they may be specific to relatively small user communities 
+    (Swedish) because they do not occur otherwise in normal text, and so do not cause a problem for 
+    other languages.</li>
     <li>
     <p align="left">For Hebrew, a tailoring may include a double quotation mark between letters, 
     since legacy data may contain that in place of <span class="charlist">U+05F4 (״) gershayim</span>. 
@@ -1314,6 +1319,12 @@
       <td class="noborder">Unicode Glossary<a href="http://www.unicode.org/glossary/"><br>
       http://www.unicode.org/glossary/<br>
       </a><i>For explanations of terminology used in this and other documents.</i></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="LineBreak">LineBreak</a>]</td>
+      <td class="noborder" valign="top">UAX #14: Line Breaking Properties<br>
+      <a href="http://www.unicode.org/unicode/reports/tr14/">
+      http://www.unicode.org/unicode/reports/tr14/</a> </td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1"><span>[<a name="Props">Props</a>]</span></td>

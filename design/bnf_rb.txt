@@ -1,0 +1,48 @@
+//**************************************************************************
+//* COPYRIGHT: 
+//* Copyright (c) 2001, International Business Machines Corporation and
+//* others. All Rights Reserved.
+//**************************************************************************
+// Created by: Vladimir Weinstein, 07/27/2001
+
+// This is the resource bundle formal definition.
+// NOTE: this is not complete definition in the strictest sense,
+// you have to read the comments to know everything.
+// Complete definition would be much harder to read.
+
+resourceBundle ::= bundleName table
+
+// These are the currently supported resources
+resource ::= string | array | table | binary | integer | import  
+
+//** aggregate resources
+table   ::= (':table')? '{' (key resource)* '}' 
+// Has to have type name if containing zero elements except when starting
+// a resource bundle
+array   ::= (':array')? '{' resource? | (resource (',' resource)+ ','?) '}'
+// Has to have type name if containing zero or one element
+
+//** Leaf resources
+string     ::= (':string')?'{'('"'unicodeChar*'"') | unicodeChar+ '}'
+// String should be quoted if contains interesting chars or empty
+binary    ::= ( ':binary' | ':bin' ) '{' ('"' (hexDigit hexDigit)* '"') | (hexDigit hexDigit)+'}'
+// You should use quotes if you want to have an empty binary
+integer   ::= (':integer' | ':int') '{' number '}'
+intvector ::= ':intvector' '{' number? | (number ( ',' number)+ ','?) '}'
+import    ::= ':import' '{' path '}'
+
+// ** Other necessary definitions
+key ::= invariantChars | '"' invariantChars '"'
+// key should also be quoted if containing interesting chars
+bundleName ::= invariantChars
+
+invariantChars ::= invariantChar+
+invariantChar  ::= [A-Z] | [a-z] | [0-9] | SPACE | " | % | & | ' | ( | ) | * 
+                        | + | , | - | . | / | : | ; | < | = | > | ? | _
+hexDigit ::= [0-9]|[A-F]|[a-f]
+number   ::= sign? digit+
+sign     ::= -
+digit    ::= [0-9]
+// unicodeChar can be either written as a combination of invariant chars and \u & \U literals
+// or as UTF-8 or UTF-16 encoded text (which is autodetected if correct BOM is present)
+// or using any ICU supported codepage (which requires ICU to be fully built before using)

@@ -12,7 +12,16 @@
 <h1>Proposed Supplementary API (JSR 204)</h1>
 <p><i>Mark Davis, 2003-06-05 (later)</i></p>
 <p><i>Note: all offsets are char offsets, except in </i><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findOffsetFromCodePoint(java.lang.String, int)">findOffsetFromCodePoint</a></b></code></p>
-<h2>Character</h2>
+<h2>Contents</h2>
+<blockquote>
+  <dl>
+    <dt><a href="#Character">Character</a></dt>
+    <dt><a href="#CharSequence">CharSequence</a></dt>
+    <dt><a href="#StringBuffer">StringBuffer</a></dt>
+    <dt><a href="#CharacterIterator">CharacterIterator</a></dt>
+  </dl>
+</blockquote>
+<h2><a name="Character">Character</a></h2>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
     <td colspan="2" bgcolor="#ccccff"><font size="3"><b>Field Summary</b></font></td>
@@ -141,7 +150,7 @@
 </table>
 <p>Other property methods on Character need overloads for int, as in <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html">ICU4J's
 UCharacter.html</a>.</p>
-<h2>CharSequence</h2>
+<h2><a name="CharSequence">CharSequence</a> (and subclasses)</h2>
 <p><i>The following functions should go on subclasses of CharSequence (char32At
 should go on CharSequence itself, if possible).</i></p>
 <table border="1" cellspacing="0" cellpadding="2">
@@ -152,8 +161,8 @@ should go on CharSequence itself, if possible).</i></p>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#SINGLE_CHAR_BOUNDARY">SINGLE_CHAR_BOUNDARY</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value returned
-      in <code><a href="#bounds(java.lang.String, int)">bounds(offset)</a></code>.
-      The substring bounds for the codepoint that contains charAt(offset) are
+      in <code><a href="#bounds(java.lang.String, int)">bounds32(offset)</a></code>.
+      The substring bounds for the code point that contains charAt(offset) are
       (offset, offset+1).&nbsp; That is, offset is at the start of a BMP
       character (single char).</td>
   </tr>
@@ -161,16 +170,16 @@ should go on CharSequence itself, if possible).</i></p>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value returned
-      in <code><a href="#bounds(java.lang.String, int)">bounds(offset)</a></code>.
-      The substring bounds for the codepoint that contains charAt(offset) are
+      in <code><a href="#bounds(java.lang.String, int)">bounds32(offset)</a></code>.
+      The substring bounds for the code point that contains charAt(offset) are
       (offset, offset+2). That is, offset is at the start of a surrogate pair.</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value returned
-      in <code><a href="#bounds(java.lang.String, int)">bounds(offset)</a></code>.
-      The substring bounds for the codepoint that contains charAt(offset) are
+      in <code><a href="#bounds(java.lang.String, int)">bounds32(offset)</a></code>.
+      The substring bounds for the code point that contains charAt(offset) are
       (offset-1, offset+1).&nbsp; That is, offset is in the middle of a
       surrogate pair.</td>
   </tr>
@@ -190,14 +199,14 @@ should go on CharSequence itself, if possible).</i></p>
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#charAt(java.lang.String, int)">char32At</a></b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extract a
-      single UTF-32 value from a string. If offset is in the middle of a
-      codepoint, returns that code point.</td>
+      single UTF-32 value from a string. If offset is in the middle of a code
+      point, returns that code point.</td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#countCodePoint(java.lang.String)">length32</a></b>()</code><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of
-      codepoints in a UTF16 String. Equivalent to <code>findCodePointOffset(length())</code></td>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of code
+      points in a UTF16 String. Equivalent to <code>findcode pointOffset(length())</code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
@@ -217,15 +226,8 @@ should go on CharSequence itself, if possible).</i></p>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#getCharCount(int)">getCharCount</a></b>(int
       offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines how
-      many chars the codepoint at offset requires. If offset is in the middle of
-      a codepoint, returns 2, otherwise one.</td>
-  </tr>
-  <tr>
-    <td valign="top" align="right" width="1%"><font size="-1"><code>static
-      java.lang.String</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#valueOf(int)">value32Of</a></b>(int&nbsp;char32)</code><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convenience
-      method corresponding to String.valueOf(char).</td>
+      many chars the code point at offset requires. If offset is in the middle
+      of a code point, returns 2, otherwise one.</td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.String</code></font></td>
@@ -266,9 +268,11 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.String</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#valueOf(java.lang.String, int)">value32Of</a></b>(int&nbsp;offset)</code><br>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#valueOf(java.lang.String, int)">valueOf</a>32</b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convenience
-      method corresponding to, but much faster than, <code>String.valueOf(myString.charAt(offset))</code></td>
+      method corresponding to, but much faster than, <code>String.valueOf(myString.charAt(offset)).</code>
+      Internally uses .substring(x,y), where x and y are determined by calling
+      bounds32()</td>
   </tr>
 </table>
 <blockquote>
@@ -277,11 +281,11 @@ should go on CharSequence itself, if possible).</i></p>
   <blockquote>
     <p><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#reverse(java.lang.StringBuffer)">reverse</a></b>()&nbsp;&nbsp;&nbsp;
     </code>It needs to not reverse surrogate-pairs.<code><br>
-    indexOf()&nbsp;&nbsp;&nbsp; Interpret int as codepoint<br>
+    indexOf()&nbsp;&nbsp;&nbsp; Interpret int as code point<br>
     lastIndexOf()</code></p>
   </blockquote>
 </blockquote>
-<h2>StringBuffer</h2>
+<h2><a name="StringBuffer">StringBuffer</a></h2>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr class="TableHeadingColor" bgcolor="#ccccff">
     <td colspan="2"><font size="3"><b>Method Summary</b></font></td>
@@ -298,12 +302,13 @@ should go on CharSequence itself, if possible).</i></p>
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.StringBuffer</code></font></td>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#delete(java.lang.StringBuffer, int)">delete</a>32</b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Removes the
-      codepoint at the specified position in this target (shortening target by 1
-      character if the codepoint is a non-supplementary, 2 otherwise).
+      code point at the specified position in this target (shortening target by
+      1 character if the code point is a non-supplementary, 2 otherwise).
       Equivalent to (but faster than):<br>
-      <code>int start = offset - (bounds32() == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
+      <code>int bounds = bounds32(offset);<br>
+      int start = offset - (bounds == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
       ? 1 : 0);<br>
-      int end = offset + (bounds32() == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a>
+      int end = offset + (bounds == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a>
       ? 2 : 1);<br>
       delete(start, end);</code></td>
   </tr>
@@ -312,9 +317,10 @@ should go on CharSequence itself, if possible).</i></p>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#insert(java.lang.StringBuffer, int, int)">insert</a>32</b>(int&nbsp;offset,
       int&nbsp;char32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inserts char32
-      codepoint into target at (or before) the argument offset. Equivalent to
+      code point into target at (or before) the argument offset. Equivalent to
       but faster than:<br>
-      <code>int start = offset - (bounds32(offset) == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
+      <code>int bounds = bounds32(offset);<br>
+      int start = offset - (bounds == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
       ? 1 : 0);<br>
       </code><code>insert(String.value32Of(char32), start);</code></td>
   </tr>
@@ -328,7 +334,7 @@ should go on CharSequence itself, if possible).</i></p>
       insert(String.value32Of(char32), offset);</code></td>
   </tr>
 </table>
-<h2>CodePointIterator</h2>
+<h2><a name="CharacterIterator">CharacterIterator</a></h2>
 <p>We had made a mistake in our original design of <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/CharacterIterator.html">CharacterIterator.html</a>:</p>
 <ul>
   <li>previous correctly does the equivalent of *(--p)</li>
@@ -336,13 +342,31 @@ should go on CharSequence itself, if possible).</i></p>
 </ul>
 <p>This doesn't extend well to cases where the next boundary is not simply
 adding an increment, since the function becomes less efficient.</p>
-<p>There are two possibilities:</p>
+<p>There are some possibilities:</p>
 <p>1. In our ICU4J version: <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UCharacterIterator.html" target="classFrame">UCharacterIterator</a>,
 we simply produced a different iterator that used better semantics.</p>
-<p>2. Alternatively, we could modify <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/CharacterIterator.html">CharacterIterator.html</a>
+<p>2. Alternatively, we could modify <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/CharacterIterator.html">CharacterIterator</a>
 to add methods that deal with code points and address the next() issue by adding
-alternative methods. We did that in our C++ version, (<a href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html">CharacterIterator.html</a>)
-with the equivalent of the following:</p>
+alternative methods (see <a href="#Additional_Methods">below</a>). We did that
+in our C++ <a href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html">version</a>.</p>
+<p>3. Another possibility is to have an abstract base class that implements
+CharacterIterator, but has default implementation for everything but move() and
+current(). (All other functions can be defined reasonably in terms of those;
+subclasses can override for further efficiency.)</p>
+<p>4. Factoring into this is how much CharacterIterator is actually used
+nowadays, and how much its use has been supplanted by CharSequence. It could be
+deprecated in favor of CharSequence, making a few modifications then to the
+following:</p>
+<ul>
+  <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/javax/swing/text/Segment.html">http://java.sun.com/j2se/1.4.1/docs/api/javax/swing/text/Segment.html</a>
+  </li>
+  <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/BreakIterator.html">http://java.sun.com/j2se/1.4.1/docs/api/java/text/BreakIterator.html</a></li>
+  <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/CollationElementIterator.html">http://java.sun.com/j2se/1.4.1/docs/api/java/text/CollationElementIterator.html</a>
+  </li>
+  <li>and probably needing a CharSequence that wraps a CharacterIterator in the
+    interim</li>
+</ul>
+<h3><a name="Additional_Methods">Additional Methods</a></h3>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
     <td valign="top" nowrap align="right"><code>int</code></td>
@@ -549,6 +573,8 @@ for forward iteration, by using the &quot;32PostInc&quot; versions.</p>
         CodePointSequence without having to know what the underlying storage is.</i></li>
     </ul>
   </li>
+  <li>What to do about <a href="#CharacterIterator">CharacterIterator</a> (see
+    above).</li>
 </ol>
 
 </body>

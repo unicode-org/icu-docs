@@ -42,7 +42,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top" class="old_changed">2005-02-20</td>
+      <td valign="top" class="old_changed">2005-02-22</td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
@@ -61,14 +61,14 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
     <tr>
       <td valign="top">Revision</td>
-      <td valign="top">2</td>
+      <td valign="top">3</td>
     </tr>
   </table>
   <h3>&nbsp;</h3>
   <h3><i>Summary</i></h3>
   <p><i>This document describes security considerations that are important to be aware of when 
-  working with Unicode<span class="changedSpan">, and provides specific recommendations for dealing 
-  with the issues that arise.</span></i></p>
+  working with Unicode<span>, and provides specific recommendations for dealing with the issues that 
+  arise.</span></i></p>
   <h3><i>Status</i></h3>
   <p><i>This is a<b><font color="#ff3333"> draft </font></b>document which may be updated, replaced, 
   or superseded by other documents at any time. Publication does not imply endorsement by the 
@@ -99,6 +99,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </ul>
     </li>
     <li>4. <a href="#Data_Files">Data Files</a></li>
+    <li><a href="#Related_Material">Related Material</a></li>
     <li><a href="#Acknowledgements">Acknowledgements</a></li>
     <li><a href="#References">References</a></li>
     <li><a href="#Modifications">Modifications</a></li>
@@ -111,9 +112,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <hr>
   <h2 align="left"><a name="Introduction"></a>1. Introduction</h2>
   <p>Unicode represents a very significant advance over all previous methods of encoding characters. 
-  For the first time, all of the worlds characters could be represented in a uniform manner, for the 
-  first time making it feasible for the vast majority of programs to be <i>globalized:</i> built to 
-  handle any language in the world.</p>
+  For the first time, all of the world&#39;s characters could be represented in a uniform manner, for 
+  the first time making it feasible for the vast majority of programs to be <i>globalized:</i> built 
+  to handle any language in the world.</p>
   <p>In many ways, the use of Unicode makes programs much more robust and secure. When systems need 
   to use a hodge-podge of different charsets for representing characters, it was possible to take 
   advantage of differences between those charsets, or in the way in which programs converted to and 
@@ -121,14 +122,14 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <p>However, because Unicode contains such a large number of characters, and because it 
   incorporates the varied writing systems of the world, incorrect usage can expose programs or 
   systems to possible security attacks. This document describes some of the security considerations 
-  that should be taken into account by programmers, system analysts, standards-developers, and 
+  that should be taken into account by programmers, system analysts, standards developers, and 
   users.</p>
   <p>We anticipate that this document will grow over time, adding additional sections as needed. 
   Initially, there are two areas that will be discussed: canonical representation and visual 
   spoofing. For more information, see also the Unicode
   <a href="http://www.unicode.org/faq/security.html">FAQ on Security Issues</a>.</p>
-  <p><span class="changedSpan">Each section below presents a background information on the kinds of 
-  problems that can occur, then a list of specific recommendations for avoiding the problems.</span></p>
+  <p><span>Each section below presents background information on the kinds of problems that can 
+  occur, then a list of specific recommendations for avoiding the problems.</span></p>
   <blockquote>
     <p class="reviewnote"><b>Note to Reviewers:</b> Some of the examples below use Unicode 
     characters which some browsers will not show, or may not show in a way that illustrates the 
@@ -147,8 +148,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   for representing single characters. While these forms are all equivalent in terms of the ability 
   to express Unicode, the original usage of UTF-8 was open to a canonicalization exploit.</p>
   <p>Up to <a href="http://www.unicode.org/unicode/uni2book/u2.html"><i>The Unicode Standard, 
-  Version 3.0</i></a> the <i>generation</i> of &quot;non-shortest form&quot; UTF-8 was forbidden, and as was 
-  the <i>interpretation</i> of illegal sequences, but not the interpretation of what was called the 
+  Version 3.0</i></a> the <i>generation</i> of &quot;non-shortest form&quot; UTF-8 was forbidden, as was the
+  <i>interpretation</i> of illegal sequences, but not the interpretation of what was called the 
   &quot;non-shortest form&quot;. Where software does interpret the non-shortest forms, security issues can 
   arise. For example: </p>
   <ul>
@@ -163,11 +164,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   specifically prevent it from getting through. The backslash is represented in UTF-8 as the byte 
   sequence &lt;5C&gt;. However, as a non-shortest form, backslash could also be represented as the byte 
   sequence&lt;C1 9C&gt;. When a gatekeeper doesn&#39;t catch that, but a component converts non-shortest 
-  forms, it can allow a real security breech. For more information, see
-  <a href="http://www.microsoft.com/technet/security/bulletin/MS00-078.mspx">
-  http://www.microsoft.com/technet/security/bulletin/MS00-078.mspx</a> and
-  <a href="http://www.ins.com/downloads/whitepapers/ins_white_paper_ms_iis_unicode_exploit_0801.pdf">
-  http://www.ins.com/downloads/whitepapers/ins_white_paper_ms_iis_unicode_exploit_0801.pdf</a>.</p>
+  forms, it can allow a real security breach. For more information, see <span class="changedSpan">[<a href="#Related_Material">Related 
+  Material</a>]</span>.</p>
   <p>To address this issue, the Unicode Technical Committee modified the definition of UTF-8 in
   <a href="http://www.unicode.org/reports/tr27/">Unicode 3.1</a> to forbid conformant 
   implementations from interpreting non-shortest forms for
@@ -182,6 +180,18 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <p class="reviewnote">Case mapping</li>
     <li>
     <p class="reviewnote">Buffer overflows with all of the above, and when converting encoding forms</li>
+    <li>
+    <p class="reviewnote">Discuss Unicode properties. Eg more characters have numeric properties 
+    than developers might expect.</li>
+    <li>
+    <p class="reviewnote">Discuss use of Regular Expressions in validating data — ensuring that the 
+    Regular Expression Engine follows the Unicode Guidelines, but also that use of regular 
+    expressions makes use of properties rather than fixed lists of characters.</li>
+    <li>
+    <p class="reviewnote"><span>Explain that private use characters can cause security problems, and 
+    recommend strongly against their use.</span></li>
+    <li>
+    <p class="reviewnote"><span>Discuss security issues in Collation (sorting, searching, matching)</span></li>
   </ul>
   <h4><b><i><a name="Canonical_Representation_Recommendations">Recommendations</a></i></b></h4>
   <ol>
@@ -209,49 +219,42 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   and directs you to copy text to your address bar in your browser. The text looks ok to you, so you 
   won&#39;t realize that you are going to a completely different site, which is then set up to simulate 
   your bank well enough to get your password.</p>
-  <p><span class="changedSpan">These spoofs depend on the use of <i>visually confusable</i> strings:</span></p>
-  <table border="1" cellpadding="4" cellspacing="0" style="border-collapse: collapse; border-width: 0">
-    <tr>
-      <td class="noborder"><span class="changedSpan"><b>D1. </b></span></td>
-      <td class="noborder"><span class="changedSpan">Two different strings of Unicode characters are 
-      said to be <i>visually confusable</i> when their appearance in common fonts in small sizes at 
-      screen resolutions is sufficiently close that people easily mistake one for the other.</span></td>
-    </tr>
-  </table>
-  <p><span class="changedSpan">There are no hard-and-fast rules for visual confusability: it is of 
-  course possible to make any characters look like any others with a suitably faulty font. By 
-  &quot;small-sizes at screen resolutions&quot;, this means fonts whose ascent + descent is from 9 to 12 
-  pixels for most scripts, somewhat larger for scripts where the font size users typically have is 
-  larger, such as Japanese. Of course, at sufficiently small sizes, such as 4px, a great many 
-  characters would become confusable. In some cases sequences of characters can be used to spoof: 
-  for example, &quot;rn&quot; (&quot;r&quot; followed by &quot;n&quot;) in many san-serif fonts is visually confusable with &quot;m&quot;. 
-  Where two different strings are essentially identical in most fonts at all sizes, they are called
-  <i>homographs</i>. However, spoofing is not dependent on just homographs; if the visual appearance 
-  is close enough at small sizes, that can be sufficient to cause problems.</span></p>
-  <p><span class="changedSpan">Note that characters are not visually confusable if the positioning 
-  of the glyph is sufficiently different. For example, foo·com (using the hyphenation point instead 
-  of the period) should be distinguishable from foo.com by the positioning of the dot (except in 
-  faulty fonts).</span></p>
+  <p><span>These spoofs depend on the use of <i>visually confusable</i> strings: two different 
+  strings of Unicode characters whose appearance in common fonts in small sizes at screen 
+  resolutions is sufficiently close that people easily mistake one for the other.</span></p>
+  <p><span>There are no hard-and-fast rules for visual confusability: it is of course possible to 
+  make any characters look like any others with a suitably faulty font. By &quot;small-sizes at screen 
+  resolutions&quot;, this means fonts whose ascent + descent is from 9 to 12 pixels for most scripts, 
+  somewhat larger for scripts where the font size users typically have is larger, such as Japanese. 
+  Of course, at sufficiently small sizes, such as 4px, a great many characters would become 
+  confusable. In some cases sequences of characters can be used to spoof: for example, &quot;rn&quot; (&quot;r&quot; 
+  followed by &quot;n&quot;) in many sans-serif fonts is visually confusable with &quot;m&quot;. Where two different 
+  strings are essentially identical in most fonts at all sizes, they are called <i>homographs</i>. 
+  However, spoofing is not dependent on just homographs; if the visual appearance is close enough at 
+  small sizes, that can be sufficient to cause problems.</span></p>
+  <p><span>Note that characters are not visually confusable if the positioning of the glyph is 
+  sufficiently different. For example, foo·com (using the hyphenation point instead of the period) 
+  should be distinguishable from foo.com by the positioning of the dot (except in faulty fonts).</span></p>
   <p>To a certain extent, the new forms of visual spoofing available with Unicode are a matter of 
   degree and not kind. However, because of the very large number of Unicode characters (over 94,000 
   in the current version), the number of opportunities for visual spoofing are significantly larger 
   than with a restricted character set such as ASCII.</p>
-  <p><span class="changedSpan">For examples of visually confusable characters, see [<a href="#confusables">confusables</a>].</span></p>
+  <p><span>For examples of visually confusable characters, see [<a href="#confusables">confusables</a>].</span></p>
   <h3><a name="international_domain_names"></a>International Domain Names</h3>
   <p>Spoofing is an especially important subject given the recent introduction of international 
   domain names (IDN). There is a natural desire for people to see domain names in their own 
   languages and writing systems; English speakers can understand this if they consider what it would 
   be like if they always had to type web addresses with Russian characters! So IDN represents a very 
   significant advance for most people in the world. The avoidance of spoofing vulnerability requires 
-  proper implementation in browsers and other programs, <span class="changedSpan">so as to minimize 
-  security risks without making the use of non-ASCII character too onerous.</span></p>
+  proper implementation in browsers and other programs, <span>so as to minimize security risks 
+  without making the use of non-ASCII characters too onerous.</span></p>
   <p>International domain names are, of course, not the only cases where visual spoofing can occur. 
-  For example, you might get a message asking you to allow allowing the installation of software 
-  from &quot;IBM&quot;, authenticated with the proper Verisign certificate, but the &quot;M&quot; character happens to 
-  be the Russian (Cyrillic) character that looks precisely like the English &quot;M&quot;.
-  <span class="changedSpan"><i>Any place where strings are used as identifiers is subject to this 
-  kind of spoofing.</i> For more information on identifers, see
-  <a href="http://www.unicode.org/reports/tr31/">UAX #31: <i>Identifier and Pattern Syntax</i></a>.</span></p>
+  For example, you might get a message asking you to allow the installation of software from &quot;IBM&quot;, 
+  authenticated with the proper Verisign certificate, but the &quot;M&quot; character happens to be the 
+  Russian (Cyrillic) character that looks precisely like the English &quot;M&quot;. <span><i>Any place where 
+  strings are used as identifiers is subject to this kind of spoofing.</i> For more information on 
+  identifers, see <a href="http://www.unicode.org/reports/tr31/">UAX #31: <i>Identifier and Pattern 
+  Syntax</i></a>.</span></p>
   <p>However, IDN provides a good starting point for a discussion of visual spoofing. The good news 
   is that the design of IDN prevents a huge number of spoofing attacks. All conformant users of IDN 
   are required to process domain names to convert <i>
@@ -289,59 +292,54 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
   </table>
   <blockquote>
-    <p><b>Note: </b>The ICU demo at <a href="http://ibm.com/software/globalization/icu/demo/domain/">
-    http://ibm.com/software/globalization/icu/demo/domain/</a> can be used to demonstrate the 
-    results of processing different domain names. That demo was also used to get the IDNA values 
-    shown here.</p>
+    <p><b>Note: </b>The ICU demo at <span class="changedSpan">[<a href="#IDN-Demo">IDN-Demo</a>]</span> 
+    can be used to demonstrate the results of processing different domain names. That demo was also 
+    used to get the IDNA values shown here.</p>
   </blockquote>
-  <p><span class="changedSpan">The IDN processing also removes case distinctions by performing a <i>
-  case folding</i> to reduce characters to a lowercase form<i>.</i> This is also useful for avoiding 
-  spoofing problems, since characters are generally more distinctive in their lowercase forms. That 
-  means that we can focus on just the lowercase characters.</span></p>
-  <p><span class="changedSpan">For a list of allowable characters in IDN, see [<a href="#idn-chars">idn-chars</a>]. 
+  <p><span>The IDN processing also removes case distinctions by performing a <i>case folding</i> to 
+  reduce characters to a lowercase form<i>.</i> This is also useful for avoiding spoofing problems, 
+  since characters are generally more distinctive in their lowercase forms. That means that we can 
+  focus on just the lowercase characters.</span></p>
+  <p><span>For a list of allowable characters in IDN, see [<a href="#idn-chars">idn-chars</a>]. 
   There are many misperceptions about which characters are allowed in IDN, so referencing this 
   explicit list should be useful for dispelling some of them. The characters are those left after 
   string processing has been performed, so case-folding and normalization have already been applied.
   </span></p>
-  <p><span class="changedSpan">Although normalization and case-folding prevent many possible 
-  spoofing attacks, </span>there remain many cases where visual spoofing can still occur with 
-  international domain names. <span class="changedSpan">Ideally, much of this would be handled on 
-  the registries&#39; side instead of user-agents (browsers, emailers, and other programs that display 
-  and process URLs). The registry has the most data available, and process it the most efficiently 
-  at the time of registration, using policies to reduce visual spoofing. For example, given 
-  confusable mapping data, the registry can easily determine if a proposed registration conflicts 
-  with an existing one; that is much more difficult for user agents because of the sheer number of 
-  combinations that it would have to probe.</span></p>
-  <p><span class="changedSpan">However:</span></p>
+  <p><span>Although normalization and case-folding prevent many possible spoofing attacks, </span>
+  there remain many cases where visual spoofing can still occur with international domain names.
+  <span>Ideally, much of this would be handled on the registries&#39; side instead of user-agents 
+  (browsers, emailers, and other programs that display and process URLs). The registry has the most 
+  data available, and process it the most efficiently at the time of registration, using policies to 
+  reduce visual spoofing. For example, given confusable mapping data, the registry can easily 
+  determine if a proposed registration conflicts with an existing one; that is much more difficult 
+  for user agents because of the sheer number of combinations that it would have to probe.</span></p>
+  <p><span>However:</span></p>
   <ul>
-    <li><span class="changedSpan">the user agent has more control over the display of characters, 
-    which is crucial to spoofing</span></li>
-    <li><span class="changedSpan">there are legitimate cases of visually confusable characters that 
-    one may want to allow <i>after</i> alerting the user.</span></li>
-    <li><span class="changedSpan">one cannot depend on all registries being equally responsive to 
-    security issues</span></li>
+    <li><span>the user agent has more control over the display of characters, which is crucial to 
+    spoofing</span></li>
+    <li><span>there are legitimate cases of visually confusable characters that one may want to 
+    allow <i>after</i> alerting the user.</span></li>
+    <li><span>one cannot depend on all registries being equally responsive to security issues</span></li>
   </ul>
-  <p><span class="changedSpan">So efforts need to be made on the part of user-agents as an 
-  additional line of defense.</span></p>
+  <p><span>So efforts need to be made on the part of user-agents as an additional line of defense.</span></p>
   <blockquote>
-    <p><span class="changedSpan"><b>Note: </b>since the top-level domain names (TLD: .com, .ru, 
-    etc.) is currently always ASCII, all discussions below of the domain names pertain to all but 
-    the top level.</span></p>
+    <p><span><b>Note: </b>since the top-level domain names (TLD: .com, .ru, etc.) is currently 
+    always ASCII, all discussions below of the domain names pertain to all but the top level.</span></p>
   </blockquote>
   <h3><b>Cross-Script Spoofing</b></h3>
   <p>Visually confusable characters are not usually unified across scripts. Thus a Greek <i>omicron</i> 
-  is encoded as a different character from the Latin &quot;o&quot;, even though it is usually identical
-  <span class="changedSpan">or nearly identical</span> in appearance. <span class="changedSpan">
-  There are good reasons for this: often the characters were separate in legacy encodings, and 
-  preservation of those distinctions was necessary for existing data to be mapped to Unicode without 
-  loss. Moreover, the characters generally have very different behavior: two visually confusable 
-  characters may be different in casing behavior, in category (letter vs. number), or in numeric 
-  value. After all, ASCII doesn&#39;t unify lowercase L and digit 1, even though those are visually 
-  confusable. Encoding the Cyrillic character б (corresponding to the letter &quot;b&quot;) by using the 
-  numeral 6, would clearly have been a mistake, even though they are visually confusable.</span></p>
-  <p><span class="changedSpan">However, the existence of these cases </span>means that there is a 
-  significant number of spoofing possibilities using characters from different scripts. For example, 
-  a domain name can be spoofed by using a Greek omicron instead of an &#39;o&#39;, as in example 2a.</p>
+  is encoded as a different character from the Latin &quot;o&quot;, even though it is usually identical <span>
+  or nearly identical</span> in appearance. <span>There are good reasons for this: often the 
+  characters were separate in legacy encodings, and preservation of those distinctions was necessary 
+  for existing data to be mapped to Unicode without loss. Moreover, the characters generally have 
+  very different behavior: two visually confusable characters may be different in casing behavior, 
+  in category (letter vs. number), or in numeric value. After all, ASCII doesn&#39;t unify lowercase L 
+  and digit 1, even though those are visually confusable. Encoding the Cyrillic character б 
+  (corresponding to the letter &quot;b&quot;) by using the numeral 6, would clearly have been a mistake, even 
+  though they are visually confusable.</span></p>
+  <p><span>However, the existence of these cases </span>means that there is a significant number of 
+  spoofing possibilities using characters from different scripts. For example, a domain name can be 
+  spoofed by using a Greek omicron instead of an &#39;o&#39;, as in example 2a.</p>
   <table id="AutoNumber2" style="BORDER-COLLAPSE: collapse" cellSpacing="0" cellPadding="4" border="1">
     <caption style="font-size: 14pt; font-weight: bold"><b>Cross-Script Spoofing</b></caption>
     <tr>
@@ -365,29 +363,27 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td><span class="mono">top.com</span></td>
     </tr>
   </table>
-  <p>There are many legitimate uses of mixed scripts. <span class="changedSpan">Because of the 
-  prevalence of Latin characters, </span>it is quite common, for example, to use English words (with 
-  Latin characters) in the middle of other languages using other scripts. <span class="changedSpan">
-  For example, one could have XML-документы.com (which would be a site for &quot;XML documents&quot; in 
-  Russian). Even in English, legitimate product or organization names or may contain non-Latin 
-  characters, such as Ωmega, Teχ, Toys-Я-Us, or HλLF-LIFE. The lack of IDNs in the past has also led 
-  to the usage in some registries (such as the .ru TLD) where Latin names have been used to create 
-  pseudo-cyrillic names in the .ru tld. For example, see <a href="http://caxap.ru/">http://caxap.ru/</a> 
-  (сахар means sugar in Russian)</span>.</p>
+  <p>There are many legitimate uses of mixed scripts. <span>Because of the prevalence of Latin 
+  characters, </span>it is quite common, for example, to use English words (with Latin characters) 
+  in the middle of other languages using other scripts. <span>For example, one could have XML-документы.com 
+  (which would be a site for &quot;XML documents&quot; in Russian). Even in English, legitimate product or 
+  organization names may contain non-Latin characters, such as Ωmega, Teχ, Toys-Я-Us, or HλLF-LIFE. 
+  The lack of IDNs in the past has also led to the usage in some registries (such as the .ru TLD) 
+  where Latin names have been used to create pseudo-cyrillic names in the .ru tld. For example, see
+  <a href="http://caxap.ru/">http://caxap.ru/</a> (сахар means sugar in Russian)</span>.</p>
   <p>The Unicode Standard supplies information that can be used for detecting mixed-script text: for 
   more information, see UAX #24: <i><a href="http://www.unicode.org/reports/tr24/">Script Names</a></i>.</p>
-  <p><span class="changedSpan">Cyrillic and Latin represent special challenges, since the number of 
-  common glyphs shared between them is so high, as can be seen from [<a href="#idn-chars">idn-chars</a>]. 
-  It may be possible to compose an entire domain name (except the TLD) in Cyrillic using letters 
-  that will be essentially always identical in form to Latin letters, such as &quot;scope.com&quot;: with 
-  &quot;scope&quot; in Cyrillic looking just like &quot;scope&quot; in Latin. These are called <i>whole-script 
-  confusables.</i></span></p>
+  <p><span>Cyrillic and Latin represent special challenges, since the number of common glyphs shared 
+  between them is so high, as can be seen from [<a href="#idn-chars">idn-chars</a>]. It may be 
+  possible to compose an entire domain name (except the TLD) in Cyrillic using letters that will be 
+  essentially always identical in form to Latin letters, such as &quot;scope.com&quot;: with &quot;scope&quot; in 
+  Cyrillic looking just like &quot;scope&quot; in Latin. These are called <i>whole-script confusables.</i></span></p>
   <h3>In-Script Spoofing</h3>
   <p>While compatibility normalization and mixed-script detection can handle the vast majority of 
-  cases, there are other visual confusables that could cause problems. With fonts increasing able to 
-  handle international characters, and <i>especially</i> with smaller font sizes in the context of 
-  an address bar, these visual confusables could be used to spoof. Importantly, these problems can 
-  be illustrated with common, widely available fonts on widely available operating systems
+  cases, there are other visual confusables that could cause problems. With fonts increasingly able 
+  to handle international characters, and <i>especially</i> with smaller font sizes in the context 
+  of an address bar, these visual confusables could be used to spoof. Importantly, these problems 
+  can be illustrated with common, widely available fonts on widely available operating systems
   <font face="Lucida Sans Unicode">—</font> this is not pointing a finger at any one vendor.</p>
   <p>Consider the following examples, all in the same script. In each numbered case, in commonly 
   available browsers, the strings will look identical.</p>
@@ -533,26 +529,57 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <p>In example 9, we have an even worse case. The <i>underdot</i> character in 9a is <i>actually</i> 
   under the &#39;l&#39;, but in many fonts, it appears as under the &#39;e&#39;! It is thus visually confusable with 
   9b (where the <i>underdot</i> is under the e) or the equivalent normalized form 9c.</p>
-  <h3><span class="changedSpan">Syntax Spoofing</span></h3>
-  <p><span class="changedSpan">Spoofing syntax characters can be even worse than regular characters. 
-  For example, U+2044 &#39;<span title="U+2044 FRACTION SLASH">⁄&#39; <span style="font-variant: small-caps">
-  FRACTION SLASH</span> can look like &#39;/&#39; in many fonts (ideally the spacing and angle is 
-  sufficiently different as to be distinguishable, but this is not always maintained. </span>This 
-  allows http://www.example.org/not.mydomain.com to pretend to be in the <i>example.org</i> domain, 
-  whereas it is actually the subzone <i>www.example.org/not</i> in the domain <i>mydomain.com</i>. 
-  Thus anything that is visually similar to &#39;.&#39;, &#39;/&#39;, &#39;#&#39;, is especially dangerous. Most of these 
-  cases, such as U+2024 (·) <span style="font-variant: small-caps">ONE DOT LEADER</span> are 
-  disallowed by StringPrep, but not all.</span></p>
-  <p><span class="changedSpan">It is important also not to show a missing glyph or character with a 
-  simple &quot;?&quot;, since that makes every such character be visually confusable with a real question 
-  mark. Instead, follow the Unicode guidelines for displaying missing glyphs using a 
-  rounded-rectangle, as described in Section
-  <a href="http://www.unicode.org/versions/Unicode4.0.0/ch05.pdf">5.3 <i>Unknown and Missing 
+  <h3><span>Syntax Spoofing</span></h3>
+  <p><span>Spoofing syntax characters can be even worse than regular characters. For example, U+2044 
+  &#39;<span title="U+2044 FRACTION SLASH">⁄&#39; <span style="font-variant: small-caps">FRACTION SLASH</span> 
+  can look like &#39;/&#39; in many fonts (ideally the spacing and angle is sufficiently different as to be 
+  distinguishable, but this is not always maintained. </span>This allows the following name:</span></p>
+  <blockquote>
+    <p><span>http://example.org/not.mydomain.com</span></p>
+  </blockquote>
+  <p><span>to pretend to be a subdomain in </span></p>
+  <blockquote>
+    <p><span>http://example.org</span></p>
+  </blockquote>
+  <p><span>whereas it is actually the subzone <i>&quot;example.org/not&quot;</i> in the domain</span></p>
+  <blockquote>
+    <p>http://<span>mydomain.com</span></p>
+  </blockquote>
+  <p><span>Thus anything that is visually similar to &#39;.&#39;, &#39;/&#39;, &#39;#&#39;, is especially dangerous. Most of 
+  these cases, such as U+2024 (·) <span style="font-variant: small-caps">ONE DOT LEADER</span> are 
+  disallowed by StringPrep [<a href="#RFC3454">RFC3454</a>], but not all.</span></p>
+  <p><span class="changedSpan">Of course, this approach can also work even without IDN, where the 
+  user is fooled into thinking that the domain name is the first part of the URL, not where it 
+  actually is. For example, in the following the real domain name, mydomain.com, is also obscured 
+  for the casual user.</span></p>
+  <blockquote>
+    <p><span class="changedSpan"><span>http://example.org</span>--long-and-obscure-list-of-characters.<span>mydomain.com</span></span></p>
+  </blockquote>
+  <p><span class="changedSpan">In retrospect, it would have been much better if domain names were 
+  customarily written with &quot;most significant part first&quot;. The following <i>hypothetical</i> display 
+  would be harder to spoof: the fact that it is &quot;com.mydomain&quot; is not as easily lost.</span></p>
+  <blockquote>
+    <p><span class="changedSpan"><span>http://com.mydomain.org/not.example<br>
+    http://com.mydomain.org</span>--long-and-obscure-list-of-characters.<span>example</span></span></p>
+  </blockquote>
+  <p><span class="changedSpan"><span>But that would be an impossible change at this point: those 
+  horses have long since left the barn. However, what could be done now is to always visually 
+  highlight the second-level domain, eg:</span></span></p>
+  <blockquote>
+    <p><span class="changedSpan"><span>http://<b><font color="#0000FF">example</font></b>.org</span><br>
+    http://<span><b><font color="#0000FF">mydomain</font></b>.com</span><br>
+    <span>http://example.org/not.<b><font color="#0000FF">mydomain</font></b>.com</span><br>
+    <span>http://example.org</span>--long-and-obscure-list-of-characters.</span><span><span class="changedSpan"><b><font color="#0000FF">mydomain</font></b>.com</span></span></p>
+  </blockquote>
+  <p><span>It is important also not to show a missing glyph or character with a simple &quot;?&quot;, since 
+  that makes every such character be visually confusable with a real question mark. Instead, follow 
+  the Unicode guidelines for displaying missing glyphs using a rounded-rectangle, as described in 
+  Section <a href="http://www.unicode.org/versions/Unicode4.0.0/ch05.pdf">5.3 <i>Unknown and Missing 
   Characters</i></a> of [<a href="#Unicode">Unicode</a>].&nbsp; For examples of this, see also [<a href="#Charts">Charts</a>].</span></p>
-  <h3><span class="changedSpan">Numeric Spoofs</span></h3>
-  <p><span class="changedSpan">Turning away from IDN for a moment, there is another area where 
-  visual spoofs can be used. Many scripts have sets of decimal digits that are different in shape 
-  that the typical European digits {0 1 2 3 4 5 6 7 8 9}. For example, Bengali has
+  <h3><span>Numeric Spoofs</span></h3>
+  <p><span>Turning away from IDN for a moment, there is another area where visual spoofs can be 
+  used. Many scripts have sets of decimal digits that are different in shape from the typical 
+  European digits {0 1 2 3 4 5 6 7 8 9}. For example, Bengali has
   <span title="U+09E6 BENGALI DIGIT ZERO">{০ </span><span title="U+09E7 BENGALI DIGIT ONE">১</span><span title="U+09F4 BENGALI CURRENCY NUMERATOR ONE">
   </span><span title="U+09E8 BENGALI DIGIT TWO">২</span><span title="U+09F5 BENGALI CURRENCY NUMERATOR TWO">
   </span><span title="U+09E9 BENGALI DIGIT THREE">৩ </span><span title="U+09EA BENGALI DIGIT FOUR">৪
@@ -569,142 +596,155 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   is visually confusable with <b>89</b> (at small sizes), but actually has the numeric value 42! 
   Where software simply interprets the numeric value of a string of digits, without detecting that 
   the digits are from different scripts, it is possible to generate such spoofs.</span></span></p>
-  <h3><span class="changedSpan"><a name="Visual_Spoofing_Recommendations">Recommendations</a></span></h3>
-  <p><span class="changedSpan">We are in the process of gathering data that would allow for a 
-  finer-grained approach, but until such time as that is more comprehensive, we&#39;d recommend having a 
-  more conservative stance. It is always easier to widen restrictions than narrow them. We do expect 
-  these recommendations to be refined over time.</span></p>
-  <p><span class="changedSpan">Some people have proposed prevention of spoofing by restricting 
-  domain names according to language. In practice, that is very problematic. It is very difficult to 
-  determine the intended language of many terms, especially product or company names, which are 
-  often constructed to be neutral regarding language. Moreover, languages tend to be quite fluid; 
-  foreign words are continually being adopted. Except for registries with very special policies 
-  (such as the blocking used by some East Asian<br>
-  registries such as described in <a href="http://ietf.org/rfc/rfc3743.txt?number=3743">RFC 3743</a>), 
-  the language association doesn&#39;t make too much sense. </span></p>
-  <p><span class="changedSpan">Instead, what is recommended is a combination of string preprocessing 
-  to remove basic equivalences, promoting adequate rendering support, and putting restrictions in 
-  place according to script and restricting by confusable characters. While the ICANN guidelines say 
-  &quot;top-level domain registries will (a) associate each registered internationalized domain name with 
-  one language or set of languages&quot; (<a href="http://www.icann.org/general/idn-guidelines-20jun03.htm">http://www.icann.org/general/idn-guidelines-20jun03.htm</a>), 
+  <h3><span><a name="Visual_Spoofing_Recommendations">Recommendations</a></span></h3>
+  <p><span>We are in the process of gathering data that would allow for a finer-grained approach, 
+  but until such time as that is more comprehensive, we&#39;d recommend having a more conservative 
+  stance. It is always easier to widen restrictions than narrow them. We do expect these 
+  recommendations to be refined over time.</span></p>
+  <p><span>Some people have proposed prevention of spoofing by restricting domain names according to 
+  language. In practice, that is very problematic. It is very difficult to determine the intended 
+  language of many terms, especially product or company names, which are often constructed to be 
+  neutral regarding language. Moreover, languages tend to be quite fluid; foreign words are 
+  continually being adopted. Except for registries with very special policies (such as the blocking 
+  used by some East Asian registries such as described in [<a href="#RFC3743">RFC3743</a>]), the 
+  language association doesn&#39;t make too much sense. </span></p>
+  <p><span>Instead, what is recommended is a combination of string preprocessing to remove basic 
+  equivalences, promoting adequate rendering support, and putting restrictions in place according to 
+  script and restricting by confusable characters. While the ICANN guidelines say &quot;top-level domain 
+  registries will (a) associate each registered internationalized domain name with one language or 
+  set of languages&quot; (<a href="http://www.icann.org/general/idn-guidelines-20jun03.htm">http://www.icann.org/general/idn-guidelines-20jun03.htm</a>), 
   that is better interpreted as limiting to script rather than language.</span></p>
-  <p><span class="changedSpan">In the following, &quot;appropriate alerts&quot; are recommended. The form of 
-  such alerts could be minimal, such as special coloring or icons (perhaps with a tool-tip for more 
-  information), or more in-your-face, such as an alert dialog describing the issue and requiring 
-  user confirmation before continuing. The strength of the alert can be scaled according to the 
-  level of the potential problem. The user-agent could also remember when the user has accepted an 
-  alert, for say Ωmega.com, and permit future access without bothering the user again with an alert.</span></p>
-  <p><span class="changedSpan">The term &quot;Registry&quot; is to be interpreted broadly. The .com operator 
-  can impose restrictions on the 2nd level domain label, <br>
-  but if someone registers foo.com, then it&#39;s up to them to decide what will be allowed at the 3rd 
-  level (e.g. bar.foo.com). So for that purpose, the owner of foo.com is treated as the &quot;registry&quot; 
-  for the 3rd level (the &#39;bar&#39;). The term &quot;Registrant&quot; is used to refer to someone applying to a 
-  registry for a domain name.</span></p>
-  <p><span class="changedSpan">Also see the security discussions in [<a href="#IRI">IRI</a>], [<a href="#URI">URI</a>], 
-  and [<a href="#StringPrep">StringPrep</a>].<br>
-&nbsp;</span></p>
+  <p><span>In the following recommendations:</span></p>
+  <ul>
+    <li><span>&quot;appropriate alerts&quot; are recommended. The form of such alerts could be minimal, such 
+    as special coloring or icons (perhaps with a tool-tip for more information), or more 
+    in-your-face, such as an alert dialog describing the issue and requiring user confirmation 
+    before continuing. The strength of the alert can be scaled according to the level of the 
+    potential problem. The user-agent could also remember when the user has accepted an alert, for 
+    say Ωmega.com, and permit future access without bothering the user again with an alert.</span></li>
+    <li>t<span>he term &quot;Registry&quot; is to be interpreted broadly. The .com operator can impose 
+    restrictions on the 2nd level domain label, but if someone registers foo.com, then it&#39;s up to 
+    them to decide what will be allowed at the 3rd level (e.g. bar.foo.com). So for that purpose, 
+    the owner of foo.com is treated as the &quot;registry&quot; for the 3rd level (the &#39;bar&#39;). The term 
+    &quot;Registrant&quot; is used to refer to someone applying to a registry for a domain name.</span></li>
+  </ul>
+  <p><span>Also see the security discussions in IRI [<a href="#RFC3987">RFC3987</a>], URI [<a href="#RFC3986">RFC3986</a>], 
+  and StringPrep [<a href="#RFC3454">RFC3454</a>].</span></p>
   <ol type="I">
     <li>
-    <h4><span class="changedSpan">General</span></h4>
+    <h4><span>General</span></h4>
     <ol>
-      <li><span class="changedSpan">In checking equivalence of identifiers, preprocess both strings 
-      by applying NFKC and case folding. An example of this methodology is StringPrep (RFC XXX). 
+      <li><span>In checking equivalence of identifiers, preprocess both strings by applying NFKC and 
+      case folding. An example of this methodology is StringPrep [<a href="#RFC3454">RFC3454</a>]. 
       Display all such identifiers to users in their post-processed form. That will, for example, 
       always map characters to lowercase, where characters are generally more distinctive.</span><ul>
-        <li><span class="changedSpan">Although StringPrep itself is currently limited to Unicode 
-        3.2, the same methodology can be applied by implementations that need to support more modern 
-        versions of Unicode.</span></li>
+        <li><span>Although StringPrep itself is currently limited to Unicode 3.2, the same 
+        methodology can be applied by implementations that need to support more modern versions of 
+        Unicode.</span></li>
       </ul>
       </li>
-      <li><span class="changedSpan">Disallow the use of non-spacing marks at the start of an 
-      identifier, since those will often be clipped in display.</span></li>
-      <li><span class="changedSpan">Assess the font support of the OS/platform according to draft 
-      UTR #32: <i>Assessing Unicode Support (to be issued soon)</i>. See also the W3C [<a href="#CharMod">CharMod</a>]. 
-      If it is inadequate, work with the OS/platform vendor to address those problems, or implement 
+      <li><span>Disallow the use of non-spacing marks at the start of an identifier, since those 
+      will often be clipped in display.</span></li>
+      <li><span>Assess the font support of the OS/platform according to draft UTR #32: <i>Assessing 
+      Unicode Support (to be issued soon)</i>. See also the W3C [<a href="#CharMod">CharMod</a>]. If 
+      it is inadequate, work with the OS/platform vendor to address those problems, or implement 
       your own handling of problematic cases:</span><ol type="a">
-        <li><span class="changedSpan">Verify that accents do not appear to apply to the wrong 
-        character.</span></li>
-        <li><span class="changedSpan">Follow <a href="http://www.unicode.org/notes/tn2/">UTN #2: <i>
-        Rendering Combining Marks</i></a> in providing layout of non-spacing marks that would 
-        otherwise collide. If this is not done, use the &quot;Show Hidden&quot; option of Section
+        <li><span>Verify that accents do not appear to apply to the wrong character.</span></li>
+        <li><span>Follow <a href="http://www.unicode.org/notes/tn2/">UTN #2: <i>Rendering Combining 
+        Marks</i></a> in providing layout of non-spacing marks that would otherwise collide. If this 
+        is not done, use the &quot;Show Hidden&quot; option of Section
         <a href="http://www.unicode.org/versions/Unicode4.0.0/ch05.pdf">5.13 <i>Rendering Nonspacing 
         Marks</i></a> of [<a href="#Unicode">Unicode</a>] for the display of non-spacing marks.</span></li>
-        <li><span class="changedSpan">Follow the Unicode guidelines for displaying missing glyphs 
-        using a rounded-rectangle, as described in Section
+        <li><span>Follow the Unicode guidelines for displaying missing glyphs using a 
+        rounded-rectangle, as described in Section
         <a href="http://www.unicode.org/versions/Unicode4.0.0/ch05.pdf">5.3 <i>Unknown and Missing 
         Characters</i></a> of [<a href="#Unicode">Unicode</a>].</span></li>
       </ol>
       </li>
-      <li><span class="changedSpan">In all software that parses numbers, detect digits of mixed (or 
-      unexpected) scripts.</span></li>
+      <li><span>In all software that parses numbers, detect digits of mixed (or unexpected) scripts.</span></li>
     </ol>
     </li>
-    <li><span class="changedSpan"><b>Domain Names: User Agents</b></span><ol type="A">
-      <li><span class="changedSpan">Follow the General recommendations above.</span></li>
-      <li><span class="changedSpan">Always display the domain name in Stringprepped form. That will, 
-      for example, always map characters to lowercase, where characters are generally more 
-      distinctive.</span></li>
-      <li><span class="changedSpan">Display the URL with fonts that shows as many distinctions as 
-      possible among the visually confusable characters. For example, serifed fonts are generally 
-      better than sans serif. Use a size that makes it easier to see the differences in characters. 
-      Disallow the use of font sizes that are so small as to cause even more characters to be 
-      visually confusable.</span></li>
-      <li><span class="changedSpan">Provide the following optional Security Levels according to the 
-      contents of the domain name (excluding the TLD). Any domain names only satisfying a higher 
-      level would generate appropriate alerts.</span><ol>
-        <li><b><span class="changedSpan">No IDN</span></b><ul>
-          <li><span class="changedSpan">ASCII only</span></li>
+    <li><span><b>Domain Names: User Agents</b></span><ol type="A">
+      <li><span>Follow the General recommendations above.</span></li>
+      <li><span>Always display the domain name in </span>nameprepped form<span> [<a href="#RFC3491">RFC3491</a>]. 
+      That will, for example, always map characters to lowercase, where characters are generally 
+      more distinctive.</span></li>
+      <li><span>Display the URL with fonts that shows as many distinctions as possible among the 
+      visually confusable characters. For example, serifed fonts are generally better than sans 
+      serif. Use a size that makes it easier to see the differences in characters. Disallow the use 
+      of font sizes that are so small as to cause even more characters to be visually confusable.</span></li>
+      <li><span>Provide the following optional Security Levels according to the contents of the 
+      domain name (excluding the TLD). Any domain names only satisfying a higher level would 
+      generate appropriate alerts. <span class="changedSpan">A breakdown of characters by script is 
+      given in [<a href="#idn-chars">idn-chars</a>].</span></span><ol>
+        <li><b><span>No IDN</span></b><ul>
+          <li><span>ASCII only</span></li>
         </ul>
         </li>
-        <li><b><span class="changedSpan">Minimal (default -- short term)</span></b><ul>
-          <li><span class="changedSpan">any single script, or <i>Han + Hiragana + Katakana</i>, or
-          <i>Han + Bopomofo</i>, or <i>Han + Hangul</i>, </span></li>
-          <li><span class="changedSpan">plus <i>Common</i>, plus <i>Inherited</i> script characters</span></li>
-          <li><span class="changedSpan"><i><b>but:</b></i></span></li>
-          <li><span class="changedSpan">exclude special-purpose characters (see [<a href="#special">special</a>])</span></li>
-          <li><span class="changedSpan"><font color="#FF0000">(possible future extension)</font> 
-          exclude any combining character sequences outside of NamedSequences.txt (Unicode 4.1)</span></li>
+        <li><b><span>Minimal (default -- short term)</span></b><ul>
+          <li><span>any single script, or <i>Han + Hiragana + Katakana</i>, or <i>Han + Bopomofo</i>, 
+          or <i>Han + Hangul</i>, </span></li>
+          <li><span>plus <i>Common</i>, plus <i>Inherited</i> script characters</span></li>
+          <li><span><i><b>but:</b></i></span></li>
+          <li><span>exclude special-purpose characters (see [<a href="#special">special</a>])</span></li>
+          <li><span><font color="#FF0000">(possible future extension)</font> exclude any combining 
+          character sequences outside of NamedSequences.txt (Unicode 4.1)</span></li>
         </ul>
         </li>
-        <li><b><span class="changedSpan">Moderate = </span></b><span class="changedSpan">Minimal +
-        </span>
+        <li><b><span>Moderate = </span></b><span>Minimal + </span>
         <ul>
-          <li><span class="changedSpan">allow Latin with other scripts except Cyrillic, Greek, 
-          Cherokee</span></li>
+          <li><span>allow <i>Latin</i> with other scripts except <i>Cyrillic</i>, <i>Greek</i>, <i>
+          Cherokee</i></span></li>
         </ul>
         </li>
-        <li><b><span class="changedSpan">Expanded = </span></b><span class="changedSpan">Moderate +</span><ul>
-          <li><span class="changedSpan">allow mixtures of scripts, e.g. Ωmega.com, Teχ.org, 
-          HλLF-LIFE.com</span></li>
-          <li><span class="changedSpan">allow more excluded characters (data — TBD)</span></li>
+        <li><b><span>Expanded = </span></b><span>Moderate +</span><ul>
+          <li><span>allow mixtures of scripts, e.g. Ωmega.com, Teχ.org, HλLF-LIFE.com</span></li>
+          <li><span>allow more excluded characters (data — TBD)</span></li>
         </ul>
         </li>
-        <li><b><span class="changedSpan">Unrestricted</span></b><ul>
-          <li><span class="changedSpan">any valid IDN, except those starting with combining marks, 
-          or using visually confusable syntax characters</span></li>
+        <li><b><span>Unrestricted</span></b><ul>
+          <li><span>any valid IDN, except those starting with combining marks, or using visually 
+          confusable syntax characters</span></li>
         </ul>
         </li>
       </ol>
       </li>
-      <li><span class="changedSpan">Once confusable data is more comprehensive, raise the default 
-      level to Level3, but alert on domain names where there is some mapping of confusable 
-      characters that would result in a different domain name that would also be allowed at that 
-      security level. For example: &quot;ѕсоре.com&quot; (with &quot;ѕсоре&quot; in Cyrillic looking like &quot;scope&quot; in 
-      Latin) would cause an alert at Level 2, even though it is a single script (excluding the TLD).</span></li>
+      <li><span>Once confusable data is more comprehensive:</span><ol>
+        <li>R<span>aise the default level to Level3</span></li>
+        <li>A<span>lert on domain names where there is some mapping of confusable characters that 
+        would result in a different domain name that would also be allowed at that security level.</span><ul>
+          <li><span>For example: &quot;ѕсоре.com&quot; (with &quot;ѕсоре&quot; in <i>Cyrillic</i> looking like &quot;scope&quot; 
+          in <i>Latin</i>) would cause an alert at Level 2, even though it is a single script 
+          (excluding the TLD).</span></li>
+        </ul>
+        </li>
+        <li><span class="changedSpan">If the domain name has a whole-script confusable, verify that 
+        both point to the same IP address. If not, alert the user.</span></li>
+      </ol>
+      </li>
+      <li><span class="changedSpan">Visually highlight the domain name when a URL is displayed, to 
+      prevent syntax spoofs.</span></li>
     </ol>
     </li>
-    <li><span class="changedSpan"><b>Domain Names: Registries</b></span><ol>
-      <li><span class="changedSpan">In the short term, use Level 2 to restrict new domain names.</span></li>
-      <li><span class="changedSpan">Once the confusable data is more comprehensive, raise the 
-      allowable level to Level 5, but disallow registration of a new domain name that only differs 
-      by confusable characters from one already registered.</span></li>
+    <li><span><b>Domain Names: Registries</b></span><ol type="A">
+      <li><span>In the short term, use Level 2 <span class="changedSpan">from &quot;User Agents&quot;</span> 
+      to restrict new domain names.</span></li>
+      <li><span>Once the confusable data is more comprehensive:</span><ol>
+        <li>R<span>aise the allowable level to Level 5</span></li>
+        <li><span class="changedSpan">Whenever a new domain name is registered, automatically give 
+        the registrant any whole-script confusable variant. Thus a registration of &quot;<span>ѕсоре.com</span>&quot; 
+        (<i>Cyrillic</i>) would automatically also get a registration of &quot;scope.com&quot; (<i>Latin</i>).</span></li>
+        <li>Otherwise d<span>isallow registration of a new domain name that only differs by 
+        confusable characters from one already registered.</span></li>
+      </ol>
+      </li>
     </ol>
     </li>
-    <li><b><span class="changedSpan">Domain Names: Registrants</span></b><ol>
-      <li><span class="changedSpan">Verify that the Registry follows appropriate guidelines for 
-      preventing spoofing.</span></li>
-      <li><span class="changedSpan">If the desired domain name has any whole-script confusables 
-      (such as &quot;scope&quot; in Latin and Cyrillic), register those as well.</span></li>
+    <li><b><span>Domain Names: Registrants</span></b><ol type="A">
+      <li><span>Verify that the Registry follows appropriate guidelines for preventing spoofing.</span></li>
+      <li><span>If the desired domain name has any whole-script confusables (such as &quot;scope&quot; in 
+      Latin and Cyrillic), register those as well<span class="changedSpan">, if not automatically 
+      provided by the registry</span>.</span></li>
     </ol>
     </li>
   </ol>
@@ -712,71 +752,48 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <p class="reviewnote"><b>Note to Reviewers:</b> <b>To Do:</b></p>
   <ul>
     <li>
-    <p class="reviewnote"><span class="changedspan">Give more background as to why normalization 
-    fixes certain problems, and which it does not fix. Describe how implementations of normalization 
-    can use small data set limited to only supported characters. Describe the recommended use of 
-    normalization in non-domain part of URL.</span></li>
+    <p class="reviewnote"><span>Give more background as to why normalization fixes certain problems, 
+    and which it does not fix. Describe how implementations of normalization can use small data set 
+    limited to only supported characters. Describe the recommended use of normalization in 
+    non-domain part of URL.</span></li>
     <li>
-    <p class="reviewnote"><span class="changedspan">Describe BIDI spoofs. Use material from Michel&#39;s 
-    slides. Show how reverse-bidi (visual order -&gt; storage order) can be used to detect bidi spoofs. 
-    That is: one can apply bidi then reverse bidi: if the result does not match the original, then 
-    reject the string.</span></li>
+    <p class="reviewnote"><span>Describe BIDI spoofs. Use material from Michel&#39;s slides. Show how 
+    reverse-bidi (visual order -&gt; storage order) can be used to detect bidi spoofs. That is: one can 
+    apply bidi then reverse bidi: if the result does not match the original, then reject the string.</span></li>
     <li>
-    <p class="reviewnote"><span class="changedspan">Explain that private use characters can cause 
-    security problems, and recommend strongly against their use.</span></li>
+    <p class="reviewnote"><span>Explain that private use characters can cause security problems, and 
+    recommend strongly against their use (not a problem for IDN, but for other identifiers it can 
+    be).</span></li>
     <li>
-    <p class="reviewnote"><span class="changedspan">Describe cases in complex languages (eg Indic) 
-    where the same visual appearance may result from two different undering character sequences — <i>
-    in the right context</i>.</span></li>
+    <p class="reviewnote"><span>Describe cases in complex languages (eg Indic) where the same visual 
+    appearance may result from two different undering character sequences — <i>in the right context</i>.</span></li>
     <li>
-    <p class="reviewnote"><span class="changedSpan">Add information on spoofs that only work with 
-    contextual scripts, such as Arabic.</span></li>
+    <p class="reviewnote"><span>Add information on spoofs that only work with contextual scripts, 
+    such as Arabic.</span></li>
     <li>
-    <p class="reviewnote"><span class="changedSpan">Discuss security issues in Collation (sorting, 
-    searching, matching)</span></li>
+    <p class="reviewnote"><span>Discuss security issues in Collation (sorting, searching, matching)</span></li>
     <li>
-    <p class="reviewnote"><span class="changedSpan">Describe how TrueType/OpenType fonts can be used 
-    in spoofing: fonts are actually programs that can deform glyph shapes radically according to 
-    resolution, platform, or language. For example $100.00 could appear as $200.00 when printed.</span></li>
+    <p class="reviewnote"><span>Describe how TrueType/OpenType fonts can be used in spoofing: fonts 
+    are actually programs that can deform glyph shapes radically according to resolution, platform, 
+    or language. For example $100.00 could appear as $200.00 when printed.</span></li>
     <li>
-    <p class="reviewnote"><span class="changedSpan">Discuss SSL and how root Certificate Authorities 
-    can be a problem, but are also part of the solution; most customers would lose faith quickly in 
-    internet financial transaction if SSL/https can be easily compromised</span></li>
-  </ul>
-  <ul>
+    <p class="reviewnote"><span>Discuss SSL and how root Certificate Authorities can be a problem, 
+    but are also part of the solution; most customers would lose faith quickly in internet financial 
+    transaction if SSL/https can be easily compromised</span></li>
     <li>
-    <p class="reviewnote">Add other applications of visual spoofing, aside from the example of IDN. 
-    International domain names are actually in much better shape than many other areas, since the 
-    problem will be much more severe in any area where text is not normalized. So focus on those 
+    <p class="reviewnote">Expand other applications of visual spoofing, aside from the example of 
+    IDN. International domain names are actually in much better shape than many other areas, since 
+    the problem will be much more severe in any area where text is not normalized. So focus on those 
     issues.</li>
-    <li>
-    <p class="reviewnote">Discuss Unicode properties. Eg more characters have numeric properties 
-    than developers might expect.</li>
-    <li>
-    <p class="reviewnote">Discuss Use of Regular Expressions in validating data — ensuring that the 
-    Regular Expression Engine follows the Unicode Guidelines, but also that use of regular 
-    expressions makes use of properties rather than fixed lists of characters.</li>
-    <li>
-    <p class="reviewnote">Discuss and/or point to other items:<ul>
-      <li>
-      <p class="reviewnote"><a href="http://www.nextgenss.com/papers/unicodebo.pdf">
-      http://www.nextgenss.com/papers/unicodebo.pdf</a></li>
-      <li>
-      <p class="reviewnote"><a href="http://www.cs.technion.ac.il/~gabr/papers/homograph_full.pdf">
-      http://www.cs.technion.ac.il/~gabr/papers/homograph_full.pdf</a></li>
-      <li>
-      <p class="reviewnote"><span class="changedSpan">W3C Recommendations</span></li>
-    </ul>
-    </li>
   </ul>
-  <h2><span class="changedSpan">4. <a name="Data_Files">Data Files</a></span></h2>
-  <p><span class="changedSpan">There are three data files currently associated with this document.</span></p>
+  <h2><span>4. <a name="Data_Files">Data Files</a></span></h2>
+  <p><span>There are three data files currently associated with this document.</span></p>
   <table cellspacing="0" cellpadding="4" border="0" class="noborder" style="border-collapse: collapse">
     <tr>
-      <td class="noborder" valign="top" width="1" nowrap="nowrap"><span class="changedSpan">[<a name="idn-chars">idn-chars</a>]</span></td>
-      <td class="noborder" valign="top"><span class="changedSpan"><b>IDN Characters: </b>
-      <a href="idn-chars.html">idn-chars.html</a><b><br>
-      </b>Lists all the possible IDN chars, after StringPrep is performed. Contains all the possible 
+      <td class="noborder" valign="top" width="1" nowrap="nowrap"><span>[<a name="idn-chars">idn-chars</a>]</span></td>
+      <td class="noborder" valign="top"><span><b>IDN Characters: </b><a href="idn-chars.html">
+      idn-chars.html</a><b><br>
+      </b>Lists all the possible IDN chars, after nameprep is performed. Contains all the possible 
       characters, sorted by script, then whether atomic (non-decomposible) or decomposable, then 
       according to UCA collation order. Scripts that are bicameral (have both upper and lower cases) 
       are further divided into two sets, based on whether letters have both cases or not. If your 
@@ -784,57 +801,92 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       point.</span></td>
     </tr>
     <tr>
-      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="confusables">confusables</a>]</span></td>
-      <td class="noborder" valign="top"><span class="changedSpan">
-      <span style="background-color: #FFFF00"><b>Visually Confusable Characters: </b></span>
-      <a href="confusables.txt">confusables.txt</a><br>
+      <td class="noborder" valign="top" width="1"><span>[<a name="confusables">confusables</a>]</span></td>
+      <td class="noborder" valign="top"><b>Visually Confusable Characters: </b>
+      <a href="confusables.txt"><span>confusables.txt</span></a><span><br>
       The format and usage of the file are described in the file header.<i><br>
       Note: we are just starting the project of collecting this data, and examining the feasibility 
       of different approaches, so we have just begun to gather data in this file.</i></span></td>
     </tr>
     <tr>
-      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="special">special</a>]</span></td>
-      <td class="noborder" valign="top"><span class="changedSpan"><b>Special-Purpose Characters: </b>
+      <td class="noborder" valign="top" width="1"><span>[<a name="special">special</a>]</span></td>
+      <td class="noborder" valign="top"><span><b>Special-Purpose Characters: </b>
       <a href="special_purpose.txt">special_purpose.txt</a><br>
-      Characters that are not in common modern use.<br>
+      Characters that are not letters in common modern use, and may be disallowed at certain 
+      security levels.<br>
       <i>Note: we are just starting the project of collecting this data, and examining the 
       feasibility of different approaches, so we have just begun to gather data in this file.</i></span></td>
     </tr>
   </table>
-  <hr width="50%">
+  <hr width="50%"><hr width="50%">
+  <h2><span class="changedSpan"><a name="Related_Material">Related Material</a></span></h2>
+  <h3><span class="changedSpan">Canonical Representation</span></h3>
+  <ul>
+    <li><span class="changedSpan">
+    <a href="http://www.microsoft.com/technet/security/bulletin/MS00-078.mspx">Microsoft Security 
+    Bulletin (MS00-078): Patch Available for &#39;Web Server Folder Traversal&#39; Vulnerability</a></span></li>
+    <li><span class="changedSpan">
+    <a href="http://www.ins.com/downloads/whitepapers/ins_white_paper_ms_iis_unicode_exploit_0801.pdf">
+    INS: Microsoft IIS Unicode Exploit</a></span></li>
+    <li><a href="http://www.nextgenss.com/papers/unicodebo.pdf">Creating Arbitrary Shellcode In 
+    Unicode Expanded Strings</a></li>
+  </ul>
+  <h3><span class="changedSpan">Visual Spoofing</span></h3>
+  <ul>
+    <li><span class="changedSpan">
+    <a href="http://www.cs.technion.ac.il/~gabr/papers/homograph_full.pdf">The Homograph Attack</a></span></li>
+    <li><span class="changedSpan">
+    <a href="http://news.zdnet.co.uk/internet/security/0,39020375,2080344,00.htm">PayPal alert! 
+    Beware the &#39;PaypaI&#39; scam</a></span></li>
+    <li><span class="changedSpan"><a href="http://www.icann.org/topics/news022305.html">gTLD 
+    Registry Constutuency: Potential of IDN for malicious abuse </a></span></li>
+    <li><span class="changedSpan"><a href="http://www.icann.org/topics/idn.html">ICANN | 
+    Internationalized Domain Names</a>&nbsp;&nbsp; </span></li>
+    <li><span class="changedSpan"><span style="font-size: 12pt;">
+    <a href="http://www.ietf.org/IESG/STATEMENTS/IDNstatement.txt" target="_blank">IESG statement of 
+    11 February 2003</a></span></span></li>
+    <li><span class="changedSpan"><a href="http://forum.icann.org/lists/idn-homograph/">ICANN Email 
+    Archives [idn-homograph]</a></span></li>
+    <li><span class="changedSpan">
+    <a href="http://www.ietf.org/internet-drafts/draft-klensin-reg-guidelines-06.txt">Suggested 
+    Practices for Registration of Internationalized Domain Names (IDN)</a></span></li>
+    <li><span class="changedSpan"><a href="http://secunia.com/multiple_browsers_idn_spoofing_test/">
+    Multiple Browsers IDN Spoofing Test</a> </span></li>
+  </ul>
   <h2 class="old_changed"><a name="Acknowledgements">Acknowledgements</a></h2>
   <p class="old_changed">Steven Loomis and other people on the ICU team were very helpful in 
   developing the original proposal for this technical report. Thanks also to the following people 
-  for their feedback or contributions to this document <span class="changedSpan">or earlier versions 
-  of it</span>: Martin Dürst, Paul Hoffman, <span class="changedSpan">Eric Muller, and especially 
-  Michel Suignard. This document also draws on examples or ideas suggested in email discussions from 
-  Alexander Savenkov, Eric van der Poel, and others.</span></p>
+  for their feedback or contributions to this document <span>or earlier versions of it</span>: 
+  Martin Dürst, Paul Hoffman, <span>Eric Muller, Erik van der Poel, and especially Michel Suignard. 
+  This document also draws on examples or ideas suggested in email discussions from Alexander 
+  Savenkov, Erik van der Poel, and others.</span></p>
   <h2><a name="References">References</a></h2>
   <p class="reviewnote"><b>To Do: </b>comb through the text and convert the references to the 
   standard form.</p>
   <table cellspacing="0" cellpadding="4" border="0" class="noborder" style="border-collapse: collapse">
     <tr>
-      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="CharMod">CharMod</a>]</span></td>
-      <td class="noborder" valign="top"><span class="changedSpan">Character Model for the World Wide 
-      Web 1.0: Fundamentals<br>
+      <td class="noborder" valign="top" width="1"><span>[<a name="CharMod">CharMod</a>]</span></td>
+      <td class="noborder" valign="top"><span>Character Model for the World Wide Web 1.0: 
+      Fundamentals<br>
       <a href="http://www.w3.org/TR/charmod/">http://www.w3.org/TR/charmod/</a> </span></td>
     </tr>
     <tr>
-      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="Charts">Charts</a>]</span></td>
-      <td class="noborder" valign="top"><span class="changedSpan">Unicode Charts<br>
+      <td class="noborder" valign="top" width="1"><span>[<a name="Charts">Charts</a>]</span></td>
+      <td class="noborder" valign="top"><span>Unicode Charts<br>
       <a href="http://www.unicode.org/charts/">http://www.unicode.org/charts/</a></span></td>
     </tr>
     <tr>
-      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="Display">Display</a>]</span></td>
-      <td class="noborder" valign="top"><span class="changedSpan">Display Problems?<br>
+      <td class="noborder" valign="top" width="1"><span>[<a name="Display">Display</a>]</span></td>
+      <td class="noborder" valign="top"><span>Display Problems?<br>
       <a href="http://www.unicode.org/help/display_problems.html">
       http://www.unicode.org/help/display_problems.html</a> </span></td>
     </tr>
     <tr>
-      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="IRI">IRI</a>]</span></td>
-      <td class="noborder" valign="top"><span class="changedSpan">RFC 3987 Internationalized 
-      Resource Identifiers (IRIs). M. Duerst, M. Suignard. January 2005.<br>
-      <a href="http://ietf.org/rfc/rfc3987.txt">http://ietf.org/rfc/rfc3987.txt</a> </span></td>
+      <td class="noborder" valign="top" width="1" nowrap="nowrap"><span class="changedSpan"><span>[<a name="IDN-Demo">IDN-Demo</a>]</span></span></td>
+      <td class="noborder" valign="top"><span class="changedSpan"><span>ICU (International 
+      Components for Unicode) IDN Demo<br>
+      <a href="http://ibm.com/software/globalization/icu/demo/domain/">
+      http://ibm.com/software/globalization/icu/demo/domain/</a></span></span></td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="Feedback">Feedback</a>]</td>
@@ -849,10 +901,48 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       list of technical reports.</i></td>
     </tr>
     <tr>
-      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="StringPrep">StringPrep</a>]</span></td>
-      <td class="noborder" valign="top"><span class="changedSpan">RFC 3454 Preparation of 
-      Internationalized Strings (&quot;stringprep&quot;). P. Hoffman, M. Blanchet. December 2002.<br>
+      <td class="noborder" valign="top" width="1"><span>[<a name="RFC3454">RFC3454</a>]</span></td>
+      <td class="noborder" valign="top"><span>P. Hoffman, M. Blanchet. &quot;Preparation of 
+      Internationalized Strings (&quot;stringprep&quot;)&quot;, RFC 3454, December 2002.<br>
       <a href="http://ietf.org/rfc/rfc3454.txt">http://ietf.org/rfc/rfc3454.txt</a> </span></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="RFC3490">RFC3490</a>]</span></td>
+      <td class="noborder" valign="top"><span class="changedSpan">Faltstrom, P., Hoffman, P. and A. 
+      Costello, &quot;Internationalizing Domain Names in Applications (IDNA)&quot;, RFC 3490, March 2003.<br>
+      http://ietf.org/rfc/rfc3490.txt</span></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="RFC3491">RFC3491</a>]</span></td>
+      <td class="noborder" valign="top"><span class="changedSpan">Hoffman, P. and M. Blanchet, &quot;Nameprep: 
+      A Stringprep Profile for Internationalized Domain Names (IDN)&quot;, RFC 3491, March 2003.<br>
+      http://ietf.org/rfc/rfc3491.txt</span></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="RFC3492">RFC3492</a>]</span></td>
+      <td class="noborder" valign="top"><span class="changedSpan">Costello, A., &quot;Punycode: A 
+      Bootstring encoding of Unicode for Internationalized Domain Names in Applications (IDNA)&quot;, RFC 
+      3492, March 2003.<br>
+      http://ietf.org/rfc/rfc3492.txt</span></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="RFC3743">RFC3743</a>]</span></td>
+      <td class="noborder" valign="top"><span class="changedSpan">Konishi, K., Huang, K., Qian, H. 
+      and Y. Ko, &quot;Joint Engineering Team (JET) Guidelines for Internationalized Domain Names (IDN) 
+      Registration and Administration for Chinese, Japanese, and Korean&quot;, RFC 3743, April 2004.<br>
+      http://ietf.org/rfc/rfc3743.txt</span></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1"><span>[<a name="RFC3986">RFC3986</a>]</span></td>
+      <td class="noborder" valign="top"><span>T. Berners-Lee, R. Fielding, L. Masinter. &quot;Uniform 
+      Resource Identifier (URI): Generic Syntax&quot;, RFC 3986, January 2005.<br>
+      <a href="http://ietf.org/rfc/rfc3986.txt">http://ietf.org/rfc/rfc3986.txt</a></span></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1"><span>[<a name="RFC3987">RFC3987</a>]</span></td>
+      <td class="noborder" valign="top"><span>M. Duerst, M. Suignard. &quot;Internationalized Resource 
+      Identifiers (IRIs)&quot;, RFC 3987, January 2005.<br>
+      <a href="http://ietf.org/rfc/rfc3987.txt">http://ietf.org/rfc/rfc3987.txt</a> </span></td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="UCD">UCD</a>]</td>
@@ -867,12 +957,6 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       Reading, MA, Addison-Wesley, 2003. 0-321-18578-1.</td>
     </tr>
     <tr>
-      <td class="noborder" valign="top" width="1"><span class="changedSpan">[<a name="URI">URI</a>]</span></td>
-      <td class="noborder" valign="top"><span class="changedSpan">RFC 3986 Uniform Resource 
-      Identifier (URI): Generic Syntax. T. Berners-Lee, R. Fielding, L. Masinter. January 2005.<br>
-      <a href="http://ietf.org/rfc/rfc3986.txt">http://ietf.org/rfc/rfc3986.txt</a></span></td>
-    </tr>
-    <tr>
       <td class="noborder" valign="top" width="1">[<a name="Versions">Versions</a>]</td>
       <td class="noborder" valign="top">Versions of the Unicode Standard<br>
       <a href="http://www.unicode.org/standard/versions">http://www.unicode.org/standard/versions<br>
@@ -882,11 +966,17 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   </table>
   <h2><a name="Modifications">Modifications</a></h2>
   <p>The following summarizes modifications from the previous revision of this document.</p>
+  <p><span class="changedSpan"><b>Revision 3:</b></span></p>
+  <ul>
+    <li><span class="changedSpan">Cleaned up references</span></li>
+    <li><span class="changedSpan">Added <a href="#Related_Material">Related Material</a> section</span></li>
+    <li><span class="changedSpan">Refined recommendations on whole-script confusables</span></li>
+  </ul>
   <p><b>Revision 2:</b></p>
   <ul>
-    <li><span class="changedSpan">Moved recommendations to separate section</span></li>
-    <li><span class="changedSpan">Added new descriptions, recommendations</span></li>
-    <li><span class="changedSpan">Pointed to draft data files.</span></li>
+    <li><span>Moved recommendations to separate section</span></li>
+    <li><span>Added new descriptions, recommendations</span></li>
+    <li><span>Pointed to draft data files.</span></li>
   </ul>
   <p><b>Revision 1:</b></p>
   <ul>

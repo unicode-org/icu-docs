@@ -4,10 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>http</title>
+<title>Posix-Style Properties</title>
 <style>
 <!--
 td, th       { vertical-align: Top }
+.center      { text-align: Center }
+.smallcode   { font-size: 75% }
 -->
 </style>
 </head>
@@ -15,16 +17,85 @@ td, th       { vertical-align: Top }
 <body bgcolor="#FFFFFF">
 
 <h1 align="center">Recommendations for POSIX-Style Properties</h1>
-<p align="center"><b>Last updated: 2003-04-15, MED</b></p>
-<p>The POSIX-style property names are are not well specified, and don't really
-map well to the broader types of characters available in Unicode/10646. For
-example, there is no provision for titlecase. However, many programs use them,
-so for compatibility it is best to come up with uniform set of recommendations
-for how they should be interpreted in a Unicode context. This also relates to
-Java, since many of the methods on Character ultimately derive from trying to
-match some of the POSIX categories.</p>
-<p>The following compares Perl, ICU, and Java, and tries to derive a
-recommendation. Feedback is welcome.</p>
+<table border="1" width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td><b>Latest Version:</b></td>
+    <td><b><a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/posix_classes.html">http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/posix_classes.html</a></b></td>
+  </tr>
+  <tr>
+    <td><b>Previous Versions:</b></td>
+    <td><b><a href="http://oss.software.ibm.com/cvs/icu/icuhtml/design/">http://oss.software.ibm.com/cvs/icu/icuhtml/design/</a></b></td>
+  </tr>
+  <tr>
+    <td><b>Last updated:</b></td>
+    <td><b>2003-04-16, MED</b></td>
+  </tr>
+</table>
+<p align="left">The POSIX-style property names are are not well specified, and
+don't really map well to the broader types of characters available in
+Unicode/10646. For example, there is no provision for titlecase.</p>
+<table border="1" cellspacing="0" cellpadding="2" align="right" bgcolor="#FFFFCC">
+  <caption><b>Characters Mnemonics</b></caption>
+  <tr>
+    <td class="smallcode"><code>HT</code></td>
+    <td class="smallcode"><code>U+0009 &lt;CHARACTER TABULATION&gt;</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>LF</code></td>
+    <td class="smallcode"><code>U+000A &lt;LINE FEED&gt;</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>VT</code></td>
+    <td class="smallcode"><code>U+000B &lt;LINE TABULATION&gt;</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>FF</code></td>
+    <td class="smallcode"><code>U+000C &lt;FORM FEED&gt;</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>CR</code></td>
+    <td class="smallcode"><code>U+000D &lt;CARRIAGE RETURN&gt;</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>IS4</code></td>
+    <td class="smallcode"><code>U+001C &lt;INFORMATION SEPARATOR FOUR&gt;</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>IS3</code></td>
+    <td class="smallcode"><code>U+001D &lt;INFORMATION SEPARATOR THREE&gt;</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>IS2</code></td>
+    <td class="smallcode"><code>U+001E &lt;INFORMATION SEPARATOR TWO&gt;</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>IS1</code></td>
+    <td class="smallcode"><code>U+001F &lt;INFORMATION SEPARATOR ONE&gt;</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>SP</code></td>
+    <td class="smallcode"><code>U+0020 SPACE</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>LL</code></td>
+    <td class="smallcode"><code>U+005F (_) LOW LINE</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>NEL</code></td>
+    <td class="smallcode"><code>U+0085 &lt;NEXT LINE&gt;</code></td>
+  </tr>
+  <tr>
+    <td class="smallcode"><code>NBSP</code></td>
+    <td class="smallcode"><code>U+00A0 NO-BREAK SPACE</code></td>
+  </tr>
+</table>
+<p align="left">However, many programs use them, so for compatibility it is best
+to come up with uniform set of recommendations for how they should be
+interpreted in a Unicode context. This also relates to Java, since many of the
+methods on Character ultimately derive from trying to match some of the POSIX
+categories.</p>
+<p>The following compares current Perl, ICU, Java and the POSIX spec, and tries
+to derive a recommendation. Feedback is welcome.</p>
 <p><b>Notes:</b></p>
 <ul>
   <li>The Java function names are methods on Character, unless otherwise noted.
@@ -33,19 +104,8 @@ recommendation. Feedback is welcome.</p>
   <li>The normal property abbreviations are used, e.g. <i>gc</i> for
     General_Category.</li>
   <li>For values of the General Category, see <a href="#General_Categories">General_Categories</a>.</li>
-  <li>Some individual characters:
-    <ul>
-      <li><code>U+0009 &lt;CHARACTER TABULATION (HT)&gt;</code></li>
-      <li><code>U+000A &lt;LINE FEED (LF)&gt;</code></li>
-      <li><code>U+000B &lt;LINE TABULATION (VT)&gt;</code></li>
-      <li><code>U+000C &lt;FORM FEED (FF)&gt;</code></li>
-      <li><code>U+000D &lt;CARRIAGE RETURN (CR)&gt;</code></li>
-      <li><code>U+0085 &lt;NEXT LINE (NEL)&gt;</code></li>
-      <li><code>U+0020 SPACE</code></li>
-    </ul>
-  </li>
   <li>Broken Links: some of the following links may not work, since they are to
-    beta versions. If so, see the <a href="#Notes">Notes</a>. </li>
+    beta versions. If so, see the <a href="#Notes">Notes</a>.</li>
 </ul>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
@@ -96,7 +156,8 @@ recommendation. Feedback is welcome.</p>
     <td><b>isUpperCase</b><br>
       gc=Lu</td>
     <td>\p{Uppercase}</td>
-    <td>Uppercase includes more than gc = Uppercase_Letter (Lu).</td>
+    <td>Uppercase includes more than gc = Uppercase_Letter (Lu).<br>
+      <b>Open Issue: </b>add Lt? It may have better compatibility.</td>
   </tr>
   <tr>
     <td><b>digit</b><br>
@@ -112,7 +173,7 @@ recommendation. Feedback is welcome.</p>
       U4.0+, this is the same as gc = Decimal_Number (Nd). See <a href="http://www.unicode.org/Public/4.0-Update/extracted/DerivedNumericType-4.0.0d19b.txt">DerivedNumericType-4.0.0d19b.txt</a></td>
   </tr>
   <tr>
-    <td><b>xDigit</b><br>
+    <td><b>xdigit</b><br>
       0..9, A..F, a..f<br>
     </td>
     <td><b>UCHAR_ASCII_HEX_DIGIT</b><br>
@@ -122,7 +183,9 @@ recommendation. Feedback is welcome.</p>
     </td>
     <td>&#8709;</td>
     <td>\p{ASCII_Hex_Digit}</td>
-    <td>See <a href="http://www.unicode.org/Public/4.0-Update/PropList-4.0.0d20b.txt">PropList-4.0.0d20b.txt</a></td>
+    <td>See <a href="http://www.unicode.org/Public/4.0-Update/PropList-4.0.0d20b.txt">PropList-4.0.0d20b.txt</a>
+      <p><b>Open Issue: </b>add Nd?</p>
+    </td>
   </tr>
   <tr>
     <td><b>alnum</b><br>
@@ -145,9 +208,12 @@ recommendation. Feedback is welcome.</p>
     <td>see below</td>
     <td>\p{alpha}<br>
       \p{digit}<br>
-      \N{LOW LINE}</td>
-    <td>This is only an approximation to Word Boundaries (See below). The digits
-      and &quot;_&quot; are lumped in for compatibility.</td>
+      \N{LL}</td>
+    <td>This is only an approximation to Word Boundaries (See below). The
+      &quot;_&quot; is lumped in for compatibility, but maybe it should be gc=Pc
+      (see <a href="http://www.unicode.org/Public/4.0-Update/extracted/DerivedGeneralCategory-4.0.0d19b.txt">DerivedGeneralCategory-4.0.0d19b.txt</a>)
+      <p><b>Open Issue: </b>add other gc=N?</p>
+    </td>
   </tr>
   <tr>
     <td bgcolor="#FFFF00">&nbsp;</td>
@@ -160,30 +226,46 @@ recommendation. Feedback is welcome.</p>
     <td><b>cntrl</b><br>
       gc=C</td>
     <td><b>u_isISOControl<br>
-      </b>gc=C</td>
+      </b>gc=Cc &amp; ASCII
+      <p><b>u_iscntrl()<br>
+      </b>gc=Cc or Cf or Zl or Zp</p>
+    </td>
     <td><b>isISOControl<br>
-      </b>gc=C</td>
+      </b>gc=Cc &amp; ASCII</td>
     <td>\p{gc=Control}</td>
     <td>Does not include Format, since some of those are needed in the
-      representation of normal text.<br>
-      <b>Open Issue:</b> add&nbsp; \p{gc=Zl} \p{gc=Zp}?</td>
+      representation of normal text.
+      <p><b>Open Issue:</b> add&nbsp; \p{gc=Zl} \p{gc=Zp}, the most control-like
+      of the Cf?</p>
+      <p><b>Open Issue:</b> add all of \p{gc=C} - {space}, and make cntrl,
+      graph, space be a complete partition of Unicode?</p>
+    </td>
   </tr>
   <tr>
     <td><b>graph</b><br>
       gc=L or M or N or P or S or Co</td>
     <td>&#8709;</td>
     <td>&#8709;</td>
-    <td><b>^</b>\p{cntl}</td>
-    <td>Perl is the same as excluding: Z (except S), Cc, Cf, Cs, Cn</td>
+    <td><b>All but:</b><br>
+      [\p{space}<br>
+      \p{gc=Cc}<br>
+      \p{gc=Cs}<br>
+      \p{gc=Cn}]</td>
+    <td>Perl is the same as excluding: Z, Cc, Cf, Cs, Cn.
+      <p>POSIX: includes alpha, digit, punct, excludes cntrl</p>
+      <p><b>Open Issue:</b> Also exclude Cf? Some Cf are clearly control-like,
+      while others may be intermixed as part of the orthography (ZWNJ, RTM).</p>
+    </td>
   </tr>
   <tr>
     <td><b>print</b><br>
       gc=graph + Zs</td>
-    <td>&#8709;</td>
+    <td><b>u_isprint()<br>
+      </b>All but gc=C</td>
     <td>&#8709;</td>
     <td>\p{graph}<br>
       \p{space}</td>
-    <td>&nbsp;</td>
+    <td>POSIX: includes graph, &lt;space&gt;</td>
   </tr>
   <tr>
     <td bgcolor="#FFFF00">&nbsp;</td>
@@ -206,13 +288,15 @@ recommendation. Feedback is welcome.</p>
       <p><b>u_isUWhiteSpace<br>
       </b>Unicode WhiteSpace</td>
     <td><b>isWhitespace<br>
-      </b>&nbsp;Z +&nbsp; HT..CR + U+001C.. U+001F
+      </b>Z +&nbsp; HT..CR, IS4..IS1<br>
+      - NBSP
       <p><b>isSpaceChar:<br>
       </b>gc=Z</p>
       <p><b>isSpace</b> (depre.):<br>
       HT..CR</td>
     <td>\p{Whitespace}</td>
-    <td>See <a href="#Whitespace_Comparison">Whitespace_Comparison</a>.
+    <td>See <a href="#Whitespace_Comparison">Whitespace_Comparison</a> for a
+      comparison of WhiteSpace to Z.
       <p>Note: U+200B (ZWSP) while a Z character, is for line break control and
       should not be included.</p>
     </td>
@@ -222,11 +306,12 @@ recommendation. Feedback is welcome.</p>
       gc=Zl or Zp or HT, SP</td>
     <td>&#8709;</td>
     <td>&#8709;</td>
-    <td>[\p{Whitespace}<br>
-      &nbsp;- {cntl}]<br>
-      \N{HT}</td>
-    <td>&quot;horizontal&quot; whitespace? It is a mystery what the difference
-      between blank and space are suppose to be.</td>
+    <td>\p{Whitespace} -<br>
+      [\N{LF} \N{VT} \N{FF} \N{CR} \N{NEL}<br>
+      \p{gc=Zl}\p{gc=Zp}]]</td>
+    <td>&quot;horizontal&quot; whitespace.
+      <p>POSIX: Space, Tab,...</p>
+    </td>
   </tr>
   <tr>
     <td bgcolor="#FFFF00">&nbsp;</td>
@@ -239,7 +324,7 @@ recommendation. Feedback is welcome.</p>
     <td><b>\X</b></td>
     <td>BreakIterator</td>
     <td>BreakIterator</td>
-    <td>Default Grapheme Cluster</td>
+    <td>Default Grapheme Cluster Boundaries</td>
     <td>See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX #29:
       Text Boundaries</a>, also <a href="http://www.unicode.org/reports/tr29/GraphemeClusterBreakTest.html">GraphemeClusterBreakTest.html</a></td>
   </tr>
@@ -248,13 +333,19 @@ recommendation. Feedback is welcome.</p>
     <td>BreakIterator</td>
     <td>BreakIterator</td>
     <td>Default Word Boundaries</td>
-    <td>If there is a requirement that /b align with \w, then it would use the
+    <td>If there is a requirement that \b align with \w, then it would use the
       approximation above instead. See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX
       #29: Text Boundaries</a>, also <a href="http://www.unicode.org/reports/tr29/WordBreakTest.html">WordBreakTest.html</a>.</td>
   </tr>
 </table>
-<h3><b><a name="Notes">Notes</a>:</b></h3>
+<h3><b><a name="Notes">References</a>:</b></h3>
 <ul>
+  <li>The Open Group Base Specifications Issue 6, IEEE Std 1003.1, 2003 Edition,
+    &quot;Locale&quot; chapter
+    <ul>
+      <li><a href="http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html">http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html</a></li>
+    </ul>
+  </li>
   <li>Other Unicode Links
     <ul>
       <li><a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18:
@@ -278,23 +369,35 @@ recommendation. Feedback is welcome.</p>
     <ul>
       <li><a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icu/source/common/unicode/uchar.h">http://oss.software.ibm.com/cvs/icu/~checkout~/icu/source/common/unicode/uchar.h</a>
         (latest version)</li>
-      <li><a href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html">http://oss.software.ibm.com/icu/apiref/uchar_8h.html</a>
-      </li>
+      <li><a href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html">http://oss.software.ibm.com/icu/apiref/uchar_8h.html</a></li>
     </ul>
   </li>
   <li>Java Links
     <ul>
-      <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html">http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html</a>
-      </li>
+      <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html">http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html</a></li>
     </ul>
   </li>
-  <li>Broken Links: some of the above links may not work, since they are to beta
-    versions. If so, go to the latest links through the following:
+  <li>Broken Links: some of the above Unicode links may not work, since they are
+    to beta versions. If so, go to the latest links through the following:
     <ul>
       <li><a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/</a></li>
       <li><a href="http://www.unicode.org/Public/4.0-Update/">http://www.unicode.org/Public/4.0-Update/</a></li>
     </ul>
   </li>
+</ul>
+<h3><a name="ICU_Background">ICU Background</a></h3>
+<ul>
+  <li>ICU4J (&quot;for Java&quot;) implements the same methods in its UCharacter
+    class as the JDK's Character class, with the same method names and
+    semantics, only extended to all of Unicode (0..0x10ffff) and up to date with
+    the latest Unicode version (current snapshot at Unicode 4). There are also
+    additional methods for more Unicode-defined properties.</li>
+  <li>ICU4C (&quot;for C/C++&quot;) provides C functions with more C-style names
+    but the same semantics as ICU4J/JDK. There is no full definition of the C
+    APIs for more than ASCII anyway (which is why we are having this
+    discussion), so they were made parallel with Java for ease of porting.</li>
+  <li>A good link on ICU properties, although not quite up to date right now
+    (still on ICU 2.4 level), is the Properties chapter in our User Guide: <a href="http://oss.software.ibm.com/icu/userguide/properties.html">http://oss.software.ibm.com/icu/userguide/properties.html</a></li>
 </ul>
 <h3><a name="Whitespace_Comparison"><b>Whitespace Comparison</b></a><b>:</b></h3>
 <p><i>(Using Unicode 4.0 properties for comparison. Note that the Java
@@ -328,70 +431,6 @@ properties use old versions of Unicode properties).</i></p>
         U+2029  # PARAGRAPH SEPARATOR
         U+202F  # NARROW NO-BREAK SPACE
         U+205F  # MEDIUM MATHEMATICAL SPACE
-        U+3000  # IDEOGRAPHIC SPACE</pre>
-<pre><b>In White_Space, but not in isSpaceChar:
-</b>        U+0009  # &lt;CHARACTER TABULATION&gt;
-        U+000A  # &lt;LINE FEED (LF)&gt;
-        U+000B  # &lt;LINE TABULATION&gt;
-        U+000C  # &lt;FORM FEED (FF)&gt;
-        U+000D  # &lt;CARRIAGE RETURN (CR)&gt;
-        U+0085  # &lt;NEXT LINE (NEL)&gt;
-        U+1680  # OGHAM SPACE MARK
-        U+180E  # MONGOLIAN VOWEL SEPARATOR
-        U+202F  # NARROW NO-BREAK SPACE
-        U+205F  # MEDIUM MATHEMATICAL SPACE
-<b>Not in White_Space, but in isSpaceChar:
-</b>        U+200B  # ZERO WIDTH SPACE
-<b>In both White_Space and isSpaceChar:
-</b>        U+0020  # SPACE
-        U+00A0  # NO-BREAK SPACE
-        U+2000  # EN QUAD
-        U+2001  # EM QUAD
-        U+2002  # EN SPACE
-        U+2003  # EM SPACE
-        U+2004  # THREE-PER-EM SPACE
-        U+2005  # FOUR-PER-EM SPACE
-        U+2006  # SIX-PER-EM SPACE
-        U+2007  # FIGURE SPACE
-        U+2008  # PUNCTUATION SPACE
-        U+2009  # THIN SPACE
-        U+200A  # HAIR SPACE
-        U+2028  # LINE SEPARATOR
-        U+2029  # PARAGRAPH SEPARATOR
-        U+3000  # IDEOGRAPHIC SPACE</pre>
-<pre><b>In White_Space, but not in isWhitespace:
-</b>        U+0085  # &lt;NEXT LINE (NEL)&gt;
-        U+00A0  # NO-BREAK SPACE
-        U+1680  # OGHAM SPACE MARK
-        U+180E  # MONGOLIAN VOWEL SEPARATOR
-        U+202F  # NARROW NO-BREAK SPACE
-        U+205F  # MEDIUM MATHEMATICAL SPACE
-<b>Not in White_Space, but in isWhitespace:
-</b>        U+001C  # &lt;INFORMATION SEPARATOR FOUR&gt;
-        U+001D  # &lt;INFORMATION SEPARATOR THREE&gt;
-        U+001E  # &lt;INFORMATION SEPARATOR TWO&gt;
-        U+001F  # &lt;INFORMATION SEPARATOR ONE&gt;
-        U+200B  # ZERO WIDTH SPACE
-<b>In both White_Space and isWhitespace:
-</b>        U+0009  # &lt;CHARACTER TABULATION&gt;
-        U+000A  # &lt;LINE FEED (LF)&gt;
-        U+000B  # &lt;LINE TABULATION&gt;
-        U+000C  # &lt;FORM FEED (FF)&gt;
-        U+000D  # &lt;CARRIAGE RETURN (CR)&gt;
-        U+0020  # SPACE
-        U+2000  # EN QUAD
-        U+2001  # EM QUAD
-        U+2002  # EN SPACE
-        U+2003  # EM SPACE
-        U+2004  # THREE-PER-EM SPACE
-        U+2005  # FOUR-PER-EM SPACE
-        U+2006  # SIX-PER-EM SPACE
-        U+2007  # FIGURE SPACE
-        U+2008  # PUNCTUATION SPACE
-        U+2009  # THIN SPACE
-        U+200A  # HAIR SPACE
-        U+2028  # LINE SEPARATOR
-        U+2029  # PARAGRAPH SEPARATOR
         U+3000  # IDEOGRAPHIC SPACE</pre>
 <h3><a name="General_Categories">General Categories</a></h3>
 <table>
@@ -524,6 +563,498 @@ properties use old versions of Unicode properties).</i></p>
     <td>Other, Not Assigned (no characters in the file have this property)</td>
   </tr>
 </table>
+<h3><a href="http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html" name="Posix_Requirements">Posix
+Requirements</a></h3>
+<center><b><a name="tagtcjh_5"></a>Table: Valid Character Class Combinations</b>
+<table cellpadding="2" border="1" cellspacing="0">
+  <tbody>
+    <tr valign="top">
+      <th align="left" class="center">
+        <p class="tent">&nbsp;</p>
+      </th>
+      <th align="middle" colspan="11" class="center">
+        <p class="tent"><b>Can Also Belong To</b></p>
+      </th>
+    </tr>
+    <tr valign="top">
+      <th align="left" class="center">
+        <p class="tent">In Class</p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>upper</b></p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>lower</b></p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>alpha</b></p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>digit</b></p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>space</b></p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>cntrl</b></p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>punct</b></p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>graph</b></p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>print</b></p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>xdigit</b></p>
+      </th>
+      <th align="middle" class="center" width="8%">
+        <p class="tent"><b>blank</b></p>
+      </th>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">upper</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">lower</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent"><b>-</b></p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">alpha</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent"><b>-</b></p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">digit</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent"><b>x</b></p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">space</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent"><b>x</b></p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">*</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">*</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">*</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">cntrl</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent"><b>x</b></p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">punct</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent"><b>x</b></p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">graph</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent"><b>-</b></p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">print</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent"><b>-</b></p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">xdigit</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent"><b>-</b></p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="left" class="center">
+        <p class="tent">blank</p>
+      </td>
+      <td align="left" class="center">
+        <p class="tent"><b>x</b></p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">A</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">-</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">*</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">*</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">*</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">x</p>
+      </td>
+      <td align="middle" class="center">
+        <p class="tent">&nbsp;</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<ol>
+  <li>
+    <p>Explanation of codes:</p>
+    <dl compact>
+      <dt>A
+      <dd>Automatically included; see text.
+      <dt>-
+      <dd>Permitted.
+      <dt>x
+      <dd>Mutually-exclusive.
+      <dt>*
+      <dd>See note 2.</dd>
+    </dl>
+  <li>
+    <p>The &lt;space&gt;, which is part of the <b>space</b> and <b>blank</b>
+    classes, cannot belong to <b>punct</b> or <b>graph</b>, but shall
+    automatically belong to the <b>print</b> class. Other <b>space</b> or <b>blank</b>
+    characters can be classified as any of <b>punct</b>, <b>graph</b>, or <b>print</b>.</p>
+  </li>
+</ol>
 
 </body>
 

@@ -1,0 +1,2241 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="stylesheet" type="text/css"
+href="http://www.unicode.org/webscripts/standard_styles.css">
+<title>Collation Design Document</title>
+<style>
+<!--
+body         { font-family: Times New Roman }
+p            { font-family: Times New Roman }
+li           { font-family: Times New Roman }
+-->
+</style>
+</head>
+
+<body>
+
+<h1 align="center">ICU Collation Design Documentation</h1>
+<h3 align="center">Draft #10, MD<br>
+2000-11-21</h3>
+This document describes the proposed revisions to Collation in ICU. Readers 
+should already be familiar with <a
+href="http://www.unicode.org/unicode/reports/tr10/">UTS #10: Unicode Collation 
+Algorithm</a> (UCA) before proceeding. Examples from the current UCA table can 
+be seen at <a
+href="http://www.unicode.org/unicode/reports/tr10/charts/Collation00.html">Collation 
+Charts</a>.
+<p>This document is liberally sprinkled with code fragments. These are meant to 
+be illustrative, and will not necessarily match the final implementation.</p>
+<h2><a name="Requirements">Requirements</a></h2>
+<p>The rest of the document proceeds as if all the following requirements and 
+options are being done, so that the architecture is complete for the future. 
+However, options will only be considered in the 1.7/1.8 timeframe if 
+implementation falls out of the rearchitecture work.&nbsp; (Some 1.8 
+functionality may be in 1.7, if it is easier to integrate then.)</p>
+<h3>1.7 Not in priority order</h3>
+<ol>
+  <li>All of the current features will be maintained (with one semantic change 
+    -- see API).</li>
+  <li>Improve performance to be comparable to Lotus Notes. First priority is 
+    string compare, next is sortkey. (perf)</li>
+  <li>Fix Japanese tailoring data to be more MS Office compatible [but see 1.8 
+    for complete story] (data)
+    <ul>
+      <li>Level 1 = base letters,</li>
+      <li>Level 2 = plain, daku-ten, handaku-ten</li>
+      <li>Level 3 = small (katakana, hiragana, choo-on kigoo), large (katakana, 
+        hiragana, choo-on kigoo)</li>
+    </ul>
+  </li>
+  <li>Add SafeClone API (multi-thread)</li>
+  <li>Add all API and rule syntax, even if it is not functional in this release</li>
+  <li><b>Binary Compatibility of Sort Keys</b>
+    <ol>
+      <li><b>1.7 is a enhancement release, not a reference release.</b></li>
+      <li><b>1.7 sort keys are only for testing, not for release products.</b></li>
+      <li><b>1.7 sort keys will not be compatible with 1.6 sort keys or 1.8 sort 
+        keys.</b></li>
+    </ol>
+  </li>
+</ol>
+<h3>1.8 Not in priority order</h3>
+<ol>
+  <li>Be fully conformant to the UCA (function)</li>
+  <li>Allow the main UCA table to be flat: static, read-only, and shared among 
+    languages. (footprint, perf)</li>
+  <li>Other performance improvements as described in this document. (perf)</li>
+  <li>Reduce A-Z primaries to single byte weight (perf, footprint)</li>
+  <li>Add complete versioning (function)</li>
+  <li>Support additional Japanese case level. (for MS Office compatibility)
+    <ol>
+      <li>Level 1 = base letters,</li>
+      <li>Level 2 = plain, daku-ten, handaku-ten</li>
+      <li>Level 3 = small, large</li>
+      <li>Level 4 = katakana, hiragana, choo-on kigoo</li>
+    </ol>
+  </li>
+  <li>Provide parametric case reversal, e.g. upper before lower or lower before 
+    upper (function: for Danish std)</li>
+  <li>Ignore accents (actually ignore accents &amp; non-case variants while not 
+    ignoring case bit) (function)</li>
+  <li>Provide better surrogate support (req. for GB 18030 and Unicode 3.1)</li>
+  <li>Use compression techniques for shorter sort-keys, reducing memory and 
+    database footprint (perf, footprint)</li>
+  <li><b>Binary Compatibility of Sort Keys</b></li>
+  <ol>
+    <li><b>1.8 sort keys will not be compatible with 1.6 sort keys or 1.7 sort 
+      keys.</b></li>
+    <li><b>However, all future versions will provide a mechanism for generating 
+      1.8-binary-compatible sort keys.</b></li>
+  </ol>
+</ol>
+<h3>Options</h3>
+<ol>
+  <li>Charset Sorting (special value in rules indicates codes are sorted by 
+    charset values): (footprint, maintenance)</li>
+  <li>Script Order (allow parametric rearrangement of scripts, e.g. Japanese 
+    &lt; Latin &lt; Greek vs. Latin &lt; Greek &lt; Japanese) (function)</li>
+  <li>Registration of Collations.</li>
+  <li>Tailoring to add characters <i>before</i> other characters.</li>
+</ol>
+<p>These are not completely described here, but sufficient information should be 
+provided so that we don't make design decisions that would make them harder to 
+do in the future.</p>
+<p><b>Non-Goals</b></p>
+<p>The following are specifically <b>not</b> goals for this revision.</p>
+<ol>
+  <li>Allow sort-keys to be valid C-Strings: e.g. avoid zero bytes, have null 
+    terminator.</li>
+</ol>
+<h2><a name="Performance">Performance</a></h2>
+Main items (not in priority order)
+<ul>
+  <li>Coding style
+    <ul>
+      <li>Rewrite core code in C. C++ API will wrap the C core code.</li>
+      <li>Avoid use of objects.</li>
+      <li>Avoid function calls.</li>
+      <li>Fast-path Latin1.</li>
+    </ul>
+  </li>
+  <li>Restructure tables
+    <ul>
+      <li>Use flat-file to speed initialization, share memory</li>
+      <li>Use static UCA with separate tailoring to minimize memory usage</li>
+    </ul>
+  </li>
+  <li>Rearchitect CE fetching, sort-key generation
+    <ul>
+      <li>Change to use newer fetch/sort-key generation from CEs, as described 
+        below.</li>
+      <li>Use stack memory buffers for common case (with expansion if 
+        necessary).</li>
+      <li>Don't use two-pass to find size first.</li>
+      <li>Speed up Collation Element retrieval (see Architecture).</li>
+    </ul>
+  </li>
+  <li>Speed up Normalization performance
+    <ul>
+      <li>Avoid normalization where possible. Use QuickCheck for this.</li>
+      <li>Use fast-path for non-normalization case.</li>
+    </ul>
+  </li>
+  <li>Comparisons will be done against Win32 SDK CompareString() and LCMapString() 
+    APIs, to judge performance quality.</li>
+</ul>
+<h2>Data Tables</h2>
+<p>A collation table, whether UCA or a tailored table, contains the following 
+subtables. It is in a flattened form that can be loaded as a DLL or into 
+read-only shared memory. The header contains offsets to all the other subtables, 
+plus various information that is used in processing, such as the 
+maximumPrimaryFactor. A CE is a uint32_t. A UChar is 16 bits.</p>
+<blockquote>
+  <p><b>NOTE: we make the processing faster by having offsets everywhere in the 
+  table be from the very start of the whole table, not from the start of the 
+  each subtable! Because the offsets to the Expansion table have only 20 bits, 
+  we put that one first.</b></p>
+</blockquote>
+<table border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td align="center" valign="top">
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">Header</th>
+        </tr>
+        <tr>
+          <td width="100%">info...</td>
+        </tr>
+        <tr>
+          <td width="100%">offset to Trie·Index</td>
+        </tr>
+        <tr>
+          <td width="100%">offset to Trie·Data</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top">
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">Expansions</th>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top">
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">Trie·Index</th>
+        </tr>
+        <tr>
+          <td width="100%">index</td>
+        </tr>
+        <tr>
+          <td width="100%">index</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top">
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">Trie·Data</th>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top">
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">Contraction UChars</th>
+        </tr>
+        <tr>
+          <td width="100%">c1</td>
+        </tr>
+        <tr>
+          <td width="100%">c2</td>
+        </tr>
+        <tr>
+          <td width="100%">c2</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+        <tr>
+          <td width="100%">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top">
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">Contraction Results</th>
+        </tr>
+        <tr>
+          <td width="100%">CE1</td>
+        </tr>
+        <tr>
+          <td width="100%">CE2</td>
+        </tr>
+        <tr>
+          <td width="100%">CE3</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+        <tr>
+          <td width="100%">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top">
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">Surrogate Trie·Index</th>
+        </tr>
+        <tr>
+          <td width="100%">index</td>
+        </tr>
+        <tr>
+          <td width="100%">index</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top">
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">Surrogate Trie·Data</th>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h2 align="left"><a name="CollationElements">Collation Elements</a></h2>
+<center>
+<p align="left">The fundamental building block for collation is the collation 
+element. ICU uses a single 32-bit value in the code and tables to represent 
+this. Sometimes the values are overloaded in the tables, depending where they 
+are used.</p>
+<h4 align="left">Normal</h4>
+<p align="left">The normal CE is of the following form (where P = primary, S = 
+secondary, C = case, T = tertiary). The primary does not start with F, and the 
+tertiary is not 7F. The Case bit can be used to form an extra Japanese weight 
+level, or considered part of the tertiary weight. In either case, a parameter 
+can be used to invert it, thus changing whether small is before large or the 
+reverse. That parameter can be either set in the rules or by a set call.</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="1">
+    <tr>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#CCFF99" align="center"><font size="2">C</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+    </tr>
+    <tr>
+      <td width="48%" bgcolor="#00FF00" colspan="16" align="center">16 bit 
+        primary</td>
+      <td width="24%" bgcolor="#66FF66" colspan="8" align="center">8 bit 
+        secondary</td>
+      <td width="3%" bgcolor="#CCFF99" align="center"><font size="2">1</font></td>
+      <td width="21%" bgcolor="#FFFF66" colspan="7" align="center">7 bit tert.</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<h4 align="left">Long Primary</h4>
+<p align="left">If the tertiary has the value PRIMARY24 (7F), then the values 
+are reinterpreted: the primary is considered to be 24 bits (P &amp; S), and both 
+the secondary and tertiary are handled as if they had values of UNMARKED. The 
+primary does not start with F.</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="1">
+    <tr>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#CCFF99" align="center"><font size="2">C</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">1</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">1</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">1</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">1</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">1</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">1</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">1</font></td>
+    </tr>
+    <tr>
+      <td width="72%" bgcolor="#00FF00" colspan="24" align="center">24 bit 
+        primary</td>
+      <td width="3%" bgcolor="#CCFF99" align="center">1</td>
+      <td width="21%" bgcolor="#FFFF66" colspan="7" align="center">7 bit FLAG</td>
+    </tr>
+  </table>
+  </center>
+</div>
+</center>
+<p align="left">The Case bit can be used to form an extra Japanese weight level, 
+or considered part of the tertiary weight. In either case, a parameter can be 
+used to invert it, thus changing whether small is before large or the reverse. 
+That parameter can be either set in the rules or by a set call. If the tertiary 
+has the value PRIMARY24 (0x7F), then the values are reinterpreted: the primary 
+is considered to be 24 bits (P &amp; S), and both the secondary and tertiary are 
+handled as if they had values of UNMARKED = 2.</p>
+<center>
+<h4 align="left">Extension</h4>
+<p align="left">This is the same as the normal primary, except that the first 
+nybble of the primary can be F. Extension CEs can only occur in Expansions 
+(although not all Expansion CEs will be Extensions).</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="1">
+    <tr>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#00FF00" align="center"><font size="2">P</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#66FF66" align="center"><font size="2">S</font></td>
+      <td width="3%" bgcolor="#CCFF99" align="center"><font size="2">C</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+      <td width="3%" bgcolor="#FFFF66" align="center"><font size="2">T</font></td>
+    </tr>
+    <tr>
+      <td width="48%" bgcolor="#00FF00" colspan="16" align="center">16 bit 
+        primary</td>
+      <td width="24%" bgcolor="#66FF66" colspan="8" align="center">8 bit 
+        secondary</td>
+      <td width="3%" bgcolor="#CCFF99" align="center"><font size="2">1</font></td>
+      <td width="21%" bgcolor="#FFFF66" colspan="7" align="center">7 bit tert.</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p align="left">To test whether a ce is an extension CE, we use:</p>
+<div align="left">
+  <pre align="left">if (ce &gt;= MIN_EXTENSION) ...</pre>
+</div>
+<h4 align="left">Special</h4>
+<p align="left">The special CE is of the following form (where T = tag, d = 
+data). The first nybble is F, to distinguish it from a Primary or Long Primary.</p>
+<table border="1" cellspacing="1">
+  <tr>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">1</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">1</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">1</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">1</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">T</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">T</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">T</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">T</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+    <td width="3%" bgcolor="#00FF00" align="center"><font size="2">d</font></td>
+  </tr>
+  <tr>
+    <td width="12%" bgcolor="#00FF00" align="center" colspan="4">4 bit FLAG</td>
+    <td width="12%" bgcolor="#00FF00" align="center" colspan="4">4 bit Tag</td>
+    <td width="72%" bgcolor="#00FF00" align="center" colspan="24">24 bit data</td>
+  </tr>
+</table>
+<p>The tags have the values:</p>
+<table border="1">
+  <tr>
+    <td>0</td>
+    <td>NOT_FOUND_TAG</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>EXPANSION_TAG</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>CONTRACTION_TAG</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>THAI_TAG</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>CHARSET_TAG</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>SURROGATE_TAG</td>
+  </tr>
+  <tr>
+    <td>6+</td>
+    <td>reserved</td>
+  </tr>
+</table>
+</center>
+<p align="left">To test whether a ce is an extension CE, we use:</p>
+<div align="left">
+  <pre align="left">if (ce &gt;= MIN_SPECIAL) ...</pre>
+</div>
+<h3 align="left">Using Collation Elements to Form Sort Keys</h3>
+<pre align="left">const int MIN_EXTENSION = 0xF0000000;
+const int MIN_SPECIAL = 0xF0000000;
+const int LONG_CE = 0x7F;</pre>
+<p align="left">The following sample shows how this would work in practice. (ScriptOrder 
+will be explained later).</p>
+<div align="left">
+  <pre>// once we have a cc
+
+wt = ce &amp; TERTIARY_MASK; // tertiary
+if (caseUpper) wt ^= 0x80; // invert upper/lower
+ws = (ce &gt;&gt;= 8) &amp; 0xFF; // secondary
+wp3 = 0; // third primary
+wp2 = (ce &gt;&gt;= 8) &amp; 0xFF; // second primary
+wp1 = (ce &gt;&gt;= 8); // first primary</pre>
+</div>
+<div align="left">
+  <pre>if (wt == LONG_CE) {
+  wp3 = ws;
+  ws = wt = UNMARKED;
+}
+
+if (alternate == SHIFTED &amp;&amp; wp1 &lt; VARIABLE_MAX &amp;&amp; wp1 &gt; 0) {
+  // all other values are skipped
+  *quarternary++ = wp1;
+  if (wp2 != 0) *quarternary++ = wp2;
+} else {
+  if (wp1 != 0) *primary++ = scriptOrder[wp1];
+  if (wp2 != 0) *primary++ = wp2;
+  if (strength &gt;= SECONDARY) {
+    if (ws != 0) {
+      if (frenchSecondary) {
+        // special handling
+      }
+      *secondary++ = ws;
+    }
+    if (strength &gt;= TERTIARY) {
+      if (wt != 0) *tertiary++
+      if (strength &gt;= QUARTERNARY &amp;&amp; alternate == SHIFTED &amp;&amp; wp1 &gt; 0) *quarternary++ = 0xFF;
+    }
+  }
+}</pre>
+</div>
+<p align="left">TERTIARY_MASK is set to either 0x7F or 0xFF, depending on 
+whether we want to include the case bit or not.</p>
+<p align="left">One twist. If the FrenchSecondary flag is turned on, then the 
+secondary values in the for extension CEs are reversed. This is so that when the 
+secondary buffer itself is reversed (see below), the extension values come out 
+in the right order. This is done by the following pseudocode (where 
+specialHandling is above)</p>
+<div align="left">
+  <pre align="left">if (ce &gt;= MIN_EXTENSION_VALUE) {
+  if (frenchStartPtr == null) frenchStartPtr = secondary - 1;
+  frenchEndPtr = secondary + 1;
+} else if (frenchStartPtr != null) {
+  //reverse secondaries from frenchStartPtr up to frenchEndPtr
+}</pre>
+</div>
+<p align="left">plus some code at the very end, after processing all CEs, to 
+catch the final case.</p>
+<div align="left">
+  <pre align="left">if (frenchStartPtr != null) {
+  //reverse secondaries from frenchStartPtr up to frenchEndPtr
+}</pre>
+</div>
+<h4 align="left">Variables and Quarternary</h4>
+<p align="left">In the collation table, there is a value VARIABLE_MAX. All CEs 
+with primary weights between zero and VARIABLE_MAX&nbsp; are considered to be 
+variable. (This saves having a bit per CE!) If a CE is variable, we support the 
+Shifted Option from the UCA in constructing . We can process the table to ensure 
+that VARIABLE_MAX&nbsp; has a zero second byte. That means we only have to test 
+wp1 above</p>
+<p align="left">The quarternary is computed based on the setting. With shifted, 
+then it is skipped if the ce is entirely zero, equal to the primary if variable, 
+and otherwise equal to FF. (In the UCA this is FFFF, but we can make it a 
+single-byte weight.)</p>
+<h4 align="left">Appending Levels</h4>
+<p align="left">Once we have the level keys, we put them into the sort key. If 
+any one of them overflows the outputBuffer, then we set the appropriate error, 
+but we also return the length that it would have had (for preflighting).</p>
+<div align="left">
+  <pre>if (strength &gt;= SECONDARY) { 
+  // append LEVEL_SEPERATOR, append secondary
+  // if FrenchSecondary is on, then append in reverse order.
+}
+if (caseLevel) {
+  // append LEVEL_SEPERATOR, append case
+}
+if (strength &gt;= TERTIARY) { 
+  // append LEVEL_SEPERATOR, append tertiary
+  if (strength &gt;= QUARTERNARY) {
+    if (strength == QUARTERNARY &amp;&amp; alternate != NON_IGNORABLE) {
+      // append LEVEL_SEPERATOR, append quad
+    }
+    if (strength == IDENTICAL) {
+      // append normalized source, fixed a la Markus for codepoints
+    }
+  }
+}</pre>
+</div>
+<p align="left">It is easy to do preflighting. If the primary + sep + secondary 
++... all fit into the outputBuffer, the correct string is returned. If not, the 
+sizes can be easily calculated, and a truncated version returned.</p>
+<h4 align="left">Case Level</h4>
+<p align="left">For a small/large difference for Japanese, we change the code as 
+follows. Since we know that the case occupies exactly one bit, we optimize this 
+(at the expense of some code) by storing it bit at a time (with one bit overhead 
+per byte). That is, 7 or fewer letters in the string only take 1 byte; 14 or 
+fewer 2 bytes, etc. The reason we have the extra bit is so that the separator 
+value between levels is distinguished. The code will look something like:</p>
+<pre>// when creating the level keys
+
+int caseShift = 0;
+...
+if (caseLevel) {
+  if (caseShift  == 0) {
+    *case++ = 0x80;
+    caseShift = 7;
+  }
+  case[-1] |= (wt &amp; 0x80) &gt;&gt; caseShift--;
+}</pre>
+<h3 align="left">Compression</h3>
+<p align="left">We can used the technique discussed in UCA to reduce the length 
+of sort keys that contain multiple COMMON weights. Instead of:</p>
+<div align="left">
+  <pre>*secondary++ = ws;</pre>
+</div>
+<p align="left">we write:</p>
+<div align="left">
+  <pre>if (ws  == COMMON2 &amp;&amp; COMMON2  &lt;= secondary[-1] &amp;&amp; secondary[-1] &lt; COMMON_MAX2)
+  ++secondary[-1]; // simply increment!!
+else *secondary++ = ws;</pre>
+</div>
+<p align="left">The values for COMMON_S, COMMON_T and COMMON_LIMIT_Q are 
+constant: 02, 02, FF.</p>
+<p align="left">The values for COMMON_Q and COMMON_LIMIT_S, COMMON_LIMIT_T are 
+generated when processing a table, and stored in the header.</p>
+<p align="left">[TBD: Add diagram of how this works.]</p>
+<h3 align="left">Stack Buffers</h3>
+<p align="left">We can use stack buffers for almost all cases. The vast majority 
+of sorted strings are fairly small, so we optimize for that. Here's how.</p>
+<div align="left">
+  <pre>// allocate buffers
+#define BUFFER_SIZE 1000
+char primaryBuffer[BUFFER_SIZE];
+char secondaryBuffer[BUFFER_SIZE];
+char tertiaryBuffer[BUFFER_SIZE];
+char caseBuffer[BUFFER_SIZE];
+char quarternaryBuffer[BUFFER_SIZE];
+
+// initialize buffers, normally to stack
+int max;
+boolean allocatedPrimary = false, allocatedSecondary = false...
+
+char* primary  = *primaryStart = outputBuffer; // write into output buffer, if large enough
+max = getMaxPrimaryFactor() * sourceLength;
+if (max &gt; BUFFER_SIZE) primary = primaryStart = malloc(max);
+else if (max &gt; outputLength) primary = primaryStart = primaryBuffer;
+
+char* secondary = secondaryBuffer;
+max = getMaxSecondaryFactor() * sourceLength;
+if (max &gt; BUFFER_SIZE) secondary = secondaryStart = malloc(max);</pre>
+</div>
+<div align="left">
+  <pre>// tertiary, case, quarternary like secondary.</pre>
+</div>
+<div align="left">
+  <pre>...// do code</pre>
+</div>
+<div align="left">
+  <pre>// clean up after copying contents to output</pre>
+</div>
+<div align="left">
+  <pre>if (primaryStart != outputBuffer &amp;&amp; primaryStart != primaryBuffer) delete(primaryStart);
+if (secondaryStart != secondaryBuffer) delete(secondaryStart);
+if (tertiaryStart != tertiaryBuffer) delete(tertiaryStart);
+if (caseStart != caseBuffer) delete(caseStart);
+if (quarternaryStart != quarternaryBuffer) delete(quarternaryStart);</pre>
+</div>
+<p align="left">By handling it this way, we don't need to do any error checking 
+in the loop for buffers being too small.</p>
+<blockquote>
+  <p align="left"><b>Note:</b> if the strength is IDENTICAL, then we copy the 
+  source string (normalized, if normalization is on) to the end of the sort key 
+  (after a level separator). This source string is modified so that surrogates 
+  sort in codepoint order. (See Markus's paper).</p>
+</blockquote>
+<h2 align="left"><a name="Fetching CEs">Fetching CEs</a></h2>
+<p align="left">getCE is a function that gets a single CE, based on a source 
+buffer. It is used by both the sort-key generator and for the incremental string 
+comparison. Because two strings are &quot;live&quot; at the same time in 
+comparison, we will pass in a parameter block (allocated on the stack) with 
+state information for each string. This is called a <a name="Context">Context</a>:<o:p>
+  </o:p>               
+</p> 
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <th align="left">source</th>
+    <td>The source character position</td>
+  </tr>
+  <tr>
+    <th align="left">sourceEnd</th>
+    <td>To know when to end</td>
+  </tr>
+  <tr>
+    <th align="left">ceBuffer</th>
+    <td>For CEs that are results of expansion</td>
+  </tr>
+  <tr>
+    <th align="left">ceBufferStart</th>
+    <td>The start index for CEs in the buffer.</td>
+  </tr>
+  <tr>
+    <th align="left">ceBufferEnd</th>
+    <td>The limit index for CEs in the buffer</td>
+  </tr>
+  <tr>
+    <th align="left">isThai</th>
+    <td>Have we encountered Thai pre-vowel?</td>
+  </tr>
+</table>
+<h4 align="left">ceBuffer</h4>
+<p align="left">For each string, we keep a ceBuffer for expansions. This is a 
+FIFO queue, allocated on the stack. It is large enough to handle all reasonable 
+extensions (e.g. up to 100). We will not build longer extensions in the table.</p>
+<p align="left">There are two pointers: ceBufferStart and ceBufferEnd that point 
+to the contents. The function is demonstrated below.</p>
+<h4 align="left">Fetching chars</h4>
+<p align="left">If normalization is off, we fetch characters directly from the 
+source buffer. If not, we check the source buffer using the Normalization 
+QuickCheck. If it comes back as unnormalized, then we normalize into a stack 
+buffer (if possible), and fetch from there.</p>
+<div align="left">
+  <pre>// initialize
+uchar* sourceBuffer [BUFFER_SIZE];
+uchar* source, *sourceStart;
+source = sourceStart = inputBuffer;
+if (normalization_on) {
+  // normalize into sourceBuffer if possible,  resetting source, sourceStart
+  // if too big, allocate memory, resetting source, sourceStart
+}
+uchar* sourceEnd = source + sourceLength;
+....
+// cleanup
+if (sourceStart != inputBuffer &amp;&amp; sourceStart != sourceBuffer) delete(sourceStart);</pre>
+</div>
+<h4 align="left">Special CEs</h4>
+<p align="left">If the CE is of the form Ftyyyyyy, then it has a special 
+interpretation. There are two cases:
+<blockquote>
+  <p align="left"><b>A. First in a table = Special</b></p>
+  <p align="left"><b>B. Element of an Expansion. In this case, it just indicates 
+  an extension CE (see FAQ).</b></p>
+</blockquote>
+<p align="left">For specials,&nbsp; t is used as a switch, and yyyyyy is an 
+offset. By choosing this value, and making this range adjacent to the NOT_FOUND 
+marker, we save on switches. The following is a pseudocode sample of how this 
+would work:</p>
+<div align="left">
+  <pre>int getCE(...) {
+
+  // get it out of buffer, if available
+  if (ceBufferStart &lt; ceBufferEnd) {
+    ce = *ceBufferStart;
+    if (ceBufferStart == ceBufferEnd) {// reset!
+      ceBufferStart = ceBufferEnd = ceBuffer;
+  }
+
+  // return if done
+  if (source &gt;= sourceEnd) return EOS;
+
+  // get character, and do simple mapping
+  ch = *source++;
+  if (ch &lt; 0xFF) {
+    ce = tailoredData[ch]; // Latin1 is always here!
+  } else {
+    ce = tailoredData[tailoredIndex[(ch &gt;&gt;&gt; 8)] + (ch &amp; 0xFF)]; // trie
+  }
+  if (ce &gt;= NOT_FOUND) { // NOT_FOUND or SPECIAL
+    if (ce &gt; NOT_FOUND) { // handle special casing
+      getSpecialCE(tailoredSpecials, ...);
+    }
+    // if still not found, then try in the main table
+    if (ce == NOT_FOUND) {
+      ce = UcaData[UcaIndex[(ch &gt;&gt;&gt; 8)] + (ch &amp; 0xFF)]; // trie
+      if (ce &gt; NOT_FOUND) {
+        getSpecialCE(UcaSpecials, ...);
+      }
+      if (ce == NOT_FOUND) {
+      // make artifical CE from codepoint, as in UCA
+      }
+    }
+  }
+  return ce;
+}
+const int NOT_FOUND = F0000000;</pre>
+</div>
+<p align="left">Note that NOT_FOUND is higher than all non-SPECIAL CEs, and less 
+than all non-specials.</p>
+<p align="left">Note that every tailoring table is built to have <b><i>all</i></b> 
+Latin1 characters, even when they are identical with the UCA table. That way the 
+Latin1 case is as fast as possible.</p>
+<h3 align="left">GetSpecialCE</h3>
+<p align="left">In the case that we do have specials, it falls into certain 
+cases: Contraction, Expansion, Thai, Charset, and Surrogate. For processing 
+these, we would do something like the following pseudocode:</p>
+<div align="left">
+  <pre>while (true)
+  // special ce is has these fields: 
+  // first nybble (4 bits) is F, next nybble (4 bits) is type
+  int type = (ce &gt;&gt; 24) &amp; 0xF;
+  // next 24 bits are data
+  int data = ce &amp; 0x00FFFFFF; // remove F, type
+  switch (type) {
+    case NOT_FOUND_TAG: break;// never happens
+
+    case SURROGATE_TAG: // use offset, ch and *source to for trie with dataTable.extendedData
+      ...
+    case THAI_TAG: // do Thai, Lao rearrangement
+      ...
+    case CONTRACTION_TAG: // do contraction thing
+      ...
+    case EXPANSION_TAG: // do expansion thing
+      // put extra CEs into ceBuffer
+      ...
+    case CHARSET_TAG:
+      // do 
+      ce = (ce &lt;&lt; 8) | 0x0303; // charsets only used for primary differences, so use middle 16 bits
+      // the 0303 is to make a well-formed CE.
+      charConverter[charSetNum].getOrdering(ch, ceBuffer, ceBufferTop);
+      break;
+  }
+  if (ce &lt;= NOT_FOUND) break; // normal return
+}</pre>
+</div>
+<h3 align="left">Expansion (max size 2<sup>20</sup>)</h3>
+<p align="left">The expansion table is simply a list of CEs. Internally it is 
+broken into sections. The longer ones are null terminated: the others use an 
+external length, based on the data from above.</p>
+<table border="1" width="1%">
+  <tr>
+    <th width="100%">
+      <p align="left">Expansions</p>
+    </th>
+  </tr>
+  <tr>
+    <td width="100%">
+      <p align="left">CE</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%">
+      <p align="left">CE</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%">
+      <p align="left">CE</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%">
+      <p align="left">....</p>
+    </td>
+  </tr>
+</table>
+<p align="left">The data is broken into two pieces: 4 bits for length, 20 bits 
+for offset. A length value of 0 means that the actual length didn't fit in 4 
+bits, and the expansions are instead terminated by 00000000. Otherwise, the 
+length is used to determine the number of CEs to add to the ceBuffer. E.g.</p>
+<div align="left">
+  <pre>len = ce &amp; 0xF;
+offset = ce &gt;&gt; 8;
+if (len == 0) // go until terminated
+  ce = expansionTable[offset++]; // get first one. Never 0
+  loop {
+    item = ExpansionTable[offset++];
+    if (item == 0) break;
+    ceBuffer[ceBufferTop++] = item;
+  }
+} else {
+  ce = expansionTable[offset++]; // get first one.
+  for (int i = len-2; i &gt; 0; --i) {
+    ceBuffer[ceBufferEnd++] = ExpansionTable[offset++];
+  }
+}</pre>
+</div>
+<h3 align="left">Contraction (max size 2<sup>24</sup>)</h3>
+<p align="left">[TBD] The contraction tables consist of two parts, one 16 bits 
+wide (uchars) and the other 32 bits wide (CEs). The first uchar in each section 
+is actually a delta offset, not a uchar.</p>
+<table border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <table border="1">
+        <tr>
+          <th width="100%">
+            <p align="left">Contraction UChars</p>
+          </th>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">...</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">...</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">backward offset</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">char_n1</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">char_n2</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">char_n3</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">FFFF</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">....</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">backward offsetm</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">char_m1</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">char_m2</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">FFFF</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">...</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <table border="1">
+        <tr>
+          <th width="100%">
+            <p align="left">Contraction Results</p>
+          </th>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">...</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">...</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">defaultCEn</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CEn1</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CEn2</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CEn3</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">defaultCEn</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">...</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">defaultCEm</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CEm1</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CEm2</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">defaultCEm</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">...</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p align="left">From the original CE, we use the data as an offset into the 
+Contraction UChars table. If backwards is on (a programmatic setting for 
+searching), we add the backwards offset to out position, otherwise we advance 
+one. We grab a character from the source. We search the characters (which are in 
+sorted order). If a target char &gt;= source char, return the defaultCE (which 
+may be expansion) If target char == source char, get the corresponding result. 
+If it is a contraction, extract the offset and keep looping. Otherwise return 
+that result (may be expansion).</p>
+<p align="left">The defaultCE needs to be the concatenation of the CEs we would 
+have gotten if we had not had a contraction. Sample pseudo code:</p>
+<div align="left">
+  <pre>// only do backwards check first time. Cast to signed int delta if we are.
+if (backwardsSearch) offset += contractionUChars[(int16_t)offset]; else ++offset;
+
+// loop over multiple contractions
+while (true) {
+  if (source &gt;= sourceEnd) {
+    contractionUChars[--offset]; // return default if end of string
+    break;
+  }
+  uchar schar = source++;
+  int startPosition = offset;
+  uchar tchar;
+  while (schar &gt; tchar = contractionUChars[offset++]); // loop til found or done
+  if (schar != tchar) offset = startPosition - 1;      // use default if not found
+  ce = contractionResult[offset];
+  if (ce &lt; LOWEST_CONTRACTION) break;
+  offset = ce &amp; 0x00FFFFFF;	// get new offset and keep looping
+}
+
+// we've broken out of the loop
+if (ce &lt; LOWEST_EXPANSION) return ce;
+else // do expansion thing</pre>
+</div>
+<p align="left">We know the inner loop terminates, since we always end each list 
+of chars with FFFF. If the user happens to use a malformed string containing 
+FFFF, we are still safe, since we store defaultCE in the corresponding result 
+position.</p>
+<h3 align="left">Thai</h3>
+<p align="left">Certain Thai, Lao character rearrange (see UCA). In UCA if x is 
+a Thai vowel, &quot;xyz&quot; should behave as if it were &quot;yxz&quot;. To 
+avoid overhead of testing for character classes, we give all the rearranging 
+characters a Special class. At the very beginning, we turn Thai processing ON.</p>
+<p align="left">If Thai processing is ON, and we hit a Thai vowel, we backup by 
+one source character, and copy the source buffer (if it is not our own private 
+buffer) to a writable buffer. We then pass through all the remaining characters, 
+and rearrange any Thai ones. We turn Thai processing OFF for the rest of the 
+string, and return a zero CE (ignorable).</p>
+<p align="left">When Thai processing is OFF, we use the data as an offset into 
+the Expansion table. We fetch exactly 1 element, and process it (looking for 
+specials, so it can be an expansion or contraction).</p>
+<h3 align="left">Surrogates</h3>
+<p align="left">Surrogates can be handled already using contractions, but this 
+allows us the freedom to add an extra table for Unicode 3.1, when someone might 
+want to add tens of thousands of surrogates. For such a case, we will have an 
+optimized table. Essentially, what we do is add the following tables.</p>
+<table border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">
+            <p align="left">Surrogate Trie·Index</p>
+          </th>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">index</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">index</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">...</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">
+            <p align="left">Surrogate Trie·Data</p>
+          </th>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CE</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CE</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CE</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CE</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CE</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">CE</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%">
+            <p align="left">...</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p align="left">Fetch the next source character. If it is not a surrogate, 
+backup, return a 0 CE (completely ignorable).</p>
+<p align="left">Otherwise get the bottom 10 bits of that next source character. 
+Perform the normal trie operations: take the top few bits and add them to data. 
+Use that to lookup in the SurrogateTrieIndex, and find an offset. Add the bottom 
+few bits to that, and use that to index into the SurrogateTrieData to get the 
+CE.</p>
+<p align="left">If that CE is an expansion or contraction, handle those cases, 
+otherwise just return.</p>
+<h3 align="left">Charset Ordering</h3>
+<p align="left">To save space, we can use Charset Ordering. This is to account 
+for the case where CJK characters are essentially just sorted in character set 
+order, e.g. by JIS order. To do this, we would add functions to character set 
+converters, as described in the API section.</p>
+<h3 align="left">Script Order</h3>
+<p align="left">ScriptOrder uses an optional array to reorder the top bytes of 
+primary keys. A valid ScriptOrder array must map 00 to 00, and Fx to Fx, and 
+variable primaries to variable primaries. Other bytes it is free to rearrange, 
+but the result must be a permutation. This works by making sure that scripts do 
+not share a first primary byte (see <a href="#UCA Processing">#UCA Processing</a>). 
+Note that if we have an Ex<b><u>pa</u></b>nsion, then Ex<b><u>te</u></b>nsion 
+weights (see FAQ) have the top nybble set to F. This is <b>not</b> interpreted 
+as Special: instead , this allows ScriptOrder to ignore those bytes.</p>
+<h2 align="left"><a name="Flat File">Flat File</a></h2>
+<p align="left">The flat file structure is very similar to what is describe in 
+UCA, with extensions based upon the discussion here. Using a flat file allows us 
+to dramatically decrease initialization time, and reduce memory consumption. 
+When we process tailoring rules, we have an internal format that is very much 
+like the UCA data. We will have a function that writes out that format into a 
+flat file.</p>
+<p align="left">When we build a tailoring, we make the following modifications 
+to the current code. Note that this is not an area where we will spend time 
+improving performance, since 99% of the time this is done at ICU build time.</p>
+<p align="left">The current code builds an ordered list of items in the 
+tailoring, where each item is an object containing the character(s), an 
+indication of the strength difference, plus a special field for contracting 
+characters. Once it is done, it assigns CEs to those characters based on the 
+ordering and strength, putting the CE's into a trie table plus data structures 
+for expanding, contracting, etc.</p>
+<p align="left">The difference is that a RESET no longer needs to have a 
+preexisting character, since that comes out of the UCA. Resets with characters 
+already in the table are handled just like now. For the non-preexisting ones, we 
+add new items for RESET, with a strength flag to each item that indicates 
+whether it is a RESET or not, and the contents are the characters reset to. 
+These just go at the end of the list (logically, each list starting with a RESET 
+would be a different table, but to minimize the code difference we do it this 
+way). When we go through the table setting up CEs, at each RESET we grab the 
+current value of the UCA for those characters.</p>
+<p align="left">Example:</p>
+<p align="left">&amp;z &lt; å &lt; ö &amp; åe &lt; æ &amp; q &lt; m</p>
+<p align="left">This generates items:</p>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th width="33%">
+      <p align="left">Strength</p>
+    </th>
+    <th width="33%">
+      <p align="left">Chars</p>
+    </th>
+    <th width="33%">
+      <p align="left">Extension</p>
+    </th>
+  </tr>
+  <tr>
+    <td width="33%">
+      <p align="left">RESET</p>
+    </td>
+    <td width="33%">
+      <p align="left">z</p>
+    </td>
+    <td width="33%">
+      <p align="left">null</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%">
+      <p align="left">Primary</p>
+    </td>
+    <td width="33%">
+      <p align="left">å</p>
+    </td>
+    <td width="33%">
+      <p align="left">null</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%">
+      <p align="left">Primary</p>
+    </td>
+    <td width="33%">
+      <p align="left">æ</p>
+    </td>
+    <td width="33%">
+      <p align="left">e</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%">
+      <p align="left">Primary</p>
+    </td>
+    <td width="33%">
+      <p align="left">ö</p>
+    </td>
+    <td width="33%">
+      <p align="left">null</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%">
+      <p align="left">RESET</p>
+    </td>
+    <td width="33%">
+      <p align="left">q</p>
+    </td>
+    <td width="33%">
+      <p align="left">null</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%">
+      <p align="left">Primary</p>
+    </td>
+    <td width="33%">
+      <p align="left">m</p>
+    </td>
+    <td width="33%">
+      <p align="left">null</p>
+    </td>
+  </tr>
+</table>
+<p align="left">When we assign CEs to these, we will get something like the 
+following (assuming the values of CE's for 'z' and 'q' from a processed UCA (see 
+below)).</p>
+<table border="1" cellspacing="0" cellpadding="4" width="333">
+  <tr>
+    <th rowspan="2" width="66">
+      <p align="left">Input Char</p>
+    </th>
+    <th colspan="4" width="255">
+      <p align="left">Collation Element</p>
+    </th>
+  </tr>
+  <tr>
+    <th width="66">
+      <p align="left">Primary</p>
+    </th>
+    <th width="66">
+      <p align="left">Seconary</p>
+    </th>
+    <th width="66">
+      <p align="left">Case</p>
+    </th>
+    <th width="67">
+      <p align="left">Tertiary</p>
+    </th>
+  </tr>
+  <tr>
+    <td width="66">
+      <p align="left">m</p>
+    </td>
+    <td width="66">
+      <p align="left">2801</p>
+    </td>
+    <td width="66">
+      <p align="left">03</p>
+    </td>
+    <td width="66">
+      <p align="left">0</p>
+    </td>
+    <td width="67">
+      <p align="left">03</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="66">
+      <p align="left">q</p>
+    </td>
+    <td width="66">
+      <p align="left"><b>27</b></p>
+    </td>
+    <td width="66">
+      <p align="left">03</p>
+    </td>
+    <td width="66">
+      <p align="left">0</p>
+    </td>
+    <td width="67">
+      <p align="left">03</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="66">
+      <p align="left">z</p>
+    </td>
+    <td width="66">
+      <p align="left"><b>4E</b></p>
+    </td>
+    <td width="66">
+      <p align="left">03</p>
+    </td>
+    <td width="66">
+      <p align="left">0</p>
+    </td>
+    <td width="67">
+      <p align="left">03</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="66">
+      <p align="left">å</p>
+    </td>
+    <td width="66">
+      <p align="left">4F01</p>
+    </td>
+    <td width="66">
+      <p align="left">03</p>
+    </td>
+    <td width="66">
+      <p align="left">0</p>
+    </td>
+    <td width="67">
+      <p align="left">03</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="66">
+      <p align="left">æ</p>
+    </td>
+    <td colspan="4" width="255">
+      <p align="left">Fxxxxxx (offset to contraction table)</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="66">
+      <p align="left">ö</p>
+    </td>
+    <td width="66">
+      <p align="left">4F03</p>
+    </td>
+    <td width="66">
+      <p align="left">03</p>
+    </td>
+    <td width="66">
+      <p align="left">0</p>
+    </td>
+    <td width="67">
+      <p align="left">03</p>
+    </td>
+  </tr>
+</table>
+<p align="left">When incrementing primary values, we will not cross high byte 
+boundaries except where there is only a single-byte primary. That is to ensure 
+that the script reordering will continue to work. To take care of the case where 
+we want to add something <i>before</i> the first character in a script, we will 
+support an additional feature.</p>
+<p align="left">Since we are tailoring the UCA, we could have call to insert 
+elements <i>before</i> a given UCA element. Currently, that would have to be 
+done by finding the previous element in the table, and inserting after. That is, 
+to insert x with a primary difference before 'a', we have to know that '9'' is 
+before it in the UCA, and say &amp;'9' &lt; x. To insert with a secondary 
+difference, there is no good mechanism. To address this, we will add '&lt;&lt;' 
+as equivalent to ';', and '&lt;&lt;&lt;' as equivalent to ','; we then add the 
+reverse syntax defined for each of these operators, and thus say &amp;a &gt;&gt; 
+x.</p>
+<blockquote>
+  <p align="left">This makes a substantial code change, because of the way reset 
+  works above. No longer would we depend on RESET being the first in the series, 
+  so we will&nbsp; have to probably break the item list into separate parts. So 
+  this part is optional.</p>
+</blockquote>
+<p align="left">Once the tailoring table is completely built, we will add any 
+UCA characters in the range 0..FF that are not there already. At a slight 
+increase in table size, that guarantees the minimal code path for most cases.</p>
+<h2 align="left"><a name="UCA Processing">UCA Processing</a></h2>
+<p align="left">The UCA data table only specifies relative ordering among 
+weights. We are free to redistribute the weight values as long as the relative 
+ordering is the same. To make our processing more efficient, decrease the 
+sort-key length for A-Z, allow script-ordering, provide for tailoring of the 
+read-only table, we will preprocess the data so that we:</p>
+<ol>
+  <li>
+    <p align="left">Add gap of at least 1 between all weights at each level 
+    (allows tailoring).</li>
+  <li>
+    <p align="left">Set VARIABLE_MAX, A-Z primaries to have single-byte 
+    primaries (e.g. 3100, 3300, 3500...: make the bytes odd: they have to have 
+    gaps for expansion still).</li>
+  <li>
+    <p align="left">Start at 02 for all weights (so we have a gap between the 
+    weight and zero)</li>
+  <li>
+    <p align="left">Expand all canonical decomposibles (so we can avoid 
+    normalization)</li>
+  <li>
+    <p align="left">Drop all &quot;artificial secondaries&quot; introduced for 
+    canonical decomposibles, then pack secondaries, starting at 3. (so we can 
+    use fewer bits for secondaries)</li>
+  <li>
+    <p align="left">Start different scripts on 256 bounds (to let us shuffle 
+    scripts). Scripts are determined by the scripts of letters in 
+    ScriptNames.txt, except that&nbsp; variables are treated as a separate 
+    script.</li>
+  <li>
+    <p align="left">We separate out case into separate bit, based on calling 
+    isUpper or isLower, <i>and</i> checking for small/large hiragana/katakana. 
+    For titlecase and contractions with mixed case, the case is set to upper.</li>
+</ol>
+<p align="left">Once we process the UCA data, we will write it out using the the 
+function described in <a href="#Flat File">Flat File</a>.</p>
+<h4 align="left">Japanese Collation</h4>
+<p align="left">Supporting compatibility with Office collation for Japanese 
+involves using the caseLevel, plus changing the data (see <a href="#Appendix 1">Appendix 
+1</a> for comparison). The caseLevel is described elsewhere. The current ICU 
+data is of the form:</p>
+<p align="left"><font face="Helv" size="2" color="#000000">&lt; </font><font
+size="2" color="#000000">ゆ </font><font face="Helv" size="2" color="#000000">, 
+</font><font size="2" color="#000000">ゅ </font><font face="Helv" size="2"
+color="#000000">, </font><font size="2" color="#000000">ユ </font><font
+face="Helv" size="2" color="#000000">, </font><font size="2" color="#000000">ユー</font><font
+face="Helv" size="2" color="#000000">/</font><font size="2" color="#000000">ウ </font><font
+face="Helv" size="2" color="#000000">, </font><font size="2" color="#000000">ュ 
+</font><font face="Helv" size="2" color="#000000">, </font><font size="2"
+color="#000000">ュー</font><font face="Helv" size="2" color="#000000">/</font><font
+size="2" color="#000000">ウ</font></p>
+<p align="left">To change the data part for compatibility means putting small 
+before large, and katakana before hiragana. This can be done independent of the 
+caseLevel feature, to get closer to the Office collation.</p>
+<p align="left">&lt;&nbsp; ュ ,&nbsp; ュー/ウ ,&nbsp; ゅ ,&nbsp; ユ , 
+ユー/ウ ,&nbsp; ゆ</p>
+<h2 align="left"><a name="Syntax">Rule Syntax</a></h2>
+<p align="left">The rule syntax will be augmented slightly to allow control of 
+UCA features, and some of the additional features discussed here. Additional 
+commands are expressed in square brackets. Extra whitespace is not significant, 
+except where it would break identifiers. Case is not significant. For forward 
+compatibility, unknown command keywords are ignored.</p>
+<h3 align="left">UCA</h3>
+<div align="left">
+  <pre>[rearrange 0E40,0E41,0E42,0E43,0E44,0EC0,0EC1,0EC2,0EC3,0EC4]
+[alternate shifted]
+[backwards 2]</pre>
+</div>
+<ul>
+  <li>
+    <p align="left">For alternate we only support 'non-ignorable' | 'shifted'.</li>
+  <li>
+    <p align="left">For backwards we only support 'backwards 2', 'forwards 2'</li>
+  <li>
+    <p align="left">For backwards compability, a &quot;@&quot; is interpreted as 
+    &quot;[backwards 2]&quot;.</li>
+</ul>
+<h3 align="left">Extensions</h3>
+<h4 align="left">Normalization</h4>
+<p align="left">Since normalization can slow down processing, we provide a rule 
+that lets you turn it on or off. E.g.</p>
+<div align="left">
+  <pre>[normalization off]</pre>
+</div>
+<h4 align="left">Case</h4>
+<p align="left">We add some syntax for controlling case behavior: setting the 
+level on or off; and determining whether the case ordering is &quot;upper&quot; 
+first, &quot;lower&quot; first, or &quot;default&quot;. If 'default', then the 
+tertiary mask is 0x7F, otherwise it is 0xFF. If upper, then the case bit is 
+inverted. If lower, then the case bit is left alone.</p>
+<div align="left">
+  <pre>[caseLevel on]</pre>
+</div>
+<div align="left">
+  <pre>[caseFirst lower]</pre>
+</div>
+<div align="left">
+  <pre>The Japanese tailoring, for example, would set caseLevel ON.</pre>
+</div>
+<h4 align="left">Script Order</h4>
+<p align="left">You can create a ScriptOrder array based on the script of 
+letter1, then script of letter 2, etc. This <a href="#Overriding script orders">overrides</a> 
+the UCA order. E.g.</p>
+<div align="left">
+  <pre>[scriptOrder α, я, f]</pre>
+</div>
+<p align="left">&nbsp;In case of any conflict, the later ones are ignored. E.g. 
+in the following, the &quot;β&quot; is ignored:</p>
+<div align="left">
+  <pre>[scriptOrder α, я, f, β]</pre>
+</div>
+<p align="left">The special symbol &quot;¤&quot; stands for all non-variable 
+CEs that are below &quot;a&quot; in the UCA.</p>
+<h4 align="left">Charset</h4>
+<p align="left">Two pieces of syntax must be added. Charset is only valid if 
+there is a preceding charsetname.</p>
+<div align="left">
+  <pre>[charsetname SJIS]
+
+[charset 3400-9FAF]</pre>
+</div>
+<h2 align="left"><a name="Versioning">Versioning</a></h2>
+<p align="left">There are three important versions.&nbsp; Each of these three 
+must be available for clients. In addition, a hash of the Tailoring table is 
+available for security checks.</p>
+<ul>
+  <li>
+    <p align="left">the Code (determines the structure of the sort key),</li>
+  <li>
+    <p align="left">the UCA table/Unicode version (which will change over time, 
+    as characters are added), and</li>
+  <li>
+    <p align="left">the Tailoring table (which may change for a particular 
+    language, e.g. as more becomes known about the language or as if the laws in 
+    the country change).</li>
+</ul>
+<p align="left">We will return this as a single 32-bit int. The Code and/or UCA/Unicode 
+values are bumped with any version of ICU that changes them. The tailoring 
+version comes from the resource. The Charset version is zero if no charset is 
+used, otherwise it is a charset version.</p>
+<div align="center">
+  <table border="1" cellspacing="1">
+    <tr>
+      <td width="25%" bgcolor="#00FF00" align="center">
+        <p align="left"><font size="2">Code</font></p>
+      </td>
+      <td width="25%" bgcolor="#00FF00" align="center">
+        <p align="left"><font size="2">UCA/Unicode</font></p>
+      </td>
+      <td width="25%" bgcolor="#00FF00" align="center">
+        <p align="left"><font size="2">Charset</font></p>
+      </td>
+      <td width="25%" bgcolor="#00FF00" align="center">
+        <p align="left"><font size="2">Tailoring</font></p>
+      </td>
+    </tr>
+  </table>
+</div>
+<p align="left">In future versions of ICU, if you ask for a collator with this 
+version (and the same locale), you will get the same binary sort key. <i>However, 
+it is your own responsibility to save any parameter settings that could change 
+the binary sort key (normalization, strength, etc)! If you use customized rules, 
+management is also left up to you.</i></p>
+<h2 align="left">Registration</h2>
+<p align="left">Registration lets you register a collator, whether from the 
+system or a custom-built one from rules, for a Locale. If any function in that 
+address space then creates a collator afterwards using that locale, they get a 
+copy of the registered collator. This is not persistent over reboots. See the 
+ICU User Guide for more information.</p>
+<h2 align="left"><a name="API">API</a></h2>
+<p>We add some API to C and C++ to allow control over additional features, unify 
+feature control system, manage memory more efficiently and improve performance 
+in some special cases. None of these are breaking changes, although we do have 
+two semantic changes.</p>
+<ol>
+  <li>
+    <p align="left">The RuleBasedCollator class constructor and corresponding C 
+    ucol_open take only the tailoring rules as input, not the whole set.</li>
+  <li>
+    <p align="left">The default decomposition mode is NFD for compatibility with 
+    UCA, instead of NFKD.</li>
+</ol>
+<h3>General attribute handling API:</h3>
+<h4>C API</h4>
+<pre>void ucol_setAttribute(
+  UCollator *coll,
+  UColAttribute attr,
+  UColAttributeValue value,
+  UErrorCode *status);
+
+UColAttributeValue ucol_getAttribute(
+  UCollator *coll,
+  UColAttribute attr,
+  UErrorCode *status);</pre>
+<h4>C++ API</h4>
+<pre>void setAttribute(
+  UColAttribute attr,
+  UColAttributeValue value,
+  UErrorCode &amp;status);
+
+UColAttributeValue getAttribute(
+  UColAttribute attr,
+  UErrorCode &amp;status);</pre>
+<p>These API are used for setting and getting certain attributes of the 
+collation framework. Current attribute types are:</p>
+<pre>UCOL_FRENCH_COLLATION,   /* attribute for direction of secondary weights*/
+UCOL_ALTERNATE_HANDLING, /* attribute for handling variable elements*/
+UCOL_CASE_FIRST,         /* which goes first, lower case or uppercase */
+UCOL_CASE_LEVEL,         /* do we have an extra case level */
+UCOL_DECOMPOSITION_MODE, /* attribute for normalization */
+UCOL_STRENGTH            /* attribute for strength */</pre>
+<p>Allowable values for the attributes vary from the attribute to attribute. 
+They are summarized in the following list:</p>
+<pre>/* accepted by most attributes */
+ UCOL_DEFAULT,
+
+/* for UCOL_FRENCH_COLLATION &amp; UCOL_CASE_LEVEL &amp; UCOL_DECOMPOSITION_MODE */
+ UCOL_ON,
+ UCOL_OFF,
+
+/* for UCOL_ALTERNATE_HANDLING */
+ UCOL_SHIFTED,
+ UCOL_NON_IGNORABLE,
+
+/* for UCOL_CASE_FIRST */
+ UCOL_LOWER_FIRST,
+ UCOL_UPPER_FIRST,
+
+/* for UCOL_DECOMPOSITION_MODE */
+ UCOL_ON_WITHOUT_HANGUL,
+
+/* for UCOL_STRENGTH */
+ UCOL_PRIMARY,
+ UCOL_SECONDARY,
+ UCOL_TERTIARY,
+ UCOL_DEFAULT_STRENGTH = UCOL_TERTIARY,
+ UCOL_QUATERNARY,
+ UCOL_MAXIMUM_STRENGTH</pre>
+<p>The &quot;Universal&quot; attribute value is UCOL_DEFAULT, which sets the 
+value of the attribute to the default set by the tailoring rules. Attribute 
+values that are inappropriate for the particular attribute types result in 
+U_ILLEGAL_ARGUMENT_ERROR.</p>
+<h3>Memory</h3>
+<p>We add a safeClone, so that people can more easily manage collators among 
+threads. We will allow stack allocation. If created on the stack, the close 
+function does not free the main storage (but may free internal storage). We can 
+consider making the close operation a macro, so that there is zero overhead if 
+nothing needs doing.</p>
+<h4>C API</h4>
+<pre><font face="Courier New" color="#000000" size="2">UCollator *ucol_safeClone(const UCollator *coll,
+  void *stackBuffer,
+  uint32_t bufferSize,
+  UErrorCode *status);</font></pre>
+<h4>C++ API</h4>
+<pre><font face="Courier New" color="#000000" size="2">Collator* safeClone(void);</font></pre>
+<p align="left">In the future, we could add an open function that allows stack 
+allocation.</p>
+<h3>Rule retrieval</h3>
+<p>The new API can return either rule set or only the tailoring, depending on an 
+argument</p>
+<h4>C API</h4>
+<pre>int32_t ucol_getRulesEx(const UCollator *coll,
+  UColRuleOption delta,
+  UChar *buffer,
+  int32_t bufferLen);</pre>
+<h4>C++ API</h4>
+<pre>UnicodeString getRules(UColRuleOption delta);</pre>
+<p>The delta parameter is from the following range:</p>
+<pre>UCOL_TAILORING_ONLY,
+UCOL_FULL_RULES</pre>
+<h3>Custom data handling for string comparison</h3>
+<p>We allow user to supply their own function for fetching characters.
+<h4>C API</h4>
+<pre>U_CAPI UCollationResult ucol_strcollinc(const UCollator *coll, 
+  UCharForwardIterator *source,
+  void *sourceContext,
+  UCharForwardIterator *target,
+  void *targetContext);</pre>
+<p>Where the iterating function returns either a regular UChar value, or FFFF if 
+there are no more characters to be processed. It is defined as:</p>
+<pre>typedef UChar UCharForwardIterator(void *context);</pre>
+<h4>C++ API</h4>
+<p>The C++ equivalent relies on the implementation of the abstract 
+ForwardCharacterIterator class:</p>
+<pre>virtual EComparisonResult compare(
+  ForwardCharacterIterator &amp;source,
+  ForwardCharacterIterator &amp;target);</pre>
+<h3>Sort key array retrieval (C++ only)</h3>
+<p>In order to have the same functionality as in C, the C++ API gets the 
+following functions:
+<pre>virtual int32_t getSortKey(
+  const UnicodeString&amp; source,
+  uint8_t *result,
+  int32_t resultLength) const;
+
+virtual int32_t getSortKey(
+  const UChar *source,
+  int32_t sourceLength,
+  uint8_t *result,
+  int32_t resultLength) const;</pre>
+<p>These API store the sort key in an uint8_t (e.g. byte) array. The functions 
+do the standard preflighting.</p>
+<h3 align="left">Script Order (future option)</h3>
+<div align="left">
+  <pre>char* temp = &quot;\u03B1, \u044F, f&quot;;
+// use unescape to put into uchar* tempu;
+ucol_setScriptOrder(aCollator, tempu);</pre>
+</div>
+<p align="left">Puts the characters in temp into a scriptOrder array. Whitespace 
+and commas are ignored. This <a href="#Overriding script orders">overrides</a> 
+the tailored order, which in turn overrides the UCA order.</p>
+<h4 align="left"><a name="Overriding script orders">Overriding script orders</a></h4>
+<p align="left">When a script order overrides another you merge them together in 
+the following way, with the overriding script order as the master, and the 
+overridden one as slave:</p>
+<blockquote>
+  <p align="left">Start with the master. Find the first script in the slave that 
+  is also in the master. If there is none, add all slave values at end of 
+  master, and terminate. If there is one, insert all preceding slave values 
+  before the matching value in the master. Set the current_position to be <i>after</i> 
+  the matching value in the master. Successively add the remaining elements from 
+  the slave, as follows:</p>
+  <ul>
+    <li>
+      <p align="left">If the slave value is in the master, set the 
+      current_position to <i>after</i> that master value</li>
+    <li>
+      <p align="left">If the slave value is not in the master, insert <i>before</i> 
+      the current_position and increment current_position.</li>
+  </ul>
+</blockquote>
+<p align="left"><i>Example (using characters to stand for scripts):</i></p>
+<p align="left">Master: α, я, f</p>
+<p align="left">Slave:亰, f, ¤, α</p>
+<p align="left">Results: α, я, 亰, f, ¤</p>
+<p align="left">Before execution, these characters are used to form a permuting 
+scriptOrder array, as described in the implementation section.</p>
+<h3 align="left">Charset Ordering</h3>
+<p align="left">The following methods need to be added to charset converters, 
+before we can support the charset feature.</p>
+<div align="left">
+  <pre>/** Returns CE values for given character. The first is the return, the rest
+ *  are filled in.
+ *  Resets ceBufferEnd to indicate length in queue. Can never return more than CEBUFFER_MAX.
+ *  Must be well-formed CEs!!
+ *  the data represents the primary weight bytes to append to the first CE.
+ */
+
+ce = cvt_getOrdering(Converter cvt, int data, uchar32 ch, int[] ceBuffer, int* ceBufferEnd);</pre>
+</div>
+<p align="left">The top 8 bits of the data is used as the first primary weight: 
+the others are extensions.</p>
+<div align="left">
+  <pre>/** Returns a version ID. This is a byte, which we bump in ICU 
+  * whenever the collation result in getOrdering would differ because of data changes.
+ */
+
+uint8_t  cvt_getColVersion(Converter cvt);</pre>
+</div>
+<h2 align="left"><a name="FAQ">FAQ</a></h2>
+<p class="q" align="left">Q: The small/large kana differences: should that be 
+set in the rules or by API?</p>
+<p class="a" align="left">A: The case bit is set programmatically, on the basis 
+of case and small/large kana differences. Whether and how to use it is controled 
+by both the API and the tailoring.</p>
+<p class="q" align="left">Q. The reverse searching still has support for 
+contracting sequences, which is used for fast Internationalized Boyer-Moore 
+searching?</p>
+<p class="a" align="left">A: Yes, we are not removing that capability. The 
+backwards offset is used to get the separate table for contractions when 
+processing backwards.</p>
+<center>
+<hr>
+</center>
+<p class="q" align="left">Q: A collation weight in the UCA is defined to be a 16 
+bit value (aka wyde). This will surely fail when Unicode 3.1 rolls around, with 
+over 90,000 characters!</p>
+<p class="a" align="left">A: The UCA makes provision for more than 64K weight 
+values: see <a
+href="http://www.unicode.org/unicode/reports/tr10/#Large Weight Values">Section 
+6.2 Large Weight Values</a> and also <a
+href="http://www.unicode.org/unicode/reports/tr10/#Escape hatch">6.3.2 Escape 
+Hatch</a>. This mechanism is also used in Weight Derivation, as in <a
+href="http://www.unicode.org/unicode/reports/tr10/#LegalCodePoints">7.1.2 Legal 
+code points</a>. It discusses using a sequence of two collation elements, of the 
+form:</p>
+<blockquote>
+  <div align="left">
+    <pre>[(X1+1).0000.0000], [yyyy.zzzz.wwww]</pre>
+  </div>
+</blockquote>
+<p class="q" align="left">Q: I find this hard to follow. Is there any other way 
+to explain the issue?</p>
+<p class="a" align="left">Ok. We can look at the weights in a different way, 
+that may help to clarify what is going on.</p>
+<p class="a" align="left">We'll define <i>fractional collation elements</i> to 
+be the same as standard collation elements except that each weight is a fraction 
+between zero and one (instead of being an integer from 1 to FFFF). For ease in 
+working with computers, these are binary fractions, represented as hexadecimal.</p>
+<p class="a" align="left"><i>Examples:</i></p>
+<ul>
+  <li>
+    <p class="a" align="left"><code>[0.1, 0.A3, 0.00057A9]</code></li>
+  <li>
+    <p class="a" align="left"><code>[0.1200C456B, 0.78AF, 0.013A9]</code></li>
+</ul>
+<p class="a" align="left">With fractional collation elements, it is easy to see 
+that all Unicode code points (including the supplementary code points) could 
+have distinct primary mappings: there are innumerably many more than 10FFFF 
+possible fractions! <a
+href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
+<p class="q" align="left">Q: Is that all there is to it?</p>
+<p class="a" align="left">Not quite. We still will have to turn these fractional 
+collation elements into well-formed standard collation elements that we can use 
+to build a sort key. To do that, we put some restrictions on the allowable 
+values for the fractional weights. By adopting these restrictions, we make the 
+conversion very simple, without limiting the indefinitely large range offered by 
+fractional weights.</p>
+<p class="a" align="left">Consider a fractional weight as broken into a sequence 
+of <i>blocks</i> of 4 digits each, excluding any trailing blocks that would be 
+entirely zero. (We could give a precise numeric definition, but it is easier to 
+think of it as simply taking chunks of 4 digits at a time.)</p>
+<p class="a" align="left"><i>Example:</i></p>
+<blockquote>
+  <p class="a" align="left"><b>0.12C456A000000...</b> breaks into two blocks: <b>12C4</b> 
+  and <b>56A0<br>
+  0.12C456A320000....</b> breaks into three blocks: <b>12C4</b>, <b>56A3</b>, 
+  and <b>2000</b></p>
+</blockquote>
+<p class="a" align="left">Since we eventually will be converting these 
+fractional collation weights into standard ones, we will put some restrictions 
+on the values taken by these fractions, based (not surprisingly) on their 
+blocks. Since we have wide latitude in choosing the precise values for the 
+fractional weights in setting up a collation table, these restrictions are not 
+at all onerous.</p>
+<p class="a" align="left"><b>R1. </b>No block can be completely zero.</p>
+<blockquote>
+  <p class="a" align="left">The reason for this rule is to avoid collision with 
+  the <i>level separator,</i> when the fractional weight is eventually used in a 
+  sort key.</p>
+</blockquote>
+<p class="a" align="left"><i>Example:</i></p>
+<blockquote>
+  <p class="a" align="left"><b>0.12C400005</b> violates R1, since it breaks into 
+  the three blocks <b>12C4 0000 5000</b>, the second of which is zero.</p>
+</blockquote>
+<p class="a" align="left"><b>R2. </b>The blocks from a fractional weight cannot 
+exactly match the initial blocks of another fractional weight at the same level.</p>
+<blockquote>
+  <p class="a" align="left">The reason for this rule is to avoid having sort 
+  keys where the starting blocks from one string are compared against the 
+  trailing blocks from another.</p>
+</blockquote>
+<p class="a" align="left"><i>Example:</i></p>
+<blockquote>
+  <p class="a" align="left">The two primary weights <b>0.A39212C45D7</b> and <b>0.A39212C4</b> 
+  violate R2, since the first breaks into blocks <b>A392 12C4 5D70</b>, while 
+  the second breaks into blocks <b>A392 12C4</b>. If the second weight were <b>0.A39212C5</b> 
+  or <b>0.A39212C43</b>, it would not violate R2.</p>
+  <p class="a" align="left">Allowing fractions to break this rule would cause a 
+  problem when these blocks are pushed into a sort key (see next question). 
+  Let's take an example where we just concentrate on the primary weights. 
+  Suppose x[1] = <b>0.A392 12C4 5D70</b>,&nbsp; y[1] = <b>0.A392 12C4</b>, and 
+  a[1] = <b>0.4927</b>. Then we would get the following ordering:</p>
+  <p class="a" align="left">a: [<b>4927 0000...</b>]<br>
+  x: [<b>A392 12C4 5D70 0000...</b>]<br>
+  y: [<b>A392 12C4 0000...</b>]<br>
+  xa: [<b>A392 12C4 5D70 4927 0000...</b>]</p>
+  <p class="a" align="left">Because the primary weights turn into different 
+  lengths, and they don't follow <b>R2</b>, we get incorrect behavior. If <b>R2</b> 
+  is followed, this can never happen, since &quot;x&quot; and &quot;y&quot; 
+  would have to differ at some point before we ran out of blocks on one side.</p>
+</blockquote>
+<p class="a" align="left"><b>R3. </b>No fractional collation element can have a 
+zero weight at Level N and a non-zero weight at Level N-1. Any collation 
+elements that violate this rule are called <i>ill-formed</i>.</p>
+<blockquote>
+  <p class="a" align="left">The reason for this rule is to avoid allowing 
+  character to transpose, and still have the same sort key (cf.&nbsp; <a
+  href="#Step 4">UCA §4.4, Step 4: Compare</a>).</p>
+</blockquote>
+<p class="a" align="left">Any fractional collation element that does not meet 
+these restrictions is called <i>ill-formed</i>. <a
+href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
+<p class="q" align="left">Q: Once I have a well-formed fractional collation 
+element table, how do I generate a sort key?</p>
+<p class="a" align="left">A fractional collation element table can easily be 
+transformed into a standard one. Each fractional collation element is 
+transformed into a sequence of one <i>or more</i> standard collation elements:</p>
+<ul>
+  <li>
+    <p class="a" align="left">Break each fractional weight into a sequence of 
+    blocks.</li>
+  <li>
+    <p class="a" align="left">Take one block from each level to form a collation 
+    element.</li>
+  <li>
+    <p class="a" align="left">If there are no more blocks for a particular 
+    level, use zero for the that level.</li>
+  <li>
+    <p class="a" align="left">If there are no more blocks for all levels, stop.</li>
+</ul>
+<p class="a" align="left"><i>Example:</i></p>
+<blockquote>
+  <div align="left">
+    <pre>[0.1200C456B, 0.78AF, 0.013A9]
+=&gt;
+[1200.78AF.013A], [.C456.0000.9000], [B000.0000.0000]</pre>
+  </div>
+</blockquote>
+<p class="a" align="left">Using this transformation, two fractional collation 
+elements will have the same relative ordering as their derived UCA collation 
+element sequences. Because the fractional collation elements can handle all 
+Unicode code points (even supplementary code points, above U+FFFF), so can the 
+derived UCA collation elements sequences.</p>
+<p class="a" align="left">All but the first collation element in the derived 
+sequence are called <i>extension collation elements.</i> If you now look back at 
+the discussions in <a
+href="http://www.unicode.org/unicode/reports/tr10/#Large Weight Values">Section 
+6.2 Large Weight Values</a>, <a
+href="http://www.unicode.org/unicode/reports/tr10/#Escape hatch">6.3.2 Escape 
+Hatch</a>, and <a
+href="http://www.unicode.org/unicode/reports/tr10/#LegalCodePoints">7.1.2 Legal 
+code points</a>, you will see extension collation elements that implicitly 
+represent fractional collation elements. <a
+href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
+<p class="q" align="left">Q: Aren't the extension collation elements in the 
+above example ill-formed?</p>
+<p class="a" align="left">The text of the UCA is not as clear as it should be on 
+that point. It says:</p>
+<blockquote>
+  <p class="a" align="left">Except in special cases, no collation element can 
+  have a zero weight at Level N and a non-zero weight at Level N-1. Any 
+  collation elements that violate this rule are called <i>ill-formed</i>. The 
+  reason for this will be explained under Step 4 of the main algorithm.</p>
+</blockquote>
+<p class="a" align="left">The &quot;special cases&quot; referred to in the text 
+are precisely the extension collation elements that would result from generating 
+the collation element table from a fractional collation element table. A 
+reformulation in terms of fractional collation elements clears this up. <a
+href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
+<p class="q" align="left">Q: In tailoring, I need to put a collation element 
+between two others. How can I do this without changing the original two values?</p>
+<p class="a" align="left">The easiest way to do this is to view the collation 
+element table as fractional collation elements, as described in the previous 
+questions. If you construct your original table so that you leave a bit of room 
+between adjacent collation elements, then you can always always find 
+intermediate values for the weights at any level. <a
+href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
+<p class="q" align="left">Q: What do you mean by &quot;a bit of room&quot;?</p>
+<p class="a" align="left">For two adjacent collation elements in the table, just 
+make sure that for each level there is at least one valid fractional weight 
+between the weights from those elements.</p>
+<p class="a" align="left"><i>Example:</i></p>
+<ul>
+  <li>
+    <p class="a" align="left"><b>0.ABC3</b> and <b>0.ABD</b> have room:
+    <ul>
+      <li>
+        <p class="a" align="left">One could insert 13 different 1-block 
+        fractions: <b>0.ABC4, 0.ABC5, ..., 0.ABCC;</b> or many more 2-block 
+        fractions.</li>
+    </ul>
+  </li>
+  <li>
+    <p class="a" align="left"><b>0.ABCD</b> and <b>0.ABCF</b> have room:
+    <ul>
+      <li>
+        <p class="a" align="left">One could insert <b>0.ABCE</b>, or one could 
+        insert many more 2-block fractions: <b>0.ABCE0001, 0.ABCE0002, ...</b></li>
+    </ul>
+  </li>
+  <li>
+    <p class="a" align="left"><b>0.ABCD</b> and <b>0.ABCE</b> don't have room.
+    <ul>
+      <li>
+        <p class="a" align="left">While fractions of the form <b>0.ABCDx</b> are 
+        between these values, they would violate <b>R2</b> above.</li>
+    </ul>
+  </li>
+  <li>
+    <p class="a" align="left"><b>0.AAAAFFFF</b> and <b>0.AAAB0001</b> don't have 
+    room.
+    <ul>
+      <li>
+        <p class="a" align="left">Inserting <b>0.AAAAFFFFx</b> would violate <b>R1</b>; 
+        inserting <b>0.AAAB0000x</b> would violate <b>R2</b>.</li>
+    </ul>
+  </li>
+</ul>
+<p class="q" align="left">Q: So how do I determine the intermediate values?</p>
+<p class="a" align="left">First, determine how many weights you need, and then 
+how many valid weights are between the two given weights. Unless the fractional 
+weights have the same number of blocks <i>and</i> only differ in the last block, 
+there will usually be far more weights than you need. The problem cases are 
+where the weights <i>do</i> have the same number of blocks, and only differ in 
+the last block, such as <b>0.ABCC</b> and <b>0.ABCF</b>.</p>
+<p class="a" align="left">A simple way to assign the weights is the following:</p>
+<ul>
+  <li>
+    <p class="a" align="left">If there is enough room to add all the weights you 
+    need, then just add them.</li>
+  <li>
+    <p class="a" align="left">If not, then fill up the gaps except for the <i>last</i> 
+    one.
+    <ul>
+      <li>
+        <p class="a" align="left">For example, with <b>0.ABCA</b> and <b>0.ABCF</b> 
+        you will use <b>0.ABCB, 0.ABCC, 0.ABCD</b>.</li>
+    </ul>
+  </li>
+  <li>
+    <p class="a" align="left">With the last one, make the fraction one block 
+    longer, starting with 0001.
+    <ul>
+      <li>
+        <p class="a" align="left">For example, you will use <b>0.ABCE0001, 
+        0.ABCE0002</b>, etc.</li>
+    </ul>
+  </li>
+  <li>
+    <p class="a" align="left">You now have room for 65534 more weights. Repeat 
+    this process as needed.</li>
+</ul>
+<p class="q" align="left">Q: Is this an optimal way to calculate the weights?</p>
+<p class="a" align="left">If you had a <i>really</i> large number of weights to 
+squeeze in, you can choose a more optimized procedure to minimize the number of 
+longer fractions. We'll leave that for the reader.</p>
+<p class="q" align="left">Q: I use the mechanisms in <a href="#L2/L3 in 8 bits">UCA 
+§6.1.2, L2/L3 in 8 bits</a> to reduce my sort-key to less than half the size. 
+How can I use this extension/tailoring method with bytes instead of wydes?</p>
+<p class="a" align="left">This mechanism can also be applied to bytes. The only 
+change you have to make is to use a block-size of 2 instead of 4. That is, for 
+the L2 and L3 weights:</p>
+<blockquote>
+  <p class="a" align="left">Consider a fractional weight as broken into a 
+  sequence of <i>blocks</i><sub><i>b</i></sub> of 2 digits each, excluding any 
+  trailing blocks that would be entirely zero. (We could give a precise numeric 
+  definition, but it is easier to think of it as simply taking chunks of 2 
+  digits at a time.)</p>
+</blockquote>
+<p class="a" align="left">If you then pick weights for your fractional collation 
+elements that meet the corresponding restrictions R1<sub>b</sub>, R2<sub>b</sub>, 
+and R3, then you can construct a well-formed standard collation element table 
+that uses far less storage for the majority of characters, but provides for 
+arbitrary tailoring. <a
+href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
+<h2 align="left"><a name="Appendix 1">Appendix 1</a>: Japanese Sorting in Office</h2>
+<p align="left">The following is the result of a test of sorting in Microsoft 
+Office, for comparison.</p>
+<p align="left">1:LEVEL base chars, length<br>
+1:カ<br>
+1:カキ<br>
+1:キ<br>
+1:キキ<br>
+<br>
+2:LEVEL plain, daku-ten, (handaku-ten)<br>
+2:ハカ<br>
+2:バカ<br>
+2:ハキ<br>
+2:バキ<br>
+* This is a different level. Notice that the difference between バ and ハ is 
+ignored if there is a level 1 difference.<br>
+<br>
+3:LEVEL small before large<br>
+3:ッハ<br>
+3:ツハ<br>
+3:ッバ<br>
+3:ツバ<br>
+* This is a different level. Notice that the difference between ッ and ツ is 
+ignored if there is a level 2 difference<br>
+<br>
+4:LEVEL katakana before hiragana<br>
+4:アッ<br>
+4:あッ<br>
+4:アツ<br>
+4:あツ<br>
+* This is a different level. Notice that the difference between ア and あ is 
+ignored if there is a level 3 difference.<br>
+<br>
+5:LEVEL choo-on kigoo as vowel<br>
+5:カーア<br>
+5:カーあ<br>
+5:カイア<br>
+5:カイあ<br>
+5:キイア<br>
+5:キイあ<br>
+5:キーア<br>
+5:キーあ<br>
+* Office handles the expansion of ー into different characters depending on the 
+previous letter, so it sorts before イ when following a カ, but after when 
+following a キ. However, it is not a different level from #4, since the order 
+does not reverse with a suffix.<br>
+<br>
+Thus Office has 4 levels:<br>
+Level 1 = base letters<br>
+Level 2 = plain, daku-ten, handaku-ten<br>
+Level 3 = small, large<br>
+Level 4 = katakana, hiragana, choo-on kigoo</p>
+<p align="center"><i>Copyright © 2000, IBM Corp. All Rights Reserved.</i></p>
+
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>http</title>
+<style>
+<!--
+td, th       { vertical-align: Top }
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Recommendations for POSIX-Style Properties</h1>
+<p align="center">Last updated: 2003-04-03, MED</p>
+<p>The POSIX-style property names are are not well specified, and don't really
+map well to the broader types of characters available in Unicode/10646. For
+example, there is no provision for titlecase. However, many programs use them,
+so for compatibility it is best to come up with uniform set of recommendations
+for how they should be interpreted in a Unicode context. </p>
+<p>Feedback is welcome.</p>
+<p><i><b>Broken Links</b></i>: some of the following links may not work, since
+they are to beta versions. If so, see the <a href="#Notes">Notes</a>.</p>
+<table border="1" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <th>Perl</th>
+    <th>POSIX</th>
+    <th width="45%">Recommendations with Unicode</th>
+    <th width="45%">Comments</th>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>alpha</td>
+    <td>[\p{Alphabetic} \p{General_Category=Mark}]</td>
+    <td>Alphabetic includes more than General_Category = Letter. Note that marks
+      (Me, Mn, Mc) are required in many languages. It is a simplification to
+      include them, since they could be applied to non-alphabetics, but
+      excluding them would cause many words to fail the isAlpha test. See <a href="http://www.unicode.org/Public/4.0-Update/DerivedCoreProperties-4.0.0d20b.txt">DerivedCoreProperties-4.0.0d20b.txt</a>
+      for Alphabetic, also <a href="http://www.unicode.org/Public/4.0-Update/extracted/DerivedGeneralCategory-4.0.0d19b.txt">DerivedGeneralCategory-4.0.0d19b.txt</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>alnum</td>
+    <td>[\p{alpha}\p{digit}]</td>
+    <td>Simple combination of other properties</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>blank</td>
+    <td>[[\p{Whitespace} - {cntl}]<br>
+      \N{CHARACTER TABULATION} ]</td>
+    <td>&quot;horizontal&quot; whitespace. See <a href="http://www.unicode.org/Public/4.0-Update/PropList-4.0.0d20b.txt">PropList-4.0.0d20b.txt</a>
+      for WhiteSpace.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>cntrl</td>
+    <td>[\p{General_Category=Control} \p{General_Category=Line_Separator} \p{General_Category=Paragraph_Separator}]</td>
+    <td>Does not include Format, since some of those are needed in the
+      representation of normal text. However, includes the Zl, Zp, since they
+      are very control-like.</td>
+  </tr>
+  <tr>
+    <td>\d</td>
+    <td>digit</td>
+    <td>[\p{Number_Type = Decimal}]</td>
+    <td>Non-decimal numbers (like Roman numerals) are normally excluded. In
+      U4.0+, this is the same as General_Category = Decimal_Number (Nd). See <a href="http://www.unicode.org/Public/4.0-Update/extracted/DerivedNumericType-4.0.0d19b.txt">DerivedNumericType-4.0.0d19b.txt</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>graph</td>
+    <td>[^\p{cntl}\p{space}]</td>
+    <td>Simple combination of other properties</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>lower</td>
+    <td>[\p{Lowercase}]</td>
+    <td>Lowercase includes more than General_Category = Lowercase_Letter (Ll).
+      See <a href="http://www.unicode.org/Public/4.0-Update/DerivedCoreProperties-4.0.0d20b.txt">DerivedCoreProperties-4.0.0d20b.txt</a>.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>print</td>
+    <td>[^\p{cntrl}]</td>
+    <td>Simple combination of other properties</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>punct</td>
+    <td>[\p{General_Category=Punctuation}]</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\s</td>
+    <td>space</td>
+    <td>[\p{Whitespace}]</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>upper</td>
+    <td>[\p{Uppercase} \p{General_Category=Titlecase_Letter}]</td>
+    <td>Uppercase includes more than General_Category = Uppercase_Letter (Lu).
+      The titlecase letters (Lt) are added because although neither fish nor
+      fowl, adding them will probably work better for old software. See <a href="http://www.unicode.org/Public/4.0-Update/DerivedCoreProperties-4.0.0d20b.txt">DerivedCoreProperties-4.0.0d20b.txt</a>.</td>
+  </tr>
+  <tr>
+    <td>\w</td>
+    <td>word</td>
+    <td>[\p{alpha} \p{digit} \N{LOW LINE}]</td>
+    <td>This is only an approximation to Word Boundaries (See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX
+      #29: Text Boundaries</a>). The digits and &quot;_&quot; are lumped in for
+      compatibility.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>xDigit</td>
+    <td>[\p{Hex_Digit}]</td>
+    <td>See <a href="http://www.unicode.org/Public/4.0-Update/PropList-4.0.0d20b.txt">PropList-4.0.0d20b.txt</a></td>
+  </tr>
+  <tr>
+    <td>\X</td>
+    <td>&nbsp;</td>
+    <td>Default Grapheme Cluster</td>
+    <td>See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX #29:
+      Text Boundaries</a>, also <a href="http://www.unicode.org/reports/tr29/GraphemeClusterBreakTest.html">GraphemeClusterBreakTest.html</a>
+    </td>
+  </tr>
+  <tr>
+    <td>\b</td>
+    <td>&nbsp;</td>
+    <td>Default Word Boundaries</td>
+    <td>If there is a requirement that /b align with \w, then it would use the
+      approximation above instead. See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX
+      #29: Text Boundaries</a>, also <a href="http://www.unicode.org/reports/tr29/WordBreakTest.html">WordBreakTest.html</a>.
+    </td>
+  </tr>
+</table>
+<p><b><a name="Notes">Notes</a>:</b></p>
+<ul>
+  <li>Open Issues
+    <ul>
+      <li>We may want to move \p{General_Category=Mark} to word instead of
+        alpha. Depends on what gets the best level of compatibility.</li>
+    </ul>
+  </li>
+  <li>Other Unicode Links
+    <ul>
+      <li><a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18:
+        Unicode Regular Expression Guidelines</a></li>
+      <li><a href="http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d20b.html">http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d20b.html</a>
+      </li>
+    </ul>
+  </li>
+  <li>Related Perl Links
+    <ul>
+      <li><a href="http://www.perldoc.com/perl5.8.0/lib/charnames.html">http://www.perldoc.com/perl5.8.0/lib/charnames.html</a></li>
+      <li><a href="http://www.perldoc.com/perl5.8.0/pod/perlre.html">http://www.perldoc.com/perl5.8.0/pod/perlre.html</a></li>
+      <li><a href="http://www.perldoc.com/perl5.8.0/pod/perluniintro.html">http://www.perldoc.com/perl5.8.0/pod/perluniintro.html</a></li>
+    </ul>
+  </li>
+  <li>Current Beta 4.0.0 UCD
+    <ul>
+      <li><a href="http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d5b.html">http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d5b.html</a></li>
+    </ul>
+  </li>
+  <li><i><b>Broken Links</b></i>: some of the above links may not work, since
+    they are to beta versions. If so, go to the latest links through the
+    following:
+    <ul>
+      <li><a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/</a></li>
+      <li><a href="http://www.unicode.org/Public/4.0-Update/">http://www.unicode.org/Public/4.0-Update/</a></li>
+    </ul>
+  </li>
+</ul>
+
+</body>
+
+</html>

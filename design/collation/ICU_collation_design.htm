@@ -26,8 +26,8 @@ h2           { page-break-before: always }
 <body>
 
 <h1 align="center">ICU Collation Design Documentation</h1>
-<h3 align="center">Version #16d</h3>
-<h3 align="center">2000-05-31</h3>
+<h3 align="center">Version #16e</h3>
+<h3 align="center">2002-07-25</h3>
 <h3 align="center"><i>Feedback: <a href="mailto:mark.davis@us.ibm.com">mailto:mark.davis@us.ibm.com</a></i></h3>
 <h3 align="center">(<a href="ICU_collation_design.htm">Latest Version</a>)</h3>
 <hr width="50%">
@@ -1479,18 +1479,26 @@ FCD.</p>
 a canonical closure both in our Fractional UCA table and in our Tailoring table, and we handle Hangul decomposition algorithmically in <a
 href="#Hangul_Implicit_CEs">Hangul Implicit CEs</a>. So any composite automatically expands as the correct series of CEs. If the string is FCD, then this 
 expansion will be in the right order and everything is hunky-dory, even without normalization to NFD.</p>
+
 <p>Luckily a test for FCD is even faster and more precise than Normalization <a href="http://www.unicode.org/unicode/reports/tr15/#Annex8">QuickCheck</a>. We 
-have a static FCD data table that is precomputed to map each Unicode codepoint X to the combiningClass of the last character in the canonical decomposition for 
-X. This table is constructed as a standard Trie. Then the code is something like:</p>
+have a static FCD data table that is precomputed to map each Unicode code point X to the pair of   
+combining classes of the first and last characters in the canonical decomposition for    
+X. This table is constructed as a standard UTrie. Then the code is something like:</p>   
+
 <pre>boolean checkFCD(uchar *p, uchar* endp) {
-  uint8 lastFCD = 0;
+  uint16_t fcd;
+  uint8_t prevCC;
+  uint8_t cc;
+
+  prevCC = 0;
   while (p &lt; endp) {
-    uint8 fcd = FCD(*p++);
-    if (fcd != 0 &amp;&amp; lastFCD &gt; fcd) return false;
-    lastFCD = fcd;
+    fcd = FCD(*p++);
+    cc = getLeadCC(fcd);
+    if (cc != 0 &amp;&amp; prevCC &gt; cc) return false;
+    prevCC = getTrailCC(fcd);
   }
   return true;
-}</pre>
+}</pre>   
 <p>When we are dealing with null-terminated strings, we have to make a pass through the characters anyway to find the length so that we can set up the buffers 
 properly. These two checks are combined into a single routine for performance.</p>
 <blockquote>
@@ -3679,6 +3687,7 @@ Main items (not in priority order)
       <li>Added primary compression and other optimizations added in 1.8.1.</li>
     </ul>
   </li>
+  <li>16e: fixed checkFCD function</li>
 </ul>
 <h3>Version 15</h3>
 <ul>

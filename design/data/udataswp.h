@@ -17,6 +17,8 @@
 *   changing between big- and little-endian data and/or between
 *   charset families (ASCII<->EBCDIC).
 *
+*   Public API header.
+*
 *   This is currently a design document.
 *   Latest Version: http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/data/udataswp.h
 *   CVS: http://oss.software.ibm.com/cvs/icu/icuhtml/design/data/udataswp.h
@@ -32,18 +34,18 @@ typedef struct UDataSwapper UDataSwapper;
 /**
  * Function type for data transformation.
  * Transforms data in-place, or just returns the length of the data if
- * the preflight flag is TRUE.
+ * the input length is -1.
  *
  * @param ds Pointer to UDataSwapper containing global data about the
  *           transformation and function pointers for handling primitive
  *           types.
  * @param data Pointer to the data to be transformed or examined.
- * @param length Length of the data, counting bytes. May be -1 if not known.
+ * @param length Length of the data, counting bytes. May be -1 for preflighting.
+ *               If length>=0, then transform the data in-place;
+ *               if -1, then treat the data pointer as a const pointer and
+ *               only determine the length of the data.
  *               The length cannot be determined from the data itself for all
  *               types of data (e.g., not for simple arrays of integers).
- * @param preflight If FALSE, transform the data in-place;
- *                  if TRUE, treat the data pointer as a const pointer and
- *                  only determine the length of the data.
  * @param pErrorCode ICU UErrorCode parameter, must not be NULL and must
  *                   fulfill U_SUCCESS on input.
  * @return The actual length of the data.
@@ -54,7 +56,6 @@ typedef struct UDataSwapper UDataSwapper;
 typedef int32_t U_CALLCONV
 UDataSwapFn(const UDataSwapper *ds,
             void *data, int32_t length,
-            UBool preflight,
             UErrorCode pErrorCode);
 
 /**
@@ -182,7 +183,6 @@ udata_closeSwapper(UDataSwapper *ds);
 U_CAPI int32_t U_EXPORT2
 udata_swap(const UDataSwapper *ds,
            void *data, int32_t length,
-           UBool preflight,
            UErrorCode *pErrorCode);
 
 U_CAPI void U_EXPORT2
@@ -199,6 +199,8 @@ udata_printError(const UDataSwapper *ds,
 }
 
 /**
+ * Public API function in udata.c
+ *
  * Same as udata_openChoice() but automatically swaps the data.
  * isAcceptable, if not NULL, may accept data with endianness and charset family
  * different from the current platform's properties.
@@ -245,18 +247,23 @@ udata_openSwap(const char *path, const char *type, const char *name,
 #include "unicode/udata.h" /* UDataInfo */
 #include "ucmndata.h" /* DataHeader */
 
-/** Swap a UTrie. @draft ICU 2.8 */
+/** Swap a UTrie. Internal function in source/common/utrie.c. @draft ICU 2.8 */
 U_CAPI int32_t U_EXPORT2
 udata_swapUTrie(const UDataSwapper *ds,
                 void *data, int32_t length,
-                UBool preflight,
                 UErrorCode pErrorCode);
 
-/** Enumerate a UTrie. May be necessary (not sure) to swap data indexed by UTrie result values. @draft ICU 2.8 */
+/**
+ * Enumerate a UTrie. Internal function in source/common/utrie.c. 
+ * May be necessary (not sure) to swap data indexed by UTrie result values.
+ * @draft ICU 2.8
+ */
 void
 udata_enumUTrie();
 
 /**
+ * Internal function in udataswp.c
+ *
  * Read the beginning of an ICU data piece, recognize magic bytes,
  * swap the structure.
  * Set a U_UNSUPPORTED_ERROR if it does not look like an ICU data piece.
@@ -268,7 +275,6 @@ udata_enumUTrie();
 U_CAPI int32_t U_EXPORT2
 udata_swapDataHeader(const UDataSwapper *ds,
                      void *data, int32_t length,
-                     UBool preflight,
                      UErrorCode *pErrorCode) {
     DataHeader *Header;
     uint16_t headerSize, infoSize;
@@ -284,6 +290,12 @@ udata_swapDataHeader(const UDataSwapper *ds,
 
     /* check minimum length and magic bytes */
     pHeader=(DataHeader *)data;
+
+    if(length<0) {
+        /* TODO check magic bytes and only read enough to calculate headerSize */
+        return headerSize;
+    }
+
     if( length<(sizeof(DataHeader)) ||
         pHeader->dataHeader.magic1!=0xda ||
         pHeader->dataHeader.magic2!=0x27 ||
@@ -295,7 +307,7 @@ udata_swapDataHeader(const UDataSwapper *ds,
     }
 
     /* Most of the fields are just bytes and need no swapping. */
-    if(!preflight) {
+    if(length>0) {
         char *s;
 
         /* swap headerSize */
@@ -324,10 +336,12 @@ static const struct {
     { { 0x52, 0x65, 0x73, 0x42 }, udata_swapResourceBundle }    /* dataFormat="ResB" */
 };
 
+/*
+ * Public API function in source/common/udataswp.c
+ */
 U_CAPI int32_t U_EXPORT2
 udata_swap(const UDataSwapper *ds,
            void *data, int32_t length,
-           UBool preflight,
            UErrorCode *pErrorCode) {
     DataHeader *Header;
     int32_t headerSize, i;
@@ -343,7 +357,7 @@ udata_swap(const UDataSwapper *ds,
      * information. Otherwise we would have to pass some of the information
      * and not be able to use the UDataSwapFn signature.
      */
-    headerSize=udata_swapDataHeader(ds, data, length, TRUE, pErrorCode);
+    headerSize=udata_swapDataHeader(ds, data, length, pErrorCode);
 
     /*
      * If we wanted udata_swap() to also handle non-loadable data like a UTrie,
@@ -357,7 +371,7 @@ udata_swap(const UDataSwapper *ds,
     pHeader=(DataHeader *)data;
     for(i=0; i<LENGTHOF(swapFns); ++i) {
         if(0==uprv_memcmp(swapFns[i].dataFormat, pHeader->info.dataFormat, 4)) {
-            return swapFns[i].swapFn(ds, data, length, preflight, pErrorCode);
+            return swapFns[i].swapFn(ds, data, length, pErrorCode);
         }
     }
 
@@ -366,10 +380,12 @@ udata_swap(const UDataSwapper *ds,
     return 0;
 }
 
+/*
+ * Internal-exported function in source/common/uresdata.c or uresbund.c
+ */
 U_CAPI int32_t U_EXPORT2
 udata_swapResourceBundle(const UDataSwapper *ds,
                          void *data, int32_t length,
-                         UBool preflight,
                          UErrorCode *pErrorCode) {
     /*
     need to always enumerate the entire tree

@@ -65,11 +65,6 @@
       <td><a href="http://www.unicode.org/reports/tr29">http://www.unicode.org/reports/tr29</a></td>
     </tr>
     <tr>
-      <td><span class="changedspan">Latest Draft</span></td>
-      <td><span class="changedspan"><a href="http://www.unicode.org/reports/tr29/draft.html">
-      http://www.unicode.org/reports/tr29/draft.html</a></span></td>
-    </tr>
-    <tr>
       <td>Tracking Number</td>
       <td>
       <p class="old_changed"><a href="#Modifications">7</a></td>
@@ -485,7 +480,7 @@
   <h2><a name="Word_Boundaries">4 Word Boundaries</a></h2>
   <p>Word boundaries are used in a number of different contexts. The most familiar ones are
   <span class="changedspan">selection (</span>double-click mouse selection, or “move to next word” 
-  control-arrow keys<span class="changedspan">)</span>, and “Whole Word Search” (WWS) for search and 
+  control-arrow keys<span class="changedspan">)</span>, and “Whole Word Search” for search and 
   replace. They are also used in database queries, to determine whether elements are within a 
   certain number of words of one another.</p>
   <p>Word boundaries can also be used in so-called <i>intelligent cut and paste</i>. With this 
@@ -524,9 +519,10 @@
     </table>
   </div>
   <p>There is a boundary, for example, on either side of the word <i>brown</i>. These are the 
-  boundaries that users would expect, for example, if they chose WWS. Matching <i>brown</i> with WWS 
-  works, since there is a boundary on either side. Matching <i>brow</i> doesn’t. Matching <i>“brown”</i> 
-  also works, since there are boundaries between the parentheses and the quotation marks.</p>
+  boundaries that users would expect, for example, if they chose Whole Word Search. Matching <i>
+  brown</i> with Whole Word Search works, since there is a boundary on either side. Matching <i>brow</i> 
+  doesn’t. Matching <i>“brown”</i> also works, since there are boundaries between the parentheses 
+  and the quotation marks.</p>
   <p>For proximity tests, one sees whether, for example, “monster” is within 3 words of “truck”. 
   That is done with the above boundaries by ignoring any words that do not contain a letter, as in 
   Example 2 below. Thus for proximity, “fox” is within three words of “quick”. This same technique 
@@ -557,7 +553,7 @@
     <p><b>Note: </b>As with the other default specifications, implementations are free to override 
     (tailor) the results to meet the requirements of different environments or particular languages.<span class="changedspan"> 
     For some languages it may also be necessary in some cases to have different tailored word break 
-    rules for selection vs WWS.</span></p>
+    rules for selection vs Whole Word Search.</span></p>
     <p><span>In particular, the characters with the Line_Break property values of Contingent_Break 
     (CB), Complex_Context (SA/South East Asian), and XX (Unknown) are assigned word boundary 
     property values based on criteria outside of the scope of this document. </span></p>
@@ -567,7 +563,10 @@
     <caption class="left"><span style="color: black">Boundary Property Values</span></caption>
     <tr>
       <td valign="top"><b><a name="Format">Format</a></b></td>
-      <td>General_Category = Format (Cf)</td>
+      <td>General_Category = Format (Cf)<span><i><br>
+      <span class="changedspan">and not </span></i><span class="changedspan">U+200C ZERO WIDTH 
+      NON-JOINER (ZWNJ) <br>
+      <i>and not </i>U+200D ZERO WIDTH JOINER (ZWJ) </span></span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="Katakana">Katakana</a></b></td>
@@ -624,7 +623,8 @@
     <tr>
       <td valign="top"><b><a name="MidNum">MidNum</a></b></td>
       <td>Line_Break = Infix_Numeric<span class="removedspan"><br>
-      <i>and not</i> MidNumLet = true</span></td>
+      <i>and not</i> MidNumLet = true<br>
+      </span><span class="changedspan"><i>and not </i>U+003A (:) COLON</span></td>
     </tr>
     <tr>
       <td valign="top" class="old_changed"><b><a name="Numeric">Numeric</a></b></td>
@@ -775,7 +775,8 @@
       <td colspan="4"><span class="changedspan"><i>Do not break from extenders</i></span></td>
     </tr>
     <tr>
-      <td class="right"><span class="changedspan">(ALetter | Numeric | Katakana) </span></td>
+      <td class="right"><span class="changedspan">(ALetter | Numeric | Katakana | ExtendNumLet)
+      </span></td>
       <td class="center"><span class="changedspan">×</span></td>
       <td><span class="changedspan">ExtendNumLet</span></td>
       <td class="right"><span class="changedspan">(13a)</span></td>
@@ -814,7 +815,7 @@
     <li>
     <p align="left">The hard hyphen is a tricky case. It is quite common for separate words to be 
     connected with a hyphen: out-of-the-box, under-the-table, Anglo-american, etc. A significant 
-    number are hyphenated names: Smith-Hawkins, etc. When people do a “Whole Word” search or query, 
+    number are hyphenated names: Smith-Hawkins, etc. When people do a Whole Word Search or query, 
     they expect to find the word within those hyphens. While there are some cases where they are 
     separate words (usually to resolve some ambiguity such as re-sort vs. resort) it’s better 
     overall to keep the hard hyphen out of the default definition.</li>
@@ -896,16 +897,21 @@
     </tr>
     <tr>
       <td valign="top"><b>Format</b></td>
-      <td>General_Category = Format (Cf)</td>
+      <td>General_Category = Format (Cf)<span><i><br>
+      <span class="changedspan">and not </span></i><span class="changedspan">U+200C ZERO WIDTH 
+      NON-JOINER (ZWNJ) <br>
+      <i>and not </i>U+200D ZERO WIDTH JOINER (ZWJ) </span></span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="Sp">Sp</a></b></td>
       <td>Whitespace = true<br>
-      <i>and not </i>Sep = true</td>
+      <i>and not </i>Sep = true<br>
+      <span class="changedspan"><i>and not</i> U+00A0 ( ) NO-BREAK SPACE (NBSP)</span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="Lower">Lower</a></b></td>
-      <td>Lowercase = true</td>
+      <td>Lowercase = true<br>
+      <span class="changedspan"><span><i>and not </i>GRAPHEME EXTEND = true</span></span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="Upper">Upper</a></b></td>
@@ -915,7 +921,8 @@
     <tr>
       <td valign="top"><b><a name="OLetter">OLetter</a></b></td>
       <td>Alphabetic = true, <i><span class="old_changed">or<br>
-      </span></i><span>U+00A0 ( ) NO-BREAK SPACE (NBSP), </span><i><span>or</span></i><br>
+      </span></i><span class="charlist">U+00A0 ( ) NO-BREAK SPACE (NBSP)</span><span>, </span><i>
+      <span>or</span></i><br>
       <span class="charlist">U+05F3 (׳) HEBREW PUNCTUATION GERESH<br>
       </span><i>and not </i>Lower = true<br>
       <i>and not </i>Upper = true<br>
@@ -933,7 +940,8 @@
     </tr>
     <tr>
       <td valign="top"><b><a name="STerm">STerm</a></b></td>
-      <td>STerm = true</td>
+      <td>STerm = true<br>
+      <span class="changedspan"><i>and not</i> ATerm = true</span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="Close">Close</a></b></td>
@@ -1410,7 +1418,7 @@
     <li>Simplified grapheme cluster.</li>
     <li>Handled format characters appropriately.</li>
     <li>Removed Hiragana × Hiragana from word break, as well as prefix/posfix for numbers (since 
-    they should not block whole-word search).</li>
+    they should not block Whole-Word Search).</li>
     <li>Modified sentence break to catch edge conditions.</li>
     <li>Added conformance section, with more warnings throughout that these specifications need to 
     be tailored for different languages/orthographic conventions.</li>

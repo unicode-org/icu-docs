@@ -433,16 +433,16 @@
     </table>
     </center>
   </div>
-  <p>A second issue comes up with Thai and Lao. These scripts are unusual in Unicode in they are not 
-  stored in logical order, but in visual order. That means that in the analysis of text, including 
-  sorting, a small number of letters have to be reordered.</p>
+  <p><span class="removedspan">A second issue comes up with Thai and Lao. These scripts are unusual 
+  in Unicode in they are not stored in logical order, but in visual order. That means that in the 
+  analysis of text, including sorting, a small number of letters have to be reordered.</span></p>
   <div align="center">
     <center>
     <table border="1" cellspacing="1" cellpadding="4">
-      <caption><b>Thai Ordering</b></caption>
+      <caption><span class="removedspan"><b>Thai Ordering</b></span></caption>
       <tr>
-        <th align="left">Logical Order Exceptions</th>
-        <td>เ ก sorts like ก เ</td>
+        <th align="left"><span class="removedspan">Logical Order Exceptions</span></th>
+        <td><span class="removedspan">เ ก sorts like ก เ</span></td>
       </tr>
     </table>
     </center>
@@ -2638,9 +2638,9 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
         <li><span class="changedspan">Assign a weight to each precomposed Hangul Syllable character, 
         with a 1-weight gap between each one. (see <a href="#Large_Weight_Values">6.2 Large Weight 
         Values</a>)</span></li>
-        <li><span class="changedspan">Give each Jamo is given a 1-byte internal weight. Also add an 
-        internal terminator 1-byte weight (<font face="Arial Unicode MS">Ⓣ</font>). These are 
-        assigned so that all <font face="Arial Unicode MS">Ⓣ</font> &lt; T &lt;&nbsp; V &lt; L.</span><ul>
+        <li><span class="changedspan">Give each Jamo a 1-byte internal weight. Also add an internal 
+        terminator 1-byte weight (<font face="Arial Unicode MS">Ⓣ</font>). These are assigned so 
+        that all <font face="Arial Unicode MS">Ⓣ</font> &lt; T &lt;&nbsp; V &lt; L.</span><ul>
           <li><span class="changedspan">These weights are separate from the default weights, and are 
           just used internally.</span></li>
         </ul>
@@ -2673,7 +2673,7 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   the X<sub>b</sub> are all the scripts sorted before Hangul, and the X<sub>a</sub> are all those 
   sorted after. </span></p>
   <blockquote>
-    <table border="1" style="border-collapse: collapse" bordercolor="#111111" cellpadding="2" cellspacing="0">
+    <table border="1" style="border-collapse: collapse" cellpadding="2" cellspacing="0">
       <tr>
         <td align="center" width="144" style="text-align: center"><span class="changedspan">X<sub>b</sub></span></td>
         <td align="center" style="text-align: center"><span class="changedspan">L</span></td>
@@ -3315,10 +3315,10 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   </p>
   <h2><a name="Searching"></a>8 Searching and Matching (Informative)</h2>
   <p>The collation elements can also be used for matching string and for searching for strings, so 
-  that a proper native-language match is produced. For example, &quot;ß&quot; will properly match against &quot;ss&quot;. 
-  Users of search algorithms should be allowed to modify the comparison strength, thus excluding 
-  differences at less significant levels. This is especially useful for searching, but can also 
-  apply to comparison.</p>
+  that a proper native-language match is produced. For example, &quot;ß&quot; will properly match against 
+  &quot;ss&quot;. Users of search algorithms should be allowed to modify the comparison strength, thus 
+  excluding differences at less significant levels. This is especially useful for searching, but can 
+  also apply to comparison.</p>
   <p>Excluding differences at Level 3 has the effect of ignoring case and compatibility format 
   distinctions between letters when searching. Excluding differences at Level 2 has the effect of 
   ignoring accentual distinctions when searching.</p>
@@ -3359,8 +3359,8 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   </ol>
   <p>The following definitions come into play:</p>
   <p><b>DS1. </b>Define <i>S[start,end]</i> to be the substring of S that includes the character 
-  after the offset <i>start</i> up to the character before offset <i>end</i>. For example, if S is &quot;abcd&quot;, 
-  then S[1,3] is &quot;bc&quot;.</p>
+  after the offset <i>start</i> up to the character before offset <i>end</i>. For example, if S is 
+  &quot;abcd&quot;, then S[1,3] is &quot;bc&quot;.</p>
   <p>Suppose there is a collation C, a pattern string P and a target string Q. C has some particular 
   set of attributes, such as a strength setting, and choice of variable weighting.</p>
   <p><b>DS2. </b>There is a <i>match</i> according to C for P within Q[<i>s,e</i>] if and only if C 
@@ -3376,8 +3376,8 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   <p><span class="changedspan"><b>DS4b. </b>The match is <i>medial</i> when it contains the minimal 
   match, and is extended beyond whenever there is a successive binary match between the extra 
   characters in pattern and target.</span></p>
-  <p><span class="changedspan"><span style>As an example of the differences between these, consider 
-  the following case, where the collation strength is set to ignore punctuation and case:</span></span></p>
+  <p><span class="changedspan">As an example of the differences between these, consider the 
+  following case, where the collation strength is set to ignore punctuation and case:</span></p>
   <table border="1" cellpadding="2" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber1">
     <tr>
       <th style="text-align: right">&nbsp;</th>
@@ -3425,7 +3425,8 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   <p><b>DS6.</b> The <i>first forward match</i> for P in Q starting at <i>b</i> is the least offset
   <i>s</i> greater than or equal to <i>b</i> such that for some <i>e</i>, P matches within Q[s,e].</p>
   <p><b>DS7.</b> The <i>first backward match</i> for P in Q starting at <i>b</i> is the greatest 
-  offset <i>e</i> less than or equal to <i>b</i> such that for some <i>s</i>, P matches within Q[s,e].</p>
+  offset <i>e</i> less than or equal to <i>b</i> such that for some <i>s</i>, P matches within 
+  Q[s,e].</p>
   <p><span class="changedspan">In DS6 and DS7, matches can be minimal, medial, or maximal; the only 
   requirement is that the combination in use in DS6 and DS7 be specified. Of course, a possible 
   match can also be rejected on the basis of other conditions, such as being grapheme-complete or 
@@ -3562,7 +3563,8 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
         characters will interrupt contractions (that do not explicitly contain them).</span></li>
         <li><span class="changedspan">Added related section <a href="#Combining_Grapheme_Joiner">
         3.1.6 Combining Grapheme Joiner</a></span></li>
-        <li><span class="changedspan">Removed <a href="#S1.2">S1.2</a>. </span></li>
+        <li><span class="changedspan">Removed <a href="#S1.2">S1.2</a> for Thai, and a paragraph in 
+        1.3.</span></li>
         <li><span class="changedspan"><span style="background-color: #FFFF00">Added more detail 
         about Hangul to </span><a href="#Trailing_Weights">7.1.4 Trailing Weights</a>, including a 
         description of the Interleaving method.</span></li>

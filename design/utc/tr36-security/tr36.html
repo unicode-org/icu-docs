@@ -34,7 +34,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
 </table>
 <div class="body">
   <h2 align="center"><font color="#FF0000">Draft</font> Unicode Technical Report #36</h2>
-  <h1>Security Considerations for the Implementation of Unicode and Related Technology</h1>
+  <h1>Unicode Security Considerations</h1>
   <table border="1" cellpadding="2" width="100%" style="border-collapse: collapse" cellspacing="0">
     <tr>
       <td valign="top">Authors</td>
@@ -64,7 +64,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td valign="top">3</td>
     </tr>
   </table>
-  <h3>&nbsp;</h3>
+  <p class="reviewnote"><b>Note to Reviewers:</b> Based on feedback, the title was shortened to 
+  &quot;Unicode Security Considerations&quot;.</p>
   <h3><i>Summary</i></h3>
   <p><i>This document describes security considerations that are important to be aware of when 
   working with Unicode<span>, and provides specific recommendations for dealing with the issues that 
@@ -94,8 +95,20 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </ul>
     </li>
     <li>3. <a href="#visual_spoofing">Visual Spoofing</a><ul class="toc">
-      <li>3.1. <a href="#international_domain_names">International Domain Names</a></li>
-      <li>3.2 <a href="#Visual_Spoofing_Recommendations">Recommendations</a></li>
+      <li>3.1 <a href="#international_domain_names">International Domain Names</a></li>
+      <li>3.2 <a href="#Cross_Script_Spoofing">Cross-Script Spoofing</a></li>
+      <li>3.3 <a href="#In_Script_Spoofing">In-Script Spoofing</a></li>
+      <li>3.4 <a href="#Inadequate_Rendering_Support">Inadequate Rendering Support</a></li>
+      <li>3.5 <a href="#Syntax_Spoofing">Syntax Spoofing</a></li>
+      <li>3.6 <a href="#Numeric_Spoofs">Numeric Spoofs</a></li>
+      <li>3.7 <a href="#Case_Folded_Format">Case-Folded Format</a></li>
+      <li>3.8 <a href="#Visual_Spoofing_Recommendations">Recommendations</a><ul class="toc">
+        <li>I <a href="#Recommendations_General">General</a></li>
+        <li>II <a href="#Recommendations_User_Agents">Domain Names: User Agents</a></li>
+        <li>III <a href="#Recommendations_Registries">Domain Names: Registries</a></li>
+        <li>IV <a href="#Recommendations_Registrants">Domain Names: Registrants</a></li>
+      </ul>
+      </li>
     </ul>
     </li>
     <li>4. <a href="#Data_Files">Data Files</a></li>
@@ -104,11 +117,6 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <li><a href="#References">References</a></li>
     <li><a href="#Modifications">Modifications</a></li>
   </ul>
-  <blockquote>
-    <p class="reviewnote"><b>Note to Reviewers:</b> The original working title was &quot;Unicode Security 
-    Considerations&quot;. Should the above title be changed back to that, or changed to something else, 
-    eg &quot;Unicode Security Recommendations&quot;? Feedback is welcome.</p>
-  </blockquote>
   <hr>
   <h2 align="left"><a name="Introduction"></a>1. Introduction</h2>
   <p>Unicode represents a very significant advance over all previous methods of encoding characters. 
@@ -141,7 +149,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   components assume that the data is safe. A problem arises when a component treats two pieces of 
   text as identical — typically by canonicalizing them to the same form — while the gatekeeper only 
   detected that one of them was unsafe.</p>
-  <h3><a name="UTF-8_Exploit">UTF-8 Exploit</a></h3>
+  <h3>2.1 <a name="UTF-8_Exploit">UTF-8 Exploit</a></h3>
   <p>There are three equivalent encoding forms for Unicode: UTF-8, UTF-16, and UTF-32. UTF-8 is 
   commonly used in XML and HTML; UTF-16 is the most common in program APIs; and UTF-32 is the best 
   for representing single characters. While these forms are all equivalent in terms of the ability 
@@ -192,7 +200,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <li>
     <p class="reviewnote"><span>Discuss security issues in Collation (sorting, searching, matching)</span></li>
   </ul>
-  <h4><b><i><a name="Canonical_Representation_Recommendations">Recommendations</a></i></b></h4>
+  <h4><b><i>2.2 <a name="Canonical_Representation_Recommendations">Recommendations</a></i></b></h4>
   <ol>
     <li>Ensure that all implementations of UTF-8 used in a system are conformant to the latest 
     version of Unicode.</li>
@@ -239,7 +247,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   in the current version), the number of opportunities for visual spoofing are significantly larger 
   than with a restricted character set such as ASCII.</p>
   <p><span>For examples of visually confusable characters, see [<a href="#confusables">confusables</a>].</span></p>
-  <h3><a name="international_domain_names"></a>International Domain Names</h3>
+  <h3>3.1 <a name="international_domain_names"></a>International Domain Names</h3>
   <p>Spoofing is an especially important subject given the recent introduction of international 
   domain names (IDN). There is a natural desire for people to see domain names in their own 
   languages and writing systems; English speakers can understand this if they consider what it would 
@@ -334,7 +342,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <p><span><b>Note: </b>since the top-level domain names (TLD: .com, .ru, etc.) is currently 
     always ASCII, all discussions below of the domain names pertain to all but the top level.</span></p>
   </blockquote>
-  <h3><b>Cross-Script Spoofing</b></h3>
+  <h3><b>3.2 <a name="Cross_Script_Spoofing">Cross-Script Spoofing</a></b></h3>
   <p>Visually confusable characters are not usually unified across scripts. Thus a Greek <i>omicron</i> 
   is encoded as a different character from the Latin &quot;o&quot;, even though it is usually identical <span>
   or nearly identical</span> in appearance. <span>There are good reasons for this: often the 
@@ -387,7 +395,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   possible to compose an entire domain name (except the TLD) in Cyrillic using letters that will be 
   essentially always identical in form to Latin letters, such as &quot;scope.com&quot;: with &quot;scope&quot; in 
   Cyrillic looking just like &quot;scope&quot; in Latin. These are called <i>whole-script confusables.</i></span></p>
-  <h3>In-Script Spoofing</h3>
+  <h3>3.3 <a name="In_Script_Spoofing">In-Script Spoofing</a></h3>
   <p>While compatibility normalization and mixed-script detection can handle the majority of cases, 
   there are other visual confusables that could cause problems. Fonts are increasingly able to 
   handle international characters. <i>Especially</i> at the smaller font sizes in the context of an 
@@ -485,7 +493,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
   </table>
   <h3>&nbsp;</h3>
-  <h3>Inadequate Rendering Support</h3>
+  <h3>3.4 <a name="Inadequate_Rendering_Support">Inadequate Rendering Support</a></h3>
   <p>An additional problem arises when a font and/or rendering engine has inadequate support for 
   certain sequences of characters. These are characters that <i>should</i> be visually 
   distinguishable, but don&#39;t appear that way. In example 8a, the <i>a-umlaut</i> is followed by 
@@ -540,7 +548,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
   </table>
   <h3><span><br>
-  Syntax Spoofing</span></h3>
+  3.5 <a name="Syntax_Spoofing">Syntax Spoofing</a></span></h3>
   <p><span>Spoofing syntax characters can be even worse than regular characters. For example, U+2044 
   &#39;<span title="U+2044 FRACTION SLASH">⁄&#39; <span style="font-variant: small-caps">FRACTION SLASH</span> 
   can look like &#39;/&#39; in many fonts (ideally the spacing and angle is sufficiently different as to be 
@@ -587,7 +595,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   the Unicode guidelines for displaying missing glyphs using a rounded-rectangle, as described in 
   Section <a href="http://www.unicode.org/versions/Unicode4.0.0/ch05.pdf">5.3 <i>Unknown and Missing 
   Characters</i></a> of [<a href="#Unicode">Unicode</a>].&nbsp; For examples of this, see also [<a href="#Charts">Charts</a>].</span></p>
-  <h3><span>Numeric Spoofs</span></h3>
+  <h3><span>3.6 <a name="Numeric_Spoofs">Numeric Spoofs</a></span></h3>
   <p><span>Turning away from IDN for a moment, there is another area where visual spoofs can be 
   used. Many scripts have sets of decimal digits that are different in shape from the typical 
   European digits {0 1 2 3 4 5 6 7 8 9}. For example, Bengali has
@@ -607,7 +615,27 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   is visually confusable with <b>89</b> (at small sizes), but actually has the numeric value 42! 
   Where software simply interprets the numeric value of a string of digits, without detecting that 
   the digits are from different scripts, it is possible to generate such spoofs.</span></span></p>
-  <h3><span><a name="Visual_Spoofing_Recommendations">Recommendations</a></span></h3>
+  <h3><span class="changedspan">3.7 <a name="Case_Folded_Format">Case-Folded Format</a></span></h3>
+  <p><span class="changedspan">One of the recommendations below is to use the case-folded version of 
+  strings. This reduces significantly the options for spoofing. However, there is one particular 
+  situation where the case-folded format of a string produces very undesired results. The character 
+  U+03A3 &quot;Σ&quot; <i>capital sigma</i> lowercases to U+03C3 &quot;σ&quot; <i>small sigma</i> if it is followed by 
+  another letter, but lowercases to U+03C2 &quot;ς&quot; <i>small final sigma</i> if it is not. Because both σ 
+  and ς have a case-insensitive match to Σ, and the case folding algorithm needs to map both of them 
+  together (so that transitivity is maintained), only one of them appears in the case-folded form.</span></p>
+  <p><span class="changedspan">When the case-folded format of a string is to be displayed to the 
+  user, it should be processed so as to choose the proper form for the small sigma, depending on the 
+  context. That is provided in Table 3-13 of [<a href="#Unicode">Unicode</a>], where C = σ. For more 
+  information on case mapping, see the following sections of [<a href="#Unicode">Unicode</a>]:</span></p>
+  <blockquote>
+    <p><span class="changedspan">
+    <a href="http://www.unicode.org/versions/Unicode4.0.0/ch03.pdf#G33992">3.13 Default Case 
+    Operations</a> <br>
+    <a href="http://www.unicode.org/versions/Unicode4.0.0/ch04.pdf#G124722">4.2 Case Normative</a><br>
+    <a href="http://www.unicode.org/versions/Unicode4.0.0/ch05.pdf#G21180">5.18 Case Mappings</a>
+    </span></p>
+  </blockquote>
+  <h3><span>3.8 <a name="Visual_Spoofing_Recommendations">Recommendations</a></span></h3>
   <p>The Unicode consortium<span> is in the process of gathering data that would allow for a 
   finer-grained approach, but until such time as that is more comprehensive, a somewhat conservative 
   stance is recommended. It is always easier to widen restrictions than narrow them. We do expect 
@@ -627,13 +655,13 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   that is better interpreted as limiting to script rather than language.</span></p>
   <p><span>In the following recommendations:</span></p>
   <ul>
-    <li><span>&quot;appropriate alerts&quot; are recommended. The form of such alerts could be minimal, such 
+    <li><span>&quot;Appropriate alerts&quot; are recommended. The form of such alerts could be minimal, such 
     as special coloring or icons (perhaps with a tool-tip for more information), or more 
     in-your-face, such as an alert dialog describing the issue and requiring user confirmation 
     before continuing. The strength of the alert can be scaled according to the level of the 
     potential problem. The user-agent could also remember when the user has accepted an alert, for 
     say Ωmega.com, and permit future access without bothering the user again with an alert.</span></li>
-    <li>t<span>he term &quot;Registry&quot; is to be interpreted broadly. The .com operator can impose 
+    <li>T<span>he term &quot;Registry&quot; is to be interpreted broadly. The .com operator can impose 
     restrictions on the 2nd level domain label, but if someone registers foo.com, then it&#39;s up to 
     them to decide what will be allowed at the 3rd level (e.g. bar.foo.com). So for that purpose, 
     the owner of foo.com is treated as the &quot;registry&quot; for the 3rd level (the &#39;bar&#39;). The term 
@@ -643,7 +671,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   and StringPrep [<a href="#RFC3454">RFC3454</a>].</span></p>
   <ol type="I">
     <li>
-    <h4><span>General</span></h4>
+    <h4><span><a name="Recommendations_General">General</a></span></h4>
     <ol>
       <li><span>In checking equivalence of identifiers, preprocess both strings by applying NFKC and 
       case folding. An example of this methodology is StringPrep [<a href="#RFC3454">RFC3454</a>]. 
@@ -675,11 +703,12 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <li><span>In all software that parses numbers, detect digits of mixed (or unexpected) scripts.</span></li>
     </ol>
     </li>
-    <li><span><b>Domain Names: User Agents</b></span><ol type="A">
+    <li><span><b><a name="Recommendations_User_Agents">Domain Names: User Agents</a></b></span><ol type="A">
       <li><span>Follow the General recommendations above.</span></li>
       <li><span>Always display the domain name in </span>nameprepped form<span> [<a href="#RFC3491">RFC3491</a>]. 
       That will, for example, always map characters to lowercase, where characters are generally 
-      more distinctive.</span></li>
+      more distinctive.<span class="changedspan"> See <a href="#Case_Folded_Format">
+      Case_Folded_Format</a> for more details.</span></span></li>
       <li><span>Display the URL with fonts that shows as many distinctions as possible among the 
       visually confusable characters. For example, serifed fonts are generally better than sans 
       serif. Use a size that makes it easier to see the differences in characters. Disallow the use 
@@ -711,7 +740,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
         </li>
         <li><b><span>Expanded = </span></b><span>Moderate +</span><ul>
           <li>A<span>llow mixtures of scripts, e.g. Ωmega.com, Teχ.org, HλLF-LIFE.com</span></li>
-          <li>A<span>llow more excluded characters (data — TBD)</span></li>
+          <li>A<span>llow more excluded characters <font color="#FF3333">(data — TBD)</font></span></li>
         </ul>
         </li>
         <li><b><span>Unrestricted</span></b><ul>
@@ -746,7 +775,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       prevent syntax spoofs.</span></li>
     </ol>
     </li>
-    <li><span><b>Domain Names: Registries</b></span><ol type="A">
+    <li><span><b><a name="Recommendations_Registries">Domain Names: Registries</a></b></span><ol type="A">
       <li><span>In the short term, use Level 2 <span class="changedSpan">from &quot;User Agents&quot;</span> 
       to restrict new domain names.</span></li>
       <li><span>Once the confusable data ([<a href="#confusables">confusables</a>]) is more 
@@ -761,7 +790,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       </li>
     </ol>
     </li>
-    <li><b><span>Domain Names: Registrants</span></b><ol type="A">
+    <li><b><span><a name="Recommendations_Registrants">Domain Names: Registrants</a></span></b><ol type="A">
       <li><span>Verify that the Registry follows appropriate guidelines for preventing spoofing.</span></li>
       <li><span>If the desired domain name has any whole-script confusables (such as &quot;scope&quot; in 
       Latin and Cyrillic), register those as well<span class="changedspan">, if not automatically 
@@ -966,9 +995,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="Unicode">Unicode</a>]</td>
-      <td class="noborder" valign="top">The Unicode Consortium.
-      <a href="http://www.unicode.org/uni2book/u2.html">The Unicode Standard, Version 4.0</a>. 
-      Reading, MA, Addison-Wesley, 2003. 0-321-18578-1.</td>
+      <td class="noborder" valign="top">The Unicode Standard, Version 4.1.0<br>
+      <a href="http://www.unicode.org/versions/Unicode4.1.0/">
+      http://www.unicode.org/versions/Unicode4.1.0</a>/</td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="Versions">Versions</a>]</td>
@@ -984,6 +1013,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <ul>
     <li><span class="changedSpan">Cleaned up references</span></li>
     <li><span class="changedSpan">Added <a href="#Related_Material">Related Material</a> section</span></li>
+    <li><span class="changedspan">Add section on <a href="#Case_Folded_Format">Case_Folded_Format</a></span></li>
     <li><span class="changedSpan">Refined recommendations on whole-script confusables</span></li>
   </ul>
   <p><b>Revision 2:</b></p>

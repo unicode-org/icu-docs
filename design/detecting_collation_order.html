@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Detecting Collation Order</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>Detecting Collation Order</h1>
+<p><i>2002-10-15, MED</i></p>
+<p>One can generate duplicate collation ordering for of any particular target
+collation API, within certain limits. The first step is to generate sequences of
+all characters in the target repertoire, each followed by a set of 4 probe
+characters, then sort the resulting list using the target collation. Based on
+the resulting ordering of strings, conclusions can be drawn about the target
+collation ordering for characters, and the strength of the ordering. The
+following shows an illustration, where the repertoire is just {£, ¥}.</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="0" cellpadding="4">
+    <caption><b><font size="4">Sample Test Data</font></b></caption>
+    <tr>
+      <th width="20%">Sorted Order</th>
+      <td width="20%" valign="top">£a<br>
+        £A<br>
+        £á<br>
+        £b<br>
+        ...<br>
+        ¥a<br>
+        ¥A<br>
+        ¥á<br>
+        ¥b</td>
+      <td width="20%" valign="top">£a<br>
+        £A<br>
+        £á<br>
+        ...<br>
+        ¥a<br>
+        ¥A<br>
+        ¥á<br>
+        ...<br>
+        <font color="#0000FF">£</font><font color="#0000FF">b<br>
+        </font>...<br>
+        ¥b</td>
+      <td width="20%" valign="top">£a<br>
+        £A<br>
+        ...<br>
+        ¥a<br>
+        ¥A<br>
+        ...<br>
+        <font color="#0000FF">£</font><font color="#0000FF">á</font><br>
+        ...<br>
+        ¥á<br>
+        ...<br>
+        <font color="#0000FF">£</font><font color="#0000FF">b</font><br>
+        ...<br>
+        ¥b</td>
+      <td width="20%" valign="top">£a<br>
+        ...<br>
+        ¥a<br>
+        ...<br>
+        <font color="#0000FF">£</font><font color="#0000FF">A</font><br>
+        ...<br>
+        ¥A<br>
+        ...<br>
+        <font color="#0000FF">£</font><font color="#0000FF">á</font><br>
+        ...<br>
+        ¥á<br>
+        ...<br>
+        <font color="#0000FF">£</font><font color="#0000FF">b</font><br>
+        ...<br>
+        ¥b</td>
+    </tr>
+    <tr>
+      <th>Conclusion</th>
+      <td align="center">&quot;£&quot; &lt; &quot;¥&quot;<br>
+        (primary)</td>
+      <td align="center">&quot;£&quot; &lt;&lt; &quot;¥&quot;<br>
+        (secondary)</td>
+      <td align="center">&quot;£&quot; &lt;&lt;&lt; &quot;¥&quot;<br>
+        (tertiary)</td>
+      <td align="center">&quot;£&quot; &lt;&lt;&lt;&lt; &quot;¥&quot;<br>
+        (quartenary)<i><br>
+        or<br>
+        </i>&quot;£&quot; = &quot;¥&quot;<br>
+        (identical)</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p>The last case is a bit tricky; to distinguish quartenary from identical, the
+best way to detect the difference is to try different initial orderings of the
+test file (such as the initial file in reverse order), to see if you ever end up
+with the following <i>also</i>. If you do, then you conclude that characters are
+identical in weight; if you don't, you conclude that it is a quartenary
+difference.</p>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="50%">¥a<br>
+      ...<br>
+      <font color="#0000FF">£a</font></td>
+  </tr>
+</table>
+<h2>Caveats</h2>
+<p>Now, this is all predicated on a few things.</p>
+<ul>
+  <li>One is that the target collation does have at least 3 levels, and that the
+    probe letters have their customary ordering and strength (if not, then other
+    probe characters have to be chosen the exhibit the right behavior):
+    <ul>
+      <li>&quot;a&quot; &lt;&lt;&lt; &quot;A&quot; &lt;&lt; &quot;á&quot; &lt;
+        &quot;b&quot;.</li>
+    </ul>
+  </li>
+  <li>Second is that contractions and expansions are listed separately as
+    repertoire elements in the target file. If you have an idea that, for
+    example, &quot;ch&quot; is a contraction in a Spanish collation, then you
+    can add &quot;ch&quot; to the repertoire to be tested with probe characters.
+    If you don't know about it, then the test won't reveal it. If you think that
+    &quot;ä&quot; sorts as if it were between &quot;ae&quot; and &quot;aE&quot;,
+    then you need to add both &quot;ae&quot; and &quot;ad&quot; to the
+    repertoire, bracketing the value that it presumably has. In both of these
+    cases, all case variations of should be added for full coverage, e.g. &quot;ch&quot;,
+    &quot;cH&quot;, &quot;Ch&quot;, &quot;CH&quot;, &quot;ae&quot;, &quot;aE&quot;,
+    &quot;Ae&quot;, &quot;AE&quot;, &quot;ad&quot;, &quot;aD&quot;,
+    &quot;Ad&quot;, &quot;AD&quot;.
+    <ul>
+      <li>It doesn't hurt to have extra elements in the test repertoire. The
+        current collation rules in ICU plus the exemplar characters can be used
+        to get more samples.</li>
+    </ul>
+  </li>
+</ul>
+
+</body>
+
+</html>

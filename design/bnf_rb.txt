@@ -13,7 +13,7 @@
 resourceBundle ::= bundleName table
 
 // These are the currently supported resources
-resource ::= string | array | table | binary | integer | intvector | import
+resource ::= string | array | table | binary | integer | intvector | import | include
 
 //** aggregate resources
 table   ::= (':table')? '{' (key resource)* '}' 
@@ -36,9 +36,19 @@ integer   ::= (':integer' | ':int') '{' number '}'
 intvector ::= ':intvector' '{' number? | (number ( ',' number)+ ','?) '}'
 // integer vectors contain 32-bit integer values, see below
 
+// imports a file from the given path as binary
 import    ::= ':import' '{' path '}'
 
+// Alias stores the path to a different resource in the current bundle
+// and at runtime, the API resolves the alias and retuns the resource
 alias    ::= ':alias' '{' path'}'
+
+// Includes the contents of a file given by the path as a string in the resource bundle.
+// Recognizes Unicode encodings if the file is tagged with a BOM.
+// Does not recognize/convert non-Unicode encodings. 
+// Treats all non-Unicode encoded and non-BOM tagged Unicode-encoded files as ASCII and assumes
+// \uXXXX and \UXXXXXXXX form for denoting codepoints
+include   ::= ':include''{' path '}'
 
 // ** Other necessary definitions
 key ::= invariantChars | '"' invariantChars '"'

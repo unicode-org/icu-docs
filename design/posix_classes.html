@@ -30,7 +30,7 @@ td, th       { vertical-align: Top }
   </tr>
   <tr>
     <td><b>Last updated:</b></td>
-    <td><b>2003-04-23, MED</b></td>
+    <td><b>2003-04-29, MED</b></td>
   </tr>
 </table>
 <p align="left">The POSIX-style property names are are not well specified, and
@@ -107,17 +107,6 @@ they upgrade beyond Unicode 3.x.</p>
 <h3><a name="Open_Issues">Open Issues</a>:</h3>
 <p>The main open issues are:</p>
 <ol>
-  <li>Posix requires that alpha include upper and lower, but Unicode Alphabetic
-    does not include Lowercase and Uppercase. The differences are that uppercase
-    includes U+24B6..U+24CF CIRCLED LATIN CAPITAL LETTER A..Z, and Lowercase
-    includes U+24D0..U+24E9 CIRCLED LATIN SMALL LETTER A..Z. None of these are
-    in Alphabetic. The three choices are:
-    <ol>
-      <li>Document that strict POSIX implementations must mask with {alpha}</li>
-      <li>Add the missing characters to alpha</li>
-      <li>Subtract the excess characters from lower and upper respectively.</li>
-    </ol>
-  </li>
   <li>Alphabetic also does not include the following, which TR 14652 does in
     alpha. This is not a formal requirement, but certainly the first two should
     be in alpha (also in Alphabetic!):
@@ -127,19 +116,10 @@ they upgrade beyond Unicode 3.x.</p>
       <li>U+30FB # (&#12539;) KATAKANA MIDDLE DOT</li>
     </ol>
   </li>
-  <li>Over ASCII, the four POSIX-style properties cntrl+space, punct, digit,
-    alpha form a complete partition of assigned characters: every character is
-    in exactly one of these sets. (This is <i>not</i> a requirement from POSIX,
-    but is what is done for the POSIX locale.) If that were to be done, we'd
-    have do something like the following.
-    <ol>
-      <li>add Cf (format) &amp; U+200B # ZERO WIDTH SPACE to cntrl</li>
-      <li>add No (non-decimal numbers) to punct</li>
-    </ol>
-    <p>Although Co would still be excluded, that is probably ok, since they are
-    not &quot;known&quot; assigned characters. Alternatively, we could do
-    nothing, since these characters <i>are</i> included in punct and graph. Note
-    that if Cf is added to cntrl, it should be removed from graph.</li>
+  <li>ZWSP, while a Z character, is for line break control and is not included
+    in Whitespace. However, the fact that it is still in Z is very misleading.
+    The recommendation is to change the General_Category to Cf to accurately
+    reflect its status.</li>
 </ol>
 <p>Feedback is welcome, at <a href="mailto:icu@oss.software.ibm.com">mailto:icu@oss.software.ibm.com</a>.</p>
 <h3><a name="Comparison_Table">Comparison Table</a></h3>
@@ -181,8 +161,9 @@ they upgrade beyond Unicode 3.x.</p>
       </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsPunctuationTopic.asp">IsPunctuation</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_ispunct.2c_.iswpunct.asp"><br>
       </a>gc=P</td>
     <td class="recommended">\p{gc=P}</td>
-    <td><i>For a better match to the POSIX locale, add<br>
-      \p{gc=S}. Not recommended generally.</i></td>
+    <td><i>For a better match to the POSIX locale, add \p{gc=S}. Not recommended
+      generally, due to the confusion of having punct include non-punctuation
+      marks.</i></td>
   </tr>
   <tr>
     <td><b>alpha</b><br>
@@ -197,8 +178,7 @@ they upgrade beyond Unicode 3.x.</p>
     <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isalpha.2c_.iswalpha.asp">iswalpha<br>
       </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsLetterTopic.asp">IsLetter<br>
       </a></b>gc=L</td>
-    <td class="recommended">\p{Alphabetic}<br>
-      \p{gc=Mark}</td>
+    <td class="recommended">\p{Alphabetic}</td>
     <td>Alphabetic includes more than gc = Letter. Note that marks (Me, Mn, Mc)
       are required for words of many languages. While they could be applied to
       non-alphabetics, their principle use is on alphabetics. See <a href="http://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt">DerivedCoreProperties</a>&nbsp;
@@ -218,13 +198,12 @@ they upgrade beyond Unicode 3.x.</p>
     <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_islower.2c_.iswlower.asp">iswlower<br>
       </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsLowerTopic.asp">IsLower</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_islower.2c_.iswlower.asp"><br>
       </a>gc=Ll</td>
-    <td class="recommended">[\p{Lowercase}<br>
-      \p{gc=Lt}]
+    <td class="recommended">\p{Lowercase}
       <p>&nbsp;</p>
     </td>
     <td>Lowercase includes more than gc = Lowercase_Letter (Ll). See <a href="http://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt">DerivedCoreProperties</a>.
-      Lt shouldn't logically be here, but is probably better for compatibility.
-      <p><i>For strict POSIX, intersect recommendation with {alpha}</i></p>
+      <p><i>For strict POSIX, intersect recommendation with {alpha}. One may
+      also add Lt, although it logically doesn't belong.</i></p>
     </td>
   </tr>
   <tr>
@@ -240,11 +219,11 @@ they upgrade beyond Unicode 3.x.</p>
     <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isupper.2c_.iswupper.asp">iswupper<br>
       </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsUpperTopic.asp">IsUpper</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isupper.2c_.iswupper.asp"><br>
       </a>gc=Lu</td>
-    <td class="recommended">[\p{Uppercase}<br>
-      \p{gc=Lt}]</td>
-    <td>Uppercase includes more than gc = Uppercase_Letter (Lu). Lt shouldn't
-      logically be here, but is probably better for compatibility.
-      <p><i>For strict POSIX, intersect recommendation with {alpha}</i></p>
+    <td class="recommended">\p{Uppercase}<br>
+    </td>
+    <td>Uppercase includes more than gc = Uppercase_Letter (Lu).
+      <p><i>For strict POSIX, intersect recommendation with {alpha}. One may
+      also add Lt, although it logically doesn't belong.</i></p>
     </td>
   </tr>
   <tr>
@@ -326,8 +305,7 @@ they upgrade beyond Unicode 3.x.</p>
       </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsControlTopic.asp">IsControl</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_iscntrl.2c_.iswcntrl.asp"><br>
       </a>gc=Cc</td>
     <td class="recommended">\p{gc=Control}</td>
-    <td>The recommendation does not include Format, since some of those are
-      needed in the representation of normal text.</td>
+    <td>&nbsp;</td>
   </tr>
   <tr>
     <td><b>graph</b><br>
@@ -406,8 +384,7 @@ they upgrade beyond Unicode 3.x.</p>
     <td>&#8709;</td>
     <td>&#8709;</td>
     <td class="recommended">\p{Whitespace} -<br>
-      [\N{LF} \N{VT} \N{FF} \N{CR} \N{NEL}<br>
-      \p{gc=Zl}\p{gc=Zp}]]</td>
+      [\N{LF} \N{VT} \N{FF} \N{CR} \N{NEL} \p{gc=Zl} \p{gc=Zp}]</td>
     <td>&quot;horizontal&quot; whitespace.
       <p>POSIX: Space, Tab,...</p>
     </td>
@@ -1250,8 +1227,7 @@ generated comparison files, based on Unicode version.</p>
   </li>
   <li><b>space.</b> For the ASCII range (00..7F), the POSIX standard only has:<br>
     <br>
-    space&nbsp;&nbsp;&nbsp;
-    &lt;tab&gt;;&lt;newline&gt;;&lt;vertical-tab&gt;;&lt;form-feed&gt;;\<br>
+    space&nbsp;&nbsp;&nbsp; &lt;tab&gt;;&lt;newline&gt;;&lt;vertical-tab&gt;;&lt;form-feed&gt;;\<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &lt;carriage-return&gt;;&lt;space&gt;<br>
     <br>

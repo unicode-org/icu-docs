@@ -20,8 +20,12 @@ transformations for case conversions, normalization convertions, removal of
 given characters, plus a variety of language/script transliterations.
 Transliterations can be chained together to perform a series of operations, and
 each step of the way can use a UnicodeSet to restrict the characters that are
-affected. For example, to remove accents from characters, you can use the
-following transliteration: &quot;NFD; [:Nonspacing Mark:] Remove; NFC&quot;</p>
+affected.</p>
+<p>For example, to remove accents from characters, you can use the following
+transliteration: &quot;NFD; [:Nonspacing Mark:] Remove; NFC&quot;. This
+separates accents from their base characters, then removes them, then puts the
+remaining text into normal form.</p>
+<p>&nbsp;</p>
 <p><i><b>[ed note: New Transliteration Section]</b></i></p>
 <h1>Transliteration</h1>
 <p>Transliteration provides a general-purpose package for processing Unicode
@@ -35,17 +39,15 @@ Transliterations can be chained together to perform a series of operations, and
 each step of the way can use a UnicodeSet to restrict the characters that are
 affected.</p>
 <p>For example, to remove accents from characters, you can use the following
-transliteration: &quot;NFD; [:Nonspacing Mark:] Remove; NFC&quot;.</p>
-<p>ICU provides a general mechanism for performing transliterations. It includes
-a number of standard transliterators; additional transliterators can be built
-from a series of textual rules, or built with specialized code.</p>
-<p>Transliterations can be chained together so that a single operations can
-perform multiple transformations at once. A transliteration can either be
-applied to a string of text in one fell swoop, or can be used incrementally for
-typing or buffered input. In the latter case, it provides for correct delay in
-processing characters until there is an unambiguous mapping. Transliterators can
-also be used with more complex text, such as styled text, maintaining the style
-information where possible. For example, &quot;<font color="#0000ff">&#913;&#955;&#966;&#945;</font><font
+transliteration: &quot;NFD; [:Nonspacing Mark:] Remove; NFC&quot;. This
+separates accents from their base characters, then removes them, then puts the
+remaining text into normal form.</p>
+<p>A transliteration can either be applied to a string of text in one fell
+swoop, or can be used incrementally for typing or buffered input. In the latter
+case, it provides for correct delay in processing characters until there is an
+unambiguous mapping. Transliterators can also be used with more complex text,
+such as styled text, maintaining the style information where possible. For
+example, &quot;<font color="#0000ff">&#913;&#955;&#966;&#945;</font><font
 color="#ff0000">&#946;&#951;&#964;&#953;&#954;&#972;&#962;</font>&quot; will
 maintain the two colors in transliterating to &quot;<font color="#0000ff">Alpha</font><font
 color="#ff0000">b<font size="3">&#275;</font>tikós</font>&quot;.</p>
@@ -147,7 +149,7 @@ all characters may be subject to change.</p>
 <p>For example, to remove accents from characters, you can use the following
 transliteration:</p>
 <p align="center">NFD; [:nonspacing mark:] remove; NFC</p>
-<p>this is short for</p>
+<p>which is short for</p>
 <p align="center">any-NFD; [:nonspacing mark:] any-remove; any-NFC</p>
 <p>Another example of a filter is one used to convert uppercase Latin to
 Katakana and lowercase to Hiragana:</p>
@@ -222,17 +224,15 @@ more information on the design of transliterations, see <a href="#Guidelines">Gu
       <li>&#8644;<font size="3"> </font>Greek, Cyrillic, Hangul, Hiragana,
         Katakana, <i>Indic</i></li>
     </ul>
-  <li><i>Indic </i>&#8644;
+  <li><i>Indic </i>
     <ul>
-      <li>Latin, Devanagari, Gujarati, Gurmukhi, Kannada, Malayalam, Oriya,
-        Tamil, Telegu
-        <ul>
-          <li>All transliterate from one to the other. Thus you can
-            transliterate from Kannada to Gujarati, or from Latin to Oriya.</li>
-        </ul>
-      </li>
+      <li>&#8644; <i>Indic</i></li>
     </ul>
 </ul>
+<p>Indic includes Devanagari, Gujarati, Gurmukhi, Kannada, Malayalam, Oriya,
+Tamil, Telegu. Thus you can transliterate from Latin to any of these and back,
+and from Indic script to any other Indic script.&nbsp; For example, you can
+transliterate from Kannada to Gujarati, or from Latin to Oriya.</p>
 <p>In addition, ICU may supply transliterations that are specific to language
 pairs, or between a language and a script. For example, it could have ru-en
 (Russian-English).</p>
@@ -281,16 +281,18 @@ Applying this mechanism to the case of Greek, we have PI SIGMA (&#960;&#963;)
 mapping to <i>p's.</i> The Korean transliteration standard uses a hyphen instead
 of a single quote mark: the principle is the same. This method is recommended
 for all script transliteration methods.</p>
-<p><b>Note: </b>Some characters in a target script are not normally found in
-isolation. For example, in Japanese &quot;kya&quot; (&#12461;&#12515;) the small
-&quot;ya&quot; character is not normally found in isolation. The convention to
-handle such characters is to use a tilde. For example, to type an isolated small
-&quot;ya&quot;, you would use &quot;~ya&quot;; to represent a non-final Greek <i>sigma</i>
-(&#945;&#963;) at the end of a word you would use &quot;a~s&quot;; to represent
-a final sigma in a non-final position (&#962;&#945;) you would type &quot;~sa&quot;.</p>
+<p><b>Note: </b>Some characters in a target script are not normally found
+outside of certain contexts. For example, the small Japanese &quot;ya&quot;
+character as in &quot;kya&quot; (&#12461;&#12515;)&nbsp; is not normally found
+in isolation. The convention to handle such characters is to use a tilde. For
+example, to type an isolated small &quot;ya&quot;, you would use &quot;~ya&quot;;
+to represent a non-final Greek <i>sigma</i> (&#945;&#963;) at the end of a word
+you would use &quot;a~s&quot;; to represent a final sigma in a non-final
+position (&#962;&#945;) you would type &quot;~sa&quot;.</p>
 <p>For the general script transliterators, a common technique for reversibility
 is to use extra accents to distinguish letters that may not be otherwise
-distinguished. For example,</p>
+distinguished. For example, here is Greek text that is mapped to fully
+reversible Latin:</p>
 <table border="1" width="100%">
   <tr>
     <td width="66%" colspan="2">
@@ -310,7 +312,7 @@ distinguished. For example,</p>
 </table>
 <p>If the user desires a version without certain accents, then a simple
 transliterator can be used to remove the accents. For example, the following
-removes the macron accents on the long vowels.</p>
+transliterates to Latin but removes the macron accents on the long vowels.</p>
 <table border="1" width="100%">
   <tr>
     <td width="66%" colspan="2">
@@ -328,11 +330,11 @@ removes the macron accents on the long vowels.</p>
       gàr ekeînó ge katagnósomai, hos s&#7923; héteron.</td>
   </tr>
 </table>
-<p>And the following removes all accents:</p>
+<p>And the following transliterates to Latin but removes <i>all</i> accents:</p>
 <table border="1" width="100%">
   <tr>
     <td width="66%" colspan="2">
-      <p align="center">Greek-Latin; nfd; [\u0304] remove; nfc</td>
+      <p align="center">Greek-Latin; nfd; [:nonspacing marks:] remove; nfc</td>
   </tr>
   <tr>
     <td width="33%">&#964;&#943; &#966;&#8132;&#962;;
@@ -367,10 +369,10 @@ sequence GAMMA GAMMA (&#947;&#947;) is pronounced as <i>ng,</i> the first GAMMA
 can be transcribed as an <i>n.</i></p>
 <blockquote>
   <b>Note: </b>In general, predictability means that when transliterating Latin
-  script to other scripts, English text will not produce phonetic results. This
-  is because the pronunciation of English cannot be easily predicted from the
-  letters in a word: e.g. <i>grove, move, </i>and<i> love</i> all end with <i>ove,</i>
-  but are pronounced very differently.
+  script to other scripts, English text will <i>not</i> produce phonetic
+  results. This is because the pronunciation of English cannot be easily
+  predicted from the letters in a word: e.g. <i>grove, move, </i>and<i> love</i>
+  all end with <i>ove,</i> but are pronounced very differently.
 </blockquote>
 <h3><a name="Cautions">Cautions</a></h3>
 <p>Reversibility may require modifications of traditional transcription methods.
@@ -404,8 +406,10 @@ KAPPA (&#954;). Such reverse mappings will not, in general, be unambiguous.</p>
 APIs are listed here. For more information on them and the other APIs, see the
 relevant API docs.</p>
 <p>To list the available Transliterators, use code like the following:</p>
-<pre>count = Transliterator:: countAvailableIDs();
+<blockquote>
+  <pre>count = Transliterator:: countAvailableIDs();
 myID = Transliterator::getAvailableID(n);</pre>
+</blockquote>
 <p>The ID should not be displayed to users; it is for internal use only. A
 separate string, one that can be localized to different languages, is obtained
 with a static method. (This method is static to allow the translated names to be
@@ -421,7 +425,8 @@ use the following:</p>
 <p>If you want to get a pre-made compound transliterator, use a series of IDs
 separated by &quot;;&quot;. For example:</p>
 <blockquote>
-  <pre>myTrans = Transliterator::createInstance(&quot;any-NFD; [:nonspacing mark:] any-remove; any-NFC&quot;);</pre>
+  <pre>myTrans = Transliterator::createInstance(
+    &quot;any-NFD; [:nonspacing mark:] any-remove; any-NFC&quot;);</pre>
 </blockquote>
 <p>To convert an entire string, use: </p>
 <blockquote>
@@ -529,8 +534,8 @@ matches, Contextual matches, Rearrangement ($1, $2…), and Quantifiers (*, +,
 ?). They are more powerful in offering: Ordered Rules, Cursor Backup,
 Buffered/Keyboard support. They are less powerful in that they have only greedy
 quantifiers, no backup (so no X | Y), and no input-side back references.</p>
-<p>Here is an example that shows the difference between a set of Transliterator
-rules, and successively applying regular expression replacements.</p>
+<p>Here is a simple example that shows the difference between a set of
+Transliterator rules, and successively applying regular expression replacements.</p>
 <p align="center"><img border="0" src="user_g2.gif" width="463" height="388"></p>
 <p>Since the transliterator processes each of its rules at each point, it
 catches the yx before the xy in the second case. Since each of the regular

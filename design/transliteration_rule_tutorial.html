@@ -35,7 +35,7 @@ reversible. In this tutorial will build a reversible transliterator, since it
 illustrates more of the issues involved in the rules. (For guidelines in 
 building transliterators, see &quot;Guidelines for Designing Script 
 Transliterations&quot; in the <a
-href="http://oss.software.ibm.com/icu/userguide/Transliteration.html">ICU User 
+href="http://oss.software.ibm.com/icu/userguide/Transform.html">ICU User 
 Guide</a>.)</p>
 <p>Since most transliteration systems are not reversible, that means that even 
 once you pick a source, you may have to make some modifications for 
@@ -58,9 +58,9 @@ accents that are no longer in use in modern Greek.</p>
 <blockquote>
   <p align="left"><b>Note: </b>Some of the characters may not be visible on your 
   screen unless you have a Unicode font with all the Greek letters. If you are 
-  licensed for a copy of Microsoft Office, you can download <a
-  href="http://office.microsoft.com/downloads/2000/aruniupd.aspx">Arial Unicode 
-  MS</a>. For more information see <a
+  licensed for a copy of Microsoft Office, you can use the Arial Unicode 
+  MS font, or you can <a href="http://home.att.net/~jameskass/">download the Code2000
+  font for free</a>. For more information see <a
   href="http://www.unicode.org/help/display_problems.html"><b>Display Problems?</b></a> 
   on the Unicode site.</p>
 </blockquote>
@@ -72,14 +72,14 @@ is <i>not</i> reversible. So in summary, the goal is:</p>
   <center>
   <table border="1" cellspacing="0" cellpadding="4">
     <tr>
-      <td width="50%">Source-Target</td>
-      <td width="50%">Reversible</td>
-      <td width="50%">φ → ph → φ</td>
+      <td width="33%">Source-Target</td>
+      <td width="33%">Reversible</td>
+      <td width="33%">φ → ph → φ</td>
     </tr>
     <tr>
-      <td width="50%">Target-Source</td>
-      <td width="50%">Not (Necessarily) Reversible</td>
-      <td width="50%">f → φ → ph</td>
+      <td width="33%">Target-Source</td>
+      <td width="33%">Not (Necessarily) Reversible</td>
+      <td width="33%">f → φ → ph</td>
     </tr>
   </table>
   </center>
@@ -364,7 +364,7 @@ them. For example:</p>
   </tr>
 </table>
 <p>For more on properties, see <a
-href="file:///C:/Documents%20and%20Settings/Davis/My%20Documents/ICU/unicodeset_properties.htm">UnicodeSet 
+href="unicodeset_properties.htm">UnicodeSet 
 Properties</a>.</p>
 <h3>Repetition</h3>
 <p>Elements in a rule can also repeat. For example, In the following rules, an 

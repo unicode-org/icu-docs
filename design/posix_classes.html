@@ -33,7 +33,10 @@ td, th       { vertical-align: Top }
 </table>
 <p align="left">The POSIX-style property names are are not well specified, and
 don't really map well to the broader types of characters available in
-Unicode/10646. For example, there is no provision for titlecase.</p>
+Unicode/10646. For example, there is no provision for titlecase, nor for a
+distinction between symbols and punctuation. The Posix categories aren't really
+set up to make distinctions among combining marks, nor many of the other Unicode
+<a href="http://www.unicode.org/Public/UNIDATA/UCD.html#Properties">Properties</a>.</p>
 <table border="1" cellspacing="0" cellpadding="2" align="right" bgcolor="#FFFFCC">
   <caption><b>Characters Mnemonics</b></caption>
   <tr>
@@ -88,38 +91,49 @@ Unicode/10646. For example, there is no provision for titlecase.</p>
     <td class="smallcode"><code>NBSP</code></td>
     <td class="smallcode"><code>U+00A0 NO-BREAK SPACE</code></td>
   </tr>
+  <tr>
+    <td class="smallcode"><code>ZWSP</code></td>
+    <td class="smallcode"><code>U+200B ZERO WIDTH SPACE</code></td>
+  </tr>
 </table>
-<p align="left">However, many programs use them, so for compatibility it is best
-to come up with uniform set of recommendations for how they should be
-interpreted in a Unicode context. This also relates to Java, since many of the
-methods on Character ultimately derive from trying to match some of the POSIX
-categories.</p>
-<p>The following compares current Perl, ICU, Java and the POSIX spec, and tries
-to derive a recommendation. Feedback is welcome.</p>
+<p align="left">However, many programs use the POSIX-style properties, so for
+compatibility it is best to come up with uniform set of recommendations for how
+they should be interpreted in a Unicode context. This also relates to Java,
+since many of the methods on Character ultimately derive from trying to match
+some of the POSIX categories.</p>
+<p>The following compares current Perl, ICU, Java, Windows, and the POSIX spec,
+and tries to derive a recommendation for the best definition, given the way
+people use the properties in practice. Note that these are only current
+snapshots, since those environments may change their definitions, especially as
+they upgrade beyond Unicode 3.x.</p>
+<p>Feedback is welcome, at <a href="mailto:icu@oss.software.ibm.com">mailto:icu@oss.software.ibm.com</a>.</p>
 <p><b>Notes:</b></p>
 <ul>
-  <li>The Java function names are methods on Character, unless otherwise noted.
-    Note that the Java functions are based on the Unicode properties, but
-    sometimes out of date.</li>
-  <li>The normal property abbreviations are used, e.g. <i>gc</i> for
-    General_Category.</li>
+  <li>The Java function names are methods on Character, unless otherwise noted.</li>
+  <li>The Windows column lists CRT function, then .NET System.Char method, then
+    equivalence.</li>
+  <li>The normal property abbreviations are used, e.g. <i>gc</i> for <a href="http://www.unicode.org/Public/UNIDATA/extracted/DerivedGeneralCategory.txt">General_Category</a>.</li>
   <li>For values of the General Category, see <a href="#General_Categories">General_Categories</a>.</li>
-  <li>Broken Links: some of the following links may not work, since they are to
-    beta versions. If so, see the <a href="#Notes">Notes</a>.</li>
 </ul>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
-    <th width="15%">Perl</th>
-    <th width="15%">ICU</th>
-    <th width="15%">Java</th>
-    <th width="15%">Recommended</th>
-    <th>Comments</th>
+    <th width="12%" style="background-color: #FFFF00">Perl</th>
+    <th width="12%" style="background-color: #FFFF00">ICU</th>
+    <th width="12%" style="background-color: #FFFF00">Java</th>
+    <th width="12%" style="background-color: #FFFF00">Windows</th>
+    <th width="12%" style="background-color: #FFFF00">Recommended</th>
+    <th style="background-color: #FFFF00">Comments</th>
   </tr>
   <tr>
     <td><b>punct</b><br>
       P</td>
-    <td><b>U_GC_P_MASK</b></td>
-    <td>&#8709;</td>
+    <td><b>getType(...)</b><b><br>
+      </b>gc=P</td>
+    <td><b>getType(...)</b><code><b><br>
+      </b></code>gc=P</td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_ispunct.2c_.iswpunct.asp">iswpunct<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsPunctuationTopic.asp">IsPunctuation</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_ispunct.2c_.iswpunct.asp"><br>
+      </a>gc=P</td>
     <td>\p{gc=P}</td>
     <td>&nbsp;</td>
   </tr>
@@ -130,13 +144,15 @@ to derive a recommendation. Feedback is welcome.</p>
       gc=L</td>
     <td><b>isLetter</b><br>
       gc=L</td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isalpha.2c_.iswalpha.asp">iswalpha<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsLetterTopic.asp">IsLetter<br>
+      </a>gc=L</td>
     <td>\p{Alphabetic}<br>
       \p{gc=Mark}</td>
     <td>Alphabetic includes more than gc = Letter. Note that marks (Me, Mn, Mc)
-      are required in many languages. It is a simplification to include them,
-      since they could be applied to non-alphabetics, but excluding them would
-      cause many words to fail the isAlpha test. See <a href="http://www.unicode.org/Public/4.0-Update/DerivedCoreProperties-4.0.0d20b.txt">DerivedCoreProperties-4.0.0d20b.txt</a>
-      for Alphabetic, also <a href="http://www.unicode.org/Public/4.0-Update/extracted/DerivedGeneralCategory-4.0.0d19b.txt">DerivedGeneralCategory-4.0.0d19b.txt</a></td>
+      are required for words of many languages. While they could be applied to
+      non-alphabetics, their principle use is on alphabetics. See <a href="http://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt">DerivedCoreProperties.txt</a>&nbsp;
+      for Alphabetic, also <a href="http://www.unicode.org/Public/UNIDATA/extracted/DerivedGeneralCategory.txt">DerivedGeneralCategory.txt</a></td>
   </tr>
   <tr>
     <td><b>lower</b><br>
@@ -146,8 +162,11 @@ to derive a recommendation. Feedback is welcome.</p>
       gc=Ll</td>
     <td><b>isLowerCase</b><br>
       gc=Ll</td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_islower.2c_.iswlower.asp">iswlower<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsLowerTopic.asp">IsLower</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_islower.2c_.iswlower.asp"><br>
+      </a>gc=Ll</td>
     <td>\p{Lowercase}</td>
-    <td>Lowercase includes more than gc = Lowercase_Letter (Ll). See <a href="http://www.unicode.org/Public/4.0-Update/DerivedCoreProperties-4.0.0d20b.txt">DerivedCoreProperties-4.0.0d20b.txt</a>.</td>
+    <td>Lowercase includes more than gc = Lowercase_Letter (Ll). See <a href="http://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt">DerivedCoreProperties.txt</a>.</td>
   </tr>
   <tr>
     <td><b>upper</b><br>
@@ -155,6 +174,9 @@ to derive a recommendation. Feedback is welcome.</p>
     <td><b>u_isupper</b></td>
     <td><b>isUpperCase</b><br>
       gc=Lu</td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isupper.2c_.iswupper.asp">iswupper<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsUpperTopic.asp">IsUpper</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isupper.2c_.iswupper.asp"><br>
+      </a>gc=Lu</td>
     <td>\p{Uppercase}</td>
     <td>Uppercase includes more than gc = Uppercase_Letter (Lu).<br>
       <b>Open Issue: </b>add Lt? It may have better compatibility.</td>
@@ -168,22 +190,26 @@ to derive a recommendation. Feedback is welcome.</p>
       </b>gc=Nd</td>
     <td><b>isDigit</b><br>
       gc=Nd</td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isdigit.2c_.iswdigit.asp">iswdigit<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsDigitTopic.asp">IsDigit</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isdigit.2c_.iswdigit.asp"><br>
+      </a>gc=Nd</td>
     <td>\p{gc=Nd}</td>
     <td>Non-decimal numbers (like Roman numerals) are normally excluded. In
-      U4.0+, this is the same as gc = Decimal_Number (Nd). See <a href="http://www.unicode.org/Public/4.0-Update/extracted/DerivedNumericType-4.0.0d19b.txt">DerivedNumericType-4.0.0d19b.txt</a></td>
+      U4.0+, this is the same as gc = Decimal_Number (Nd). See <a href="http://www.unicode.org/Public/UNIDATA/extracted/DerivedNumericType.txt">DerivedNumericType.txt</a></td>
   </tr>
   <tr>
     <td><b>xdigit</b><br>
       0..9, A..F, a..f<br>
     </td>
-    <td><b>UCHAR_ASCII_HEX_DIGIT</b><br>
+    <td><b>UCHAR_ASCII&#8203;_HEX_DIGIT</b><br>
       0-9 A-F a-f
-      <p><b>UCHAR_HEX_DIGIT<br>
+      <p><b>UCHAR&#8203;_HEX_DIGIT<br>
       </b>adds fullwidth</p>
     </td>
     <td>&#8709;</td>
+    <td>&#8709;</td>
     <td>\p{ASCII_Hex_Digit}</td>
-    <td>See <a href="http://www.unicode.org/Public/4.0-Update/PropList-4.0.0d20b.txt">PropList-4.0.0d20b.txt</a>
+    <td>See <a href="http://www.unicode.org/Public/UNIDATA/PropList.txt">PropList.txt</a>
       <p><b>Open Issue: </b>add Nd?</p>
     </td>
   </tr>
@@ -195,32 +221,20 @@ to derive a recommendation. Feedback is welcome.</p>
       gc=L or Nd</td>
     <td><b>isLetterOrDigit</b><br>
       gc=L or Nd</td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isalnum.2c_.iswalnum.asp">iswalnum<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsLetterOrDigitTopic.asp">IsLetterOrDigit<br>
+      </a>gc=L or Nd</td>
     <td>\p{alpha}<br>
       \p{digit}</td>
     <td>Simple combination of other properties</td>
   </tr>
   <tr>
-    <td><b>word</b><br>
-      L or M or N or &quot;_&quot;
-      <p><b>\w</b></p>
-    </td>
-    <td>see below</td>
-    <td>see below</td>
-    <td>\p{alpha}<br>
-      \p{digit}<br>
-      \N{LL}</td>
-    <td>This is only an approximation to Word Boundaries (See below). The
-      &quot;_&quot; is lumped in for compatibility, but maybe it should be gc=Pc
-      (see <a href="http://www.unicode.org/Public/4.0-Update/extracted/DerivedGeneralCategory-4.0.0d19b.txt">DerivedGeneralCategory-4.0.0d19b.txt</a>)
-      <p><b>Open Issue: </b>add other gc=N?</p>
-    </td>
-  </tr>
-  <tr>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
+    <th width="12%" style="background-color: #FFFF00">Perl</th>
+    <th width="12%" style="background-color: #FFFF00">ICU</th>
+    <th width="12%" style="background-color: #FFFF00">Java</th>
+    <th width="12%" style="background-color: #FFFF00">Windows</th>
+    <th width="12%" style="background-color: #FFFF00">Recommended</th>
+    <th style="background-color: #FFFF00">Comments</th>
   </tr>
   <tr>
     <td><b>cntrl</b><br>
@@ -232,6 +246,9 @@ to derive a recommendation. Feedback is welcome.</p>
     </td>
     <td><b>isISOControl<br>
       </b>gc=Cc &amp; ASCII</td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_iscntrl.2c_.iswcntrl.asp">iswcntrl<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsControlTopic.asp">IsControl</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_iscntrl.2c_.iswcntrl.asp"><br>
+      </a>gc=Cc</td>
     <td>\p{gc=Control}</td>
     <td>Does not include Format, since some of those are needed in the
       representation of normal text.
@@ -246,6 +263,10 @@ to derive a recommendation. Feedback is welcome.</p>
       gc=L or M or N or P or S or Co</td>
     <td>&#8709;</td>
     <td>&#8709;</td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isgraph.2c_.iswgraph.asp">isgraph,
+      iswgraph<br>
+      </a>not in .NET<a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isprint.2c_.iswprint.asp"><br>
+      </a>??</td>
     <td><b>All but:</b><br>
       [\p{space}<br>
       \p{gc=Cc}<br>
@@ -263,16 +284,20 @@ to derive a recommendation. Feedback is welcome.</p>
     <td><b>u_isprint()<br>
       </b>All but gc=C</td>
     <td>&#8709;</td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isprint.2c_.iswprint.asp">iswprint<br>
+      </a>not in .NET<a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isprint.2c_.iswprint.asp"><br>
+      </a>??</td>
     <td>\p{graph}<br>
       \p{space}</td>
     <td>POSIX: includes graph, &lt;space&gt;</td>
   </tr>
   <tr>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
+    <th width="12%" style="background-color: #FFFF00">Perl</th>
+    <th width="12%" style="background-color: #FFFF00">ICU</th>
+    <th width="12%" style="background-color: #FFFF00">Java</th>
+    <th width="12%" style="background-color: #FFFF00">Windows</th>
+    <th width="12%" style="background-color: #FFFF00">Recommended</th>
+    <th style="background-color: #FFFF00">Comments</th>
   </tr>
   <tr>
     <td><b>space</b><br>
@@ -294,16 +319,22 @@ to derive a recommendation. Feedback is welcome.</p>
       </b>gc=Z</p>
       <p><b>isSpace</b> (depre.):<br>
       HT..CR</td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isspace.2c_.iswspace.asp">iswspace<br>
+      </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsWhiteSpaceTopic.asp">IsWhiteSpace</a><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isspace.2c_.iswspace.asp"><br>
+      </a>gc=Z or HT..CR, NEL</td>
     <td>\p{Whitespace}</td>
     <td>See <a href="#Whitespace_Comparison">Whitespace_Comparison</a> for a
       comparison of WhiteSpace to Z.
-      <p>Note: U+200B (ZWSP) while a Z character, is for line break control and
+      <p>See <a href="http://www.unicode.org/Public/UNIDATA/PropList.txt">PropList.txt</a>
+      for the definition of Whitespace (also in U3.1, U3.2)</p>
+      <p><b>Note: </b>ZWSP, while a Z character, is for line break control and
       should not be included.</p>
     </td>
   </tr>
   <tr>
     <td><b>blank</b><br>
       gc=Zl or Zp or HT, SP</td>
+    <td>&#8709;</td>
     <td>&#8709;</td>
     <td>&#8709;</td>
     <td>\p{Whitespace} -<br>
@@ -314,24 +345,52 @@ to derive a recommendation. Feedback is welcome.</p>
     </td>
   </tr>
   <tr>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
-    <td bgcolor="#FFFF00">&nbsp;</td>
+    <th width="12%" style="background-color: #FFFF00">Perl</th>
+    <th width="12%" style="background-color: #FFFF00">ICU</th>
+    <th width="12%" style="background-color: #FFFF00">Java</th>
+    <th width="12%" style="background-color: #FFFF00">Windows</th>
+    <th width="12%" style="background-color: #FFFF00">Recommended</th>
+    <th style="background-color: #FFFF00">Comments</th>
+  </tr>
+  <tr>
+    <td><b>word</b><br>
+      L or M or N or &quot;_&quot;
+      <p><b>\w</b></p>
+    </td>
+    <td>see below</td>
+    <td>see below</td>
+    <td>see below</td>
+    <td>\p{alpha}<br>
+      \p{digit}<br>
+      \N{LL}</td>
+    <td>This is only an approximation to Word Boundaries (See below). The
+      &quot;_&quot; is lumped in for compatibility, but maybe it should be gc=Pc
+      (see <a href="http://www.unicode.org/Public/UNIDATA/extracted/DerivedGeneralCategory.txt">DerivedGeneralCategory.txt</a>)
+      <p><b>Open Issue: </b>add other gc=N?</p>
+    </td>
   </tr>
   <tr>
     <td><b>\X</b></td>
-    <td>BreakIterator</td>
-    <td>BreakIterator</td>
+    <td><a class="el" href="http://oss.software.ibm.com/icu/apiref/classBreakIterator.html">BreakIterator</a><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/RuleBasedBreakIterator.html" target="classFrame" class="el"></a>
+      (ICU4C)<a class="el" href="http://oss.software.ibm.com/icu/apiref/classBreakIterator.html"><br>
+      </a><a class="el" href="http://oss.software.ibm.com/icu/apiref/ubrk_8h.html">ubrk.h<br>
+      </a><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/RuleBasedBreakIterator.html" target="classFrame">BreakIterator</a>
+      (ICU4J)</td>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/BreakIterator.html" target="classFrame">BreakIterator</a></td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vjref98/html/java.text.BreakIterator.asp">BreakIterator</a></td>
     <td>Default Grapheme Cluster Boundaries</td>
     <td>See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX #29:
       Text Boundaries</a>, also <a href="http://www.unicode.org/reports/tr29/GraphemeClusterBreakTest.html">GraphemeClusterBreakTest.html</a></td>
   </tr>
   <tr>
     <td><b>\b</b></td>
-    <td>BreakIterator</td>
-    <td>BreakIterator</td>
+    <td><a class="el" href="http://oss.software.ibm.com/icu/apiref/classBreakIterator.html">BreakIterator</a><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/RuleBasedBreakIterator.html" target="classFrame" class="el"></a>
+      (ICU4C)<a class="el" href="http://oss.software.ibm.com/icu/apiref/classBreakIterator.html"><br>
+      </a><a class="el" href="http://oss.software.ibm.com/icu/apiref/ubrk_8h.html">ubrk.h<br>
+      </a><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/RuleBasedBreakIterator.html" target="classFrame">BreakIterator</a>
+      (ICU4J)</td>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/BreakIterator.html" target="classFrame">BreakIterator</a></td>
+    <td><a href="http://msdn.microsoft.com/library/en-us/vjref98/html/java.text.BreakIterator.asp">BreakIterator</a></td>
     <td>Default Word Boundaries</td>
     <td>If there is a requirement that \b align with \w, then it would use the
       approximation above instead. See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX
@@ -346,23 +405,11 @@ to derive a recommendation. Feedback is welcome.</p>
       <li><a href="http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html">http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html</a></li>
     </ul>
   </li>
-  <li>Other Unicode Links
-    <ul>
-      <li><a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18:
-        Unicode Regular Expression Guidelines</a></li>
-      <li><a href="http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d20b.html">http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d20b.html</a></li>
-    </ul>
-  </li>
   <li>Related Perl Links
     <ul>
       <li><a href="http://www.perldoc.com/perl5.8.0/lib/charnames.html">http://www.perldoc.com/perl5.8.0/lib/charnames.html</a></li>
       <li><a href="http://www.perldoc.com/perl5.8.0/pod/perlre.html">http://www.perldoc.com/perl5.8.0/pod/perlre.html</a></li>
       <li><a href="http://www.perldoc.com/perl5.8.0/pod/perluniintro.html">http://www.perldoc.com/perl5.8.0/pod/perluniintro.html</a></li>
-    </ul>
-  </li>
-  <li>Current Beta 4.0.0 UCD
-    <ul>
-      <li><a href="http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d5b.html">http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d5b.html</a></li>
     </ul>
   </li>
   <li>ICU Links
@@ -377,11 +424,13 @@ to derive a recommendation. Feedback is welcome.</p>
       <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html">http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html</a></li>
     </ul>
   </li>
-  <li>Broken Links: some of the above Unicode links may not work, since they are
-    to beta versions. If so, go to the latest links through the following:
+  <li>Unicode:
     <ul>
-      <li><a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/</a></li>
+      <li><a href="http://www.unicode.org/Public/UNIDATA/UCD.html">http://www.unicode.org/Public/UNIDATA/UCD.html</a></li>
       <li><a href="http://www.unicode.org/Public/4.0-Update/">http://www.unicode.org/Public/4.0-Update/</a></li>
+      <li><a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/</a></li>
+      <li><a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18:
+        Unicode Regular Expression Guidelines</a></li>
     </ul>
   </li>
 </ul>
@@ -397,11 +446,9 @@ to derive a recommendation. Feedback is welcome.</p>
     APIs for more than ASCII anyway (which is why we are having this
     discussion), so they were made parallel with Java for ease of porting.</li>
   <li>A good link on ICU properties, although not quite up to date right now
-    (still on ICU 2.4 level), is the Properties chapter in our User Guide: <a href="http://oss.software.ibm.com/icu/userguide/properties.html">http://oss.software.ibm.com/icu/userguide/properties.html</a></li>
+    (still on ICU 2.4 level), is the Properties chapter in the User Guide: <a href="http://oss.software.ibm.com/icu/userguide/properties.html">http://oss.software.ibm.com/icu/userguide/properties.html</a></li>
 </ul>
 <h3><a name="Whitespace_Comparison"><b>Whitespace Comparison</b></a><b>:</b></h3>
-<p><i>(Using Unicode 4.0 properties for comparison. Note that the Java
-properties use old versions of Unicode properties).</i></p>
 <pre><b>In White_Space, but not in Z:
 </b>        U+0009  # &lt;CHARACTER TABULATION (HT)&gt;
         U+000A  # &lt;LINE FEED (LF)&gt;
@@ -565,7 +612,7 @@ properties use old versions of Unicode properties).</i></p>
 </table>
 <h3><a href="http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html" name="Posix_Requirements">Posix
 Requirements</a></h3>
-<center><b><a name="tagtcjh_5"></a>Table: Valid Character Class Combinations</b>
+<b><a name="tagtcjh_5"></a>Table: Valid Character Class Combinations</b>
 <table cellpadding="2" border="1" cellspacing="0">
   <tbody>
     <tr valign="top">
@@ -1034,7 +1081,6 @@ Requirements</a></h3>
     </tr>
   </tbody>
 </table>
-</center>
 <ol>
   <li>
     <p>Explanation of codes:</p>

@@ -1,0 +1,1357 @@
+# Default Line Break Test
+# Generated: 2003-04-19, 01:55:12 GMT, MED
+#
+# Format:
+# <string> (# <comment>)? 
+#  <string> contains hex Unicode code points, with 
+#	÷ wherever there is a break opportunity, and 
+#	× wherever there is not.
+#  <comment> the format can change, but currently it shows:
+#	- the sample character name
+#	- (x) the line_break property* for the sample character
+#	- [x] the rule that determines whether there is a break or not
+#
+# Samples:
+# The test currently takes all pairs of linebreak types*,
+# picks a sample for each type, and generates three strings: 
+#	- the pair alone
+#	- the pair alone with an imbeded space
+#	- the pair alone with embedded combining marks
+# The sample for each type is simply the first code point (above NULL)
+# with that property.
+# * Note:
+#	- SG is omitted
+#	- 3 different Jamo characters and a supplementary character are added
+#	  The syllable types for the Jamo (L, V, T) are displayed in comments
+#	  instead of the linebreak property
+#
+# These samples may be extended or changed in the future.
+#
+× 0028 × 0028 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0028 × 0020 × 0028 ÷
+× 0028 × 0301 × 0308 × 0028 ÷
+× 0028 × 0029 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0028 × 0020 × 0029 ÷
+× 0028 × 0301 × 0308 × 0029 ÷
+× 0028 × 0022 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0028 × 0020 × 0022 ÷
+× 0028 × 0301 × 0308 × 0022 ÷
+× 0028 × 00A0 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0028 × 0020 × 00A0 ÷
+× 0028 × 0301 × 0308 × 00A0 ÷
+× 0028 × 0E5A ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0028 × 0020 × 0E5A ÷
+× 0028 × 0301 × 0308 × 0E5A ÷
+× 0028 × 0021 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0028 × 0020 × 0021 ÷
+× 0028 × 0301 × 0308 × 0021 ÷
+× 0028 × 002F ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0028 × 0020 × 002F ÷
+× 0028 × 0301 × 0308 × 002F ÷
+× 0028 × 002C ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0028 × 0020 × 002C ÷
+× 0028 × 0301 × 0308 × 002C ÷
+× 0028 × 0024 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0028 × 0020 × 0024 ÷
+× 0028 × 0301 × 0308 × 0024 ÷
+× 0028 × 0025 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0028 × 0020 × 0025 ÷
+× 0028 × 0301 × 0308 × 0025 ÷
+× 0028 × 0030 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0028 × 0020 × 0030 ÷
+× 0028 × 0301 × 0308 × 0030 ÷
+× 0028 × 0023 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0028 × 0020 × 0023 ÷
+× 0028 × 0301 × 0308 × 0023 ÷
+× 0028 × 2E80 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0028 × 0020 × 2E80 ÷
+× 0028 × 0301 × 0308 × 2E80 ÷
+× 0028 × 2024 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0028 × 0020 × 2024 ÷
+× 0028 × 0301 × 0308 × 2024 ÷
+× 0028 × 002D ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0028 × 0020 × 002D ÷
+× 0028 × 0301 × 0308 × 002D ÷
+× 0028 × 0009 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0028 × 0020 × 0009 ÷
+× 0028 × 0301 × 0308 × 0009 ÷
+× 0028 × 00B4 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0028 × 0020 × 00B4 ÷
+× 0028 × 0301 × 0308 × 00B4 ÷
+× 0028 × 2014 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] EM DASH (B2) ÷ [2b: ! eot]
+× 0028 × 0020 × 2014 ÷
+× 0028 × 0301 × 0308 × 2014 ÷
+× 0028 × 200B ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0028 × 0020 × 200B ÷
+× 0028 × 0301 × 0308 × 200B ÷
+× 0028 × 0001 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0028 × 0020 × 0001 ÷
+× 0028 × 0301 × 0308 × 0001 ÷
+× 0028 × 2060 ÷	#  × [2a: × sot] LEFT PARENTHESIS (OP) × [9: OP SP* ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0028 × 0020 × 2060 ÷
+× 0028 × 0301 × 0308 × 2060 ÷
+× 0029 ÷ 0028 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 0028 ÷
+× 0029 × 0301 × 0308 ÷ 0028 ÷
+× 0029 × 0029 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0029 × 0020 × 0029 ÷
+× 0029 × 0301 × 0308 × 0029 ÷
+× 0029 × 0022 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 0022 ÷
+× 0029 × 0301 × 0308 × 0022 ÷
+× 0029 × 00A0 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 00A0 ÷
+× 0029 × 0301 × 0308 × 00A0 ÷
+× 0029 × 0E5A ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [11: CL SP* × NS] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0029 × 0020 × 0E5A ÷
+× 0029 × 0301 × 0308 × 0E5A ÷
+× 0029 × 0021 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0029 × 0020 × 0021 ÷
+× 0029 × 0301 × 0308 × 0021 ÷
+× 0029 × 002F ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0029 × 0020 × 002F ÷
+× 0029 × 0301 × 0308 × 002F ÷
+× 0029 × 002C ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0029 × 0020 × 002C ÷
+× 0029 × 0301 × 0308 × 002C ÷
+× 0029 ÷ 0024 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 0024 ÷
+× 0029 × 0301 × 0308 ÷ 0024 ÷
+× 0029 × 0025 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 0025 ÷
+× 0029 × 0301 × 0308 × 0025 ÷
+× 0029 ÷ 0030 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) ÷ [20: ALL ÷ ; ÷ ALL] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 0030 ÷
+× 0029 × 0301 × 0308 ÷ 0030 ÷
+× 0029 ÷ 0023 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) ÷ [20: ALL ÷ ; ÷ ALL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 0023 ÷
+× 0029 × 0301 × 0308 ÷ 0023 ÷
+× 0029 ÷ 2E80 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 2E80 ÷
+× 0029 × 0301 × 0308 ÷ 2E80 ÷
+× 0029 ÷ 2024 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) ÷ [20: ALL ÷ ; ÷ ALL] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 2024 ÷
+× 0029 × 0301 × 0308 ÷ 2024 ÷
+× 0029 × 002D ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 002D ÷
+× 0029 × 0301 × 0308 × 002D ÷
+× 0029 × 0009 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 0009 ÷
+× 0029 × 0301 × 0308 × 0009 ÷
+× 0029 ÷ 00B4 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 00B4 ÷
+× 0029 × 0301 × 0308 ÷ 00B4 ÷
+× 0029 ÷ 2014 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 0029 × 0020 ÷ 2014 ÷
+× 0029 × 0301 × 0308 ÷ 2014 ÷
+× 0029 × 200B ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0029 × 0020 × 200B ÷
+× 0029 × 0301 × 0308 × 200B ÷
+× 0029 × 0001 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0029 × 0020 × 0001 ÷
+× 0029 × 0301 × 0308 × 0001 ÷
+× 0029 × 2060 ÷	#  × [2a: × sot] RIGHT PARENTHESIS (CL) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0029 × 0020 × 2060 ÷
+× 0029 × 0301 × 0308 × 2060 ÷
+× 0022 × 0028 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [10: QU SP* × OP] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0022 × 0020 × 0028 ÷
+× 0022 × 0301 × 0308 × 0028 ÷
+× 0022 × 0029 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0022 × 0020 × 0029 ÷
+× 0022 × 0301 × 0308 × 0029 ÷
+× 0022 × 0022 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 0022 ÷
+× 0022 × 0301 × 0308 × 0022 ÷
+× 0022 × 00A0 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 00A0 ÷
+× 0022 × 0301 × 0308 × 00A0 ÷
+× 0022 × 0E5A ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 0E5A ÷
+× 0022 × 0301 × 0308 × 0E5A ÷
+× 0022 × 0021 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0022 × 0020 × 0021 ÷
+× 0022 × 0301 × 0308 × 0021 ÷
+× 0022 × 002F ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0022 × 0020 × 002F ÷
+× 0022 × 0301 × 0308 × 002F ÷
+× 0022 × 002C ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0022 × 0020 × 002C ÷
+× 0022 × 0301 × 0308 × 002C ÷
+× 0022 × 0024 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 0024 ÷
+× 0022 × 0301 × 0308 × 0024 ÷
+× 0022 × 0025 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 0025 ÷
+× 0022 × 0301 × 0308 × 0025 ÷
+× 0022 × 0030 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 0030 ÷
+× 0022 × 0301 × 0308 × 0030 ÷
+× 0022 × 0023 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 0023 ÷
+× 0022 × 0301 × 0308 × 0023 ÷
+× 0022 × 2E80 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 2E80 ÷
+× 0022 × 0301 × 0308 × 2E80 ÷
+× 0022 × 2024 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 2024 ÷
+× 0022 × 0301 × 0308 × 2024 ÷
+× 0022 × 002D ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 002D ÷
+× 0022 × 0301 × 0308 × 002D ÷
+× 0022 × 0009 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 0009 ÷
+× 0022 × 0301 × 0308 × 0009 ÷
+× 0022 × 00B4 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 00B4 ÷
+× 0022 × 0301 × 0308 × 00B4 ÷
+× 0022 × 2014 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [14: × QU ; QU ×] EM DASH (B2) ÷ [2b: ! eot]
+× 0022 × 0020 ÷ 2014 ÷
+× 0022 × 0301 × 0308 × 2014 ÷
+× 0022 × 200B ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0022 × 0020 × 200B ÷
+× 0022 × 0301 × 0308 × 200B ÷
+× 0022 × 0001 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0022 × 0020 × 0001 ÷
+× 0022 × 0301 × 0308 × 0001 ÷
+× 0022 × 2060 ÷	#  × [2a: × sot] QUOTATION MARK (QU) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0022 × 0020 × 2060 ÷
+× 0022 × 0301 × 0308 × 2060 ÷
+× 00A0 × 0028 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 0028 ÷
+× 00A0 × 0301 × 0308 × 0028 ÷
+× 00A0 × 0029 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 00A0 × 0020 × 0029 ÷
+× 00A0 × 0301 × 0308 × 0029 ÷
+× 00A0 × 0022 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 0022 ÷
+× 00A0 × 0301 × 0308 × 0022 ÷
+× 00A0 × 00A0 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 00A0 ÷
+× 00A0 × 0301 × 0308 × 00A0 ÷
+× 00A0 × 0E5A ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 0E5A ÷
+× 00A0 × 0301 × 0308 × 0E5A ÷
+× 00A0 × 0021 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 00A0 × 0020 × 0021 ÷
+× 00A0 × 0301 × 0308 × 0021 ÷
+× 00A0 × 002F ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 00A0 × 0020 × 002F ÷
+× 00A0 × 0301 × 0308 × 002F ÷
+× 00A0 × 002C ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 00A0 × 0020 × 002C ÷
+× 00A0 × 0301 × 0308 × 002C ÷
+× 00A0 × 0024 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 0024 ÷
+× 00A0 × 0301 × 0308 × 0024 ÷
+× 00A0 × 0025 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 0025 ÷
+× 00A0 × 0301 × 0308 × 0025 ÷
+× 00A0 × 0030 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 0030 ÷
+× 00A0 × 0301 × 0308 × 0030 ÷
+× 00A0 × 0023 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 0023 ÷
+× 00A0 × 0301 × 0308 × 0023 ÷
+× 00A0 × 2E80 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 2E80 ÷
+× 00A0 × 0301 × 0308 × 2E80 ÷
+× 00A0 × 2024 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 2024 ÷
+× 00A0 × 0301 × 0308 × 2024 ÷
+× 00A0 × 002D ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 002D ÷
+× 00A0 × 0301 × 0308 × 002D ÷
+× 00A0 × 0009 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 0009 ÷
+× 00A0 × 0301 × 0308 × 0009 ÷
+× 00A0 × 00B4 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 00B4 ÷
+× 00A0 × 0301 × 0308 × 00B4 ÷
+× 00A0 × 2014 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [13: × GL ; GL ×] EM DASH (B2) ÷ [2b: ! eot]
+× 00A0 × 0020 ÷ 2014 ÷
+× 00A0 × 0301 × 0308 × 2014 ÷
+× 00A0 × 200B ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 00A0 × 0020 × 200B ÷
+× 00A0 × 0301 × 0308 × 200B ÷
+× 00A0 × 0001 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 00A0 × 0020 × 0001 ÷
+× 00A0 × 0301 × 0308 × 0001 ÷
+× 00A0 × 2060 ÷	#  × [2a: × sot] NO-BREAK SPACE (GL) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 00A0 × 0020 × 2060 ÷
+× 00A0 × 0301 × 0308 × 2060 ÷
+× 0E5A ÷ 0028 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 0028 ÷
+× 0E5A × 0301 × 0308 ÷ 0028 ÷
+× 0E5A × 0029 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0E5A × 0020 × 0029 ÷
+× 0E5A × 0301 × 0308 × 0029 ÷
+× 0E5A × 0022 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 0022 ÷
+× 0E5A × 0301 × 0308 × 0022 ÷
+× 0E5A × 00A0 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 00A0 ÷
+× 0E5A × 0301 × 0308 × 00A0 ÷
+× 0E5A × 0E5A ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 0E5A ÷
+× 0E5A × 0301 × 0308 × 0E5A ÷
+× 0E5A × 0021 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0E5A × 0020 × 0021 ÷
+× 0E5A × 0301 × 0308 × 0021 ÷
+× 0E5A × 002F ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0E5A × 0020 × 002F ÷
+× 0E5A × 0301 × 0308 × 002F ÷
+× 0E5A × 002C ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0E5A × 0020 × 002C ÷
+× 0E5A × 0301 × 0308 × 002C ÷
+× 0E5A ÷ 0024 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 0024 ÷
+× 0E5A × 0301 × 0308 ÷ 0024 ÷
+× 0E5A ÷ 0025 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 0025 ÷
+× 0E5A × 0301 × 0308 ÷ 0025 ÷
+× 0E5A ÷ 0030 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) ÷ [20: ALL ÷ ; ÷ ALL] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 0030 ÷
+× 0E5A × 0301 × 0308 ÷ 0030 ÷
+× 0E5A ÷ 0023 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) ÷ [20: ALL ÷ ; ÷ ALL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 0023 ÷
+× 0E5A × 0301 × 0308 ÷ 0023 ÷
+× 0E5A ÷ 2E80 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 2E80 ÷
+× 0E5A × 0301 × 0308 ÷ 2E80 ÷
+× 0E5A ÷ 2024 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) ÷ [20: ALL ÷ ; ÷ ALL] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 2024 ÷
+× 0E5A × 0301 × 0308 ÷ 2024 ÷
+× 0E5A × 002D ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 002D ÷
+× 0E5A × 0301 × 0308 × 002D ÷
+× 0E5A × 0009 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 0009 ÷
+× 0E5A × 0301 × 0308 × 0009 ÷
+× 0E5A ÷ 00B4 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 00B4 ÷
+× 0E5A × 0301 × 0308 ÷ 00B4 ÷
+× 0E5A ÷ 2014 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 0E5A × 0020 ÷ 2014 ÷
+× 0E5A × 0301 × 0308 ÷ 2014 ÷
+× 0E5A × 200B ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0E5A × 0020 × 200B ÷
+× 0E5A × 0301 × 0308 × 200B ÷
+× 0E5A × 0001 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0E5A × 0020 × 0001 ÷
+× 0E5A × 0301 × 0308 × 0001 ÷
+× 0E5A × 2060 ÷	#  × [2a: × sot] THAI CHARACTER ANGKHANKHU (NS) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0E5A × 0020 × 2060 ÷
+× 0E5A × 0301 × 0308 × 2060 ÷
+× 0021 ÷ 0028 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 0028 ÷
+× 0021 × 0301 × 0308 ÷ 0028 ÷
+× 0021 × 0029 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0021 × 0020 × 0029 ÷
+× 0021 × 0301 × 0308 × 0029 ÷
+× 0021 × 0022 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 0022 ÷
+× 0021 × 0301 × 0308 × 0022 ÷
+× 0021 × 00A0 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 00A0 ÷
+× 0021 × 0301 × 0308 × 00A0 ÷
+× 0021 × 0E5A ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 0E5A ÷
+× 0021 × 0301 × 0308 × 0E5A ÷
+× 0021 × 0021 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0021 × 0020 × 0021 ÷
+× 0021 × 0301 × 0308 × 0021 ÷
+× 0021 × 002F ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0021 × 0020 × 002F ÷
+× 0021 × 0301 × 0308 × 002F ÷
+× 0021 × 002C ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0021 × 0020 × 002C ÷
+× 0021 × 0301 × 0308 × 002C ÷
+× 0021 ÷ 0024 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 0024 ÷
+× 0021 × 0301 × 0308 ÷ 0024 ÷
+× 0021 ÷ 0025 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 0025 ÷
+× 0021 × 0301 × 0308 ÷ 0025 ÷
+× 0021 ÷ 0030 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) ÷ [20: ALL ÷ ; ÷ ALL] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 0030 ÷
+× 0021 × 0301 × 0308 ÷ 0030 ÷
+× 0021 ÷ 0023 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) ÷ [20: ALL ÷ ; ÷ ALL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 0023 ÷
+× 0021 × 0301 × 0308 ÷ 0023 ÷
+× 0021 ÷ 2E80 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 2E80 ÷
+× 0021 × 0301 × 0308 ÷ 2E80 ÷
+× 0021 ÷ 2024 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) ÷ [20: ALL ÷ ; ÷ ALL] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 2024 ÷
+× 0021 × 0301 × 0308 ÷ 2024 ÷
+× 0021 × 002D ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 002D ÷
+× 0021 × 0301 × 0308 × 002D ÷
+× 0021 × 0009 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 0009 ÷
+× 0021 × 0301 × 0308 × 0009 ÷
+× 0021 ÷ 00B4 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 00B4 ÷
+× 0021 × 0301 × 0308 ÷ 00B4 ÷
+× 0021 ÷ 2014 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 0021 × 0020 ÷ 2014 ÷
+× 0021 × 0301 × 0308 ÷ 2014 ÷
+× 0021 × 200B ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0021 × 0020 × 200B ÷
+× 0021 × 0301 × 0308 × 200B ÷
+× 0021 × 0001 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0021 × 0020 × 0001 ÷
+× 0021 × 0301 × 0308 × 0001 ÷
+× 0021 × 2060 ÷	#  × [2a: × sot] EXCLAMATION MARK (EX) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0021 × 0020 × 2060 ÷
+× 0021 × 0301 × 0308 × 2060 ÷
+× 002F ÷ 0028 ÷	#  × [2a: × sot] SOLIDUS (SY) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 0028 ÷
+× 002F × 0301 × 0308 ÷ 0028 ÷
+× 002F × 0029 ÷	#  × [2a: × sot] SOLIDUS (SY) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 002F × 0020 × 0029 ÷
+× 002F × 0301 × 0308 × 0029 ÷
+× 002F × 0022 ÷	#  × [2a: × sot] SOLIDUS (SY) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 0022 ÷
+× 002F × 0301 × 0308 × 0022 ÷
+× 002F × 00A0 ÷	#  × [2a: × sot] SOLIDUS (SY) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 00A0 ÷
+× 002F × 0301 × 0308 × 00A0 ÷
+× 002F × 0E5A ÷	#  × [2a: × sot] SOLIDUS (SY) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 0E5A ÷
+× 002F × 0301 × 0308 × 0E5A ÷
+× 002F × 0021 ÷	#  × [2a: × sot] SOLIDUS (SY) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 002F × 0020 × 0021 ÷
+× 002F × 0301 × 0308 × 0021 ÷
+× 002F × 002F ÷	#  × [2a: × sot] SOLIDUS (SY) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 002F × 0020 × 002F ÷
+× 002F × 0301 × 0308 × 002F ÷
+× 002F × 002C ÷	#  × [2a: × sot] SOLIDUS (SY) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 002F × 0020 × 002C ÷
+× 002F × 0301 × 0308 × 002C ÷
+× 002F ÷ 0024 ÷	#  × [2a: × sot] SOLIDUS (SY) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 0024 ÷
+× 002F × 0301 × 0308 ÷ 0024 ÷
+× 002F ÷ 0025 ÷	#  × [2a: × sot] SOLIDUS (SY) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 0025 ÷
+× 002F × 0301 × 0308 ÷ 0025 ÷
+× 002F × 0030 ÷	#  × [2a: × sot] SOLIDUS (SY) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 0030 ÷
+× 002F × 0301 × 0308 × 0030 ÷
+× 002F ÷ 0023 ÷	#  × [2a: × sot] SOLIDUS (SY) ÷ [20: ALL ÷ ; ÷ ALL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 0023 ÷
+× 002F × 0301 × 0308 ÷ 0023 ÷
+× 002F ÷ 2E80 ÷	#  × [2a: × sot] SOLIDUS (SY) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 2E80 ÷
+× 002F × 0301 × 0308 ÷ 2E80 ÷
+× 002F ÷ 2024 ÷	#  × [2a: × sot] SOLIDUS (SY) ÷ [20: ALL ÷ ; ÷ ALL] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 2024 ÷
+× 002F × 0301 × 0308 ÷ 2024 ÷
+× 002F × 002D ÷	#  × [2a: × sot] SOLIDUS (SY) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 002D ÷
+× 002F × 0301 × 0308 × 002D ÷
+× 002F × 0009 ÷	#  × [2a: × sot] SOLIDUS (SY) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 0009 ÷
+× 002F × 0301 × 0308 × 0009 ÷
+× 002F ÷ 00B4 ÷	#  × [2a: × sot] SOLIDUS (SY) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 00B4 ÷
+× 002F × 0301 × 0308 ÷ 00B4 ÷
+× 002F ÷ 2014 ÷	#  × [2a: × sot] SOLIDUS (SY) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 002F × 0020 ÷ 2014 ÷
+× 002F × 0301 × 0308 ÷ 2014 ÷
+× 002F × 200B ÷	#  × [2a: × sot] SOLIDUS (SY) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 002F × 0020 × 200B ÷
+× 002F × 0301 × 0308 × 200B ÷
+× 002F × 0001 ÷	#  × [2a: × sot] SOLIDUS (SY) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 002F × 0020 × 0001 ÷
+× 002F × 0301 × 0308 × 0001 ÷
+× 002F × 2060 ÷	#  × [2a: × sot] SOLIDUS (SY) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 002F × 0020 × 2060 ÷
+× 002F × 0301 × 0308 × 2060 ÷
+× 002C ÷ 0028 ÷	#  × [2a: × sot] COMMA (IS) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 0028 ÷
+× 002C × 0301 × 0308 ÷ 0028 ÷
+× 002C × 0029 ÷	#  × [2a: × sot] COMMA (IS) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 002C × 0020 × 0029 ÷
+× 002C × 0301 × 0308 × 0029 ÷
+× 002C × 0022 ÷	#  × [2a: × sot] COMMA (IS) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 0022 ÷
+× 002C × 0301 × 0308 × 0022 ÷
+× 002C × 00A0 ÷	#  × [2a: × sot] COMMA (IS) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 00A0 ÷
+× 002C × 0301 × 0308 × 00A0 ÷
+× 002C × 0E5A ÷	#  × [2a: × sot] COMMA (IS) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 0E5A ÷
+× 002C × 0301 × 0308 × 0E5A ÷
+× 002C × 0021 ÷	#  × [2a: × sot] COMMA (IS) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 002C × 0020 × 0021 ÷
+× 002C × 0301 × 0308 × 0021 ÷
+× 002C × 002F ÷	#  × [2a: × sot] COMMA (IS) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 002C × 0020 × 002F ÷
+× 002C × 0301 × 0308 × 002F ÷
+× 002C × 002C ÷	#  × [2a: × sot] COMMA (IS) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 002C × 0020 × 002C ÷
+× 002C × 0301 × 0308 × 002C ÷
+× 002C ÷ 0024 ÷	#  × [2a: × sot] COMMA (IS) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 0024 ÷
+× 002C × 0301 × 0308 ÷ 0024 ÷
+× 002C ÷ 0025 ÷	#  × [2a: × sot] COMMA (IS) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 0025 ÷
+× 002C × 0301 × 0308 ÷ 0025 ÷
+× 002C × 0030 ÷	#  × [2a: × sot] COMMA (IS) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 0030 ÷
+× 002C × 0301 × 0308 × 0030 ÷
+× 002C ÷ 0023 ÷	#  × [2a: × sot] COMMA (IS) ÷ [20: ALL ÷ ; ÷ ALL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 0023 ÷
+× 002C × 0301 × 0308 ÷ 0023 ÷
+× 002C ÷ 2E80 ÷	#  × [2a: × sot] COMMA (IS) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 2E80 ÷
+× 002C × 0301 × 0308 ÷ 2E80 ÷
+× 002C ÷ 2024 ÷	#  × [2a: × sot] COMMA (IS) ÷ [20: ALL ÷ ; ÷ ALL] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 2024 ÷
+× 002C × 0301 × 0308 ÷ 2024 ÷
+× 002C × 002D ÷	#  × [2a: × sot] COMMA (IS) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 002D ÷
+× 002C × 0301 × 0308 × 002D ÷
+× 002C × 0009 ÷	#  × [2a: × sot] COMMA (IS) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 0009 ÷
+× 002C × 0301 × 0308 × 0009 ÷
+× 002C ÷ 00B4 ÷	#  × [2a: × sot] COMMA (IS) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 00B4 ÷
+× 002C × 0301 × 0308 ÷ 00B4 ÷
+× 002C ÷ 2014 ÷	#  × [2a: × sot] COMMA (IS) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 002C × 0020 ÷ 2014 ÷
+× 002C × 0301 × 0308 ÷ 2014 ÷
+× 002C × 200B ÷	#  × [2a: × sot] COMMA (IS) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 002C × 0020 × 200B ÷
+× 002C × 0301 × 0308 × 200B ÷
+× 002C × 0001 ÷	#  × [2a: × sot] COMMA (IS) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 002C × 0020 × 0001 ÷
+× 002C × 0301 × 0308 × 0001 ÷
+× 002C × 2060 ÷	#  × [2a: × sot] COMMA (IS) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 002C × 0020 × 2060 ÷
+× 002C × 0301 × 0308 × 2060 ÷
+× 0024 × 0028 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 0028 ÷
+× 0024 × 0301 × 0308 × 0028 ÷
+× 0024 × 0029 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0024 × 0020 × 0029 ÷
+× 0024 × 0301 × 0308 × 0029 ÷
+× 0024 × 0022 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 0022 ÷
+× 0024 × 0301 × 0308 × 0022 ÷
+× 0024 × 00A0 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 00A0 ÷
+× 0024 × 0301 × 0308 × 00A0 ÷
+× 0024 × 0E5A ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 0E5A ÷
+× 0024 × 0301 × 0308 × 0E5A ÷
+× 0024 × 0021 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0024 × 0020 × 0021 ÷
+× 0024 × 0301 × 0308 × 0021 ÷
+× 0024 × 002F ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0024 × 0020 × 002F ÷
+× 0024 × 0301 × 0308 × 002F ÷
+× 0024 × 002C ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0024 × 0020 × 002C ÷
+× 0024 × 0301 × 0308 × 002C ÷
+× 0024 ÷ 0024 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 0024 ÷
+× 0024 × 0301 × 0308 ÷ 0024 ÷
+× 0024 ÷ 0025 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 0025 ÷
+× 0024 × 0301 × 0308 ÷ 0025 ÷
+× 0024 × 0030 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 0030 ÷
+× 0024 × 0301 × 0308 × 0030 ÷
+× 0024 × 0023 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 0023 ÷
+× 0024 × 0301 × 0308 × 0023 ÷
+× 0024 × 2E80 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 2E80 ÷
+× 0024 × 0301 × 0308 × 2E80 ÷
+× 0024 ÷ 2024 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) ÷ [20: ALL ÷ ; ÷ ALL] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 2024 ÷
+× 0024 × 0301 × 0308 ÷ 2024 ÷
+× 0024 × 002D ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 002D ÷
+× 0024 × 0301 × 0308 × 002D ÷
+× 0024 × 0009 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 0009 ÷
+× 0024 × 0301 × 0308 × 0009 ÷
+× 0024 ÷ 00B4 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 00B4 ÷
+× 0024 × 0301 × 0308 ÷ 00B4 ÷
+× 0024 ÷ 2014 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 0024 × 0020 ÷ 2014 ÷
+× 0024 × 0301 × 0308 ÷ 2014 ÷
+× 0024 × 200B ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0024 × 0020 × 200B ÷
+× 0024 × 0301 × 0308 × 200B ÷
+× 0024 × 0001 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0024 × 0020 × 0001 ÷
+× 0024 × 0301 × 0308 × 0001 ÷
+× 0024 × 2060 ÷	#  × [2a: × sot] DOLLAR SIGN (PR) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0024 × 0020 × 2060 ÷
+× 0024 × 0301 × 0308 × 2060 ÷
+× 0025 ÷ 0028 ÷	#  × [2a: × sot] PERCENT SIGN (PO) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 0028 ÷
+× 0025 × 0301 × 0308 ÷ 0028 ÷
+× 0025 × 0029 ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0025 × 0020 × 0029 ÷
+× 0025 × 0301 × 0308 × 0029 ÷
+× 0025 × 0022 ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 0022 ÷
+× 0025 × 0301 × 0308 × 0022 ÷
+× 0025 × 00A0 ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 00A0 ÷
+× 0025 × 0301 × 0308 × 00A0 ÷
+× 0025 × 0E5A ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 0E5A ÷
+× 0025 × 0301 × 0308 × 0E5A ÷
+× 0025 × 0021 ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0025 × 0020 × 0021 ÷
+× 0025 × 0301 × 0308 × 0021 ÷
+× 0025 × 002F ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0025 × 0020 × 002F ÷
+× 0025 × 0301 × 0308 × 002F ÷
+× 0025 × 002C ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0025 × 0020 × 002C ÷
+× 0025 × 0301 × 0308 × 002C ÷
+× 0025 ÷ 0024 ÷	#  × [2a: × sot] PERCENT SIGN (PO) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 0024 ÷
+× 0025 × 0301 × 0308 ÷ 0024 ÷
+× 0025 ÷ 0025 ÷	#  × [2a: × sot] PERCENT SIGN (PO) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 0025 ÷
+× 0025 × 0301 × 0308 ÷ 0025 ÷
+× 0025 ÷ 0030 ÷	#  × [2a: × sot] PERCENT SIGN (PO) ÷ [20: ALL ÷ ; ÷ ALL] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 0030 ÷
+× 0025 × 0301 × 0308 ÷ 0030 ÷
+× 0025 ÷ 0023 ÷	#  × [2a: × sot] PERCENT SIGN (PO) ÷ [20: ALL ÷ ; ÷ ALL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 0023 ÷
+× 0025 × 0301 × 0308 ÷ 0023 ÷
+× 0025 ÷ 2E80 ÷	#  × [2a: × sot] PERCENT SIGN (PO) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 2E80 ÷
+× 0025 × 0301 × 0308 ÷ 2E80 ÷
+× 0025 ÷ 2024 ÷	#  × [2a: × sot] PERCENT SIGN (PO) ÷ [20: ALL ÷ ; ÷ ALL] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 2024 ÷
+× 0025 × 0301 × 0308 ÷ 2024 ÷
+× 0025 × 002D ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 002D ÷
+× 0025 × 0301 × 0308 × 002D ÷
+× 0025 × 0009 ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 0009 ÷
+× 0025 × 0301 × 0308 × 0009 ÷
+× 0025 ÷ 00B4 ÷	#  × [2a: × sot] PERCENT SIGN (PO) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 00B4 ÷
+× 0025 × 0301 × 0308 ÷ 00B4 ÷
+× 0025 ÷ 2014 ÷	#  × [2a: × sot] PERCENT SIGN (PO) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 0025 × 0020 ÷ 2014 ÷
+× 0025 × 0301 × 0308 ÷ 2014 ÷
+× 0025 × 200B ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0025 × 0020 × 200B ÷
+× 0025 × 0301 × 0308 × 200B ÷
+× 0025 × 0001 ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0025 × 0020 × 0001 ÷
+× 0025 × 0301 × 0308 × 0001 ÷
+× 0025 × 2060 ÷	#  × [2a: × sot] PERCENT SIGN (PO) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0025 × 0020 × 2060 ÷
+× 0025 × 0301 × 0308 × 2060 ÷
+× 0030 ÷ 0028 ÷	#  × [2a: × sot] DIGIT ZERO (NU) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 0028 ÷
+× 0030 × 0301 × 0308 ÷ 0028 ÷
+× 0030 × 0029 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0030 × 0020 × 0029 ÷
+× 0030 × 0301 × 0308 × 0029 ÷
+× 0030 × 0022 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 0022 ÷
+× 0030 × 0301 × 0308 × 0022 ÷
+× 0030 × 00A0 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 00A0 ÷
+× 0030 × 0301 × 0308 × 00A0 ÷
+× 0030 × 0E5A ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 0E5A ÷
+× 0030 × 0301 × 0308 × 0E5A ÷
+× 0030 × 0021 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0030 × 0020 × 0021 ÷
+× 0030 × 0301 × 0308 × 0021 ÷
+× 0030 × 002F ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0030 × 0020 × 002F ÷
+× 0030 × 0301 × 0308 × 002F ÷
+× 0030 × 002C ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0030 × 0020 × 002C ÷
+× 0030 × 0301 × 0308 × 002C ÷
+× 0030 ÷ 0024 ÷	#  × [2a: × sot] DIGIT ZERO (NU) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 0024 ÷
+× 0030 × 0301 × 0308 ÷ 0024 ÷
+× 0030 × 0025 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 0025 ÷
+× 0030 × 0301 × 0308 × 0025 ÷
+× 0030 × 0030 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 0030 ÷
+× 0030 × 0301 × 0308 × 0030 ÷
+× 0030 × 0023 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [17: ID × PO ; AL × NU; NU × AL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 0023 ÷
+× 0030 × 0301 × 0308 × 0023 ÷
+× 0030 ÷ 2E80 ÷	#  × [2a: × sot] DIGIT ZERO (NU) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 2E80 ÷
+× 0030 × 0301 × 0308 ÷ 2E80 ÷
+× 0030 × 2024 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [16: ( AL | ID | IN | NU ) × IN] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 2024 ÷
+× 0030 × 0301 × 0308 × 2024 ÷
+× 0030 × 002D ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 002D ÷
+× 0030 × 0301 × 0308 × 002D ÷
+× 0030 × 0009 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 0009 ÷
+× 0030 × 0301 × 0308 × 0009 ÷
+× 0030 ÷ 00B4 ÷	#  × [2a: × sot] DIGIT ZERO (NU) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 00B4 ÷
+× 0030 × 0301 × 0308 ÷ 00B4 ÷
+× 0030 ÷ 2014 ÷	#  × [2a: × sot] DIGIT ZERO (NU) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 0030 × 0020 ÷ 2014 ÷
+× 0030 × 0301 × 0308 ÷ 2014 ÷
+× 0030 × 200B ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0030 × 0020 × 200B ÷
+× 0030 × 0301 × 0308 × 200B ÷
+× 0030 × 0001 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0030 × 0020 × 0001 ÷
+× 0030 × 0301 × 0308 × 0001 ÷
+× 0030 × 2060 ÷	#  × [2a: × sot] DIGIT ZERO (NU) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0030 × 0020 × 2060 ÷
+× 0030 × 0301 × 0308 × 2060 ÷
+× 0023 ÷ 0028 ÷	#  × [2a: × sot] NUMBER SIGN (AL) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 0028 ÷
+× 0023 × 0301 × 0308 ÷ 0028 ÷
+× 0023 × 0029 ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0023 × 0020 × 0029 ÷
+× 0023 × 0301 × 0308 × 0029 ÷
+× 0023 × 0022 ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 0022 ÷
+× 0023 × 0301 × 0308 × 0022 ÷
+× 0023 × 00A0 ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 00A0 ÷
+× 0023 × 0301 × 0308 × 00A0 ÷
+× 0023 × 0E5A ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 0E5A ÷
+× 0023 × 0301 × 0308 × 0E5A ÷
+× 0023 × 0021 ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0023 × 0020 × 0021 ÷
+× 0023 × 0301 × 0308 × 0021 ÷
+× 0023 × 002F ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0023 × 0020 × 002F ÷
+× 0023 × 0301 × 0308 × 002F ÷
+× 0023 × 002C ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0023 × 0020 × 002C ÷
+× 0023 × 0301 × 0308 × 002C ÷
+× 0023 ÷ 0024 ÷	#  × [2a: × sot] NUMBER SIGN (AL) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 0024 ÷
+× 0023 × 0301 × 0308 ÷ 0024 ÷
+× 0023 ÷ 0025 ÷	#  × [2a: × sot] NUMBER SIGN (AL) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 0025 ÷
+× 0023 × 0301 × 0308 ÷ 0025 ÷
+× 0023 × 0030 ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [17: ID × PO ; AL × NU; NU × AL] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 0030 ÷
+× 0023 × 0301 × 0308 × 0030 ÷
+× 0023 × 0023 ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [19: AL × AL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 0023 ÷
+× 0023 × 0301 × 0308 × 0023 ÷
+× 0023 ÷ 2E80 ÷	#  × [2a: × sot] NUMBER SIGN (AL) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 2E80 ÷
+× 0023 × 0301 × 0308 ÷ 2E80 ÷
+× 0023 × 2024 ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [16: ( AL | ID | IN | NU ) × IN] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 2024 ÷
+× 0023 × 0301 × 0308 × 2024 ÷
+× 0023 × 002D ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 002D ÷
+× 0023 × 0301 × 0308 × 002D ÷
+× 0023 × 0009 ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 0009 ÷
+× 0023 × 0301 × 0308 × 0009 ÷
+× 0023 ÷ 00B4 ÷	#  × [2a: × sot] NUMBER SIGN (AL) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 00B4 ÷
+× 0023 × 0301 × 0308 ÷ 00B4 ÷
+× 0023 ÷ 2014 ÷	#  × [2a: × sot] NUMBER SIGN (AL) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 0023 × 0020 ÷ 2014 ÷
+× 0023 × 0301 × 0308 ÷ 2014 ÷
+× 0023 × 200B ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0023 × 0020 × 200B ÷
+× 0023 × 0301 × 0308 × 200B ÷
+× 0023 × 0001 ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0023 × 0020 × 0001 ÷
+× 0023 × 0301 × 0308 × 0001 ÷
+× 0023 × 2060 ÷	#  × [2a: × sot] NUMBER SIGN (AL) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0023 × 0020 × 2060 ÷
+× 0023 × 0301 × 0308 × 2060 ÷
+× 2E80 ÷ 0028 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 0028 ÷
+× 2E80 × 0301 × 0308 ÷ 0028 ÷
+× 2E80 × 0029 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 2E80 × 0020 × 0029 ÷
+× 2E80 × 0301 × 0308 × 0029 ÷
+× 2E80 × 0022 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 0022 ÷
+× 2E80 × 0301 × 0308 × 0022 ÷
+× 2E80 × 00A0 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 00A0 ÷
+× 2E80 × 0301 × 0308 × 00A0 ÷
+× 2E80 × 0E5A ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 0E5A ÷
+× 2E80 × 0301 × 0308 × 0E5A ÷
+× 2E80 × 0021 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 2E80 × 0020 × 0021 ÷
+× 2E80 × 0301 × 0308 × 0021 ÷
+× 2E80 × 002F ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 2E80 × 0020 × 002F ÷
+× 2E80 × 0301 × 0308 × 002F ÷
+× 2E80 × 002C ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 2E80 × 0020 × 002C ÷
+× 2E80 × 0301 × 0308 × 002C ÷
+× 2E80 ÷ 0024 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 0024 ÷
+× 2E80 × 0301 × 0308 ÷ 0024 ÷
+× 2E80 × 0025 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [17: ID × PO ; AL × NU; NU × AL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 0025 ÷
+× 2E80 × 0301 × 0308 × 0025 ÷
+× 2E80 ÷ 0030 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) ÷ [20: ALL ÷ ; ÷ ALL] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 0030 ÷
+× 2E80 × 0301 × 0308 ÷ 0030 ÷
+× 2E80 ÷ 0023 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) ÷ [20: ALL ÷ ; ÷ ALL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 0023 ÷
+× 2E80 × 0301 × 0308 ÷ 0023 ÷
+× 2E80 ÷ 2E80 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 2E80 ÷
+× 2E80 × 0301 × 0308 ÷ 2E80 ÷
+× 2E80 × 2024 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [16: ( AL | ID | IN | NU ) × IN] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 2024 ÷
+× 2E80 × 0301 × 0308 × 2024 ÷
+× 2E80 × 002D ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 002D ÷
+× 2E80 × 0301 × 0308 × 002D ÷
+× 2E80 × 0009 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 0009 ÷
+× 2E80 × 0301 × 0308 × 0009 ÷
+× 2E80 ÷ 00B4 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 00B4 ÷
+× 2E80 × 0301 × 0308 ÷ 00B4 ÷
+× 2E80 ÷ 2014 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 2E80 × 0020 ÷ 2014 ÷
+× 2E80 × 0301 × 0308 ÷ 2014 ÷
+× 2E80 × 200B ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 2E80 × 0020 × 200B ÷
+× 2E80 × 0301 × 0308 × 200B ÷
+× 2E80 × 0001 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 2E80 × 0020 × 0001 ÷
+× 2E80 × 0301 × 0308 × 0001 ÷
+× 2E80 × 2060 ÷	#  × [2a: × sot] CJK RADICAL REPEAT (ID) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 2E80 × 0020 × 2060 ÷
+× 2E80 × 0301 × 0308 × 2060 ÷
+× 2024 ÷ 0028 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 0028 ÷
+× 2024 × 0301 × 0308 ÷ 0028 ÷
+× 2024 × 0029 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 2024 × 0020 × 0029 ÷
+× 2024 × 0301 × 0308 × 0029 ÷
+× 2024 × 0022 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 0022 ÷
+× 2024 × 0301 × 0308 × 0022 ÷
+× 2024 × 00A0 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 00A0 ÷
+× 2024 × 0301 × 0308 × 00A0 ÷
+× 2024 × 0E5A ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 0E5A ÷
+× 2024 × 0301 × 0308 × 0E5A ÷
+× 2024 × 0021 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 2024 × 0020 × 0021 ÷
+× 2024 × 0301 × 0308 × 0021 ÷
+× 2024 × 002F ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 2024 × 0020 × 002F ÷
+× 2024 × 0301 × 0308 × 002F ÷
+× 2024 × 002C ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 2024 × 0020 × 002C ÷
+× 2024 × 0301 × 0308 × 002C ÷
+× 2024 ÷ 0024 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 0024 ÷
+× 2024 × 0301 × 0308 ÷ 0024 ÷
+× 2024 ÷ 0025 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 0025 ÷
+× 2024 × 0301 × 0308 ÷ 0025 ÷
+× 2024 ÷ 0030 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) ÷ [20: ALL ÷ ; ÷ ALL] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 0030 ÷
+× 2024 × 0301 × 0308 ÷ 0030 ÷
+× 2024 ÷ 0023 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) ÷ [20: ALL ÷ ; ÷ ALL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 0023 ÷
+× 2024 × 0301 × 0308 ÷ 0023 ÷
+× 2024 ÷ 2E80 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 2E80 ÷
+× 2024 × 0301 × 0308 ÷ 2E80 ÷
+× 2024 × 2024 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [16: ( AL | ID | IN | NU ) × IN] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 2024 ÷
+× 2024 × 0301 × 0308 × 2024 ÷
+× 2024 × 002D ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 002D ÷
+× 2024 × 0301 × 0308 × 002D ÷
+× 2024 × 0009 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 0009 ÷
+× 2024 × 0301 × 0308 × 0009 ÷
+× 2024 ÷ 00B4 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 00B4 ÷
+× 2024 × 0301 × 0308 ÷ 00B4 ÷
+× 2024 ÷ 2014 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 2024 × 0020 ÷ 2014 ÷
+× 2024 × 0301 × 0308 ÷ 2014 ÷
+× 2024 × 200B ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 2024 × 0020 × 200B ÷
+× 2024 × 0301 × 0308 × 200B ÷
+× 2024 × 0001 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 2024 × 0020 × 0001 ÷
+× 2024 × 0301 × 0308 × 0001 ÷
+× 2024 × 2060 ÷	#  × [2a: × sot] ONE DOT LEADER (IN) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 2024 × 0020 × 2060 ÷
+× 2024 × 0301 × 0308 × 2060 ÷
+× 002D ÷ 0028 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) ÷ [18b: HY ÷ ; ÷ BB] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 0028 ÷
+× 002D × 0301 × 0308 ÷ 0028 ÷
+× 002D × 0029 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 002D × 0020 × 0029 ÷
+× 002D × 0301 × 0308 × 0029 ÷
+× 002D × 0022 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 0022 ÷
+× 002D × 0301 × 0308 × 0022 ÷
+× 002D × 00A0 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 00A0 ÷
+× 002D × 0301 × 0308 × 00A0 ÷
+× 002D × 0E5A ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 0E5A ÷
+× 002D × 0301 × 0308 × 0E5A ÷
+× 002D × 0021 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 002D × 0020 × 0021 ÷
+× 002D × 0301 × 0308 × 0021 ÷
+× 002D × 002F ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 002D × 0020 × 002F ÷
+× 002D × 0301 × 0308 × 002F ÷
+× 002D × 002C ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 002D × 0020 × 002C ÷
+× 002D × 0301 × 0308 × 002C ÷
+× 002D ÷ 0024 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) ÷ [18b: HY ÷ ; ÷ BB] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 0024 ÷
+× 002D × 0301 × 0308 ÷ 0024 ÷
+× 002D ÷ 0025 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) ÷ [18b: HY ÷ ; ÷ BB] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 0025 ÷
+× 002D × 0301 × 0308 ÷ 0025 ÷
+× 002D × 0030 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 0030 ÷
+× 002D × 0301 × 0308 × 0030 ÷
+× 002D ÷ 0023 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) ÷ [18b: HY ÷ ; ÷ BB] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 0023 ÷
+× 002D × 0301 × 0308 ÷ 0023 ÷
+× 002D ÷ 2E80 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) ÷ [18b: HY ÷ ; ÷ BB] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 2E80 ÷
+× 002D × 0301 × 0308 ÷ 2E80 ÷
+× 002D ÷ 2024 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) ÷ [18b: HY ÷ ; ÷ BB] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 2024 ÷
+× 002D × 0301 × 0308 ÷ 2024 ÷
+× 002D × 002D ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 002D ÷
+× 002D × 0301 × 0308 × 002D ÷
+× 002D × 0009 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 0009 ÷
+× 002D × 0301 × 0308 × 0009 ÷
+× 002D ÷ 00B4 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 00B4 ÷
+× 002D × 0301 × 0308 ÷ 00B4 ÷
+× 002D ÷ 2014 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) ÷ [18b: HY ÷ ; ÷ BB] EM DASH (B2) ÷ [2b: ! eot]
+× 002D × 0020 ÷ 2014 ÷
+× 002D × 0301 × 0308 ÷ 2014 ÷
+× 002D × 200B ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 002D × 0020 × 200B ÷
+× 002D × 0301 × 0308 × 200B ÷
+× 002D × 0001 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 002D × 0020 × 0001 ÷
+× 002D × 0301 × 0308 × 0001 ÷
+× 002D × 2060 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 002D × 0020 × 2060 ÷
+× 002D × 0301 × 0308 × 2060 ÷
+× 0009 ÷ 0028 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 0028 ÷
+× 0009 × 0301 × 0308 ÷ 0028 ÷
+× 0009 × 0029 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0009 × 0020 × 0029 ÷
+× 0009 × 0301 × 0308 × 0029 ÷
+× 0009 × 0022 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 0022 ÷
+× 0009 × 0301 × 0308 × 0022 ÷
+× 0009 × 00A0 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 00A0 ÷
+× 0009 × 0301 × 0308 × 00A0 ÷
+× 0009 × 0E5A ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 0E5A ÷
+× 0009 × 0301 × 0308 × 0E5A ÷
+× 0009 × 0021 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0009 × 0020 × 0021 ÷
+× 0009 × 0301 × 0308 × 0021 ÷
+× 0009 × 002F ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0009 × 0020 × 002F ÷
+× 0009 × 0301 × 0308 × 002F ÷
+× 0009 × 002C ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0009 × 0020 × 002C ÷
+× 0009 × 0301 × 0308 × 002C ÷
+× 0009 ÷ 0024 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 0024 ÷
+× 0009 × 0301 × 0308 ÷ 0024 ÷
+× 0009 ÷ 0025 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 0025 ÷
+× 0009 × 0301 × 0308 × 0025 ÷
+× 0009 ÷ 0030 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) ÷ [20: ALL ÷ ; ÷ ALL] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 0030 ÷
+× 0009 × 0301 × 0308 ÷ 0030 ÷
+× 0009 ÷ 0023 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) ÷ [20: ALL ÷ ; ÷ ALL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 0023 ÷
+× 0009 × 0301 × 0308 ÷ 0023 ÷
+× 0009 ÷ 2E80 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 2E80 ÷
+× 0009 × 0301 × 0308 ÷ 2E80 ÷
+× 0009 ÷ 2024 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) ÷ [20: ALL ÷ ; ÷ ALL] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 2024 ÷
+× 0009 × 0301 × 0308 × 2024 ÷
+× 0009 × 002D ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 002D ÷
+× 0009 × 0301 × 0308 × 002D ÷
+× 0009 × 0009 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 0009 ÷
+× 0009 × 0301 × 0308 × 0009 ÷
+× 0009 ÷ 00B4 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 00B4 ÷
+× 0009 × 0301 × 0308 ÷ 00B4 ÷
+× 0009 ÷ 2014 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 0009 × 0020 ÷ 2014 ÷
+× 0009 × 0301 × 0308 ÷ 2014 ÷
+× 0009 × 200B ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0009 × 0020 × 200B ÷
+× 0009 × 0301 × 0308 × 200B ÷
+× 0009 × 0001 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0009 × 0020 × 0001 ÷
+× 0009 × 0301 × 0308 × 0001 ÷
+× 0009 × 2060 ÷	#  × [2a: × sot] <CHARACTER TABULATION> (BA) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0009 × 0020 × 2060 ÷
+× 0009 × 0301 × 0308 × 2060 ÷
+× 00B4 × 0028 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 0028 ÷
+× 00B4 × 0301 × 0308 × 0028 ÷
+× 00B4 × 0029 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 00B4 × 0020 × 0029 ÷
+× 00B4 × 0301 × 0308 × 0029 ÷
+× 00B4 × 0022 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 0022 ÷
+× 00B4 × 0301 × 0308 × 0022 ÷
+× 00B4 × 00A0 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 00A0 ÷
+× 00B4 × 0301 × 0308 × 00A0 ÷
+× 00B4 × 0E5A ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 0E5A ÷
+× 00B4 × 0301 × 0308 × 0E5A ÷
+× 00B4 × 0021 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 00B4 × 0020 × 0021 ÷
+× 00B4 × 0301 × 0308 × 0021 ÷
+× 00B4 × 002F ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 00B4 × 0020 × 002F ÷
+× 00B4 × 0301 × 0308 × 002F ÷
+× 00B4 × 002C ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 00B4 × 0020 × 002C ÷
+× 00B4 × 0301 × 0308 × 002C ÷
+× 00B4 × 0024 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 0024 ÷
+× 00B4 × 0301 × 0308 × 0024 ÷
+× 00B4 × 0025 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 0025 ÷
+× 00B4 × 0301 × 0308 × 0025 ÷
+× 00B4 × 0030 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 0030 ÷
+× 00B4 × 0301 × 0308 × 0030 ÷
+× 00B4 × 0023 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 0023 ÷
+× 00B4 × 0301 × 0308 × 0023 ÷
+× 00B4 × 2E80 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 2E80 ÷
+× 00B4 × 0301 × 0308 × 2E80 ÷
+× 00B4 × 2024 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 2024 ÷
+× 00B4 × 0301 × 0308 × 2024 ÷
+× 00B4 × 002D ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 002D ÷
+× 00B4 × 0301 × 0308 × 002D ÷
+× 00B4 × 0009 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 0009 ÷
+× 00B4 × 0301 × 0308 × 0009 ÷
+× 00B4 × 00B4 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 00B4 ÷
+× 00B4 × 0301 × 0308 × 00B4 ÷
+× 00B4 × 2014 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [15: × ( BA | HY | NS ) ; BB ×] EM DASH (B2) ÷ [2b: ! eot]
+× 00B4 × 0020 ÷ 2014 ÷
+× 00B4 × 0301 × 0308 × 2014 ÷
+× 00B4 × 200B ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 00B4 × 0020 × 200B ÷
+× 00B4 × 0301 × 0308 × 200B ÷
+× 00B4 × 0001 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 00B4 × 0020 × 0001 ÷
+× 00B4 × 0301 × 0308 × 0001 ÷
+× 00B4 × 2060 ÷	#  × [2a: × sot] ACUTE ACCENT (BB) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 00B4 × 0020 × 2060 ÷
+× 00B4 × 0301 × 0308 × 2060 ÷
+× 2014 ÷ 0028 ÷	#  × [2a: × sot] EM DASH (B2) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 0028 ÷
+× 2014 × 0301 × 0308 ÷ 0028 ÷
+× 2014 × 0029 ÷	#  × [2a: × sot] EM DASH (B2) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 2014 × 0020 × 0029 ÷
+× 2014 × 0301 × 0308 × 0029 ÷
+× 2014 × 0022 ÷	#  × [2a: × sot] EM DASH (B2) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 0022 ÷
+× 2014 × 0301 × 0308 × 0022 ÷
+× 2014 × 00A0 ÷	#  × [2a: × sot] EM DASH (B2) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 00A0 ÷
+× 2014 × 0301 × 0308 × 00A0 ÷
+× 2014 × 0E5A ÷	#  × [2a: × sot] EM DASH (B2) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 0E5A ÷
+× 2014 × 0301 × 0308 × 0E5A ÷
+× 2014 × 0021 ÷	#  × [2a: × sot] EM DASH (B2) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 2014 × 0020 × 0021 ÷
+× 2014 × 0301 × 0308 × 0021 ÷
+× 2014 × 002F ÷	#  × [2a: × sot] EM DASH (B2) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 2014 × 0020 × 002F ÷
+× 2014 × 0301 × 0308 × 002F ÷
+× 2014 × 002C ÷	#  × [2a: × sot] EM DASH (B2) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 2014 × 0020 × 002C ÷
+× 2014 × 0301 × 0308 × 002C ÷
+× 2014 ÷ 0024 ÷	#  × [2a: × sot] EM DASH (B2) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 0024 ÷
+× 2014 × 0301 × 0308 ÷ 0024 ÷
+× 2014 ÷ 0025 ÷	#  × [2a: × sot] EM DASH (B2) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 0025 ÷
+× 2014 × 0301 × 0308 ÷ 0025 ÷
+× 2014 ÷ 0030 ÷	#  × [2a: × sot] EM DASH (B2) ÷ [20: ALL ÷ ; ÷ ALL] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 0030 ÷
+× 2014 × 0301 × 0308 ÷ 0030 ÷
+× 2014 ÷ 0023 ÷	#  × [2a: × sot] EM DASH (B2) ÷ [20: ALL ÷ ; ÷ ALL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 0023 ÷
+× 2014 × 0301 × 0308 ÷ 0023 ÷
+× 2014 ÷ 2E80 ÷	#  × [2a: × sot] EM DASH (B2) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 2E80 ÷
+× 2014 × 0301 × 0308 ÷ 2E80 ÷
+× 2014 ÷ 2024 ÷	#  × [2a: × sot] EM DASH (B2) ÷ [20: ALL ÷ ; ÷ ALL] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 2024 ÷
+× 2014 × 0301 × 0308 ÷ 2024 ÷
+× 2014 × 002D ÷	#  × [2a: × sot] EM DASH (B2) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 002D ÷
+× 2014 × 0301 × 0308 × 002D ÷
+× 2014 × 0009 ÷	#  × [2a: × sot] EM DASH (B2) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 0009 ÷
+× 2014 × 0301 × 0308 × 0009 ÷
+× 2014 ÷ 00B4 ÷	#  × [2a: × sot] EM DASH (B2) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 2014 × 0020 ÷ 00B4 ÷
+× 2014 × 0301 × 0308 ÷ 00B4 ÷
+× 2014 × 2014 ÷	#  × [2a: × sot] EM DASH (B2) × [11a: B2 × B2] EM DASH (B2) ÷ [2b: ! eot]
+× 2014 × 0020 × 2014 ÷
+× 2014 × 0301 × 0308 × 2014 ÷
+× 2014 × 200B ÷	#  × [2a: × sot] EM DASH (B2) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 2014 × 0020 × 200B ÷
+× 2014 × 0301 × 0308 × 200B ÷
+× 2014 × 0001 ÷	#  × [2a: × sot] EM DASH (B2) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 2014 × 0020 × 0001 ÷
+× 2014 × 0301 × 0308 × 0001 ÷
+× 2014 × 2060 ÷	#  × [2a: × sot] EM DASH (B2) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 2014 × 0020 × 2060 ÷
+× 2014 × 0301 × 0308 × 2060 ÷
+× 200B ÷ 0028 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 0028 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0028 ÷
+× 200B ÷ 0029 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 200B × 0020 × 0029 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0029 ÷
+× 200B ÷ 0022 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 0022 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0022 ÷
+× 200B ÷ 00A0 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 00A0 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 00A0 ÷
+× 200B ÷ 0E5A ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 0E5A ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0E5A ÷
+× 200B ÷ 0021 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 200B × 0020 × 0021 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0021 ÷
+× 200B ÷ 002F ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] SOLIDUS (SY) ÷ [2b: ! eot]
+× 200B × 0020 × 002F ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 002F ÷
+× 200B ÷ 002C ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] COMMA (IS) ÷ [2b: ! eot]
+× 200B × 0020 × 002C ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 002C ÷
+× 200B ÷ 0024 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 0024 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0024 ÷
+× 200B ÷ 0025 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 0025 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0025 ÷
+× 200B ÷ 0030 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 0030 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0030 ÷
+× 200B ÷ 0023 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 0023 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0023 ÷
+× 200B ÷ 2E80 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 2E80 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 2E80 ÷
+× 200B ÷ 2024 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 2024 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 2024 ÷
+× 200B ÷ 002D ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 002D ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 002D ÷
+× 200B ÷ 0009 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 0009 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0009 ÷
+× 200B ÷ 00B4 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 00B4 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 00B4 ÷
+× 200B ÷ 2014 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] EM DASH (B2) ÷ [2b: ! eot]
+× 200B × 0020 ÷ 2014 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 2014 ÷
+× 200B × 200B ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 200B × 0020 × 200B ÷
+× 200B ÷ 0301 ÷ 0308 × 200B ÷
+× 200B ÷ 0001 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 200B × 0020 × 0001 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 0001 ÷
+× 200B ÷ 2060 ÷	#  × [2a: × sot] ZERO WIDTH SPACE (ZW) ÷ [5: ZW ÷] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 200B × 0020 × 2060 ÷
+× 200B ÷ 0301 ÷ 0308 ÷ 2060 ÷
+× 0001 ÷ 0028 ÷	#  × [2a: × sot] <START OF HEADING> (CM) ÷ [20: ALL ÷ ; ÷ ALL] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 0028 ÷
+× 0001 × 0301 × 0308 ÷ 0028 ÷
+× 0001 × 0029 ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 0001 × 0020 × 0029 ÷
+× 0001 × 0301 × 0308 × 0029 ÷
+× 0001 × 0022 ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [14: × QU ; QU ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 0022 ÷
+× 0001 × 0301 × 0308 × 0022 ÷
+× 0001 × 00A0 ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [13: × GL ; GL ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 00A0 ÷
+× 0001 × 0301 × 0308 × 00A0 ÷
+× 0001 × 0E5A ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [15: × ( BA | HY | NS ) ; BB ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 0E5A ÷
+× 0001 × 0301 × 0308 × 0E5A ÷
+× 0001 × 0021 ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 0001 × 0020 × 0021 ÷
+× 0001 × 0301 × 0308 × 0021 ÷
+× 0001 × 002F ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 0001 × 0020 × 002F ÷
+× 0001 × 0301 × 0308 × 002F ÷
+× 0001 × 002C ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 0001 × 0020 × 002C ÷
+× 0001 × 0301 × 0308 × 002C ÷
+× 0001 ÷ 0024 ÷	#  × [2a: × sot] <START OF HEADING> (CM) ÷ [20: ALL ÷ ; ÷ ALL] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 0024 ÷
+× 0001 × 0301 × 0308 ÷ 0024 ÷
+× 0001 ÷ 0025 ÷	#  × [2a: × sot] <START OF HEADING> (CM) ÷ [20: ALL ÷ ; ÷ ALL] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 0025 ÷
+× 0001 × 0301 × 0308 ÷ 0025 ÷
+× 0001 × 0030 ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [17: ID × PO ; AL × NU; NU × AL] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 0030 ÷
+× 0001 × 0301 × 0308 × 0030 ÷
+× 0001 × 0023 ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [19: AL × AL] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 0023 ÷
+× 0001 × 0301 × 0308 × 0023 ÷
+× 0001 ÷ 2E80 ÷	#  × [2a: × sot] <START OF HEADING> (CM) ÷ [20: ALL ÷ ; ÷ ALL] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 2E80 ÷
+× 0001 × 0301 × 0308 ÷ 2E80 ÷
+× 0001 × 2024 ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [16: ( AL | ID | IN | NU ) × IN] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 2024 ÷
+× 0001 × 0301 × 0308 × 2024 ÷
+× 0001 × 002D ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [15: × ( BA | HY | NS ) ; BB ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 002D ÷
+× 0001 × 0301 × 0308 × 002D ÷
+× 0001 × 0009 ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [15: × ( BA | HY | NS ) ; BB ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 0009 ÷
+× 0001 × 0301 × 0308 × 0009 ÷
+× 0001 ÷ 00B4 ÷	#  × [2a: × sot] <START OF HEADING> (CM) ÷ [18b: HY ÷ ; ÷ BB] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 00B4 ÷
+× 0001 × 0301 × 0308 ÷ 00B4 ÷
+× 0001 ÷ 2014 ÷	#  × [2a: × sot] <START OF HEADING> (CM) ÷ [20: ALL ÷ ; ÷ ALL] EM DASH (B2) ÷ [2b: ! eot]
+× 0001 × 0020 ÷ 2014 ÷
+× 0001 × 0301 × 0308 ÷ 2014 ÷
+× 0001 × 200B ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 0001 × 0020 × 200B ÷
+× 0001 × 0301 × 0308 × 200B ÷
+× 0001 × 0001 ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 0001 × 0020 × 0001 ÷
+× 0001 × 0301 × 0308 × 0001 ÷
+× 0001 × 2060 ÷	#  × [2a: × sot] <START OF HEADING> (CM) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 0001 × 0020 × 2060 ÷
+× 0001 × 0301 × 0308 × 2060 ÷
+× 2060 × 0028 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] LEFT PARENTHESIS (OP) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 0028 ÷
+× 2060 × 0301 × 0308 ÷ 0028 ÷
+× 2060 × 0029 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [8: × ( CL | EX | IS | SY )] RIGHT PARENTHESIS (CL) ÷ [2b: ! eot]
+× 2060 × 0020 × 0029 ÷
+× 2060 × 0301 × 0308 × 0029 ÷
+× 2060 × 0022 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] QUOTATION MARK (QU) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 0022 ÷
+× 2060 × 0301 × 0308 × 0022 ÷
+× 2060 × 00A0 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] NO-BREAK SPACE (GL) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 00A0 ÷
+× 2060 × 0301 × 0308 × 00A0 ÷
+× 2060 × 0E5A ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] THAI CHARACTER ANGKHANKHU (NS) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 0E5A ÷
+× 2060 × 0301 × 0308 × 0E5A ÷
+× 2060 × 0021 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [8: × ( CL | EX | IS | SY )] EXCLAMATION MARK (EX) ÷ [2b: ! eot]
+× 2060 × 0020 × 0021 ÷
+× 2060 × 0301 × 0308 × 0021 ÷
+× 2060 × 002F ÷	#  × [2a: × sot] WORD JOINER (WJ) × [8: × ( CL | EX | IS | SY )] SOLIDUS (SY) ÷ [2b: ! eot]
+× 2060 × 0020 × 002F ÷
+× 2060 × 0301 × 0308 × 002F ÷
+× 2060 × 002C ÷	#  × [2a: × sot] WORD JOINER (WJ) × [8: × ( CL | EX | IS | SY )] COMMA (IS) ÷ [2b: ! eot]
+× 2060 × 0020 × 002C ÷
+× 2060 × 0301 × 0308 × 002C ÷
+× 2060 × 0024 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] DOLLAR SIGN (PR) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 0024 ÷
+× 2060 × 0301 × 0308 ÷ 0024 ÷
+× 2060 × 0025 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] PERCENT SIGN (PO) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 0025 ÷
+× 2060 × 0301 × 0308 × 0025 ÷
+× 2060 × 0030 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] DIGIT ZERO (NU) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 0030 ÷
+× 2060 × 0301 × 0308 ÷ 0030 ÷
+× 2060 × 0023 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] NUMBER SIGN (AL) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 0023 ÷
+× 2060 × 0301 × 0308 ÷ 0023 ÷
+× 2060 × 2E80 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] CJK RADICAL REPEAT (ID) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 2E80 ÷
+× 2060 × 0301 × 0308 ÷ 2E80 ÷
+× 2060 × 2024 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] ONE DOT LEADER (IN) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 2024 ÷
+× 2060 × 0301 × 0308 × 2024 ÷
+× 2060 × 002D ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] HYPHEN-MINUS (HY) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 002D ÷
+× 2060 × 0301 × 0308 × 002D ÷
+× 2060 × 0009 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] <CHARACTER TABULATION> (BA) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 0009 ÷
+× 2060 × 0301 × 0308 × 0009 ÷
+× 2060 × 00B4 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] ACUTE ACCENT (BB) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 00B4 ÷
+× 2060 × 0301 × 0308 ÷ 00B4 ÷
+× 2060 × 2014 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] EM DASH (B2) ÷ [2b: ! eot]
+× 2060 × 0020 ÷ 2014 ÷
+× 2060 × 0301 × 0308 ÷ 2014 ÷
+× 2060 × 200B ÷	#  × [2a: × sot] WORD JOINER (WJ) × [4: × ( SP | ZW )] ZERO WIDTH SPACE (ZW) ÷ [2b: ! eot]
+× 2060 × 0020 × 200B ÷
+× 2060 × 0301 × 0308 × 200B ÷
+× 2060 × 0001 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [7a: X CM* -> X] <START OF HEADING> (CM) ÷ [2b: ! eot]
+× 2060 × 0020 × 0001 ÷
+× 2060 × 0301 × 0308 × 0001 ÷
+× 2060 × 2060 ÷	#  × [2a: × sot] WORD JOINER (WJ) × [11b: × WJ ; WJ ×] WORD JOINER (WJ) ÷ [2b: ! eot]
+× 2060 × 0020 × 2060 ÷
+× 2060 × 0301 × 0308 × 2060 ÷
+× 0063 × 0061 × 006E × 0027 × 0074 ÷	#  × [2a: × sot] LATIN SMALL LETTER C (AL) × [19: AL × AL] LATIN SMALL LETTER A (AL) × [19: AL × AL] LATIN SMALL LETTER N (AL) × [14: × QU ; QU ×] APOSTROPHE (QU) × [14: × QU ; QU ×] LATIN SMALL LETTER T (AL) ÷ [2b: ! eot]
+× 0063 × 0061 × 006E × 2019 × 0074 ÷	#  × [2a: × sot] LATIN SMALL LETTER C (AL) × [19: AL × AL] LATIN SMALL LETTER A (AL) × [19: AL × AL] LATIN SMALL LETTER N (AL) × [14: × QU ; QU ×] RIGHT SINGLE QUOTATION MARK (QU) × [14: × QU ; QU ×] LATIN SMALL LETTER T (AL) ÷ [2b: ! eot]
+× 0061 × 0062 × 00AD ÷ 0062 × 0079 ÷	#  × [2a: × sot] LATIN SMALL LETTER A (AL) × [19: AL × AL] LATIN SMALL LETTER B (AL) × [15: × ( BA | HY | NS ) ; BB ×] SOFT HYPHEN (BA) ÷ [20: ALL ÷ ; ÷ ALL] LATIN SMALL LETTER B (AL) × [19: AL × AL] LATIN SMALL LETTER Y (AL) ÷ [2b: ! eot]
+× 002D × 0033 ÷	#  × [2a: × sot] HYPHEN-MINUS (HY) × [18: CL × PO ; NU × PO ; ( IS | NU | HY | PR | SY ) × NU ; PR × ( AL | HY | ID | OP )] DIGIT THREE (NU) ÷ [2b: ! eot]
+# Lines: 1323

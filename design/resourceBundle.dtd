@@ -43,14 +43,15 @@
 <!ATTLIST str key CDATA #IMPLIED
               val CDATA #IMPLIED>
 
-<!-- 32-bit integer,
-     value range: -2^31..2^32-1 to reach all signed and unsigned 32-bit values;
+<!-- 28-bit integer (not 32 bits!),
+     value range: -2^27..2^28-1 to reach all signed and unsigned 32-bit values;
+     for details see icuhtml/design/bnf_rb.txt;
      value format: decimal number or C-style hexadecimal with a 0x prefix -->
 <!ELEMENT int EMPTY>
 <!ATTLIST int key CDATA #IMPLIED
               val NMTOKEN #REQUIRED>
 
-<!-- a vector of zero or more 32-bit integers -->
+<!-- a vector of zero or more 32-bit integers; for details see icuhtml/design/bnf_rb.txt -->
 <!ELEMENT intVector EMPTY>
 <!ATTLIST intVector key CDATA #IMPLIED
                     val NMTOKENS #IMPLIED>

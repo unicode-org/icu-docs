@@ -102,8 +102,45 @@ and tries to derive a recommendation for the best definition, given the way
 people use the properties in practice. Note that these are only current
 snapshots, since those environments may change their definitions, especially as
 they upgrade beyond Unicode 3.x.</p>
+<h3><a name="Open_Issues">Open Issues</a>:</h3>
+<p>The main open issues are:</p>
+<ol>
+  <li>Posix requires that alpha include upper and lower, but Unicode Alphabetic
+    does not include Lowercase and Uppercase. The differences are that uppercase
+    includes U+24B6..U+24CF CIRCLED LATIN CAPITAL LETTER A..Z, and Lowercase
+    includes U+24D0..U+24E9 CIRCLED LATIN SMALL LETTER A..Z. None of these are
+    in Alphabetic. The three choices are:
+    <ol>
+      <li>Ignore the POSIX requirement</li>
+      <li>Add the missing characters to alpha</li>
+      <li>Subtract the excess characters from lower and upper respectively.</li>
+    </ol>
+  </li>
+  <li>Alphabetic also does not include the following, which TR 14652 does in
+    alpha. This is not a formal requirement, but certainly the first two should
+    be in alpha (also in Alphabetic!):
+    <ol>
+      <li>U+309B # (&#12443;) KATAKANA-HIRAGANA VOICED SOUND MARK</li>
+      <li>U+309C # (&#12444;) KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK</li>
+      <li>U+30FB # (&#12539;) KATAKANA MIDDLE DOT</li>
+    </ol>
+  </li>
+  <li>Over ASCII, the four POSIX-style properties cntrl+space, punct, digit,
+    alpha form a complete partition of assigned characters: every character is
+    in exactly one of these sets. (This is <i>not</i> a requirement from POSIX,
+    but is what is done for the POSIX locale.) If that were to be done, we'd
+    have do something like the following. (Although Co would still be excluded,
+    that is probably ok, since they are not &quot;known&quot; assigned
+    characters.)
+    <ol>
+      <li>add Cf (format) &amp; U+200B # ZERO WIDTH SPACE to cntrl</li>
+      <li>add No (non-decimal numbers) to punct</li>
+    </ol>
+  </li>
+</ol>
 <p>Feedback is welcome, at <a href="mailto:icu@oss.software.ibm.com">mailto:icu@oss.software.ibm.com</a>.</p>
-<p><b>Notes:</b></p>
+<h3><a name="Comparison_Table">Comparison Table</a></h3>
+<h4><b>Notes:</b></h4>
 <ul>
   <li>The Java function names are methods on Character, unless otherwise noted.</li>
   <li>The Windows column lists CRT function, then .NET System.Char method, then
@@ -133,8 +170,10 @@ they upgrade beyond Unicode 3.x.</p>
     <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_ispunct.2c_.iswpunct.asp">iswpunct<br>
       </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsPunctuationTopic.asp">IsPunctuation</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_ispunct.2c_.iswpunct.asp"><br>
       </a>gc=P</td>
-    <td>\p{gc=P}</td>
-    <td>&nbsp;</td>
+    <td>\p{gc=P}<br>
+      \p{gc=S}</td>
+    <td>Adding symbols is to better match POSIX, which does not distinguish them
+      in ASCII.</td>
   </tr>
   <tr>
     <td><b>alpha</b><br>
@@ -170,8 +209,10 @@ they upgrade beyond Unicode 3.x.</p>
     <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_islower.2c_.iswlower.asp">iswlower<br>
       </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsLowerTopic.asp">IsLower</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_islower.2c_.iswlower.asp"><br>
       </a>gc=Ll</td>
-    <td>\p{Lowercase}</td>
-    <td>Lowercase includes more than gc = Lowercase_Letter (Ll). See <a href="http://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt">DerivedCoreProperties.txt</a>.</td>
+    <td>\p{Lowercase}<br>
+      \p{gc=Lt}</td>
+    <td>Lowercase includes more than gc = Lowercase_Letter (Ll). See <a href="http://www.unicode.org/Public/UNIDATA/DerivedCoreProperties.txt">DerivedCoreProperties.txt</a>.
+      Lt shouldn't logically be here, but is probably better for compatibility.</td>
   </tr>
   <tr>
     <td><b>upper</b><br>
@@ -186,9 +227,10 @@ they upgrade beyond Unicode 3.x.</p>
     <td><b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isupper.2c_.iswupper.asp">iswupper<br>
       </a><a href="http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemCharClassIsUpperTopic.asp">IsUpper</a></b><a href="http://msdn.microsoft.com/library/en-us/vclib/html/_crt_isupper.2c_.iswupper.asp"><br>
       </a>gc=Lu</td>
-    <td>\p{Uppercase}</td>
-    <td>Uppercase includes more than gc = Uppercase_Letter (Lu).<br>
-      <b>Open Issue: </b>add Lt? It may have better compatibility.</td>
+    <td>\p{Uppercase}<br>
+      \p{gc=Lt}</td>
+    <td>Uppercase includes more than gc = Uppercase_Letter (Lu). Lt shouldn't
+      logically be here, but is probably better for compatibility.</td>
   </tr>
   <tr>
     <td><b>digit</b><br>
@@ -216,12 +258,18 @@ they upgrade beyond Unicode 3.x.</p>
       <p><b>UCHAR&#8203;_HEX_DIGIT<br>
       </b>adds fullwidth</p>
     </td>
+    <td><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#digit(char,%20int">digit</a>
+      != -1<a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html#digit(char,%20int"><br>
+      </a>gc=Nd<br>
+      a-f, A-F</td>
     <td>&#8709;</td>
-    <td>&#8709;</td>
-    <td>\p{ASCII_Hex_Digit}</td>
-    <td>See <a href="http://www.unicode.org/Public/UNIDATA/PropList.txt">PropList.txt</a>
-      <p><b>Open Issue: </b>add Nd?</p>
-    </td>
+    <td>\p{gc=Nd}<br>
+      a-f, A-F, &#65345;-&#65350;, &#65313;-&#65318;</td>
+    <td>The A-F are upper &amp; lower, narrow and fullwidth. The POSIX spec <a href="#Posix_Requirements">requires</a>
+      that xdigit contains digit.<br>
+      <br>
+      This mostly matches Java. Java is slightly inconsistent, in that it
+      includes fullwidth &#65296;-&#65305; but not &#65345;-&#65350;, &#65313;-&#65318;.</td>
   </tr>
   <tr>
     <td><b>alnum</b><br>
@@ -435,6 +483,11 @@ they upgrade beyond Unicode 3.x.</p>
       <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html">http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html</a></li>
     </ul>
   </li>
+  <li>TR 14652
+    <ul>
+      <li><a href="http://anubis.dkuug.dk/jtc1/sc22/wg20/docs/n972-14652ft.pdf">http://anubis.dkuug.dk/jtc1/sc22/wg20/docs/n972-14652ft.pdf</a></li>
+    </ul>
+  </li>
   <li>Unicode:
     <ul>
       <li><a href="http://www.unicode.org/Public/UNIDATA/UCD.html">http://www.unicode.org/Public/UNIDATA/UCD.html</a></li>
@@ -641,6 +694,15 @@ for nb (nobreak) values for dt (decomposition type).</p>
 </table>
 <h3><a href="http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html" name="Posix_Requirements">Posix
 Requirements</a></h3>
+<p>Below is a table from the Posix requirements. The effect of this is:</p>
+<ul>
+  <li>alpha, digit, punct, cntrl are all disjoint</li>
+  <li>space, cntrl, blank are pairwise disjoint with any of alpha, digit, xdigit</li>
+  <li>alpha includes upper, lower</li>
+  <li>graph includes alpha, digit, punct</li>
+  <li>print includes graph</li>
+  <li>xdigit includes digit</li>
+</ul>
 <b><a name="tagtcjh_5"></a>Table: Valid Character Class Combinations</b>
 <table cellpadding="2" border="1" cellspacing="0">
   <tbody>
@@ -1130,6 +1192,120 @@ Requirements</a></h3>
     characters can be classified as any of <b>punct</b>, <b>graph</b>, or <b>print</b>.</p>
   </li>
 </ol>
+<h3><a name="TR_14652">TR 14652</a></h3>
+<p>TR 14652 only provides the contents of each value with a long list of
+characters, not based upon a boolean combination of Unicode properties. And it
+is way out of date. So it is a bit hard to compare. However, there are two
+generated comparison files, based on Unicode version.</p>
+<ul>
+  <li><a href="ftp://www-126.ibm.com/pub/icu/temp/Diff14652_4.0.0.txt">ftp://www-126.ibm.com/pub/icu/temp/Diff14652_4.0.0.txt</a>
+  </li>
+  <li><a href="ftp://www-126.ibm.com/pub/icu/temp/Diff14652_3.0.0.txt">ftp://www-126.ibm.com/pub/icu/temp/Diff14652_3.0.0.txt</a></li>
+</ul>
+<p>Some comments based on those comparisons:</p>
+<p>[snip 1,2]</p>
+<ol start="3">
+  <li><b>lower. </b>Quite a number of items in the TR just look like they must
+    have<br>
+    been typos:<br>
+    &nbsp;U+01F1 #&nbsp; (&#497;) LATIN CAPITAL LETTER DZ<br>
+    &nbsp;U+03E2 #&nbsp; (&#994;) COPTIC CAPITAL LETTER SHEI<br>
+    &nbsp;U+03E4 #&nbsp; (&#996;) COPTIC CAPITAL LETTER FEI<br>
+    &nbsp;U+03E6 #&nbsp; (&#998;) COPTIC CAPITAL LETTER KHEI<br>
+    &nbsp;U+03E8 #&nbsp; (&#1000;) COPTIC CAPITAL LETTER HORI<br>
+    &nbsp;U+03EA #&nbsp; (&#1002;) COPTIC CAPITAL LETTER GANGIA<br>
+    &nbsp;U+03EC #&nbsp; (&#1004;) COPTIC CAPITAL LETTER SHIMA<br>
+    &nbsp;U+03EE #&nbsp; (&#1006;) COPTIC CAPITAL LETTER DEI<br>
+    ...<br>
+  </li>
+  <li><b>alpha.</b> There is one place where the proposal misses a couple of<br>
+    characters in the ISO 14652 alpha:<br>
+    <br>
+    In ISO_14652_alpha, but not in Alphabetic + gc=M:<br>
+    &nbsp;U+309B..U+309C #&nbsp; (&#12443;..&#12444;) KATAKANA-HIRAGANA VOICED
+    SOUND MARK<br>
+    &nbsp;U+30FB #&nbsp; (&#12539;) KATAKANA MIDDLE DOT<br>
+    <br>
+    It strongly looks like these 3 ought to be in Alphabetic, if that is the
+    case. Also, the text says:<br>
+    <br>
+    &quot;alpha - Define characters to be classified as used to spell out the
+    words for natural languages; such as letters, syllabic or ideographic
+    characters.&quot;<br>
+    <br>
+    Unclear whether this should include characters like the Hebrew Punctuation
+    Gerish, which are parts of words.<br>
+  </li>
+  <li><b>space.</b> For the ASCII range (00..7F), the POSIX standard only has:<br>
+    <br>
+    space&nbsp;&nbsp;&nbsp; &lt;tab&gt;;&lt;newline&gt;;&lt;vertical-tab&gt;;&lt;form-feed&gt;;\<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &lt;carriage-return&gt;;&lt;space&gt;<br>
+    <br>
+    It seems very surprising for the TR to introduce<br>
+    &nbsp;U+0008 # &lt;BACKSPACE&gt;<br>
+    <br>
+    The other differences in the TR (other than being out of date) appear to be
+    that it excludes the non-breaking spaces:<br>
+    <br>
+    &nbsp;U+00A0 #&nbsp; ( ) NO-BREAK SPACE<br>
+    &nbsp;U+2007 #&nbsp; (&#8199;) FIGURE SPACE<br>
+    &nbsp;U+202F #&nbsp; (&#8239;) NARROW NO-BREAK SPACE<br>
+    <br>
+    Very hard to say whether these should be in or out, since the POSIX standard
+    gives little guidance. And if they are out, the question is whether they
+    should be correspondingly in graph.<br>
+  </li>
+  <li><b>punct. </b>The TR includes both gc=P and gc=S. A reasonable choice,
+    given the way POSIX deals with them in ASCII. But note that this is counter
+    to how Java, Windows, and Perl deal with them.<br>
+  </li>
+  <li><b>cntrl. </b>This matches exactly. However, if one took the same approach
+    with this as with punct, then gc=Cf characters might be included, and
+    perhaps also Zp, Zl.<br>
+  </li>
+  <li><b>graph. </b>We have:<br>
+    <br>
+    In ISO_14652_graph, but not in All - gc=Cc, Cs, Cn, or Z:<br>
+    &nbsp;U+00A0 #&nbsp; ( ) NO-BREAK SPACE<br>
+    &nbsp;U+2000..U+200B #&nbsp; (&#8192;..&#8203;) EN QUAD..ZERO WIDTH SPACE<br>
+    &nbsp;U+2028..U+2029 #&nbsp; (&#8232;..&#8233;) LINE SEPARATOR..PARAGRAPH
+    SEPARATOR<br>
+    &nbsp;U+3000 #&nbsp; (&#12288;) IDEOGRAPHIC SPACE<br>
+    Total: 16<br>
+    <br>
+    which sort of lines up with what is done with space, but not really. Again,
+    unclear whether Cfs ought to be in graph or in cntrl or neither. The TR also
+    excludes private use and some other characters that seem reasonable to
+    include.<br>
+  </li>
+  <li><b>xdigit. </b>The narrow interpretation is just [0-9A-Fa-f]. The wide
+    interpretation is that xdigit is a superset of digit; and that for
+    consistency the wide letters a-f should be in. Java gives numeric values on
+    the wide basis, for example; but it is not consisted<br>
+    regarding the wide A-F.<br>
+  </li>
+  <li><b>blank. </b>Surprising again that the TR diviates from the POSIX
+    standard<br>
+    over ASCII by excluding &lt;tab&gt;. POSIX has:<br>
+    <br>
+    blank&nbsp;&nbsp;&nbsp; &lt;space&gt;;&lt;tab&gt;<br>
+    <br>
+    And for it to introduce:<br>
+    &nbsp;U+0008 # &lt;BACKSPACE&gt;<br>
+    is very odd.<br>
+  </li>
+  <li><b>print.</b> This is only defined in a comment:<br>
+    % &quot;print&quot; is by default &quot;graph&quot;, and the &lt;space&gt;
+    character<br>
+    Yet the standard says that print may include other space characters, so it
+    is not required that the only difference be &lt;space&gt;</li>
+</ol>
+<p><b>Note: </b>With both blank and space, this emphasizes to me again that
+U+200B #&nbsp; (&#8203;) ZERO WIDTH SPACE should not be in Zs; it should be in
+Cf. We correct that in White_Space property, but it will continue to be a source
+of confusion unless it is removed from Zs.<br>
+</p>
 
 </body>
 

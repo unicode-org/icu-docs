@@ -28,7 +28,7 @@ td, th       { vertical-align: Top }
   </tr>
   <tr>
     <td><b>Last updated:</b></td>
-    <td><b>2003-04-16, MED</b></td>
+    <td><b>2003-04-23, MED</b></td>
   </tr>
 </table>
 <p align="left">The POSIX-style property names are are not well specified, and
@@ -129,14 +129,14 @@ they upgrade beyond Unicode 3.x.</p>
     alpha form a complete partition of assigned characters: every character is
     in exactly one of these sets. (This is <i>not</i> a requirement from POSIX,
     but is what is done for the POSIX locale.) If that were to be done, we'd
-    have do something like the following. (Although Co would still be excluded,
-    that is probably ok, since they are not &quot;known&quot; assigned
-    characters.)
+    have do something like the following.
     <ol>
       <li>add Cf (format) &amp; U+200B # ZERO WIDTH SPACE to cntrl</li>
       <li>add No (non-decimal numbers) to punct</li>
     </ol>
-  </li>
+    <p>Although Co would still be excluded, that is probably ok, since they are
+    not &quot;known&quot; assigned characters. Alternatively, we could do
+    nothing, since these characters <i>are</i> included in punct and graph.</li>
 </ol>
 <p>Feedback is welcome, at <a href="mailto:icu@oss.software.ibm.com">mailto:icu@oss.software.ibm.com</a>.</p>
 <h3><a name="Comparison_Table">Comparison Table</a></h3>

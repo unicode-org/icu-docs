@@ -2128,11 +2128,67 @@ static int getLocaleCharacterEnd(String s,
   Expressions.<span class="changedspan"> There are two alternatives: the Standard Recommendation and 
   the POSIX Compatible versions. The latter is modified to meet the formal requirements of [POSIX], 
   and also to maintain (as much as possible compatibility) with the usage in practice. So, for 
-  example, \p{Lowercase} and \p{Uppercase} are merged into <b>alpha</b>, since one of the POSIX 
-  requirements is that <b>alpha</b> contain <b>lower</b> and <b>upper</b> <font SIZE="3">—</font> 
-  and there are a few Unicode Symbols that are Lowercase bug not included in Alphabetic. Similarly, 
-  since sometimes alpha is used in practice (incorrectly) for word breaks, ZWNJ and ZWJ are added so 
-  that they do not break words.</span></p>
+  example, \p{Lowercase} and \p{Uppercase} remove anything not in <b>alpha</b>, since one of the 
+  POSIX requirements is that <b>alpha</b> contain <b>lower</b> and <b>upper</b> <font SIZE="3">—</font> 
+  and there are a few Unicode Symbols that are Lowercase bug not included in Alphabetic.</span></p>
+  <p class="reviewnote"><span class="changedspan"><b>Note to Reviewers: </b>Not only do we want to 
+  match the &#39;letter of the law&#39; for POSIX, we also<br>
+  want to try to also match the prevailing practice, insofar as that can be<br>
+  expressed as consistent combinations of Unicode properties. Ideally we would not have two columns 
+  different alternatives for assignment. There are, however, a few problems with that, for which we 
+  would especially appreciate feedback:</span></p>
+  <ol>
+    <li>
+    <p class="reviewnote">First is that certain properties have the same names in POSIX and in 
+    Unicode: alpha, upper, lower (these are short-name aliases in Unicode). Unfortunately, POSIX 
+    imposes a constraint that is not met by the Unicode properties, so there is a mismatch between 
+    what what would be natural and what must be done for POSIX requirements. The problem arises 
+    because of the following characters. The options are to subtract these from upper, add them to 
+    alpha, or change the Unicode properties so that Alphabetic contains Uppercase.<ul>
+      <li>
+      <pre><span class="changedspan">24B6..24CF # So [26] CIRCLED LATIN CAPITAL LETTER A..CIRCLED LATIN CAPITAL LETTER Z</span></pre>
+      </li>
+    </ul>
+    </li>
+    <li>
+    <p class="reviewnote">POSIX also imposes some unreasonable requirements on digit: there can be 
+    at most 20. And our feedback is that for many UNIX implementations, anything but the ASCII 
+    digits will cause at least some programs to choke.</li>
+    <li>
+    <p class="reviewnote">The table below adds symbols (where possible) to punct, since that matches 
+    the &quot;POSIX locale&quot; (the default). POSIX does allow other languages to change that; the question 
+    is what gives the best compatibility. Another alternative is to add just the symbols in the 
+    ASCII range.</li>
+    <li>
+    <p class="reviewnote">We have gotten feedback that -- while not a formal requirement in POSIX -- 
+    graph should include all assigned characters but cntrl and blank. So we should add Format 
+    characters either to cntrl or to graph, or split them on a case-by case basis between those two 
+    categories. These include:<ul>
+      <li>
+      <pre><span class="changedspan">00AD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOFT HYPHEN
+0600..0603&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [4] ARABIC NUMBER SIGN..ARABIC SIGN SAFHA
+06DD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ARABIC END OF AYAH
+070F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SYRIAC ABBREVIATION MARK
+17B4..17B5&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [2] KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
+200B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ZERO WIDTH SPACE
+200E..200F&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [2] LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
+202A..202E&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [5] LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
+2060..2063&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [4] WORD JOINER..INVISIBLE SEPARATOR
+206A..206F&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [6] INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
+FEFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ZERO WIDTH NO-BREAK SPACE
+FFF9..FFFB&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp; [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR
+ANNOTATION TERMINATOR
+1D173..1D17A&nbsp;&nbsp; # Cf&nbsp;&nbsp; [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END
+PHRASE
+E0001&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Cf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LANGUAGE TAG
+E0020..E007F&nbsp;&nbsp; # Cf&nbsp; [96] TAG SPACE..CANCEL TAG</span>
+</pre>
+      </li>
+    </ul>
+    </li>
+  </ol>
+  <p class="reviewnote">Are there any other changes in the POSIX column that would promote 
+  compatibility?</p>
   <table border="1" cellspacing="0" cellpadding="2">
     <tr>
       <th class="heading">Property</th>
@@ -2143,11 +2199,7 @@ static int getLocaleCharacterEnd(String s,
     <tr>
       <td><b><a name="alpha">alpha</a></b></td>
       <td class="recommended">\p{Alphabetic}</td>
-      <td class="recommended">\p{Alphabetic}<br>
-      <span class="changedspan">\p{Lowercase}<br>
-      \p{Uppercase}<br>
-      \N{ZERO WIDTH NON-JOINER}<br>
-      \N{ZERO WIDTH JOINER}</span></td>
+      <td class="recommended">\p{Alphabetic}</td>
       <td>Alphabetic includes more than gc = Letter. Note that marks (Me, Mn, Mc) are required for 
       words of many languages. While they could be applied to non-alphabetics, their principle use 
       is on alphabetics. See
@@ -2167,8 +2219,9 @@ static int getLocaleCharacterEnd(String s,
     </tr>
     <tr>
       <td><b><a name="upper">upper</a></b></td>
-      <td class="recommended">\p{Lowercase}</td>
-      <td class="recommended">\p{Lowercase}</td>
+      <td class="recommended">\p{Uppercase}</td>
+      <td class="recommended">\p{Uppercase}<br>
+      <span class="changedspan">&amp; \p{alpha}</span></td>
       <td>Uppercase includes more than gc = Uppercase_Letter (Lu).</td>
     </tr>
     <tr>
@@ -2184,9 +2237,9 @@ static int getLocaleCharacterEnd(String s,
       <td><b><a name="digit">digit</a><br>
       (\d)</b></td>
       <td class="recommended">\p{gc=Decimal_Number}</td>
-      <td class="recommended">\p{gc=Decimal_Number} </td>
-      <td>Non-decimal numbers (like Roman numerals) are normally excluded. In U4.0+, this is the 
-      same as gc = Decimal_Number (Nd). See
+      <td class="recommended"><span class="changedspan">[0..9]</span></td>
+      <td>Non-decimal numbers (like Roman numerals) are normally excluded. In U4.0+, the recommended 
+      column is the same as gc = Decimal_Number (Nd). See
       <a href="http://www.unicode.org/Public/UNIDATA/extracted/DerivedNumericType.txt">
       DerivedNumericType</a> [<a href="#UCD">UCD</a>].</td>
     </tr>
@@ -2195,8 +2248,7 @@ static int getLocaleCharacterEnd(String s,
       </td>
       <td class="recommended">\p{gc=Decimal_Number}<br>
       <span class="changedspan">\p{Hex_Digit}</span></td>
-      <td class="recommended">\p{gc=Decimal_Number}<br>
-      <span class="changedspan">\p{Hex_Digit}</span></td>
+      <td class="recommended"><span class="changedspan">[0-9 A-F a-f]</span></td>
       <td>Hex_Digit contains 0-9 A-F, fullwidth and halfwidth, upper and lowercase.</td>
     </tr>
     <tr>
@@ -2243,9 +2295,7 @@ static int getLocaleCharacterEnd(String s,
       \p{gc=Control}<br>
       \p{gc=Format}<br>
       \p{gc=Surrogate}<br>
-      \p{gc=Unassigned}]<br>
-      <span class="changedspan">\N{ZWNJ}<br>
-      \N{ZWJ}</span></td>
+      \p{gc=Unassigned}]</td>
       <td><i>Warning: </i>the set to the left is defined by <i>excluding </i>space, controls, etc. 
       with ^.
       <p>Perl 5.8.0 is similar except that it excludes: Z, Cc, Cf, Cs, Cn. The intent is for Perl 
@@ -2268,7 +2318,7 @@ static int getLocaleCharacterEnd(String s,
       \p{gc=Mark}<br>
       \p{digit}<br>
       \p{gc=Connector_Punctuation}</td>
-      <td class="recommended">&nbsp;</td>
+      <td class="recommended"><span class="changedspan">n/a</span></td>
       <td>This is only an approximation to Word Boundaries (see <a href="#b">b</a> below). The 
       Connector Punctuation is added in for programming language identifiers, thus adding &quot;_&quot; and 
       similar characters.</td>
@@ -2276,7 +2326,7 @@ static int getLocaleCharacterEnd(String s,
     <tr>
       <td><b>\<a name="X">X</a></b></td>
       <td class="recommended">Default Grapheme Clusters</td>
-      <td class="recommended">Default Grapheme Clusters</td>
+      <td class="recommended"><span class="changedspan">n/a</span></td>
       <td>See [<a href="#Boundaries">Boundaries</a>], also
       <a href="http://www.unicode.org/reports/tr29/GraphemeClusterBreakTest.html">
       GraphemeClusterBreakTest</a>. Other functions are used for programming language identifier 
@@ -2285,18 +2335,13 @@ static int getLocaleCharacterEnd(String s,
     <tr>
       <td><b>\<a name="b">b</a></b></td>
       <td class="recommended">Default Word Boundaries</td>
-      <td class="recommended">Default Word Boundaries</td>
+      <td class="recommended"><span class="changedspan">n/a</span></td>
       <td>If there is a requirement that \b align with \w, then it would use the approximation above 
       instead. See [<a href="#Boundaries">Boundaries</a>], also
       <a href="http://www.unicode.org/reports/tr29/WordBreakTest.html">WordBreakTest</a>.<p>Note 
       that different functions are used for programming language identifier boundaries. See also [<a href="#Syntax">Syntax</a>].</td>
     </tr>
   </table>
-  <p class="reviewnote"><b>Note to Reviewers: </b>Are there any other changes in the POSIX column 
-  that would promote compatibility? For example, should we add some of the Format characters to 
-  cntrl? Do POSIX implementations expect that the union of the properties (alpha lower upper punct 
-  digit xdigit alnum space blank cntrl graph print word) covers all assigned characters (minus 
-  perhaps private use)?</p>
   <h2><a name="References">References</a></h2>
   <table class="noborder" cellpadding="4">
     <tr>
@@ -2484,8 +2529,6 @@ static int getLocaleCharacterEnd(String s,
         clause to allow a claim of conformance to the Compatibility properties.</span></span></li>
         <li><span class="changedspan"><span style="background-color: #FFFF00">Split the 
         Compatibility properties into two, to allow for regular vs. strict POSIX properties.</span></span></li>
-        <li><span class="changedspan"><span style="background-color: #FFFF00">Added ZWJ, ZWNJ to 
-        word characters and alpha</span></span></li>
         <li><span class="changedspan"><span style="background-color: #FFFF00">Added other notation 
         for use here and in other Unicode Standards</span></span></li>
         <li><span class="changedspan"><span style="background-color: #FFFF00">Added vertical tab to 

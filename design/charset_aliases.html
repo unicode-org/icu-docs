@@ -1,0 +1,786 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Character Conversion Alias Design</title>
+    <meta http-equiv="Content-Language" content="en-us">
+<style type="text/css">
+      h1 {border-width: 2px; border-style: solid; text-align: center; width: 100%; font-size: 200%; font-weight: bold}
+      h2 {margin-top: 2em; text-decoration: underline;}
+      h3 {margin-top: 1em; text-decoration: underline}
+      h4 {text-decoration: underline}
+      h5 {text-decoration: underline}
+      caption {font-weight: bold; text-align: left}
+      div.indent {margin-left: 2em}
+      ul.TOC {list-style-type: none}
+      samp {border-style: groove; padding: 1em; display: block; background-color: #EEEEEE}
+      dd {margin-bottom: 1em;}
+</style>
+  </head>
+
+  <body lang="EN-US">
+    <h1>Character Conversion Alias Design</h1>
+
+    <p>Draft 2002-09-10<br>
+     <!--Author: George Rhoten--></p>
+
+    <h2>Background Information</h2>
+
+    <p>Character Conversion is complicated by the facts that:</p>
+
+    <ul type="disc">
+      <li>Different vendors may have different names for the same mapping.</li>
+
+      <li>Different vendors may have the same name for different mappings</li>
+
+      <li>Different vendors may radically change the mappings without changing
+      the name.</li>
+    </ul>
+
+    <p>ICU will attempt to untangle this problem in the following ways.</p>
+
+    <ol>
+      <li>There will be unique canonical names for each mapping table on all
+      ICU supported platforms (z/OS, iSeries, AIX, Solaris, Windows, HP/UX)
+      plus on Java and the Mac, in the format given by <a href=
+      "http://www.unicode.org/unicode/reports/tr22/">UTR #22: Character Mapping
+      Tables</a>.</li>
+
+      <li>There will be APIs that supply information relating platform names
+      (aliases) for character mappings to this canonical name.</li>
+    </ol>
+
+    <h2>Definition of terms</h2>
+
+    <dl>
+      <dt>Alias</dt>
+
+      <dd>Any name that is commonly used to refer to that character conversion
+      mapping on that platform. For example, if I am working on AIX with HTTP,
+      what CCSID do I use when I encounter charset="SJIS"? Similarly, what is
+      the preferred alias that I would use when generating HTML or XML that is
+      supposed to be in a particular CCSID? The tables that relate aliases to
+      CCSIDs may be in the operating system, or they may be in major products
+      like DB2.</dd>
+
+      <dt>Canonical Name</dt>
+
+      <dd>A standardized way to specify an alias for a Unicode codepage mapping
+      as specified by UTR #22. Different canonical aliases can have the same
+      Unicode mapping, but any given canonical alias can only have one Unicode
+      character set mapping</dd>
+
+      <dt>Standard or Platform</dt>
+
+      <dd>A registration authority (e.g. IANA, MIME, ISO), a specific type of
+      application (e.g. DB/2), or a specific flavor of an operating system
+      (e.g. Windows, AIX, z/OS (a.k.a os/390))</dd>
+    </dl>
+
+    <h2>Goals</h2>
+
+    <p>These are the goals of this design document.</p>
+
+    <ol start="1" type="1">
+      <li>Provide a more "accurate" way to get a specific converter based on a
+      platform.</li>
+
+      <li>Provide a way to get a reasonable fallback converter when a requested
+      converter doesn't exist in ICU.</li>
+
+      <li>Provide a way to allow legacy platforms to recognize a given
+      alias.</li>
+
+      <li>Keep the new design simple enough so that users don't have to know
+      about the complications with proper aliasing and versioning.</li>
+
+      <li>Make the new design flexible enough so that "power users" can get the
+      right version and platform specific codepage.</li>
+    </ol>
+
+    <h2>Assumptions</h2>
+
+    <p>These are the assumptions for this design.</p>
+
+    <ol start="1" type="1">
+      <li>Different vendors may have different names for the same mapping.</li>
+
+      <li>Different vendors may have the same name for different mappings</li>
+
+      <li>Different vendors may radically change the mappings without changing
+      the name.</li>
+
+      <li>Our users are ignorant.</li>
+
+      <li>Our users don't want to know the details.</li>
+
+      <li>Our "power" users do want to know the details.</li>
+
+      <li>Our users are working with multiple platforms.</li>
+
+      <li>Our users are using other platforms that don't have ICU, and can't
+      get ICU installed on those platforms.</li>
+
+      <li>Our users can't get Unicode to work on their legacy platforms.</li>
+      <!--li>We are not a registration authority (We don't have the power to
+                  randomly make up new aliases).</li -->
+    </ol>
+
+    <h2>Thoughts On What Is Needed</h2>
+
+    <p>Logically, all of this could be supported by the following three
+    mappings</p>
+
+    <table border="1" cellspacing="0" cellpadding="3" summary="">
+      <tr>
+        <td>
+          <p>Main</p>
+        </td>
+
+        <td>
+          <p>alias, platform =&gt; canonicalName</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>DefaultForCanonicalName</p>
+        </td>
+
+        <td>
+          <p>canonicalName =&gt; alias</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>DefaultForAlias</p>
+        </td>
+
+        <td>
+          <p>alias =&gt; canonicalName</p>
+        </td>
+      </tr>
+    </table>
+
+    <p>The canonical alias from UTR #22 has some drawbacks. Even though this
+    is an excellent format to distinguish an alias internally, no other vender
+    supports the names. We should make it easy for our user's to get an IANA,
+    MIME, or some other platform/version specific name. UTR #22 also has the
+    drawback that the format can conflict with existing aliases, and our users
+    usually do not have an accurate way to distinguish between a canonical
+    name and an alias (e.g. iso-8859-1 vs. aix-iso8859_1-4.3.6).</p>
+
+    <p>Putting features of a codepage into a converter name (e.g. VASCII, VPUA,
+    VSUB, VNLLF) may be useful for internally distinguishing the codepage
+    features. However, our users generally do not know these differences
+    existed, and few other platforms recognize these specially made up names.
+    Our users usually know the platform and the alias (or preferred alias), but
+    they don't know the features.</p>
+
+    <p>Using the feature list for a converter name to find the appropriate
+    fallback codepage is a rather difficult thing to do. Which do you try to
+    fallback to first when a converter can't be opened? Do I want one that has
+    the Euro update, or do I want one that works on a certain platform with
+    VASCII? Our converter alias design can probably address this issue by
+    allowing the user to iterate over the aliases based on a standard or
+    platform name and selecting the right one depending on the features
+    or the version in the canonical name.</p>
+
+    <p>When a converter can't be opened, you probably want to try to open
+    another one that worked on a given platform at one time. If the fallback
+    path is wrong for a user, we can either allow the user to modify the alias
+    table before build time, allow the user to progmatically modify the
+    behavior, or allow the user to progmatically query the fallback path and
+    let them decide on the fly.</p>
+
+    <h2>Data Structure</h2>
+
+    <h3>Alias Table Format</h3>
+
+    <p>The current format is the following:</p>
+
+    <p><a href=
+    "http://oss.software.ibm.com/developerworks/opensource/cvs/icu/source/data/convrtrs.txt">
+    http://oss.software.ibm.com/developerworks/opensource/cvs/icu/source/data/convrtrs.txt</a></p>
+
+    <p>The following examples are how a new converter alias table could be
+    used. While I've tried to make it complete, it's not guaranteed accurate.
+    Use the examples as ways to use the new format.</p>
+
+    <p>These aliases with the tags are going to get really long. We should
+    consider allowing line wrapping. This could be done in a similar way that
+    Makefiles do line wrapping. If the line starts with whitespace, then it
+    must be a continuation of the previous line.</p>
+
+    <p>One possible alias table format can look like the following in BNF. For
+    the sake of simplicity, the comments, newlines and makefile style
+    whitespace usage are left out of this format.</p>
+
+    <table border="1" cellspacing="0" cellpadding="3" summary=
+    "BNF of alias table">
+      <tr>
+        <td>
+          <p>AliasTable</p>
+        </td>
+
+        <td>
+          <p>'{' SupportedPlatform* '}'<br>
+           ConverterAliases*</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>SupportedPlatform</p>
+        </td>
+
+        <td>
+          <p>[a-zA-Z_]+</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>ConverterAliases</p>
+        </td>
+
+        <td>
+          <p>CanonicalConverterName Tags* Aliases*</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>CanonicalConverterName</p>
+        </td>
+
+        <td>
+          <p>[a-zA-Z0-9_]+'-'[a-zA-Z0-9_]+'-'[a-zA-Z0-9_]+</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>Tags</p>
+        </td>
+
+        <td>
+          <p>'{' Tag+ '}'</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>Tag</p>
+        </td>
+
+        <td>
+          <p>SupportedPlatform AlternatePlatformAlias?</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>DefaultPlatformAlias</p>
+        </td>
+
+        <td>
+          <p>'*'</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>Aliases</p>
+        </td>
+
+        <td>
+          <p>Alias Tags*</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>Alias</p>
+        </td>
+
+        <td>
+          <p>[a-zA-Z_'-']+</p>
+        </td>
+      </tr>
+    </table>
+
+    <p>The asterisk "*" is used for denoting the default alias. This may seem a little
+    odd since some people may think 'zero or more' when looking and this BNF, but it
+    is a literal character used as a way to denote the default alias, and it is
+    usually much quicker and easier to just denote which one is the default with
+    one character. We are also limited to use only invariant characters in this
+    table.</p>
+
+    <p>We could do this table as a resource bundle, but this data can get very
+    large when alias versioning is considered. So we should optimize the data
+    format as much as possible. We could also do this table in XML, but this
+    may be difficult to include XML into out builds. We can consider exporting
+    it as XML, which would be very useful when combined with XSL in order to
+    generate HTML for public viewing.</p>
+
+    <h3>Example Alias Tables</h3>
+
+    <p>Old alias table</p>
+<pre>
+<samp>ibm-916 iso-8859-8 { MIME } hebrew cp916 8859-8 csisolatinhebrew iso-ir-138 ISO_8859-8:1988 { IANA } 916
+
+# japanese. Unicode name is \u30b7\u30d5\u30c8\u7b26\u53f7\u5316\u8868\u73fe
+# Iana says that Windows-31J is an extension to csshiftjis
+ibm-943_P130-2000       ibm-943_VASCII_VSUB_VPUA ibm-943
+ibm-943_P14A-2000       ibm-943_VSUB_VPUA Shift_JIS { MIME } csWindows31J sjis cp943 cp932 ms_kanji csshiftjis windows-31j  x-sjis 943
+
+ibm-942_P120-2000       ibm-942_VASCII_VSUB_VPUA ibm-942 ibm-932 ibm-932_VASCII_VSUB_VPUA
+ibm-942_P12A-2000       ibm-942_VSUB_VPUA shift_jis78 sjis78 pck ibm-932_VSUB_VPUA
+</samp>
+</pre>
+    <br>
+     
+
+    <p>New alias table</p>
+<pre>
+<samp>ibm-916 { IBM* } ibm-916_P100-1987 { UTR22 }
+    iso-8859-8 { MIME* IANA WINDOWS }
+    ISO8859_8 { AIX* } # duplicate of previous alias in a slightly different form
+    hebrew { IANA }  # This is one of the supported aliases from IANA.
+    cp916 { JAVA* }
+    28598 { WINDOWS* }
+    8859-8
+    csisolatinhebrew { IANA } iso-ir-138 { IANA } # You can have more than one alias per line.
+    ISO_8859-8:1988 { IANA* }  # This is the default alias for IANA.
+    916 { ZOS* OS400* DB2* IBM }
+
+# japanese. Unicode name is \u30b7\u30d5\u30c8\u7b26\u53f7\u5316\u8868\u73fe
+# Iana says that Windows-31J is an extension to csshiftjis
+ibm-943_P130 { UTR22* } ibm-943_VASCII_VSUB_VPUA { ICU_FEATURE* } ibm-943 { ZOS* OS400* DB2* IBM }
+    cp943 { JAVA* } <font color=
+"red">Shift_JIS { MIME IANA DB2* }</font>
+ibm-943_P14A { UTR22* } ibm-943_VSUB_VPUA { ICU_FEATURE* } <font color=
+"red">Shift_JIS { MIME* IANA* WINDOWS* DB2 }</font> csWindows31J sjis
+    cp943 cp943C { JAVA* } # Java uses the C variant only
+    cp932 { ICU } 932 { WINDOWS* } 943 { IBM }
+    ms_kanji {IANA} csshiftjis {IANA} windows-31j x-sjis
+
+ibm-942_P120
+    ibm-942_VASCII_VSUB_VPUA
+    ibm-942
+    ibm-932
+    ibm-932_VASCII_VSUB_VPUA
+ibm-942_P12A
+    ibm-942_VSUB_VPUA
+    shift_jis78
+    sjis78
+    pck { SOLARIS* }
+    ibm-932_VSUB_VPUA
+</samp>
+</pre>
+
+    <p>Notice that there are two Shift_JIS aliases, but only one of them is the
+    default for a given tag.</p>
+
+    <p>There should be one and only one default tag of a given type per line
+    and per alias. So you can't have WINDOWS be the default for Shift_JIS on
+    two different converters, and you can't have more than one the default
+    alias for a converter. So the following two examples are illegal.</p>
+<pre>
+<samp>ibm-942_P12A
+    sjis78 { SOLARIS }
+    pck { SOLARIS }
+</samp>
+</pre>
+
+    <p>The previous example can be fixed by properly setting the defaults
+    for the aliases to the following:</p>
+<pre>
+<samp>ibm-942_P12A
+    sjis78 { SOLARIS<font color="red">*</font> }
+    pck { SOLARIS }
+</samp>
+</pre>
+
+    <p>If we allowed alias versioning, we might be able to have the same standard and alias on
+    different mappings tables, like the following:</p>
+
+<pre>
+<samp>ibm-942_P120
+    pck { SOLARIS<font color="red">/1*</font> }
+ibm-942_P12A
+    pck { SOLARIS<font color="red">/2*</font> }
+</samp>
+</pre>
+
+    <p>Having multiple aliases for a converter and multiple versions of that alias
+    are two orthogonal ideas. So they need to be represented with different syntax.
+    Having versioned aliases is useful, but most people usually want the current
+    mapping. For instance most people want the current mapping of windows-1252 with
+    Euro support. This is a feature would be useful, but this may be a low priority.
+    Versioning would also make the internal data structure a 4 dimensional array
+    (converters x standards x aliases x version).</p>
+
+
+
+<!--    <p>Here is an example where converter alias versioning is useful.</p>
+<pre>
+<samp># Windows Latin1 (w/ euro update)
+ibm-5348 { IBM }
+    windows-1252 { IANA <font color=
+"red">WINDOWS WINDOWS_98 WINDOWS_2000 WINDOWS_XP</font> }
+    cp1252 { JAVA* }
+    ibm-1252 { AIX }
+
+# Windows Latin1 (w/o euro update)
+ibm-1252 { IBM AIX* }
+    windows-1252 { IANA* <font color=
+"red">WINDOWS* WINDOWS_95 WINDOWS_NT</font> }
+    cp1252 { JAVA* }
+
+# Windows Latin1 (w/ euro update), but missing some roundtrip mappings and fallbacks.
+java-Cp1252-1.3_P
+    cp1252 { JAVA }
+    windows-1252 { IANA* <font color=
+"red">WINDOWS* WINDOWS_98* WINDOWS_2000* WINDOWS_XP*</font> }
+</samp>
+</pre>
+-->
+
+    <p>In order to reduce the chance of a misspelling we should consider
+    requiring a list of supported tags at the beginning of the file. These tags
+    should probably be case insensitive. This list can also be used to specify
+    the preference for opening a converter when there are multiple aliases and
+    no standard is specified (e.g. ucnv_open()).</p>
+
+    <p>Three tags of interest are the ICU, ICU_FEATURE and ICU_CANONICAL tags.
+    The ICU tags are names that ICU made up or misused and are needed for
+    historical reasons, like the "cp*" tags for Windows, which are different
+    from Java. The ICU_FEATURE tag is for converter aliases like
+    ibm-942_VASCII_VSUB_VPUA. The ICU_CANONICAL tag is for aliases like
+    ibm-916_P100-1987 and conforms to UTR #22.</p>
+<pre>
+<samp># The following is the list of recognized tags, which must be the first uncommented line.
+{ IANA MIME
+    IBM AIX DB2
+    ICU ICU_FEATURE ICU_CANONICAL
+    JAVA
+    WINDOWS MSIE    # MSIE is Internet Explorer, which is different from Windows
+    NETSCAPE        # Data not available at this time.
+    SOLARIS
+    GLIBC
+    APPLE
+    HPUX
+    ZOS ZOS_USS     # Could be OS390 and OS390_USS instead
+    OS400
+    VMS             # Source of information doesn't exist aka OpenVMS from Compaq
+    TRU64           # Source of information doesn't exist aka OSF1 from Compaq
+    IRIX            # Source of information doesn't exist
+    SCO             # Source of information doesn't exist
+    PTX             # Source of information doesn't exist
+    PALMOS          # Source of information doesn't exist
+    # We could add LINUX and BSD too, but they use GLIBC
+    }
+
+UTF-8 { MIME } ibm-1208 { IBM } cp1208 { JAVA }
+# ....
+</samp>
+</pre>
+
+    <h2>Analysis of Existing API</h2>
+
+    <p>Due to existing APIs, the platforms are called "standards" in the APIs.
+    Since IANA and MIME are in the list of platforms, the name "standard" seems
+    to make sense. Since standard organization names, platform vendors, and
+    software products are in the list, the "standard" name seems to be a reasonable name
+    within our API.</p>
+
+    <p>The ucnv_getPlatform() function only works on open converters, and only
+    returns UCNV_IBM if the codepage is IBM based. This API is inflexible due
+    to its use of enums. It prevents our users from easily adding their own
+    platforms/standards. Since this API ignores the fact that the same
+    converter can be based on a list of platforms and standards, like UTF-8 and
+    iso-8859-1, this API seems less than useful and should be considered for
+    API deprecation.</p>
+
+    <p>Slightly off topic, there is a function called ucnv_getDisplayName().
+    While it seems like a useful function, it also has no data. It just returns
+    the canonical name like some other APIs. We should consider deprecating
+    it.</p>
+
+    <h3>Getting a Recognized Standard's Converter Name</h3>
+
+    <p>There is already an API to get the standard's converter name based on an
+    alias and a standard. With a tag like "ICU_CANONICAL", you can also request
+    the canonical name.</p>
+<pre>
+<samp>/**
+ * Returns a standard name for a given converter name.
+ *
+ * @param name original converter name
+ * @param standard name of the standard governing the names; MIME and IANA
+ *        are such standards
+ * @return returns the standard converter name;
+ *         if a standard converter name cannot be determined,
+ *         then <code>NULL</code> is returned. Owned by the library.
+ * @stable
+ */
+U_CFUNC const char * U_EXPORT2
+ucnv_getStandardName(const char *alias, const char *standard, UErrorCode *pErrorCode);
+</samp>
+</pre>
+
+    <h3>Getting a List of Recognized Standard's</h3>
+
+    <p>There is already an API to get the list of supported platforms. Its name
+    is a little funny, but it already exists. The current API looks like the
+    following:</p>
+<pre>
+<samp>/**
+ * Gives the number of standards associated to converter names.
+ * @return number of standards
+ * @stable
+ */
+U_CAPI uint16_t U_EXPORT2
+ucnv_countStandards(void);
+
+/**
+ * Gives the name of the standard at given index of standard list.
+ * @param n index in standard list
+ * @param pErrorCode result of operation
+ * @return returns the name of the standard at given index. Owned by the library.
+ * @stable
+ */
+U_CAPI const char * U_EXPORT2
+ucnv_getStandard(uint16_t n, UErrorCode *pErrorCode);
+</samp>
+</pre>
+
+    <h3>Getting a List of Converters</h3>
+
+    <p>There is already an API to get the list of installed converters, but we
+    may want a new API to get the list of known converters. The current API looks like the
+    following:</p>
+
+<pre>
+<samp>/**
+ * returns the number of available converters, as per the alias file.
+ *
+ * @return the number of available converters
+ * @see ucnv_getAvailableName
+ * @stable
+ */
+U_CAPI int32_t U_EXPORT2
+ucnv_countAvailable (void);
+
+/**
+ * Gets the name of the specified converter from a list of all converters
+ * contaied in the alias file.
+ * @param n the index to a converter available on the system (in the range <TT>[0..ucnv_countAvaiable()]</TT>)
+ * @return a pointer a string (library owned), or <TT>NULL</TT> if the index is out of bounds.
+ * @see ucnv_countAvailable
+ * @stable
+ */
+U_CAPI const char* U_EXPORT2
+ucnv_getAvailableName (int32_t n);
+</samp>
+</pre>
+
+    <h3>Getting a List of Aliases for a Converter</h3>
+
+    <p>There is already an API to get the list of aliases of a converter.
+    The current API looks like the following:</p>
+
+<pre>
+<samp>/**
+ * Gives the number of aliases for a given converter or alias name.
+ * If the alias is ambiguous, then the preferred converter is used
+ * and the status is set to U_AMBIGUOUS_ALIAS_WARNING.
+ * This method only enumerates the listed entries in the alias file.
+ * @param alias alias name
+ * @param pErrorCode error status
+ * @return number of names on alias list for given alias
+ * @stable
+ */
+U_CAPI uint16_t U_EXPORT2 
+ucnv_countAliases(const char *alias, UErrorCode *pErrorCode);
+
+/**
+ * Gives the name of the alias at given index of alias list.
+ * This method only enumerates the listed entries in the alias file.
+ * If the alias is ambiguous, then the preferred converter is used
+ * and the status is set to U_AMBIGUOUS_ALIAS_WARNING.
+ * @param alias alias name
+ * @param n index in alias list
+ * @param pErrorCode result of operation
+ * @return returns the name of the alias at given index
+ * @see ucnv_countAliases
+ * @stable
+ */
+U_CAPI const char * U_EXPORT2 
+ucnv_getAlias(const char *alias, uint16_t n, UErrorCode *pErrorCode);
+
+/**
+ * Fill-up the list of alias names for the given alias.
+ * This method only enumerates the listed entries in the alias file.
+ * If the alias is ambiguous, then the preferred converter is used
+ * and the status is set to U_AMBIGUOUS_ALIAS_WARNING.
+ * @param alias alias name
+ * @param aliases fill-in list, aliases is a pointer to an array of
+ *        <code>ucnv_countAliases()</code> string-pointers
+ *        (<code>const char *</code>) that will be filled in.
+ *        The strings themselves are owned by the library.
+ * @param pErrorCode result of operation
+ * @stable
+ */
+U_CAPI void U_EXPORT2 
+ucnv_getAliases(const char *alias, const char **aliases, UErrorCode *pErrorCode);
+</samp>
+</pre>
+
+    <h2>Possible New API Changes</h2>
+
+    <p>Some new API will almost be required to implement. A new ucnv_open
+    function will be needed, so that a codepage can be opened based upon an
+    alias. It could look something like this:</p>
+<pre>
+<samp>/**
+ * Creates a UConverter object with the names specified as a C string
+ * based on a specified standard or platform.
+ * The actual name will be resolved with the alias file
+ * using a case-insensitive string comparison that ignores
+ * the delimiters '-', '_', and ' ' (dash, underscore, and space).
+ * E.g., the names "UTF8", "utf-8", and "Utf 8" are all equivalent.
+ * If <code>NULL</code> is passed for the converter name, it will create
+ * one with the getDefaultName return value.
+ *
+ * A converter name for ICU 1.5 and above may contain options
+ * like a locale specification to control the specific behavior of
+ * the newly instantiated converter.
+ * The meaning of the options depends on the particular converter.
+ * If an option is not defined for or recognized by a given converter,
+ * then it is ignored.
+ *
+ * Options are appended to the converter name string, with a
+ * <code>UCNV_OPTION_SEP_CHAR</code> between the name and the first option and
+ * also between adjacent options.
+ *
+ * When the standard is <code>NULL</code> it will open a converter
+ * that is most appropriate for the current platform. When a standard is 
+ * specified, it will open a converter that is most appropriate for that 
+ * standard.
+ *
+ * @param converterName : name of the uconv table, may have options appended
+ * @param standard the specific converter behavior to use, which is specified by
+ *          the alias table.
+ * @param err outgoing error status <tt>U_MEMORY_ALLOCATION_ERROR, U_FILE_ACCESS_ERROR</tt>
+ * @return the created Unicode converter object, or <tt>NULL</tt> if an error occured
+ * @see ucnv_openU
+ * @see ucnv_openCCSID
+ * @see ucnv_close
+ * @see convrts.txt
+ * @stable
+ */
+U_CAPI UConverter* U_EXPORT2 
+ucnv_openStandard(const char *converterName, const char *standard, UErrorCode * err);
+</samp>
+</pre>
+
+    <p>The ucnv_open() function will need to change its behavior a bit. It
+    can open an ICU preferred converter, or it can open a platform-preferred
+    converter. It would probably be better if the converter that is opened
+    remained consistent across all platforms, like it is now.</p>
+
+    <p>While the existing API does address our basic converter, some new API
+    could be added for convenience. This functionality already exists by using
+    the existing API. These functions may not be very fast, but these functions
+    are just for convenience. This possible new API mirrors the ucnv_*Alias(),
+    but it should use the new UEnumeration API.</p>
+<pre>
+<samp>/**
+ * Return a new UEnumeration object for enumerating all the
+ * alias names for a given converter that are recognized by a standard.
+ * This method only enumerates the listed entries in the alias file.
+ * The convrtrs.txt file can be modified to change the results of
+ * this function.
+ * The first result in this list is the same result given by
+ * <code>ucnv_getStandardName</code>, which is the default alias for
+ * the specified standard name. The returned object must be closed with
+ * <code>uenum_close</code> when you are done with the object.
+ *
+ * @param convName original converter name
+ * @param standard name of the standard governing the names; MIME and IANA
+ *      are such standards
+ * @param pErrorCode The error code
+ * @return A UEnumeration object for getting all aliases that are recognized
+ *      by a standard. If any of the parameters are invalid, NULL
+ *      is returned.
+ * @see ucnv_getStandardName
+ * @see uenum_close
+ * @see uenum_next
+ * @draft ICU 2.2
+ */
+U_CAPI UEnumeration *
+ucnv_openStandardNames(const char *convName,
+                       const char *standard,
+                       UErrorCode *pErrorCode);
+</samp>
+</pre>
+
+    <h2>Affects of Implementing This Design</h2>
+
+    <p>It should be easy to implement this new design without significant API
+    changes. Implementing this design will require a major overhaul of the
+    underlying data structure, which will take some time.</p>
+
+    <h2>Other Suggested Improvements</h2>
+
+    <ul>
+      <li>Create an API to register new aliases for a converter in ICU. This is
+      different from adding a converter to ICU, which can already be done. This
+      ability exists in Java 1.4, but this ability does increase the complexity
+      to the memory management in ICU4C.<br>
+      <br>
+      </li>
+
+      <li>There has been some thought about putting the alias information in
+      each .cnv/.ucm table, but it becomes more difficult to verify the whole
+      alias table is correct. This has become very apparent with the locale
+      data, where one locale's country's information was fundamentally
+      different in another locale in a different language for the same country
+      (de_BE and en_BE didn't have the same currency information). People also
+      make typos. It is much easier to find typos when the information is in
+      one file. Even running a separate tool to verify the information is
+      correct can become a maintenance nightmare because few people will ever
+      run it, (e.g. the LCID test program). There are also many tools that use
+      the convrtrs.txt file. Some of them are in Java. So putting the alias
+      information in the .cnv/.ucm files will probably be a bad idea.<br>
+      <br>
+      </li>
+
+      <li>The readability could be improved if we allowed commas in the lists.
+      Since the list is going to get long with a lot of tags, this may not be
+      helpful.<br>
+      <br>
+      </li>
+
+      <li>We could add information about converter alias fallback. This would
+      be useful when the requested converter was not available, and the fallback
+      alias would be used instead. This probably wouldn't be useful because the correct
+      fallback path would be different depending on the system or application
+      being used. The fallback path would also be different depending on wether
+      the text is imported or an exported to a codepage. The best way to do
+      this fallback is to allow the API user to iterate over the aliases and
+      find a suitable converter. The user could differenciate between
+      various converters based on the ICU canonical name.<br>
+      <br>
+      </li>
+    </ul>
+  </body>
+</html>
+

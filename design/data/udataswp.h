@@ -22,6 +22,7 @@
 *   CVS: http://oss.software.ibm.com/cvs/icu/icuhtml/design/data/udataswp.h
 */
 
+#include <stdarg.h>
 #include "unicode/utypes.h"
 
 /* forward declaration */
@@ -52,7 +53,7 @@ typedef struct UDataSwapper UDataSwapper;
  */
 typedef int32_t U_CALLCONV
 UDataSwapFn(const UDataSwapper *ds,
-            char *data, int32_t length,
+            void *data, int32_t length,
             UBool preflight,
             UErrorCode pErrorCode);
 
@@ -90,6 +91,20 @@ UDataCompareInvChars(const UDataSwapper *ds,
                      const char *inString, int32_t inLength,
                      const UChar *localString, int32_t localLength);
 
+/**
+ * Function for message output when an error occurs during data swapping.
+ * A format string and variable number of arguments are passed
+ * like for vprintf().
+ *
+ * @param context A function-specific context pointer.
+ * @param fmt The format string.
+ * @param args The arguments for format string inserts.
+ *
+ * @draft ICU 2.8
+ */
+typedef void U_CALLCONV
+UDataPrintError(void *context, const char *fmt, va_list args);
+
 struct UDataSwapper {
     /** Input endianness. @draft ICU 2.8 */
     UBool inIsBigEndian;
@@ -100,7 +115,7 @@ struct UDataSwapper {
     /** Output charset family. @see U_CHARSET_FAMILY @draft ICU 2.8 */
     int8_t outCharset;
 
-    // basic functions for reading data values
+    /* basic functions for reading data values */
 
     /** Read one uint16_t from the input data. @draft ICU 2.8 */
     UDataReadUInt16 *readUInt16;
@@ -111,7 +126,7 @@ struct UDataSwapper {
     /** Compare invariant-character strings. @draft ICU 2.8 */
     UDataCompareInvChars *compareInvChars;
 
-    // basic functions for data transformations
+    /* basic functions for data transformations */
 
     /** Transform an array of 16-bit integers. @draft ICU 2.8 */
     UDataSwapFn *swapArray16;
@@ -119,6 +134,15 @@ struct UDataSwapper {
     UDataSwapFn *swapArray32;
     /** Transform an invariant-character string. @draft ICU 2.8 */
     UDataSwapFn *swapInvChars;
+
+    /**
+     * Function for message output when an error occurs during data swapping.
+     * Can be NULL.
+     * @draft ICU 2.8
+     */
+    UDataPrintError *printError;
+    /** Context pointer for printError. @draft ICU 2.8 */
+    void *printErrorContext;
 };
 
 U_CAPI UDataSwapper * U_EXPORT2
@@ -136,7 +160,7 @@ udata_openSwapper(UBool inIsBigEndian, int8_t inCharset,
  * @draft ICU 2.8
  */
 U_CAPI UDataSwapper * U_EXPORT2
-udata_openSwapperForInputData(const char *data, int32_t length,
+udata_openSwapperForInputData(const void *data, int32_t length,
                               UBool outIsBigEndian, int8_t outCharset,
                               UErrorCode *pErrorCode);
 
@@ -157,9 +181,42 @@ udata_closeSwapper(UDataSwapper *ds);
  */
 U_CAPI int32_t U_EXPORT2
 udata_swap(const UDataSwapper *ds,
-           char *data, int32_t length,
+           void *data, int32_t length,
            UBool preflight,
            UErrorCode *pErrorCode);
+
+U_CAPI void U_EXPORT2
+udata_printError(const UDataSwapper *ds,
+                 const char *fmt,
+                 ...) {
+    va_list args;
+
+    if(ds->printError!=NULL) {
+        va_start(args, fmt);
+        ds->printError(ds->printErrorContext, fmt, args);
+        va_end(args);
+    }
+}
+
+/**
+ * Same as udata_openChoice() but automatically swaps the data.
+ * isAcceptable, if not NULL, may accept data with endianness and charset family
+ * different from the current platform's properties.
+ * If the data is acceptable and the platform properties do not match, then
+ * the swap function is called to swap an allocated version of the data.
+ * Preflighting may or may not be performed depending on whether the size of
+ * the loaded data item is known.
+ *
+ * @param isAcceptable Same as for udata_openChoice(). May be NULL.
+ *
+ * @draft ICU 2.8
+ */
+U_CAPI UDataMemory * U_EXPORT2
+udata_openSwap(const char *path, const char *type, const char *name,
+               UDataMemoryIsAcceptable *isAcceptable, void *isAcceptableContext,
+               UDataSwapFn *swap,
+               UDataPrintError *printError, void *printErrorContext,
+               UErrorCode *pErrorCode);
 
 /* Implementation functions ------------------------------------------------- */
 
@@ -191,7 +248,7 @@ udata_swap(const UDataSwapper *ds,
 /** Swap a UTrie. @draft ICU 2.8 */
 U_CAPI int32_t U_EXPORT2
 udata_swapUTrie(const UDataSwapper *ds,
-                char *data, int32_t length,
+                void *data, int32_t length,
                 UBool preflight,
                 UErrorCode pErrorCode);
 
@@ -210,7 +267,7 @@ udata_enumUTrie();
  */
 U_CAPI int32_t U_EXPORT2
 udata_swapDataHeader(const UDataSwapper *ds,
-                     char *data, int32_t length,
+                     void *data, int32_t length,
                      UBool preflight,
                      UErrorCode *pErrorCode) {
     DataHeader *Header;
@@ -239,6 +296,8 @@ udata_swapDataHeader(const UDataSwapper *ds,
 
     /* Most of the fields are just bytes and need no swapping. */
     if(!preflight) {
+        char *s;
+
         /* swap headerSize */
         ds->swapArray16(ds, &pHeader->dataHeader.headerSize, 2, FALSE, pErrorCode);
 
@@ -247,12 +306,12 @@ udata_swapDataHeader(const UDataSwapper *ds,
 
         /* swap copyright statement after the UDataInfo */
         infoSize+=sizeof(pHeader->dataHeader);
-        data+=infoSize;
+        s=data+infoSize;
         headerSize-=infoSize;
         /* get the length of the string */
-        for(length=0; length<headerSize && data[length]!=0; ++length) {}
+        for(length=0; length<headerSize && s[length]!=0; ++length) {}
         /* swap the string contents */
-        ds->swapInvChars(ds, data, length, FALSE, pErrorCode);
+        ds->swapInvChars(ds, s, length, FALSE, pErrorCode);
     }
 
     return headerSize;
@@ -267,7 +326,7 @@ static const struct {
 
 U_CAPI int32_t U_EXPORT2
 udata_swap(const UDataSwapper *ds,
-           char *data, int32_t length,
+           void *data, int32_t length,
            UBool preflight,
            UErrorCode *pErrorCode) {
     DataHeader *Header;
@@ -309,7 +368,7 @@ udata_swap(const UDataSwapper *ds,
 
 U_CAPI int32_t U_EXPORT2
 udata_swapResourceBundle(const UDataSwapper *ds,
-                         char *data, int32_t length,
+                         void *data, int32_t length,
                          UBool preflight,
                          UErrorCode *pErrorCode) {
     /*

@@ -1,0 +1,366 @@
+<html lang="en-US">
+<head>
+<title>Ideas for Charset detection</title>
+</head>
+<body>
+  <h1>Ideas for Charset detection</h1>
+  <p>Goal: take a block of bytes (2B..xMB) and try to determine with some certainty
+    the text encoding and the main language.
+    Assume that the input is actually real text in a written language &mdash;
+    not random text, "gibberish", or in a binary format.</p>
+
+  <p>The general idea is to combine multiple methods that each are designed
+    work well on part of the problem, but only the combination is expected to
+    work well on "all" texts.
+    In principle, go from simple, fast methods to more complicated ones as necessary.
+    Some algorithms can be used in parallel, feeding input bytes to multiple
+    "engines", or what <a href="#netscape61">Shanjian</a> calls
+    Parallel State Machines.</p>
+
+  <p>Existing methods appear to be limited to the usage cases of their applications.
+    For example, the <a href="#netscape61">Netscape 6.1</a> charset detection
+    concentrates on emails and web pages, which seems to ignore UTF-32, EBCDIC, and SCSU.</p>
+
+  <h2>Separate Methods</h2>
+  <ul>
+    <li>Note that many of these methods may work better if "noise" characters are filtered out.
+      Such "noise" consists of non-letters, especially white space, punctuation, and
+      content-specific syntax characters like HTML or XML markup.</li>
+    <li>Note also that these "noise" characters on the other hand can serve in
+      the detection of the basic encoding.<br>
+      For example, if the document is in XML, then the first few characters are known and
+      can be compared to their byte encodings in a small set of encoding scheme families.
+      Also, seeing if space (0x20), CR or LF (0xd or 0xa) are preceded or followed by 0 bytes
+      can be used to detect UTF-16BE/LE and UTF-32BE/LE.</li>
+    <li>Test for Unicode signature byte sequences</li>
+    <li>Test for encoding schemes (with state machines):<br>
+      7BIT, Shift-JIS, GB 2312=EUC-CN=EUC-KR, GBK, GB 18030, EUC-JP, ISO-2022, HZ;<br>
+      note that ISO-2022 and HZ are (typically) subtypes of 7BIT</li>
+    <li>When large scripts are expected (with MBCS encoding schemes), one can test for the
+      frequency of single characters (which are tested as one- or two-byte sequences).
+      For example, check if for some language the N (100s, 1000s) most common characters (byte sequences)
+      occur in the text frequently or infrequently, check for characters that occur only in some
+      language, or not at all in some language.</li>
+    <li>When small scripts are expected (with SBCS encoding schemes), one can test for the
+      frequency of character pairs (byte pairs).
+      <a href="#netscape61">Netscape 6.1</a> analyzes large amounts of text in particular
+      charset/language combinations and tests input text for <em>rarely</em> occuring
+      byte pairs in a <em>negative</em> sequence test.</li>
+<!--
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+-->
+  </ul>
+
+  <h2>References</h2>
+  <p><a name="netscape61" href="#netscape61">Netscape 6.1</a> implements charset
+    detection with a mixture of Parallel State Machines for encoding detection,
+    UTF-16 BOM testing, and byte/di-byte frequency analysis.
+    See the presentation at IUC 19, <a href="http://www.unicode.org/iuc/iuc19/program.html">B6, A Composite Approach to Language/Encoding Detection</a>.
+    See also Mozilla bug number 33337.</p>
+
+  <hr>
+  <p><i>Discussion about charset detection on the <a href="mailto:www-international@w3.org">www-international@w3.org</a>
+  mailing list, snapshot from 2001-sep-06:</i></p>
+  <pre>
+  ----- Original Message -----
+  From: &quot;Thierry Sourbier&quot; &lt;webmaster@i18ngurus.com&gt;
+  To: &quot;W3intl (E-mail)&quot; &lt;www-international@w3.org&gt;
+  Sent: Thursday, September 06, 2001 21:17
+  Subject: Re: auto-detecting the character encoding of an uploaded file
+
+  &gt; &gt; Yes. Shift_JIS can have bytes in the 0x80-0x9F range, but Latin-1
+  doesn't.
+  &gt; &gt; If there is such a byte, Shift_JIS cannot be misinterpreted as
+  Latin-1.
+  &gt; &gt; It may be misinterpreted as windows-1252, but that's a different
+  story.
+  &gt;
+  &gt; The value of one byte may indeed not be enough to differentiate
+  between
+  &gt; various encodings, but for most european languages it is fairly rare
+  to
+  have
+  &gt; consecutive extended characters (by extended I mean with a code value
+  above
+  &gt; 127). Therefore a Shift-JIS encoded Japanese text and a European
+  &gt; windows-1252 one are fairly easy to differentiate when you look at the
+  &gt; entire stream.
+  &gt;
+  &gt; Lenny, you might want to have a look at TextCat. This little tool
+  (which
+  &gt; source code is available) helps you recognize 69 languages and
+  encoding
+  &gt; combinations. It probably can easily be extended to more. Byte pattern
+  &gt; analysis is probably the most generic way to go, it gives great result
+  even
+  &gt; on fairly small text size.
+  &gt;
+  &gt; Text cat can be found at:
+  &gt; http://odur.let.rug.nl/~vannoord/TextCat/
+  &gt;
+  &gt; More links on languages indentification tools &amp; techniques can be
+  found
+  at:
+  &gt; http://www.i18ngurus.com/docs/998504805.html
+  &gt;
+  &gt; Cheers,
+  &gt; Thierry
+  &gt;
+  &gt;
+  &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
+  &gt; www.i18ngurus.com - Open Internationalization Resources Directory
+  </pre>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <font FACE="Helv" SIZE="2" COLOR="#800080">
+  <p>----- Message from Merle Tenney &lt;Merle.Tenney@corp.palm.com&gt; on Thu,
+  6 Sep 2001 14:20:51 -0700 -----</p>
+  </font>
+  <table CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="1177">
+    <tr>
+      <td WIDTH="5%"><b><font FACE="Times New Roman" COLOR="#000000">
+        <p ALIGN="RIGHT">To:</font></b></td>
+      <td WIDTH="95%"><font FACE="Times New Roman" COLOR="#000000">
+        <p>&quot;'Bob Jung'&quot; &lt;bobj@netscape.com&gt;, Martin Duerst &lt;duerst@w3.org&gt;</font></td>
+    </tr>
+    <tr>
+      <td WIDTH="5%"><b><font FACE="Times New Roman" COLOR="#000000">
+        <p ALIGN="RIGHT">cc:</font></b></td>
+      <td WIDTH="95%"><font FACE="Times New Roman" COLOR="#000000">
+        <p>vinod@filemaker.com, Lenny Turetsky &lt;LTuretsky@salesforce.com&gt;,
+        &quot;W3intl (E-mail)&quot; &lt;www-international@w3.org&gt;, Shanjian
+        Li &lt;shanjian@netscape.com&gt;, momoi@netscape.com</font></td>
+    </tr>
+    <tr>
+      <td WIDTH="5%"><b><font FACE="Times New Roman" COLOR="#000000">
+        <p ALIGN="RIGHT">Subject:</font></b></td>
+      <td WIDTH="95%"><font FACE="Times New Roman" COLOR="#000000">
+        <p>RE: auto-detecting the character encoding of an uploaded file</font></td>
+    </tr>
+  </table>
+
+  <p>&nbsp;</p>
+  <pre>
+  Thanks, Bob, for the reference to your team's upcoming paper (and hi, by
+  the
+  way).
+  Most of this discussion has focused on subtle differences in legal
+  codepoints in various encodings and legal patterns of bytes in encodings.
+  There is another approach, though, which is much more effective and gives
+  you valuable additional information to boot. That is a system based on
+  relative byte and n-gram frequencies, which have characteristic patterns
+  for
+  a given pair of language and encoding. So in English, for example,
+  &quot;e&quot;,
+  &quot;th&quot;, &quot;tion&quot;, and &quot; the &quot; are quite common,
+  whereas in Spanish &quot;os &quot;,
+  &quot;ción&quot;, and &quot; un &quot; are quite common. In different
+  encodings, say Windows
+  1252, MacRoman, UTF-8, UTF-16BE, and UTF-16LE, this will translate into
+  different relative n-gram frequencies.
+  The way the system works is that first a development version is exposed to
+  a
+  reasonable corpus of a particular language in a particular encoding. For
+  some reason, 100K words seems to stand out in my mind. The system then
+  empirically calculates the frequencies for this corpus, and stores the
+  salient frequencies in a table. And the amazing thing is that it is fast
+  and accurate, and it requires zero intervention by encoding specialists or
+  linguists. This table is packaged up with the tables for the other
+  languages and encodings previously profiled and these tables are included
+  with the auto-detection software, which is normally bundled with a browser,
+  search engine, word processor, etc. In actual use, a passage of user text
+  has *its* n-gram frequencies calculated on the fly, and these are compared
+  to the stored profiles, and a match is made for the profile that most
+  closely matches the sample. In practice, it is surprisingly good and works
+  on a surprisingly short text sample. You can usually determine the language
+  and encoding of the sample with near certainty in a line or two of text.
+  To the best of my knowledge, this approach was first proposed and developed
+  by Ken Beesley in the late 80s while he was at ALP Systems. Here is a
+  reference to that early work:
+  http://www.xrce.xerox.com/people/beesley/langid.html
+  Ken subsequently joined Xerox PARC and then XRCE in Grenoble, where the
+  work
+  was picked up. It was later commercialized by Xerox's spin-off InXight as
+  part of their LinguistX Platform product:
+  http://www.inxight.com/products_sp/linguistx/index.html
+  I know that Microsoft has developed a similar technology, which is shown
+  off
+  quite well in their multilingual spelling checking in Word. However, I
+  don't think it is available to developers outside of Microsoft. Inso also
+  had a competitive technology, which they sold to Lernout &amp; Hauspie. It
+  is
+  the now called the IntelliScope Language Recognizer, and it is part of
+  their IntelliScope Retrieval Toolkit, described here:
+  http://www.lhsl.com/tech/icm/retrieval/toolkit/lr.asp
+  I can't tell from your brief description, Bob, if n-gram frequencies (under
+  a different name) are part of your Mozilla work or not. If they're not,
+  they should be. :-)
+  The bottom line, folks, is that there are a lot better technologies
+  available which allow you to automatically detect encodings, and they come
+  with the tremendous additional benefit of being able to identify the
+  language as well. We can all imagine lots of ways we could use that
+  information. Maybe some of you will start sniffing down a different trail
+  for a solution here....
+  Merle
+  &gt; -----Original Message-----
+  &gt; From: bobj@netscape.com [mailto:bobj@netscape.com]
+  &gt; Sent: Thursday, September 06, 2001 8:11 PM
+  &gt; To: Martin Duerst
+  &gt; Cc: vinod@filemaker.com; Lenny Turetsky; W3intl (E-mail); Shanjian Li;
+  &gt; momoi@netscape.com
+  &gt; Subject: Re: auto-detecting the character encoding of an uploaded file
+  &gt;
+  &gt;
+  &gt; FYI, there will be a paper presented at the Nineteenth International
+  &gt; Unicode Conference (IUC19), to be held on September 10 - 14,
+  &gt; 2001 in San
+  &gt; Jose, California :
+  &gt;
+  &gt; A Composite Approach to Language/Encoding Detection
+  &gt; by Shanjian Li &amp; Katsuhiko Momoi - Netscape Communications
+  &gt;
+  &gt; Session B6: Wednesday, September 12, 2:50 pm - 3:30 pm
+  &gt;
+  &gt; Abstract: http://www.unicode.org/iuc/iuc19/a322.html
+  &gt;
+  &gt; And since this is part of Mozilla, it is all open source!
+  &gt;
+  &gt; http://lxr.mozilla.org/seamonkey/source/extensions/universalchardet/
+  &gt;
+  &gt; -Bob
+  &gt;
+  &gt; Martin Duerst wrote:
+  &gt;
+  &gt; &gt; At 13:51 01/09/05 -0700, Vinod Balakrishnan wrote:
+  &gt; &gt;
+  &gt; &gt;&gt; Lenny ,
+  &gt; &gt;&gt;
+  &gt; &gt;&gt; Just some thoughts.
+  &gt; &gt;&gt;
+  &gt; &gt;&gt; Since you have mentioned Shift-JIS,
+  &gt; &gt;
+  &gt; &gt;
+  &gt; &gt; As a charset, spelled shift_jis (case doesn't matter, but the
+  &gt; &gt; underscore does).
+  &gt; &gt;
+  &gt; &gt;
+  &gt; &gt;&gt; there is no guarantee that every other
+  &gt; &gt;&gt; byte in UTF-16 is zero especially for non-us systems like
+  &gt; &gt;&gt; Japanese/European
+  &gt; &gt;&gt; .
+  &gt; &gt;
+  &gt; &gt;
+  &gt; &gt; No. But if you see even a single zero byte, then the chance that
+  the
+  &gt; &gt; document is in UTF-16 is very high.
+  &gt; &gt;
+  &gt; &gt;
+  &gt; &gt;&gt; Also there is no significance for BOM for UTF-8, which
+  &gt; means not all
+  &gt; &gt;&gt; applications will add a BOM for the UTF-8 text.
+  &gt; &gt;
+  &gt; &gt;
+  &gt; &gt; Yes indeed, for many reasons, adding a BOM to UTF-8 texts is
+  &gt; &gt; discouraged. Detecting UTF-8 is easy enough without a BOM.
+  &gt; &gt;
+  &gt; &gt;
+  &gt; &gt;&gt; Finally, I don't think we
+  &gt; &gt;&gt; can come up with an auto-detect algorithm for detecting
+  &gt; &gt;&gt; Latin-1/UTF-*/Shift-JIS.
+  &gt; &gt;
+  &gt; &gt;
+  &gt; &gt; For all these, it's not too difficult. Shift-JIS uses bytes in
+  &gt; &gt; the 0x80-0x9F range, and has specific patterns. If there are
+  &gt; &gt; only very few characters outside us-ascii, it may not work,
+  &gt; &gt; but with more non-us-ascii characters, the probability
+  &gt; &gt; of success is going up very quickly.
+  &gt; &gt;
+  &gt; &gt;
+  &gt; &gt; Regards, Martin.
+  &gt; &gt;
+  &gt;
+  &gt;
+  </pre>
+  <font FACE="Helv" SIZE="2" COLOR="#800080">
+  <p>&nbsp;</p>
+  <p>----- Message from vinod_balakrishnan@filemaker.com (Vinod Balakrishnan) on
+  Thu, 6 Sep 2001 10:40:14 -0700 -----</p>
+  </font>
+  <table CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="883">
+    <tr>
+      <td WIDTH="7%"><b><font FACE="Times New Roman" COLOR="#000000">
+        <p ALIGN="RIGHT">To:</font></b></td>
+      <td WIDTH="93%"><font FACE="Times New Roman" COLOR="#000000">
+        <p>&quot;Martin Duerst&quot; &lt;duerst@w3.org&gt;, &quot;Lenny Turetsky&quot;
+        &lt;LTuretsky@salesforce.com&gt;, &quot;W3intl \(E-mail\)&quot;
+        &lt;www-international@w3.org&gt;</font></td>
+    </tr>
+    <tr>
+      <td WIDTH="7%"><b><font FACE="Times New Roman" COLOR="#000000">
+        <p ALIGN="RIGHT">Subject:</font></b></td>
+      <td WIDTH="93%"><font FACE="Times New Roman" COLOR="#000000">
+        <p>RE: auto-detecting the character encoding of an uploaded file</font></td>
+    </tr>
+  </table>
+  
+  <pre>
+  &gt;For all these, it's not too difficult. Shift-JIS uses bytes in
+  &gt;the 0x80-0x9F range, and has specific patterns. If there are
+  &gt;only very few characters outside us-ascii, it may not work,
+  &gt;but with more non-us-ascii characters, the probability
+  &gt;of success is going up very quickly.
+  Shift-JIS represent the trailing bytes of double byte in 0x40-0xF0 range (
+  only the leading byte is in high ASCII range ) . Also the Hankaku (single
+  byte) Kana is represented as single byte in the high ASCII range. A
+  Japanese
+  text in Shift-JIS contains single byte kana and Kanji characters can be
+  misinterpreted as Latin-1
+  -Vinod
+  -----Original Message-----
+  From: Martin Duerst [mailto:duerst@w3.org]
+  Sent: Wednesday, September 05, 2001 6:36 PM
+  To: vinod@filemaker.com; Lenny Turetsky; W3intl (E-mail)
+  Subject: RE: auto-detecting the character encoding of an uploaded file
+  &nbsp;
+  At 13:51 01/09/05 -0700, Vinod Balakrishnan wrote:
+  &gt;Lenny ,
+  &gt;
+  &gt;Just some thoughts.
+  &gt;
+  &gt;Since you have mentioned Shift-JIS,
+  As a charset, spelled shift_jis (case doesn't matter, but the underscore
+  does).
+  &nbsp;
+  &gt;there is no guarantee that every other
+  &gt;byte in UTF-16 is zero especially for non-us systems like
+  Japanese/European
+  &gt;.
+  No. But if you see even a single zero byte, then the chance that the
+  document is in UTF-16 is very high.
+  &nbsp;
+  &gt;Also there is no significance for BOM for UTF-8, which means not all
+  &gt;applications will add a BOM for the UTF-8 text.
+  Yes indeed, for many reasons, adding a BOM to UTF-8 texts is
+  discouraged. Detecting UTF-8 is easy enough without a BOM.
+  &nbsp;
+  &gt;Finally, I don't think we
+  &gt;can come up with an auto-detect algorithm for detecting
+  &gt;Latin-1/UTF-*/Shift-JIS.
+  For all these, it's not too difficult. Shift-JIS uses bytes in
+  the 0x80-0x9F range, and has specific patterns. If there are
+  only very few characters outside us-ascii, it may not work,
+  but with more non-us-ascii characters, the probability
+  of success is going up very quickly.
+
+  Regards, Martin.
+  </pre>
+  <p>&nbsp;</p>
+</body>
+</html>

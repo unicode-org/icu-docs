@@ -18,6 +18,7 @@ body         { font-family: Times New Roman }
 p            { font-family: Times New Roman }
 li           { font-family: Times New Roman }
 th           { background-color: #CCCCFF }
+h2           { page-break-before: always }
 -->
 </style>
 </head>
@@ -25,33 +26,29 @@ th           { background-color: #CCCCFF }
 <body>
 
 <h1 align="center">ICU Collation Design Documentation</h1>
-<h3 align="center">Draft #15h, MD/2000-03-02, <a href="ICU_collation_design.htm">Latest 
-Version</a></h3>
-<p align="left">This document describes the proposed revisions to Collation in 
-ICU. See <a href="#Modifications">Modifications</a> for the latest changes to 
-the document.
-<h2>Contents</h2>
+<h3 align="center">Version #16</h3>
+<h3 align="center">2000-03-19</h3>
+<h3 align="center"><i><a href="mailto:mark.davis@us.ibm.com">mailto:mark.davis@us.ibm.com</a></i></h3>
+<h3 align="center">(<a href="ICU_collation_design.htm">Latest Version</a>)</h3>
+<hr width="50%">
+<h2 class="bb">Contents</h2>
 <ol>
   <li><a href="#Introduction">Introduction</a></li>
-  <li><a href="#Requirements">Requirements</a>
+  <li><a href="#CollationElementFormat">Collation Elements</a>
     <ol>
-      <li><a href="#Performance">Performance</a></li>
+      <li><a href="#Fractional_Collation_Elements">Fractional Collation Elements</a></li>
+      <li><a href="#CollationElementFormat">Collation Element Format</a></li>
     </ol>
   </li>
-  <li><a href="#Data_Tables">Data Tables</a>
+  <li><a href="#Forming_Sort_Keys">Forming Sort Keys</a>
     <ol>
-      <li><a href="#CollationElements">Collation Elements</a></li>
-      <li><a href="#Forming_Sort_Keys">Forming Sort Keys</a>
-        <ul>
-          <li><a href="#French">French</a></li>
-          <li><a href="#Quarternary">Quarternary</a></li>
-          <li><a href="#Case_Handling">Case Handling</a></li>
-          <li><a href="#Compression">Compression</a></li>
-          <li><a href="#Stack_Buffers">Stack Buffers</a></li>
-          <li><a href="#Appending_Levels">Appending Levels</a></li>
-          <li><a href="#Identical_Strength">Identical Strength</a></li>
-        </ul>
-      </li>
+      <li><a href="#French">French</a></li>
+      <li><a href="#Quarternary">Quarternary</a></li>
+      <li><a href="#Case_Handling">Case Handling</a></li>
+      <li><a href="#Compression">Compression</a></li>
+      <li><a href="#Stack_Buffers">Stack Buffers</a></li>
+      <li><a href="#Appending_Levels">Appending Levels</a></li>
+      <li><a href="#Identical_Strength">Identical Strength</a></li>
     </ol>
   </li>
   <li><a href="#String_Compare">String Compare</a>
@@ -59,6 +56,7 @@ the document.
       <li><a href="#Backup">Backup</a></li>
     </ol>
   </li>
+  <li><a href="#Data_Tables">Data Tables</a></li>
   <li><a href="#Fetching_CEs">Fetching CEs</a>
     <ol>
       <li><a href="#General">General</a>
@@ -111,9 +109,6 @@ the document.
             <p align="left"><a href="#Assigning_Expansions">Assigning Expansions</a></li>
           <li>
             <p align="left"><a href="#Tailoring_Case_Bit">Tailoring Case Bit</a></li>
-          <li>
-            <p align="left"><a href="#Japanese_Collation_Tailoring">Japanese 
-            Collation Tailoring</a></li>
         </ul>
       </li>
     </ol>
@@ -137,20 +132,45 @@ the document.
       <li><a href="#Compressed_Primary_Weights">Compressed Primary Weights</a></li>
     </ol>
   </li>
-  <li><a href="#FAQ">FAQ</a></li>
 </ol>
 <ul>
   <li><a href="#Appendix_1">Appendix 1: Japanese Sort Order</a></li>
   <li><a href="#Appendix_2">Appendix 2: Compressing Primary Weights</a></li>
   <li><a href="#Appendix_3">Appendix 3: Data Files</a></li>
+  <li><a href="#Requirements">Appendix 4: Requirements</a>
+    <ol>
+      <li><a href="#Performance">Performance</a></li>
+    </ol>
+  </li>
   <li><a href="#Modifications">Modifications</a></li>
 </ul>
+<hr width="50%">
 <h2>1 <a name="Introduction">Introduction</a></h2>
-This document describes the proposed revisions to Collation in ICU. Readers 
-should already be familiar with the following document before proceeding:
+<p align="left">This document describes the proposed revisions to Collation in 
+ICU. These revisions are for full UCA compliance, much better performance, much 
+smaller sortkeys, faster initialization, smaller memory footprint, smaller disk 
+footprint, additional parametric control, and additional tailoring control.
+<p align="left">The techniques applied in this implementation are useful for a 
+broader audience than simply collation. While Unicode is far, far more efficient 
+than dealing with a multiplicity of separate code pages, the sheer size of the 
+character set (from 0 to 10FFFF<sub>16</sub>) means that different types of 
+algorithms and data structures are useful. The mechanisms used in collation can 
+be useful in many other types of processing.</p>
+<p align="left">However, collation itself does have many special 
+characteristics. The goal is to have a uniform, fast mechanism for providing an 
+ordering of strings that matches, to the extent possible, user perceptions of 
+the &quot;correct&quot; order for their language. This involves features like 
+multiple strength levels, contracting characters, and expanding characters, plus 
+oddities such as French secondaries or Thai reordering. We will not dive into a 
+discussion of these features; instead, readers must first read and be familiar 
+with the following documents. <i>Without such preparation, the rest of this 
+document will make little sense.</i></p>
 <ul>
-  <li><a href="http://www.unicode.org/unicode/reports/tr10/">UTS #10: Unicode 
-    Collation Algorithm</a> (UCA).
+  <li>
+    <p align="left"><i>Section 5.17 Sorting and Searching</i> from <i>The 
+    Unicode Standard</i></li>
+  <li><a href="http://www.unicode.org/unicode/reports/tr10/">Unicode Technical 
+    Standard #10: Unicode Collation Algorithm</a> (UCA).
     <ul>
       <li>Examples from the current UCA table can be seen at <a
         href="http://www.unicode.org/unicode/reports/tr10/charts/Collation00.html">Collation 
@@ -158,375 +178,337 @@ should already be familiar with the following document before proceeding:
     </ul>
   </li>
 </ul>
-<p>The document is liberally sprinkled with code fragments. These are meant to 
+<p>This document is liberally sprinkled with code fragments. These are meant to 
 be illustrative, and will not necessarily track or match the final 
-implementation, nor even necessarily be consistent with one another!</p>
+implementation, nor even necessarily be consistent with one another.</p>
 <blockquote>
-  <p align="left"><i><b>Note: </b>This is a working document. The organization 
-  of the text could be improved, and it needs more of an introduction, but we 
-  probably won't take the time to do it until later. Not all subsections are 
-  listed in the contents. Feedback is welcome: <a
-  href="mailto:mark.davis@us.ibm.com">mailto:mark.davis@us.ibm.com</a></i></p>
+  <p align="left"><i><b>Note: </b>This is a working document, and often does not 
+  have the cleanest exposition. It has evolved with the development project, and 
+  documents most heavily the parts that we found to be the trickiest.</i></p>
 </blockquote>
-<p><font color="#FF0000">[TBD: Add more background in introduction]</font></p>
-<h2>2 <a name="Requirements">Requirements</a></h2>
-<p>The rest of the document proceeds as if all the following requirements and 
-options are being done, so that the architecture is complete for the future. 
-However, options will only be considered in the 1.7/1.8 timeframe if 
-implementation falls out of the rearchitecture work.&nbsp; (Some 1.8 
-functionality may be in 1.7, if it is easier to integrate then.)</p>
-<h3>ICU4c 1.7 Requirements <font size="3">—</font> Not in priority order</h3>
-<ol>
-  <li>All of the current features will be maintained (with one semantic change 
-    — see API).</li>
-  <li>Improve performance to the requisite level. First priority is string 
-    compare, next is sortkey. (perf)</li>
-  <li>Fix Japanese tailoring data to be more MS Office compatible [but see 1.8 
-    for complete story] (data)
-    <ul>
-      <li>Level 1 = base letters,</li>
-      <li>Level 2 = plain, daku-ten, handaku-ten</li>
-      <li>Level 3 = small (katakana, hiragana, choo-on kigoo), large (katakana, 
-        hiragana, choo-on kigoo)</li>
-    </ul>
-  </li>
-  <li>Add SafeClone API (multi-thread)</li>
-  <li>Allow sort-keys to be valid C-Strings: e.g. avoid null bytes, add 
-    null-byte terminator.
-    <ul>
-      <li>This makes our sort keys comparable with strcmp() in addition to 
-        memcmp(). It is like ANSI C strxfrm() and Win32 LCMapString().</li>
-    </ul>
-  </li>
-  <li>Add all API and rule syntax, even if it is not functional in this release</li>
-  <li><b>Binary Compatibility of Sort Keys</b>
-    <ol>
-      <li><b>1.7 is an enhancement release, not a reference release.</b></li>
-      <li><b>1.7 sort keys are only for testing, not for release products.</b></li>
-      <li><b>1.7 sort keys will not be compatible with 1.6 sort keys or 1.8 sort 
-        keys.</b></li>
-    </ol>
-  </li>
-</ol>
-<h3>ICU4j 1.8 Requirements <font size="3">—</font> Not in priority order</h3>
-<ol>
-  <li>Be fully conformant to the UCA (function)</li>
-  <li>Allow the main UCA table to be flat: static, read-only, and shared among 
-    languages. (footprint, perf)</li>
-  <li>Other performance improvements as described in this document. (perf)</li>
-  <li>Reduce A-Z primaries to single byte weight (perf, footprint)</li>
-  <li>Add complete versioning (function)</li>
-  <li>Support additional Japanese case level. (for MS Office compatibility)
-    <ol>
-      <li>Level 1 = base letters,</li>
-      <li>Level 2 = plain, daku-ten, handaku-ten</li>
-      <li>Level 3 = small, large</li>
-      <li>Level 4 = katakana, hiragana, choo-on kigoo</li>
-    </ol>
-  </li>
-  <li>Provide parametric case reversal, e.g. upper before lower or lower before 
-    upper (function: for Danish std)</li>
-  <li>Ignore accents (actually ignore all levels <i><b>except</b></i> Primary 
-    and Case Level) (function)</li>
-  <li>Provide better surrogate support (req. for GB 18030 and Unicode 3.1)</li>
-  <li>Use compression techniques for shorter sort-keys, reducing memory and 
-    database footprint (perf, footprint)</li>
-  <li><b>Binary Compatibility of Sort Keys</b></li>
-  <ol>
-    <li><b>1.8 sort keys will not be compatible with 1.6 sort keys or 1.7 sort 
-      keys.</b></li>
-    <li><b>However, all future versions will provide a mechanism for generating 
-      1.8-binary-compatible sort keys. See <a href="#Versioning">Versioning</a></b></li>
-  </ol>
-</ol>
-<h3>Post 1.8 Requirements</h3>
-<ol>
-  <li>Charset Sorting (special value in rules indicates codes are sorted by 
-    charset values): (footprint, maintenance)</li>
-  <li>Script Order (allow parametric rearrangement of scripts, e.g. Japanese 
-    &lt; Latin &lt; Greek vs. Latin &lt; Greek &lt; Japanese) (function)</li>
-  <li>Registration of Collations.</li>
-  <li>Surrogate tables. Surrogates are already handled, but the special tables 
-    would reduce the footprint and memory usage substantially where large 
-    numbers of supplementary characters are added.</li>
-  <li>Tailoring to add characters <i>before</i> other characters.</li>
-  <li>Undefined value positioning</li>
-</ol>
-<p>These features are not completely described here, but sufficient information 
-should be provided so that we don't make design decisions that would make them 
-harder (or impossible) to do in the future.</p>
-<h3>2.1 <a name="Performance">Performance</a></h3>
-Main items (not in priority order)
+<p align="left">See <a href="#Modifications">Modifications</a> for the latest 
+changes.</p>
+<h2 align="left">2 <a name="Collation_Elements">Collation Elements</a></h2>
+<p align="left">The fundamental data element used in collation is the collation 
+element (CE). The basic algorithm for sort keys is to fetch a collation element 
+for each character, then extract different level fields from the CE, route those 
+level fields to different weight lists, then concatenate the weight lists 
+together. This is described much more detail in <a
+href="http://www.unicode.org/unicode/reports/tr10/">UTS #10: Unicode Collation 
+Algorithm</a> in some detail, and we won't repeat that discussion here.</p>
+<p align="left">ICU uses a type of collation element that differs somewhat from 
+what is in UCA. It is called a <i>fractional collation element</i>, and 
+described below. Although it differs in format from the integral collation 
+element used in UCA, it can be used to produce the same results, but with the 
+advantages of smaller sort-key size.</p>
+<h3 align="left">2.1 <a name="Fractional_Collation_Elements"><b>Fractional 
+Collation Elements</b></a></h3>
+<p align="left">The following section was written originally in FAQ form. It has 
+not been restructured yet to fit in with the format of the rest of the document.</p>
+<p class="q" align="left">Q: A collation weight in the UCA is defined to be a 16 
+bit value (aka wyde). This will surely fail when Unicode 3.1 rolls around, with 
+over 90,000 characters!</p>
+<p class="a" align="left">A: The UCA makes provision for more than 64K weight 
+values: see <a
+href="http://www.unicode.org/unicode/reports/tr10/#Large Weight Values">Section 
+6.2 Large Weight Values</a> and also <a
+href="http://www.unicode.org/unicode/reports/tr10/#Escape hatch">6.3.2 Escape 
+Hatch</a>. This mechanism is also used in Weight Derivation, as in <a
+href="http://www.unicode.org/unicode/reports/tr10/#LegalCodePoints">7.1.2 Legal 
+code points</a>. It discusses using a sequence of two collation elements, of the 
+form:</p>
+<blockquote>
+  <div align="left">
+    <pre>[(X1+1).0000.0000], [yyyy.zzzz.wwww]</pre>
+  </div>
+</blockquote>
+<p class="q" align="left">Q: I find this hard to follow. Is there any other way 
+to explain the issue?</p>
+<p class="a" align="left">Ok. We can look at the weights in a different way, 
+which may help to clarify what is going on.</p>
+<p class="a" align="left">We'll define <i>fractional collation elements</i> to 
+be the same as standard collation elements except that each weight is a fraction 
+between zero and one (instead of being an integer from 1 to FFFF). For ease in 
+working with computers, these are binary fractions, represented as hexadecimal.</p>
+<p class="a" align="left"><i>Examples:</i></p>
 <ul>
-  <li>Coding style
-    <ul>
-      <li>Rewrite core code in C. C++ API will wrap the C core code.</li>
-      <li>Avoid use of objects.</li>
-      <li>Avoid function calls.</li>
-      <li>Fast-path Latin1.</li>
-    </ul>
-  </li>
-  <li>Restructure tables
-    <ul>
-      <li>Use flat-file to speed initialization, share memory</li>
-      <li>Use static Fractional UCA with separate tailoring to minimize memory 
-        usage</li>
-    </ul>
-  </li>
-  <li>Rearchitect CE fetching, sort-key generation
-    <ul>
-      <li>Change to use newer fetch/sort-key generation from CEs, as described 
-        below.</li>
-      <li>Use stack memory buffers for common case (with expansion if 
-        necessary).</li>
-      <li>Don't use two-pass to find size first.</li>
-      <li>Speed up Collation Element retrieval.</li>
-    </ul>
-  </li>
-  <li>Speed up Normalization performance
-    <ul>
-      <li>Avoid normalization where possible. Use CheckFCD for this.</li>
-      <li>Speed up the main normalization code.</li>
-    </ul>
-  </li>
-  <li>For string compare, check for identical prefixes.</li>
-  <li>Comparisons will be done against Win32 SDK CompareString() and LCMapString() 
-    APIs, to judge performance quality.</li>
+  <li>
+    <p class="a" align="left"><code>[0.000000000, 0.920000000, 0.02057A900]</code></li>
+  <li>
+    <p class="a" align="left"><code>[0.100000000, 0.A30000000, 0.02057A900]</code></li>
+  <li>
+    <p class="a" align="left"><code>[0.1202C456B, 0.78AF00000, 0.023A90000]</code></li>
 </ul>
-<h2>3 <a name="Data_Tables">Data Tables</a></h2>
-<p>A collation table, whether UCA or a tailored table, contains the following 
-subtables. It is in a flattened form that can be loaded as a DLL or into 
-read-only shared memory. The header contains offsets to all the other subtables, 
-plus the number of items in each subtable, plus various information that is used 
-in processing, such as the maximumPrimaryFactor. A CE is a uint32_t. A UChar is 
-16 bits.</p>
+<p class="a" align="left">With fractional collation elements, it is easy to see 
+that all Unicode code points (including the supplementary code points) could 
+have distinct primary mappings: there are innumerably many more than 10FFFF 
+possible fractions!</p>
+<p class="q" align="left">Q: Is that all there is to it?</p>
+<p class="a" align="left">Not quite. We still will have to turn these fractional 
+collation elements into well-formed standard collation elements that we can use 
+to build a sort key. To do that, we put some restrictions on the allowable 
+values for the fractional weights. By adopting these restrictions, we make the 
+conversion very simple, without limiting the indefinitely large range offered by 
+fractional weights.</p>
+<p class="a" align="left">Consider a fractional weight as broken into a sequence 
+of bytes of 2 hex digits each, excluding any trailing bytes that would be 
+entirely zero, and omitting the leading &quot;0.&quot;. (We could give a precise 
+numeric definition, but it is easier to think of it as simply taking bytes at a 
+time.)</p>
+<p class="a" align="left"><i>Example:</i></p>
 <blockquote>
-  <p><b>Note:</b> we make the processing faster by having offsets everywhere in 
-  the table be from the very start of the whole table, not from the start of the 
-  each subtable!</p>
-  <p>The order of the subtables is not determined, with one exception: because 
-  the offsets to the Expansion table have only 20 bits, we put that one first. 
-  The position of each table would be determined by looking up the offset in the 
-  header.</p>
+  <p class="a" align="left"><b>0.12C456A000000...</b> breaks into four bytes: <b>12 
+  C4 56 A0<br>
+  0.12C456A320000....</b> breaks into five bytes: <b>12 C4</b> <b>56 A3</b>&nbsp; 
+  <b>20</b></p>
 </blockquote>
-<table border="0" cellspacing="0" cellpadding="4">
+<p class="a" align="left">So the first example of fractional collation elements 
+becomes:</p>
+<p class="a" align="left"><i>Examples:</i></p>
+<ul>
+  <li>
+    <p class="a" align="left"><code>[,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    92,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 02 05 7A 90]</code></li>
+  <li>
+    <p class="a" align="left"><code>[10,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    A3,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 02 05 7A 90]</code></li>
+  <li>
+    <p class="a" align="left"><code>[12 02 C4 56 B0,&nbsp;&nbsp; 78 AF,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    02 3A 90]</code></li>
+</ul>
+<p class="a" align="left">Since we eventually will be showing that we could 
+convert these fractional collation weights into standard ones, we will put some 
+restrictions on the values taken by these fractions, based (not surprisingly) on 
+their bytes. Since we have wide latitude in choosing the precise values for the 
+fractional weights in setting up a collation table, these restrictions are not 
+at all onerous.</p>
+<p class="a" align="left"><b>R1. </b>No byte can be <b>00</b> or <b>01</b>.</p>
+<blockquote>
+  <p class="a" align="left">The reason for this rule is to avoid collision with 
+  the <i>level separator</i> and with<i> null bytes </i>when the fractional 
+  weight is eventually used in a sort key.</p>
+</blockquote>
+<p class="a" align="left"><i>Example:</i></p>
+<blockquote>
+  <p class="a" align="left"><b>12 C4 00 50</b> violates R1, since the third byte 
+  is zero.</p>
+</blockquote>
+<p class="a" align="left"><b>R2. </b>A fractional weight cannot exactly match 
+the initial bytes of another fractional weight at the same level.</p>
+<blockquote>
+  <p class="a" align="left">The reason for this rule is to avoid having sort 
+  keys where the starting bytes from one string are compared against the 
+  trailing bytes from another.</p>
+</blockquote>
+<p class="a" align="left"><i>Example:</i></p>
+<blockquote>
+  <p class="a" align="left">The two primary weights <b>A3 92 12 C4 50</b> and <b>A3 
+  92 12 C4</b> violate R2. If the second weight were <b>A3 92 12 C5</b> or <b>A3 
+  92 12 C4 52</b>, it would not violate R2.</p>
+  <p class="a" align="left">Allowing fractions to break this rule would cause a 
+  problem when these bytes are pushed into a sort key (see next question). Let's 
+  take an example where we just concentrate on the primary weights. Suppose x[1] 
+  = <b>A3</b>,&nbsp; y[1] = <b>A3 23</b>, and a[1] = <b>49</b>. Then we would 
+  get the following ordering:</p>
+  <table border="1">
+    <tr>
+      <td width="50%">a</td>
+      <td width="50%">[<b>49 01...</b>]</td>
+    </tr>
+    <tr>
+      <td width="50%">x</td>
+      <td width="50%">[<b>A3 01...</b>]</td>
+    </tr>
+    <tr>
+      <td width="50%">y</td>
+      <td width="50%">[<b>A3 23 01 ...</b>]</td>
+    </tr>
+    <tr>
+      <td width="50%">xa</td>
+      <td width="50%">[<b>A3 49 01...</b>]</td>
+    </tr>
+  </table>
+  <p class="a" align="left">Because the primary weights turn into different 
+  lengths, and they don't follow <b>R2</b>, we get incorrect behavior. If <b>R2</b> 
+  is followed, this can never happen, since &quot;x&quot; and &quot;y&quot; 
+  would have to differ at some point <i>before</i> we ran out of bytes on one 
+  side.</p>
+</blockquote>
+<p class="a" align="left"><b>R3. </b>No fractional collation element can have a 
+zero weight at Level N and a non-zero weight at Level N-1. Any collation 
+elements that violate this rule are called <i>ill-formed</i>.</p>
+<blockquote>
+  <p class="a" align="left">The reason for this rule is to avoid allowing 
+  character to transpose, and still have the same sort key (cf.&nbsp; <a
+  href="#Step 4">UCA §4.4, Step 4: Compare</a>).</p>
+</blockquote>
+<p class="a" align="left">Any fractional collation element that does not meet 
+these restrictions is called <i>ill-formed</i>.</p>
+<p class="q" align="left">Q: Once I have a well-formed fractional collation 
+element table, how do I generate a sort key?</p>
+<p class="a" align="left">A fractional collation element table can easily be 
+transformed into a standard one. Each fractional collation element is 
+transformed into a sequence of one <i>or more</i> standard collation elements:</p>
+<ul>
+  <li>
+    <p class="a" align="left">Break each fractional weight into a sequence of 
+    bytes.</li>
+  <li>
+    <p class="a" align="left">Take two bytes from each level to form a collation 
+    element.
+    <ul>
+      <li>
+        <p class="a" align="left">If there is an odd number of bytes, use <b>02</b> 
+        for the second byte.</li>
+    </ul>
+  </li>
+  <li>
+    <p class="a" align="left">If there are no more bytes for a particular level, 
+    use zero for the that level.</li>
+  <li>
+    <p class="a" align="left">If there are no more bytes for all levels, stop.</li>
+</ul>
+<p class="a" align="left"><i>Example:</i></p>
+<table border="1">
   <tr>
-    <td align="center" valign="top" width="16%">
-      <table border="1">
-        <tr>
-          <th width="100%">Header</th>
-        </tr>
-        <tr>
-          <td width="100%">info...</td>
-        </tr>
-        <tr>
-          <td width="100%">Expansions offset</td>
-        </tr>
-        <tr>
-          <td width="100%">Expansions count</td>
-        </tr>
-        <tr>
-          <td width="100%">Main·Index offset</td>
-        </tr>
-        <tr>
-          <td width="100%">Main·Index count</td>
-        </tr>
-        <tr>
-          <td width="100%">Main·Data offset</td>
-        </tr>
-        <tr>
-          <td width="100%">Main·Data count</td>
-        </tr>
-        <tr>
-          <td width="100%">Rules offset</td>
-        </tr>
-        <tr>
-          <td width="100%">Rules count</td>
-        </tr>
-        <tr>
-          <td width="100%">...</td>
-        </tr>
-      </table>
-    </td>
-    <td align="center" valign="top" width="16%">
-      <table border="1">
-        <tr>
-          <th width="100%">Expansions</th>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">...</td>
-        </tr>
-      </table>
-    </td>
-    <td align="center" valign="top" width="16%">
-      <table border="1">
-        <tr>
-          <th width="100%">Main·Index</th>
-        </tr>
-        <tr>
-          <td width="100%">index</td>
-        </tr>
-        <tr>
-          <td width="100%">index</td>
-        </tr>
-        <tr>
-          <td width="100%">...</td>
-        </tr>
-      </table>
-      &nbsp;
-      <table border="1" width="1%">
-        <tr>
-          <th width="100%">Main·Data</th>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">...</td>
-        </tr>
-      </table>
-    </td>
-    <td align="center" valign="top" width="16%">
-      <table border="1">
-        <tr>
-          <th width="100%">Contraction UChars</th>
-        </tr>
-        <tr>
-          <td width="100%">c1</td>
-        </tr>
-        <tr>
-          <td width="100%">c2</td>
-        </tr>
-        <tr>
-          <td width="100%">c2</td>
-        </tr>
-        <tr>
-          <td width="100%">...</td>
-        </tr>
-      </table>
-      &nbsp;
-      <table border="1">
-        <tr>
-          <th width="100%">Contraction Results</th>
-        </tr>
-        <tr>
-          <td width="100%">CE1</td>
-        </tr>
-        <tr>
-          <td width="100%">CE2</td>
-        </tr>
-        <tr>
-          <td width="100%">CE3</td>
-        </tr>
-        <tr>
-          <td width="100%">...</td>
-        </tr>
-        <tr>
-          <td width="100%">&nbsp;</td>
-        </tr>
-      </table>
-    </td>
-    <td align="center" valign="top" width="16%">
-      <table border="1">
-        <tr>
-          <th width="100%">Surrogate Trie·Index</th>
-        </tr>
-        <tr>
-          <td width="100%">index</td>
-        </tr>
-        <tr>
-          <td width="100%">index</td>
-        </tr>
-        <tr>
-          <td width="100%">...</td>
-        </tr>
-      </table>
-      &nbsp;
-      <table border="1">
-        <tr>
-          <th width="100%">Surrogate Trie·Data</th>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">CE</td>
-        </tr>
-        <tr>
-          <td width="100%">...</td>
-        </tr>
-      </table>
-    </td>
-    <td align="center" valign="top" width="16%">
-      <table border="1">
-        <tr>
-          <th width="100%">Rules</th>
-        </tr>
-        <tr>
-          <td width="100%">...a &lt;&lt;&lt; A &lt; b &lt;&lt;&lt; B...</td>
-        </tr>
-      </table>
-    </td>
+    <th>Fraction Collation Element</th>
+    <th>UCA Collation Element</th>
+    <th>In Sort Key</th>
+  </tr>
+  <tr>
+    <td>[12 02 C4, 78, 03]</td>
+    <td>[1202.7802.0302], [.C402.0000.0000]</td>
+    <td>[12 02 C4 02 <b>00 00</b> 78 02 <b>00 00</b> 03 02]</td>
   </tr>
 </table>
-<h3 align="left">3.1 <a name="CollationElements">Collation Elements</a></h3>
+<p class="a" align="left">Using this transformation, two fractional collation 
+elements will have the same relative ordering as their derived UCA collation 
+element sequences. Because the fractional collation elements can handle all 
+Unicode code points (even supplementary code points, above U+FFFF), so can the 
+derived UCA collation elements sequences.</p>
+<p class="a" align="left">All but the first collation element in the derived 
+sequence are called <i>continuation collation elements.</i> If you now look back 
+at the discussions in <a
+href="http://www.unicode.org/unicode/reports/tr10/#Large Weight Values">Section 
+6.2 Large Weight Values</a>, <a
+href="http://www.unicode.org/unicode/reports/tr10/#Escape hatch">6.3.2 Escape 
+Hatch</a>, and <a
+href="http://www.unicode.org/unicode/reports/tr10/#LegalCodePoints">7.1.2 Legal 
+code points</a>, you will see continuation collation elements that implicitly 
+represent fractional collation elements.</p>
+<p class="q" align="left">Q: Aren't the continuation collation elements in the 
+above example ill-formed?</p>
+<p class="a" align="left">The text of the UCA is not as clear as it should be on 
+that point. It says:</p>
+<blockquote>
+  <p class="a" align="left">Except in special cases, no collation element can 
+  have a zero weight at Level N and a non-zero weight at Level N-1. Any 
+  collation elements that violate this rule are called <i>ill-formed</i>. The 
+  reason for this will be explained under Step 4 of the main algorithm.</p>
+</blockquote>
+<p class="a" align="left">The &quot;special cases&quot; referred to in the text 
+are <i>precisely</i> the continuation collation elements that would result from 
+generating the collation element table from a fractional collation element 
+table. A reformulation in terms of fractional collation elements clears this up.</p>
+<p class="q" align="left">Q: In tailoring, I need to put a collation element 
+between two others. How can I do this without changing the original two values?</p>
+<p class="a" align="left">The easiest way to do this is to view the collation 
+element table as fractional collation elements, as described in the previous 
+questions. If you construct your original table so that you leave a bit of room 
+between adjacent collation elements, then you can always find intermediate 
+values for the weights at any level.</p>
+<p class="q" align="left">Q: What do you mean by &quot;a bit of room&quot;?</p>
+<p class="a" align="left">For two adjacent collation elements in the table, just 
+make sure that for each level there is at least one <i>valid</i> fractional 
+weight between the weights from those elements.</p>
+<p class="a" align="left"><i>Example:</i></p>
+<ul>
+  <li>
+    <p class="a" align="left"><b>AB C3</b> and <b>AB D0</b> have room:
+    <ul>
+      <li>
+        <p class="a" align="left">One could insert 13 different 2-byte 
+        fractions: <b>AB C4, AB C5, ..., AB CC;</b> or many more 3 or more byte 
+        fractions.</li>
+    </ul>
+  </li>
+  <li>
+    <p class="a" align="left"><b>AB CD</b> and <b>AB CF</b> have room:
+    <ul>
+      <li>
+        <p class="a" align="left">One could insert <b>AB CE</b>, or one could 
+        insert many more 3-byte fractions: <b>AB CE 02, AB CE 03, ...</b></li>
+    </ul>
+  </li>
+  <li>
+    <p class="a" align="left"><b>AB CD</b> and <b>AB CE</b> don't have room.
+    <ul>
+      <li>
+        <p class="a" align="left">While fractions of the form <b>AB CD xx</b> 
+        are between these values, they would violate <b>R2</b> above.</li>
+    </ul>
+  </li>
+  <li>
+    <p class="a" align="left"><b>AA FF</b> and <b>AB 02</b> don't have room.
+    <ul>
+      <li>
+        <p class="a" align="left">Inserting <b>AA FF xx</b> or <b>AB</b> would 
+        violate <b>R1.</b></li>
+      <li>
+        <p class="a" align="left">inserting <b>AB 00</b> or <b>AB 01</b> would 
+        violate <b>R2</b>.</li>
+    </ul>
+  </li>
+</ul>
+<p class="q" align="left">Q: So how do I determine the intermediate values?</p>
+<p class="a" align="left">First, determine how many weights you need, and then 
+how many valid weights are between the two given weights. Unless the fractional 
+weights have the same number of bytes <i>and</i> only differ in the last byte, 
+there will usually be far more weights than you need.&nbsp;If you know more 
+about the relative frequency of the characters in text, you can choose shorter 
+weights for the more frequent weights.</p>
+<p class="a" align="left">More precisely, see <a href="#Intermediate_CEs">Intermediate 
+CEs</a>.</p>
+<p class="q" align="left">Q: I use the mechanisms in <a href="#L2/L3 in 8 bits">UCA 
+§6.1.2, L2/L3 in 8 bits</a> to reduce my sort-key to less than half the size. 
+How can I use this continuation/tailoring method with bytes instead of wydes?</p>
+<p class="a" align="left">In the above, instead of adding <b>02</b> to 
+odd-byte-length weights, leave the bytes zero. When composing the sort key, just 
+omit any zero bytes when composing the sort key. Use <b>01</b> for the 
+LEVEL_SEPARATOR. Thus the above example would become the considerably shorter 
+key below:</p>
+<table border="1">
+  <tr>
+    <th>&nbsp;</th>
+    <th>Fraction Collation Element</th>
+    <th>UCA Collation Element</th>
+    <th>In Sort Key</th>
+  </tr>
+  <tr>
+    <th>Old</th>
+    <td>[12 02 C4, 78, 03]</td>
+    <td>[1202.7802.0302], [.C402.0000.0000]</td>
+    <td>[12 02 C4 02 <b>00 00</b> 78 02 <b>00 00</b> 03 02]</td>
+  </tr>
+  <tr>
+    <th>New</th>
+    <td>[12 02 C4, 78, 03]</td>
+    <td>[1202.7800.0300], [.C400.0000.0000]</td>
+    <td>[12 02 C4&nbsp; <b>01</b> 78 <b>01</b> 03]</td>
+  </tr>
+</table>
+<h3 align="left">2.2 <a name="CollationElementFormat">Collation Element Format</a></h3>
 <center>
-<p align="left">The fundamental building block for collation is the collation 
-element. ICU uses a single 32-bit value in the code and tables to represent 
-this. Sometimes the values are overloaded in the tables, depending where they 
-are used.</p>
-<p align="left">All of these are mechanisms for encoding a fractional collation 
-element (FCE: see <a href="#Fractional_Collation_Elements">Fractional Collation 
-Elements</a>) into 32-bit chunks, in a way that can be easily used in generating 
-sort keys. The different forms of CE are distinguished by whether the first 
+<p align="left">ICU uses a single 32-bit value in the code and tables to 
+represent a fractional collation element (FCE: see <a
+href="#Fractional_Collation_Elements">Fractional Collation Elements</a>) into 
+32-bit chunks, in a way that can be easily used in generating sort keys. Since 
+sometimes 32 bits is not enough, and sometimes exceptional processing must be 
+handled, there are different forms of CE that distinguished by whether the first 
 nybble is F or not.</p>
 <h4 align="left">Normal and Continuation</h4>
-<p align="left">The normal CE is of the following form. The first nybble of the 
-primary can never be F; this constraint is maintained by the data builder.&nbsp; 
-The Case bit can be used to form an extra Japanese weight level, or considered 
-part of the tertiary weight. In either case, a parameter can be used to invert 
-it, thus changing whether small is before large or the reverse. That parameter 
-can be either set in the rules or by a set call. If the Flag bit is set, it 
-means a Continuation CE. Continuation CEs can <i>only</i> occur in Expansions 
-(although not all Expansion CEs will be Continuations).</p>
+<p align="left">The normal CE is of the following form.</p>
 <div align="center">
-  <center>
   <table border="1" cellspacing="1">
     <tr>
       <td class="primary"><font size="2">P</font></td>
@@ -570,8 +552,16 @@ means a Continuation CE. Continuation CEs can <i>only</i> occur in Expansions
       <td colspan="6" class="tertiary">6b</td>
     </tr>
   </table>
-  </center>
 </div>
+<p align="left">The first nybble of the primary can never be F; this constraint 
+is maintained by the data builder.&nbsp; The Case bit can be used to form an 
+extra Japanese weight level, or considered part of the tertiary weight. In 
+either case, a parameter can be used to invert it, thus changing whether small 
+is before large or the reverse. That parameter can be either set in the rules or 
+by a set call. If the Flag bit is set, it means a Continuation CE. Continuation 
+CEs can <i>only</i> occur in Expansions (although not all Expansion CEs will be 
+Continuations). A continuation is used when the entire fraction for any of the 
+weight levels cannot fit into one CE.</p>
 <blockquote>
   <p align="left"><i>Note: </i>to meet validity constraints, a tertiary can only 
   be zero (IGNORE) if the primary <i>and</i> secondary are zero; the secondary 
@@ -659,7 +649,7 @@ used internal to the data table.</p>
 <div align="left">
   <pre align="left">if (ce &gt;= MIN_SPECIAL) ...</pre>
 </div>
-<h3 align="left">3.2 <a name="Forming_Sort_Keys">Forming Sort Keys</a></h3>
+<h2 align="left">3 <a name="Forming_Sort_Keys">Forming Sort Keys</a></h2>
 <pre align="left">const int CONTINUATION_MASK = 0x80;
 const int CASE_MASK = 0x40;
 
@@ -703,7 +693,7 @@ if (doSecondary) {
     performance win. We may add other special-case loops as well.</p>
   </blockquote>
 </div>
-<h4 align="left"><a name="French">French</a></h4>
+<h3 align="left">3.1 <a name="French">French</a></h3>
 <p align="left">If the FrenchSecondary flag is turned on, then the secondary 
 values in the continuation CEs are reversed. This is so that when the secondary 
 buffer itself is reversed (see below), the continuation values come out in the 
@@ -730,21 +720,23 @@ catch the final case.</p>
   the secondaries are buffered up, and if there is no primary difference they 
   are compared in reverse order. See <a href="#String_Compare">String Compare</a>.</p>
 </blockquote>
-<h4 align="left"><a name="Quarternary">Quarternary</a></h4>
+<h3 align="left">3.2 <a name="Quarternary">Quarternary</a></h3>
 <p align="left">In the collation table, there is a value VARIABLE_MAX. All CEs 
 with primary weights between zero and VARIABLE_MAX&nbsp; are considered to be 
 variable. (This saves having a bit per CE!) If a CE is variable, we support the 
 Shifted Option from the UCA in constructing. We process the UCA table to ensure 
 that VARIABLE_MAX&nbsp; has a zero second byte for simplicity, but a tailored or 
 parametric Variable_Max may have two bytes. (We do impose the restriction that 
-it can't have more.) The quarternary is computed based on the setting. With 
-shifted, then it is skipped if the ce is entirely zero, equal to the primary if 
-variable, and otherwise equal to FF. (In the UCA this is FFFF, but we can make 
-it a single-byte weight.) In either case, the quarternary is compressed (see 
-below).</p>
+it can't have more.) </p>
+<p align="left">The quarternary is computed based on the setting. With shifted, 
+then it is skipped if the ce is entirely zero, equal to the primary if variable, 
+and otherwise equal to FF. (In the UCA this is FFFF, but we can make it a 
+single-byte weight.) In either case, the quarternary is compressed (see below).</p>
 <p align="left">If we are not doing a quarternary level, and the CE is variable, 
-then it is simply ignored (treated as zero).</p>
-<p align="left">The code looks something like the following:</p>
+then it is simply ignored (treated as zero). That requires some amendment to the 
+code above, since we have to make a check before we start adding to the primary.</p>
+<p align="left">The code for the quarternary itself looks something like the 
+following:</p>
 <div align="left">
   <pre align="left">if (doQuarternary) { // fourth  level
 &nbsp;&nbsp;&nbsp; if (continuation &amp;&amp; lastWasVariable
@@ -766,7 +758,7 @@ then it is simply ignored (treated as zero).</p>
   <p align="left"><b>Note: </b>We have to remember if the last CE was a 
   variable, just in case we had a continuation.</p>
 </blockquote>
-<h4 align="left"><a name="Case_Handling">Case Handling</a></h4>
+<h3 align="left">3.3 <a name="Case_Handling">Case Handling</a></h3>
 <p align="left">In the UCA and tailoring, we have computed a case bit. This bit 
 is set ON based on character properties, not based on the tailoring or UCA 
 ordering. In particular, the case bit is set ON for a string if and only if 
@@ -801,7 +793,7 @@ if (caseLevel) {
   }
   case[-1] |= (wt &amp; 0x80) &gt;&gt; caseShift--;
 }</pre>
-<h5><b><a name="Multiple_Case_Bits">Multiple Case Bits</a> (post 1.8)</b></h5>
+<h4><b><a name="Multiple_Case_Bits">Multiple Case Bits</a> (post 1.8)</b></h4>
 <p>The case bit is really part of the tertiary, and just broken out to make the 
 Japanese case level and for inverting the order (upper/lower) for countries like 
 Denmark. It is considered to be ignorable if and only iff the rest of the 
@@ -815,7 +807,7 @@ will be set according to the case of the components of the contractions. That
 is, in general, if a sequence of character has N cased characters (including 
 small/large kana), then there will be at least N tertiary bytes, each with its 
 own case bit.</p>
-<h4 align="left"><a name="Compression">Compression</a></h4>
+<h3 align="left">3.4 <a name="Compression">Compression</a></h3>
 <p align="left">We will use the technique discussed in UCA to reduce the length 
 of sort keys that contain a series of common weights in non-primary positions. 
 This produces very significant reductions in sort key size, since most 
@@ -1071,9 +1063,10 @@ depends on the relative frequency of H vs L bytes following. Remember that
 </ul>
 <p align="left">We will do Primary Compression after 1.8. See <a
 href="#Compression">Compression</a> and <a href="#Appendix_2">Appendix_2</a>.</p>
-<h4 align="left"><a name="Stack_Buffers">Stack Buffers</a></h4>
+<h3 align="left">3.5 <a name="Stack_Buffers">Stack Buffers</a></h3>
 <p align="left">We can use stack buffers for almost all cases. The vast majority 
-of sorted strings are fairly small, so we optimize for that. Here's how.</p>
+of sorted strings are fairly small, so we optimize for that. Here's basically 
+how this is done..</p>
 <div align="left">
   <pre>// allocate buffers
 #define BUFFER_SIZE 1000
@@ -1114,7 +1107,7 @@ if (quarternaryStart != quarternaryBuffer) delete(quarternaryStart);</pre>
 </div>
 <p align="left">By handling it this way, we don't need to do any error checking 
 in the loop for buffers being too small.</p>
-<h4 align="left"><a name="Appending_Levels">Appending Levels</a></h4>
+<h3 align="left">3.6 <a name="Appending_Levels">Appending Levels</a></h3>
 <p align="left">Once we have the level keys, we put them into the sort key. We 
 keep separate buffers for each one. The primary buffer is initially the result 
 buffer for the function; that saves a later copy. In the normal case, we fill 
@@ -1128,16 +1121,16 @@ buffer, then we set the appropriate error, but also return the length it would
 have had. This is done by switching to an alternate routine that just counts 
 bytes (and adds them to the bytes we already had.</p>
 <p align="left">We use buffers large enough that we can avoid making multiple 
-tests on buffersizes per character.</p>
+tests on buffer sizes per character.</p>
 <blockquote>
-  <p align="left"><b>Note: </b>LEVEL_SEPERATOR is 01, not (as before) 00. All 
-  sort weights are constructed to avoid the 01 bytes so that 01 can be used as 
-  the separator. This allows the resulting sort key to be a C string (no null 
-  bytes except for a terminating null byte). This means that the sort keys can 
-  be compared with strcmp (on platforms where strcmp uses, or behaves as if it 
-  uses, unsigned bytes).</p>
+  <p align="left"><b>Note: </b>LEVEL_SEPERATOR is 01, not 00 (as in the previous 
+  version of&nbsp; ICU). All sort weights are constructed to avoid the 01 bytes 
+  so that 01 can be used as the separator. This allows the resulting sort key to 
+  be a C string (no null bytes except for a terminating null byte). This means 
+  that the sort keys can be compared with strcmp (on platforms where strcmp 
+  uses, or behaves as if it uses, unsigned bytes).</p>
 </blockquote>
-<h4 align="left"><a name="Identical_Strength">Identical Strength</a></h4>
+<h3 align="left">3.7 <a name="Identical_Strength">Identical Strength</a></h3>
 <p>For IDENTICAL strength, we append the (normalized) string to the end of the 
 sort key. We already process that string to normalize it (if normalization is 
 on) and to swap surrogates up to the top of the value space (see Markus's 
@@ -1234,6 +1227,9 @@ call for it. So the normal case will do&nbsp;#1, #2, #3, #5, stopping if there
 is any difference. If we ever have a buffer overflow, we just bail to comparing 
 sortkeys. (This will be extremely rare in practice). We put special terminating 
 values in the buffers so that we can easily recognize the end.</p>
+<p align="left">If normalization is ON, then we will first check with <a
+href="#CheckFCD">checkFCD</a> to see if we need to normalize; only if we really 
+need to will we call the normalization process.</p>
 <h3 align="left">4.1 <a name="Backup">Backup</a></h3>
 <p align="left">It pays to check for identical prefixes, just because it is so 
 simple to do, and a fairly common case. Once we find a common initial substring, 
@@ -1271,11 +1267,11 @@ contraction. (A trailing character is any but the first).</p>
 <p align="left"><b>Normalization and Canonical Order. </b>To get to a safe 
 position, we backup if the character after the pointer is a MAYBE in the NFC 
 QuickCheck table, or has non-zero combining class.</p>
-<p align="left"><b>Surrogates. </b>Since supplimentary characters are 
+<p align="left"><b>Surrogates. </b>Since supplementary characters are 
 exceedingly rare, to simplify our processing we will simply backup if the code 
-unit after the pointer is either a Lead or Trail surrogate: anything in D800..DFFF. 
-To avoid clogging the unsafe table, this will just use a range check, and no 
-supplementary characters will be in the unsafe table.</p>
+unit after the pointer is either a Lead or Trail surrogate: anything in 
+D800..DFFF. To avoid clogging the unsafe table, this will just use a range 
+check, and no supplementary characters will be in the unsafe table.</p>
 <p align="left">Because we will not normally need to backup <i>and the whole 
 purpose of the initial check is for performance</i>, we don't waste time trying 
 to find out exactly the circumstances where we need to backup. So we can err on 
@@ -1289,17 +1285,231 @@ correctness issue. We do this if the character is marked as &quot;unsafe&quot;
 either in the UCA or in the tailoring. (We might later copy the contents of the 
 UCA into the tailoring table.) The first 256 bits are reserved for Latin-1, to 
 avoid collisions.</p>
+<h2>5 <a name="Data_Tables">Data Tables</a></h2>
+<p>A collation table, whether UCA or a tailored table, contains the following 
+subtables. It is in a flattened form that can be loaded as a DLL or into 
+read-only shared memory. The header contains offsets to all the other subtables, 
+plus the number of items in each subtable, plus various information that is used 
+in processing, such as the maximumPrimaryFactor. A CE is a uint32_t. A UChar is 
+16 bits.</p>
+<blockquote>
+  <p><b>Note:</b> we make the processing faster by having offsets everywhere in 
+  the table be from the very start of the whole table, not from the start of the 
+  each subtable!</p>
+  <p>The order of the subtables is not determined, with one exception: because 
+  the offsets to the Expansion table have only 20 bits, we put that one first. 
+  The position of each table is determined by looking up the offset in the 
+  header.</p>
+</blockquote>
+<table border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td align="center" valign="top" width="16%">
+      <table border="1">
+        <tr>
+          <th width="100%">Header</th>
+        </tr>
+        <tr>
+          <td width="100%">info...</td>
+        </tr>
+        <tr>
+          <td width="100%">Expansions offset</td>
+        </tr>
+        <tr>
+          <td width="100%">Expansions count</td>
+        </tr>
+        <tr>
+          <td width="100%">Main·Index offset</td>
+        </tr>
+        <tr>
+          <td width="100%">Main·Index count</td>
+        </tr>
+        <tr>
+          <td width="100%">Main·Data offset</td>
+        </tr>
+        <tr>
+          <td width="100%">Main·Data count</td>
+        </tr>
+        <tr>
+          <td width="100%">Rules offset</td>
+        </tr>
+        <tr>
+          <td width="100%">Rules count</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top" width="16%">
+      <table border="1">
+        <tr>
+          <th width="100%">Expansions</th>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top" width="16%">
+      <table border="1">
+        <tr>
+          <th width="100%">Main·Index</th>
+        </tr>
+        <tr>
+          <td width="100%">index</td>
+        </tr>
+        <tr>
+          <td width="100%">index</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+      &nbsp;
+      <table border="1" width="1%">
+        <tr>
+          <th width="100%">Main·Data</th>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top" width="16%">
+      <table border="1">
+        <tr>
+          <th width="100%">Contraction UChars</th>
+        </tr>
+        <tr>
+          <td width="100%">c1</td>
+        </tr>
+        <tr>
+          <td width="100%">c2</td>
+        </tr>
+        <tr>
+          <td width="100%">c2</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+      &nbsp;
+      <table border="1">
+        <tr>
+          <th width="100%">Contraction Results</th>
+        </tr>
+        <tr>
+          <td width="100%">CE1</td>
+        </tr>
+        <tr>
+          <td width="100%">CE2</td>
+        </tr>
+        <tr>
+          <td width="100%">CE3</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+        <tr>
+          <td width="100%">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top" width="16%">
+      <table border="1">
+        <tr>
+          <th width="100%">Surrogate Trie·Index</th>
+        </tr>
+        <tr>
+          <td width="100%">index</td>
+        </tr>
+        <tr>
+          <td width="100%">index</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+      &nbsp;
+      <table border="1">
+        <tr>
+          <th width="100%">Surrogate Trie·Data</th>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">CE</td>
+        </tr>
+        <tr>
+          <td width="100%">...</td>
+        </tr>
+      </table>
+    </td>
+    <td align="center" valign="top" width="16%">
+      <table border="1">
+        <tr>
+          <th width="100%">Rules</th>
+        </tr>
+        <tr>
+          <td width="100%">...a &lt;&lt;&lt; A &lt; b &lt;&lt;&lt; B...</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p align="left">Each of these tables is described in more detail in the section 
+of Fetching CEs that deals with them.</p>
 <h2 align="left">5 <a name="Fetching_CEs">Fetching CEs</a></h2>
-<h3 align="left">5.1 <a name="General">General</a></h3>
-<p align="left">getCE is a function that gets a single CE, based on a source 
+<p align="left">getCE is a function that returns a single CE, based on a source 
 buffer. It is used by the sort-key generator, for the incremental string 
 comparison, and by the public iteration API. There is a parallel version that 
 fetches CEs going backwards through a string. That version is used in the fast 
 Boyer-Moore international search algorithm.</p>
+<h3 align="left">5.1 <a name="General">General</a></h3>
 <p align="left">Because two strings are &quot;live&quot; at the same time in 
 comparison, we will pass in a parameter block (allocated on the stack) with 
-state information for each string. This is called a <a name="Context">Context</a>:<o:p>          
-  </o:p>                                                                    
+state information for each string to getCE. This is called a <a name="Context">Context</a>:<o:p>          
+  </o:p>                                                                          
 </p> 
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
@@ -1372,8 +1582,8 @@ canonical reordering.</p>
   <li>The raw canonical decomposition may or may not be in NFD. It depends on 
     whether there will be any combining marks that are not in canonical order.</li>
 </ul>
-<p>Define a string to be in<i> FCD</i> if its raw canonical decomposition is of 
-form NFD.</p>
+<p>Define a string to be in <i>restricted form C or D (FCD)</i> if its raw 
+canonical decomposition is of form NFD.</p>
 <ul>
   <li>FCD is <i>not</i> a Normalization Form, since there is <b>no</b> 
     uniqueness -- it is just defined here for the purposes of collation.</li>
@@ -1472,8 +1682,8 @@ like:</p>
 }</pre>
 <p>When we are dealing with null-terminated strings, we have to make a pass 
 through the characters anyway to find the length so that we can set up the 
-buffers properly. These two checks can be combined into a single routine, if 
-that proves to be useful for performance.</p>
+buffers properly. These two checks are combined into a single routine for 
+performance.</p>
 <blockquote>
   <p><b>Note: </b>The Unicode 2.1.9 UCA tables do not contain canonical 
   closures. Formally speaking, NFD must be used for compliance to UCA, but the 
@@ -1485,7 +1695,7 @@ that proves to be useful for performance.</p>
   with other techniques; and most importantly, strings produced with 
   normalization OFF are not comparable to strings produced with it ON (unlike 
   with canonical closures). The ISO 14651 tables do contain the canonical 
-  closures.</p>
+  closures, as will the UCA tables in the future.</p>
 </blockquote>
 <h4 align="left"><a name="Special_CEs">Special CEs</a></h4>
 <p align="left">If the CE is of the form Ftyyyyyy, then it has a special 
@@ -1806,13 +2016,17 @@ return the defaultCE (which may be expansion). If target char == source char,
 get the corresponding result. If that result is a contraction, grab another 
 character, extract the offset, jump to the new section of the table and keep 
 looping. Otherwise return that result (may be expansion).</p>
-<p align="left">The defaultCE needs to be the concatenation of the CEs we would 
-have gotten if we had not had a contraction.</p>
+<p align="left">The defaultCE is the CE we would have gotten if we had not had a 
+contraction. We have to be careful of one special case. Suppose that ABCD is a 
+contraction, and CE is a contraction. When processing ABCE, we need to be able 
+to back up when we hit a failure, so that we can correctly return CE(A), CE(B), 
+CE(CE).</p>
 <blockquote>
-  <p align="left"><b>Note: </b>if there are any characters with non-zero 
-  combiningClass in the table, then the defaultCE has a special form, using the 
-  EXPANSION_CC_TAG. This tag indicates an expansion, but also that at least one 
-  character of the table has non-zero combiningClass. See below for details.</p>
+  <p align="left"><b>(Post 1.8) Note: </b>if there are any characters with 
+  non-zero combiningClass in the table, then the defaultCE has a special form, 
+  using the EXPANSION_CC_TAG. This tag indicates an expansion, but also that at 
+  least one character of the table has non-zero combiningClass. See below for 
+  details.</p>
 </blockquote>
 <p align="left">Sample pseudo code:</p>
 <div align="left">
@@ -2030,8 +2244,8 @@ optimized form that uses primary weights from Dxxx to EFFF. Basic code points
 does not represent a performance issue.</p>
 <blockquote>
   <p><b>Note: </b>These values are generated on the fly, not stored in the 
-  tables; and <i>only</i> if there is no explicit table entry for the code 
-  points.</p>
+  tables. They are <i>only</i> generated if there is no explicit table entry for 
+  the code point!</p>
 </blockquote>
 <h4><a name="Basic_CP">Basic CP</a></h4>
 <p>Distribute the bits as follows. The resulting primary uses 3 bytes in sort 
@@ -2039,7 +2253,6 @@ keys, and has a secondary and tertiary of 03 (UNMARKED).</p>
 <pre>CP =                    xxxxyyyy yyyzzzzz</pre>
 <pre>CE1 = 1101xxxx 1yyyyyyy 00000011 00000011 // normal</pre>
 <pre>CE2 = zzzzz100 00000000 00000011 10000011 // continuation</pre>
-<pre><font color="#FF0000">[FIX LATER] </font>CE = 0xD08004C3 | (CP &amp; 0xF000) &lt;&lt; 12 | (CP &amp; 0x0FFF) &lt;&lt; 11;</pre>
 <p>The primary gap is larger than one, which allows more elements to be inserted 
 (in tailoring) without using extension CEs. Suppose that we have a Basic CP with 
 qqqqq is zzzzz + 1; then here are the possible insertion values, marked with *. 
@@ -2206,21 +2419,22 @@ Y will give a value that is based off of the <i>implicit</i> value that X would
 have. In processing the rules in the implementation, we may give X the implicit 
 value in the intermediate data structure, then remove it when we finally store 
 into the flat file to save space.</p>
-<p align="left">[post 1.8] Since we are tailoring the UCA, we could have call to 
-insert elements <i>before</i> a given UCA element. Currently, that would have to 
-be done by finding the previous element in the table, and inserting after. That 
-is, to insert x with a primary difference before 'a', we have to know that '9'' 
-is before it in the UCA, and say &amp;'9' &lt; x.&nbsp; To address this, we will 
-add syntax&nbsp; x &gt; y, x &gt;&gt; y, x &gt;&gt;&gt; y (for primary-greater, 
-secondary-greater, tertiary-greater). See <a href="#Rule Syntax">Rule Syntax</a>.</p>
+<p align="left"><b>[post 1.8] </b>Since we are tailoring the UCA, we could have 
+call to insert elements <i>before</i> a given UCA element. Currently, that would 
+have to be done by finding the previous element in the table, and inserting 
+after. That is, to insert x with a primary difference before 'a', we have to 
+know that '9'' is before it in the UCA, and say &amp;'9' &lt; x.&nbsp; To 
+address this, we will add syntax&nbsp; x &gt; y, x &gt;&gt; y, x &gt;&gt;&gt; y 
+(for primary-greater, secondary-greater, tertiary-greater). See <a
+href="#Rule Syntax">Rule Syntax</a>.</p>
 <p align="left">Once the tailoring table is completely built, we will add any 
 UCA characters in the range 0..FF that are not there already. At a slight 
 increase in table size, that guarantees the minimal code path for many cases. We 
 will also close the file under canonical decomposition, so that turning off 
-decomposition can be done in certain circumstances for performance. We will 
-close the file under compatibility decomposition, so that when you tailor a 
-letter, the compatibility characters containing it are also moved. E.g. if we 
-put &amp; z &lt; i, then the &quot;fi&quot; ligature will then sort after &quot;fz&quot;.</p>
+decomposition can be done for performance (in some cases). We will close the 
+file under compatibility decomposition, so that when you tailor a letter, the 
+compatibility characters containing it are also moved. E.g. if we put &amp; z 
+&lt; i, then the &quot;fi&quot; ligature will then sort after &quot;fz&quot;.</p>
 <h4 align="left"><a name="Hangul_Building">Hangul Building</a></h4>
 <p>We set JamoTailored in the UCA table structure to true if any of the 
 characters (U+1100..U+1112, U+1161..U+1175, U+11A8..U+11C2) are contractions or 
@@ -2231,7 +2445,8 @@ directly from the UCA Main Trie table. Only if the Jamo are special do we have
 to use the more expensive lookup.</p>
 <h3 align="left"><b>6.1 <a name="Postpone_Insertion">Postpone Insertion</a></b></h3>
 <p align="left">ICU 1.6 and below used <i>direct insertion</i> for tailoring, as 
-shown below. The plan is to use <i>postpone insertion</i> for 1.8.</p>
+shown below. ICU 1.8 uses <i>postpone insertion</i>, as shown below. With 
+postpone insertion, rules</p>
 <div align="center">
   <center>
   <table border="1" cellspacing="1" cellpadding="4">
@@ -2253,7 +2468,7 @@ shown below. The plan is to use <i>postpone insertion</i> for 1.8.</p>
     </tr>
     <tr>
       <th>Postpone Insertion</th>
-      <td><font color="#FF0000"><b>&amp; x &lt;: z</b></font></td>
+      <td><font color="#FF0000"><b>&amp; x &lt; z</b></font></td>
       <td><b>...&nbsp; x&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt;&lt; X &lt;&lt; x' 
         &lt;&lt;&lt; X' <font color="#FF0000">&lt; z</font> &lt; y</b></td>
     </tr>
@@ -2262,22 +2477,24 @@ shown below. The plan is to use <i>postpone insertion</i> for 1.8.</p>
 </div>
 <p align="left">The reason we didn't originally use postpone is that it is 
 relatively easy to emulate. For example, in the above case, <b><font
-color="#FF0000">&amp; X' &lt; z</font></b> is the equivalent of <b><font
-color="#FF0000">&amp; x &lt;: z</font></b>. However, it is not easy to emulate 
-direct insertion with postpone insertion: in the above case you would have to 
-use <font color="#FF0000"><b>&amp; x &lt;: z &lt;&lt;&lt;: X &lt;&lt;: x' 
-&lt;&lt;&lt;: X'</b></font> to emulate <b><font color="#FF0000">&amp;x &lt; z</font></b>. 
-However, postpone insertion is probably more intuitive, is more stable under new 
-versions of UCA, and works better with the large number of variant characters in 
-UCA. In practice, given the tailoring rules from the old ICU, this will actually 
-produce results that more compatible than if we retained direct insertion.</p>
+color="#FF0000">&amp; X' &lt; z</font></b>&nbsp; with direct insertion is the 
+equivalent of <font color="#FF0000"><b>&amp; x &lt; z</b></font> with postpone 
+insertion. However, it is not easy to emulate direct insertion with postpone 
+insertion: in the above case you would have to use <font color="#FF0000"><b>&amp; 
+x &lt; z &lt;&lt;&lt; X &lt;&lt; x' &lt;&lt;&lt; X'</b></font> to emulate <b><font
+color="#FF0000">&amp;x &lt; z</font></b>. However, postpone insertion is 
+probably more intuitive, is more stable under new versions of UCA, and works 
+better with the large number of variant characters in UCA. In practice, given 
+the tailoring rules from the old ICU, this will actually produce results that 
+more compatible than if we retained direct insertion.</p>
 <h3 align="left">6.2 <a name="Rule_Storage">Rule Storage</a></h3>
 <p align="left">The API for get rules will return just the tailoring rules (we 
 store this with the flat file). The API for get full rules will get the UCA 
 rules (we generate and store this with the UCA flat file), then appends the 
 tailoring rules.</p>
 <h3>6.3 <a name="Details_on_Generation">Details on Generation</a></h3>
-<p>For all of the following discussion:</p>
+<p>The following describes the CE generation process in more detail. In all of 
+the following discussion:</p>
 <ul>
   <li>the relations , and ; are converted into &lt;&lt;&lt; and &lt;&lt;.</li>
   <li>* stands for any of the relations =, &lt;, &lt;&lt;, &lt;&lt;&lt;, &gt;, 
@@ -2287,8 +2504,8 @@ tailoring rules.</p>
   <li>The operations of &lt;, &gt; are stronger than &lt;&lt;, &gt;&gt;, which 
     are strong than &lt;&lt;&lt;, &gt;&gt;&gt;, which are stronger than =.</li>
   <li>
-    <p>For now, the discussion will only cover the positive directions, since we 
-    are only doing that in 1.8.</p>
+    <p><i>For now, the discussion will only cover the positive directions, since 
+    we are only doing that in 1.8.</i></p>
   </li>
 </ul>
 <p>We will generate the following internal structures. (The CEtoStr is generated 
@@ -2444,8 +2661,10 @@ from the UCA, and stored in a flat file).</p>
 </div>
 <p><b>Notes:</b></p>
 <ul>
-  <li>StrRep is an int. Top 8 bits are length, bottom 24 bits are an offset into 
-    the <b>Rules</b> string. This saves string allocations.</li>
+  <li><b>StrRep</b> is an int. Top 8 bits are length, bottom 24 bits are an 
+    offset into the <b>Rules</b> string. This saves string allocations. If the 
+    string contains quotes, then we copy an unquoted version at the bottom of 
+    the Rules string for references.</li>
   <li><b>CEtoStr</b>
     <ul>
       <li>This is a table used only for generating Tailoring tables, and is so 
@@ -2534,20 +2753,31 @@ from the UCA, and stored in a flat file).</p>
 <p>At the end of this process, we will end up with a list of lists of tokens.&nbsp;</p>
 <h4><a name="Canonical_Closure">Canonical Closure</a></h4>
 <p>We will then close the sets of tokens with the canonical closure and Latin-1 
-characters</p>
+characters,</p>
 <ul>
-  <li>For each Unicode character with a canonical decomposition (e.g. å), check 
-    to see if any of the decomposed characters (a, °) are tailored. If so, then 
-    the appropriate tailoring expansion is added (å = a °).
+  <li>For each Unicode character C with a canonical decomposition (e.g. å), 
+    check to see the CEs resulting from the canonical decomposition of C (e.g. 
+    a, °) would be the same in the tailoring as what UCA returns from C. If 
+    not, then the appropriate expansion is added (e.g. å = a °) to the 
+    tailoring.
     <ul>
-      <li><b>Note: </b>the UCA already contains closures for the non-tailored 
+      <li><b>Note: </b>The UCA already contains closures for the non-tailored 
         items.</li>
+      <li><b>Note:</b> This is not recursive; it takes a single pass through 
+        just those characters with canonical decompositions.</li>
     </ul>
   </li>
-  <li>For each Unicode character with a compatibility decomposition (e.g. 
-    circled-a), check to see if any of the decomposed characters are tailored. 
-    If so, then the appropriate tailoring expansion is added (circled-a = a), 
-    but with the tertiary value set according to the table in UCA.</li>
+  <li><b>(Post 1.8) </b>For each Unicode character with a compatibility 
+    decomposition (e.g. circled-a), check to see the CEs resulting from the 
+    canonical decomposition&nbsp; (a, °) would be the same in the tailoring as 
+    they were in the UCA. If not, then the appropriate expansion is added 
+    (circled-a = a) to the tailoring, but with the tertiary value being set 
+    according to the table in UCA.
+    <ul>
+      <li>This is postponed until after 1.8, since the tertiary values are not 
+        easily computable.</li>
+    </ul>
+  </li>
   <li>Copy all the UCA mappings for Latin-1 characters that are not tailored 
     into the tailoring. This also does not require any gap processing.
     <ul>
@@ -2741,9 +2971,9 @@ the way we construct the UCA, we are guaranteed that highCount is at least 1.</p
 <blockquote>
   <b>Note: When incrementing primary values, we will not cross high byte 
   boundaries except where there is only a single-byte primary. That is to ensure 
-  that the script reordering will continue to work. If such a boundary falls in 
-  the middle of first, mid or last, then truncate it (choosing the longer 
-  range).</b>
+  that the <i>script reordering</i> will continue to work. If such a boundary 
+  falls in the middle of first, mid or last, then truncate it (choosing the 
+  longer range).</b>
 </blockquote>
 <p class="a" align="left">Set slot = low, mid, or high depending on which has 
 fewer bytes (and exists). If slotCount is large enough for targetCount, then 
@@ -2777,27 +3007,6 @@ in any tailoring rule that results in &quot;xyz&quot; beings given collation
 elements C1, C2...Cn, each of the characters x, y, and z are checked by looking 
 them up in the UCA table. If any one of them has a first CE that has the case 
 bit on, then the case bit is turned on in C1..Cn.</p>
-<h4 align="left"><a name="Japanese_Collation_Tailoring">Japanese Collation 
-Tailoring</a></h4>
-<p align="left">Supporting compatibility with Office collation for Japanese 
-involves using the caseLevel, plus changing the data (see <a href="#Appendix_1">Appendix 
-1</a> for comparison). The caseLevel is described elsewhere. The current ICU 
-data is of the form:</p>
-<p align="left"><font face="Helv" size="2" color="#000000">&lt; </font><font
-size="2" color="#000000">ゆ </font><font face="Helv" size="2" color="#000000">, 
-</font><font size="2" color="#000000">ゅ </font><font face="Helv" size="2"
-color="#000000">, </font><font size="2" color="#000000">ユ </font><font
-face="Helv" size="2" color="#000000">, </font><font size="2" color="#000000">ユー</font><font
-face="Helv" size="2" color="#000000">/</font><font size="2" color="#000000">ウ </font><font
-face="Helv" size="2" color="#000000">, </font><font size="2" color="#000000">ュ 
-</font><font face="Helv" size="2" color="#000000">, </font><font size="2"
-color="#000000">ュー</font><font face="Helv" size="2" color="#000000">/</font><font
-size="2" color="#000000">ウ</font></p>
-<p align="left">To change the data part for compatibility means putting small 
-before large, and katakana before hiragana. This can be done independent of the 
-caseLevel feature, to get closer to the Office collation.</p>
-<p align="left">&lt;&nbsp; ュ ,&nbsp; ュー/ウ ,&nbsp; ゅ ,&nbsp; ユ , 
-ユー/ウ ,&nbsp; ゆ</p>
 <h2 align="left">7 <a name="UCA_Processing">UCA Processing</a></h2>
 <p align="left">The UCA data table only specifies relative ordering among 
 weights. We are free to redistribute the weight values as long as the relative 
@@ -2844,9 +3053,7 @@ read-only table, we will preprocess the data so that we:</p>
     ScriptNames.txt, except that&nbsp; variables are treated as a separate 
     script.</li>
   <li>
-    <p align="left">We generate the case bit. It is OFF if <b><i>no</i></b> 
-    character in the string is uppercase, titlecase, or large hiragana/katakana. 
-    Otherwise it is ON.</li>
+    <p align="left">We generate the case bit, as described below.</li>
   <li>
     <p align="left">As in Tailoring, we form the canonical closure of the table. 
     That is, if a character X has a canonical decomposition Y, then we add the 
@@ -2959,8 +3166,7 @@ simpler to remember, and will allow us in the future to have the corresponding x
 Insertion</a>.</p>
 <h3 align="left">UCA Options</h3>
 <div align="left">
-  <pre>[rearrange 0E40,0E41,0E42,0E43,0E44,0EC0,0EC1,0EC2,0EC3,0EC4]
-[alternate shifted]
+  <pre>[alternate shifted]
 [backwards 2]
 [variable top]
 [top]</pre>
@@ -2983,8 +3189,15 @@ Insertion</a>.</p>
     weights, for now and into the future. We reserve sufficient room between top 
     and the lowest implicit such that most tailorings can occupy only 2 byte 
     primaries. This allows CJK reorderings to be relatively compact. The 
-    location of [top] is A0&nbsp;</li>
+    location of [top] is A0.</li>
 </ul>
+<blockquote>
+  <p align="left"><b>Note: </b>The following syntax will be added in the future 
+  to allow tailoring of rearrangement. For now, it is hard-coded.<br>
+  [rearrange on: 0E40,0E41,0E42,0E43,0E44,0EC0,0EC1,0EC2,0EC3,0EC4]<br>
+  [rearrange off: 0E40...]<br>
+  </p>
+</blockquote>
 <h3 align="left">Extensions</h3>
 <h4 align="left">Normalization</h4>
 <p align="left">Since normalization can slow down processing, we provide a rule 
@@ -3191,9 +3404,6 @@ They are summarized in the following list:</p>
  UCOL_LOWER_FIRST,
  UCOL_UPPER_FIRST,
 
-/* for UCOL_DECOMPOSITION_MODE */
- UCOL_ON_WITHOUT_HANGUL,
-
 /* for UCOL_STRENGTH */
  UCOL_PRIMARY,
  UCOL_SECONDARY,
@@ -3221,8 +3431,8 @@ nothing needs doing.</p>
 <p align="left">In the future, we could add an open function that allows stack 
 allocation.</p>
 <h3>Rule retrieval</h3>
-<p>The new API can return either the full UCA rule set or only the tailoring, 
-depending on an argument.</p>
+<p>The new API can return either the full UCA rule set plus the tailoring (the 
+getRules API will just return the tailoring).</p>
 <h4>C API</h4>
 <pre>int32_t ucol_getRulesEx(const UCollator *coll,
   UColRuleOption delta,
@@ -3348,7 +3558,7 @@ accents.</p>
 <h1>11 <a name="Issues">Issues</a></h1>
 <p>The following section lists issues and possible future additions.</p>
 <h3>11.1 <a name="Parameterized_SHIFTED">Parameterized SHIFTED</a> (post 1.8 
-possibility, but current implication)</h3>
+possibility)</h3>
 <p>We could offer a further variation on Variable. Instead of having SHIFTED 
 always shift the primary down to the 4th level, we could allow it to shift to 
 the 3rd level or second level. (Note: ICU 1.6 used 3rd level), before all other 
@@ -3473,323 +3683,6 @@ of possibilities.</p>
   that gap, then we are more robust regarding changes in the UCA.
 </blockquote>
 <hr>
-<h2 align="left">12 <a name="FAQ">FAQ</a></h2>
-<p class="q" align="left">Q: The small/large kana differences: should that be 
-set in the rules or by API?</p>
-<p class="a" align="left">A: The case bit is set programmatically, on the basis 
-of case and small/large kana differences. Whether and how to use it is 
-controlled by both the API and the tailoring.</p>
-<p class="q" align="left">Q. The reverse searching still has support for 
-contracting sequences, which is used for fast Internationalized Boyer-Moore 
-searching?</p>
-<p class="a" align="left">A: Yes, we are not removing that capability. The 
-backwards offset is used to get the separate table for contractions when 
-processing backwards.</p>
-<center>
-<hr>
-</center>
-<h3 align="left"><a name="Fractional_Collation_Elements"><b>Fractional Collation 
-Elements</b></a></h3>
-<p class="q" align="left">Q: A collation weight in the UCA is defined to be a 16 
-bit value (aka wyde). This will surely fail when Unicode 3.1 rolls around, with 
-over 90,000 characters!</p>
-<p class="a" align="left">A: The UCA makes provision for more than 64K weight 
-values: see <a
-href="http://www.unicode.org/unicode/reports/tr10/#Large Weight Values">Section 
-6.2 Large Weight Values</a> and also <a
-href="http://www.unicode.org/unicode/reports/tr10/#Escape hatch">6.3.2 Escape 
-Hatch</a>. This mechanism is also used in Weight Derivation, as in <a
-href="http://www.unicode.org/unicode/reports/tr10/#LegalCodePoints">7.1.2 Legal 
-code points</a>. It discusses using a sequence of two collation elements, of the 
-form:</p>
-<blockquote>
-  <div align="left">
-    <pre>[(X1+1).0000.0000], [yyyy.zzzz.wwww]</pre>
-  </div>
-</blockquote>
-<p class="q" align="left">Q: I find this hard to follow. Is there any other way 
-to explain the issue?</p>
-<p class="a" align="left">Ok. We can look at the weights in a different way, 
-which may help to clarify what is going on.</p>
-<p class="a" align="left">We'll define <i>fractional collation elements</i> to 
-be the same as standard collation elements except that each weight is a fraction 
-between zero and one (instead of being an integer from 1 to FFFF). For ease in 
-working with computers, these are binary fractions, represented as hexadecimal.</p>
-<p class="a" align="left"><i>Examples:</i></p>
-<ul>
-  <li>
-    <p class="a" align="left"><code>[0.000000000, 0.920000000, 0.02057A900]</code></li>
-  <li>
-    <p class="a" align="left"><code>[0.100000000, 0.A30000000, 0.02057A900]</code></li>
-  <li>
-    <p class="a" align="left"><code>[0.1202C456B, 0.78AF00000, 0.023A90000]</code></li>
-</ul>
-<p class="a" align="left">With fractional collation elements, it is easy to see 
-that all Unicode code points (including the supplementary code points) could 
-have distinct primary mappings: there are innumerably many more than 10FFFF 
-possible fractions! <a
-href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
-<p class="q" align="left">Q: Is that all there is to it?</p>
-<p class="a" align="left">Not quite. We still will have to turn these fractional 
-collation elements into well-formed standard collation elements that we can use 
-to build a sort key. To do that, we put some restrictions on the allowable 
-values for the fractional weights. By adopting these restrictions, we make the 
-conversion very simple, without limiting the indefinitely large range offered by 
-fractional weights.</p>
-<p class="a" align="left">Consider a fractional weight as broken into a sequence 
-of bytes of 2 hex digits each, excluding any trailing bytes that would be 
-entirely zero, and omitting the leading &quot;0.&quot;. (We could give a precise 
-numeric definition, but it is easier to think of it as simply taking bytes at a 
-time.)</p>
-<p class="a" align="left"><i>Example:</i></p>
-<blockquote>
-  <p class="a" align="left"><b>0.12C456A000000...</b> breaks into four bytes: <b>12 
-  C4 56 A0<br>
-  0.12C456A320000....</b> breaks into five bytes: <b>12 C4</b> <b>56 A3</b>&nbsp; 
-  <b>20</b></p>
-</blockquote>
-<p class="a" align="left">So the first example of fractional collation elements 
-becomes:</p>
-<p class="a" align="left"><i>Examples:</i></p>
-<ul>
-  <li>
-    <p class="a" align="left"><code>[,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-    92,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 02 05 7A 90]</code></li>
-  <li>
-    <p class="a" align="left"><code>[10,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-    A3,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 02 05 7A 90]</code></li>
-  <li>
-    <p class="a" align="left"><code>[12 02 C4 56 B0,&nbsp;&nbsp; 78 AF,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-    02 3A 90]</code></li>
-</ul>
-<p class="a" align="left">Since we eventually will be converting these 
-fractional collation weights into standard ones, we will put some restrictions 
-on the values taken by these fractions, based (not surprisingly) on their bytes. 
-Since we have wide latitude in choosing the precise values for the fractional 
-weights in setting up a collation table, these restrictions are not at all 
-onerous.</p>
-<p class="a" align="left"><b>R1. </b>No byte can be <b>00</b> or <b>01</b>.</p>
-<blockquote>
-  <p class="a" align="left">The reason for this rule is to avoid collision with 
-  the <i>level separator</i> and with<i> null bytes </i>when the fractional 
-  weight is eventually used in a sort key.</p>
-</blockquote>
-<p class="a" align="left"><i>Example:</i></p>
-<blockquote>
-  <p class="a" align="left"><b>12 C4 00 50</b> violates R1, since the third byte 
-  is zero.</p>
-</blockquote>
-<p class="a" align="left"><b>R2. </b>A fractional weight cannot exactly match 
-the initial bytes of another fractional weight at the same level.</p>
-<blockquote>
-  <p class="a" align="left">The reason for this rule is to avoid having sort 
-  keys where the starting bytes from one string are compared against the 
-  trailing bytes from another.</p>
-</blockquote>
-<p class="a" align="left"><i>Example:</i></p>
-<blockquote>
-  <p class="a" align="left">The two primary weights <b>A3 92 12 C4 50</b> and <b>A3 
-  92 12 C4</b> violate R2. If the second weight were <b>A3 92 12 C5</b> or <b>A3 
-  92 12 C4 52</b>, it would not violate R2.</p>
-  <p class="a" align="left">Allowing fractions to break this rule would cause a 
-  problem when these bytes are pushed into a sort key (see next question). Let's 
-  take an example where we just concentrate on the primary weights. Suppose x[1] 
-  = <b>A3</b>,&nbsp; y[1] = <b>A3 23</b>, and a[1] = <b>49</b>. Then we would 
-  get the following ordering:</p>
-  <table border="1">
-    <tr>
-      <td width="50%">a</td>
-      <td width="50%">[<b>49 01...</b>]</td>
-    </tr>
-    <tr>
-      <td width="50%">x</td>
-      <td width="50%">[<b>A3 01...</b>]</td>
-    </tr>
-    <tr>
-      <td width="50%">y</td>
-      <td width="50%">[<b>A3 23 01 ...</b>]</td>
-    </tr>
-    <tr>
-      <td width="50%">xa</td>
-      <td width="50%">[<b>A3 49 01...</b>]</td>
-    </tr>
-  </table>
-  <p class="a" align="left">Because the primary weights turn into different 
-  lengths, and they don't follow <b>R2</b>, we get incorrect behavior. If <b>R2</b> 
-  is followed, this can never happen, since &quot;x&quot; and &quot;y&quot; 
-  would have to differ at some point <i>before</i> we ran out of bytes on one 
-  side.</p>
-</blockquote>
-<p class="a" align="left"><b>R3. </b>No fractional collation element can have a 
-zero weight at Level N and a non-zero weight at Level N-1. Any collation 
-elements that violate this rule are called <i>ill-formed</i>.</p>
-<blockquote>
-  <p class="a" align="left">The reason for this rule is to avoid allowing 
-  character to transpose, and still have the same sort key (cf.&nbsp; <a
-  href="#Step 4">UCA §4.4, Step 4: Compare</a>).</p>
-</blockquote>
-<p class="a" align="left">Any fractional collation element that does not meet 
-these restrictions is called <i>ill-formed</i>. <a
-href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
-<p class="q" align="left">Q: Once I have a well-formed fractional collation 
-element table, how do I generate a sort key?</p>
-<p class="a" align="left">A fractional collation element table can easily be 
-transformed into a standard one. Each fractional collation element is 
-transformed into a sequence of one <i>or more</i> standard collation elements:</p>
-<ul>
-  <li>
-    <p class="a" align="left">Break each fractional weight into a sequence of 
-    bytes.</li>
-  <li>
-    <p class="a" align="left">Take two bytes from each level to form a collation 
-    element.
-    <ul>
-      <li>
-        <p class="a" align="left">If there is an odd number of bytes, use <b>02</b> 
-        for the second byte.</li>
-    </ul>
-  </li>
-  <li>
-    <p class="a" align="left">If there are no more bytes for a particular level, 
-    use zero for the that level.</li>
-  <li>
-    <p class="a" align="left">If there are no more bytes for all levels, stop.</li>
-</ul>
-<p class="a" align="left"><i>Example:</i></p>
-<table border="1">
-  <tr>
-    <th>Fraction Collation Element</th>
-    <th>UCA Collation Element</th>
-    <th>In Sort Key</th>
-  </tr>
-  <tr>
-    <td>[12 02 C4, 78, 03]</td>
-    <td>[1202.7802.0302], [.C402.0000.0000]</td>
-    <td>[12 02 C4 02 <b>00 00</b> 78 02 <b>00 00</b> 03 02]</td>
-  </tr>
-</table>
-<p class="a" align="left">Using this transformation, two fractional collation 
-elements will have the same relative ordering as their derived UCA collation 
-element sequences. Because the fractional collation elements can handle all 
-Unicode code points (even supplementary code points, above U+FFFF), so can the 
-derived UCA collation elements sequences.</p>
-<p class="a" align="left">All but the first collation element in the derived 
-sequence are called <i>continuation collation elements.</i> If you now look back 
-at the discussions in <a
-href="http://www.unicode.org/unicode/reports/tr10/#Large Weight Values">Section 
-6.2 Large Weight Values</a>, <a
-href="http://www.unicode.org/unicode/reports/tr10/#Escape hatch">6.3.2 Escape 
-Hatch</a>, and <a
-href="http://www.unicode.org/unicode/reports/tr10/#LegalCodePoints">7.1.2 Legal 
-code points</a>, you will see continuation collation elements that implicitly 
-represent fractional collation elements. <a
-href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
-<p class="q" align="left">Q: Aren't the continuation collation elements in the 
-above example ill-formed?</p>
-<p class="a" align="left">The text of the UCA is not as clear as it should be on 
-that point. It says:</p>
-<blockquote>
-  <p class="a" align="left">Except in special cases, no collation element can 
-  have a zero weight at Level N and a non-zero weight at Level N-1. Any 
-  collation elements that violate this rule are called <i>ill-formed</i>. The 
-  reason for this will be explained under Step 4 of the main algorithm.</p>
-</blockquote>
-<p class="a" align="left">The &quot;special cases&quot; referred to in the text 
-are <i>precisely</i> the continuation collation elements that would result from 
-generating the collation element table from a fractional collation element 
-table. A reformulation in terms of fractional collation elements clears this up. 
-<a href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
-<p class="q" align="left">Q: In tailoring, I need to put a collation element 
-between two others. How can I do this without changing the original two values?</p>
-<p class="a" align="left">The easiest way to do this is to view the collation 
-element table as fractional collation elements, as described in the previous 
-questions. If you construct your original table so that you leave a bit of room 
-between adjacent collation elements, then you can always find intermediate 
-values for the weights at any level. <a
-href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
-<p class="q" align="left">Q: What do you mean by &quot;a bit of room&quot;?</p>
-<p class="a" align="left">For two adjacent collation elements in the table, just 
-make sure that for each level there is at least one <i>valid</i> fractional 
-weight between the weights from those elements.</p>
-<p class="a" align="left"><i>Example:</i></p>
-<ul>
-  <li>
-    <p class="a" align="left"><b>AB C3</b> and <b>AB D0</b> have room:
-    <ul>
-      <li>
-        <p class="a" align="left">One could insert 13 different 2-byte 
-        fractions: <b>AB C4, AB C5, ..., AB CC;</b> or many more 3 or more byte 
-        fractions.</li>
-    </ul>
-  </li>
-  <li>
-    <p class="a" align="left"><b>AB CD</b> and <b>AB CF</b> have room:
-    <ul>
-      <li>
-        <p class="a" align="left">One could insert <b>AB CE</b>, or one could 
-        insert many more 3-byte fractions: <b>AB CE 02, AB CE 03, ...</b></li>
-    </ul>
-  </li>
-  <li>
-    <p class="a" align="left"><b>AB CD</b> and <b>AB CE</b> don't have room.
-    <ul>
-      <li>
-        <p class="a" align="left">While fractions of the form <b>AB CD xx</b> 
-        are between these values, they would violate <b>R2</b> above.</li>
-    </ul>
-  </li>
-  <li>
-    <p class="a" align="left"><b>AA FF</b> and <b>AB 02</b> don't have room.
-    <ul>
-      <li>
-        <p class="a" align="left">Inserting <b>AA FF xx</b> or <b>AB</b> would 
-        violate <b>R1.</b></li>
-      <li>
-        <p class="a" align="left">inserting <b>AB 00</b> or <b>AB 01</b> would 
-        violate <b>R2</b>.</li>
-    </ul>
-  </li>
-</ul>
-<p class="q" align="left">Q: So how do I determine the intermediate values?</p>
-<p class="a" align="left">First, determine how many weights you need, and then 
-how many valid weights are between the two given weights. Unless the fractional 
-weights have the same number of bytes <i>and</i> only differ in the last byte, 
-there will usually be far more weights than you need.&nbsp;More precisely, see <a
-href="#Intermediate_CEs">Intermediate CEs</a>.</p>
-<p class="q" align="left">Q: Is this an optimal way to calculate the weights?</p>
-<p class="a" align="left">If you know more about the relative frequency of the 
-characters in text, you can choose shorter weights for the more frequent 
-weights.</p>
-<p class="q" align="left">Q: I use the mechanisms in <a href="#L2/L3 in 8 bits">UCA 
-§6.1.2, L2/L3 in 8 bits</a> to reduce my sort-key to less than half the size. 
-How can I use this continuation/tailoring method with bytes instead of wydes?</p>
-<p class="a" align="left">In the above, instead of adding <b>02</b> to 
-odd-byte-length weights, leave the bytes zero. When composing the sort key, just 
-omit any zero bytes when composing the sort key. Use <b>01</b> for the 
-LEVEL_SEPARATOR. Thus the above example would become the considerably shorter 
-key below:</p>
-<table border="1">
-  <tr>
-    <th>&nbsp;</th>
-    <th>Fraction Collation Element</th>
-    <th>UCA Collation Element</th>
-    <th>In Sort Key</th>
-  </tr>
-  <tr>
-    <th>Old</th>
-    <td>[12 02 C4, 78, 03]</td>
-    <td>[1202.7802.0302], [.C402.0000.0000]</td>
-    <td>[12 02 C4 02 <b>00 00</b> 78 02 <b>00 00</b> 03 02]</td>
-  </tr>
-  <tr>
-    <th>New</th>
-    <td>[12 02 C4, 78, 03]</td>
-    <td>[1202.7800.0300], [.C400.0000.0000]</td>
-    <td>[12 02 C4&nbsp; <b>01</b> 78 <b>01</b> 03]</td>
-  </tr>
-</table>
-<p class="a" align="left">&nbsp;<a
-href="http://www.unicode.org/unicode/faq/attribution.html#MD">[MD]</a></p>
 <h2 align="left"><a name="Appendix_1">Appendix 1</a>: Japanese Sort Order</h2>
 <p align="left">The following is the result of a test of sorting in Microsoft 
 Office, for comparison.</p>
@@ -3925,7 +3818,7 @@ keys would probably be reduced sufficiently that it would be an overall win.
 <h2><a name="Appendix_3">Appendix 3: Data Files</a></h2>
 <p>The following data files are included for reference:</p>
 <p><a href="FractionalUCA.zip">FractionalUCA.txt<br>
-log-FractionalUCA.txt</a></p>
+</a><a href="log-FractionalUCA.txt">log-FractionalUCA.txt</a></p>
 <blockquote>
   <p>Table of Fractional CEs generated from UCA. The format is described in the 
   header:</p>
@@ -3950,7 +3843,143 @@ UCA_Rules_With_Names.txt</a></p>
   <p>UCA table re-expressed as Java/ICU syntax rules. UTF-8 format, with BOM. 
   Second version adds character names in comments.</p>
 </blockquote>
+<h2>Appendix 4: <a name="Requirements">Requirements</a></h2>
+<p>This document reads as if all the following requirements and options are 
+being done, so that the architecture is complete for the future. However, 
+options will only be considered in the 1.7/1.8 timeframe if implementation falls 
+out of the rearchitecture work.&nbsp; (Some 1.8 functionality may be in 1.7, if 
+it is easier to integrate then.)</p>
+<h3>ICU4c 1.7 Requirements <font size="3">—</font> Not in priority order</h3>
+<ol>
+  <li>All of the current features will be maintained (with one semantic change 
+    — see API).</li>
+  <li>Improve performance to the requisite level. First priority is string 
+    compare, next is sortkey. (perf)</li>
+  <li>Fix Japanese tailoring data to be more compatible [but see 1.8 for 
+    complete story] (data)
+    <ul>
+      <li>Level 1 = base letters,</li>
+      <li>Level 2 = plain, daku-ten, handaku-ten</li>
+      <li>Level 3 = small (katakana, hiragana, choo-on kigoo), large (katakana, 
+        hiragana, choo-on kigoo)</li>
+    </ul>
+  </li>
+  <li>Add SafeClone API (multi-thread)</li>
+  <li>Allow sort-keys to be valid C-Strings: e.g. avoid null bytes, add 
+    null-byte terminator.
+    <ul>
+      <li>This makes our sort keys comparable with strcmp() in addition to 
+        memcmp(). It is like ANSI C strxfrm() and Win32 LCMapString().</li>
+    </ul>
+  </li>
+  <li>Add all API and rule syntax, even if it is not functional in this release</li>
+  <li><b>Binary Compatibility of Sort Keys</b>
+    <ol>
+      <li><b>1.7 is an enhancement release, not a reference release.</b></li>
+      <li><b>1.7 sort keys are only for testing, not for release products.</b></li>
+      <li><b>1.7 sort keys will not be compatible with 1.6 sort keys or 1.8 sort 
+        keys.</b></li>
+    </ol>
+  </li>
+</ol>
+<h3>ICU4j 1.8 Requirements <font size="3">—</font> Not in priority order</h3>
+<ol>
+  <li>Be fully conformant to the UCA (function)</li>
+  <li>Allow the main UCA table to be flat: static, read-only, and shared among 
+    languages. (footprint, perf)</li>
+  <li>Other performance improvements as described in this document. (perf)</li>
+  <li>Reduce A-Z primaries to single byte weight (perf, footprint)</li>
+  <li>Add complete versioning (function)</li>
+  <li>Support additional Japanese case level.
+    <ul>
+      <li>Level 1 = base letters,</li>
+      <li>Level 2 = plain, daku-ten, handaku-ten</li>
+      <li>Level 3 = small, large</li>
+      <li>Level 4 = hiragana, katakana, choo-on kigoo
+        <ul>
+          <li>A variant could actually support 5-level Japanese sorting, by 
+            making the choo-on kigoo be equal at the 4th level, and choosing 
+            IDENTICAL strength. Because of the code point order, this would have 
+            the effect of providing the right ordering. However, it would make 
+            the sort keys much larger.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Provide parametric case reversal, e.g. upper before lower or lower before 
+    upper (function: for Danish std)</li>
+  <li>Ignore accents (actually ignore all levels <i><b>except</b></i> Primary 
+    and Case Level) (function)</li>
+  <li>Provide better surrogate support (req. for GB 18030 and Unicode 3.1)</li>
+  <li>Use compression techniques for shorter sort-keys, reducing memory and 
+    database footprint (perf, footprint)</li>
+  <li>Binary Compatibility of Sort Keys</li>
+  <ol>
+    <li>1.8 sort keys will not be compatible with 1.6 sort keys or 1.7 sort 
+      keys.</li>
+    <li>However, all future versions will provide a mechanism for generating 
+      1.8-binary-compatible sort keys. See <a href="#Versioning">Versioning</a></li>
+  </ol>
+</ol>
+<h3>Post 1.8 Requirements</h3>
+<ol>
+  <li>Charset Sorting (special value in rules indicates codes are sorted by 
+    charset values): (footprint, maintenance)</li>
+  <li>Script Order (allow parametric rearrangement of scripts, e.g. Japanese 
+    &lt; Latin &lt; Greek vs. Latin &lt; Greek &lt; Japanese) (function)</li>
+  <li>Registration of Collations.</li>
+  <li>Surrogate tables. Surrogates are already handled, but the special tables 
+    would reduce the footprint and memory usage substantially where large 
+    numbers of supplementary characters are added.</li>
+  <li>Tailoring to add characters <i>before</i> other characters.</li>
+  <li>Undefined value positioning</li>
+</ol>
+<p>These features are not completely described here, but sufficient information 
+should be provided so that we don't make design decisions that would make them 
+harder (or impossible) to do in the future.</p>
+<h3>2.1 <a name="Performance">Performance</a></h3>
+Main items (not in priority order)
+<ul>
+  <li>Coding style
+    <ul>
+      <li>Rewrite core code in C. C++ API will wrap the C core code.</li>
+      <li>Avoid use of objects.</li>
+      <li>Avoid function calls.</li>
+      <li>Fast-path Latin1.</li>
+    </ul>
+  </li>
+  <li>Restructure tables
+    <ul>
+      <li>Use flat-file to speed initialization, share memory</li>
+      <li>Use static Fractional UCA with separate tailoring to minimize memory 
+        usage</li>
+    </ul>
+  </li>
+  <li>Rearchitect CE fetching, sort-key generation
+    <ul>
+      <li>Change to use newer fetch/sort-key generation from CEs, as described 
+        below.</li>
+      <li>Use stack memory buffers for common case (with expansion if 
+        necessary).</li>
+      <li>Don't use two-pass to find size first.</li>
+      <li>Speed up Collation Element retrieval.</li>
+    </ul>
+  </li>
+  <li>Speed up Normalization performance
+    <ul>
+      <li>Avoid normalization where possible. Use CheckFCD for this.</li>
+      <li>Speed up the main normalization code.</li>
+    </ul>
+  </li>
+  <li>For string compare, check for identical prefixes.</li>
+  <li>Comparisons will be done against Win32 SDK CompareString() and LCMapString() 
+    APIs, to judge performance quality.</li>
+</ul>
 <h2><a name="Modifications">Modifications</a></h2>
+<h3>Version 16</h3>
+<ul>
+  <li>General cleanup, reorganization.</li>
+</ul>
 <h3>Version 15</h3>
 <ul>
   <li>Deleted Long Primary. In practice, we found it too much trouble.</li>
@@ -4028,7 +4057,7 @@ UCA_Rules_With_Names.txt</a></p>
     tables.</li>
   <li>Made more clear that offset in contraction UChar table is a delta</li>
   <li>Added [last] syntax for Tailoring.</li>
-  <li>Modified the bit distribution in <a href="#CollationElements">CollationElements</a></li>
+  <li>Modified the bit distribution in <a href="#CollationElementFormat">CollationElements</a></li>
   <li>Modified the generation of <a href="#Implicit_CEs">Implicit_CEs</a></li>
   <li>Added <a href="#Details_on_Generation">Details_on_Generation</a></li>
   <li>Added details on <a href="#Compression">Compression</a></li>

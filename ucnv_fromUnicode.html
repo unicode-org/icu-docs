@@ -1,0 +1,49 @@
+<html><head><TITLE>ucnv_fromUnicode</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> CAPI  void  U_EXPORT2  ucnv_fromUnicode (UConverter * converter, char **target, const char *targetLimit, const UChar ** source, const UChar * sourceLimit, int32_t* offsets, bool_t flush, <!2><A HREF="#DOC.301">UErrorCode</A> * err) </H2><BLOCKQUOTE>
+
+Transcodes an array of unicode characters to an array of codepage characters
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+Transcodes an array of unicode characters to an array of codepage characters.
+The source pointer is an I/O parameter, it starts out pointing where the function is
+to begin transcoding, and ends up pointing after the first sequence of the bytes
+that it encounters that are semantically invalid.
+if ucnv_setToUCallBack is called with an action other than <TT>STOP</TT>
+before a call is made to this API, <TT>consumed</TT> and <TT>source</TT> should point to the same place
+(unless <TT>target</TT> ends with an imcomplete sequence of bytes and <TT>flush</TT> is <TT>FALSE</TT>).
+the <TT>target</TT> buffer buffer needs to be a least the size of the maximum # of bytes per characters
+allowed by the target codepage.
+
+
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL><DT><B>Parameters:</B><DD><B>converter</B> -  the Unicode converter
+<br><B>converter</B> -  the Unicode converter
+<br><B>target</B> -  : I/O parameter. Input : Points to the beginning of the buffer to copy
+codepage characters to. Output : points to after the last codepage character copied
+to <TT>target</TT>.
+<br><B>targetLimit</B> -  the pointer to the end of the <TT>target</TT> array
+<br><B>source</B> -  the source Unicode character array
+<br><B>sourceLimit</B> -  the pointer to the end of the source array
+<br><B>offsets</B> -  if NULL is passed, nothing will happen to it, otherwise it needs to have the same number
+of allocated cells as <TT>target</TT>. Will fill in offsets from target to source pointer
+e.g: <TT>offsets[3]</TT> is equal to 6, it means that the <TT>target[3]</TT> was a result of transcoding <TT>source[6]</TT>
+For output data carried across calls -1 will be placed for offsets.
+<br><B>flush</B> -  <TT>TRUE</TT> if the buffer is the last buffer of the conversion interation
+and the conversion will finish with this call, FALSE otherwise.
+<br><B>err</B> -  the error status.  <TT>ILLEGAL_ARGUMENT_ERROR</TT> will be returned if the
+converter is <TT>NULL</TT>.
+<br><DT><B>See Also:</B><DD><!1><A HREF="ucnv_fromUChars.html">ucnv_fromUChars</A>
+<br>ucnv_convert
+<br><!1><A HREF="ucnv_getMinCharSize.html">ucnv_getMinCharSize</A>
+<br><!2><A HREF="#DOC.142">ucnv_setToUCallBack</A><br></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

@@ -1,0 +1,304 @@
+<html><head><TITLE>CharacterIterator</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  <!1><A HREF="U_COMMON_API.html">U_COMMON_API</A> CharacterIterator  </H2><BLOCKQUOTE>
+
+Abstract class defining a protcol for accessing characters in a text-storage object
+</BLOCKQUOTE>
+<hr>
+ <h2> Inheritance:</h2>
+<APPLET CODE="ClassGraph.class" WIDTH=600 HEIGHT=95>
+<param name=classes value="CCharacterIterator,MCharacterIterator.html,CUCharCharacterIterator,MUCharCharacterIterator.html,CStringCharacterIterator,MStringCharacterIterator.html">
+<param name=before value="M,M|_,Mr_">
+<param name=after value="M,M,M">
+<param name=indent value="0,0,0">
+<param name=arrowdir value="down">
+</APPLET>
+<hr>
+
+<DL>
+<DL>
+<DT><h3>Public Fields</h3><DD><DT><A HREF="#DOC.4.1"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  UChar  <B>DONE</B> </B>
+ <DD><I>
+Value returned by most of CharacterIterator's functions
+when the iterator has reached the limits of its iteration</I>
+</DL><DL>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.4.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <B>~CharacterIterator</B>() </B>
+ <DD><I>
+Destructor</I>
+<DT><A HREF="#DOC.4.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!1><A HREF="CharacterIterator.html">CharacterIterator</A>& that) const  </B>
+ <DD><I>
+Returns true when both iterators refer to the same
+character in the same character-storage object</I>
+<DT><A HREF="#DOC.4.4"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>operator!=</B>(const <!1><A HREF="CharacterIterator.html">CharacterIterator</A>& that) const  </B>
+ <DD><I>
+Returns true when the iterators refer to different
+text-storage objects, or to different characters in the
+same text-storage object</I>
+<DT><A HREF="#DOC.4.5"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="CharacterIterator.html">CharacterIterator</A>*  <B>clone</B>(void) const  </B>
+ <DD><I>
+Returns a pointer to a new CharacterIterator of the same
+concrete class as this one, and referring to the same
+character in the same text-storage object as this one</I>
+<DT><A HREF="#DOC.4.6"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>hashCode</B>(void) const  </B>
+ <DD><I>
+Generates a hash code for this iterator</I>
+<DT><A HREF="#DOC.4.17"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UChar  <B>first</B>(void) </B>
+ <DD><I>
+Sets the iterator to refer to the first character in its
+iteration range, and returns that character, </I>
+<DT><A HREF="#DOC.4.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UChar  <B>last</B>(void) </B>
+ <DD><I>
+Sets the iterator to refer to the last character in its
+iteration range, and returns that character</I>
+<DT><A HREF="#DOC.4.8"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UChar  <B>setIndex</B>(UTextOffset position) </B>
+ <DD><I>
+Sets the iterator to refer to the "position"-th character
+in the text-storage object the iterator refers to, and
+returns that character</I>
+<DT><A HREF="#DOC.4.9"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UChar  <B>current</B>(void) const  </B>
+ <DD><I>
+Returns the character the iterator currently refers to</I>
+<DT><A HREF="#DOC.4.10"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UChar  <B>next</B>(void) </B>
+ <DD><I>
+Advances to the next character in the iteration range
+(toward last()), and returns that character</I>
+<DT><A HREF="#DOC.4.11"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UChar  <B>previous</B>(void) </B>
+ <DD><I>
+Advances to the previous character in the iteration rance
+(toward first()), and returns that character</I>
+<DT><A HREF="#DOC.4.12"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>startIndex</B>(void) const  </B>
+ <DD><I>
+Returns the numeric index in the underlying text-storage
+object of the character returned by first()</I>
+<DT><A HREF="#DOC.4.13"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>endIndex</B>(void) const  </B>
+ <DD><I>
+Returns the numeric index in the underlying text-storage
+object of the position immediately BEYOND the character
+returned by last()</I>
+<DT><A HREF="#DOC.4.14"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>getIndex</B>(void) const  </B>
+ <DD><I>
+Returns the numeric index in the underlying text-storage
+object of the character the iterator currently refers to
+(i</I>
+<DT><A HREF="#DOC.4.15"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>getText</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A>& result) </B>
+ <DD><I>
+Copies the text under iteration into the UnicodeString
+referred to by "result"</I>
+<DT><A HREF="#DOC.4.16"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="ClassID.html">ClassID</A>  <B>getDynamicClassID</B>(void) const  </B>
+ <DD><I>
+Returns a ClassID for this CharacterIterator ("poor man's
+RTTI")</I>
+</DL></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+Abstract class defining a protcol for accessing characters in a text-storage object.
+<P>Examples:<P>
+
+Function processing characters, in this example simple output
+<pre>
+.   void processChar( UChar c )
+.   {
+.       cout &lt;&lt; " " &lt;&lt; c;
+.   }
+</pre>
+Traverse the text from start to finish
+<pre> 
+.   void traverseForward(CharacterIterator& iter)
+.   {
+.       for(UChar c = iter.first(); c != CharacterIterator.DONE; c = iter.next()) {
+.           processChar(c);
+.       }
+.   }
+</pre>
+Traverse the text backwards, from end to start
+<pre>
+.   void traverseBackward(CharacterIterator& iter)
+.   {
+.       for(UChar c = iter.last(); c != CharacterIterator.DONE; c = iter.previous()) {
+.           processChar(c);
+.       }
+.   }
+</pre>
+Traverse both forward and backward from a given position in the text. 
+Calls to notBoundary() in this example represents some additional stopping criteria.
+<pre>
+.   void traverseOut(CharacterIterator& iter, UTextOffset pos)
+.   {
+.       UChar c;
+.       for (c = iter.setIndex(pos);
+.       c != CharacterIterator.DONE && (Unicode::isLetter(c) || Unicode::isDigit(c));
+.           c = iter.next()) {}
+.       UTextOffset end = iter.getIndex();
+.       for (c = iter.setIndex(pos);
+.           c != CharacterIterator.DONE && (Unicode::isLetter(c) || Unicode::isDigit(c));
+.           c = iter.previous()) {}
+.       UTextOffset start = iter.getIndex() + 1;
+.   
+.       cout &lt;&lt; "start: " &lt;&lt; start &lt;&lt; " end: " &lt;&lt; end &lt;&lt; endl;
+.       for (c = iter.setIndex(start); iter.getIndex() &lt; end; c = iter.next() ) {
+.           processChar(c);
+.       }
+.    }
+</pre>
+Creating a StringCharacterIteratorand calling the test functions
+<pre>
+.    void CharacterIterator_Example( void )
+.    {
+.        cout &lt;&lt; endl &lt;&lt; "===== CharacterIterator_Example: =====" &lt;&lt; endl;
+.        UnicodeString text("Ein kleiner Satz.");
+.        StringCharacterIterator iterator(text);
+.        cout &lt;&lt; "----- traverseForward: -----------" &lt;&lt; endl;
+.        traverseForward( iterator );
+.        cout &lt;&lt; endl &lt;&lt; endl &lt;&lt; "----- traverseBackward: ----------" &lt;&lt; endl;
+.        traverseBackward( iterator );
+.        cout &lt;&lt; endl &lt;&lt; endl &lt;&lt; "----- traverseOut: ---------------" &lt;&lt; endl;
+.        traverseOut( iterator, 7 );
+.        cout &lt;&lt; endl &lt;&lt; endl &lt;&lt; "-----" &lt;&lt; endl;
+.    }
+</pre>
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="DONE">
+<A NAME ="DOC.4.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  const  UChar  DONE</B></TT>
+<DD>
+Value returned by most of CharacterIterator's functions
+when the iterator has reached the limits of its iteration.  
+<DL></DL><P>
+<A NAME="~CharacterIterator">
+<A NAME ="DOC.4.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  ~CharacterIterator()</B></TT>
+<DD>
+Destructor.  
+<DL></DL><P>
+<A NAME="operator==">
+<A NAME ="DOC.4.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!1><A HREF="CharacterIterator.html">CharacterIterator</A>& that) const </B></TT>
+<DD>
+Returns true when both iterators refer to the same
+character in the same character-storage object.  
+<DL></DL><P>
+<A NAME="operator!=">
+<A NAME ="DOC.4.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  operator!=(const <!1><A HREF="CharacterIterator.html">CharacterIterator</A>& that) const </B></TT>
+<DD>
+Returns true when the iterators refer to different
+text-storage objects, or to different characters in the
+same text-storage object.  
+<DL></DL><P>
+<A NAME="clone">
+<A NAME ="DOC.4.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="CharacterIterator.html">CharacterIterator</A>*  clone(void) const </B></TT>
+<DD>
+Returns a pointer to a new CharacterIterator of the same
+concrete class as this one, and referring to the same
+character in the same text-storage object as this one.  The
+caller is responsible for deleting the new clone.  
+<DL></DL><P>
+<A NAME="hashCode">
+<A NAME ="DOC.4.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int32_t  hashCode(void) const </B></TT>
+<DD>
+Generates a hash code for this iterator.  
+<DL></DL><P>
+<A NAME="first">
+<A NAME ="DOC.4.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UChar  first(void)</B></TT>
+<DD>
+Sets the iterator to refer to the first character in its
+iteration range, and returns that character, 
+<DL></DL><P>
+<A NAME="last">
+<A NAME ="DOC.4.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UChar  last(void)</B></TT>
+<DD>
+Sets the iterator to refer to the last character in its
+iteration range, and returns that character.  
+<DL></DL><P>
+<A NAME="setIndex">
+<A NAME ="DOC.4.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UChar  setIndex(UTextOffset position)</B></TT>
+<DD>
+Sets the iterator to refer to the "position"-th character
+in the text-storage object the iterator refers to, and
+returns that character.  
+<DL></DL><P>
+<A NAME="current">
+<A NAME ="DOC.4.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UChar  current(void) const </B></TT>
+<DD>
+Returns the character the iterator currently refers to.  
+<DL></DL><P>
+<A NAME="next">
+<A NAME ="DOC.4.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UChar  next(void)</B></TT>
+<DD>
+Advances to the next character in the iteration range
+(toward last()), and returns that character.  If there are
+no more characters to return, returns DONE.  
+<DL></DL><P>
+<A NAME="previous">
+<A NAME ="DOC.4.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UChar  previous(void)</B></TT>
+<DD>
+Advances to the previous character in the iteration rance
+(toward first()), and returns that character.  If there are
+no more characters to return, returns DONE.  
+<DL></DL><P>
+<A NAME="startIndex">
+<A NAME ="DOC.4.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  startIndex(void) const </B></TT>
+<DD>
+Returns the numeric index in the underlying text-storage
+object of the character returned by first().  Since it's
+possible to create an iterator that iterates across only
+part of a text-storage object, this number isn't
+necessarily 0.  
+<DL></DL><P>
+<A NAME="endIndex">
+<A NAME ="DOC.4.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  endIndex(void) const </B></TT>
+<DD>
+Returns the numeric index in the underlying text-storage
+object of the position immediately BEYOND the character
+returned by last().  
+<DL></DL><P>
+<A NAME="getIndex">
+<A NAME ="DOC.4.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  getIndex(void) const </B></TT>
+<DD>
+Returns the numeric index in the underlying text-storage
+object of the character the iterator currently refers to
+(i.e., the character returned by current()).  
+<DL></DL><P>
+<A NAME="getText">
+<A NAME ="DOC.4.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  getText(<!1><A HREF="UnicodeString.html">UnicodeString</A>& result)</B></TT>
+<DD>
+Copies the text under iteration into the UnicodeString
+referred to by "result".  @param result Receives a copy of
+the text under iteration.  
+<DL></DL><P>
+<A NAME="getDynamicClassID">
+<A NAME ="DOC.4.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="ClassID.html">ClassID</A>  getDynamicClassID(void) const </B></TT>
+<DD>
+Returns a ClassID for this CharacterIterator ("poor man's
+RTTI").<P> Despite the fact that this function is public,
+DO NOT CONSIDER IT PART OF CHARACTERITERATOR'S API!  
+<DL></DL><P></DL>
+<hr>
+<DL><DT><B>Direct child classes:
+</B><DD><A HREF="UCharCharacterIterator.html"> UCharCharacterIterator </A><br>
+<A HREF="StringCharacterIterator.html"> StringCharacterIterator </A><br>
+</DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

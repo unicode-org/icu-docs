@@ -1,0 +1,1735 @@
+<html><head><TITLE>UnicodeString</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  <!1><A HREF="U_COMMON_API.html">U_COMMON_API</A> UnicodeString  </H2><BLOCKQUOTE>
+
+UnicodeString is a concrete implementation of the abstract class 
+UnicodeText
+</BLOCKQUOTE>
+<hr>
+
+<DL>
+<DL>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.248.1"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>operator== </B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Equality operator</I>
+<DT><A HREF="#DOC.248.2"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>operator!= </B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Inequality operator</I>
+<DT><A HREF="#DOC.248.3"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>operator> </B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Greater than operator</I>
+<DT><A HREF="#DOC.248.4"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>operator< </B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Less than operator</I>
+<DT><A HREF="#DOC.248.5"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>operator>= </B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Greater than or equal operator</I>
+<DT><A HREF="#DOC.248.6"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>operator<= </B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Less than or equal operator</I>
+<DT><A HREF="#DOC.248.7"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int8_t  <B>compare</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Compare the characters bitwise in this UnicodeString to
+the characters in <TT>text</TT></I>
+<DT><A HREF="#DOC.248.8"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int8_t  <B>compare</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText) const  </B>
+ <DD><I>
+Compare the characters bitwise in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters 
+in <TT>srcText</TT>
+</I>
+<DT><A HREF="#DOC.248.9"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int8_t  <B>compare</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength) const  </B>
+ <DD><I>
+Compare the characters bitwise in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters 
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>)</I>
+<DT><A HREF="#DOC.248.10"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int8_t  <B>compare</B>(const UChar *srcChars, int32_t srcLength) const  </B>
+ <DD><I>
+Compare the characters bitwise in this UnicodeString with the first 
+<TT>srcLength</TT> characters in <TT>srcChars</TT></I>
+<DT><A HREF="#DOC.248.11"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int8_t  <B>compare</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const UChar *srcChars) const  </B>
+ <DD><I>
+Compare the characters bitwise in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the first 
+<TT>length</TT> characters in <TT>srcChars</TT>
+</I>
+<DT><A HREF="#DOC.248.12"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int8_t  <B>compare</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const UChar *srcChars, UTextOffset srcStart, int32_t srcLength) const  </B>
+ <DD><I>
+Compare the characters bitwise in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters 
+in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>)</I>
+<DT><A HREF="#DOC.248.13"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int8_t  <B>compareBetween</B>(UTextOffset start, UTextOffset limit, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, UTextOffset srcLimit) const  </B>
+ <DD><I>
+Compare the characters bitwise in the range 
+[<TT>start</TT>, <TT>limit</TT>) with the characters 
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcLimit</TT>)</I>
+<DT><A HREF="#DOC.248.14"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>startsWith</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Determine if this starts with the characters in <TT>text</TT>
+</I>
+<DT><A HREF="#DOC.248.15"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>startsWith</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength) const  </B>
+ <DD><I>
+Determine if this starts with the characters in <TT>srcText</TT> 
+in the range [<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>)</I>
+<DT><A HREF="#DOC.248.16"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>startsWith</B>(const UChar *srcChars, int32_t srcLength) const  </B>
+ <DD><I>
+Determine if this starts with the characters in <TT>srcChars</TT>
+</I>
+<DT><A HREF="#DOC.248.17"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>startsWith</B>(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength) const  </B>
+ <DD><I>
+Determine if this ends with the characters in <TT>srcChars</TT> 
+in the range  [<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>)</I>
+<DT><A HREF="#DOC.248.18"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>endsWith</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Determine if this ends with the characters in <TT>text</TT>
+</I>
+<DT><A HREF="#DOC.248.19"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>endsWith</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength) const  </B>
+ <DD><I>
+Determine if this ends with the characters in <TT>srcText</TT> 
+in the range [<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>)</I>
+<DT><A HREF="#DOC.248.20"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>endsWith</B>(const UChar *srcChars, int32_t srcLength) const  </B>
+ <DD><I>
+Determine if this ends with the characters in <TT>srcChars</TT>
+</I>
+<DT><A HREF="#DOC.248.21"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>endsWith</B>(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength) const  </B>
+ <DD><I>
+Determine if this ends with the characters in <TT>srcChars</TT> 
+in the range  [<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>)</I>
+<DT><A HREF="#DOC.248.22"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>indexOf</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Locate in this the first occurrence of the characters in <TT>text</TT>,
+using bitwise comparison</I>
+<DT><A HREF="#DOC.248.23"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>indexOf</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text, UTextOffset start) const  </B>
+ <DD><I>
+Locate in this the first occurrence of the characters in <TT>text</TT>
+starting at offset <TT>start</TT>, using bitwise comparison</I>
+<DT><A HREF="#DOC.248.24"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>indexOf</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const  </B>
+ <DD><I>
+Locate in this the first occurrence in the range
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>text</TT>, using bitwise comparison</I>
+<DT><A HREF="#DOC.248.25"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>indexOf</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const  </B>
+ <DD><I>
+Locate in this the first occurrence in the range
+[<TT>start</TT>, <TT>start + length</TT>) of the characters
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>), 
+using bitwise comparison</I>
+<DT><A HREF="#DOC.248.26"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>indexOf</B>(const UChar *srcChars, int32_t srcLength, UTextOffset start) const  </B>
+ <DD><I>
+Locate in this the first occurrence of the characters in
+<TT>srcChars</TT> 
+starting at offset <TT>start</TT>, using bitwise comparison</I>
+<DT><A HREF="#DOC.248.27"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>indexOf</B>(const UChar *srcChars, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const  </B>
+ <DD><I>
+Locate in this the first occurrence in the range
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>srcChars</TT>, using bitwise comparison</I>
+<DT><A HREF="#DOC.248.28"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>indexOf</B>(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const  </B>
+ <DD><I>
+Locate in this the first occurrence in the range 
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>), 
+using bitwise comparison</I>
+<DT><A HREF="#DOC.248.29"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>indexOf</B>(UChar c) const  </B>
+ <DD><I>
+Locate in this the first occurrence of the character <TT>c</TT>, 
+using bitwise comparison</I>
+<DT><A HREF="#DOC.248.30"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>indexOf</B>(UChar c, UTextOffset start) const  </B>
+ <DD><I>
+Locate in this the first occurrence of the character <TT>c</TT>
+starting at offset <TT>start</TT>, using bitwise comparison</I>
+<DT><A HREF="#DOC.248.31"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>indexOf</B>(UChar c, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const  </B>
+ <DD><I>
+Locate in this the first occurrence of the character <TT>c</TT> 
+in the range [<TT>start</TT>, <TT>start + length</TT>), 
+using bitwise comparison</I>
+<DT><A HREF="#DOC.248.32"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>lastIndexOf</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const  </B>
+ <DD><I>
+Locate in this the last occurrence of the characters in <TT>text</TT>, 
+using bitwise comparison</I>
+<DT><A HREF="#DOC.248.33"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>lastIndexOf</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text, UTextOffset start) const  </B>
+ <DD><I>
+Locate in this the last occurrence of the characters in <TT>text</TT>
+starting at offset <TT>start</TT>, using bitwise comparison</I>
+<DT><A HREF="#DOC.248.34"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>lastIndexOf</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const  </B>
+ <DD><I>
+Locate in this the last occurrence in the range 
+[<TT>start</TT>, <TT>start + length</TT>) of the characters
+in <TT>text</TT>, using bitwise comparison</I>
+<DT><A HREF="#DOC.248.35"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>lastIndexOf</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const  </B>
+ <DD><I>
+Locate in this the last occurrence in the range 
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>), 
+using bitwise comparison</I>
+<DT><A HREF="#DOC.248.36"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>lastIndexOf</B>(const UChar *srcChars, int32_t srcLength, UTextOffset start) const  </B>
+ <DD><I>
+Locate in this the last occurrence of the characters in <TT>srcChars</TT> 
+starting at offset <TT>start</TT>, using bitwise comparison</I>
+<DT><A HREF="#DOC.248.37"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>lastIndexOf</B>(const UChar *srcChars, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const  </B>
+ <DD><I>
+Locate in this the last occurrence in the range 
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>srcChars</TT>, using bitwise comparison</I>
+<DT><A HREF="#DOC.248.38"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>lastIndexOf</B>(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const  </B>
+ <DD><I>
+Locate in this the last occurrence in the range 
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>), 
+using bitwise comparison</I>
+<DT><A HREF="#DOC.248.39"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>lastIndexOf</B>(UChar c) const  </B>
+ <DD><I>
+Locate in this the last occurrence of the character <TT>c</TT>, 
+using bitwise comparison</I>
+<DT><A HREF="#DOC.248.40"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>lastIndexOf</B>(UChar c, UTextOffset start) const  </B>
+ <DD><I>
+Locate in this the last occurrence of the character <TT>c</TT>
+starting at offset <TT>start</TT>, using bitwise comparison</I>
+<DT><A HREF="#DOC.248.41"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UTextOffset  <B>lastIndexOf</B>(UChar c, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const  </B>
+ <DD><I>
+Locate in this the last occurrence of the character <TT>c</TT> 
+in the range [<TT>start</TT>, <TT>start + length</TT>), 
+using bitwise comparison</I>
+<DT><A HREF="#DOC.248.42"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UChar  <B>charAt</B>(UTextOffset offset) const  </B>
+ <DD><I>
+Return the character at offset <tt>offset</tt></I>
+<DT><A HREF="#DOC.248.43"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UChar  <B>operator [] </B>(UTextOffset offset) const  </B>
+ <DD><I>
+Return the character at offset <tt>offset</tt></I>
+<DT><A HREF="#DOC.248.44"> <IMG BORDER=0 SRC=icon1.gif></A> inline  void  <B>extract</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, UChar *dst, UTextOffset dstStart = 0) const  </B>
+ <DD><I>
+Copy the characters in the range 
+[<tt>start</tt>, <tt>start + length</tt>) into the array <tt>dst</tt>,
+beginning at <tt>dstStart</tt></I>
+<DT><A HREF="#DOC.248.45"> <IMG BORDER=0 SRC=icon1.gif></A> inline  void  <B>extract</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& target) const  </B>
+ <DD><I>
+Copy the characters in the range 
+[<tt>start</tt>, <tt>start + length</tt>) into the  UnicodeString
+<tt>target</tt></I>
+<DT><A HREF="#DOC.248.46"> <IMG BORDER=0 SRC=icon1.gif></A> inline  void  <B>extractBetween</B>(UTextOffset start, UTextOffset limit, UChar *dst, UTextOffset dstStart = 0) const  </B>
+ <DD><I>
+Copy the characters in the range [<tt>start</tt>, <tt>limit</tt>) 
+into the array <tt>dst</tt>, beginning at <tt>dstStart</tt></I>
+<DT><A HREF="#DOC.248.47"> <IMG BORDER=0 SRC=icon1.gif></A> inline  void  <B>extractBetween</B>(UTextOffset start, UTextOffset limit, <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& target) const  </B>
+ <DD><I>
+Copy the characters in the range [<tt>start</tt>, <tt>limit</tt>) 
+into the UnicodeString <tt>target</tt></I>
+<DT><A HREF="#DOC.248.48"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>extract</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, char *dst, const char *codepage = 0) const  </B>
+ <DD><I>
+Copy the characters in the range 
+[<tt>start</TT>, <tt>start + length</TT>) into an array of characters
+in a specified codepage</I>
+<DT><A HREF="#DOC.248.49"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int32_t  <B>length</B>(void) const  </B>
+ <DD><I>
+Return the length of the UnicodeString object</I>
+<DT><A HREF="#DOC.248.50"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>empty</B>(void) const  </B>
+ <DD><I>
+Determine if this string is empty</I>
+<DT><A HREF="#DOC.248.51"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int32_t  <B>hashCode</B>(void) const  </B>
+ <DD><I>
+Generate a hash code for this object</I>
+<DT><A HREF="#DOC.248.52"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>isBogus</B>(void) const  </B>
+ <DD><I>
+Determine if this string is still valid</I>
+<DT><A HREF="#DOC.248.53"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>operator= </B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText) </B>
+ <DD><I>
+Assignment operator</I>
+<DT><A HREF="#DOC.248.54"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>operator= </B>(UChar ch) </B>
+ <DD><I>
+Assignment operator</I>
+<DT><A HREF="#DOC.248.55"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>setTo</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength) </B>
+ <DD><I>
+Set the text in the UnicodeString object to the characters
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>)</I>
+<DT><A HREF="#DOC.248.56"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>setTo</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText) </B>
+ <DD><I>
+Set the text in the UnicodeString object to the characters in 
+<TT>srcText</TT></I>
+<DT><A HREF="#DOC.248.57"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>setTo</B>(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength) </B>
+ <DD><I>
+Set the characters in the UnicodeString object to the characters
+in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>)</I>
+<DT><A HREF="#DOC.248.58"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>setTo</B>(const UChar *srcChars, int32_t srcLength) </B>
+ <DD><I>
+Set the characters in the UnicodeString object to the characters
+in <TT>srcChars</TT></I>
+<DT><A HREF="#DOC.248.59"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>setTo</B>(UChar srcChar) </B>
+ <DD><I>
+Set the characters in the UnicodeString object to the character 
+<TT>srcChar</TT></I>
+<DT><A HREF="#DOC.248.60"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>setCharAt</B>(UTextOffset offset, UChar ch) </B>
+ <DD><I>
+Set the character at the specified offset to the specified character</I>
+<DT><A HREF="#DOC.248.61"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>operator+= </B>(UChar ch) </B>
+ <DD><I>
+Append operator</I>
+<DT><A HREF="#DOC.248.62"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>operator+= </B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText) </B>
+ <DD><I>
+Append operator</I>
+<DT><A HREF="#DOC.248.63"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>append</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength) </B>
+ <DD><I>
+Append the characters
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>) to the 
+UnicodeString object at offset <TT>start</TT></I>
+<DT><A HREF="#DOC.248.64"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>append</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText) </B>
+ <DD><I>
+Append the characters in <TT>srcText</TT> to the UnicodeString object at 
+offset <TT>start</TT></I>
+<DT><A HREF="#DOC.248.65"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>append</B>(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength) </B>
+ <DD><I>
+Append the characters in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>) to the UnicodeString 
+object at offset 
+<TT>start</TT></I>
+<DT><A HREF="#DOC.248.66"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>append</B>(const UChar *srcChars, int32_t srcLength) </B>
+ <DD><I>
+Append the characters in <TT>srcChars</TT> to the UnicodeString object 
+at offset <TT>start</TT></I>
+<DT><A HREF="#DOC.248.67"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>append</B>(UChar srcChar) </B>
+ <DD><I>
+Append the character <TT>srcChar</TT> to the UnicodeString object</I>
+<DT><A HREF="#DOC.248.68"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>insert</B>(UTextOffset start, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength) </B>
+ <DD><I>
+Insert the characters in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>) into the UnicodeString 
+object at offset <TT>start</TT></I>
+<DT><A HREF="#DOC.248.69"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>insert</B>(UTextOffset start, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText) </B>
+ <DD><I>
+Insert the characters in <TT>srcText</TT> into the UnicodeString object
+at offset <TT>start</TT></I>
+<DT><A HREF="#DOC.248.70"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>insert</B>(UTextOffset start, const UChar *srcChars, UTextOffset srcStart, int32_t srcLength) </B>
+ <DD><I>
+Insert the characters in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>) into the UnicodeString
+object at offset <TT>start</TT></I>
+<DT><A HREF="#DOC.248.71"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>insert</B>(UTextOffset start, const UChar *srcChars, int32_t srcLength) </B>
+ <DD><I>
+Insert the characters in <TT>srcChars</TT> into the UnicodeString object 
+at offset <TT>start</TT></I>
+<DT><A HREF="#DOC.248.72"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>insert</B>(UTextOffset start, UChar srcChar) </B>
+ <DD><I>
+Insert the character <TT>srcChar</TT> into the UnicodeString object at 
+offset <TT>start</TT></I>
+<DT><A HREF="#DOC.248.73"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>replace</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength) </B>
+ <DD><I>
+Replace the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters in 
+<TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>)</I>
+<DT><A HREF="#DOC.248.74"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>replace</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText) </B>
+ <DD><I>
+Replace the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) 
+with the characters in <TT>srcText</TT></I>
+<DT><A HREF="#DOC.248.75"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>replace</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const UChar *srcChars, UTextOffset srcStart, int32_t srcLength) </B>
+ <DD><I>
+Replace the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters in 
+<TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>)</I>
+<DT><A HREF="#DOC.248.76"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>replace</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const UChar *srcChars, int32_t srcLength) </B>
+ <DD><I>
+Replace the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters in
+<TT>srcChars</TT></I>
+<DT><A HREF="#DOC.248.77"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>replace</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, UChar srcChar) </B>
+ <DD><I>
+Replace the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the character
+<TT>srcChar</TT></I>
+<DT><A HREF="#DOC.248.78"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>replaceBetween</B>(UTextOffset start, UTextOffset limit, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText) </B>
+ <DD><I>
+Replace the characters in the range [<TT>start</TT>, <TT>limit</TT>) 
+with the characters in <TT>srcText</TT></I>
+<DT><A HREF="#DOC.248.79"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>replaceBetween</B>(UTextOffset start, UTextOffset limit, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, UTextOffset srcLimit) </B>
+ <DD><I>
+Replace the characters in the range [<TT>start</TT>, <TT>limit</TT>) 
+with the characters in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcLimit</TT>)</I>
+<DT><A HREF="#DOC.248.80"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>findAndReplace</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& oldText, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& newText) </B>
+ <DD><I>
+Replace all occurrences of characters in oldText with the characters 
+in newText
+</I>
+<DT><A HREF="#DOC.248.81"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>findAndReplace</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& oldText, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& newText) </B>
+ <DD><I>
+Replace all occurrences of characters in oldText with characters 
+in newText
+in the range [<TT>start</TT>, <TT>start + length</TT>)</I>
+<DT><A HREF="#DOC.248.82"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>findAndReplace</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& oldText, UTextOffset oldStart, int32_t oldLength, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& newText, UTextOffset newStart, int32_t newLength) </B>
+ <DD><I>
+Replace all occurrences of characters in oldText in the range 
+[<TT>oldStart</TT>, <TT>oldStart + oldLength</TT>) with the characters 
+in newText in the range 
+[<TT>newStart</TT>, <TT>newStart + newLength</TT>) 
+in the range [<TT>start</TT>, <TT>start + length</TT>)</I>
+<DT><A HREF="#DOC.248.83"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>remove</B>(void) </B>
+ <DD><I>
+Remove all characters from the UnicodeString object</I>
+<DT><A HREF="#DOC.248.84"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>remove</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A> = LONG_MAX) </B>
+ <DD><I>
+Remove the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) from the UnicodeString object</I>
+<DT><A HREF="#DOC.248.85"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>removeBetween</B>(UTextOffset start, UTextOffset limit = LONG_MAX) </B>
+ <DD><I>
+Remove the characters in the range 
+[<TT>start</TT>, <TT>limit</TT>) from the UnicodeString object</I>
+<DT><A HREF="#DOC.248.86"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>padLeading</B>(int32_t targetLength, UChar padChar = 0x0020) </B>
+ <DD><I>
+Pad the start of this UnicodeString with the character <TT>padChar</TT></I>
+<DT><A HREF="#DOC.248.87"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>padTrailing</B>(int32_t targetLength, UChar padChar = 0x0020) </B>
+ <DD><I>
+Pad the end of this UnicodeString with the character <TT>padChar</TT></I>
+<DT><A HREF="#DOC.248.88"> <IMG BORDER=0 SRC=icon1.gif></A> inline  bool_t  <B>truncate</B>(int32_t targetLength) </B>
+ <DD><I>
+Truncate this UnicodeString to the <TT>targetLength</TT></I>
+<DT><A HREF="#DOC.248.89"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>trim</B>(void) </B>
+ <DD><I>
+Trims leading and trailing whitespace from this UnicodeString</I>
+<DT><A HREF="#DOC.248.90"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>reverse</B>(void) </B>
+ <DD><I>
+Reverse this UnicodeString in place</I>
+<DT><A HREF="#DOC.248.91"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>reverse</B>(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) </B>
+ <DD><I>
+Reverse the range [<TT>start</TT>, <TT>start + length</TT>) in
+this UnicodeString</I>
+<DT><A HREF="#DOC.248.92"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>toUpper</B>(void) </B>
+ <DD><I>
+Convert the characters in this to UPPER CASE following the conventions of
+the default locale</I>
+<DT><A HREF="#DOC.248.93"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>toUpper</B>(const Locale& locale) </B>
+ <DD><I>
+Convert the characters in this to UPPER CASE following the conventions of
+a specific locale</I>
+<DT><A HREF="#DOC.248.94"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>toLower</B>(void) </B>
+ <DD><I>
+Convert the characters in this to UPPER CASE following the conventions of
+the default</I>
+<DT><A HREF="#DOC.248.95"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  <B>toLower</B>(const Locale& locale) </B>
+ <DD><I>
+Convert the characters in this to UPPER CASE following the conventions of
+a specific locale</I>
+<DT><A HREF="#DOC.248.96"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeString</B>() </B>
+ <DD><I>Construct an empty UnicodeString</I>
+<DT><A HREF="#DOC.248.97"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeString</B>(int32_t capacity) </B>
+ <DD><I>
+Construct a UnicodeString with capacity to hold <TT>capacity</TT> UChars
+</I>
+<DT><A HREF="#DOC.248.98"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeString</B>(UChar ch) </B>
+ <DD><I>
+Single UChar constructor</I>
+<DT><A HREF="#DOC.248.99"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeString</B>(const UChar *text) </B>
+ <DD><I>
+UChar* constructor</I>
+<DT><A HREF="#DOC.248.100"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeString</B>(const UChar *text, int32_t textLength) </B>
+ <DD><I>
+UChar* constructor</I>
+<DT><A HREF="#DOC.248.101"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeString</B>(const char *codepageData, const char *codepage = 0) </B>
+ <DD><I>
+char* constructor</I>
+<DT><A HREF="#DOC.248.102"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeString</B>(const char *codepageData, int32_t dataLength, const char *codepage = 0) </B>
+ <DD><I>
+char* constructor</I>
+<DT><A HREF="#DOC.248.103"> <IMG BORDER=0 SRC=icon1.gif></A> inline  <B>UnicodeString</B>(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& that) </B>
+ <DD><I>
+Copy constructor</I>
+<DT><A HREF="#DOC.248.107"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>~UnicodeString</B>() </B>
+ <DD><I>Destructor</I>
+<DT><A HREF="#DOC.248.104"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>numDisplayCells</B>(UTextOffset start = 0, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A> = LONG_MAX, bool_t asian = TRUE) const  </B>
+ <DD><I>
+Returns the number of display cells occupied by the range
+[<TT>start</TT>, <TT>length</TT>)</I>
+</DL><DL>
+<DT><h3>Public</h3><DD><DT><A HREF="#DOC.248.105"> <IMG BORDER=0 SRC=icon1.gif></A>  <B></B> </B>
+ <DD><I>
+Convert the characters in this to UPPER CASE following the conventions of
+the default locale</I>
+</DL></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+UnicodeString is a concrete implementation of the abstract class 
+UnicodeText.  UnicodeString performs codeset conversion from char*
+data based on the type of data specified.
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="operator== ">
+<A NAME ="DOC.248.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  operator== (const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Equality operator. Performs only bitwise comparison.
+
+<DL><DT><B>Returns:</B><DD>TRUE if <TT>text</TT> contains the same characters as this one,
+FALSE otherwise.
+<DT><B>Parameters:</B><DD><B>text</B> -  The UnicodeString to compare to this one.
+<br></DL><P>
+<A NAME="operator!= ">
+<A NAME ="DOC.248.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  operator!= (const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Inequality operator. Performs only bitwise comparison.
+
+<DL><DT><B>Returns:</B><DD>FALSE if <TT>text</TT> contains the same characters as this one,
+TRUE otherwise.
+<DT><B>Parameters:</B><DD><B>text</B> -  The UnicodeString to compare to this one.
+<br></DL><P>
+<A NAME="operator> ">
+<A NAME ="DOC.248.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  operator> (const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Greater than operator. Performs only bitwise comparison.
+
+<DL><DT><B>Returns:</B><DD>TRUE if the characters in <TT>text</TT> are bitwise
+greater than the characters in this, FALSE otherwise
+<DT><B>Parameters:</B><DD><B>text</B> -  The UnicodeString to compare to this one.
+<br></DL><P>
+<A NAME="operator< ">
+<A NAME ="DOC.248.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  operator< (const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Less than operator. Performs only bitwise comparison.
+
+<DL><DT><B>Returns:</B><DD>TRUE if the characters in <TT>text</TT> are bitwise
+less than the characters in this, FALSE otherwise
+<DT><B>Parameters:</B><DD><B>text</B> -  The UnicodeString to compare to this one.
+<br></DL><P>
+<A NAME="operator>= ">
+<A NAME ="DOC.248.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  operator>= (const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Greater than or equal operator. Performs only bitwise comparison.
+
+<DL><DT><B>Returns:</B><DD>TRUE if the characters in <TT>text</TT> are bitwise
+greater than or equal to the characters in this, FALSE otherwise
+<DT><B>Parameters:</B><DD><B>text</B> -  The UnicodeString to compare to this one.
+<br></DL><P>
+<A NAME="operator<= ">
+<A NAME ="DOC.248.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  operator<= (const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Less than or equal operator. Performs only bitwise comparison.
+
+<DL><DT><B>Returns:</B><DD>TRUE if the characters in <TT>text</TT> are bitwise
+less than or equal to the characters in this, FALSE otherwise
+<DT><B>Parameters:</B><DD><B>text</B> -  The UnicodeString to compare to this one.
+<br></DL><P>
+<A NAME="compare">
+<A NAME ="DOC.248.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int8_t  compare(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Compare the characters bitwise in this UnicodeString to
+the characters in <TT>text</TT>
+<DL><DT><B>Returns:</B><DD>The result of bitwise character comparison: 0 if <TT>text</TT>
+contains the same characters as this, -1 if the characters in 
+<TT>text</TT> are bitwise less than the characters in this, +1 if the
+characters in <TT>text</TT> are bitwise greater than the characters 
+in this.
+<DT><B>Parameters:</B><DD><B>text</B> -  The UnicodeString to compare to this one.
+<br></DL><P>
+<A NAME="compare">
+<A NAME ="DOC.248.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int8_t  compare(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText) const </B></TT>
+<DD>
+Compare the characters bitwise in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters 
+in <TT>srcText</TT>
+
+<DL><DT><B>Returns:</B><DD>The result of bitwise character comparison: 0 if <TT>text</TT>
+contains the same characters as this, -1 if the characters in 
+<TT>text</TT> are bitwise less than the characters in this, +1 if the
+characters in <TT>text</TT> are bitwise greater than the characters 
+in this.
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the compare operation begins
+<br><B>length</B> -  the number of characters of text to compare.
+<br><B>srcText</B> -  the text to be compared
+<br></DL><P>
+<A NAME="compare">
+<A NAME ="DOC.248.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int8_t  compare(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength) const </B></TT>
+<DD>
+Compare the characters bitwise in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters 
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>).  
+
+<DL><DT><B>Returns:</B><DD>The result of bitwise character comparison: 0 if <TT>text</TT>
+contains the same characters as this, -1 if the characters in 
+<TT>text</TT> are bitwise less than the characters in this, +1 if the
+characters in <TT>text</TT> are bitwise greater than the characters 
+in this.
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the compare operation begins
+<br><B>length</B> -  the number of characters in this to compare.
+<br><B>srcText</B> -  the text to be compared
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> to start comparison
+<br><B>srcLength</B> -  the number of characters in <TT>src</TT> to compare
+<br></DL><P>
+<A NAME="compare">
+<A NAME ="DOC.248.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int8_t  compare(const UChar *srcChars, int32_t srcLength) const </B></TT>
+<DD>
+Compare the characters bitwise in this UnicodeString with the first 
+<TT>srcLength</TT> characters in <TT>srcChars</TT>
+<DL><DT><B>Returns:</B><DD>The result of bitwise character comparison: 0 if <TT>text</TT>
+contains the same characters as this, -1 if the characters in 
+<TT>text</TT> are bitwise less than the characters in this, +1 if the
+characters in <TT>text</TT> are bitwise greater than the characters 
+in this.
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  The characters to compare to this UnicodeString.
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> to compare
+<br></DL><P>
+<A NAME="compare">
+<A NAME ="DOC.248.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int8_t  compare(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const UChar *srcChars) const </B></TT>
+<DD>
+Compare the characters bitwise in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the first 
+<TT>length</TT> characters in <TT>srcChars</TT>
+
+<DL><DT><B>Returns:</B><DD>The result of bitwise character comparison: 0 if <TT>text</TT>
+contains the same characters as this, -1 if the characters in 
+<TT>text</TT> are bitwise less than the characters in this, +1 if the
+characters in <TT>text</TT> are bitwise greater than the characters 
+in this.
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the compare operation begins
+<br><B>length</B> -  the number of characters to compare.
+<br><B>srcChars</B> -  the characters to be compared
+<br></DL><P>
+<A NAME="compare">
+<A NAME ="DOC.248.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int8_t  compare(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const UChar *srcChars, UTextOffset srcStart, int32_t srcLength) const </B></TT>
+<DD>
+Compare the characters bitwise in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters 
+in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>).  
+
+<DL><DT><B>Returns:</B><DD>The result of bitwise character comparison: 0 if <TT>text</TT>
+contains the same characters as this, -1 if the characters in 
+<TT>text</TT> are bitwise less than the characters in this, +1 if the
+characters in <TT>text</TT> are bitwise greater than the characters 
+in this.
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the compare operation begins
+<br><B>length</B> -  the number of characters in this to compare
+<br><B>srcChars</B> -  the characters to be compared
+<br><B>srcStart</B> -  the offset into <TT>srcChars</TT> to start comparison
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> to compare
+<br></DL><P>
+<A NAME="compareBetween">
+<A NAME ="DOC.248.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int8_t  compareBetween(UTextOffset start, UTextOffset limit, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, UTextOffset srcLimit) const </B></TT>
+<DD>
+Compare the characters bitwise in the range 
+[<TT>start</TT>, <TT>limit</TT>) with the characters 
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcLimit</TT>).  
+
+<DL><DT><B>Returns:</B><DD>The result of bitwise character comparison: 0 if <TT>text</TT>
+contains the same characters as this, -1 if the characters in 
+<TT>text</TT> are bitwise less than the characters in this, +1 if the
+characters in <TT>text</TT> are bitwise greater than the characters 
+in this.
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the compare operation begins
+<br><B>limit</B> -  the offset immediately following the compare operation
+<br><B>srcText</B> -  the text to be compared
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> to start comparison
+<br><B>srcLimit</B> -  the offset into <TT>srcText</TT> to limit comparison
+<br></DL><P>
+<A NAME="startsWith">
+<A NAME ="DOC.248.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  startsWith(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Determine if this starts with the characters in <TT>text</TT>
+
+<DL><DT><B>Returns:</B><DD>TRUE if this starts with the characters in <TT>text</TT>, 
+FALSE otherwise
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to match.
+<br></DL><P>
+<A NAME="startsWith">
+<A NAME ="DOC.248.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  startsWith(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength) const </B></TT>
+<DD>
+Determine if this starts with the characters in <TT>srcText</TT> 
+in the range [<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>).   
+
+<DL><DT><B>Returns:</B><DD>TRUE if this starts with the characters in <TT>text</TT>, 
+FALSE otherwise
+<DT><B>Parameters:</B><DD><B>srcText</B> -  The text to match.
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> to start matching
+<br><B>srcLength</B> -  the number of characters in <TT>srcText</TT> to match
+<br></DL><P>
+<A NAME="startsWith">
+<A NAME ="DOC.248.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  startsWith(const UChar *srcChars, int32_t srcLength) const </B></TT>
+<DD>
+Determine if this starts with the characters in <TT>srcChars</TT>
+
+<DL><DT><B>Returns:</B><DD>TRUE if this starts with the characters in <TT>srcChars</TT>, 
+FALSE otherwise
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  The characters to match.
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT>
+<br></DL><P>
+<A NAME="startsWith">
+<A NAME ="DOC.248.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  startsWith(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength) const </B></TT>
+<DD>
+Determine if this ends with the characters in <TT>srcChars</TT> 
+in the range  [<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>).   
+
+<DL><DT><B>Returns:</B><DD>TRUE if this ends with the characters in <TT>srcChars</TT>, 
+FALSE otherwise
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  The characters to match.
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> to start matching
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> to match
+<br></DL><P>
+<A NAME="endsWith">
+<A NAME ="DOC.248.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  endsWith(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Determine if this ends with the characters in <TT>text</TT>
+
+<DL><DT><B>Returns:</B><DD>TRUE if this ends with the characters in <TT>text</TT>, 
+FALSE otherwise
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to match.
+<br></DL><P>
+<A NAME="endsWith">
+<A NAME ="DOC.248.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  endsWith(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength) const </B></TT>
+<DD>
+Determine if this ends with the characters in <TT>srcText</TT> 
+in the range [<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>).   
+
+<DL><DT><B>Returns:</B><DD>TRUE if this ends with the characters in <TT>text</TT>, 
+FALSE otherwise
+<DT><B>Parameters:</B><DD><B>srcText</B> -  The text to match.
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> to start matching
+<br><B>srcLength</B> -  the number of characters in <TT>srcText</TT> to match
+<br></DL><P>
+<A NAME="endsWith">
+<A NAME ="DOC.248.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  endsWith(const UChar *srcChars, int32_t srcLength) const </B></TT>
+<DD>
+Determine if this ends with the characters in <TT>srcChars</TT>
+
+<DL><DT><B>Returns:</B><DD>TRUE if this ends with the characters in <TT>srcChars</TT>, 
+FALSE otherwise
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  The characters to match.
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT>
+<br></DL><P>
+<A NAME="endsWith">
+<A NAME ="DOC.248.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  endsWith(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength) const </B></TT>
+<DD>
+Determine if this ends with the characters in <TT>srcChars</TT> 
+in the range  [<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>).   
+
+<DL><DT><B>Returns:</B><DD>TRUE if this ends with the characters in <TT>srcChars</TT>, 
+FALSE otherwise
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  The characters to match.
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> to start matching
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> to match
+<br></DL><P>
+<A NAME="indexOf">
+<A NAME ="DOC.248.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  indexOf(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Locate in this the first occurrence of the characters in <TT>text</TT>,
+using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to search for.
+<br></DL><P>
+<A NAME="indexOf">
+<A NAME ="DOC.248.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  indexOf(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text, UTextOffset start) const </B></TT>
+<DD>
+Locate in this the first occurrence of the characters in <TT>text</TT>
+starting at offset <TT>start</TT>, using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to search for.
+<br><B>start</B> -  The offset at which searching will start.
+<br></DL><P>
+<A NAME="indexOf">
+<A NAME ="DOC.248.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  indexOf(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const </B></TT>
+<DD>
+Locate in this the first occurrence in the range
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>text</TT>, using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to search for.
+<br><B>start</B> -  The offset at which searching will start.
+<br><B>length</B> -  The number of characters to search
+<br></DL><P>
+<A NAME="indexOf">
+<A NAME ="DOC.248.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  indexOf(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const </B></TT>
+<DD>
+Locate in this the first occurrence in the range
+[<TT>start</TT>, <TT>start + length</TT>) of the characters
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>), 
+using bitwise comparison.   
+
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to search for.
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> at which
+to start matching
+<br><B>srcLength</B> -  the number of characters in <TT>srcText</TT> to match
+<br><B>start</B> -  the offset into this at which to start matching
+<br><B>length</B> -  the number of characters in this to search
+<br></DL><P>
+<A NAME="indexOf">
+<A NAME ="DOC.248.26">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  indexOf(const UChar *srcChars, int32_t srcLength, UTextOffset start) const </B></TT>
+<DD>
+Locate in this the first occurrence of the characters in
+<TT>srcChars</TT> 
+starting at offset <TT>start</TT>, using bitwise comparison. 
+
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  The text to search for.
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> to match
+<br><B>start</B> -  the offset into this at which to start matching
+<br></DL><P>
+<A NAME="indexOf">
+<A NAME ="DOC.248.27">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  indexOf(const UChar *srcChars, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const </B></TT>
+<DD>
+Locate in this the first occurrence in the range
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>srcChars</TT>, using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>srcChars</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to search for.
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT>
+<br><B>start</B> -  The offset at which searching will start.
+<br><B>length</B> -  The number of characters to search
+<br></DL><P>
+<A NAME="indexOf">
+<A NAME ="DOC.248.28">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  indexOf(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const </B></TT>
+<DD>
+Locate in this the first occurrence in the range 
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>), 
+using bitwise comparison.   
+
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  The text to search for.
+<br><B>srcStart</B> -  the offset into <TT>srcChars</TT> at which 
+to start matching
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> to match
+<br><B>start</B> -  the offset into this at which to start matching
+<br><B>length</B> -  the number of characters in this to search
+<br></DL><P>
+<A NAME="indexOf">
+<A NAME ="DOC.248.29">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  indexOf(UChar c) const </B></TT>
+<DD>
+Locate in this the first occurrence of the character <TT>c</TT>, 
+using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of <TT>c</TT>, or -1 if not found.
+<DT><B>Parameters:</B><DD><B>c</B> -  The character to search for.
+<br></DL><P>
+<A NAME="indexOf">
+<A NAME ="DOC.248.30">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  indexOf(UChar c, UTextOffset start) const </B></TT>
+<DD>
+Locate in this the first occurrence of the character <TT>c</TT>
+starting at offset <TT>start</TT>, using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of <TT>c</TT>, or -1 if not found.
+<DT><B>Parameters:</B><DD><B>c</B> -  The character to search for.
+<br><B>start</B> -  The offset at which searching will start.
+<br></DL><P>
+<A NAME="indexOf">
+<A NAME ="DOC.248.31">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  indexOf(UChar c, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const </B></TT>
+<DD>
+Locate in this the first occurrence of the character <TT>c</TT> 
+in the range [<TT>start</TT>, <TT>start + length</TT>), 
+using bitwise comparison.   
+
+<DL><DT><B>Returns:</B><DD>The offset into this of <TT>c</TT>, or -1 if not found.
+<DT><B>Parameters:</B><DD><B>c</B> -  The character to search for.
+<br><B>start</B> -  the offset into this at which to start matching
+<br><B>length</B> -  the number of characters in this to search
+<br></DL><P>
+<A NAME="lastIndexOf">
+<A NAME ="DOC.248.32">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  lastIndexOf(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text) const </B></TT>
+<DD>
+Locate in this the last occurrence of the characters in <TT>text</TT>, 
+using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to search for.
+<br></DL><P>
+<A NAME="lastIndexOf">
+<A NAME ="DOC.248.33">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  lastIndexOf(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text, UTextOffset start) const </B></TT>
+<DD>
+Locate in this the last occurrence of the characters in <TT>text</TT>
+starting at offset <TT>start</TT>, using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to search for.
+<br><B>start</B> -  The offset at which searching will start.
+<br></DL><P>
+<A NAME="lastIndexOf">
+<A NAME ="DOC.248.34">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  lastIndexOf(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& text, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const </B></TT>
+<DD>
+Locate in this the last occurrence in the range 
+[<TT>start</TT>, <TT>start + length</TT>) of the characters
+in <TT>text</TT>, using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to search for.
+<br><B>start</B> -  The offset at which searching will start.
+<br><B>length</B> -  The number of characters to search
+<br></DL><P>
+<A NAME="lastIndexOf">
+<A NAME ="DOC.248.35">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  lastIndexOf(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const </B></TT>
+<DD>
+Locate in this the last occurrence in the range 
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>), 
+using bitwise comparison.   
+
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to search for.
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> at which 
+to start matching
+<br><B>srcLength</B> -  the number of characters in <TT>srcText</TT> to match
+<br><B>start</B> -  the offset into this at which to start matching
+<br><B>length</B> -  the number of characters in this to search
+<br></DL><P>
+<A NAME="lastIndexOf">
+<A NAME ="DOC.248.36">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  lastIndexOf(const UChar *srcChars, int32_t srcLength, UTextOffset start) const </B></TT>
+<DD>
+Locate in this the last occurrence of the characters in <TT>srcChars</TT> 
+starting at offset <TT>start</TT>, using bitwise comparison. 
+
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  The text to search for.
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> to match
+<br><B>start</B> -  the offset into this at which to start matching
+<br></DL><P>
+<A NAME="lastIndexOf">
+<A NAME ="DOC.248.37">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  lastIndexOf(const UChar *srcChars, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const </B></TT>
+<DD>
+Locate in this the last occurrence in the range 
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>srcChars</TT>, using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>srcChars</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>text</B> -  The text to search for.
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT>
+<br><B>start</B> -  The offset at which searching will start.
+<br><B>length</B> -  The number of characters to search
+<br></DL><P>
+<A NAME="lastIndexOf">
+<A NAME ="DOC.248.38">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  lastIndexOf(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const </B></TT>
+<DD>
+Locate in this the last occurrence in the range 
+[<TT>start</TT>, <TT>start + length</TT>) of the characters 
+in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>), 
+using bitwise comparison.   
+
+<DL><DT><B>Returns:</B><DD>The offset into this of the start of <TT>text</TT>, 
+or -1 if not found.
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  The text to search for.
+<br><B>srcStart</B> -  the offset into <TT>srcChars</TT> at which
+to start matching
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> to match
+<br><B>start</B> -  the offset into this at which to start matching
+<br><B>length</B> -  the number of characters in this to search
+<br></DL><P>
+<A NAME="lastIndexOf">
+<A NAME ="DOC.248.39">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  lastIndexOf(UChar c) const </B></TT>
+<DD>
+Locate in this the last occurrence of the character <TT>c</TT>, 
+using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of <TT>c</TT>, or -1 if not found.
+<DT><B>Parameters:</B><DD><B>c</B> -  The character to search for.
+<br></DL><P>
+<A NAME="lastIndexOf">
+<A NAME ="DOC.248.40">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  lastIndexOf(UChar c, UTextOffset start) const </B></TT>
+<DD>
+Locate in this the last occurrence of the character <TT>c</TT>
+starting at offset <TT>start</TT>, using bitwise comparison
+<DL><DT><B>Returns:</B><DD>The offset into this of <TT>c</TT>, or -1 if not found.
+<DT><B>Parameters:</B><DD><B>c</B> -  The character to search for.
+<br><B>start</B> -  The offset at which searching will start.
+<br></DL><P>
+<A NAME="lastIndexOf">
+<A NAME ="DOC.248.41">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UTextOffset  lastIndexOf(UChar c, UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>) const </B></TT>
+<DD>
+Locate in this the last occurrence of the character <TT>c</TT> 
+in the range [<TT>start</TT>, <TT>start + length</TT>), 
+using bitwise comparison.   
+
+<DL><DT><B>Returns:</B><DD>The offset into this of <TT>c</TT>, or -1 if not found.
+<DT><B>Parameters:</B><DD><B>c</B> -  The character to search for.
+<br><B>start</B> -  the offset into this at which to start matching
+<br><B>length</B> -  the number of characters in this to search
+<br></DL><P>
+<A NAME="charAt">
+<A NAME ="DOC.248.42">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UChar  charAt(UTextOffset offset) const </B></TT>
+<DD>
+Return the character at offset <tt>offset</tt>
+<DL><DT><B>Returns:</B><DD>s the character at offset <tt>offset</tt>
+<DT><B>Parameters:</B><DD><B>offset</B> -  a valid offset into the text
+<br></DL><P>
+<A NAME="operator [] ">
+<A NAME ="DOC.248.43">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UChar  operator [] (UTextOffset offset) const </B></TT>
+<DD>
+Return the character at offset <tt>offset</tt>
+<DL><DT><B>Returns:</B><DD>s the character at offset <tt>offset</tt>
+<DT><B>Parameters:</B><DD><B>offset</B> -  a valid offset into the text
+<br></DL><P>
+<A NAME="extract">
+<A NAME ="DOC.248.44">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  void  extract(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, UChar *dst, UTextOffset dstStart = 0) const </B></TT>
+<DD>
+Copy the characters in the range 
+[<tt>start</tt>, <tt>start + length</tt>) into the array <tt>dst</tt>,
+beginning at <tt>dstStart</tt>
+<DL><DT><B>Parameters:</B><DD><B>start</B> -  offset of first character which will be copied into the array
+<br><B>length</B> -  the number of characters to extract
+<br><B>dst</B> -  array in which to copy characters.  The length of <tt>dst</tt>
+must be at least (<tt>dstStart + length</tt>).
+<br><B>dstStart</B> -  the offset in <TT>dst</TT> where the first character
+will be extracted<br></DL><P>
+<A NAME="extract">
+<A NAME ="DOC.248.45">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  void  extract(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& target) const </B></TT>
+<DD>
+Copy the characters in the range 
+[<tt>start</tt>, <tt>start + length</tt>) into the  UnicodeString
+<tt>target</tt>
+<DL><DT><B>Returns:</B><DD>A reference to <TT>target</TT>
+<DT><B>Parameters:</B><DD><B>start</B> -  offset of first character which will be copied
+<br><B>length</B> -  the number of characters to extract
+<br><B>target</B> -  UnicodeString into which to copy characters.
+<br></DL><P>
+<A NAME="extractBetween">
+<A NAME ="DOC.248.46">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  void  extractBetween(UTextOffset start, UTextOffset limit, UChar *dst, UTextOffset dstStart = 0) const </B></TT>
+<DD>
+Copy the characters in the range [<tt>start</tt>, <tt>limit</tt>) 
+into the array <tt>dst</tt>, beginning at <tt>dstStart</tt>
+<DL><DT><B>Parameters:</B><DD><B>start</B> -  offset of first character which will be copied into the array
+<br><B>limit</B> -  offset immediately following the last character to be copied
+<br><B>dst</B> -  array in which to copy characters.  The length of <tt>dst</tt> 
+must be at least (<tt>dstStart + (limit - start)</tt>).
+<br><B>dstStart</B> -  the offset in <TT>dst</TT> where the first character
+will be extracted<br></DL><P>
+<A NAME="extractBetween">
+<A NAME ="DOC.248.47">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  void  extractBetween(UTextOffset start, UTextOffset limit, <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& target) const </B></TT>
+<DD>
+Copy the characters in the range [<tt>start</tt>, <tt>limit</tt>) 
+into the UnicodeString <tt>target</tt>
+<DL><DT><B>Returns:</B><DD>A reference to <TT>target</TT>
+<DT><B>Parameters:</B><DD><B>start</B> -  offset of first character which will be copied
+<br><B>limit</B> -  offset immediately following the last character to be copied
+<br><B>target</B> -  UnicodeString into which to copy characters.
+<br></DL><P>
+<A NAME="extract">
+<A NAME ="DOC.248.48">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  extract(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, char *dst, const char *codepage = 0) const </B></TT>
+<DD>
+Copy the characters in the range 
+[<tt>start</TT>, <tt>start + length</TT>) into an array of characters
+in a specified codepage
+<DL><DT><B>Returns:</B><DD>the number of characters written to <TT>dst</TT>
+<DT><B>Parameters:</B><DD><B>start</B> -  offset of first character which will be copied
+<br><B>length</B> -  the number of characters to extract
+<br><B>target</B> -  the target buffer for extraction
+<br><B>codepage</B> -  the desired codepage for the characters.  0 has 
+the special meaning of the default codepage
+<br></DL><P>
+<A NAME="length">
+<A NAME ="DOC.248.49">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int32_t  length(void) const </B></TT>
+<DD>
+Return the length of the UnicodeString object.  
+The length is the number of characters in the text.
+
+<DL><DT><B>Returns:</B><DD>s the length of the UnicodeString object
+</DL><P>
+<A NAME="empty">
+<A NAME ="DOC.248.50">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  empty(void) const </B></TT>
+<DD>
+Determine if this string is empty
+<DL><DT><B>Returns:</B><DD>TRUE if this string contains 0 characters, FALSE otherwise.
+</DL><P>
+<A NAME="hashCode">
+<A NAME ="DOC.248.51">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int32_t  hashCode(void) const </B></TT>
+<DD>
+Generate a hash code for this object
+<DL><DT><B>Returns:</B><DD>The hash code of this UnicodeString.
+</DL><P>
+<A NAME="isBogus">
+<A NAME ="DOC.248.52">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  isBogus(void) const </B></TT>
+<DD>
+Determine if this string is still valid
+<DL><DT><B>Returns:</B><DD>TRUE if the string is valid, FALSE otherwise
+</DL><P>
+<A NAME="operator= ">
+<A NAME ="DOC.248.53">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  operator= (const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText)</B></TT>
+<DD>
+Assignment operator.  Replace the characters in this UnicodeString
+with the characters from <TT>srcText</TT>.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcText</B> -  The text containing the characters to replace
+<br></DL><P>
+<A NAME="operator= ">
+<A NAME ="DOC.248.54">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  operator= (UChar ch)</B></TT>
+<DD>
+Assignment operator.  Replace the characters in this UnicodeString
+with the character <TT>ch</TT>.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>ch</B> -  the character to replace
+<br></DL><P>
+<A NAME="setTo">
+<A NAME ="DOC.248.55">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  setTo(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength)</B></TT>
+<DD>
+Set the text in the UnicodeString object to the characters
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>).
+<TT>srcText</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcText</B> -  the source for the new characters
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> where new characters
+will be obtained
+<br><B>srcLength</B> -  the number of characters in <TT>srcText</TT> in the
+replace string.
+<br></DL><P>
+<A NAME="setTo">
+<A NAME ="DOC.248.56">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  setTo(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText)</B></TT>
+<DD>
+Set the text in the UnicodeString object to the characters in 
+<TT>srcText</TT>.  
+<TT>srcText</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcText</B> -  the source for the new characters
+<br></DL><P>
+<A NAME="setTo">
+<A NAME ="DOC.248.57">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  setTo(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength)</B></TT>
+<DD>
+Set the characters in the UnicodeString object to the characters
+in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>).
+<TT>srcChars</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  the source for the new characters
+<br><B>srcStart</B> -  the offset into <TT>srcChars</TT> where new characters 
+will be obtained
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> in the 
+replace string
+<br></DL><P>
+<A NAME="setTo">
+<A NAME ="DOC.248.58">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  setTo(const UChar *srcChars, int32_t srcLength)</B></TT>
+<DD>
+Set the characters in the UnicodeString object to the characters
+in <TT>srcChars</TT>. <TT>srcChars</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  the source for the new characters
+<br><B>srcLength</B> -  the number of Unicode characters in srcChars.
+<br></DL><P>
+<A NAME="setTo">
+<A NAME ="DOC.248.59">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  setTo(UChar srcChar)</B></TT>
+<DD>
+Set the characters in the UnicodeString object to the character 
+<TT>srcChar</TT>
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcChar</B> -  the character which becomes the UnicodeString's character 
+content
+<br></DL><P>
+<A NAME="setCharAt">
+<A NAME ="DOC.248.60">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  setCharAt(UTextOffset offset, UChar ch)</B></TT>
+<DD>
+Set the character at the specified offset to the specified character
+<DL><DT><B>Returns:</B><DD>A reference to this
+<DT><B>Parameters:</B><DD><B>offset</B> -  A valid offset into the text of the character to set
+<br><B>ch</B> -  The new character
+<br></DL><P>
+<A NAME="operator+= ">
+<A NAME ="DOC.248.61">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  operator+= (UChar ch)</B></TT>
+<DD>
+Append operator. Append the character <TT>ch</TT> to the UnicodeString
+object.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>ch</B> -  the character to be appended
+<br></DL><P>
+<A NAME="operator+= ">
+<A NAME ="DOC.248.62">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  operator+= (const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText)</B></TT>
+<DD>
+Append operator. Append the characters in <TT>srcText</TT> to the
+UnicodeString object at offset <TT>start</TT>. <TT>srcText</TT> is
+not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcText</B> -  the source for the new characters
+<br></DL><P>
+<A NAME="append">
+<A NAME ="DOC.248.63">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  append(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength)</B></TT>
+<DD>
+Append the characters
+in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>) to the 
+UnicodeString object at offset <TT>start</TT>. <TT>srcText</TT> 
+is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcText</B> -  the source for the new characters
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> where new characters 
+will be obtained
+<br><B>srcLength</B> -  the number of characters in <TT>srcText</TT> in 
+the append string
+<br></DL><P>
+<A NAME="append">
+<A NAME ="DOC.248.64">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  append(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText)</B></TT>
+<DD>
+Append the characters in <TT>srcText</TT> to the UnicodeString object at 
+offset <TT>start</TT>. <TT>srcText</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcText</B> -  the source for the new characters
+<br></DL><P>
+<A NAME="append">
+<A NAME ="DOC.248.65">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  append(const UChar *srcChars, UTextOffset srcStart, int32_t srcLength)</B></TT>
+<DD>
+Append the characters in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>) to the UnicodeString 
+object at offset 
+<TT>start</TT>. <TT>srcChars</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  the source for the new characters
+<br><B>srcStart</B> -  the offset into <TT>srcChars</TT> where new characters 
+will be obtained
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> in 
+the append string
+<br></DL><P>
+<A NAME="append">
+<A NAME ="DOC.248.66">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  append(const UChar *srcChars, int32_t srcLength)</B></TT>
+<DD>
+Append the characters in <TT>srcChars</TT> to the UnicodeString object 
+at offset <TT>start</TT>. <TT>srcChars</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcChars</B> -  the source for the new characters
+<br><B>srcLength</B> -  the number of Unicode characters in <TT>srcChars</TT>
+<br></DL><P>
+<A NAME="append">
+<A NAME ="DOC.248.67">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  append(UChar srcChar)</B></TT>
+<DD>
+Append the character <TT>srcChar</TT> to the UnicodeString object
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>srcChar</B> -  the character to append
+<br></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.248.68">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  insert(UTextOffset start, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength)</B></TT>
+<DD>
+Insert the characters in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>) into the UnicodeString 
+object at offset <TT>start</TT>. <TT>srcText</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset where the insertion begins
+<br><B>srcText</B> -  the source for the new characters 
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> where new characters 
+will be obtained
+<br><B>srcLength</B> -  the number of characters in <TT>srcText</TT> in 
+the insert string
+<br></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.248.69">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  insert(UTextOffset start, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText)</B></TT>
+<DD>
+Insert the characters in <TT>srcText</TT> into the UnicodeString object
+at offset <TT>start</TT>. <TT>srcText</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset where the insertion begins
+<br><B>srcText</B> -  the source for the new characters 
+<br></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.248.70">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  insert(UTextOffset start, const UChar *srcChars, UTextOffset srcStart, int32_t srcLength)</B></TT>
+<DD>
+Insert the characters in <TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>) into the UnicodeString
+object at offset <TT>start</TT>. <TT>srcChars</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the insertion begins
+<br><B>srcChars</B> -  the source for the new characters
+<br><B>srcStart</B> -  the offset into <TT>srcChars</TT> where new characters 
+will be obtained
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> 
+in the insert string
+<br></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.248.71">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  insert(UTextOffset start, const UChar *srcChars, int32_t srcLength)</B></TT>
+<DD>
+Insert the characters in <TT>srcChars</TT> into the UnicodeString object 
+at offset <TT>start</TT>. <TT>srcChars</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset where the insertion begins
+<br><B>srcChars</B> -  the source for the new characters
+<br><B>srcLength</B> -  the number of Unicode characters in srcChars.
+<br></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.248.72">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  insert(UTextOffset start, UChar srcChar)</B></TT>
+<DD>
+Insert the character <TT>srcChar</TT> into the UnicodeString object at 
+offset <TT>start</TT>
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the insertion occurs
+<br><B>srcChar</B> -  the character to insert
+<br></DL><P>
+<A NAME="replace">
+<A NAME ="DOC.248.73">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  replace(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, int32_t srcLength)</B></TT>
+<DD>
+Replace the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters in 
+<TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>). 
+<TT>srcText</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the replace operation begins
+<br><B>length</B> -  the number of characters to replace. The character at 
+<TT>start + length</TT> is not modified.
+<br><B>srcText</B> -  the source for the new characters
+<br><B>srcStart</B> -  the offset into <TT>srcText</TT> where new characters 
+will be obtained
+<br><B>srcLength</B> -  the number of characters in <TT>srcText</TT> in 
+the replace string
+<br></DL><P>
+<A NAME="replace">
+<A NAME ="DOC.248.74">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  replace(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText)</B></TT>
+<DD>
+Replace the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) 
+with the characters in <TT>srcText</TT>.  <TT>srcText</TT> is
+not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the replace operation begins
+<br><B>length</B> -  the number of characters to replace. The character at
+<TT>start + length</TT> is not modified.
+<br><B>srcText</B> -  the source for the new characters
+<br></DL><P>
+<A NAME="replace">
+<A NAME ="DOC.248.75">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  replace(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const UChar *srcChars, UTextOffset srcStart, int32_t srcLength)</B></TT>
+<DD>
+Replace the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters in 
+<TT>srcChars</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcStart + srcLength</TT>). <TT>srcChars</TT> 
+is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the replace operation begins
+<br><B>length</B> -  the number of characters to replace.  The character at
+<TT>start + length</TT> is not modified.
+<br><B>srcChars</B> -  the source for the new characters
+<br><B>srcStart</B> -  the offset into <TT>srcChars</TT> where new characters
+will be obtained
+<br><B>srcLength</B> -  the number of characters in <TT>srcChars</TT> 
+in the replace string
+<br></DL><P>
+<A NAME="replace">
+<A NAME ="DOC.248.76">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  replace(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const UChar *srcChars, int32_t srcLength)</B></TT>
+<DD>
+Replace the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the characters in
+<TT>srcChars</TT>.  <TT>srcChars</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the replace operation begins
+<br><B>length</B> -  number of characters to replace.  The character at
+<TT>start + length</TT> is not modified.
+<br><B>srcChars</B> -  the source for the new characters
+<br><B>srcLength</B> -  the number of Unicode characters in srcChars
+<br></DL><P>
+<A NAME="replace">
+<A NAME ="DOC.248.77">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  replace(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, UChar srcChar)</B></TT>
+<DD>
+Replace the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) with the character
+<TT>srcChar</TT>
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the replace operation begins
+<br><B>length</B> -  the number of characters to replace.  The character at
+<TT>start + length</TT> is not modified.
+<br><B>srcChar</B> -  the new character
+<br></DL><P>
+<A NAME="replaceBetween">
+<A NAME ="DOC.248.78">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  replaceBetween(UTextOffset start, UTextOffset limit, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText)</B></TT>
+<DD>
+Replace the characters in the range [<TT>start</TT>, <TT>limit</TT>) 
+with the characters in <TT>srcText</TT>. <TT>srcText</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the replace operation begins
+<br><B>limit</B> -  the offset immediately following the replace range
+<br><B>srcText</B> -  the source for the new characters
+<br></DL><P>
+<A NAME="replaceBetween">
+<A NAME ="DOC.248.79">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  replaceBetween(UTextOffset start, UTextOffset limit, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& srcText, UTextOffset srcStart, UTextOffset srcLimit)</B></TT>
+<DD>
+Replace the characters in the range [<TT>start</TT>, <TT>limit</TT>) 
+with the characters in <TT>srcText</TT> in the range 
+[<TT>srcStart</TT>, <TT>srcLimit</TT>). <TT>srcText</TT> is not modified.
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset at which the replace operation begins
+<br><B>limit</B> -  the offset immediately following the replace range
+<br><B>srcText</B> -  the source for the new characters
+<br><B>srcStart</B> -  the offset into <TT>srcChars</TT> where new characters 
+will be obtained
+<br><B>srcLimit</B> -  the offset immediately following the range to copy 
+in <TT>srcText</TT>
+<br></DL><P>
+<A NAME="findAndReplace">
+<A NAME ="DOC.248.80">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  findAndReplace(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& oldText, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& newText)</B></TT>
+<DD>
+Replace all occurrences of characters in oldText with the characters 
+in newText
+
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>oldText</B> -  the text containing the search text
+<br><B>newText</B> -  the text containing the replacement text
+<br></DL><P>
+<A NAME="findAndReplace">
+<A NAME ="DOC.248.81">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  findAndReplace(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& oldText, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& newText)</B></TT>
+<DD>
+Replace all occurrences of characters in oldText with characters 
+in newText
+in the range [<TT>start</TT>, <TT>start + length</TT>)
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the start of the range in which replace will performed
+<br><B>length</B> -  the length of the range in which replace will be performed
+<br><B>oldText</B> -  the text containing the search text
+<br><B>newText</B> -  the text containing the replacement text
+<br></DL><P>
+<A NAME="findAndReplace">
+<A NAME ="DOC.248.82">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  findAndReplace(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& oldText, UTextOffset oldStart, int32_t oldLength, const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& newText, UTextOffset newStart, int32_t newLength)</B></TT>
+<DD>
+Replace all occurrences of characters in oldText in the range 
+[<TT>oldStart</TT>, <TT>oldStart + oldLength</TT>) with the characters 
+in newText in the range 
+[<TT>newStart</TT>, <TT>newStart + newLength</TT>) 
+in the range [<TT>start</TT>, <TT>start + length</TT>)
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the start of the range in which replace will performed
+<br><B>length</B> -  the length of the range in which replace will be performed
+<br><B>oldText</B> -  the text containing the search text
+<br><B>oldStart</B> -  the start of the search range in <TT>oldText</TT>
+<br><B>oldLength</B> -  the length of the search range in <TT>oldText</TT>
+<br><B>newText</B> -  the text containing the replacement text
+<br><B>newStart</B> -  the start of the replacement range in <TT>newText</TT>
+<br><B>newLength</B> -  the length of the replacement range in <TT>newText</TT>
+<br></DL><P>
+<A NAME="remove">
+<A NAME ="DOC.248.83">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  remove(void)</B></TT>
+<DD>
+Remove all characters from the UnicodeString object
+<DL><DT><B>Returns:</B><DD>a reference to this
+</DL><P>
+<A NAME="remove">
+<A NAME ="DOC.248.84">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  remove(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A> = LONG_MAX)</B></TT>
+<DD>
+Remove the characters in the range 
+[<TT>start</TT>, <TT>start + length</TT>) from the UnicodeString object
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset of the first character to remove
+<br><B>length</B> -  the number of characters to remove
+<br></DL><P>
+<A NAME="removeBetween">
+<A NAME ="DOC.248.85">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  removeBetween(UTextOffset start, UTextOffset limit = LONG_MAX)</B></TT>
+<DD>
+Remove the characters in the range 
+[<TT>start</TT>, <TT>limit</TT>) from the UnicodeString object
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the offset of the first character to remove
+<br><B>limit</B> -  the offset immediately following the range to remove
+<br></DL><P>
+<A NAME="padLeading">
+<A NAME ="DOC.248.86">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  padLeading(int32_t targetLength, UChar padChar = 0x0020)</B></TT>
+<DD>
+Pad the start of this UnicodeString with the character <TT>padChar</TT>.  
+If the length of this UnicodeString is less than targetLength, 
+length() - targetLength copies of padChar will be added to the
+beginning of this UnicodeString.
+
+<DL><DT><B>Returns:</B><DD>TRUE if the text was padded, FALSE otherwise.
+<DT><B>Parameters:</B><DD><B>targetLength</B> -  the desired length of the string
+<br><B>padChar</B> -  the character to use for padding. Defaults to 
+space (U+0020)
+<br></DL><P>
+<A NAME="padTrailing">
+<A NAME ="DOC.248.87">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  padTrailing(int32_t targetLength, UChar padChar = 0x0020)</B></TT>
+<DD>
+Pad the end of this UnicodeString with the character <TT>padChar</TT>.  
+If the length of this UnicodeString is less than targetLength, 
+length() - targetLength copies of padChar will be added to the
+end of this UnicodeString.
+
+<DL><DT><B>Returns:</B><DD>TRUE if the text was padded, FALSE otherwise.
+<DT><B>Parameters:</B><DD><B>targetLength</B> -  the desired length of the string
+<br><B>padChar</B> -  the character to use for padding. Defaults to 
+space (U+0020)
+<br></DL><P>
+<A NAME="truncate">
+<A NAME ="DOC.248.88">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  bool_t  truncate(int32_t targetLength)</B></TT>
+<DD>
+Truncate this UnicodeString to the <TT>targetLength</TT>
+<DL><DT><B>Returns:</B><DD>TRUE if the text was truncated, FALSE otherwise
+<DT><B>Parameters:</B><DD><B>targetLength</B> -  the desired length of this UnicodeString.
+<br></DL><P>
+<A NAME="trim">
+<A NAME ="DOC.248.89">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  trim(void)</B></TT>
+<DD>
+Trims leading and trailing whitespace from this UnicodeString
+<DL><DT><B>Returns:</B><DD>a reference to this
+</DL><P>
+<A NAME="reverse">
+<A NAME ="DOC.248.90">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  reverse(void)</B></TT>
+<DD>
+Reverse this UnicodeString in place
+<DL><DT><B>Returns:</B><DD>a reference to this
+</DL><P>
+<A NAME="reverse">
+<A NAME ="DOC.248.91">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  reverse(UTextOffset start, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A>)</B></TT>
+<DD>
+Reverse the range [<TT>start</TT>, <TT>start + length</TT>) in
+this UnicodeString
+<DL><DT><B>Returns:</B><DD>a reference to this
+<DT><B>Parameters:</B><DD><B>start</B> -  the start of the range to reverse
+<br><B>length</B> -  the number of characters to to reverse
+<br></DL><P>
+<A NAME="toUpper">
+<A NAME ="DOC.248.92">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  toUpper(void)</B></TT>
+<DD>
+Convert the characters in this to UPPER CASE following the conventions of
+the default locale
+<DL><DT><B>Returns:</B><DD>A reference to this.
+</DL><P>
+<A NAME="toUpper">
+<A NAME ="DOC.248.93">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  toUpper(const Locale& locale)</B></TT>
+<DD>
+Convert the characters in this to UPPER CASE following the conventions of
+a specific locale
+<DL><DT><B>Returns:</B><DD>A reference to this.
+<DT><B>Parameters:</B><DD><B>locale</B> -  The locale containing the conventions to use.
+<br></DL><P>
+<A NAME="toLower">
+<A NAME ="DOC.248.94">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  toLower(void)</B></TT>
+<DD>
+Convert the characters in this to UPPER CASE following the conventions of
+the default
+<DL><DT><B>Returns:</B><DD>A reference to this.
+</DL><P>
+<A NAME="toLower">
+<A NAME ="DOC.248.95">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>&  toLower(const Locale& locale)</B></TT>
+<DD>
+Convert the characters in this to UPPER CASE following the conventions of
+a specific locale
+<DL><DT><B>Returns:</B><DD>A reference to this.
+<DT><B>Parameters:</B><DD><B>locale</B> -  The locale containing the conventions to use.
+<br></DL><P>
+<A NAME="UnicodeString">
+<A NAME ="DOC.248.96">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeString()</B></TT>
+<DD>Construct an empty UnicodeString.  
+<DL></DL><P>
+<A NAME="UnicodeString">
+<A NAME ="DOC.248.97">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeString(int32_t capacity)</B></TT>
+<DD>
+Construct a UnicodeString with capacity to hold <TT>capacity</TT> UChars
+
+<DL><DT><B>Parameters:</B><DD><B>capacity</B> -  the number of UChars this UnicodeString should hold
+before a resize is necessary<br></DL><P>
+<A NAME="UnicodeString">
+<A NAME ="DOC.248.98">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeString(UChar ch)</B></TT>
+<DD>
+Single UChar constructor
+<DL><DT><B>Parameters:</B><DD><B>ch</B> -  the character to place in the UnicodeString<br></DL><P>
+<A NAME="UnicodeString">
+<A NAME ="DOC.248.99">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeString(const UChar *text)</B></TT>
+<DD>
+UChar* constructor
+<DL><DT><B>Parameters:</B><DD><B>text</B> -  The characters to place in the UnicodeString.  <TT>text</TT>
+must be NULL (U+0000) terminated.<br></DL><P>
+<A NAME="UnicodeString">
+<A NAME ="DOC.248.100">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeString(const UChar *text, int32_t textLength)</B></TT>
+<DD>
+UChar* constructor
+<DL><DT><B>Parameters:</B><DD><B>text</B> -  The characters to place in the UnicodeString.
+<br><B>textLength</B> -  The number of Unicode characters in <TT>text</TT>
+to copy.<br></DL><P>
+<A NAME="UnicodeString">
+<A NAME ="DOC.248.101">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeString(const char *codepageData, const char *codepage = 0)</B></TT>
+<DD>
+char* constructor
+<DL><DT><B>Parameters:</B><DD><B>codepageData</B> -  an array of bytes, null-terminated
+<br><B>codepage</B> -  the encoding of <TT>codepageData</TT>.  The special
+value 0 for <TT>codepage</TT> indicates that the text is in the 
+platform's default codepage.<br></DL><P>
+<A NAME="UnicodeString">
+<A NAME ="DOC.248.102">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeString(const char *codepageData, int32_t dataLength, const char *codepage = 0)</B></TT>
+<DD>
+char* constructor
+<DL><DT><B>Parameters:</B><DD><B>codepageData</B> -  an array of bytes.
+<br><B>dataLength</B> -  The number of bytes in <TT>codepageData</TT>.
+<br><B>codepage</B> -  the encoding of <TT>codepageData</TT>.  The special
+value 0 for <TT>codepage</TT> indicates that the text is in the 
+platform's default codepage.<br></DL><P>
+<A NAME="UnicodeString">
+<A NAME ="DOC.248.103">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UnicodeString(const <!2><A HREF="UnicodeString.html#DOC.248.101">UnicodeString</A>& that)</B></TT>
+<DD>
+Copy constructor
+<DL><DT><B>Parameters:</B><DD><B>that</B> -  The UnicodeString object to copy.<br></DL><P>
+<A NAME="~UnicodeString">
+<A NAME ="DOC.248.107">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ~UnicodeString()</B></TT>
+<DD>Destructor
+<DL></DL><P>
+<A NAME="numDisplayCells">
+<A NAME ="DOC.248.104">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  numDisplayCells(UTextOffset start = 0, int32_t <!2><A HREF="UnicodeString.html#DOC.248.49">length</A> = LONG_MAX, bool_t asian = TRUE) const </B></TT>
+<DD>
+Returns the number of display cells occupied by the range
+[<TT>start</TT>, <TT>length</TT>).
+This function is designed for Asian text and properly takes into account
+halfwidth and fullwidth variants of various CJK characters and the 
+combining behavior of the Hangul Jamo characters (with some limitations;
+see documentation for Unicode::getCellWidth()).<BR>
+In order to avoid dealing with fractions, this function can either be
+construed to return twice the actual number of display cells or to 
+treat a "cell" as the width of a halfwidth character rather than the
+width of a fullwidth character.
+
+<DL><DT><B>Returns:</B><DD>the number of display cells occupied by the specified substring.
+<DT><B>Parameters:</B><DD><B>start</B> -  the start of the range
+<br><B>length</B> -  the number of characters to measure
+<br><B>asian</B> -  The <TT>asian</TT> parameter controls whether characters
+considered NEUTRAL by the Unicode class are treated as halfwidth or 
+fullwidth here.  If you set <TT>asian</TT> to FALSE, neutrals are 
+treated as halfwidth, and this function returns a close approximation
+of how many Latin display cells the text will take up in a monospaced
+font.
+<br></DL><P>
+<A NAME="">
+<A NAME ="DOC.248.105">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD>
+Convert the characters in this to UPPER CASE following the conventions of
+the default locale.
+@retrurn A reference to this.
+<DL></DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

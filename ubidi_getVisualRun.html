@@ -1,0 +1,58 @@
+<html><head><TITLE>ubidi_getVisualRun</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> CAPI  <!1><A HREF="UBiDiDirection.html">UBiDiDirection</A>  U_EXPORT2  ubidi_getVisualRun (<!1><A HREF="UBiDi.html">UBiDi</A> *pBiDi, UTextOffset runIndex, UTextOffset *pLogicalStart, UTextOffset *pLength) </H2><BLOCKQUOTE>
+
+Get one run's logical start, length, and directionality,
+which can be 0 for LTR or 1 for RTL
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+Get one run's logical start, length, and directionality,
+which can be 0 for LTR or 1 for RTL.
+In an RTL run, the character at the logical start is
+visually on the right of the displayed run.
+The length is the number of characters in the run.<p>
+<code>ubidi_countRuns()</code> should be called
+before the runs are retrieved.
+
+
+
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL><DT><B>Returns:</B><DD>the directionality of the run,
+<code>UBIDI_LTR==0</code> or <code>UBIDI_RTL==1</code>,
+never <code>UBIDI_MIXED</code>.
+
+<DT><B>Parameters:</B><DD><B>pBiDi</B> -  is the paragraph or line <code>UBiDi</code> object.
+<br><B>runIndex</B> -  is the number of the run in visual order, in the
+range <code>[0..ubidi_countRuns(pBiDi)-1]</code>.
+<br><B>pLogicalStart</B> -  is the first logical character index in the text.
+The pointer may be <code>NULL</code> if this index is not needed.
+<br><B>pLength</B> -  is the number of characters (at least one) in the run.
+The pointer may be <code>NULL</code> if this is not needed.
+<br><DT><B>See Also:</B><DD><!1><A HREF="ubidi_countRuns.html">ubidi_countRuns</A>
+Example:
+<pre>
+&nbsp; UTextOffset i, count=<!1><A HREF="ubidi_countRuns.html">ubidi_countRuns</A>(pBiDi),
+&nbsp;         logicalStart, visualIndex=0, length;
+&nbsp; for(i=0; i&lt;count; ++i) {
+&nbsp;     if(UBIDI_LTR==<!1><A HREF="ubidi_getVisualRun.html">ubidi_getVisualRun</A>(pBiDi, i, &logicalStart, &length)) {
+&nbsp;         do { &nbsp;             show_char(text[logicalStart++], visualIndex++);
+&nbsp;         } while(--length>0);
+&nbsp;     } else {
+&nbsp;         logicalStart+=length;  &nbsp;         do { &nbsp;             show_char(text[--logicalStart], visualIndex++);
+&nbsp;         } while(--length>0);
+&nbsp;     }
+&nbsp; }
+</pre>
+Note that in right-to-left runs, code like this places
+modifier letters before base characters and second surrogates
+before first ones.<br></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

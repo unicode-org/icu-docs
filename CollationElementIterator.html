@@ -1,0 +1,230 @@
+<html><head><TITLE>CollationElementIterator</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API CollationElementIterator  </H2><BLOCKQUOTE>
+
+The CollationElementIterator class is used as an iterator to walk through
+each character of an international string
+</BLOCKQUOTE>
+<hr>
+
+<DL>
+<DL>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.6.7"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>strengthOrder</B>(int32_t order) const  </B>
+ <DD><I>
+Gets the comparison order in the desired strength</I>
+<DT><A HREF="#DOC.6.8"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setText</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& str, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Sets the source string</I>
+<DT><A HREF="#DOC.6.9"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setText</B>(<!1><A HREF="CharacterIterator.html">CharacterIterator</A>& str, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Sets the source string</I>
+<DT><A HREF="#DOC.6.10"> <IMG BORDER=0 SRC=icon1.gif></A> static  bool_t  <B>isIgnorable</B>(int32_t order) </B>
+ <DD><I>
+Checks if a comparison order is ignorable</I>
+<DT><A HREF="#DOC.6.11"> <IMG BORDER=0 SRC=icon1.gif></A> UTextOffset  <B>getOffset</B>(void) const  </B>
+ <DD><I>
+Gets the offset of the currently processed character in the source string</I>
+<DT><A HREF="#DOC.6.12"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setOffset</B>(UTextOffset newOffset, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Sets the offset of the currently processed character in the source string</I>
+<DT><A HREF="#DOC.6.26"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>CollationElementIterator</B>(const <!2><A HREF="CollationElementIterator.html#DOC.6.13">CollationElementIterator</A>& other) </B>
+ <DD><I>
+Copy constructor</I>
+<DT><A HREF="#DOC.6.17"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int32_t  <B>CollationElementIterator::primaryOrder</B>(int32_t order) </B>
+ <DD><I>
+Get the primary order of a collation order</I>
+<DT><A HREF="#DOC.6.18"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int32_t  <B>CollationElementIterator::secondaryOrder</B>(int32_t order) </B>
+ <DD><I>
+Get the secondary order of a collation order</I>
+<DT><A HREF="#DOC.6.19"> <IMG BORDER=0 SRC=icon1.gif></A> inline  int32_t  <B>CollationElementIterator::tertiaryOrder</B>(int32_t order) </B>
+ <DD><I>
+Get the tertiary order of a collation order</I>
+</DL><DL>
+<DT><h3>Protected Methods</h3><DD><DT><A HREF="#DOC.6.13"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>CollationElementIterator</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+CollationElementIterator constructor</I>
+<DT><A HREF="#DOC.6.14"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>CollationElementIterator</B>( const <!1><A HREF="CharacterIterator.html">CharacterIterator</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+CollationElementIterator constructor</I>
+<DT><A HREF="#DOC.6.25"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!2><A HREF="CollationElementIterator.html#DOC.6.13">CollationElementIterator</A>&  <B>operator=</B>(const <!2><A HREF="CollationElementIterator.html#DOC.6.13">CollationElementIterator</A>& other) </B>
+ <DD><I>
+Assignment operator</I>
+</DL></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+The CollationElementIterator class is used as an iterator to walk through
+each character of an international string. Use the iterator to return the
+ordering priority of the positioned character. The ordering priority of
+a character, which we refer to as a key, defines how a character is
+collated in the given collation object.
+For example, consider the following in Spanish:
+<pre>
+.       "ca" -> the first key is key('c') and second key is key('a').
+.       "cha" -> the first key is key('ch') and second key is key('a').
+</pre>
+And in German,
+<pre>
+.       "æb"-> the first key is key('a'), the second key is key('e'), and
+.       the third key is key('b').
+</pre>
+The key of a character, is an integer composed of primary order(short),
+secondary order(char), and tertiary order(char).  Java strictly defines
+the size and signedness of its primitive data types.  Therefore, the static
+functions primaryOrder(), secondaryOrder(), and tertiaryOrder() return int32_t
+to ensure the correctness of the key value.
+<p>Example of the iterator usage: (without error checking)
+<pre>
+.  void CollationElementIterator_Example()
+.  {
+.      UnicodeString str = "This is a test";
+.      UErrorCode success = ZERO_ERROR;
+.      RuleBasedCollator* rbc =
+.          (RuleBasedCollator*) RuleBasedCollator::createInstance(success);
+.      CollationElementIterator* c =
+.          rbc->createCollationElementIterator( str );
+.      int32_t order = c->next(success);
+.      int32_t primaryOrder = CollationElementIterator::primaryOrder( order );
+.      delete c;
+.      delete rbc;
+.  }
+</pre>
+<p>
+CollationElementIterator::next returns the collation order of the next
+character based on the comparison level of the collator.  A collation order 
+consists of primary order, secondary order and tertiary order.  The data 
+type of the collation order is <strong>int32_t</strong>.  The first 16 bits of 
+a collation order is its primary order; the next 8 bits is the secondary 
+order and the last 8 bits is the tertiary order.
+
+
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="strengthOrder">
+<A NAME ="DOC.6.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  strengthOrder(int32_t order) const </B></TT>
+<DD>
+Gets the comparison order in the desired strength.  Ignore the other
+differences.
+
+<DL><DT><B>Parameters:</B><DD><B>order</B> -  The order value<br></DL><P>
+<A NAME="setText">
+<A NAME ="DOC.6.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setText(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& str, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Sets the source string
+<DL><DT><B>Parameters:</B><DD><B>str</B> -  the source string.
+<br><B>status</B> -  the error code status.<br></DL><P>
+<A NAME="setText">
+<A NAME ="DOC.6.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setText(<!1><A HREF="CharacterIterator.html">CharacterIterator</A>& str, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Sets the source string
+<DL><DT><B>Parameters:</B><DD><B>str</B> -  the source character iterator.
+<br><B>status</B> -  the error code status.<br></DL><P>
+<A NAME="isIgnorable">
+<A NAME ="DOC.6.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  bool_t  isIgnorable(int32_t order)</B></TT>
+<DD>
+Checks if a comparison order is ignorable
+<DL><DT><B>Returns:</B><DD>TRUE if a character is ignorable, FALSE otherwise.
+<DT><B>Parameters:</B><DD><B>order</B> -  the collation order.
+<br></DL><P>
+<A NAME="getOffset">
+<A NAME ="DOC.6.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UTextOffset  getOffset(void) const </B></TT>
+<DD>
+Gets the offset of the currently processed character in the source string
+<DL><DT><B>Returns:</B><DD>the offset of the character.
+</DL><P>
+<A NAME="setOffset">
+<A NAME ="DOC.6.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setOffset(UTextOffset newOffset, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Sets the offset of the currently processed character in the source string
+<DL><DT><B>Returns:</B><DD>the offset of the character.
+<DT><B>Parameters:</B><DD><B>newOffset</B> -  the new offset.
+<br><B>status</B> -  the error code status.
+<br></DL><P>
+<A NAME="CollationElementIterator">
+<A NAME ="DOC.6.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  CollationElementIterator( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+CollationElementIterator constructor.  This takes the source string and
+the collation object.  The cursor will walk thru the source string based
+on the predefined collation rules.  If the source string is empty,
+NULLORDER will be returned on the calls to next().
+
+<DL><DT><B>Parameters:</B><DD><B>sourceText</B> -  the source string.
+<br><B>startOffset</B> -  the beginning offset of the string where the cursor
+starts the iterating.
+<br><B>endOffset</B> -  the ending offset of the string where the cursor
+stops the iterating.
+<br><B>order</B> -  the collation object.<br></DL><P>
+<A NAME="CollationElementIterator">
+<A NAME ="DOC.6.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  CollationElementIterator( const <!1><A HREF="CharacterIterator.html">CharacterIterator</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+CollationElementIterator constructor.  This takes the source string and
+the collation object.  The cursor will walk thru the source string based
+on the predefined collation rules.  If the source string is empty,
+NULLORDER will be returned on the calls to next().
+
+<DL><DT><B>Parameters:</B><DD><B>sourceText</B> -  the source string.
+<br><B>startOffset</B> -  the beginning offset of the string where the cursor
+starts the iterating.
+<br><B>endOffset</B> -  the ending offset of the string where the cursor
+stops the iterating.
+<br><B>order</B> -  the collation object.<br></DL><P>
+<A NAME="operator=">
+<A NAME ="DOC.6.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!2><A HREF="CollationElementIterator.html#DOC.6.13">CollationElementIterator</A>&  operator=(const <!2><A HREF="CollationElementIterator.html#DOC.6.13">CollationElementIterator</A>& other)</B></TT>
+<DD>
+Assignment operator
+<DL></DL><P>
+<A NAME="CollationElementIterator">
+<A NAME ="DOC.6.26">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  CollationElementIterator(const <!2><A HREF="CollationElementIterator.html#DOC.6.13">CollationElementIterator</A>& other)</B></TT>
+<DD>
+Copy constructor
+<DL></DL><P>
+<A NAME="CollationElementIterator::primaryOrder">
+<A NAME ="DOC.6.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int32_t  CollationElementIterator::primaryOrder(int32_t order)</B></TT>
+<DD>
+Get the primary order of a collation order
+<DL><DT><B>Returns:</B><DD>the primary order of a collation order.
+<DT><B>Parameters:</B><DD><B>order</B> -  the collation order
+<br></DL><P>
+<A NAME="CollationElementIterator::secondaryOrder">
+<A NAME ="DOC.6.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int32_t  CollationElementIterator::secondaryOrder(int32_t order)</B></TT>
+<DD>
+Get the secondary order of a collation order
+<DL><DT><B>Returns:</B><DD>the secondary order of a collation order.
+<DT><B>Parameters:</B><DD><B>order</B> -  the collation order
+<br></DL><P>
+<A NAME="CollationElementIterator::tertiaryOrder">
+<A NAME ="DOC.6.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  int32_t  CollationElementIterator::tertiaryOrder(int32_t order)</B></TT>
+<DD>
+Get the tertiary order of a collation order
+<DL><DT><B>Returns:</B><DD>the tertiary order of a collation order.
+<DT><B>Parameters:</B><DD><B>order</B> -  the collation order
+<br></DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL><DT><B>Author:</B><DD>Helena Shih
+<DT><B>Version:</B><DD>1.9 1/30/97
+
+<DT><B>See Also:</B><DD><!1><A HREF="Collator.html">Collator</A>
+<br><!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>
+<br></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

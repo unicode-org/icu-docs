@@ -1,0 +1,298 @@
+<html><head><TITLE>Formattable</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API Formattable  </H2><BLOCKQUOTE>
+
+Formattable objects can be passed to the Format class or
+its subclasses for formatting
+</BLOCKQUOTE>
+<hr>
+
+<DL>
+<DL>
+<DT><h3>Public Classes</h3><DD><DT><A HREF="#DOC.13.1"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>ISDATE</B> </B>
+ <DD><I>
+This enum is only used to let callers distinguish between
+the Formattable(UDate) constructor and the Formattable(double)
+constructor; the compiler cannot distinguish the signatures,
+since UDate is currently typedefed to be either double or long</I>
+<DT><A HREF="#DOC.13.16"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>Type</B> </B>
+ <DD><I>
+The list of possible data types of this Formattable object</I>
+</DL><DL>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.13.2"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Formattable</B>(UDate d, <!2><A HREF="Formattable.html#DOC.13.1">ISDATE</A>) </B>
+ <DD><I>
+Creates a Formattable object with a UDate instance</I>
+<DT><A HREF="#DOC.13.3"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Formattable</B>(double d) </B>
+ <DD><I>
+Creates a Formattable object with a double number</I>
+<DT><A HREF="#DOC.13.4"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Formattable</B>(int32_t l) </B>
+ <DD><I>
+Creates a Formattable object with a long number</I>
+<DT><A HREF="#DOC.13.5"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Formattable</B>(const char* strToCopy) </B>
+ <DD><I>
+Creates a Formattable object with a char string pointer</I>
+<DT><A HREF="#DOC.13.6"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Formattable</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& stringToCopy) </B>
+ <DD><I>
+Creates a Formattable object with a UnicodeString object to copy from</I>
+<DT><A HREF="#DOC.13.7"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Formattable</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A>* stringToAdopt) </B>
+ <DD><I>
+Creates a Formattable object with a UnicodeString object to adopt from</I>
+<DT><A HREF="#DOC.13.8"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Formattable</B>(const <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>* arrayToCopy, int32_t count) </B>
+ <DD><I>
+Creates a Formattable object with an array of Formattable objects</I>
+<DT><A HREF="#DOC.13.12"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Formattable</B>(const <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>&) </B>
+ <DD><I>
+Copy constructor</I>
+<DT><A HREF="#DOC.13.13"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>&  <B>operator=</B>(const <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>&) </B>
+ <DD><I>
+Assignment operator</I>
+<DT><A HREF="#DOC.13.14"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>operator==</B>(const <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>&) const  </B>
+ <DD><I>
+Equality comparison</I>
+<DT><A HREF="#DOC.13.15"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <B>~Formattable</B>() </B>
+ <DD><I>Destructor</I>
+<DT><A HREF="#DOC.13.17"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="Formattable.html#DOC.13.16">Type</A>  <B>getType</B>(void) const  </B>
+ <DD><I>
+Gets the data type of this Formattable object</I>
+<DT><A HREF="#DOC.13.18"> <IMG BORDER=0 SRC=icon1.gif></A> double  <B>getDouble</B>(void) const  </B>
+ <DD><I>
+Gets the double value of this object</I>
+<DT><A HREF="#DOC.13.19"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getLong</B>(void) const  </B>
+ <DD><I>
+Gets the long value of this object</I>
+<DT><A HREF="#DOC.13.20"> <IMG BORDER=0 SRC=icon1.gif></A> UDate  <B>getDate</B>(void) const  </B>
+ <DD><I>
+Gets the Date value of this object</I>
+<DT><A HREF="#DOC.13.21"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getString</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
+ <DD><I>
+Gets the string value of this object</I>
+<DT><A HREF="#DOC.13.22"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>*  <B>getArray</B>(int32_t& count) const  </B>
+ <DD><I>
+Gets the array value and count of this object</I>
+<DT><A HREF="#DOC.13.9"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>&  <B>operator[]</B>(int32_t index) </B>
+ <DD><I>
+Accesses the specified element in the array value of this Formattable object</I>
+<DT><A HREF="#DOC.13.23"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setDouble</B>(double d) </B>
+ <DD><I>
+Sets the double value of this object</I>
+<DT><A HREF="#DOC.13.24"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setLong</B>(int32_t l) </B>
+ <DD><I>
+Sets the long value of this object</I>
+<DT><A HREF="#DOC.13.25"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setDate</B>(UDate d) </B>
+ <DD><I>
+Sets the Date value of this object</I>
+<DT><A HREF="#DOC.13.26"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setString</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& stringToCopy) </B>
+ <DD><I>
+Sets the string value of this object</I>
+<DT><A HREF="#DOC.13.27"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setArray</B>(const <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>* array, int32_t count) </B>
+ <DD><I>
+Sets the array value and count of this object</I>
+<DT><A HREF="#DOC.13.28"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>adoptString</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A>* stringToAdopt) </B>
+ <DD><I>
+Sets and adopts the string value and count of this object</I>
+<DT><A HREF="#DOC.13.29"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>adoptArray</B>(<!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>* array, int32_t count) </B>
+ <DD><I>
+Sets and adopts the array value and count of this object</I>
+</DL></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+Formattable objects can be passed to the Format class or
+its subclasses for formatting.  Formattable is a thin wrapper
+class which interconverts between the primitive numeric types
+(double, long, etc.) as well as UDate and UnicodeString.
+<P>
+Note that this is fundamentally different from the Java behavior, since
+in this case the various formattable objects do not occupy a hierarchy,
+but are all wrapped within this one class.  Formattable encapsulates all
+the polymorphism in itself.
+<P>
+It would be easy to change this so that Formattable was an abstract base
+class of a genuine hierarchy, and that would clean up the code that
+currently must explicitly check for type, but that seems like overkill at
+this point.
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="ISDATE">
+<A NAME ="DOC.13.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  ISDATE</B></TT>
+<DD>
+This enum is only used to let callers distinguish between
+the Formattable(UDate) constructor and the Formattable(double)
+constructor; the compiler cannot distinguish the signatures,
+since UDate is currently typedefed to be either double or long.
+If UDate is changed later to be a bonafide class
+or struct, then we no longer need this enum.
+<DL></DL><P>
+<A NAME="Formattable">
+<A NAME ="DOC.13.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Formattable(UDate d, <!2><A HREF="Formattable.html#DOC.13.1">ISDATE</A>)</B></TT>
+<DD>
+Creates a Formattable object with a UDate instance
+<DL><DT><B>Parameters:</B><DD><B>d</B> -  the UDate instance.
+<br><B>ISDATE</B> -  the flag to indicate this is a date.<br></DL><P>
+<A NAME="Formattable">
+<A NAME ="DOC.13.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Formattable(double d)</B></TT>
+<DD>
+Creates a Formattable object with a double number
+<DL><DT><B>Parameters:</B><DD><B>d</B> -  the double number.<br></DL><P>
+<A NAME="Formattable">
+<A NAME ="DOC.13.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Formattable(int32_t l)</B></TT>
+<DD>
+Creates a Formattable object with a long number
+<DL><DT><B>Parameters:</B><DD><B>d</B> -  the long number.<br></DL><P>
+<A NAME="Formattable">
+<A NAME ="DOC.13.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Formattable(const char* strToCopy)</B></TT>
+<DD>
+Creates a Formattable object with a char string pointer.
+Assumes that the char string is null terminated.
+
+<DL><DT><B>Parameters:</B><DD><B>strToCopy</B> -  the char string.<br></DL><P>
+<A NAME="Formattable">
+<A NAME ="DOC.13.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Formattable(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& stringToCopy)</B></TT>
+<DD>
+Creates a Formattable object with a UnicodeString object to copy from
+<DL><DT><B>Parameters:</B><DD><B>strToCopy</B> -  the UnicodeString string.<br></DL><P>
+<A NAME="Formattable">
+<A NAME ="DOC.13.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Formattable(<!1><A HREF="UnicodeString.html">UnicodeString</A>* stringToAdopt)</B></TT>
+<DD>
+Creates a Formattable object with a UnicodeString object to adopt from
+<DL><DT><B>Parameters:</B><DD><B>strToAdopt</B> -  the UnicodeString string.<br></DL><P>
+<A NAME="Formattable">
+<A NAME ="DOC.13.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Formattable(const <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>* arrayToCopy, int32_t count)</B></TT>
+<DD>
+Creates a Formattable object with an array of Formattable objects
+<DL><DT><B>Parameters:</B><DD><B>arrayToCopy</B> -  the Formattable object array.
+<br><B>count</B> -  the array count.<br></DL><P>
+<A NAME="Formattable">
+<A NAME ="DOC.13.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Formattable(const <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>&)</B></TT>
+<DD>
+Copy constructor
+<DL></DL><P>
+<A NAME="operator=">
+<A NAME ="DOC.13.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>&  operator=(const <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>&)</B></TT>
+<DD>
+Assignment operator
+<DL></DL><P>
+<A NAME="operator==">
+<A NAME ="DOC.13.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  operator==(const <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>&) const </B></TT>
+<DD>
+Equality comparison
+<DL></DL><P>
+<A NAME="~Formattable">
+<A NAME ="DOC.13.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  ~Formattable()</B></TT>
+<DD>Destructor
+<DL></DL><P>
+<A NAME="Type">
+<A NAME ="DOC.13.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  Type</B></TT>
+<DD>
+The list of possible data types of this Formattable object
+<DL></DL><P>
+<A NAME="getType">
+<A NAME ="DOC.13.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="Formattable.html#DOC.13.16">Type</A>  getType(void) const </B></TT>
+<DD>
+Gets the data type of this Formattable object
+<DL></DL><P>
+<A NAME="getDouble">
+<A NAME ="DOC.13.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> double  getDouble(void) const </B></TT>
+<DD>
+Gets the double value of this object
+<DL></DL><P>
+<A NAME="getLong">
+<A NAME ="DOC.13.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getLong(void) const </B></TT>
+<DD>
+Gets the long value of this object
+<DL></DL><P>
+<A NAME="getDate">
+<A NAME ="DOC.13.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UDate  getDate(void) const </B></TT>
+<DD>
+Gets the Date value of this object
+<DL></DL><P>
+<A NAME="getString">
+<A NAME ="DOC.13.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  getString(<!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const </B></TT>
+<DD>
+Gets the string value of this object
+<DL></DL><P>
+<A NAME="getArray">
+<A NAME ="DOC.13.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>*  getArray(int32_t& count) const </B></TT>
+<DD>
+Gets the array value and count of this object
+<DL></DL><P>
+<A NAME="operator[]">
+<A NAME ="DOC.13.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>&  operator[](int32_t index)</B></TT>
+<DD>
+Accesses the specified element in the array value of this Formattable object
+<DL><DT><B>Returns:</B><DD>the accessed element in the array.
+<DT><B>Parameters:</B><DD><B>index</B> -  the specified index.
+<br></DL><P>
+<A NAME="setDouble">
+<A NAME ="DOC.13.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setDouble(double d)</B></TT>
+<DD>
+Sets the double value of this object
+<DL></DL><P>
+<A NAME="setLong">
+<A NAME ="DOC.13.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setLong(int32_t l)</B></TT>
+<DD>
+Sets the long value of this object
+<DL></DL><P>
+<A NAME="setDate">
+<A NAME ="DOC.13.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setDate(UDate d)</B></TT>
+<DD>
+Sets the Date value of this object
+<DL></DL><P>
+<A NAME="setString">
+<A NAME ="DOC.13.26">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setString(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& stringToCopy)</B></TT>
+<DD>
+Sets the string value of this object
+<DL></DL><P>
+<A NAME="setArray">
+<A NAME ="DOC.13.27">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setArray(const <!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>* array, int32_t count)</B></TT>
+<DD>
+Sets the array value and count of this object
+<DL></DL><P>
+<A NAME="adoptString">
+<A NAME ="DOC.13.28">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  adoptString(<!1><A HREF="UnicodeString.html">UnicodeString</A>* stringToAdopt)</B></TT>
+<DD>
+Sets and adopts the string value and count of this object
+<DL></DL><P>
+<A NAME="adoptArray">
+<A NAME ="DOC.13.29">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  adoptArray(<!2><A HREF="Formattable.html#DOC.13.2">Formattable</A>* array, int32_t count)</B></TT>
+<DD>
+Sets and adopts the array value and count of this object
+<DL></DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

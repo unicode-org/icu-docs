@@ -1,0 +1,417 @@
+<html><head><TITLE>ChoiceFormat</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API ChoiceFormat : public <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A> </H2><BLOCKQUOTE>
+
+A ChoiceFormat allows you to attach a format to a range of numbers
+</BLOCKQUOTE>
+<hr>
+ <h2> Inheritance:</h2>
+<APPLET CODE="ClassGraph.class" WIDTH=600 HEIGHT=95>
+<param name=classes value="CFormat,MFormat.html,CNumberFormat,MNumberFormat.html,CChoiceFormat,MChoiceFormat.html">
+<param name=before value="M,M,M">
+<param name=after value="Md_SP,Md_,M">
+<param name=indent value="0,1,2">
+<param name=arrowdir value="down">
+</APPLET>
+<hr>
+
+<DL>
+<DL>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.5.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ChoiceFormat</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& newPattern, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Construct a new ChoiceFormat with the limits and the corresponding formats
+based on the pattern</I>
+<DT><A HREF="#DOC.5.2"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ChoiceFormat</B>(const double* limits, const <!1><A HREF="UnicodeString.html">UnicodeString</A>* formats, int32_t count ) </B>
+ <DD><I>
+Construct a new ChoiceFormat with the given limits and formats</I>
+<DT><A HREF="#DOC.5.18"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ChoiceFormat</B>(const <!2><A HREF="ChoiceFormat.html#DOC.5.1">ChoiceFormat</A>&) </B>
+ <DD><I>
+Copy constructor</I>
+<DT><A HREF="#DOC.5.19"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!2><A HREF="ChoiceFormat.html#DOC.5.1">ChoiceFormat</A>&  <B>operator=</B>(const <!2><A HREF="ChoiceFormat.html#DOC.5.1">ChoiceFormat</A>&) </B>
+ <DD><I>
+Assignment operator</I>
+<DT><A HREF="#DOC.5.20"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <B>~ChoiceFormat</B>() </B>
+ <DD><I>
+Destructor</I>
+<DT><A HREF="#DOC.5.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="Format.html#DOC.14.8">Format</A>*  <B>clone</B>(void) const  </B>
+ <DD><I>
+Clone this Format object polymorphically</I>
+<DT><A HREF="#DOC.5.4"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!2><A HREF="Format.html#DOC.14.8">Format</A>& other) const  </B>
+ <DD><I>
+Return true if the given Format objects are semantically equal</I>
+<DT><A HREF="#DOC.5.5"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>applyPattern</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& pattern, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Sets the pattern</I>
+<DT><A HREF="#DOC.5.21"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>toPattern</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A> &pattern) const  </B>
+ <DD><I>
+Gets the pattern</I>
+<DT><A HREF="#DOC.5.6"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>adoptChoices</B>(double* limitsToAdopt, <!1><A HREF="UnicodeString.html">UnicodeString</A>* formatsToAdopt, int32_t count ) </B>
+ <DD><I>
+Set the choices to be used in formatting</I>
+<DT><A HREF="#DOC.5.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setChoices</B>(const double* limitsToCopy, const <!1><A HREF="UnicodeString.html">UnicodeString</A>* formatsToCopy, int32_t count ) </B>
+ <DD><I>
+Set the choices to be used in formatting</I>
+<DT><A HREF="#DOC.5.8"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  const  double*  <B>getLimits</B>(int32_t& count) const  </B>
+ <DD><I>
+Get the limits passed in the constructor</I>
+<DT><A HREF="#DOC.5.9"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  <B>getFormats</B>(int32_t& count) const  </B>
+ <DD><I>
+Get the formats passed in the constructor</I>
+<DT><A HREF="#DOC.5.10"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos) const  </B>
+ <DD><I>
+Format a double or long number using this object's choices</I>
+<DT><A HREF="#DOC.5.11"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>parse</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parsePosition) const  </B>
+ <DD><I>
+Return a long if possible (e</I>
+<DT><A HREF="#DOC.5.12"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="ClassID.html">ClassID</A>  <B>getDynamicClassID</B>(void) const  </B>
+ <DD><I>
+Returns a unique class ID POLYMORPHICALLY</I>
+<DT><A HREF="#DOC.5.13"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="ClassID.html">ClassID</A>  <B>getStaticClassID</B>(void) </B>
+ <DD><I>
+Return the class ID for this class</I>
+<DT><A HREF="#DOC.5.14"> <IMG BORDER=0 SRC=icon1.gif></A> static  double  <B>nextDouble</B>(double d ) </B>
+ <DD><I>
+Finds the least double greater than d</I>
+<DT><A HREF="#DOC.5.15"> <IMG BORDER=0 SRC=icon1.gif></A> static  double  <B>previousDouble</B>(double d ) </B>
+ <DD><I>
+Finds the greatest double less than d</I>
+</DL></DL>
+<hr><H3>Inherited from <A HREF="NumberFormat.html">NumberFormat:</A></h3>
+
+<DL>
+<DL>
+<DT><h3>Public Classes</h3><DD><DT><IMG SRC=icon2.gif>  enum  <B>EAlignmentFields</B>
+
+<DL>
+<DT><A HREF="#DOC.19.1.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>INTEGER_FIELD</B> </B>
+ <DD><I>
+These constants are provided for backwards compatibility only,
+and are deprecated</I>
+
+</DL>
+</DL><DL>
+<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> virtual  void  <B>parseObject</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& source, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parse_pos) const 
+<DT><IMG SRC=icon2.gif> bool_t  <B>isParseIntegerOnly</B>(void) const 
+<DT><IMG SRC=icon2.gif> virtual  void  <B>setParseIntegerOnly</B>(bool_t value)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createCurrencyInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createCurrencyInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createPercentInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createPercentInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createScientificInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createScientificInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  const  Locale*  <B>getAvailableLocales</B>(int32_t& count)
+<DT><IMG SRC=icon2.gif> bool_t  <B>isGroupingUsed</B>(void) const 
+<DT><IMG SRC=icon2.gif> virtual  void  <B>setGroupingUsed</B>(bool_t newValue)
+<DT><IMG SRC=icon2.gif> int32_t  <B>getMaximumIntegerDigits</B>(void) const 
+<DT><IMG SRC=icon2.gif> virtual  void  <B>setMaximumIntegerDigits</B>(int32_t newValue)
+<DT><IMG SRC=icon2.gif> int32_t  <B>getMinimumIntegerDigits</B>(void) const 
+<DT><IMG SRC=icon2.gif> virtual  void  <B>setMinimumIntegerDigits</B>(int32_t newValue)
+<DT><IMG SRC=icon2.gif> int32_t  <B>getMaximumFractionDigits</B>(void) const 
+<DT><IMG SRC=icon2.gif> virtual  void  <B>setMaximumFractionDigits</B>(int32_t newValue)
+<DT><IMG SRC=icon2.gif> int32_t  <B>getMinimumFractionDigits</B>(void) const 
+<DT><IMG SRC=icon2.gif> virtual  void  <B>setMinimumFractionDigits</B>(int32_t newValue)
+</DL></DL>
+<hr><H3>Inherited from <A HREF = "Format.html"> Format:</A></h3>
+
+<DL>
+<DL>
+<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> bool_t  <B>operator!=</B>(const <!2><A HREF="Format.html#DOC.14.8">Format</A>& other) const 
+</DL></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+A ChoiceFormat allows you to attach a format to a range of numbers.
+It is generally used in a MessageFormat for doing things like plurals.
+The choice is specified with an ascending list of doubles, where each item
+specifies a half-open interval up to the next item:
+<pre>
+.    X matches j if and only if limit[j] &lt;= X &lt; limit[j+1]
+</pre>
+If there is no match, then either the first or last index is used, depending
+on whether the number is too low or too high.  The length of the array of
+formats must be the same as the length of the array of limits.
+For example,
+<pre>
+.     {1,2,3,4,5,6,7},
+.          {"Sun","Mon","Tue","Wed","Thur","Fri","Sat"}
+.     {0, 1, ChoiceFormat::nextDouble(1)},
+.          {"no files", "one file", "many files"}
+</pre>
+(nextDouble can be used to get the next higher double, to make the half-open
+interval.)
+<P>
+Here is a simple example that shows formatting and parsing:
+<pre>
+.  void SimpleChoiceExample( void )
+.  {
+.      double limits[] = {1,2,3,4,5,6,7};
+.      UnicodeString monthNames[] = {"Sun","Mon","Tue","Wed","Thur","Fri","Sat"};
+.      ChoiceFormat* form = new ChoiceFormat(limits, monthNames, 7 );
+.      ParsePosition* status = new ParsePosition(0);
+.      UnicodeString str;
+.      FieldPosition f1(0), f2(0);
+.      for (double i = 0.0; i &lt;= 8.0; ++i) {
+.          status->setIndex(0);
+.          Formattable parseResult;
+.          str.remove();
+.          cout &lt;&lt; i &lt;&lt; " -> " &lt;&lt; form->format(i,str, f1) 
+.                    &lt;&lt; " -> " &lt;&lt; parseResult &lt;&lt; endl;
+.      }
+.      delete form;
+.      delete status;
+.      cout &lt;&lt; endl;
+.  }
+</pre>
+Here is a more complex example, with a pattern format.
+<pre>
+.  void ComplexChoiceExample( void )
+.  {
+.      double filelimits[] = {0,1,2};
+.      UnicodeString filepart[] = {"are no files","is one file","are {2} files"};
+.      ChoiceFormat* fileform = new ChoiceFormat(filelimits, filepart, 3 );
+.      UErrorCode success = ZERO_ERROR;
+.      const Format* testFormats[] = { fileform, NULL, NumberFormat::createInstance(success) };
+.      MessageFormat* pattform = new MessageFormat("There {0} on {1}", success );
+.      pattform->setFormats( testFormats, 3 );
+.      Formattable testArgs[] = {0L, "Disk_A", 0L};
+.      FieldPosition fp(0);
+.      UnicodeString str;
+.      for (int32_t i = 0; i &lt; 4; ++i) {
+.          Formattable fInt(i);
+.          testArgs[0] = fInt;
+.          testArgs[2] = testArgs[0];
+.          str.remove();
+.          pattform->format(testArgs, 3, str, fp, success );
+.          cout &lt;&lt; "Output for i=" &lt;&lt; i &lt;&lt; " : " &lt;&lt; str &lt;&lt; endl;
+.      }
+.      delete pattform;
+.      cout &lt;&lt; endl;
+.  }
+</pre>
+ChoiceFormat objects may be converted to and from patterns.  The
+syntax of these patterns is [TODO fill in this section with detail].
+Here is an example of a ChoiceFormat pattern:
+<P>
+You can either do this programmatically, as in the above example,
+or by using a pattern (see ChoiceFormat for more information) as in:
+<pre>
+.       "0#are no files|1#is one file|1&lt;are many files"
+</pre>
+Here the notation is:
+<pre>
+.       &lt;number> "#"  Specifies a limit value.
+.       &lt;number> "&lt;"  Specifies a limit of nextDouble(&lt;number>).
+.       &lt;number> ">"  Specifies a limit of previousDouble(&lt;number>).
+</pre>
+Each limit value is followed by a string, which is terminated by
+a vertical bar character ("|"), except for the last string, which
+is terminated by the end of the string.
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="ChoiceFormat">
+<A NAME ="DOC.5.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ChoiceFormat(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& newPattern, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Construct a new ChoiceFormat with the limits and the corresponding formats
+based on the pattern.
+
+
+<DL><DT><B>Parameters:</B><DD><B>pattern</B> -    Pattern used to construct object.
+<br><B>status</B> -     Output param to receive success code.  If the
+pattern cannot be parsed, set to failure code.<br></DL><P>
+<A NAME="ChoiceFormat">
+<A NAME ="DOC.5.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ChoiceFormat(const double* limits, const <!1><A HREF="UnicodeString.html">UnicodeString</A>* formats, int32_t count )</B></TT>
+<DD>
+Construct a new ChoiceFormat with the given limits and formats.  Copy
+the limits and formats instead of adopting them.
+
+
+<DL><DT><B>Parameters:</B><DD><B>limits</B> -     Array of limit values.
+<br><B>formats</B> -    Array of formats.
+<br><B>count</B> -      Size of 'limits' and 'formats' arrays.<br></DL><P>
+<A NAME="ChoiceFormat">
+<A NAME ="DOC.5.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ChoiceFormat(const <!2><A HREF="ChoiceFormat.html#DOC.5.1">ChoiceFormat</A>&)</B></TT>
+<DD>
+Copy constructor
+<DL></DL><P>
+<A NAME="operator=">
+<A NAME ="DOC.5.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!2><A HREF="ChoiceFormat.html#DOC.5.1">ChoiceFormat</A>&  operator=(const <!2><A HREF="ChoiceFormat.html#DOC.5.1">ChoiceFormat</A>&)</B></TT>
+<DD>
+Assignment operator
+<DL></DL><P>
+<A NAME="~ChoiceFormat">
+<A NAME ="DOC.5.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  ~ChoiceFormat()</B></TT>
+<DD>
+Destructor
+<DL></DL><P>
+<A NAME="clone">
+<A NAME ="DOC.5.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="Format.html#DOC.14.8">Format</A>*  clone(void) const </B></TT>
+<DD>
+Clone this Format object polymorphically. The caller owns the
+result and should delete it when done.
+<DL></DL><P>
+<A NAME="operator==">
+<A NAME ="DOC.5.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!2><A HREF="Format.html#DOC.14.8">Format</A>& other) const </B></TT>
+<DD>
+Return true if the given Format objects are semantically equal.
+Objects of different subclasses are considered unequal.
+<DL></DL><P>
+<A NAME="applyPattern">
+<A NAME ="DOC.5.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  applyPattern(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& pattern, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Sets the pattern
+<DL><DT><B>Parameters:</B><DD><B>pattern</B> -    The pattern to be applied.
+<br><B>status</B> -     Output param set to success/failure code on
+exit. If the pattern is invalid, this will be
+set to a failure result.<br></DL><P>
+<A NAME="toPattern">
+<A NAME ="DOC.5.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  toPattern(<!1><A HREF="UnicodeString.html">UnicodeString</A> &pattern) const </B></TT>
+<DD>
+Gets the pattern
+<DL></DL><P>
+<A NAME="adoptChoices">
+<A NAME ="DOC.5.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  adoptChoices(double* limitsToAdopt, <!1><A HREF="UnicodeString.html">UnicodeString</A>* formatsToAdopt, int32_t count )</B></TT>
+<DD>
+Set the choices to be used in formatting.  The arrays are adopted and
+should not be deleted by the caller.
+
+
+<DL><DT><B>Parameters:</B><DD><B>limitsToAdopt</B> -      Contains the top value that you want
+parsed with that format,and should be in
+ascending sorted order. When formatting X,
+the choice will be the i, where limit[i]
+&lt;= X &lt; limit[i+1].
+<br><B>formatsToAdopt</B> -     The format strings you want to use for each limit.
+<br><B>count</B> -              The size of the above arrays.<br></DL><P>
+<A NAME="setChoices">
+<A NAME ="DOC.5.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setChoices(const double* limitsToCopy, const <!1><A HREF="UnicodeString.html">UnicodeString</A>* formatsToCopy, int32_t count )</B></TT>
+<DD>
+Set the choices to be used in formatting.
+
+
+<DL><DT><B>Parameters:</B><DD><B>limitsToCopy</B> -       Contains the top value that you want
+parsed with that format,and should be in
+ascending sorted order. When formatting X,
+the choice will be the i, where limit[i]
+&lt;= X &lt; limit[i+1].
+<br><B>formatsToCopy</B> -      The format strings you want to use for each limit.
+<br><B>count</B> -              The size of the above arrays.<br></DL><P>
+<A NAME="getLimits">
+<A NAME ="DOC.5.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  const  double*  getLimits(int32_t& count) const </B></TT>
+<DD>
+Get the limits passed in the constructor
+<DL><DT><B>Returns:</B><DD>the limits.
+</DL><P>
+<A NAME="getFormats">
+<A NAME ="DOC.5.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  getFormats(int32_t& count) const </B></TT>
+<DD>
+Get the formats passed in the constructor
+<DL><DT><B>Returns:</B><DD>the formats.
+</DL><P>
+<A NAME="format">
+<A NAME ="DOC.5.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos) const </B></TT>
+<DD>
+Format a double or long number using this object's choices.
+
+
+<DL><DT><B>Returns:</B><DD>A reference to 'toAppendTo'.
+<DT><B>Parameters:</B><DD><B>number</B> -      The value to be formatted.
+<br><B>toAppendTo</B> -  The string to append the formatted string to.
+This is an output parameter.
+<br><B>pos</B> -         On input: an alignment field, if desired.
+On output: the offsets of the alignment field.
+<br></DL><P>
+<A NAME="parse">
+<A NAME ="DOC.5.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  parse(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parsePosition) const </B></TT>
+<DD>
+Return a long if possible (e.g. within range LONG_MAX,
+LONG_MAX], and with no decimals), otherwise a double.  If
+IntegerOnly is set, will stop at a decimal point (or equivalent;
+e.g. for rational numbers "1 2/3", will stop after the 1).
+<P>
+If no object can be parsed, parsePosition is unchanged, and NULL is
+returned.
+
+
+<DL><DT><B>Returns:</B><DD>A Formattable object of numeric type.  The caller
+owns this an must delete it.  NULL on failure.
+
+<DT><B>Parameters:</B><DD><B>text</B> -            The text to be parsed.
+<br><B>result</B> -          Formattable to be set to the parse result.
+If parse fails, return contents are undefined.
+<br><B>parsePosition</B> -   The position to start parsing at on input.
+On output, moved to after the last successfully
+parse character. On parse failure, does not change.
+<br><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.9">NumberFormat::isParseIntegerOnly</A><br></DL><P>
+<A NAME="getDynamicClassID">
+<A NAME ="DOC.5.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="ClassID.html">ClassID</A>  getDynamicClassID(void) const </B></TT>
+<DD>
+Returns a unique class ID POLYMORPHICALLY.  Pure virtual override.
+This method is to implement a simple version of RTTI, since not all
+C++ compilers support genuine RTTI.  Polymorphic operator==() and
+clone() methods call this method.
+
+
+<DL><DT><B>Returns:</B><DD>The class ID for this object. All objects of a
+given class have the same class ID.  Objects of
+other classes have different class IDs.
+</DL><P>
+<A NAME="getStaticClassID">
+<A NAME ="DOC.5.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="ClassID.html">ClassID</A>  getStaticClassID(void)</B></TT>
+<DD>
+Return the class ID for this class.  This is useful only for
+comparing to a return value from getDynamicClassID().  For example:
+<pre>
+.       Base* polymorphic_pointer = createPolymorphicObject();
+.       if (polymorphic_pointer->getDynamicClassID() ==
+.           Derived::getStaticClassID()) ...
+</pre>
+
+<DL><DT><B>Returns:</B><DD>The class ID for all objects of this class.
+</DL><P>
+<A NAME="nextDouble">
+<A NAME ="DOC.5.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  double  nextDouble(double d )</B></TT>
+<DD>
+Finds the least double greater than d.
+If NaN, returns same value.
+Used to make half-open intervals.
+
+<DL><DT><B>See Also:</B><DD><!2><A HREF="ChoiceFormat.html#DOC.5.15">ChoiceFormat::previousDouble</A><br></DL><P>
+<A NAME="previousDouble">
+<A NAME ="DOC.5.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  double  previousDouble(double d )</B></TT>
+<DD>
+Finds the greatest double less than d.
+If NaN, returns same value.
+
+<DL><DT><B>See Also:</B><DD><!2><A HREF="ChoiceFormat.html#DOC.5.14">ChoiceFormat::nextDouble</A><br></DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

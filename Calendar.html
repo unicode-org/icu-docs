@@ -1,0 +1,1173 @@
+<html><head><TITLE>Calendar</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API Calendar  </H2><BLOCKQUOTE>
+
+<code>Calendar</code> is an abstract base class for converting between
+a <code>UDate</code> object and a set of integer fields such as
+<code>YEAR</code>, <code>MONTH</code>, <code>DAY</code>, <code>HOUR</code>,
+and so on
+</BLOCKQUOTE>
+<hr>
+ <h2> Inheritance:</h2>
+<APPLET CODE="ClassGraph.class" WIDTH=600 HEIGHT=65>
+<param name=classes value="CCalendar,MCalendar.html,CGregorianCalendar,MGregorianCalendar.html">
+<param name=before value="M,M^_">
+<param name=after value="M,M">
+<param name=indent value="0,0">
+<param name=arrowdir value="down">
+</APPLET>
+<hr>
+
+<DL>
+<DL>
+<DT><h3>Public Classes</h3><DD><DT><A HREF="#DOC.3.1"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EDateFields</B> </B>
+ <DD><I>
+Field IDs for date and time</I>
+<DT><A HREF="#DOC.3.2"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EDaysOfWeek</B> </B>
+ <DD><I>
+Useful constant for days of week</I>
+<DT><A HREF="#DOC.3.3"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EMonths</B> </B>
+ <DD><I>
+Useful constants for month</I>
+<DT><A HREF="#DOC.3.4"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EAmpm</B> </B>
+ <DD><I>
+Useful constants for hour in 12-hour clock</I>
+</DL><DL>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.3.70"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <B>~Calendar</B>() </B>
+ <DD><I>
+destructor</I>
+<DT><A HREF="#DOC.3.71"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  <B>clone</B>(void) const  </B>
+ <DD><I>
+Create and return a polymorphic copy of this calendar</I>
+<DT><A HREF="#DOC.3.5"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  <B>createInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>& success) </B>
+ <DD><I>
+Creates a Calendar using the default timezone and locale</I>
+<DT><A HREF="#DOC.3.6"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  <B>createInstance</B>(<!1><A HREF="TimeZone.html">TimeZone</A>* zoneToAdopt, <!2><A HREF="#DOC.301">UErrorCode</A>& success) </B>
+ <DD><I>
+Creates a Calendar using the given timezone and the default locale</I>
+<DT><A HREF="#DOC.3.7"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  <B>createInstance</B>(const <!1><A HREF="TimeZone.html">TimeZone</A>& zone, <!2><A HREF="#DOC.301">UErrorCode</A>& success) </B>
+ <DD><I>
+Creates a Calendar using the given timezone and the default locale</I>
+<DT><A HREF="#DOC.3.8"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  <B>createInstance</B>(const Locale& aLocale, <!2><A HREF="#DOC.301">UErrorCode</A>& success) </B>
+ <DD><I>
+Creates a Calendar using the default timezone and the given locale</I>
+<DT><A HREF="#DOC.3.9"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  <B>createInstance</B>(<!1><A HREF="TimeZone.html">TimeZone</A>* zoneToAdopt, const Locale& aLocale, <!2><A HREF="#DOC.301">UErrorCode</A>& success) </B>
+ <DD><I>
+Creates a Calendar using the given timezone and given locale</I>
+<DT><A HREF="#DOC.3.10"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  <B>createInstance</B>(const <!1><A HREF="TimeZone.html">TimeZone</A>& zoneToAdopt, const Locale& aLocale, <!2><A HREF="#DOC.301">UErrorCode</A>& success) </B>
+ <DD><I>
+Gets a Calendar using the given timezone and given locale</I>
+<DT><A HREF="#DOC.3.11"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  Locale*  <B>getAvailableLocales</B>(int32_t& count) </B>
+ <DD><I>
+Returns a list of the locales for which Calendars are installed</I>
+<DT><A HREF="#DOC.3.12"> <IMG BORDER=0 SRC=icon1.gif></A> static  UDate  <B>getNow</B>(void) </B>
+ <DD><I>
+Returns the current UTC (GMT) time measured in milliseconds since 0:00:00 on 1/1/70 
+(derived from the system time)</I>
+<DT><A HREF="#DOC.3.13"> <IMG BORDER=0 SRC=icon1.gif></A> inline  UDate  <B>getTime</B>(<!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Gets this Calendar's time as milliseconds</I>
+<DT><A HREF="#DOC.3.14"> <IMG BORDER=0 SRC=icon1.gif></A> inline  void  <B>setTime</B>(UDate date, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Sets this Calendar's current time with the given UDate</I>
+<DT><A HREF="#DOC.3.15"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& that) const  </B>
+ <DD><I>
+Compares the equality of two Calendar objects</I>
+<DT><A HREF="#DOC.3.16"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>operator!=</B>(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& that) const  </B>
+ <DD><I>
+Compares the inequality of two Calendar objects</I>
+<DT><A HREF="#DOC.3.17"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>equals</B>(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& when, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Compares the Calendar time, whereas Calendar::operator== compares the equality of
+Calendar objects</I>
+<DT><A HREF="#DOC.3.18"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>before</B>(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& when, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Returns true if this Calendar's current time is before "when"'s current time</I>
+<DT><A HREF="#DOC.3.19"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>after</B>(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& when, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Returns true if this Calendar's current time is after "when"'s current time</I>
+<DT><A HREF="#DOC.3.20"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>equivalentTo</B>(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& other) const  </B>
+ <DD><I>
+Return true if another Calendar object is equivalent to this one</I>
+<DT><A HREF="#DOC.3.21"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>add</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, int32_t amount, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+UDate Arithmetic function</I>
+<DT><A HREF="#DOC.3.22"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>roll</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, bool_t up, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Time Field Rolling function</I>
+<DT><A HREF="#DOC.3.23"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>roll</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, int32_t amount, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Time Field Rolling function</I>
+<DT><A HREF="#DOC.3.24"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>adoptTimeZone</B>(<!1><A HREF="TimeZone.html">TimeZone</A>* value) </B>
+ <DD><I>
+Sets the calendar's time zone to be the one passed in</I>
+<DT><A HREF="#DOC.3.25"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setTimeZone</B>(const <!1><A HREF="TimeZone.html">TimeZone</A>& zone) </B>
+ <DD><I>
+Sets the calendar's time zone to be the same as the one passed in</I>
+<DT><A HREF="#DOC.3.26"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!1><A HREF="TimeZone.html">TimeZone</A>&  <B>getTimeZone</B>(void) const  </B>
+ <DD><I>
+Returns a reference to the time zone owned by this calendar</I>
+<DT><A HREF="#DOC.3.27"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="TimeZone.html">TimeZone</A>*  <B>orphanTimeZone</B>(void) </B>
+ <DD><I>
+Returns the time zone owned by this calendar</I>
+<DT><A HREF="#DOC.3.28"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>inDaylightTime</B>(<!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Queries if the current date for this Calendar is in Daylight Savings Time</I>
+<DT><A HREF="#DOC.3.29"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setLenient</B>(bool_t lenient) </B>
+ <DD><I>
+Specifies whether or not date/time interpretation is to be lenient</I>
+<DT><A HREF="#DOC.3.30"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>isLenient</B>(void) const  </B>
+ <DD><I>
+Tells whether date/time interpretation is to be lenient</I>
+<DT><A HREF="#DOC.3.31"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setFirstDayOfWeek</B>(<!2><A HREF="Calendar.html#DOC.3.2">EDaysOfWeek</A> value) </B>
+ <DD><I>
+Sets what the first day of the week is; e</I>
+<DT><A HREF="#DOC.3.32"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="Calendar.html#DOC.3.2">EDaysOfWeek</A>  <B>getFirstDayOfWeek</B>(void) const  </B>
+ <DD><I>
+Gets what the first day of the week is; e</I>
+<DT><A HREF="#DOC.3.33"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setMinimalDaysInFirstWeek</B>(uint8_t value) </B>
+ <DD><I>
+Sets what the minimal days required in the first week of the year are; For
+example, if the first week is defined as one that contains the first day of the
+first month of a year, call the method with value 1</I>
+<DT><A HREF="#DOC.3.34"> <IMG BORDER=0 SRC=icon1.gif></A> uint8_t  <B>getMinimalDaysInFirstWeek</B>(void) const  </B>
+ <DD><I>
+Gets what the minimal days required in the first week of the year are; e</I>
+<DT><A HREF="#DOC.3.35"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>getMinimum</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const  </B>
+ <DD><I>
+Gets the minimum value for the given time field</I>
+<DT><A HREF="#DOC.3.36"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>getMaximum</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const  </B>
+ <DD><I>
+Gets the maximum value for the given time field</I>
+<DT><A HREF="#DOC.3.37"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>getGreatestMinimum</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const  </B>
+ <DD><I>
+Gets the highest minimum value for the given field if varies</I>
+<DT><A HREF="#DOC.3.38"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int32_t  <B>getLeastMaximum</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const  </B>
+ <DD><I>
+Gets the lowest maximum value for the given field if varies</I>
+<DT><A HREF="#DOC.3.39"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getActualMinimum</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Return the minimum value that this field could have, given the current date</I>
+<DT><A HREF="#DOC.3.40"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getActualMaximum</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Return the maximum value that this field could have, given the current date</I>
+<DT><A HREF="#DOC.3.41"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>get</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Gets the value for a given time field</I>
+<DT><A HREF="#DOC.3.42"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>isSet</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const  </B>
+ <DD><I>
+Determines if the given time field has a value set</I>
+<DT><A HREF="#DOC.3.43"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>set</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, int32_t value) </B>
+ <DD><I>
+Sets the given time field with the given value</I>
+<DT><A HREF="#DOC.3.44"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>set</B>(int32_t year, int32_t month, int32_t date) </B>
+ <DD><I>
+Sets the values for the fields YEAR, MONTH, and DATE</I>
+<DT><A HREF="#DOC.3.45"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>set</B>(int32_t year, int32_t month, int32_t date, int32_t hour, int32_t minute) </B>
+ <DD><I>
+Sets the values for the fields YEAR, MONTH, DATE, HOUR_OF_DAY, and MINUTE</I>
+<DT><A HREF="#DOC.3.46"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>set</B>(int32_t year, int32_t month, int32_t date, int32_t hour, int32_t minute, int32_t second) </B>
+ <DD><I>
+Sets the values for the fields YEAR, MONTH, DATE, HOUR_OF_DAY, MINUTE, and SECOND</I>
+<DT><A HREF="#DOC.3.47"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>clear</B>(void) </B>
+ <DD><I>
+Clears the values of all the time fields, making them both unset and assigning
+them a value of zero</I>
+<DT><A HREF="#DOC.3.48"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>clear</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) </B>
+ <DD><I>
+Clears the value in the given time field, both making it unset and assigning it a
+value of zero</I>
+<DT><A HREF="#DOC.3.49"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="ClassID.html">ClassID</A>  <B>getDynamicClassID</B>(void) const  </B>
+ <DD><I>
+Returns a unique class ID POLYMORPHICALLY</I>
+<DT><A HREF="#DOC.3.69"> <IMG BORDER=0 SRC=icon1.gif></A> inline  void  <B>Calendar::internalSet</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, int32_t value) </B>
+ <DD><I>
+Fast method for subclasses</I>
+</DL><DL>
+<DT><h3>Protected Fields</h3><DD><DT><A HREF="#DOC.3.74"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>fIsTimeSet</B> </B>
+ <DD><I>
+The flag which indicates if the current time is set in the calendar</I>
+<DT><A HREF="#DOC.3.60"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>fAreFieldsSet</B> </B>
+ <DD><I>
+True if the fields are in sync with the currently set time of this Calendar</I>
+<DT><A HREF="#DOC.3.61"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>fAreAllFieldsSet</B> </B>
+ <DD><I>
+True if all of the fields have been set</I>
+<DT><A HREF="#DOC.3.77"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>fFields</B>[FIELD_COUNT] </B>
+ <DD><I>
+The time fields containing values into which the millis is computed</I>
+<DT><A HREF="#DOC.3.78"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>fIsSet</B>[FIELD_COUNT] </B>
+ <DD><I>
+The flags which tell if a specified time field for the calendar is set</I>
+<DT><A HREF="#DOC.3.62"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>fStamp</B>[FIELD_COUNT] </B>
+ <DD><I>
+Pseudo-time-stamps which specify when each field was set</I>
+</DL><DL>
+<DT><h3>Protected Methods</h3><DD><DT><A HREF="#DOC.3.50"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Calendar</B>(<!2><A HREF="#DOC.301">UErrorCode</A>& success) </B>
+ <DD><I>
+Constructs a Calendar with the default time zone as returned by
+TimeZone::createInstance(), and the default locale</I>
+<DT><A HREF="#DOC.3.72"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Calendar</B>(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& source) </B>
+ <DD><I>
+Copy constructor</I>
+<DT><A HREF="#DOC.3.73"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>&  <B>operator=</B>(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& right) </B>
+ <DD><I>
+Default assignment operator</I>
+<DT><A HREF="#DOC.3.51"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Calendar</B>(<!1><A HREF="TimeZone.html">TimeZone</A>* zone, const Locale& aLocale, <!2><A HREF="#DOC.301">UErrorCode</A>& success) </B>
+ <DD><I>
+Constructs a Calendar with the given time zone and locale</I>
+<DT><A HREF="#DOC.3.52"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>Calendar</B>(const <!1><A HREF="TimeZone.html">TimeZone</A>& zone, const Locale& aLocale, <!2><A HREF="#DOC.301">UErrorCode</A>& success) </B>
+ <DD><I>
+Constructs a Calendar with the given time zone and locale</I>
+<DT><A HREF="#DOC.3.53"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>computeTime</B>(<!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Converts Calendar's time field values to GMT as milliseconds</I>
+<DT><A HREF="#DOC.3.54"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>computeFields</B>(<!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Converts GMT as milliseconds to time field values</I>
+<DT><A HREF="#DOC.3.55"> <IMG BORDER=0 SRC=icon1.gif></A> double  <B>getTimeInMillis</B>(<!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Gets this Calendar's current time as a long</I>
+<DT><A HREF="#DOC.3.56"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setTimeInMillis</B>( double millis, <!2><A HREF="#DOC.301">UErrorCode</A>& status ) </B>
+ <DD><I>
+Sets this Calendar's current time from the given long value</I>
+<DT><A HREF="#DOC.3.57"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>complete</B>(<!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+ <DD><I>
+Recomputes the current time from currently set fields, and then fills in any
+unset fields in the time field list</I>
+<DT><A HREF="#DOC.3.58"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>internalGet</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const  </B>
+ <DD><I>
+Gets the value for a given time field</I>
+<DT><A HREF="#DOC.3.59"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>internalSet</B>(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, int32_t value) </B>
+ <DD><I>
+Sets the value for a given time field</I>
+<DT><A HREF="#DOC.3.75"> <IMG BORDER=0 SRC=icon1.gif></A> UDate  <B>internalGetTime</B>(void) const  </B>
+ <DD><I>
+Get the current time without recomputing</I>
+<DT><A HREF="#DOC.3.76"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>internalSetTime</B>(UDate time) </B>
+ <DD><I>
+Set the current time without affecting flags or fields</I>
+</DL></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+<code>Calendar</code> is an abstract base class for converting between
+a <code>UDate</code> object and a set of integer fields such as
+<code>YEAR</code>, <code>MONTH</code>, <code>DAY</code>, <code>HOUR</code>,
+and so on. (A <code>UDate</code> object represents a specific instant in
+time with millisecond precision. See
+{@link UDate}
+for information about the <code>UDate</code> class.)
+
+<p>
+Subclasses of <code>Calendar</code> interpret a <code>UDate</code>
+according to the rules of a specific calendar system. The JDK
+provides one concrete subclass of <code>Calendar</code>:
+<code>GregorianCalendar</code>. Future subclasses could represent
+the various types of lunar calendars in use in many parts of the world.
+
+<p>
+Like other locale-sensitive classes, <code>Calendar</code> provides a
+class method, <code>getInstance</code>, for getting a generally useful
+object of this type. <code>Calendar</code>'s <code>getInstance</code> method
+returns a <code>GregorianCalendar</code> object whose
+time fields have been initialized with the current date and time:
+<blockquote>
+<pre>
+Calendar rightNow = Calendar.getInstance();
+</pre>
+</blockquote>
+
+<p>
+A <code>Calendar</code> object can produce all the time field values
+needed to implement the date-time formatting for a particular language
+and calendar style (for example, Japanese-Gregorian, Japanese-Traditional).
+
+<p>
+When computing a <code>UDate</code> from time fields, two special circumstances
+may arise: there may be insufficient information to compute the
+<code>UDate</code> (such as only year and month but no day in the month),
+or there may be inconsistent information (such as "Tuesday, July 15, 1996"
+-- July 15, 1996 is actually a Monday).
+
+<p>
+<strong>Insufficient information.</strong> The calendar will use default
+information to specify the missing fields. This may vary by calendar; for
+the Gregorian calendar, the default for a field is the same as that of the
+start of the epoch: i.e., YEAR = 1970, MONTH = JANUARY, DATE = 1, etc.
+
+<p>
+<strong>Inconsistent information.</strong> If fields conflict, the calendar
+will give preference to fields set more recently. For example, when
+determining the day, the calendar will look for one of the following
+combinations of fields.  The most recent combination, as determined by the
+most recently set single field, will be used.
+
+<blockquote>
+<pre>
+MONTH + DAY_OF_MONTH
+MONTH + WEEK_OF_MONTH + DAY_OF_WEEK
+MONTH + DAY_OF_WEEK_IN_MONTH + DAY_OF_WEEK
+DAY_OF_YEAR
+DAY_OF_WEEK + WEEK_OF_YEAR
+</pre>
+</blockquote>
+
+For the time of day:
+
+<blockquote>
+<pre>
+HOUR_OF_DAY
+AM_PM + HOUR
+</pre>
+</blockquote>
+
+<p>
+<strong>Note:</strong> for some non-Gregorian calendars, different
+fields may be necessary for complete disambiguation. For example, a full
+specification of the historial Arabic astronomical calendar requires year,
+month, day-of-month <em>and</em> day-of-week in some cases.
+
+<p>
+<strong>Note:</strong> There are certain possible ambiguities in
+interpretation of certain singular times, which are resolved in the
+following ways:
+<ol>
+<li> 24:00:00 "belongs" to the following day. That is,
+23:59 on Dec 31, 1969 &lt; 24:00 on Jan 1, 1970 &lt; 24:01:00 on Jan 1, 1970
+
+<li> Although historically not precise, midnight also belongs to "am",
+and noon belongs to "pm", so on the same day,
+12:00 am (midnight) &lt; 12:01 am, and 12:00 pm (noon) &lt; 12:01 pm
+</ol>
+
+<p>
+The date or time format strings are not part of the definition of a
+calendar, as those must be modifiable or overridable by the user at
+runtime. Use {@link DateFormat}
+to format dates.
+
+<p>
+<code>Calendar</code> provides an API for field "rolling", where fields
+can be incremented or decremented, but wrap around. For example, rolling the
+month up in the date <code>December 12, <b>1996</b></code> results in
+<code>January 12, <b>1996</b></code>.
+
+<p>
+<code>Calendar</code> also provides a date arithmetic function for
+adding the specified (signed) amount of time to a particular time field.
+For example, subtracting 5 days from the date <code>September 12, 1996</code>
+results in <code>September 7, 1996</code>.
+
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="EDateFields">
+<A NAME ="DOC.3.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  EDateFields</B></TT>
+<DD>
+Field IDs for date and time. Used to specify date/time fields. ERA is calendar
+specific. Example ranges given are for illustration only; see specific Calendar
+subclasses for actual ranges.
+<DL></DL><P>
+<A NAME="EDaysOfWeek">
+<A NAME ="DOC.3.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  EDaysOfWeek</B></TT>
+<DD>
+Useful constant for days of week. Note: Calendar day-of-week is 1-based. Clients
+who create locale resources for the field of first-day-of-week should be aware of
+this. For instance, in US locale, first-day-of-week is set to 1, i.e., SUNDAY.
+<DL></DL><P>
+<A NAME="EMonths">
+<A NAME ="DOC.3.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  EMonths</B></TT>
+<DD>
+Useful constants for month. Note: Calendar month is 0-based.
+<DL></DL><P>
+<A NAME="EAmpm">
+<A NAME ="DOC.3.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  EAmpm</B></TT>
+<DD>
+Useful constants for hour in 12-hour clock. Used in GregorianCalendar.
+<DL></DL><P>
+<A NAME="~Calendar">
+<A NAME ="DOC.3.70">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  ~Calendar()</B></TT>
+<DD>
+destructor
+<DL></DL><P>
+<A NAME="clone">
+<A NAME ="DOC.3.71">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  clone(void) const </B></TT>
+<DD>
+Create and return a polymorphic copy of this calendar
+<DL></DL><P>
+<A NAME="createInstance">
+<A NAME ="DOC.3.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  createInstance(<!2><A HREF="#DOC.301">UErrorCode</A>& success)</B></TT>
+<DD>
+Creates a Calendar using the default timezone and locale. Clients are responsible
+for deleting the object returned.
+
+
+<DL><DT><B>Returns:</B><DD>A Calendar if created successfully. NULL otherwise.
+<DT><B>Parameters:</B><DD><B>success</B> -   Indicates the success/failure of Calendar creation. Filled in
+with ZERO_ERROR if created successfully, set to a failure result
+otherwise.
+<br></DL><P>
+<A NAME="createInstance">
+<A NAME ="DOC.3.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  createInstance(<!1><A HREF="TimeZone.html">TimeZone</A>* zoneToAdopt, <!2><A HREF="#DOC.301">UErrorCode</A>& success)</B></TT>
+<DD>
+Creates a Calendar using the given timezone and the default locale. If creation of
+a new Calendar is successful, the Calendar takes ownership of zoneToAdopt; the
+client should not delete it.
+
+
+<DL><DT><B>Returns:</B><DD>A Calendar if created successfully. NULL otherwise.
+<DT><B>Parameters:</B><DD><B>zoneToAdopt</B> -   The given timezone to be adopted.
+<br><B>success</B> -       Indicates the success/failure of Calendar creation. Filled in
+with ZERO_ERROR if created successfully, set to a failure result
+otherwise.
+<br></DL><P>
+<A NAME="createInstance">
+<A NAME ="DOC.3.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  createInstance(const <!1><A HREF="TimeZone.html">TimeZone</A>& zone, <!2><A HREF="#DOC.301">UErrorCode</A>& success)</B></TT>
+<DD>
+Creates a Calendar using the given timezone and the default locale.  The TimeZone
+is _not_ adopted; the client is still responsible for deleting it.
+
+
+<DL><DT><B>Returns:</B><DD>A Calendar if created successfully. NULL otherwise.
+<DT><B>Parameters:</B><DD><B>zone</B> -   The timezone.
+<br><B>success</B> -       Indicates the success/failure of Calendar creation. Filled in
+with ZERO_ERROR if created successfully, set to a failure result
+otherwise.
+<br></DL><P>
+<A NAME="createInstance">
+<A NAME ="DOC.3.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  createInstance(const Locale& aLocale, <!2><A HREF="#DOC.301">UErrorCode</A>& success)</B></TT>
+<DD>
+Creates a Calendar using the default timezone and the given locale.
+
+
+<DL><DT><B>Returns:</B><DD>A Calendar if created successfully. NULL otherwise.
+<DT><B>Parameters:</B><DD><B>aLocale</B> -   The given locale.
+<br><B>success</B> -   Indicates the success/failure of Calendar creation. Filled in
+with ZERO_ERROR if created successfully, set to a failure result
+otherwise.
+<br></DL><P>
+<A NAME="createInstance">
+<A NAME ="DOC.3.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  createInstance(<!1><A HREF="TimeZone.html">TimeZone</A>* zoneToAdopt, const Locale& aLocale, <!2><A HREF="#DOC.301">UErrorCode</A>& success)</B></TT>
+<DD>
+Creates a Calendar using the given timezone and given locale. If creation of
+a new Calendar is successful, the Calendar takes ownership of zoneToAdopt; the
+client should not delete it.
+
+
+<DL><DT><B>Returns:</B><DD>A Calendar if created successfully. NULL otherwise.
+<DT><B>Parameters:</B><DD><B>zoneToAdopt</B> -   The given timezone to be adopted.
+<br><B>aLocale</B> -       The given locale.
+<br><B>success</B> -       Indicates the success/failure of Calendar creation. Filled in
+with ZERO_ERROR if created successfully, set to a failure result
+otherwise.
+<br></DL><P>
+<A NAME="createInstance">
+<A NAME ="DOC.3.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>*  createInstance(const <!1><A HREF="TimeZone.html">TimeZone</A>& zoneToAdopt, const Locale& aLocale, <!2><A HREF="#DOC.301">UErrorCode</A>& success)</B></TT>
+<DD>
+Gets a Calendar using the given timezone and given locale.  The TimeZone
+is _not_ adopted; the client is still responsible for deleting it.
+
+
+<DL><DT><B>Returns:</B><DD>A Calendar if created successfully. NULL otherwise.
+<DT><B>Parameters:</B><DD><B>zone</B> -   The timezone.
+<br><B>aLocale</B> -       The given locale.
+<br><B>success</B> -       Indicates the success/failure of Calendar creation. Filled in
+with ZERO_ERROR if created successfully, set to a failure result
+otherwise.
+<br></DL><P>
+<A NAME="getAvailableLocales">
+<A NAME ="DOC.3.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  const  Locale*  getAvailableLocales(int32_t& count)</B></TT>
+<DD>
+Returns a list of the locales for which Calendars are installed.
+
+
+<DL><DT><B>Returns:</B><DD>An array of Locale objects representing the set of locales for which
+Calendars are installed.  The system retains ownership of this list;
+the caller must NOT delete it.
+<DT><B>Parameters:</B><DD><B>count</B> -   Number of locales returned.
+<br></DL><P>
+<A NAME="getNow">
+<A NAME ="DOC.3.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  UDate  getNow(void)</B></TT>
+<DD>
+Returns the current UTC (GMT) time measured in milliseconds since 0:00:00 on 1/1/70 
+(derived from the system time).
+
+
+<DL><DT><B>Returns:</B><DD>The current UTC time in milliseconds.
+</DL><P>
+<A NAME="getTime">
+<A NAME ="DOC.3.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  UDate  getTime(<!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<DD>
+Gets this Calendar's time as milliseconds. May involve recalculation of time due
+to previous calls to set time field values. The time specified is non-local UTC
+(GMT) time. Although this method is const, this object may actually be changed
+(semantically const).
+
+
+<DL><DT><B>Returns:</B><DD>The current time in UTC (GMT) time, or zero if the operation
+failed.
+<DT><B>Parameters:</B><DD><B>status</B> -   Output param set to success/failure code on exit. If any value
+previously set in the time field is invalid or restricted by
+leniency, this will be set to an error status.
+<br></DL><P>
+<A NAME="setTime">
+<A NAME ="DOC.3.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  void  setTime(UDate date, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Sets this Calendar's current time with the given UDate. The time specified should
+be in non-local UTC (GMT) time.
+
+
+<DL><DT><B>Parameters:</B><DD><B>date</B> -   The given UDate in UTC (GMT) time.<br></DL><P>
+<A NAME="operator==">
+<A NAME ="DOC.3.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& that) const </B></TT>
+<DD>
+Compares the equality of two Calendar objects. Objects of different subclasses
+are considered unequal. This comparison is very exacting; two Calendar objects
+must be in exactly the same state to be considered equal. To compare based on the
+represented time, use equals() instead.
+
+
+<DL><DT><B>Returns:</B><DD>True if the given Calendar is the same as this Calendar; false
+otherwise.
+<DT><B>Parameters:</B><DD><B>that</B> -   The Calendar object to be compared with.
+<br></DL><P>
+<A NAME="operator!=">
+<A NAME ="DOC.3.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  operator!=(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& that) const </B></TT>
+<DD>
+Compares the inequality of two Calendar objects.
+
+
+<DL><DT><B>Returns:</B><DD>True if the given Calendar is not the same as this Calendar; false
+otherwise.
+<DT><B>Parameters:</B><DD><B>that</B> -   The Calendar object to be compared with.
+<br></DL><P>
+<A NAME="equals">
+<A NAME ="DOC.3.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  equals(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& when, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<DD>
+Compares the Calendar time, whereas Calendar::operator== compares the equality of
+Calendar objects.
+
+
+<DL><DT><B>Returns:</B><DD>True if the current time of this Calendar is equal to the time of
+Calendar when; false otherwise.
+<DT><B>Parameters:</B><DD><B>when</B> -     The Calendar to be compared with this Calendar. Although this is a
+const parameter, the object may be modified physically
+(semantically const).
+<br><B>status</B> -   Output param set to success/failure code on exit. If any value
+previously set in the time field is invalid or restricted by
+leniency, this will be set to an error status.
+<br></DL><P>
+<A NAME="before">
+<A NAME ="DOC.3.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  before(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& when, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<DD>
+Returns true if this Calendar's current time is before "when"'s current time.
+
+
+<DL><DT><B>Returns:</B><DD>True if the current time of this Calendar is before the time of
+Calendar when; false otherwise.
+<DT><B>Parameters:</B><DD><B>when</B> -     The Calendar to be compared with this Calendar. Although this is a
+const parameter, the object may be modified physically
+(semantically const).
+<br><B>status</B> -   Output param set to success/failure code on exit. If any value
+previously set in the time field is invalid or restricted by
+leniency, this will be set to an error status.
+<br></DL><P>
+<A NAME="after">
+<A NAME ="DOC.3.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  after(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& when, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<DD>
+Returns true if this Calendar's current time is after "when"'s current time.
+
+
+<DL><DT><B>Returns:</B><DD>True if the current time of this Calendar is after the time of
+Calendar when; false otherwise.
+<DT><B>Parameters:</B><DD><B>when</B> -     The Calendar to be compared with this Calendar. Although this is a
+const parameter, the object may be modified physically
+(semantically const).
+<br><B>status</B> -   Output param set to success/failure code on exit. If any value
+previously set in the time field is invalid or restricted by
+leniency, this will be set to an error status.
+<br></DL><P>
+<A NAME="equivalentTo">
+<A NAME ="DOC.3.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  equivalentTo(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& other) const </B></TT>
+<DD>
+Return true if another Calendar object is equivalent to this one.  An equivalent
+Calendar will behave exactly as this one does, but may be set to a different time.
+<DL></DL><P>
+<A NAME="add">
+<A NAME ="DOC.3.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  add(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, int32_t amount, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+UDate Arithmetic function. Adds the specified (signed) amount of time to the given
+time field, based on the calendar's rules. For example, to subtract 5 days from
+the current time of the calendar, call add(Calendar::DATE, -5). When adding on
+the month or Calendar::MONTH field, other fields like date might conflict and
+need to be changed. For instance, adding 1 month on the date 01/31/96 will result
+in 02/29/96.
+
+
+<DL><DT><B>Parameters:</B><DD><B>field</B> -    Specifies which date field to modify.
+<br><B>amount</B> -   The amount of time to be added to the field, in the natural unit
+for that field (e.g., days for the day fields, hours for the hour
+field.)
+<br><B>status</B> -   Output param set to success/failure code on exit. If any value
+previously set in the time field is invalid or restricted by
+leniency, this will be set to an error status.<br></DL><P>
+<A NAME="roll">
+<A NAME ="DOC.3.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  roll(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, bool_t up, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Time Field Rolling function. Rolls (up/down) a single unit of time on the given
+time field. For example, to roll the current date up by one day, call
+roll(Calendar::DATE, true). When rolling on the year or Calendar::YEAR field, it
+will roll the year value in the range between getMinimum(Calendar::YEAR) and the
+value returned by getMaximum(Calendar::YEAR). When rolling on the month or
+Calendar::MONTH field, other fields like date might conflict and, need to be
+changed. For instance, rolling the month up on the date 01/31/96 will result in
+02/29/96. Rolling up always means rolling forward in time; e.g., rolling the year
+up on "100 BC" will result in "99 BC", for Gregorian calendar. When rolling on the
+hour-in-day or Calendar::HOUR_OF_DAY field, it will roll the hour value in the range
+between 0 and 23, which is zero-based.
+<P>
+NOTE: Do not use this method -- use roll(EDateFields, int, UErrorCode&) instead.
+
+
+<DL><DT><B>Parameters:</B><DD><B>field</B> -    The time field.
+<br><B>up</B> -       Indicates if the value of the specified time field is to be rolled
+up or rolled down. Use true if rolling up, false otherwise.
+<br><B>status</B> -   Output param set to success/failure code on exit. If any value
+previously set in the time field is invalid or restricted by
+leniency, this will be set to an error status.<br></DL><P>
+<A NAME="roll">
+<A NAME ="DOC.3.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  roll(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, int32_t amount, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Time Field Rolling function. Rolls by the given amount on the given
+time field. For example, to roll the current date up by one day, call
+roll(Calendar::DATE, +1, status). When rolling on the month or
+Calendar::MONTH field, other fields like date might conflict and, need to be
+changed. For instance, rolling the month up on the date 01/31/96 will result in
+02/29/96.  Rolling by a positive value always means rolling forward in time;
+e.g., rolling the year by +1 on "100 BC" will result in "99 BC", for Gregorian
+calendar. When rolling on the hour-in-day or Calendar::HOUR_OF_DAY field, it will
+roll the hour value in the range between 0 and 23, which is zero-based.
+<P>
+The only difference between roll() and add() is that roll() does not change
+the value of more significant fields when it reaches the minimum or maximum
+of its range, whereas add() does.
+
+
+<DL><DT><B>Parameters:</B><DD><B>field</B> -    The time field.
+<br><B>amount</B> -   Indicates amount to roll.
+<br><B>status</B> -   Output param set to success/failure code on exit. If any value
+previously set in the time field is invalid, this will be set to
+an error status.<br></DL><P>
+<A NAME="adoptTimeZone">
+<A NAME ="DOC.3.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  adoptTimeZone(<!1><A HREF="TimeZone.html">TimeZone</A>* value)</B></TT>
+<DD>
+Sets the calendar's time zone to be the one passed in. The Calendar takes ownership
+of the TimeZone; the caller is no longer responsible for deleting it.  If the
+given time zone is NULL, this function has no effect.
+
+
+<DL><DT><B>Parameters:</B><DD><B>value</B> -   The given time zone.<br></DL><P>
+<A NAME="setTimeZone">
+<A NAME ="DOC.3.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setTimeZone(const <!1><A HREF="TimeZone.html">TimeZone</A>& zone)</B></TT>
+<DD>
+Sets the calendar's time zone to be the same as the one passed in. The TimeZone
+passed in is _not_ adopted; the client is still responsible for deleting it.
+
+
+<DL><DT><B>Parameters:</B><DD><B>value</B> -   The given time zone.<br></DL><P>
+<A NAME="getTimeZone">
+<A NAME ="DOC.3.26">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!1><A HREF="TimeZone.html">TimeZone</A>&  getTimeZone(void) const </B></TT>
+<DD>
+Returns a reference to the time zone owned by this calendar. The returned reference
+is only valid until clients make another call to adoptTimeZone or setTimeZone,
+or this Calendar is destroyed.
+
+
+<DL><DT><B>Returns:</B><DD>The time zone object associated with this calendar.
+</DL><P>
+<A NAME="orphanTimeZone">
+<A NAME ="DOC.3.27">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="TimeZone.html">TimeZone</A>*  orphanTimeZone(void)</B></TT>
+<DD>
+Returns the time zone owned by this calendar. The caller owns the returned object
+and must delete it when done.  After this call, the new time zone associated
+with this Calendar is the default TimeZone as returned by TimeZone::createDefault().
+
+
+<DL><DT><B>Returns:</B><DD>The time zone object which was associated with this calendar.
+</DL><P>
+<A NAME="inDaylightTime">
+<A NAME ="DOC.3.28">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  inDaylightTime(<!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<DD>
+Queries if the current date for this Calendar is in Daylight Savings Time.
+
+
+<DL><DT><B>Returns:</B><DD>True if the current date for this Calendar is in Daylight Savings Time,
+false, otherwise.
+<DT><B>Parameters:</B><DD><B>status</B> -  Fill-in parameter which receives the status of this operation.
+<br></DL><P>
+<A NAME="setLenient">
+<A NAME ="DOC.3.29">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setLenient(bool_t lenient)</B></TT>
+<DD>
+Specifies whether or not date/time interpretation is to be lenient. With lenient
+interpretation, a date such as "February 942, 1996" will be treated as being
+equivalent to the 941st day after February 1, 1996. With strict interpretation,
+such dates will cause an error when computing time from the time field values
+representing the dates.
+
+
+<DL><DT><B>Parameters:</B><DD><B>lenient</B> -   True specifies date/time interpretation to be lenient.
+<br><DT><B>See Also:</B><DD><A HREF="DateFormat.html#setLenient">setLenient</A><br></DL><P>
+<A NAME="isLenient">
+<A NAME ="DOC.3.30">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  isLenient(void) const </B></TT>
+<DD>
+Tells whether date/time interpretation is to be lenient.
+
+
+<DL><DT><B>Returns:</B><DD>True tells that date/time interpretation is to be lenient.
+</DL><P>
+<A NAME="setFirstDayOfWeek">
+<A NAME ="DOC.3.31">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setFirstDayOfWeek(<!2><A HREF="Calendar.html#DOC.3.2">EDaysOfWeek</A> value)</B></TT>
+<DD>
+Sets what the first day of the week is; e.g., Sunday in US, Monday in France.
+
+
+<DL><DT><B>Parameters:</B><DD><B>value</B> -   The given first day of the week.<br></DL><P>
+<A NAME="getFirstDayOfWeek">
+<A NAME ="DOC.3.32">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="Calendar.html#DOC.3.2">EDaysOfWeek</A>  getFirstDayOfWeek(void) const </B></TT>
+<DD>
+Gets what the first day of the week is; e.g., Sunday in US, Monday in France.
+
+
+<DL><DT><B>Returns:</B><DD>The first day of the week.
+</DL><P>
+<A NAME="setMinimalDaysInFirstWeek">
+<A NAME ="DOC.3.33">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setMinimalDaysInFirstWeek(uint8_t value)</B></TT>
+<DD>
+Sets what the minimal days required in the first week of the year are; For
+example, if the first week is defined as one that contains the first day of the
+first month of a year, call the method with value 1. If it must be a full week,
+use value 7.
+
+
+<DL><DT><B>Parameters:</B><DD><B>value</B> -   The given minimal days required in the first week of the year.<br></DL><P>
+<A NAME="getMinimalDaysInFirstWeek">
+<A NAME ="DOC.3.34">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> uint8_t  getMinimalDaysInFirstWeek(void) const </B></TT>
+<DD>
+Gets what the minimal days required in the first week of the year are; e.g., if
+the first week is defined as one that contains the first day of the first month
+of a year, getMinimalDaysInFirstWeek returns 1. If the minimal days required must
+be a full week, getMinimalDaysInFirstWeek returns 7.
+
+
+<DL><DT><B>Returns:</B><DD>The minimal days required in the first week of the year.
+</DL><P>
+<A NAME="getMinimum">
+<A NAME ="DOC.3.35">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int32_t  getMinimum(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const </B></TT>
+<DD>
+Gets the minimum value for the given time field. e.g., for Gregorian
+DAY_OF_MONTH, 1.
+
+
+<DL><DT><B>Returns:</B><DD>The minimum value for the given time field.
+<DT><B>Parameters:</B><DD><B>field</B> -   The given time field.
+<br></DL><P>
+<A NAME="getMaximum">
+<A NAME ="DOC.3.36">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int32_t  getMaximum(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const </B></TT>
+<DD>
+Gets the maximum value for the given time field. e.g. for Gregorian DAY_OF_MONTH,
+31.
+
+
+<DL><DT><B>Returns:</B><DD>The maximum value for the given time field.
+<DT><B>Parameters:</B><DD><B>field</B> -   The given time field.
+<br></DL><P>
+<A NAME="getGreatestMinimum">
+<A NAME ="DOC.3.37">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int32_t  getGreatestMinimum(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const </B></TT>
+<DD>
+Gets the highest minimum value for the given field if varies. Otherwise same as
+getMinimum(). For Gregorian, no difference.
+
+
+<DL><DT><B>Returns:</B><DD>The highest minimum value for the given time field.
+<DT><B>Parameters:</B><DD><B>field</B> -   The given time field.
+<br></DL><P>
+<A NAME="getLeastMaximum">
+<A NAME ="DOC.3.38">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int32_t  getLeastMaximum(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const </B></TT>
+<DD>
+Gets the lowest maximum value for the given field if varies. Otherwise same as
+getMaximum(). e.g., for Gregorian DAY_OF_MONTH, 28.
+
+
+<DL><DT><B>Returns:</B><DD>The lowest maximum value for the given time field.
+<DT><B>Parameters:</B><DD><B>field</B> -   The given time field.
+<br></DL><P>
+<A NAME="getActualMinimum">
+<A NAME ="DOC.3.39">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getActualMinimum(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<DD>
+Return the minimum value that this field could have, given the current date.
+For the Gregorian calendar, this is the same as getMinimum() and getGreatestMinimum().
+
+The version of this function on Calendar uses an iterative algorithm to determine the
+actual minimum value for the field.  There is almost always a more efficient way to
+accomplish this (in most cases, you can simply return getMinimum()).  GregorianCalendar
+overrides this function with a more efficient implementation.
+
+
+<DL><DT><B>Returns:</B><DD>the minimum of the given field for the current date of this Calendar
+<DT><B>Parameters:</B><DD><B>field</B> -  the field to determine the minimum of
+<br></DL><P>
+<A NAME="getActualMaximum">
+<A NAME ="DOC.3.40">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getActualMaximum(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<DD>
+Return the maximum value that this field could have, given the current date.
+For example, with the date "Feb 3, 1997" and the DAY_OF_MONTH field, the actual
+maximum would be 28; for "Feb 3, 1996" it s 29.  Similarly for a Hebrew calendar,
+for some years the actual maximum for MONTH is 12, and for others 13.
+
+The version of this function on Calendar uses an iterative algorithm to determine the
+actual maximum value for the field.  There is almost always a more efficient way to
+accomplish this (in most cases, you can simply return getMaximum()).  GregorianCalendar
+overrides this function with a more efficient implementation.
+
+
+<DL><DT><B>Returns:</B><DD>the maximum of the given field for the current date of this Calendar
+<DT><B>Parameters:</B><DD><B>field</B> -  the field to determine the maximum of
+<br></DL><P>
+<A NAME="get">
+<A NAME ="DOC.3.41">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  get(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<DD>
+Gets the value for a given time field. Recalculate the current time field values
+if the time value has been changed by a call to setTime(). Return zero for unset
+fields if any fields have been explicitly set by a call to set(). To force a
+recomputation of all fields regardless of the previous state, call complete().
+This method is semantically const, but may alter the object in memory.
+
+
+<DL><DT><B>Returns:</B><DD>The value for the given time field, or zero if the field is unset,
+and set() has been called for any other field.
+<DT><B>Parameters:</B><DD><B>field</B> -   The given time field.
+<br><B>status</B> -  Fill-in parameter which receives the status of the operation.
+<br></DL><P>
+<A NAME="isSet">
+<A NAME ="DOC.3.42">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  isSet(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const </B></TT>
+<DD>
+Determines if the given time field has a value set. This can affect in the
+resolving of time in Calendar. Unset fields have a value of zero, by definition.
+
+
+<DL><DT><B>Returns:</B><DD>True if the given time field has a value set; false otherwise.
+</DL><P>
+<A NAME="set">
+<A NAME ="DOC.3.43">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  set(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, int32_t value)</B></TT>
+<DD>
+Sets the given time field with the given value.
+
+
+<DL><DT><B>Parameters:</B><DD><B>field</B> -   The given time field.
+<br><B>value</B> -   The value to be set for the given time field.<br></DL><P>
+<A NAME="set">
+<A NAME ="DOC.3.44">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  set(int32_t year, int32_t month, int32_t date)</B></TT>
+<DD>
+Sets the values for the fields YEAR, MONTH, and DATE. Other field values are
+retained; call clear() first if this is not desired.
+
+
+<DL><DT><B>Parameters:</B><DD><B>year</B> -    The value used to set the YEAR time field.
+<br><B>month</B> -   The value used to set the MONTH time field. Month value is 0-based.
+e.g., 0 for January.
+<br><B>date</B> -    The value used to set the DATE time field.<br></DL><P>
+<A NAME="set">
+<A NAME ="DOC.3.45">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  set(int32_t year, int32_t month, int32_t date, int32_t hour, int32_t minute)</B></TT>
+<DD>
+Sets the values for the fields YEAR, MONTH, DATE, HOUR_OF_DAY, and MINUTE. Other
+field values are retained; call clear() first if this is not desired.
+
+
+<DL><DT><B>Parameters:</B><DD><B>year</B> -     The value used to set the YEAR time field.
+<br><B>month</B> -    The value used to set the MONTH time field. Month value is
+0-based. E.g., 0 for January.
+<br><B>date</B> -     The value used to set the DATE time field.
+<br><B>hour</B> -     The value used to set the HOUR_OF_DAY time field.
+<br><B>minute</B> -   The value used to set the MINUTE time field.<br></DL><P>
+<A NAME="set">
+<A NAME ="DOC.3.46">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  set(int32_t year, int32_t month, int32_t date, int32_t hour, int32_t minute, int32_t second)</B></TT>
+<DD>
+Sets the values for the fields YEAR, MONTH, DATE, HOUR_OF_DAY, MINUTE, and SECOND.
+Other field values are retained; call clear() first if this is not desired.
+
+
+<DL><DT><B>Parameters:</B><DD><B>year</B> -     The value used to set the YEAR time field.
+<br><B>month</B> -    The value used to set the MONTH time field. Month value is
+0-based. E.g., 0 for January.
+<br><B>date</B> -     The value used to set the DATE time field.
+<br><B>hour</B> -     The value used to set the HOUR_OF_DAY time field.
+<br><B>minute</B> -   The value used to set the MINUTE time field.
+<br><B>second</B> -   The value used to set the SECOND time field.<br></DL><P>
+<A NAME="clear">
+<A NAME ="DOC.3.47">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  clear(void)</B></TT>
+<DD>
+Clears the values of all the time fields, making them both unset and assigning
+them a value of zero. The field values will be determined during the next
+resolving of time into time fields.
+<DL></DL><P>
+<A NAME="clear">
+<A NAME ="DOC.3.48">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  clear(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field)</B></TT>
+<DD>
+Clears the value in the given time field, both making it unset and assigning it a
+value of zero. This field value will be determined during the next resolving of
+time into time fields.
+
+
+<DL><DT><B>Parameters:</B><DD><B>field</B> -   The time field to be cleared.<br></DL><P>
+<A NAME="getDynamicClassID">
+<A NAME ="DOC.3.49">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="ClassID.html">ClassID</A>  getDynamicClassID(void) const </B></TT>
+<DD>
+Returns a unique class ID POLYMORPHICALLY. Pure virtual method. This method is to
+implement a simple version of RTTI, since not all C++ compilers support genuine
+RTTI. Polymorphic operator==() and clone() methods call this method.
+<P>
+Concrete subclasses of Calendar must implement getDynamicClassID() and also a
+static method and data member:
+
+static ClassID getStaticClassID() { return (ClassID)&fgClassID; }
+static char fgClassID;
+
+
+<DL><DT><B>Returns:</B><DD>The class ID for this object. All objects of a given class have the
+same class ID. Objects of other classes have different class IDs.
+</DL><P>
+<A NAME="Calendar">
+<A NAME ="DOC.3.50">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Calendar(<!2><A HREF="#DOC.301">UErrorCode</A>& success)</B></TT>
+<DD>
+Constructs a Calendar with the default time zone as returned by
+TimeZone::createInstance(), and the default locale.
+
+
+<DL><DT><B>Parameters:</B><DD><B>success</B> -   Indicates the status of Calendar object construction. Returns
+ZERO_ERROR if constructed successfully.<br></DL><P>
+<A NAME="Calendar">
+<A NAME ="DOC.3.72">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Calendar(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& source)</B></TT>
+<DD>
+Copy constructor
+<DL></DL><P>
+<A NAME="operator=">
+<A NAME ="DOC.3.73">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>&  operator=(const <!2><A HREF="Calendar.html#DOC.3.50">Calendar</A>& right)</B></TT>
+<DD>
+Default assignment operator
+<DL></DL><P>
+<A NAME="Calendar">
+<A NAME ="DOC.3.51">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Calendar(<!1><A HREF="TimeZone.html">TimeZone</A>* zone, const Locale& aLocale, <!2><A HREF="#DOC.301">UErrorCode</A>& success)</B></TT>
+<DD>
+Constructs a Calendar with the given time zone and locale. Clients are no longer
+responsible for deleting the given time zone object after it's adopted.
+
+
+<DL><DT><B>Parameters:</B><DD><B>zoneToAdopt</B> -      The given time zone.
+<br><B>aLocale</B> -   The given locale.
+<br><B>success</B> -   Indicates the status of Calendar object construction. Returns
+ZERO_ERROR if constructed successfully.<br></DL><P>
+<A NAME="Calendar">
+<A NAME ="DOC.3.52">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  Calendar(const <!1><A HREF="TimeZone.html">TimeZone</A>& zone, const Locale& aLocale, <!2><A HREF="#DOC.301">UErrorCode</A>& success)</B></TT>
+<DD>
+Constructs a Calendar with the given time zone and locale.
+
+
+<DL><DT><B>Parameters:</B><DD><B>zone</B> -      The given time zone.
+<br><B>aLocale</B> -   The given locale.
+<br><B>success</B> -   Indicates the status of Calendar object construction. Returns
+ZERO_ERROR if constructed successfully.<br></DL><P>
+<A NAME="computeTime">
+<A NAME ="DOC.3.53">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  computeTime(<!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Converts Calendar's time field values to GMT as milliseconds.
+
+
+<DL><DT><B>Parameters:</B><DD><B>status</B> -   Output param set to success/failure code on exit. If any value
+previously set in the time field is invalid or restricted by
+leniency, this will be set to an error status.<br></DL><P>
+<A NAME="computeFields">
+<A NAME ="DOC.3.54">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  computeFields(<!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Converts GMT as milliseconds to time field values. This allows you to sync up the
+time field values with a new time that is set for the calendar.  This method
+does NOT recompute the time first; to recompute the time, then the fields, use
+the method complete().
+<DL></DL><P>
+<A NAME="getTimeInMillis">
+<A NAME ="DOC.3.55">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> double  getTimeInMillis(<!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<DD>
+Gets this Calendar's current time as a long
+<DL><DT><B>Returns:</B><DD>the current time as UTC milliseconds from the epoch.
+</DL><P>
+<A NAME="setTimeInMillis">
+<A NAME ="DOC.3.56">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setTimeInMillis( double millis, <!2><A HREF="#DOC.301">UErrorCode</A>& status )</B></TT>
+<DD>
+Sets this Calendar's current time from the given long value
+<DL><DT><B>Parameters:</B><DD><B>date</B> -  the new time in UTC milliseconds from the epoch.<br></DL><P>
+<A NAME="complete">
+<A NAME ="DOC.3.57">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  complete(<!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DD>
+Recomputes the current time from currently set fields, and then fills in any
+unset fields in the time field list.
+
+
+<DL><DT><B>Parameters:</B><DD><B>status</B> -   Output param set to success/failure code on exit. If any value
+previously set in the time field is invalid or restricted by
+leniency, this will be set to an error status.<br></DL><P>
+<A NAME="internalGet">
+<A NAME ="DOC.3.58">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  internalGet(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field) const </B></TT>
+<DD>
+Gets the value for a given time field. Subclasses can use this function to get
+field values without forcing recomputation of time.
+
+
+<DL><DT><B>Returns:</B><DD>The value for the given time field.
+<DT><B>Parameters:</B><DD><B>field</B> -   The given time field.
+<br></DL><P>
+<A NAME="internalSet">
+<A NAME ="DOC.3.59">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  internalSet(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, int32_t value)</B></TT>
+<DD>
+Sets the value for a given time field.  This is a fast internal method for
+subclasses.  It does not affect the areFieldsInSync, isTimeSet, or areAllFieldsSet
+flags.
+<DL></DL><P>
+<A NAME="fIsTimeSet">
+<A NAME ="DOC.3.74">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  fIsTimeSet</B></TT>
+<DD>
+The flag which indicates if the current time is set in the calendar
+<DL></DL><P>
+<A NAME="fAreFieldsSet">
+<A NAME ="DOC.3.60">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  fAreFieldsSet</B></TT>
+<DD>
+True if the fields are in sync with the currently set time of this Calendar.
+If false, then the next attempt to get the value of a field will
+force a recomputation of all fields from the current value of the time
+field.
+<P>
+This should really be named areFieldsInSync, but the old name is retained
+for backward compatibility.
+<DL></DL><P>
+<A NAME="fAreAllFieldsSet">
+<A NAME ="DOC.3.61">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  fAreAllFieldsSet</B></TT>
+<DD>
+True if all of the fields have been set.  This is initially false, and set to
+true by computeFields().
+<DL></DL><P>
+<A NAME="internalGetTime">
+<A NAME ="DOC.3.75">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UDate  internalGetTime(void) const </B></TT>
+<DD>
+Get the current time without recomputing
+<DL></DL><P>
+<A NAME="internalSetTime">
+<A NAME ="DOC.3.76">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  internalSetTime(UDate time)</B></TT>
+<DD>
+Set the current time without affecting flags or fields
+<DL></DL><P>
+<A NAME="fFields">
+<A NAME ="DOC.3.77">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  fFields[FIELD_COUNT]</B></TT>
+<DD>
+The time fields containing values into which the millis is computed
+<DL></DL><P>
+<A NAME="fIsSet">
+<A NAME ="DOC.3.78">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  fIsSet[FIELD_COUNT]</B></TT>
+<DD>
+The flags which tell if a specified time field for the calendar is set
+<DL></DL><P>
+<A NAME="fStamp">
+<A NAME ="DOC.3.62">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  fStamp[FIELD_COUNT]</B></TT>
+<DD>
+Pseudo-time-stamps which specify when each field was set. There
+are two special values, UNSET and INTERNALLY_SET. Values from
+MINIMUM_USER_SET to Integer.MAX_VALUE are legal user set values.
+<DL></DL><P>
+<A NAME="Calendar::internalSet">
+<A NAME ="DOC.3.69">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> inline  void  Calendar::internalSet(<!2><A HREF="Calendar.html#DOC.3.1">EDateFields</A> field, int32_t value)</B></TT>
+<DD>
+Fast method for subclasses.  The caller must maintain fUserSetDSTOffset and
+fUserSetZoneOffset, as well as the isSet[] array.
+<DL></DL><P></DL>
+<hr>
+<DL><DT><B>Direct child classes:
+</B><DD><A HREF="GregorianCalendar.html"> GregorianCalendar </A><br>
+</DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

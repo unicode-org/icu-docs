@@ -1,0 +1,35 @@
+<html><head><TITLE>ubidi_reorderLogical</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> CAPI  void  U_EXPORT2  ubidi_reorderLogical (const <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> *levels, UTextOffset length, UTextOffset *indexMap) </H2><BLOCKQUOTE>
+
+This is a convenience function that does not use a UBiDi object
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+This is a convenience function that does not use a UBiDi object.
+It is intended to be used for when an application has determined the levels
+of objects (character sequences) and just needs to have them reordered (L2).
+This is equivalent to using <code>ubidi_getLogicalMap</code> on a
+<code>UBiDi</code> object.
+
+
+
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL><DT><B>Parameters:</B><DD><B>levels</B> -  is an array with <code>length</code> levels that have been determined by
+the application.
+<br><B>length</B> -  is the number of levels in the array, or, semantically,
+the number of objects to be reordered.
+It must be <code>length&gt;0</code>.
+<br><B>indexMap</B> -  is a pointer to an array of <code>length</code>
+indexes which will reflect the reordering of the characters.
+The array does not need to be initialized.<p>
+The index map will result in <code>indexMap[logicalIndex]==visualIndex</code>.<br></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

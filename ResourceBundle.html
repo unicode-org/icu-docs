@@ -1,0 +1,410 @@
+<html><head><TITLE>ResourceBundle</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  <!1><A HREF="U_COMMON_API.html">U_COMMON_API</A> ResourceBundle  </H2><BLOCKQUOTE>
+
+A class representing a collection of resource information pertaining to a given
+locale
+</BLOCKQUOTE>
+<hr>
+
+<DL>
+<DL>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.26.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ResourceBundle</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& path, const Locale& locale, <!2><A HREF="#DOC.301">UErrorCode</A>& err) </B>
+ <DD><I>
+Constructor
+
+</I>
+<DT><A HREF="#DOC.26.2"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getString</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, <!1><A HREF="UnicodeString.html">UnicodeString</A>& theString, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Returns the contents of a string resource</I>
+<DT><A HREF="#DOC.26.3"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  <B>getString</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Returns the contents of a string resource</I>
+<DT><A HREF="#DOC.26.4"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  <B>getStringArray</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t& numArrayItems, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Returns the contents of a string-array resource</I>
+<DT><A HREF="#DOC.26.5"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getArrayItem</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t index, <!1><A HREF="UnicodeString.html">UnicodeString</A>& theArrayItem, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Returns a single item from a string-array resource</I>
+<DT><A HREF="#DOC.26.6"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  <B>getArrayItem</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t index, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Returns a single item from a string-array resource</I>
+<DT><A HREF="#DOC.26.7"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>**  <B>get2dArray</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t& rowCount, int32_t& columnCount, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Return the contents of a 2-dimensional array resource</I>
+<DT><A HREF="#DOC.26.8"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>get2dArrayItem</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t rowIndex, int32_t columnIndex, <!1><A HREF="UnicodeString.html">UnicodeString</A>& theArrayItem, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Return a single string from a 2-dimensional array resource</I>
+<DT><A HREF="#DOC.26.9"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  <B>get2dArrayItem</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t rowIndex, int32_t columnIndex, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Return a single string from a 2-dimensional array resource</I>
+<DT><A HREF="#DOC.26.10"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getTaggedArrayItem</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, const <!1><A HREF="UnicodeString.html">UnicodeString</A>& itemTag, <!1><A HREF="UnicodeString.html">UnicodeString</A>& theArrayItem, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Returns a single item from a tagged-array resource This will return the contents
+of a single item in a resource of type tagged-array</I>
+<DT><A HREF="#DOC.26.11"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  <B>getTaggedArrayItem</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, const <!1><A HREF="UnicodeString.html">UnicodeString</A>& itemTag, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Returns a single item from a tagged-array resource This will return the contents
+of a single item in a resource of type tagged-array</I>
+<DT><A HREF="#DOC.26.12"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getTaggedArray</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, <!1><A HREF="UnicodeString.html">UnicodeString</A>*& itemTags, <!1><A HREF="UnicodeString.html">UnicodeString</A>*& items, int32_t& numItems, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
+ <DD><I>
+Returns a tagged-array resource</I>
+<DT><A HREF="#DOC.26.13"> <IMG BORDER=0 SRC=icon1.gif></A> const  char*  <B>getVersionNumber</B>(void) const  </B>
+ <DD><I>
+Return the version number associated with this ResourceBundle</I>
+</DL></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+A class representing a collection of resource information pertaining to a given
+locale. A resource bundle provides a way of accessing locale- specfic information in
+a data file. You create a resource bundle that manages the resources for a given
+locale and then ask it for individual resources.
+<P>
+The resource bundle file is a text (ASCII or Unicode) file with the format:
+<pre>
+.   locale {
+.      tag1 {...}
+.      tag2 {...}
+.   }
+</pre>
+The tags are used to retrieve the data later. You may not have multiple instances of
+the same tag.
+<P>
+Four data types are supported. These are solitary strings, comma-delimited lists of
+strings, 2-dimensional arrays of strings, and tagged lists of strings.
+<P>
+Note that all data is textual. Adjacent strings are merged by the low-level
+tokenizer, so that the following effects occur: foo bar, baz // 2 elements, "foo
+bar", and "baz" "foo" "bar", baz // 2 elements, "foobar", and "baz" Note that a
+single intervening space is added between merged strings, unless they are both double
+quoted. This extends to more than two strings in a row.
+<P>
+Whitespace is ignored, as in a C source file.
+<P>
+Solitary strings have the format:
+<pre>
+.   Tag { Data }
+</pre>
+This is indistinguishable from a comma-delimited list with only one element, and in
+fact may be retrieved as such (as an array, or as element 0 or an array).
+<P>
+Comma-delimited lists have the format:
+<pre>
+.   Tag { Data, Data, Data }
+</pre>
+Parsing is lenient; a final string, after the last element, is allowed.
+<P>
+Tagged lists have the format:
+<pre>
+.   Tag { Subtag { Data } Subtag {Data} }
+</pre>
+Data is retrieved by specifying the subtag.
+<P>
+Two-dimensional arrays have the format:
+<pre>
+.   TwoD {
+.       { r1c1, r1c2, ..., r1cm },
+.       { r2c1, r2c2, ..., r2cm },
+.       ...
+.       { rnc1, rnc2, ..., rncm }
+.   }
+</pre>
+where n is the number of rows, and m is the number of columns. Parsing is lenient (as
+in other data types). A final comma is always allowed after the last element; either
+the last string in a row, or the last row itself. Furthermore, since there is no
+ambiguity, the commas between the rows are entirely optional. (However, if a comma is
+present, there can only be one comma, no more.) It is possible to have zero columns,
+as follows:
+<pre>
+.   Odd { {} {} {} } // 3 x 0 array
+</pre>
+But it is impossible to have zero rows. The smallest array is thus a 1 x 0 array,
+which looks like this:
+<pre>
+.   Smallest { {} } // 1 x 0 array
+</pre>
+The array must be strictly rectangular; that is, each row must have the same number
+of elements.
+<P>
+This is an example for using a possible custom resource:
+<pre>
+.    Locale currentLocale;
+.    UErrorCode success = ZERO_ERROR;
+.    ResourceBundle myResources("MyResources", currentLocale, success );
+.
+.    UnicodeString button1Title, button2Title;
+.    myResources.getString("OkKey", button1Title, success );
+.    myResources.getString("CancelKey", button2Title, success );
+</pre>
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="ResourceBundle">
+<A NAME ="DOC.26.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ResourceBundle( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& path, const Locale& locale, <!2><A HREF="#DOC.301">UErrorCode</A>& err)</B></TT>
+<DD>
+Constructor
+
+
+<DL><DT><B>Parameters:</B><DD><B>path</B> -     This is a full pathname in the platform-specific format for the
+directory containing the resource data files we want to load
+resources from. We use locale IDs to generate filenames, and the
+filenames have this string prepended to them before being passed
+to the C++ I/O functions. Therefore, this string must always end
+with a directory delimiter (whatever that is for the target OS)
+for this class to work correctly.
+<br><B>locale</B> -   This is the locale this resource bundle is for. To get resources
+for the French locale, for example, you would create a
+ResourceBundle passing Locale::FRENCH for the "locale" parameter,
+and all subsequent calls to that resource bundle will return
+resources that pertain to the French locale. If the caller doesn't
+pass a locale parameter, the default locale for the system (as
+returned by Locale::getDefault()) will be used.
+The UErrorCode& err parameter is used to return status information to the user. To
+check whether the construction succeeded or not, you should check the value of
+SUCCESS(err). If you wish more detailed information, you can check for
+informational error results which still indicate success. USING_FALLBACK_ERROR
+indicates that a fall back locale was used. For example, 'de_CH' was requested,
+but nothing was found there, so 'de' was used. USING_DEFAULT_ERROR indicates that
+the default locale data was used; neither the requested locale nor any of its
+fall back locales could be found.<br></DL><P>
+<A NAME="getString">
+<A NAME ="DOC.26.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getString( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, <!1><A HREF="UnicodeString.html">UnicodeString</A>& theString, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Returns the contents of a string resource. Resource data is undifferentiated
+Unicode text. The resource file may contain quoted strings or escape sequences;
+these will be parsed prior to the data's return.
+[THIS FUNCTION IS DERECATED; USE THE OVERLOAD BELOW INSTEAD]
+
+
+<DL><DT><B>Parameters:</B><DD><B>resourceTag</B> -   The resource tag of the string resource the caller wants
+<br><B>theString</B> -     Receives the actual data in the resource
+<br><B>err</B> -           Set to MISSING_RESOURCE_ERROR if a resource with the
+specified tag couldn't be found.<br></DL><P>
+<A NAME="getString">
+<A NAME ="DOC.26.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  getString( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Returns the contents of a string resource. Resource data is undifferentiated
+Unicode text. The resource file may contain quoted strings or escape sequences;
+these will be parsed prior to the data's return.
+
+
+<DL><DT><B>Returns:</B><DD>A pointer to the string from the resource bundle, or NULL if there was
+an error.
+<DT><B>Parameters:</B><DD><B>resourceTag</B> -   The resource tag of the string resource the caller wants
+<br><B>err</B> -           Set to MISSING_RESOURCE_ERROR if a resource with the
+specified tag couldn't be found.
+<br></DL><P>
+<A NAME="getStringArray">
+<A NAME ="DOC.26.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  getStringArray( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t& numArrayItems, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Returns the contents of a string-array resource. This will return the contents of
+a string-array (comma-delimited-list) resource as a C++ array of UnicodeString
+objects. The number of elements in the array is returned in numArrayItems.
+Calling getStringArray on a resource of type string will return an array with one
+element; calling it on a resource of type tagged-array results in a
+MISSING_RESOURCE_ERROR error.
+
+
+<DL><DT><B>Returns:</B><DD>The resource requested, as a pointer to an array of
+UnicodeStrings. The caller does not own the storage and
+must not delete it.
+<DT><B>Parameters:</B><DD><B>resourceTag</B> -     The resource tag of the string-array resource the caller
+wants
+<br><B>numArrayItems</B> -   Receives the number of items in the array the function
+returns.
+<br><B>err</B> -             Set to MISSING_RESOURCE_ERROR if a resource with the
+specified tag couldn't be found.
+<br></DL><P>
+<A NAME="getArrayItem">
+<A NAME ="DOC.26.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getArrayItem( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t index, <!1><A HREF="UnicodeString.html">UnicodeString</A>& theArrayItem, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Returns a single item from a string-array resource. This will return the contents
+of a single item in a resource of string-array (comma-delimited-list) type. If
+the resource is not an array, a MISSING_RESOURCE_ERROR will be returned in err.
+[THIS FUNCTION IS DEPRECATED; USE THE OVERLOAD BELOW INSTEAD]
+
+
+<DL><DT><B>Parameters:</B><DD><B>resourceTag</B> -    The resource tag of the resource the caller wants to extract
+an item from.
+<br><B>index</B> -          The index (zero-based) of the particular array item the user
+wants to extract from the resource.
+<br><B>theArrayItem</B> -   Receives the actual text of the desired array item.
+<br><B>err</B> -            Set to MISSING_RESOURCE_ERROR if a resource with the
+specified tag couldn't be found, or if the index was out of range.<br></DL><P>
+<A NAME="getArrayItem">
+<A NAME ="DOC.26.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  getArrayItem( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t index, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Returns a single item from a string-array resource. This will return the contents
+of a single item in a resource of string-array (comma-delimited-list) type. If
+the resource is not an array, a MISSING_RESOURCE_ERROR will be returned in err.
+
+
+<DL><DT><B>Returns:</B><DD>A pointer to the text of the array item, or NULL is there was an error.
+<DT><B>Parameters:</B><DD><B>resourceTag</B> -    The resource tag of the resource the caller wants to extract
+an item from.
+<br><B>index</B> -          The index (zero-based) of the particular array item the user
+wants to extract from the resource.
+<br><B>err</B> -            Set to MISSING_RESOURCE_ERROR if a resource with the
+specified tag couldn't be found, or if the index was out of range.
+<br></DL><P>
+<A NAME="get2dArray">
+<A NAME ="DOC.26.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>**  get2dArray(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t& rowCount, int32_t& columnCount, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Return the contents of a 2-dimensional array resource. The return value will be a
+UnicodeString** array. (This is really an array of pointers; each pointer is a
+ROW of the data.) The number of rows and columns is returned. If the resource is
+of the wrong type, or not present, MISSING_RESOURCE_ERROR is placed in err.
+
+
+<DL><DT><B>Returns:</B><DD>The resource requested, as a UnicodeStrings**. The caller
+does not own the storage and must not delete it.
+<DT><B>Parameters:</B><DD><B>resourceTag</B> -   The resource tag of the string-array resource the caller
+wants
+<br><B>rowCount</B> -      Receives the number of rows in the array the function
+returns.
+<br><B>columnCount</B> -   Receives the number of columns in the array the function
+returns.
+<br><B>err</B> -           Set to MISSING_RESOURCE_ERROR if a resource with the
+specified tag couldn't be found.
+<br></DL><P>
+<A NAME="get2dArrayItem">
+<A NAME ="DOC.26.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  get2dArrayItem(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t rowIndex, int32_t columnIndex, <!1><A HREF="UnicodeString.html">UnicodeString</A>& theArrayItem, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Return a single string from a 2-dimensional array resource. If the resource does
+not exists, or if it is not a 2-d array, or if the row or column indices are out
+of bounds, err is set to MISSING_RESOURCE_ERROR.
+[THIS FUNCTION IS DEPRECATED; USE THE OVERLOAD BELOW INSTEAD]
+
+
+<DL><DT><B>Parameters:</B><DD><B>resourceTag</B> -    The resource tag of the resource the caller wants to extract
+an item from.
+<br><B>rowIndex</B> -       The row index (zero-based) of the array item the user wants
+to extract from the resource.
+<br><B>columnIndex</B> -    The column index (zero-based) of the array item the user
+wants to extract from the resource.
+<br><B>theArrayItem</B> -   Receives the actual text of the desired array item.
+<br><B>err</B> -            Set to MISSING_RESOURCE_ERROR if a resource with the
+specified tag couldn't be found, if the resource data was in
+the wrong format, or if either index is out of bounds.<br></DL><P>
+<A NAME="get2dArrayItem">
+<A NAME ="DOC.26.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  get2dArrayItem( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, int32_t rowIndex, int32_t columnIndex, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Return a single string from a 2-dimensional array resource. If the resource does
+not exists, or if it is not a 2-d array, or if the row or column indices are out
+of bounds, err is set to MISSING_RESOURCE_ERROR.
+
+
+<DL><DT><B>Returns:</B><DD>A pointer to the text of the array item, or NULL is there was an error.
+<DT><B>Parameters:</B><DD><B>resourceTag</B> -    The resource tag of the resource the caller wants to extract
+an item from.
+<br><B>rowIndex</B> -       The row index (zero-based) of the array item the user wants
+to extract from the resource.
+<br><B>columnIndex</B> -    The column index (zero-based) of the array item the user
+wants to extract from the resource.
+<br><B>err</B> -            Set to MISSING_RESOURCE_ERROR if a resource with the
+specified tag couldn't be found, if the resource data was in
+the wrong format, or if either index is out of bounds.
+<br></DL><P>
+<A NAME="getTaggedArrayItem">
+<A NAME ="DOC.26.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getTaggedArrayItem( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, const <!1><A HREF="UnicodeString.html">UnicodeString</A>& itemTag, <!1><A HREF="UnicodeString.html">UnicodeString</A>& theArrayItem, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Returns a single item from a tagged-array resource This will return the contents
+of a single item in a resource of type tagged-array. If this function is called
+for a resource that is not of type tagged-array, it will set err to
+MISSING_RESOUCE_ERROR.
+[THIS FUNCTION IS DEPRECATED; USE THE OVERLOAD BELOW INSTEAD]
+
+
+<DL><DT><B>Parameters:</B><DD><B>resourceTag</B> -    The resource tag of the resource the caller wants to extract
+an item from.
+<br><B>itemTag</B> -        The item tag for the item the caller wants to extract.
+<br><B>theArrayItem</B> -   Receives the text of the desired array item.
+<br><B>err</B> -            Set to MISSING_RESOURCE_ERROR if a resource with the
+specified resource tag couldn't be found, or if an item
+with the specified item tag couldn't be found in the resource.<br></DL><P>
+<A NAME="getTaggedArrayItem">
+<A NAME ="DOC.26.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!1><A HREF="UnicodeString.html">UnicodeString</A>*  getTaggedArrayItem( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, const <!1><A HREF="UnicodeString.html">UnicodeString</A>& itemTag, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Returns a single item from a tagged-array resource This will return the contents
+of a single item in a resource of type tagged-array. If this function is called
+for a resource that is not of type tagged-array, it will set err to
+MISSING_RESOUCE_ERROR.
+
+
+<DL><DT><B>Returns:</B><DD>A pointer to the text of the array item, or NULL is there was an error.
+<DT><B>Parameters:</B><DD><B>resourceTag</B> -    The resource tag of the resource the caller wants to extract
+an item from.
+<br><B>itemTag</B> -        The item tag for the item the caller wants to extract.
+<br><B>err</B> -            Set to MISSING_RESOURCE_ERROR if a resource with the
+specified resource tag couldn't be found, or if an item
+with the specified item tag coldn't be found in the resource.
+<br></DL><P>
+<A NAME="getTaggedArray">
+<A NAME ="DOC.26.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getTaggedArray( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& resourceTag, <!1><A HREF="UnicodeString.html">UnicodeString</A>*& itemTags, <!1><A HREF="UnicodeString.html">UnicodeString</A>*& items, int32_t& numItems, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
+<DD>
+Returns a tagged-array resource.  The contents of the resource is returned as two
+separate arrays of UnicodeStrings, the addresses of which are placed in "itemTags"
+and "items".  After calling this function, the items in the resource will be in the
+list pointed to by "items", and for each items[i], itemTags[i] will be the tag that
+corresponds to it.  The total number of entries in both arrays is returned in
+numItems.
+
+
+<DL><DT><B>Parameters:</B><DD><B>resourceTag</B> -    The resource tag of the resource the caller wants to extract
+an item from.
+<br><B>itemTags</B> -       Set to point to an array of UnicodeStrings representing the
+tags in the specified resource.  The caller DOES own this array,
+and must delete it.
+<br><B>items</B> -          Set to point to an array of UnicodeStrings containing the
+individual resource items themselves.  itemTags[i] will
+contain the tag corresponding to items[i].  The caller DOES
+own this array, and must delete it.
+<br><B>numItems</B> -       Receives the number of items in the arrays pointed to by
+items and itemTags.
+<br><B>err</B> -            Set to MISSING_RESOURCE_ERROR if a resource with the
+specified tag couldn't be found.<br></DL><P>
+<A NAME="getVersionNumber">
+<A NAME ="DOC.26.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  char*  getVersionNumber(void) const </B></TT>
+<DD>
+Return the version number associated with this ResourceBundle. This version
+number is a string of the form MAJOR.MINOR, where MAJOR is the version number of
+the current analytic code package, and MINOR is the version number contained in
+the resource file as the value of the tag "Version". A change in the MINOR
+version indicated an updated data file. A change in the MAJOR version indicates a
+new version of the code which is not binary-compatible with the previous version.
+If no "Version" tag is present in a resource file, the MINOR version "0" is assigned.
+
+For example, if the Collation sort key algorithm changes, the MAJOR version
+increments. If the collation data in a resource file changes, the MINOR version
+for that file increments.
+
+
+<DL><DT><B>Returns:</B><DD>A string of the form N.n, where N is the major version number,
+representing the code version, and n is the minor version number,
+representing the resource data file. The caller does not own this
+string.
+</DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

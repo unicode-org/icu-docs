@@ -117,7 +117,7 @@ struct UDataSwapper {
     UDataSwapFn *swapArray16;
     /** Transform an array of 32-bit integers. @draft ICU 2.8 */
     UDataSwapFn *swapArray32;
-    /** Transform an invariant-character string. @draft ICu 2.8 */
+    /** Transform an invariant-character string. @draft ICU 2.8 */
     UDataSwapFn *swapInvChars;
 };
 
@@ -148,18 +148,45 @@ udata_closeSwapper(UDataSwapper *ds);
  * its length. See UDataSwapFn.
  * This function handles .dat data packages as well as single data pieces
  * and internally dispatches to per-type swap functions.
+ * Sets a U_UNSUPPORTED_ERROR if the data format is not recognized.
  *
  * @see UDataSwapFn
  * @see udata_openSwapper
  * @see udata_openSwapperForInputData
  * @draft ICU 2.8
  */
-U_CAPI void U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 udata_swap(const UDataSwapper *ds,
            char *data, int32_t length,
+           UBool preflight,
            UErrorCode *pErrorCode);
 
 /* Implementation functions ------------------------------------------------- */
+
+/*
+ * The swap function for each data format is closely related to the code using
+ * the data normally and requires access to internal structures.
+ * Swap functions should also be relatively small.
+ * The best is probably to declare them in this common header and to implement
+ * them in the same files where the data is normally used.
+ *
+ * This is fairly clean in that each implementation file only knows about its
+ * local format and includes this header,
+ * instead of one swapper implementation knowing everything and including all
+ * other internal headers.
+ *
+ * However, this means to add the data swapping into the common library.
+ * We need to discuss the cost (library size increase) and what this means for
+ * data formats that are used in the i18n library.
+ * Note that it will eventually be desirable to have the swapping implementation
+ * in the runtime library - for runtime swapping, which costs setup time
+ * but simplifies installation.
+ * Preflighting will be particularly important for that, for allocation of
+ * a modifiable copy of the data.
+ */
+
+#include "unicode/udata.h" /* UDataInfo */
+#include "ucmndata.h" /* DataHeader */
 
 /** Swap a UTrie. @draft ICU 2.8 */
 U_CAPI int32_t U_EXPORT2
@@ -174,13 +201,123 @@ udata_enumUTrie();
 
 /**
  * Read the beginning of an ICU data piece, recognize magic bytes,
- * fill in the UDataInfo.
+ * swap the structure.
  * Set a U_UNSUPPORTED_ERROR if it does not look like an ICU data piece.
+ *
+ * @return The size of the data header, in bytes.
  *
  * @draft ICU 2.8
  */
-void
-udata_readUDataInfo(const UDataSwapper *ds,
-                    const char *inData, int32_t length,
-                    UDataInfo *pInfo,
-                    UErrorCode *pErrorCode);
+U_CAPI int32_t U_EXPORT2
+udata_swapDataHeader(const UDataSwapper *ds,
+                     char *data, int32_t length,
+                     UBool preflight,
+                     UErrorCode *pErrorCode) {
+    DataHeader *Header;
+    uint16_t headerSize, infoSize;
+
+    /* argument checking */
+    if(pErrorCode==NULL || U_FAILURE(*pErrorCode)) {
+        return 0;
+    }
+    if(data==NULL || length<=0 || pInfo==NULL) {
+        *pErrorCode=U_ILLEGAL_ARGUMENT_ERROR;
+        return 0;
+    }
+
+    /* check minimum length and magic bytes */
+    pHeader=(DataHeader *)data;
+    if( length<(sizeof(DataHeader)) ||
+        pHeader->dataHeader.magic1!=0xda ||
+        pHeader->dataHeader.magic2!=0x27 ||
+        (headerSize=ds->readUInt16(ds, &pHeader->dataHeader.headerSize))<sizeof(DataHeader) ||
+        (infoSize=ds->readUInt16(ds, &pHeader->dataHeader.info.size))<sizeof(UDataInfo)
+    ) {
+        *pErrorCode=U_UNSUPPORTED_ERROR;
+        return 0;
+    }
+
+    /* Most of the fields are just bytes and need no swapping. */
+    if(!preflight) {
+        /* swap headerSize */
+        ds->swapArray16(ds, &pHeader->dataHeader.headerSize, 2, FALSE, pErrorCode);
+
+        /* swap UDataInfo size and reservedWord */
+        ds->swapArray16(ds, &pHeader->dataHeader.info.size, 4, FALSE, pErrorCode);
+
+        /* swap copyright statement after the UDataInfo */
+        infoSize+=sizeof(pHeader->dataHeader);
+        data+=infoSize;
+        headerSize-=infoSize;
+        /* get the length of the string */
+        for(length=0; length<headerSize && data[length]!=0; ++length) {}
+        /* swap the string contents */
+        ds->swapInvChars(ds, data, length, FALSE, pErrorCode);
+    }
+
+    return headerSize;
+}
+
+static const struct {
+    uint8_t dataFormat[4];
+    UDataSwapFn *swapFn;
+} swapFns[]={
+    { { 0x52, 0x65, 0x73, 0x42 }, udata_swapResourceBundle }    /* dataFormat="ResB" */
+};
+
+U_CAPI int32_t U_EXPORT2
+udata_swap(const UDataSwapper *ds,
+           char *data, int32_t length,
+           UBool preflight,
+           UErrorCode *pErrorCode) {
+    DataHeader *Header;
+    int32_t headerSize, i;
+
+    if(pErrorCode==NULL || U_FAILURE(*pErrorCode)) {
+        return 0;
+    }
+
+    /*
+     * Preflight the header first; checks for illegal arguments, too.
+     * Do not swap the header right away because the format-specific swapper
+     * will swap it, get the headerSize again, and also use the header
+     * information. Otherwise we would have to pass some of the information
+     * and not be able to use the UDataSwapFn signature.
+     */
+    headerSize=udata_swapDataHeader(ds, data, length, TRUE, pErrorCode);
+
+    /*
+     * If we wanted udata_swap() to also handle non-loadable data like a UTrie,
+     * then we could check here for further known magic values and structures.
+     */
+    if(U_FAILURE(*pErrorCode)) {
+        return 0; /* the data format was not recognized */
+    }
+
+    /* dispatch to the swap function for the dataFormat */
+    pHeader=(DataHeader *)data;
+    for(i=0; i<LENGTHOF(swapFns); ++i) {
+        if(0==uprv_memcmp(swapFns[i].dataFormat, pHeader->info.dataFormat, 4)) {
+            return swapFns[i].swapFn(ds, data, length, preflight, pErrorCode);
+        }
+    }
+
+    /* the dataFormat was not recognized */
+    *pErrorCode=U_UNSUPPORTED_ERROR;
+    return 0;
+}
+
+U_CAPI int32_t U_EXPORT2
+udata_swapResourceBundle(const UDataSwapper *ds,
+                         char *data, int32_t length,
+                         UBool preflight,
+                         UErrorCode *pErrorCode) {
+    /*
+    need to always enumerate the entire tree
+    track lowest address of any item, use as limit for char keys[]
+    track highest address of any item to return
+    should have thought of storing those in the data...
+    detect & swap collation binaries
+    ignore other binaries?
+    */
+}

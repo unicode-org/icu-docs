@@ -59,8 +59,9 @@ following have been reported as problems; they need to be reviewed and fixed if 
 </ol>
 <h2>UAX #29 <a href="http://www.unicode.org/reports/tr29/">Text Boundaries </a>(UAX #14
 <a href="http://www.unicode.org/reports/tr14/">Line Breaking Properties</a>)</h2>
-<p>We should modify word selection so that it has the same 'escape hatch' as line break, for 
-Thai/Lao. It would thus be parallel to Line Break's LB 1.</p>
+<p>1. We should modify word selection so that it has the same 'escape hatch' as line break, for 
+Thai/Lao. It would thus be parallel to Line Break's LB 1, and add the character classes that are 
+described there.</p>
 <blockquote>
   <p><i>LB 1&nbsp; Assign a line breaking class to each character of the input. Resolve
   <a class="charclass" href="#AI">AI</a>, <a class="charclass" href="#CB">CB</a>,
@@ -68,8 +69,8 @@ Thai/Lao. It would thus be parallel to Line Break's LB 1.</p>
   <a class="charclass" href="#XX">XX</a> into other line breaking classes depending on criteria 
   outside the scope of this algorithm.</i></p>
 </blockquote>
-<p>In a related matter, we need to incorporate the LineBreak corrigendum into LineBreak, and modify 
-the TR to remove LB 7a.</p>
+<p>2. In a related matter, we need to incorporate the LineBreak corrigendum into LineBreak, and 
+modify the TR to remove LB 7a.</p>
 <blockquote>
   <p><i>LB 7a&nbsp; In all of the following rules, if a space is the base character for a combining 
   mark, the space is changed to type <a class="charclass" href="#ID">ID</a>. In other words, break 
@@ -77,47 +78,86 @@ the TR to remove LB 7a.</p>
   cases as one would break before an <a class="charclass" href="#ID">ID</a>.</i></p>
 </blockquote>
 <p>And document that NBSP is the preferred base character for showing combining marks in isolation.</p>
-<p>As it turns out, the rule LB 6 </p>
+<p>3. There are other &quot;special&quot; rules in LineBreak. </p>
 <blockquote>
   <p><i>LB 6&nbsp; Don’t break a Korean Syllable Block, and treat it as a single unit of the same LB 
   class as a Hangul Syllable in all the following rules</i></p>
 </blockquote>
 <p align="center">Treat a Korean Syllable block as if it were ID</p>
-<p>only has an effect in 5 rules:</p>
+<blockquote>
+  <p><i>LB 7b&nbsp; Don't break a combining character sequence and treat it as if it has the LB class of 
+  the base character in all of the following rules.</i></p>
+</blockquote>
+<p align="center">Treat X CM* as if it were X</p>
+<p>These rules in general are difficult for regular expression implementations <i>and</i> for pair 
+tables. They complicate regular expressions because they affect every instance where any characters 
+could match; they complicate pair tables since they require prehandling in code, outside of the pair 
+table. If they are present, they should be the top rules, since they should be 'handled' by changes 
+all down the line. Both of the rules in LineBreak end up (because of other rules) having the same 
+effect as the rules used in TR29: to treat a grapheme cluster as the base. This is because of the 
+effect of other rules in UAX#14, that keep the differences between LineBreak=CM and Grapheme_Extend 
+= true from surfacing. However, I have gotten the feedback from our implementers that it would be 
+ideal they were unified, if UAX#14 had, instead of these two rules, the one rule used in #29: </p>
+<blockquote>
+  <p align="left"><i>Treat a grapheme cluster as if it were a single character: the first character 
+  of the cluster.</i></p>
+  <p align="left">&quot;I also think that it would help make things simpler if this grapheme cluster rule 
+  could be put as close to the top of the list of rules as possible, so that we don't have some 
+  rules looking within grapheme clusters, and others only at the boundaries. It would have to be a 
+  bug if a line break were to break a grapheme cluster, so it should be possible to say, from the 
+  very beginning, that line break rules work on grapheme cluster boundaries, and be done with any 
+  further consideration of combining marks (except for unattached ones)&quot;</p>
+</blockquote>
+<p>4. Failing adoption of #3 by the committee, LB6 should be replaced by ordinary rules. It only has 
+an effect in 5 rules:</p>
 <p align="center">ID × IN</p>
 <p align="center">ID × PO</p>
 <p align="center">PR × ID</p>
 <p align="center">ALL ÷</p>
 <p align="center">÷ ALL</p>
-<p>Such &quot;treat as&quot; rules are difficult for regular expression implementations <i>and</i> for pair 
-tables. They complicate regular expressions because they affect every instance where any characters 
-could match; they complicate pair tables since they require prehandling in code, outside of the pair 
-table.</p>
-<p>We can safely replace LB 6 by adding the following rules. (And should do so). They can go 
-anyplace before the ALL rules, and can be put in logical locations. The first three rules correspond 
-to the first three above; the last three disallow breaking in the middle of a Hangul Syllable (as 
-described in Chapter 3).</p>
+<p>We can safely replace it by adding the following rules. They can go anyplace before the ALL 
+rules, and can be put in logical locations. The first three rules correspond to the first three 
+above; the last three disallow breaking in the middle of a Hangul Syllable (as described in Chapter 
+3).</p>
 <p align="center">L | V | T | LV | LVT × IN</p>
 <p align="center">L | V | T | LV | LVT&nbsp; × PO</p>
 <p align="center">PR × L | V | T | LV | LVT</p>
 <p align="center">L&nbsp; × L | V | LV | LVT</p>
 <p align="center">V | LV × V | T</p>
 <p align="center">T | LVT × T</p>
+<p align="left">As Asmus noted off-line, a common tailoring is to change Hangul Syllables to AL, but 
+because sequences of AL don't divide either, it is safe to add the above rules: the tailoring just 
+changes all of L | V | T | LV | LVT to AL.</p>
+<p>5. Line Break Rule LB 18B can be dropped altogether. It has no effect on the results; anything 
+that it would break will also be broken by LB20.</p>
+<p align="center">HY ÷ </p>
+<p align="center">÷BB </p>
+<p>6. Deborah identified some cases that are missed if the regular expression for numbers is used, 
+rather than the list of pairs of rule 18:</p>
+<p>Original LB18: <b>PR ? ( OP | HY ) ? NU (NU | IS) * CL ?&nbsp; PO ? </b></p>
+<p>Updated: <b>PR ? ( OP | HY ) ? NU (NU | IS | SY ) * CL ?&nbsp; PO ? </b></p>
+<p align="center">PR × AL </p>
+<p align="center">PR × ID </p>
+<p>There were no changes if the rules are being used, only if the big regular expression is being 
+used as an alternative to the rules.</p>
 <h2>UTS #18 <a href="http://www.unicode.org/reports/tr18/">Unicode Regular Expressions</a></h2>
-<p>Needs updating for U4.1 for to account for changes in foldings, properties, names, scripts. Other 
-items:</p>
+<p>Needs updating for U4.1 for to account for changes in foldings, properties, names, scripts, and 
+also the implications of Pattern_Whitespace and Pattern_Syntax. Other items:</p>
 <ol>
   <li>Also add descriptions of the following so that they can be referenced in other UTRs, 
-  especially #30.<ol>
-    <li>grouping syntax, e.g. (ab*) cd</li>
-    <li>references, ie $0,$1-$9 in Perl, used in the replacement part to refer to a group</li>
+  especially #30. These would be in a special section, since there are no real Unicode implications; 
+  they are really for our reference.<ol>
+    <li>grouping syntax, e.g. (ab) cd</li>
+    <li>references, following Perl: $0, $1, etc in replacement strings, and back references \1, \2 
+    in the pattern, used to refer to what a group matches.</li>
     <li>variables, ie defining $xyz = [[:greek:]&amp;[:lowercase:]], then using it in multiple regular 
     expressions</li>
   </ol>
   </li>
   <li>Since any character could occur as a literal in a regular expression, when regular expression 
   syntax is embedded within other syntax it can be difficult to determine where the end of the regex 
-  expression is. Add a section to Level 2 describing the issue.</li>
+  expression is. Add a note describing the common practice, which is to have a delimiter like /ab(c)*/, 
+  where the delimiter can be chosen to be some character not in the particular regular expression.</li>
   <li>Consider adding a conformance clause for
   <a href="http://www.unicode.org/reports/tr18/#Compatibility_Properties">
   http://www.unicode.org/reports/tr18/#Compatibility_Properties</a>, so that if people want to claim 
@@ -136,7 +176,8 @@ items:</p>
 <h2>UTS #23 <a href="http://www.unicode.org/reports/tr23/">Character Properties</a></h2>
 <p>I have scanned through a number of the TRs, and found other useful definitions that we should 
 centralize so that they can be used consistently. Asmus may have already incorporated some these 
-into his draft for the meeting; if so, skip over those that are.</p>
+into his draft for the meeting; if so, skip over those that are. This is not a request that these 
+definitions be added verbatim; they may need wordsmithing and changes for consistency.</p>
 <ol>
   <li style="margin-top: 6pt; margin-bottom: 6pt">By convention, toX(a) is notation used for a 
   function that produces a result of the form X. Thus toLowercase(a) produces a lowercase form from 
@@ -220,17 +261,8 @@ into his draft for the meeting; if so, skip over those that are.</p>
   However, if there are any sizable number of changes, it is more efficient -- and certainly simpler 
   -- to simply normalize the entire text once all of the rules have been applied. </li>
 </ol>
-<h2>UTR #30 <a href="http://www.unicode.org/reports/tr30/">Character Foldings</a></h2>
-<p>The DiacriticFolding would be better expressed as an AncillaryDecompositions.txt, removing all 
-the mappings that are merely duplicates of the canonical decompositions, and retaining only mappings 
-like:</p>
-<p>00D8; 004F <a href="?ch=0335#here">0335</a> # Ø LATIN CAPITAL LETTER O WITH STROKE</p>
-<p>This reduces duplication of data, and retains the data in a form that is most useful. If someone 
-wants to strip the combining marks, that is easy to do afterwards; but you can't add them if they 
-are not in the data in the first place. The extra data is particularly useful for detecting 
-spoofing: see my document on Unicode Security Considerations.</p>
 <h2>Related Items</h2>
-<p>These are copied from mail on property topics:</p>
+<p>These are copied from email on property topics:</p>
 <ul>
   <li>U4.0.1 changes U+002F Solidus from ES to CS but leaves U+FF0F Fullwidth Solidus at ES. U+FF0F 
   should probably have the same bidi class as its regular sibling.</li>
@@ -242,9 +274,13 @@ spoofing: see my document on Unicode Security Considerations.</p>
   NBSP. Clearly, that's not true for its bidi properties. We need to check the text to make sure 
   that discrepancy is noted, for example by stating on page 387 &quot;for purposes of line breaking&quot; or 
   some such qualifier, and noting: &quot;However, NBSP has a specific bidirectional behavior, which is 
-  different from this sequence (see UAX#9).&quot;<p>&nbsp;</li>
+  different from this sequence (see UAX#9).&quot;</li>
+  <li>I have gotten the request for a &quot;one-stop shopping&quot; for properties. It would be the contents 
+  of <a href="http://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt">
+  http://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt</a> in a formatted table, but with 
+  a short description of each property and of each property value. One can piece this information 
+  together, but it is rather painful.</li>
 </ul>
-<p>&nbsp;</p>
 
 </body>
 

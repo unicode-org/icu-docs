@@ -52,9 +52,6 @@ bocu1Prev(int32_t c) {
     } else if(0xac00<=c && c<=0xd7a3) {
         /* Korean Hangul */
         return (0xd7a3+0xac00)/2;
-    } else if(c==0x85 || c==0x2028 || c==0x2029) {
-        /* reset at non-C0 paragraph break codes */
-        return BOCU1_ASCII_PREV;
     } else {
         /* mostly small scripts */
         return (c&~0x7f)+BOCU1_ASCII_PREV;

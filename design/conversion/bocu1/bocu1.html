@@ -68,10 +68,6 @@ being deterministic, this allows line-based file comparisons (diff) and makes BO
 with RCS, CVS and other source-code control systems (unlike SCSU). This also allows some
 limited random access.</p>
 
-<p>Similarly, the state is also reset at each Newline (U+0085), Line Separator
-(U+2028) and Paragraph Separator (U+2029). This is for texts using non-C0 line
-and paragraph break controls.</p>
-
 <p>Byte values for single-byte codes and lead bytes overlap with trail bytes.
 So unlike UTF-8, character boundaries cannot be determined in random access, except
 by backing up to a reset point.</p>
@@ -110,8 +106,6 @@ encode(int &amp;prev, int c) {
             prev=middle of CJK Unihan;
         } else if(c is Hangul) {
             prev=middle of Hangul;
-        } else if(c is Newline or LS or PS) {
-            prev=0x40;
         } else {
             prev=(c&amp;~0x7f)+0x40;
         }
@@ -158,6 +152,13 @@ BOCU-1. Use a command-line argument of &quot;?&quot; or &quot;-h&quot; for
 usage.</p>
 
 <h2>Changes</h2>
+<p>2002-mar-20: Remove resetting at NL, LS, PS (see change from feb21). Reason:
+Resetting for them makes the algorithm more complicated without much gain. These
+characters are rarely used and their BOCU encoding still depends on the
+preceding code point, unlike with LF etc. The only gain would be when NL/LS/PS
+were used with US-ASCII text, where the first character on a line would need one
+byte instead of two.</p>
+
 <p>2002-feb-21: Change adjustment of prev to account for Hiragana (not
 128-aligned) and to reset at U+0085 (Newline), U+2028 (Line Separator) and
 U+2029 (Paragraph Separator).</p>

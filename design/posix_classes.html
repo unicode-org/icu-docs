@@ -15,23 +15,37 @@ td, th       { vertical-align: Top }
 <body bgcolor="#FFFFFF">
 
 <h1 align="center">Recommendations for POSIX-Style Properties</h1>
-<p align="center">Last updated: 2003-04-03, MED</p>
+<p align="center"><b>Last updated: 2003-04-15, MED</b></p>
 <p>The POSIX-style property names are are not well specified, and don't really
 map well to the broader types of characters available in Unicode/10646. For
 example, there is no provision for titlecase. However, many programs use them,
 so for compatibility it is best to come up with uniform set of recommendations
-for how they should be interpreted in a Unicode context. The following compares
-Perl, ICU, and Java, and tries to derive a recommendation. Feedback is welcome.</p>
+for how they should be interpreted in a Unicode context. This also relates to
+Java, since many of the methods on Character ultimately derive from trying to
+match some of the POSIX categories.</p>
+<p>The following compares Perl, ICU, and Java, and tries to derive a
+recommendation. Feedback is welcome.</p>
 <p><b>Notes:</b></p>
 <ul>
   <li>The Java function names are methods on Character, unless otherwise noted.
-    Note that the Java functions use out-of-date properties and/or definitions,
-    especially in the cases marked *.</li>
-  <li>The normal property abbreviations are used, e.g. gc for General_Category.</li>
+    Note that the Java functions are based on the Unicode properties, but
+    sometimes out of date.</li>
+  <li>The normal property abbreviations are used, e.g. <i>gc</i> for
+    General_Category.</li>
   <li>For values of the General Category, see <a href="#General_Categories">General_Categories</a>.</li>
-  <li>HT is U+0009 &lt;CHARACTER TABULATION (HT)&gt;</li>
-  <li><i><b>Broken Links</b></i>: some of the following links may not work,
-    since they are to beta versions. If so, see the <a href="#Notes">Notes</a>. </li>
+  <li>Some individual characters:
+    <ul>
+      <li><code>U+0009 &lt;CHARACTER TABULATION (HT)&gt;</code></li>
+      <li><code>U+000A &lt;LINE FEED (LF)&gt;</code></li>
+      <li><code>U+000B &lt;LINE TABULATION (VT)&gt;</code></li>
+      <li><code>U+000C &lt;FORM FEED (FF)&gt;</code></li>
+      <li><code>U+000D &lt;CARRIAGE RETURN (CR)&gt;</code></li>
+      <li><code>U+0085 &lt;NEXT LINE (NEL)&gt;</code></li>
+      <li><code>U+0020 SPACE</code></li>
+    </ul>
+  </li>
+  <li>Broken Links: some of the following links may not work, since they are to
+    beta versions. If so, see the <a href="#Notes">Notes</a>. </li>
 </ul>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
@@ -45,7 +59,7 @@ Perl, ICU, and Java, and tries to derive a recommendation. Feedback is welcome.<
     <td><b>punct</b><br>
       P</td>
     <td><b>U_GC_P_MASK</b></td>
-    <td>&nbsp;</td>
+    <td>&#8709;</td>
     <td>\p{gc=P}</td>
     <td>&nbsp;</td>
   </tr>
@@ -106,7 +120,7 @@ Perl, ICU, and Java, and tries to derive a recommendation. Feedback is welcome.<
       <p><b>UCHAR_HEX_DIGIT<br>
       </b>adds fullwidth</p>
     </td>
-    <td>&nbsp;</td>
+    <td>&#8709;</td>
     <td>\p{ASCII_Hex_Digit}</td>
     <td>See <a href="http://www.unicode.org/Public/4.0-Update/PropList-4.0.0d20b.txt">PropList-4.0.0d20b.txt</a></td>
   </tr>
@@ -157,16 +171,16 @@ Perl, ICU, and Java, and tries to derive a recommendation. Feedback is welcome.<
   <tr>
     <td><b>graph</b><br>
       gc=L or M or N or P or S or Co</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td>&#8709;</td>
+    <td>&#8709;</td>
     <td><b>^</b>\p{cntl}</td>
-    <td>Perl's is the same as excluding: Z (except S), Cc, Cf, Cs, Cn</td>
+    <td>Perl is the same as excluding: Z (except S), Cc, Cf, Cs, Cn</td>
   </tr>
   <tr>
     <td><b>print</b><br>
       gc=graph + Zs</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td>&#8709;</td>
+    <td>&#8709;</td>
     <td>\p{graph}<br>
       \p{space}</td>
     <td>&nbsp;</td>
@@ -192,27 +206,27 @@ Perl, ICU, and Java, and tries to derive a recommendation. Feedback is welcome.<
       <p><b>u_isUWhiteSpace<br>
       </b>Unicode WhiteSpace</td>
     <td><b>isWhitespace<br>
-      </b>&nbsp;Z* +&nbsp; HT..CR + U+001C.. U+001F
+      </b>&nbsp;Z +&nbsp; HT..CR + U+001C.. U+001F
       <p><b>isSpaceChar:<br>
-      </b>gc=Z*</p>
+      </b>gc=Z</p>
       <p><b>isSpace</b> (depre.):<br>
       HT..CR</td>
     <td>\p{Whitespace}</td>
     <td>See <a href="#Whitespace_Comparison">Whitespace_Comparison</a>.
-      <p>Note, U+200B (ZWSP) while a Z character, is for line break control and
-      should not be included. NEL is U+0085 NEXT LINE</p>
-      <p>Z' is an old version of the Unicode gc=Z</p>
+      <p>Note: U+200B (ZWSP) while a Z character, is for line break control and
+      should not be included.</p>
     </td>
   </tr>
   <tr>
     <td><b>blank</b><br>
       gc=Zl or Zp or HT, SP</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td>&#8709;</td>
+    <td>&#8709;</td>
     <td>[\p{Whitespace}<br>
       &nbsp;- {cntl}]<br>
       \N{HT}</td>
-    <td>&quot;horizontal&quot; whitespace?</td>
+    <td>&quot;horizontal&quot; whitespace? It is a mystery what the difference
+      between blank and space are suppose to be.</td>
   </tr>
   <tr>
     <td bgcolor="#FFFF00">&nbsp;</td>
@@ -224,7 +238,7 @@ Perl, ICU, and Java, and tries to derive a recommendation. Feedback is welcome.<
   <tr>
     <td><b>\X</b></td>
     <td>BreakIterator</td>
-    <td>BreakIterator*</td>
+    <td>BreakIterator</td>
     <td>Default Grapheme Cluster</td>
     <td>See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX #29:
       Text Boundaries</a>, also <a href="http://www.unicode.org/reports/tr29/GraphemeClusterBreakTest.html">GraphemeClusterBreakTest.html</a></td>
@@ -232,7 +246,7 @@ Perl, ICU, and Java, and tries to derive a recommendation. Feedback is welcome.<
   <tr>
     <td><b>\b</b></td>
     <td>BreakIterator</td>
-    <td>BreakIterator*</td>
+    <td>BreakIterator</td>
     <td>Default Word Boundaries</td>
     <td>If there is a requirement that /b align with \w, then it would use the
       approximation above instead. See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX
@@ -262,10 +276,10 @@ Perl, ICU, and Java, and tries to derive a recommendation. Feedback is welcome.<
   </li>
   <li>ICU Links
     <ul>
-      <li><a href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html">http://oss.software.ibm.com/icu/apiref/uchar_8h.html</a>
-      </li>
       <li><a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icu/source/common/unicode/uchar.h">http://oss.software.ibm.com/cvs/icu/~checkout~/icu/source/common/unicode/uchar.h</a>
         (latest version)</li>
+      <li><a href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html">http://oss.software.ibm.com/icu/apiref/uchar_8h.html</a>
+      </li>
     </ul>
   </li>
   <li>Java Links
@@ -274,9 +288,8 @@ Perl, ICU, and Java, and tries to derive a recommendation. Feedback is welcome.<
       </li>
     </ul>
   </li>
-  <li><i><b>Broken Links</b></i>: some of the above links may not work, since
-    they are to beta versions. If so, go to the latest links through the
-    following:
+  <li>Broken Links: some of the above links may not work, since they are to beta
+    versions. If so, go to the latest links through the following:
     <ul>
       <li><a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/</a></li>
       <li><a href="http://www.unicode.org/Public/4.0-Update/">http://www.unicode.org/Public/4.0-Update/</a></li>

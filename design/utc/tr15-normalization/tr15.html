@@ -48,7 +48,7 @@
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top" class="old_changed"><span class="changedspan">2004-12-28</span></td>
+      <td valign="top" class="old_changed"><span class="changedspan">2005-01-10</span></td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
@@ -154,7 +154,7 @@
   Equivalence</span></p>
   <div align="center">
     <center>
-    <table cellspacing="2" cellpadding="2" style="border-collapse: collapse" bordercolor="#111111">
+    <table cellspacing="2" cellpadding="2" style="border-collapse: collapse">
       <tr>
         <td colspan="4" align="center"><b>Canonical Equivalence </b></td>
       </tr>
@@ -309,8 +309,8 @@
   these depends on whether the resulting text is to be a <i>canonical</i> equivalent to the original 
   unnormalized text, or is to be a <i>compatibility</i> equivalent to the original unnormalized 
   text. (In <i>NFKC</i> and <i>NFKD,</i> a <i>K</i> is used to stand for <i>compatibility</i> to 
-  avoid confusion with the <i>C</i> standing for <i>canonical</i>.) Both types of normalization can 
-  be useful in different circumstances.</p>
+  avoid confusion with the <i>C</i> standing for <i>composition</i>.) Both types of normalization 
+  can be useful in different circumstances.</p>
   <p><i><span class="changedspan">Figure 3: Applying Different Normalization Forms to </span>
   <span class="changedspan">Denormalized</span><span class="changedspan"> Text</span></i> 
   illustrates the effect of applying different normalization forms to denormalized text. In the 
@@ -428,38 +428,65 @@
   Character Database must be applied recursively, and then the string put into canonical order based 
   on the characters&#39; combining classes.</p>
   <p>The following notation is used for brevity.</p>
+  <table cellpadding="0" border="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+    <tr>
+      <td><b><i>Example Notation</i></b></td>
+      <td><b><i>Description</i></b></td>
+    </tr>
+    <tr>
+      <td>combiningClass(X)</td>
+      <td>The combining class of a character X</td>
+    </tr>
+    <tr>
+      <td>&quot;...\uXXXX...&quot;</td>
+      <td>the Unicode character U+XXXX embedded within a string</td>
+    </tr>
+    <tr>
+      <td>B-C</td>
+      <td>A single character which is equivalent to the sequence of characters B + C</td>
+    </tr>
+    <tr>
+      <td>k<sub>i</sub>, a<sub>m</sub>, and k<sub>f</sub></td>
+      <td>Conjoining jamo of various types (initial, medial, final) represented by subscripts</td>
+    </tr>
+    <tr>
+      <td>&quot;c¸&quot;</td>
+      <td><i>c</i> followed by a <i>nonspacing cedilla: </i>spacing accents (without a dotted 
+      circle) may be used to represent nonspacing accents</td>
+    </tr>
+    <tr>
+      <td>NFX(S)</td>
+      <td>Any normalization form: NFD(S), NFKD(S), NFC(S), NFKC(S) are the possibilities.</td>
+    </tr>
+    <tr>
+      <td><i>toNFX(s)</i> </td>
+      <td>A function that produces the the normalized form of a string s according to the definition 
+      of Normalization Form X</td>
+    </tr>
+    <tr>
+      <td><i>isNFC(s)</i></td>
+      <td>A binary property of a string s, whereby isNFX(s) is true if and only if toNFX(s) is 
+      identical to s. See also <a href="#Annex8">Annex 8: Detecting Normalization Forms</a>.</td>
+    </tr>
+    <tr>
+      <td>X ≈ Y</td>
+      <td>X is canonically equivalent to Y</td>
+    </tr>
+    <tr>
+      <td>X[a, b]</td>
+      <td>The substring of X that includes all code units after offset a and before offset b. For 
+      example, if X is &quot;abc&quot;, then X[1,2] is &quot;b&quot;.</td>
+    </tr>
+  </table>
+  <p>In addition,</p>
   <ol>
-    <li>The combining class of a character X may be written as combiningClass(X). </li>
     <li>A sequence of characters may be represented by using plus signs between the character names, 
     or by using string notation. </li>
-    <li>&quot;...\uXXXX...&quot; represents the Unicode character U+XXXX embedded within a string. </li>
-    <li>A single character which is equivalent to the sequence of characters B + C may be written as 
-    B-C. </li>
-    <li>Conjoining jamo of various types (initial, medial, final) are represented by subscripts, 
-    such as k<sub>i</sub>, a<sub>m</sub>, and k<sub>f</sub>. </li>
-    <li>Spacing accents (without a dotted circle) may be used to represent nonspacing accents, such 
-    as &quot;c¸&quot; for <i>c</i> followed by a <i>nonspacing cedilla</i>.</li>
-    <li>The normalization forms for a string S can be abbreviated as NFD(S), NFKD(S), NFC(S) and 
-    NFKC(S), respectively. NFX(S) stands for any normalization form. </li>
     <li>
-    <p class="old_changed">The notation <i>toNFC(x)</i> refers to a function that produces the the 
-    normalized form of a string x according to the definition of Normalization Form C. The functions 
-    toNFD(x), toNFKC(x) and toNFKD(x) are defined similarly.</li>
-    <li>
-    <p class="old_changed">The notation <i>isNFC(x)</i> refers to a binary property of a string x, 
-    whereby isNFC(x) is true if and only if toNFC(x) is identical to x. The functions isNFD(x), 
-    isNFKC(x) and isNFKD(x) are defined similarly. See <a href="#Annex8">Annex 8: Detecting 
-    Normalization Forms</a>.</li>
-    <li>
-    <p class="old_changed">X ≈ Y means X is canonically equivalent to Y</li>
-    <li>
-    <p class="old_changed">An offset into a Unicode string is a number from 0 to <i>n</i>, where <i>
-    n</i> is the length of the string, and indicates a position that is logically between Unicode 
-    code units (or at the very front or end in the case of 0 or <i>n</i> respectively).</li>
-    <li>
-    <p class="old_changed">X[a, b] is the substring of X that includes all code units after offset a 
-    and before offset b. For example, if X is &quot;abc&quot;, then X[1,2] is &quot;b&quot;.</li>
-    <li>Unicode names are shortened, <span class="changedspan"><i>as shown in Table 3: Character 
+    <p class="old_changed">An <i>offset into a Unicode string</i> is a number from 0 to <i>n</i>, 
+    where <i>n</i> is the length of the string, and indicates a position that is logically between 
+    Unicode code units (or at the very front or end in the case of 0 or <i>n</i> respectively).</li>
+    <li>Unicode names may be shortened, <span class="changedspan"><i>as shown in Table 3: Character 
     Abbreviation.</i></span></li>
   </ol>
   <p align="center"><span class="changedspan"><i>Table 3: Character Abbreviation</i></span></p>
@@ -1176,7 +1203,7 @@
     </li>
   </ul>
   <h2><a name="Programming_Language_Identifiers"></a>Annex 7: Programming Language Identifiers</h2>
-  <p><span class="changedspan">This section has been moved to [<a href="#UTR31">UTR 31</a>].</span></p>
+  <p><span class="changedspan">This section has been moved to [<a href="#UAX31">UTR 31</a>].</span></p>
   <h2><a name="Annex8"></a>Annex 8: <a name="Detecting_Normalization_Forms">Detecting Normalization 
   Forms</a></h2>
   <p>The Unicode Character Database supplies properties that allow implementations to quickly 
@@ -1289,8 +1316,8 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
   significantly reduced if the corresponding operations are done in code rather than by simply 
   storing the data in the general purpose tables. Here is sample code illustrating algorithmic 
   Hangul canonical decomposition and composition done according to the specification in <i>
-  <span class="changedspan">Section 3.12, Combining Jamo Behavior</span>.</i> Although coded in 
-  Java, the same structure can be used in other programming languages.</p>
+  <span class="changedspan">Section 3.12, Combining Jamo Behavior in [<a href="#Unicode">Unicode</a>]</span>.</i> 
+  Although coded in Java, the same structure can be used in other programming languages.</p>
   <p><span class="changedspan">The canonical Hangul decompositions specified here and in <i>Section 
   3.12, Combining Jamo Behavior</i> directly decomposes precomposed Hangul syllable characters into 
   two or three Hangul Jamo characters. This differs from all other canonical decompositions in two 
@@ -1506,9 +1533,9 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
   <h2 class="old_changed">Annex 13: <a name="Canonical_Equivalence">Canonical Equivalence</a></h2>
   <p class="old_changed">This section describes the relationship of normalization to respecting (or 
   preserving) canonical equivalence. A process (or function) <i>respects</i> canonical equivalence 
-  when canonical equivalent inputs always produce canonically equivalent outputs. For functions that 
-  map strings to strings, this is often called <i>preserving</i> canonical equivalence. There are a 
-  number of important aspects to this concept:</p>
+  when canonical equivalent inputs always produce canonically equivalent outputs. For a function 
+  that transforms one string into another, this may also be called <i>preserving</i> canonical 
+  equivalence. There are a number of important aspects to this concept:</p>
   <ul>
     <li>
     <p class="old_changed">The outputs are <i>not</i> required to be identical, only canonically 
@@ -1542,11 +1569,12 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
       <li>
       <p class="old_changed">X[0, P] ≈ Y[0, Q], and</li>
       <li>
-      <p class="old_changed">X[P, len(X)] ≈ Y[0, len(Y)]</li>
+      <p class="old_changed">X[P, len(X)] ≈ Y[Q, len(Y)]</li>
     </ul>
   </blockquote>
-  <p class="old_changed">This can be written as P in X ≈ Q in Y. Note that whenever X and Y are 
-  canonically equivalent, it follows that 0 in X ≈ 0 in Y, and len(X) in X ≈ len(Y) in Y.</p>
+  <p class="old_changed">This can be written as P<sub>X</sub> ≈ Q<sub>Y</sub>. Note that whenever X 
+  and Y are canonically equivalent, it follows that 0<sub>X</sub> ≈ 0<sub>Y</sub>, and len(X)<sub>X</sub> 
+  ≈ len(Y)<sub>Y</sub>.</p>
   <p class="old_changed"><i>Example:</i></p>
   <ol>
     <li>
@@ -1554,13 +1582,13 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
     and Y = &lt;<font face="Arial Unicode MS"><i>A, combining ring above, greek question mark</i></font><i><font face="Arial Unicode MS">&gt;</font></i>,
     <ul>
       <li>
-      <p class="old_changed">0 in X ≈ 0 in Y</li>
+      <p class="old_changed">0<sub>X</sub> ≈ 0<sub>Y</sub></li>
       <li>
-      <p class="old_changed">1 in X ≈ 2 in Y</li>
+      <p class="old_changed">1<sub>X</sub> ≈ 2<sub>Y</sub></li>
       <li>
-      <p class="old_changed">2 in X ≈ 3 in Y</li>
+      <p class="old_changed">2<sub>X</sub> ≈ 3<sub>Y</sub></li>
       <li>
-      <p class="old_changed">1 in Y has no canonically equivalent offset in X</li>
+      <p class="old_changed">1<sub>Y</sub> has no canonically equivalent offset in X</li>
     </ul>
     </li>
   </ol>
@@ -1809,8 +1837,9 @@ F900..FA0D ; NFC_NO    # Lo [270] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIB
       Reading, MA, Addison-Wesley, 2003. 0-321-18578-1.</td>
     </tr>
     <tr>
-      <td class="noborder" valign="top">[<a name="UTR31">UTR31</a>]</td>
-      <td class="noborder" valign="top">UTR 31, Identifier and Pattern Syntax<br>
+      <td class="noborder" valign="top"><span class="changedspan">[<a name="UAX31">UAX31</a>]</span></td>
+      <td class="noborder" valign="top">U<span class="changedspan">AX #</span>31, Identifier and 
+      Pattern Syntax<br>
       <a href="http://www.unicode.org/reports/tr31/">http://www.unicode.org/reports/tr31/</a></td>
     </tr>
     <tr>

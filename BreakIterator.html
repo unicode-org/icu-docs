@@ -1,0 +1,453 @@
+<html><head><TITLE>BreakIterator</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API BreakIterator  </H2><BLOCKQUOTE>
+
+The BreakIterator class implements methods for finding the location
+of boundaries in text
+</BLOCKQUOTE>
+<hr>
+
+<DL>
+<DL>
+<DT><h3>Public Fields</h3><DD><DT><A HREF="#DOC.2.22"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  UTextOffset  <B>DONE</B> </B>
+ <DD><I>
+DONE is returned by previous() and next() after all valid
+boundaries have been returned</I>
+</DL><DL>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.2.1"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!1><A HREF="BreakIterator.html">BreakIterator</A>&) const  </B>
+ <DD><I>
+Return true if another object is semantically equal to this
+one</I>
+<DT><A HREF="#DOC.2.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="BreakIterator.html">BreakIterator</A>*  <B>clone</B>(void) const  </B>
+ <DD><I>
+Return a polymorphic copy of this object</I>
+<DT><A HREF="#DOC.2.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="ClassID.html">ClassID</A>  <B>getDynamicClassID</B>(void) const  </B>
+ <DD><I>
+Return a polymorphic class ID for this object</I>
+<DT><A HREF="#DOC.2.21"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="CharacterIterator.html">CharacterIterator</A>*  <B>createText</B>(void) const  </B>
+ <DD><I>
+Get the text for which this object is finding the boundaries</I>
+<DT><A HREF="#DOC.2.4"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setText</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>* it) </B>
+ <DD><I>
+Change the text over which this operates</I>
+<DT><A HREF="#DOC.2.5"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>adoptText</B>(<!1><A HREF="CharacterIterator.html">CharacterIterator</A>* it) </B>
+ <DD><I>
+Change the text over which this operates</I>
+<DT><A HREF="#DOC.2.23"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>first</B>(void) </B>
+ <DD><I>
+Return the index of the first character in the text being scanned</I>
+<DT><A HREF="#DOC.2.24"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>last</B>(void) </B>
+ <DD><I>
+Return the index immediately BEYOND the last character in the text being scanned</I>
+<DT><A HREF="#DOC.2.6"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>previous</B>(void) </B>
+ <DD><I>
+Return the boundary preceding the current boundary</I>
+<DT><A HREF="#DOC.2.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>next</B>(void) </B>
+ <DD><I>
+Return the boundary following the current boundary</I>
+<DT><A HREF="#DOC.2.8"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>current</B>(void) const  </B>
+ <DD><I>
+Return character index of the text boundary that was most recently
+returned by next(), previous(), first(), or last()
+</I>
+<DT><A HREF="#DOC.2.9"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>following</B>(UTextOffset offset) </B>
+ <DD><I>
+Return the first boundary following the specified offset</I>
+<DT><A HREF="#DOC.2.10"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>preceding</B>(UTextOffset offset) </B>
+ <DD><I>
+Return the first boundary preceding the specified offset</I>
+<DT><A HREF="#DOC.2.11"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>isBoundary</B>(UTextOffset offset) </B>
+ <DD><I>
+Return true if the specfied position is a boundary position</I>
+<DT><A HREF="#DOC.2.12"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UTextOffset  <B>next</B>(int32_t n) </B>
+ <DD><I>
+Return the nth boundary from the current boundary
+</I>
+<DT><A HREF="#DOC.2.13"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="BreakIterator.html">BreakIterator</A>*  <B>createWordInstance</B>(const Locale& where = Locale::getDefault()) </B>
+ <DD><I>
+Create BreakIterator for word-breaks using the given locale</I>
+<DT><A HREF="#DOC.2.14"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="BreakIterator.html">BreakIterator</A>*  <B>createLineInstance</B>(const Locale& where = Locale::getDefault()) </B>
+ <DD><I>
+Create BreakIterator for line-breaks using specified locale</I>
+<DT><A HREF="#DOC.2.15"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="BreakIterator.html">BreakIterator</A>*  <B>createCharacterInstance</B>(const Locale& where = Locale::getDefault()) </B>
+ <DD><I>
+Create BreakIterator for character-breaks using specified locale
+Returns an instance of a BreakIterator implementing character breaks</I>
+<DT><A HREF="#DOC.2.16"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="BreakIterator.html">BreakIterator</A>*  <B>createSentenceInstance</B>(const Locale& where = Locale::getDefault()) </B>
+ <DD><I>
+Create BreakIterator for sentence-breaks using specified locale
+Returns an instance of a BreakIterator implementing sentence breaks</I>
+<DT><A HREF="#DOC.2.17"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  Locale*  <B>getAvailableLocales</B>(int32_t& count) </B>
+ <DD><I>
+Get the set of Locales for which TextBoundaries are installed
+</I>
+<DT><A HREF="#DOC.2.18"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getDisplayName</B>(const Locale& objectLocale, const Locale& displayLocale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& name) </B>
+ <DD><I>
+Get name of the object for the desired Locale, in the desired langauge</I>
+<DT><A HREF="#DOC.2.19"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>getDisplayName</B>(const Locale& objectLocale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& name) </B>
+ <DD><I>
+Get name of the object for the desired Locale, in the langauge of the
+default locale</I>
+</DL></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+The BreakIterator class implements methods for finding the location
+of boundaries in text. BreakIterator is an abstract base class.
+Instances of BreakIterator maintain a current position and scan over
+text returning the index of characters where boundaries occur.
+<P>
+Line boundary analysis determines where a text string can be broken
+when line-wrapping. The mechanism correctly handles punctuation and
+hyphenated words.
+<P>
+Sentence boundary analysis allows selection with correct
+interpretation of periods within numbers and abbreviations, and
+trailing punctuation marks such as quotation marks and parentheses.
+<P>
+Word boundary analysis is used by search and replace functions, as
+well as within text editing applications that allow the user to
+select words with a double click. Word selection provides correct
+interpretation of punctuation marks within and following
+words. Characters that are not part of a word, such as symbols or
+punctuation marks, have word-breaks on both sides.
+<P>
+Character boundary analysis allows users to interact with
+characters as they expect to, for example, when moving the cursor
+through a text string. Character boundary analysis provides correct
+navigation of through character strings, regardless of how the
+character is stored.  For example, an accented character might be
+stored as a base character and a diacritical mark. What users
+consider to be a character can differ between languages.
+<P>
+This is the interface for all text boundaries.
+<P>
+Examples:
+<P>
+Helper function to output text
+<pre>
+.   void printTextRange( BreakIterator& iterator, UTextOffset start, UTextOffset end )
+.   {
+.       UnicodeString textBuffer, temp;
+.       CharacterIterator *strIter = iterator.createText();
+.       strIter->getText(temp);
+.       cout &lt;&lt; " " &lt;&lt; start &lt;&lt; " " &lt;&lt; end &lt;&lt; " |" 
+.            &lt;&lt; temp.extractBetween(start, end, textBuffer)
+.            &lt;&lt; "|" &lt;&lt; endl;
+.       delete strIter;
+.   }
+</pre>
+Print each element in order:
+<pre>
+.   void printEachForward( BreakIterator& boundary)
+.   {
+.      UTextOffset start = boundary.first();
+.      for (UTextOffset end = boundary.next();
+.        end != BreakIterator::DONE;
+.        start = end, end = boundary.next())
+.        {
+.            printTextRange( boundary, start, end );
+.        }
+.   }
+</pre>
+Print each element in reverse order:
+<pre>
+.   void printEachBackward( BreakIterator& boundary)
+.   {
+.      UTextOffset end = boundary.last();
+.      for (UTextOffset start = boundary.previous();
+.        start != BreakIterator::DONE;
+.        end = start, start = boundary.previous())
+.        {
+.            printTextRange( boundary, start, end );
+.        }
+.   }
+</pre>
+Print first element
+<pre>
+.   void printFirst(BreakIterator& boundary)
+.   {
+.       UTextOffset start = boundary.first();
+.       UTextOffset end = boundary.next();
+.       printTextRange( boundary, start, end );
+.   }
+</pre>
+Print last element
+<pre>
+.   void printLast(BreakIterator& boundary)
+.   {
+.       UTextOffset end = boundary.last();
+.       UTextOffset start = boundary.previous();
+.       printTextRange( boundary, start, end );
+.   }
+</pre>
+Print the element at a specified position
+<pre>
+.   void printAt(BreakIterator &boundary, UTextOffset pos )
+.   {
+.       UTextOffset end = boundary.following(pos);
+.       UTextOffset start = boundary.previous();
+.       printTextRange( boundary, start, end );
+.   }
+</pre>
+Creating and using text boundaries
+<pre>
+.      void BreakIterator_Example( void )
+.      {
+.          BreakIterator* boundary;
+.          UnicodeString stringToExamine("Aaa bbb ccc. Ddd eee fff.");
+.          cout &lt;&lt; "Examining: " &lt;&lt; stringToExamine &lt;&lt; endl;
+.
+.          //print each sentence in forward and reverse order
+.          boundary = BreakIterator::createSentenceInstance( Locale::US );
+.          boundary->setText(&stringToExamine);
+.          cout &lt;&lt; "----- forward: -----------" &lt;&lt; endl;
+.          printEachForward(*boundary);
+.          cout &lt;&lt; "----- backward: ----------" &lt;&lt; endl;
+.          printEachBackward(*boundary);
+.          delete boundary;
+.
+.          //print each word in order
+.          boundary = BreakIterator::createWordInstance();
+.          boundary->setText(&stringToExamine);
+.          cout &lt;&lt; "----- forward: -----------" &lt;&lt; endl;
+.          printEachForward(*boundary);
+.          //print first element
+.          cout &lt;&lt; "----- first: -------------" &lt;&lt; endl;
+.          printFirst(*boundary);
+.          //print last element
+.          cout &lt;&lt; "----- last: --------------" &lt;&lt; endl;
+.          printLast(*boundary);
+.          //print word at charpos 10
+.          cout &lt;&lt; "----- at pos 10: ---------" &lt;&lt; endl;
+.          printAt(*boundary, 10 );
+.
+.          delete boundary;
+.      }
+</pre>
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="operator==">
+<A NAME ="DOC.2.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!1><A HREF="BreakIterator.html">BreakIterator</A>&) const </B></TT>
+<DD>
+Return true if another object is semantically equal to this
+one. The other object should be an instance of the same subclass of
+BreakIterator. Objects of different subclasses are considered
+unequal.
+<P>
+Return true if this BreakIterator is at the same position in the
+same text, and is the same class and type (word, line, etc.) of
+BreakIterator, as the argument.  Text is considered the same if
+it contains the same characters, it need not be the same
+object, and styles are not considered.
+<DL></DL><P>
+<A NAME="clone">
+<A NAME ="DOC.2.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="BreakIterator.html">BreakIterator</A>*  clone(void) const </B></TT>
+<DD>
+Return a polymorphic copy of this object.  This is an abstract
+method which subclasses implement.
+<DL></DL><P>
+<A NAME="getDynamicClassID">
+<A NAME ="DOC.2.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="ClassID.html">ClassID</A>  getDynamicClassID(void) const </B></TT>
+<DD>
+Return a polymorphic class ID for this object. Different subclasses
+will return distinct unequal values.
+<DL></DL><P>
+<A NAME="createText">
+<A NAME ="DOC.2.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="CharacterIterator.html">CharacterIterator</A>*  createText(void) const </B></TT>
+<DD>
+Get the text for which this object is finding the boundaries
+<DL></DL><P>
+<A NAME="setText">
+<A NAME ="DOC.2.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setText(const <!1><A HREF="UnicodeString.html">UnicodeString</A>* it)</B></TT>
+<DD>
+Change the text over which this operates. The text boundary is
+reset to the start.
+<DL></DL><P>
+<A NAME="adoptText">
+<A NAME ="DOC.2.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  adoptText(<!1><A HREF="CharacterIterator.html">CharacterIterator</A>* it)</B></TT>
+<DD>
+Change the text over which this operates. The text boundary is
+reset to the start.
+<DL></DL><P>
+<A NAME="DONE">
+<A NAME ="DOC.2.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  const  UTextOffset  DONE</B></TT>
+<DD>
+DONE is returned by previous() and next() after all valid
+boundaries have been returned
+<DL></DL><P>
+<A NAME="first">
+<A NAME ="DOC.2.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  first(void)</B></TT>
+<DD>
+Return the index of the first character in the text being scanned
+<DL></DL><P>
+<A NAME="last">
+<A NAME ="DOC.2.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  last(void)</B></TT>
+<DD>
+Return the index immediately BEYOND the last character in the text being scanned
+<DL></DL><P>
+<A NAME="previous">
+<A NAME ="DOC.2.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  previous(void)</B></TT>
+<DD>
+Return the boundary preceding the current boundary
+<DL><DT><B>Returns:</B><DD>The character index of the previous text boundary or DONE if all
+boundaries have been returned.
+</DL><P>
+<A NAME="next">
+<A NAME ="DOC.2.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  next(void)</B></TT>
+<DD>
+Return the boundary following the current boundary
+<DL><DT><B>Returns:</B><DD>The character index of the next text boundary or DONE if all
+boundaries have been returned.
+</DL><P>
+<A NAME="current">
+<A NAME ="DOC.2.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  current(void) const </B></TT>
+<DD>
+Return character index of the text boundary that was most recently
+returned by next(), previous(), first(), or last()
+
+<DL><DT><B>Returns:</B><DD>The boundary most recently returned.
+</DL><P>
+<A NAME="following">
+<A NAME ="DOC.2.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  following(UTextOffset offset)</B></TT>
+<DD>
+Return the first boundary following the specified offset.
+The value returned is always greater than the offset or
+the value BreakIterator.DONE
+
+<DL><DT><B>Returns:</B><DD>The first boundary after the specified offset.
+<DT><B>Parameters:</B><DD><B>offset</B> -  the offset to begin scanning.
+<br></DL><P>
+<A NAME="preceding">
+<A NAME ="DOC.2.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  preceding(UTextOffset offset)</B></TT>
+<DD>
+Return the first boundary preceding the specified offset.
+The value returned is always smaller than the offset or
+the value BreakIterator.DONE
+
+<DL><DT><B>Returns:</B><DD>The first boundary before the specified offset.
+<DT><B>Parameters:</B><DD><B>offset</B> -  the offset to begin scanning.
+<br></DL><P>
+<A NAME="isBoundary">
+<A NAME ="DOC.2.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  isBoundary(UTextOffset offset)</B></TT>
+<DD>
+Return true if the specfied position is a boundary position
+<DL><DT><B>Returns:</B><DD>True if "offset" is a boundary position.
+<DT><B>Parameters:</B><DD><B>offset</B> -  the offset to check.
+<br></DL><P>
+<A NAME="next">
+<A NAME ="DOC.2.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UTextOffset  next(int32_t n)</B></TT>
+<DD>
+Return the nth boundary from the current boundary
+
+<DL><DT><B>Returns:</B><DD>The index of the nth boundary from the current position, or
+DONE if there are fewer than |n| boundaries in the specfied direction.
+<DT><B>Parameters:</B><DD><B>n</B> -  which boundary to return.  A value of 0
+does nothing.  Negative values move to previous boundaries
+and positive values move to later boundaries.
+<br></DL><P>
+<A NAME="createWordInstance">
+<A NAME ="DOC.2.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="BreakIterator.html">BreakIterator</A>*  createWordInstance(const Locale& where = Locale::getDefault())</B></TT>
+<DD>
+Create BreakIterator for word-breaks using the given locale.
+Returns an instance of a BreakIterator implementing word breaks.
+WordBreak is useful for word selection (ex. double click)
+
+<DL><DT><B>Returns:</B><DD>A BreakIterator for word-breaks
+<DT><B>Parameters:</B><DD><B>where</B> -  the locale. If a specific WordBreak is not
+avaliable for the specified locale, a default WordBreak is returned.
+<br></DL><P>
+<A NAME="createLineInstance">
+<A NAME ="DOC.2.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="BreakIterator.html">BreakIterator</A>*  createLineInstance(const Locale& where = Locale::getDefault())</B></TT>
+<DD>
+Create BreakIterator for line-breaks using specified locale.
+Returns an instance of a BreakIterator implementing line breaks. Line
+breaks are logically possible line breaks, actual line breaks are
+usually determined based on display width.
+LineBreak is useful for word wrapping text.
+
+<DL><DT><B>Returns:</B><DD>A BreakIterator for line-breaks
+<DT><B>Parameters:</B><DD><B>where</B> -  the locale. If a specific LineBreak is not
+avaliable for the specified locale, a default LineBreak is returned.
+<br></DL><P>
+<A NAME="createCharacterInstance">
+<A NAME ="DOC.2.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="BreakIterator.html">BreakIterator</A>*  createCharacterInstance(const Locale& where = Locale::getDefault())</B></TT>
+<DD>
+Create BreakIterator for character-breaks using specified locale
+Returns an instance of a BreakIterator implementing character breaks.
+Character breaks are boundaries of combining character sequences.
+
+<DL><DT><B>Returns:</B><DD>A BreakIterator for character-breaks
+<DT><B>Parameters:</B><DD><B>where</B> -  the locale. If a specific character break is not
+avaliable for the specified locale, a default character break is returned.
+<br></DL><P>
+<A NAME="createSentenceInstance">
+<A NAME ="DOC.2.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="BreakIterator.html">BreakIterator</A>*  createSentenceInstance(const Locale& where = Locale::getDefault())</B></TT>
+<DD>
+Create BreakIterator for sentence-breaks using specified locale
+Returns an instance of a BreakIterator implementing sentence breaks
+<DL><DT><B>Returns:</B><DD>A BreakIterator for sentence-breaks
+<DT><B>Parameters:</B><DD><B>where</B> -  the locale. If a specific SentenceBreak is not
+avaliable for the specified locale, a default SentenceBreak is returned.
+<br></DL><P>
+<A NAME="getAvailableLocales">
+<A NAME ="DOC.2.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  const  Locale*  getAvailableLocales(int32_t& count)</B></TT>
+<DD>
+Get the set of Locales for which TextBoundaries are installed
+
+<DL><DT><B>Returns:</B><DD>available locales
+<DT><B>Parameters:</B><DD><B>count</B> -  the output parameter of number of elements in the locale list
+<br></DL><P>
+<A NAME="getDisplayName">
+<A NAME ="DOC.2.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  getDisplayName(const Locale& objectLocale, const Locale& displayLocale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& name)</B></TT>
+<DD>
+Get name of the object for the desired Locale, in the desired langauge
+<DL><DT><B>Returns:</B><DD>user-displayable name
+<DT><B>Parameters:</B><DD><B>objectLocale</B> -  must be from getAvailableLocales.
+<br><B>displayLocale</B> -  specifies the desired locale for output.
+<br><B>name</B> -  the fill-in parameter of the return value
+Uses best match.
+<br></DL><P>
+<A NAME="getDisplayName">
+<A NAME ="DOC.2.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  getDisplayName(const Locale& objectLocale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& name)</B></TT>
+<DD>
+Get name of the object for the desired Locale, in the langauge of the
+default locale
+<DL><DT><B>Returns:</B><DD>user-displayable name
+<DT><B>Parameters:</B><DD><B>objectLocale</B> -  must be from getMatchingLocales
+<br><B>name</B> -  the fill-in parameter of the return value
+<br></DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

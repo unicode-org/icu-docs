@@ -1,0 +1,81 @@
+<html><head><TITLE>ubidi_setPara</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> CAPI  void  U_EXPORT2  ubidi_setPara (<!1><A HREF="UBiDi.html">UBiDi</A> *pBiDi, const UChar *text, UTextOffset length, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> paraLevel, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> *embeddingLevels, <!2><A HREF="#DOC.301">UErrorCode</A> *pErrorCode) </H2><BLOCKQUOTE>
+
+Perform the Unicode BiDi algorithm
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+Perform the Unicode BiDi algorithm. It is defined in the
+<a href="http://www.unicode.org/unicode/reports/tr9/">Unicode Technical Report 9</a>,
+version 5,
+also described in The Unicode Standard, Version 3.0 .<p>
+
+This function takes a single plain text paragraph with or without
+externally specified embedding levels from <quote>styled</quote> text
+and computes the left-right-directionality of each character.<p>
+
+If the entire paragraph consists of text of only one direction, then
+the function may not perform all the steps described by the algorithm,
+i.e., some levels may not be the same as if all steps were performed.
+This is not relevant for unidirectional text.<br>
+For example, in pure LTR text with numbers the numbers would get
+a resolved level of 2 higher than the surrounding text according to
+the algorithm. This implementation may set all resolved levels to
+the same value in such a case.<p>
+
+The text must be externally split into separate paragraphs (rule P1).
+Paragraph separators (B) should appear at most at the very end.
+
+
+
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL><DT><B>Parameters:</B><DD><B>pBiDi</B> -  A <code>UBiDi</code> object allocated with <code>ubidi_open()</code>
+which will be set to contain the reordering information,
+especially the resolved levels for all the characters in <code>text</code>.
+<br><B>text</B> -  is a pointer to the single-paragraph text that the
+BiDi algorithm will be performed on
+(step (P1) of the algorithm is performed externally).
+<strong>The text must be (at least) <code>length</code> long.</strong>
+<br><B>length</B> -  is the length of the text; if <code>length==-1</code> then
+the text must be zero-terminated.
+<br><B>paraLevel</B> -  specifies the default level for the paragraph;
+it is typically 0 (LTR) or 1 (RTL).
+If the function shall determine the paragraph level from the text,
+then <code>paraLevel</code> can be set to
+either <code>UBIDI_DEFAULT_LTR</code>
+or <code>UBIDI_DEFAULT_RTL</code>;
+if there is no strongly typed character, then
+the desired default is used (0 for LTR or 1 for RTL).
+Any other value between 0 and <code>UBIDI_MAX_EXPLICIT_LEVEL</code> is also valid,
+with odd levels indicating RTL.
+<br><B>embeddingLevels</B> -  (in) may be used to preset the embedding and override levels,
+ignoring characters like LRE and PDF in the text.
+A level overrides the directional property of its corresponding
+(same index) character if the level has the
+<code>UBIDI_LEVEL_OVERRIDE</code> bit set.<p>
+Except for that bit, it must be
+<code>paraLevel&lt;=embeddingLevels[]&lt;=UBIDI_MAX_EXPLICIT_LEVEL</code>.<p>
+<strong>Caution: </strong>A copy of this pointer, not of the levels,
+will be stored in the <code>UBiDi</code> object;
+the <code>embeddingLevels</code> array must not be
+deallocated before the <code>UBiDi</code> structure is destroyed or reused,
+and the <code>embeddingLevels</code>
+should not be modified to avoid unexpected results on subsequent BiDi operations.
+However, the <code>ubidi_setPara()</code> and
+<code>ubidi_setLine()</code> functions may modify some or all of the levels.<p>
+After the <code>UBiDi</code> object is reused or destroyed, the caller
+must take care of the deallocation of the <code>embeddingLevels</code> array.<p>
+<strong>The <code>embeddingLevels</code> array must be
+at least <code>length</code> long.</strong>
+<br><B>pErrorCode</B> -  must be a valid pointer to an error code value,
+which must not indicate a failure before the function call.<br></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

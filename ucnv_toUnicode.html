@@ -1,0 +1,45 @@
+<html><head><TITLE>ucnv_toUnicode</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> CAPI  void  U_EXPORT2  ucnv_toUnicode (UConverter * converter, UChar ** target, const UChar * targetLimit, const char **source, const char *sourceLimit, int32_t* offsets, bool_t flush, <!2><A HREF="#DOC.301">UErrorCode</A> * err) </H2><BLOCKQUOTE>
+
+Converts an array of codepage characters into an array of unicode characters
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+Converts an array of codepage characters into an array of unicode characters.
+The source pointer is an I/O parameter, it starts out pointing at the place
+to begin translating, and ends up pointing after the first sequence of the bytes
+that it encounters that are semantically invalid.
+if ucnv_setFromUCallBack is called with an action other than STOP
+before a call is made to this API, consumed and source should point to the same place
+(unless target ends with an imcomplete sequence of bytes and flush is FALSE).
+
+
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL><DT><B>Parameters:</B><DD><B>converter</B> -  the Unicode converter
+<br><B>target</B> -  : I/O parameter. Input : Points to the beginning of the buffer to copy
+Unicode characters to. Output : points to after the last UChar copied to target.
+<br><B>targetLimit</B> -  the pointer to the end of the target array
+<br><B>source</B> -  the source codepage character array
+<br><B>sourceLimit</B> -  the pointer to the end of the source array
+<br><B>offsets</B> -  if NULL is passed, nothing will happen to it, otherwise it needs to have the same number
+of allocated cells as <TT>target</TT>. Will fill in offsets from target to source pointer
+e.g: <TT>offsets[3]</TT> is equal to 6, it means that the <TT>target[3]</TT> was a result of transcoding <TT>source[6]</TT>
+For output data carried across calls -1 will be placed for offsets.
+<br><B>flush</B> -  TRUE if the buffer is the last buffer and the conversion will finish
+in this call, FALSE otherwise. 
+<br><B>err</B> -  the error code status  <TT>ILLEGAL_ARGUMENT_ERROR</TT> will be returned if the
+converter is <TT>NULL</TT>, or if <TT>targetLimit</TT> and <TT>sourceLimit</TT> are misaligned.
+<br><DT><B>See Also:</B><DD><!1><A HREF="ucnv_toUChars.html">ucnv_toUChars</A>
+<br>ucnv_getNextUChar
+<br>ucnv_convert
+<br><!2><A HREF="#DOC.143">ucnv_setFromUCallBack</A><br></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

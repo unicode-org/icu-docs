@@ -1,0 +1,97 @@
+<html><head><TITLE></TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>    </H2><BLOCKQUOTE>
+
+C API representing a collection of resource information pertaining to a given
+locale
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<BLOCKQUOTE>
+
+C API representing a collection of resource information pertaining to a given
+locale. A resource bundle provides a way of accessing locale- specific information in
+a data file. You create a resource bundle that manages the resources for a given
+locale and then ask it for individual resources.
+<P>
+The resource bundle file is a text (ASCII or Unicode) file with the format:
+<pre>
+.   locale {
+.      tag1 {...}
+.      tag2 {...}
+.   }
+</pre>
+The tags are used to retrieve the data later. You may not have multiple instances of
+the same tag.
+<P>
+Four data types are supported. These are solitary strings, comma-delimited lists of
+strings, 2-dimensional arrays of strings, and tagged lists of strings.
+<P>
+Note that all data is textual. Adjacent strings are merged by the low-level
+tokenizer, so that the following effects occur: foo bar, baz // 2 elements, "foo
+bar", and "baz" "foo" "bar", baz // 2 elements, "foobar", and "baz" Note that a
+single intervening space is added between merged strings, unless they are both double
+quoted. This extends to more than two strings in a row.
+<P>
+Whitespace is ignored, as in a C source file.
+<P>
+Solitary strings have the format:
+<pre>
+.   Tag { Data }
+</pre>
+This is indistinguishable from a comma-delimited list with only one element, and in
+fact may be retrieved as such (as an array, or as element 0 or an array).
+<P>
+Comma-delimited lists have the format:
+<pre>
+.   Tag { Data, Data, Data }
+</pre>
+Parsing is lenient; a final string, after the last element, is allowed.
+<P>
+Tagged lists have the format:
+<pre>
+.   Tag { Subtag { Data } Subtag {Data} }
+</pre>
+Data is retrieved by specifying the subtag.
+<P>
+Two-dimensional arrays have the format:
+<pre>
+.   TwoD {
+.       { r1c1, r1c2, ..., r1cm },
+.       { r2c1, r2c2, ..., r2cm },
+.       ...
+.       { rnc1, rnc2, ..., rncm }
+.   }
+</pre>
+where n is the number of rows, and m is the number of columns. Parsing is lenient (as
+in other data types). A final comma is always allowed after the last element; either
+the last string in a row, or the last row itself. Furthermore, since there is no
+ambiguity, the commas between the rows are entirely optional. (However, if a comma is
+present, there can only be one comma, no more.) It is possible to have zero columns,
+as follows:
+<pre>
+.   Odd { {} {} {} } // 3 x 0 array
+</pre>
+But it is impossible to have zero rows. The smallest array is thus a 1 x 0 array,
+which looks like this:
+<pre>
+.   Smallest { {} } // 1 x 0 array
+</pre>
+The array must be strictly rectangular; that is, each row must have the same number
+of elements.
+<P>
+This is an example for using a possible custom resource:
+<pre>
+.    const char *currentLocale;
+.    UErrorCode success = ZERO_ERROR;
+.    UResourceBundle* myResources=ures_open("MyResources", currentLocale, &success );
+.
+.    UChar *button1Title, *button2Title;
+.    button1Title= ures_get(myResources, "OkKey", &success );
+.    button2Title= ures_get(myResources, "CancelKey", &success );
+</pre>
+</BLOCKQUOTE>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

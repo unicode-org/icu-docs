@@ -1,0 +1,51 @@
+<html><head><TITLE>icu_tzset</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> CAPI  void  U_EXPORT2  icu_tzset (void) </H2><BLOCKQUOTE>
+
+Time zone utilities
+
+Wrappers for C runtime library functions relating to timezones
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+Time zone utilities
+
+Wrappers for C runtime library functions relating to timezones.
+The t_tzset() function (similar to tzset) uses the current setting 
+of the environment variable TZ to assign values to three global 
+variables: daylight, timezone, and tzname. These variables have the 
+following meanings, and are declared in &lt;time.h>.
+
+daylight   Nonzero if daylight-saving-time zone (DST) is specified
+in TZ; otherwise, 0. Default value is 1.
+timezone   Difference in seconds between coordinated universal
+time and local time. E.g., -28,800 for PST (GMT-8hrs)
+tzname(0)  Three-letter time-zone name derived from TZ environment
+variable. E.g., "PST".
+tzname(1)  Three-letter DST zone name derived from TZ environment
+variable.  E.g., "PDT". If DST zone is omitted from TZ,
+tzname(1) is an empty string.
+
+Notes: For example, to set the TZ environment variable to correspond
+to the current time zone in Germany, you can use one of the
+following statements:
+
+set TZ=GST1GDT
+set TZ=GST+1GDT
+
+If the TZ value is not set, t_tzset() attempts to use the time zone
+information specified by the operating system. Under Windows NT
+and Windows 95, this information is specified in the Control Panel’s
+Date/Time application.
+
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

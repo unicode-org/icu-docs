@@ -1,0 +1,55 @@
+<html><head><TITLE>ClassID</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> typedef  void*  ClassID  </H2><BLOCKQUOTE>
+
+ClassID is used to identify classes without using RTTI, since RTTI
+is not yet supported by all C++ compilers
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+ClassID is used to identify classes without using RTTI, since RTTI
+is not yet supported by all C++ compilers.  Each class hierarchy which needs
+to implement polymorphic clone() or operator==() defines two methods,
+described in detail below.  ClassID values can be compared using
+operator==(). Nothing else should be done with them.
+
+getDynamicClassID() is declared in the base class of the hierarchy as
+a pure virtual.  Each concrete subclass implements it in the same way:
+
+class Base {
+public:
+virtual ClassID getDynamicClassID() const = 0;
+}
+
+class Derived {
+public:
+virtual ClassID getDynamicClassID() const
+{ return Derived::getStaticClassID(); }
+}
+
+Each concrete class implements getStaticClassID() as well, which allows
+clients to test for a specific type.
+
+class Derived {
+public:
+static ClassID getStaticClassID();
+private:
+static char fgClassID;
+}
+
+// In Derived.cpp:
+ClassID Derived::getStaticClassID()
+{ return (ClassID)&Derived::fgClassID; }
+char Derived::fgClassID = 0; // Value is irrelevant
+
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

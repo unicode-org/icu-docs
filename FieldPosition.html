@@ -1,0 +1,230 @@
+<html><head><TITLE>FieldPosition</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API FieldPosition  </H2><BLOCKQUOTE>
+
+<code>FieldPosition</code> is a simple class used by <code>Format</code>
+and its subclasses to identify fields in formatted output
+</BLOCKQUOTE>
+<hr>
+
+<DL>
+<DL>
+<DT><h3>Public Classes</h3><DD><DT><A HREF="#DOC.12.1"> <IMG BORDER=0 SRC=icon1.gif></A>  enum <B></B> </B>
+ <DD><I>
+DONT_CARE may be specified as the field to indicate that the
+caller doesn't need to specify a field</I>
+</DL><DL>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.12.11"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>FieldPosition</B>() </B>
+ <DD><I>
+Creates a FieldPosition object with a non-specified field</I>
+<DT><A HREF="#DOC.12.2"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>FieldPosition</B>(int32_t field) </B>
+ <DD><I>
+Creates a FieldPosition object for the given field</I>
+<DT><A HREF="#DOC.12.3"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>FieldPosition</B>(const <!2><A HREF="FieldPosition.html#DOC.12.2">FieldPosition</A>& copy) </B>
+ <DD><I>
+Copy constructor
+</I>
+<DT><A HREF="#DOC.12.12"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>~FieldPosition</B>() </B>
+ <DD><I>
+Destructor</I>
+<DT><A HREF="#DOC.12.13"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="FieldPosition.html#DOC.12.2">FieldPosition</A>&  <B>operator=</B>(const <!2><A HREF="FieldPosition.html#DOC.12.2">FieldPosition</A>& copy) </B>
+ <DD><I>
+Assignment operator</I>
+<DT><A HREF="#DOC.12.4"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>operator==</B>(const <!2><A HREF="FieldPosition.html#DOC.12.2">FieldPosition</A>& that) const  </B>
+ <DD><I>
+Equality operator</I>
+<DT><A HREF="#DOC.12.5"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>operator!=</B>(const <!2><A HREF="FieldPosition.html#DOC.12.2">FieldPosition</A>& that) const  </B>
+ <DD><I>
+Equality operator</I>
+<DT><A HREF="#DOC.12.14"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getField</B>(void) const  </B>
+ <DD><I>
+Retrieve the field identifier</I>
+<DT><A HREF="#DOC.12.15"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getBeginIndex</B>(void) const  </B>
+ <DD><I>
+Retrieve the index of the first character in the requested field</I>
+<DT><A HREF="#DOC.12.16"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getEndIndex</B>(void) const  </B>
+ <DD><I>
+Retrieve the index of the character following the last character in the
+requested field</I>
+<DT><A HREF="#DOC.12.17"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setField</B>(int32_t f) </B>
+ <DD><I>
+Set the field</I>
+<DT><A HREF="#DOC.12.6"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setBeginIndex</B>(int32_t bi) </B>
+ <DD><I>
+Set the begin index</I>
+<DT><A HREF="#DOC.12.7"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setEndIndex</B>(int32_t ei) </B>
+ <DD><I>
+Set the end index</I>
+</DL></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+<code>FieldPosition</code> is a simple class used by <code>Format</code>
+and its subclasses to identify fields in formatted output. Fields are
+identified by constants, whose names typically end with <code>_FIELD</code>,
+defined in the various subclasses of <code>Format</code>. See
+<code>ERA_FIELD</code> and its friends in <code>DateFormat</code> for
+an example.
+
+<p>
+<code>FieldPosition</code> keeps track of the position of the
+field within the formatted output with two indices: the index
+of the first character of the field and the index of the last
+character of the field.
+
+<p>
+One version of the <code>format</code> method in the various
+<code>Format</code> classes requires a <code>FieldPosition</code>
+object as an argument. You use this <code>format</code> method
+to perform partial formatting or to get information about the
+formatted output (such as the position of a field).
+
+<p>
+Below is an example of using <code>FieldPosition</code> to aid
+alignment of an array of formatted floating-point numbers on
+their decimal points:
+<pre>
+.      double doubleNum[] = {123456789.0, -12345678.9, 1234567.89, -123456.789,
+.                 12345.6789, -1234.56789, 123.456789, -12.3456789, 1.23456789};
+.      int dNumSize = (int)(sizeof(doubleNum)/sizeof(double));
+.      
+.      UErrorCode status = ZERO_ERROR;
+.      DecimalFormat* fmt = (DecimalFormat*) NumberFormat::createInstance(status);
+.      fmt->setDecimalSeparatorAlwaysShown(true);
+.      
+.      const int tempLen = 20;
+.      char temp[tempLen];
+.      
+.      for (int i=0; i&lt;dNumSize; i++) {
+.          FieldPosition pos(NumberFormat::INTEGER_FIELD);
+.          UnicodeString buf;
+.          char fmtText[tempLen];
+.          ToCharString(fmt->format(doubleNum[i], buf, pos), fmtText);
+.          for (int j=0; j&lt;tempLen; j++) temp[j] = ' '; // clear with spaces
+.          temp[__min(tempLen, tempLen-pos.getEndIndex())] = '\0';
+.          cout &lt;&lt; temp &lt;&lt; fmtText   &lt;&lt; endl;
+.      }
+.      delete fmt;
+</pre>
+<p>
+The code will generate the following output:
+<pre>
+.          123,456,789.000
+.          -12,345,678.900
+.            1,234,567.880
+.             -123,456.789
+.               12,345.678
+.               -1,234.567
+.                  123.456
+.                  -12.345
+.                    1.234
+</pre>
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="">
+<A NAME ="DOC.12.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum </B></TT>
+<DD>
+DONT_CARE may be specified as the field to indicate that the
+caller doesn't need to specify a field.  Do not subclass.
+<DL></DL><P>
+<A NAME="FieldPosition">
+<A NAME ="DOC.12.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  FieldPosition()</B></TT>
+<DD>
+Creates a FieldPosition object with a non-specified field
+<DL></DL><P>
+<A NAME="FieldPosition">
+<A NAME ="DOC.12.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  FieldPosition(int32_t field)</B></TT>
+<DD>
+Creates a FieldPosition object for the given field.  Fields are
+identified by constants, whose names typically end with _FIELD,
+in the various subclasses of Format.
+
+
+<DL><DT><B>See Also:</B><DD><A HREF="NumberFormat.html#INTEGER_FIELD">INTEGER_FIELD</A>
+<br><A HREF="NumberFormat.html#FRACTION_FIELD">FRACTION_FIELD</A>
+<br><A HREF="DateFormat.html#YEAR_FIELD">YEAR_FIELD</A>
+<br><A HREF="DateFormat.html#MONTH_FIELD">MONTH_FIELD</A><br></DL><P>
+<A NAME="FieldPosition">
+<A NAME ="DOC.12.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  FieldPosition(const <!2><A HREF="FieldPosition.html#DOC.12.2">FieldPosition</A>& copy)</B></TT>
+<DD>
+Copy constructor
+
+<DL><DT><B>Parameters:</B><DD><B>copy</B> -  the object to be copied from.<br></DL><P>
+<A NAME="~FieldPosition">
+<A NAME ="DOC.12.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ~FieldPosition()</B></TT>
+<DD>
+Destructor
+<DL></DL><P>
+<A NAME="operator=">
+<A NAME ="DOC.12.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="FieldPosition.html#DOC.12.2">FieldPosition</A>&  operator=(const <!2><A HREF="FieldPosition.html#DOC.12.2">FieldPosition</A>& copy)</B></TT>
+<DD>
+Assignment operator
+<DL></DL><P>
+<A NAME="operator==">
+<A NAME ="DOC.12.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  operator==(const <!2><A HREF="FieldPosition.html#DOC.12.2">FieldPosition</A>& that) const </B></TT>
+<DD>
+Equality operator
+<DL><DT><B>Returns:</B><DD>TRUE if the two field positions are equal, FALSE otherwise.
+</DL><P>
+<A NAME="operator!=">
+<A NAME ="DOC.12.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  operator!=(const <!2><A HREF="FieldPosition.html#DOC.12.2">FieldPosition</A>& that) const </B></TT>
+<DD>
+Equality operator
+<DL><DT><B>Returns:</B><DD>TRUE if the two field positions are not equal, FALSE otherwise.
+</DL><P>
+<A NAME="getField">
+<A NAME ="DOC.12.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getField(void) const </B></TT>
+<DD>
+Retrieve the field identifier
+<DL></DL><P>
+<A NAME="getBeginIndex">
+<A NAME ="DOC.12.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getBeginIndex(void) const </B></TT>
+<DD>
+Retrieve the index of the first character in the requested field
+<DL></DL><P>
+<A NAME="getEndIndex">
+<A NAME ="DOC.12.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getEndIndex(void) const </B></TT>
+<DD>
+Retrieve the index of the character following the last character in the
+requested field
+<DL></DL><P>
+<A NAME="setField">
+<A NAME ="DOC.12.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setField(int32_t f)</B></TT>
+<DD>
+Set the field
+<DL></DL><P>
+<A NAME="setBeginIndex">
+<A NAME ="DOC.12.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setBeginIndex(int32_t bi)</B></TT>
+<DD>
+Set the begin index.  For use by subclasses of Format.
+<DL></DL><P>
+<A NAME="setEndIndex">
+<A NAME ="DOC.12.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setEndIndex(int32_t ei)</B></TT>
+<DD>
+Set the end index.  For use by subclasses of Format.
+<DL></DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

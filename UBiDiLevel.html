@@ -1,0 +1,54 @@
+<html><head><TITLE>UBiDiLevel</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> typedef  uint8_t  UBiDiLevel  </H2><BLOCKQUOTE>
+
+UBiDiLevel is the type of the level values in this
+BiDi implementation
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+UBiDiLevel is the type of the level values in this
+BiDi implementation.
+It holds an embedding level and indicates the visual direction
+by its bit&nbsp;0 (even/odd value).<p>
+
+It can also hold non-level values for the
+<code>paraLevel</code> and <code>embeddingLevels</code>
+arguments of <code>ubidi_setPara()</code>; there:
+<ul>
+<li>bit&nbsp;7 of an <code>embeddingLevels[]</code>
+value indicates whether the using application is
+specifying the level of a character to <i>override</i> whatever the
+BiDi implementation would resolve it to.</li>
+<li><code>paraLevel</code> can be set to the
+pesudo-level values <code>UBIDI_DEFAULT_LTR</code>
+and <code>UBIDI_DEFAULT_RTL</code>.</li>
+
+
+
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL><DT><B>See Also:</B><DD><!1><A HREF="ubidi_setPara.html">ubidi_setPara</A>
+<p>The related constants are not real, valid level values.
+<code>UBIDI_DEFAULT_XXX</code> can be used to specify
+a default for the paragraph level for
+when the <code><!1><A HREF="ubidi_setPara.html">ubidi_setPara</A>()</code> function
+shall determine it but there is no
+strongly typed character in the input.<p>
+Note that the value for <code><!2><A HREF="BiDialgorithmforICU.html#DOC.33.25">UBIDI_DEFAULT_LTR</A></code> is even
+and the one for <code><!2><A HREF="BiDialgorithmforICU.html#DOC.33.26">UBIDI_DEFAULT_RTL</A></code> is odd,
+just like with normal LTR and RTL level values -
+these special values are designed that way. Also, the implementation
+assumes that <!2><A HREF="BiDialgorithmforICU.html#DOC.33.27">UBIDI_MAX_EXPLICIT_LEVEL</A> is odd.
+<br><!2><A HREF="BiDialgorithmforICU.html#DOC.33.25">UBIDI_DEFAULT_LTR</A>
+<br><!2><A HREF="BiDialgorithmforICU.html#DOC.33.26">UBIDI_DEFAULT_RTL</A>
+<br><!2><A HREF="BiDialgorithmforICU.html#DOC.33.28">UBIDI_LEVEL_OVERRIDE</A>
+<br><!2><A HREF="BiDialgorithmforICU.html#DOC.33.27">UBIDI_MAX_EXPLICIT_LEVEL</A><br></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

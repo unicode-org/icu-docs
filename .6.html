@@ -1,0 +1,93 @@
+<html><head><TITLE></TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>    </H2><BLOCKQUOTE>
+
+The C API for Collator performs locale-sensitive
+<code>String</code> comparison
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<BLOCKQUOTE>
+
+The C API for Collator performs locale-sensitive
+<code>String</code> comparison. You use this class to build
+searching and sorting routines for natural language text.
+
+
+<p>
+Like other locale-sensitive classes, you can use the function
+<code>ucol_open()</code>, to obtain the appropriate pointer to 
+<code>UCollator</code> object for a given locale. If you need
+to understand the details of a particular collation strategy or
+if you need to modify that strategy.
+
+<p>
+The following example shows how to compare two strings using
+the <code>UCollator</code> for the default locale.
+<blockquote>
+<pre>
+// Compare two strings in the default locale
+UErrorCode success = ZERO_ERROR;
+UCollator* myCollator = ucol_open(NULL, &success);
+UChar source[4], target[4];
+u_uastrcpy(source, "abc");
+u_uastrcpy(target, "ABC");
+if( u_strcoll(myCollator, source, u_strlen(source), target, u_strlen(target)) == UCOL_LESS) {
+printf("abc is less than ABC\n");
+}else{
+printf("abc is greater than or equal to ABC\n");
+}
+</pre>
+</blockquote>
+
+<p>
+You can set a <code>Collator</code>'s <em>strength</em> property
+to determine the level of difference considered significant in
+comparisons. Four strengths are provided: <code>UCOL_PRIMARY</code>,
+<code>UCOL_SECONDARY</code>, <code>UCOL_TERTIARY</code>, and 
+<code>UCOL_IDENTICAL</code>. The exact assignment of strengths to 
+language features is locale dependant.  For example, in Czech, 
+"e" and "f" are considered primary differences, while "e" and "\u00EA"
+are secondary differences, "e" and "E" are tertiary differences and 
+"e" and "e" are identical.
+The following shows how both case and accents could be ignored for
+US English.
+<blockquote>
+<pre>
+//Get the Collator for US English and set its strength to UCOL_PRIMARY
+UErrorCode success = ZERO_ERROR;
+UCollator* usCollator = ucol_open("en_US", &success);
+ucol_setStrength(usCollator, UCOL_PRIMARY);
+UChar source[4], target[4];
+u_uastrcpy(source, "abc");
+u_uastrcpy(target, "ABC");
+if( u_strcoll(myCollator, source, u_strlen(source), target, u_strlen(target)) == UCOL_EQUAL) {
+printf("'abc' and 'ABC' strings are equivalent with strength UCOL_PRIMARY\n");
+}
+</pre>
+</blockquote>
+<p>
+For comparing <code>String</code>s exactly once, the <code>u_strcoll</code>
+method provides the best performance. When sorting a list of
+<code>String</code>s however, it is generally necessary to compare each
+<code>String</code> multiple times. In this case, <code>sortKey</code>s
+provide better performance. The <code>ucol_getsortKey</code> method converts
+a <code>String</code> to a series of bits that can be compared bitwise
+against other <code>sortKey</code>s using <code>memcmp()</code> 
+<p>
+<strong>Note:</strong> <code>UCollator</code>s with different Locale,
+Collation Strength and Decomposition Mode settings will return different
+sort orders for the same set of strings. Locales have specific 
+collation rules, and the way in which secondary and tertiary differences 
+are taken into account, for example, will result in a different sorting order
+for same strings.
+<p>
+
+</BLOCKQUOTE>
+<DL><DT><B>See Also:</B><DD><!1><A HREF="UCollationResult.html">UCollationResult</A>
+<br><!1><A HREF="UNormalizationMode.html">UNormalizationMode</A>
+<br><!1><A HREF="UCollationStrength.html">UCollationStrength</A>
+<br><!2><A HREF="#DOC.181">UCollationElements</A><br></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++</I>
+<P Align=Center><I>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&ouml;ckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de</a></I>
+</BODY>

@@ -1,5 +1,5 @@
 /*
- * Default CSS style sheet for the ICU Open Source site
+ *  CSS styles for the ICU user guide.
  */
 
 /* Global styles */
@@ -8,14 +8,12 @@ body,p,li,ol,ul,th,td {
 	font-family: "Arial", "Helvetica", "sans-serif";
 }
 
+
 body
 {
-	margin: 0;
+	background-color: white;
 }
-.mainbody
-{
-	padding: 1em;
-}
+
 
 /* A paragraph that is tucked up against the header above it */
 P.first {
@@ -58,146 +56,84 @@ h4, h5, h6 {
 	font-family: "Arial", "Helvetica", "sans-serif";
 }
 
-/*
- * Categories for page headers used in the site templates,
- * since Netscape doesn't obey margin settings for HTML headers
- */
-p.header1 {
-	font-weight: 700;
-	font-size: 18pt;
-	margin-top: 0px;
-	margin-bottom: 10px;
-}
 
-p.header2 {
-	font-weight: 700;
-	font-size: 14pt;
-	margin-top: 10px;
-	margin-bottom: 0px;
-}
+ 
 
 /*
- * Navigation sidebar on the left hand of most pages
+ * User Guide Styles
  */
-td.sidebar1 { 
-	background-color: #99CCFF;
+ 
+ div.topbar {
+	 background-color: #006699;
+	 width: 100%;
+	 height: 47px;
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+ }
+
+ span.toptitle {
+	color: #ffffff;
+	/* Note:  IE puts an extra stripe of bacground along the bottom of the topbar div if
+		normal inline postioning is used.  */
+	position: absolute; 
+	left: 280px;
+	top: 5px;
+	font-size: 35;
+	font-weight: bold; 
+}
+
+
+
+
+ div.sidebar {
+	 position: absolute;
+	 left: 0;
+	 top: 47px;
+	 width: 160px;
+	 height: 100%;
+ 	 background-color: #99CCFF;
+	 /* white-space: nowrap; */
+}
+ 
+
+div.main-content {
+	position: absolute;
+	left: 170px;
+	top: 60px;
+}
+
+p.sidebar1 {
 	font-weight: 700;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	padding-top: 1em;
 	padding-left: 0.2em;
-	white-space: nowrap;
 }
 
-td.sidebar2 { 
-	background-color: #99CCFF;
-	margin-top: 0px;
-	margin-bottom: 0px;
+p.sidebar2 {
+	margin-top: 1px;
+	margin-bottom: 2px;
 	padding-left: 0.2em;
-	padding-right: 0.2em;
-	white-space: nowrap;
-	text-decoration: none;
-	display: block;
-}
-td.sidebar2:hover { 
-	background-color: #EEEEFF;
 }
 
 a.sidebar2 {
 	text-decoration: none;
 	width: 92%;
 }
+
 a.sidebar2:link {
 	color: #000099;
 }
+
 a.sidebar2:hover { 
 	background-color: #EEEEFF;
 	text-decoration: underline;
 }
 
-/* This is the faded header at the top */
-td.fadedtop
-{
-	background-color: #006699;
-	background-image: url(images/gr100.gif);
-}
-
-span.toptitle {
-	color: #ffffff;
-	position: relative;
-	left: 40;
-	font-size: 30;
-}
-
-/* Related site on the left */
-p.relatedsite {
-	color: White;
-	font-weight: 700;
-	font-size: 10pt;
-	margin-top: 1em;
-	margin-bottom: 0;
-	padding-left: 0.2em;
-	white-space: nowrap;
-}
-
-/* Related site on the left */
-p.sidebar3
-{
-	margin-top: 0.75em;
-	margin-bottom: 0;
-	padding-left: 0.8em;
-}
-a.sidebar3
-{
-	font-size: 0.9em;
-	text-decoration: none;
-}
-a.sidebar3:link
-{
-	text-decoration: none;
-	color: White;
-}
-/*.sidebar3:visited
-{
-}*/
-a.sidebar3:hover
-{
+p.sidebar2:hover { 
+	background-color: #EEEEFF;
 	text-decoration: underline;
 }
 
-/*
- * FAQ
- */
-li.faq_contents {
-	font-weight: 500;
-}
-P.faq_q {
-	font-weight: 700; 
-	margin-bottom: 0px;
-}
-P.faq_a {
-	margin-top: 0px;
-}
-
-/* News items */
-table.newsItem 
-{
-	padding-left: 1em;
-	padding-right: 1em;
-	border-width: medium;
-}
-th.newsItem {
-	background-color: #666666;
-	color: White;
-}
-td.newsItem 
-{
-	background-color: #CCCCCC;
-}
-
-/*
- * User Guide Stules
- */
- td.userGuide {
-	 background-color: #99ccff;
- }
+	 

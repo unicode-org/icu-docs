@@ -66,6 +66,11 @@
 <!ATTLIST importBin key CDATA #IMPLIED
                     filename CDATA #REQUIRED>
 
+<!-- Alias : This pertains to the aliasing mechanism in ICU -->
+<!ELEMENT alias EMPTY>
+<!ATTLIST alias key CDATA #IMPLIED
+                    val NMTOKENS #IMPLIED>
+
 <!-- This is an example of an XML file that is valid with this DTD
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE resourceBundle
@@ -87,11 +92,11 @@
       <bin val="fe ff 0a b5"/>
       <intVector val="20 21 -1 0x7f"/>
       <importBin filename="/other.jpeg"/>
-      <str/><str val=""/><!-- two empty strings -->
-      <bin/><!-- empty binary -->
-      <intVector/><!-- empty integer vector -->
-      <array/><!-- empty array -->
-      <table/><!-- empty table -->
+      <str/><str val=""/>
+      <bin/>
+      <intVector/>
+      <array/>
+      <table/>
     </array>
     <array key="emptyArray"/>
     <bin key="b" val="fe ff 0a b5"/>

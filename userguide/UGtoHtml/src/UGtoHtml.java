@@ -21,6 +21,8 @@ import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 
@@ -38,8 +40,11 @@ public class UGtoHtml {
     }
     
     
-    StringBuffer  fHtml      = new StringBuffer();
-    Map           fDocStyles = null;
+    StringBuffer  fHtml       = new StringBuffer();
+    Map           fDocStyles  = null;
+    static String fICUVersion = "";   // ICU version number, will be filled in from the
+                                      //   Open Office variable stored in userguide.sxg
+                                      //   when converting the entire userguide.
     
     //  Function converts a single open office .sxw file to ICU User Guide OO format
     //
@@ -561,9 +566,10 @@ public class UGtoHtml {
         }
     }
       
-    
-    //  Read the template file, substitute in the generated html,
+    //
+    //  Read the template file, insert the generated html,
     //  return the combination in a string.
+    //
     String addTemplateFile(String name) {
         try {
             StringBuffer       template = new StringBuffer();
@@ -579,14 +585,29 @@ public class UGtoHtml {
             }
             in.close();
             
+            // Insert the html generation date and the ICU version number to the template
+            //
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String today = df.format(new Date());
+            String dateMark = "<p>User Guide for ICU Generated ";
+            int startIndex = template.indexOf(dateMark) + dateMark.length();
+            int endIndex = startIndex + "yyyy-MM-dd".length();
+            template.replace(startIndex, endIndex, today);
+            if (!fICUVersion.equals("")) {
+                startIndex -= "Generated ".length();   // Back up to "User Guide for ICU generated
+                                                       //                       here ----^
+                template.insert(startIndex, fICUVersion);
+            }
+            
             // Locate the region where the html is to be inserted.
             String  startMark = "<!-- HTML conversion tool insert content HERE -->";
             String  endMark   = "<!-- END of generated html content -->";
-            int startIndex = template.indexOf(startMark) + startMark.length();
-            int endIndex   = template.indexOf(endMark);
+            startIndex = template.indexOf(startMark) + startMark.length();
+            endIndex   = template.indexOf(endMark);
             
             // Substitute in the newly generated html
             template.replace(startIndex, endIndex, fHtml.toString());
+            
             return template.toString();
         }
         catch (IOException e) {
@@ -634,6 +655,10 @@ public class UGtoHtml {
         copyFile("html-template/images/gr100.gif", "html/images/gr100.gif");
         copyFile("html-template/images/c.gif", "html/images/c.gif");
 
+        //
+        // Check the UGtoHtml command line args for a list of chapters to convert.
+        //   If none specified, convert all based on the master document, userguide.sxg.
+        //
         if (args.length > 0) {
             for (int i=0; i<args.length; i++) {
                 System.out.println("converting file "+ args[i]);
@@ -649,7 +674,8 @@ public class UGtoHtml {
                 ZipEntry zipEntry = new ZipEntry("content.xml");
                 InputStream is = zipFile.getInputStream(zipEntry);
                 
-                // Set up an xml parser.
+                // Set up an xml parser for reading the userguide master document
+                //
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 factory.setIgnoringComments(true);
                 DocumentBuilder builder = factory.newDocumentBuilder();
@@ -659,7 +685,24 @@ public class UGtoHtml {
                 //  The doc will reference it with a relative path in the document.
                 String entityBaseURL = "file:///" + new File("OODTD").getAbsolutePath() + "/";
                 Document doc = builder.parse(is, entityBaseURL);
+                
+                // Get the ICU version number from the userguide master document.
+                // It is in a Open Office user variable named "icu_version"
+                //
+                NodeList OOVariables = doc.getElementsByTagName("text:user-field-decl");
+                int numOOVariables = OOVariables.getLength();
+                for (int n=0; n<numOOVariables; n++) {
+                    Element varDef = (Element)OOVariables.item(n);
+                    if (varDef.getAttribute("text:name").equals("icu_version")) {
+                        fICUVersion = "v" + varDef.getAttribute("text:string-value") + " ";
+                        break;
+                    }
+                }
 
+                //
+                // Iterate over each of the chapter documents contained in the
+                // UserGuide master document, converting each one in turn.
+                //
                 NodeList inclList = doc.getElementsByTagName("text:section-source");
                 int  numSections = inclList.getLength();
                 for (int n=0; n<numSections; n++) {

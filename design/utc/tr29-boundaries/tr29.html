@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="en-us">
-<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <link rel="stylesheet" href="http://www.unicode.org/reports/reports.css" type="text/css">
 <title>UAX #29: Text Boundaries</title>
@@ -57,8 +57,8 @@
     </tr>
     <tr>
       <td>Previous Version</td>
-      <td class="old_changed">
-		<a href="http://www.unicode.org/reports/tr29/tr29-6.html">http://www.unicode.org/reports/tr29/tr29-6.html</a></td>
+      <td class="old_changed"><a href="http://www.unicode.org/reports/tr29/tr29-6.html">
+      http://www.unicode.org/reports/tr29/tr29-6.html</a></td>
     </tr>
     <tr>
       <td>Latest Version</td>
@@ -73,10 +73,10 @@
   <p><br>
   </p>
   <h3><i>Summary</i></h3>
-  <p><i>This document describes guidelines for determining default boundaries between 
-  certain significant text elements: grapheme clusters (“user characters”), words, and sentences. 
-  For line-break boundaries, see <a href="http://www.unicode.org/reports/tr14/">UAX #14: 
-  Line Breaking Properties</a>.</i></p>
+  <p><i>This document describes guidelines for determining default boundaries between certain 
+  significant text elements: grapheme clusters (“user characters”), words, and sentences. For 
+  line-break boundaries, see <a href="http://www.unicode.org/reports/tr14/">UAX #14: Line Breaking 
+  Properties</a>.</i></p>
   <h3><i>Status</i></h3>
   <p><i>This document has been reviewed by Unicode members and other interested parties, and has 
   been approved for publication by the Unicode Consortium. This is a stable document and may be used 
@@ -89,39 +89,36 @@
     document corresponds to the version number of the Unicode Standard at the last point that the 
     UAX document was updated.</i></p>
   </blockquote>
-  <p><i>Please submit corrigenda and other comments with the online reporting 
-  form [<a href="#Feedback">Feedback</a>]. Related information that is useful in understanding this 
-  document is found in <a href="#References">References</a>. For the latest version of the Unicode 
-  Standard see [<a href="#Unicode">Unicode</a>]. For a list of current Unicode Technical Reports see 
-  [<a href="#Reports">Reports</a>]. For more information about versions of the Unicode Standard, see 
-  [<a href="#Versions">Versions</a>].</i></p>
+  <p><i>Please submit corrigenda and other comments with the online reporting form [<a href="#Feedback">Feedback</a>]. 
+  Related information that is useful in understanding this document is found in
+  <a href="#References">References</a>. For the latest version of the Unicode Standard see [<a href="#Unicode">Unicode</a>]. 
+  For a list of current Unicode Technical Reports see [<a href="#Reports">Reports</a>]. For more 
+  information about versions of the Unicode Standard, see [<a href="#Versions">Versions</a>].</i></p>
   <h3><i>Contents</i></h3>
-
-
+  <ul class="toc">
+    <li>1&nbsp;<a href="#Introduction">Introduction</a>
     <ul class="toc">
-      <li>1&nbsp;<a href="#Introduction">Introduction</a>
-      <ul class="toc">
       <li>1.1&nbsp;<a href="#Notation">Notation</a></li>
-      </ul></li>
-      <li>2&nbsp;<a href="#Conformance">Conformance</a></li>
-      <li>3&nbsp;<a href="#Grapheme_Cluster_Boundaries">Grapheme Cluster Boundaries</a></li>
-      <li>4&nbsp;<a href="#Word_Boundaries">Word Boundaries</a></li>
-      <li>5&nbsp;<a href="#Sentence_Boundaries">Sentence Boundaries</a></li>
-      <li>6&nbsp;<a href="#Implementation_Notes">Implementation Notes</a>
-      <ul class="toc">
+    </ul>
+    </li>
+    <li>2&nbsp;<a href="#Conformance">Conformance</a></li>
+    <li>3&nbsp;<a href="#Grapheme_Cluster_Boundaries">Grapheme Cluster Boundaries</a></li>
+    <li>4&nbsp;<a href="#Word_Boundaries">Word Boundaries</a></li>
+    <li>5&nbsp;<a href="#Sentence_Boundaries">Sentence Boundaries</a></li>
+    <li>6&nbsp;<a href="#Implementation_Notes">Implementation Notes</a>
+    <ul class="toc">
       <li>6.1&nbsp;<a href="#Normalization">Normalization</a></li>
       <li>6.2&nbsp;<a href="#Grapheme_Cluster_and_Format_Rules">Grapheme Cluster and Format Rules</a></li>
       <li>6.3&nbsp;<a href="#Regular_Expressions">Regular Expressions</a></li>
       <li>6.4&nbsp;<a href="#Random_Access">Random Access</a></li>
       <li>6.5&nbsp;<a href="#Tailoring">Tailoring</a></li>
-      </ul></li>
-      <li>7&nbsp;<a href="#Testing">Testing</a></li>
-      <li><a href="#Acknowledgements">Acknowledgements</a></li>
-      <li><a href="#References">References</a></li>
-      <li><a href="#Modifications">Modifications</a></li>
     </ul>
-
-
+    </li>
+    <li>7&nbsp;<a href="#Testing">Testing</a></li>
+    <li><a href="#Acknowledgements">Acknowledgements</a></li>
+    <li><a href="#References">References</a></li>
+    <li><a href="#Modifications">Modifications</a></li>
+  </ul>
   <hr>
   <h2>1 <a name="Introduction">Introduction</a></h2>
   <p>This document describes guidelines for determining default boundaries between certain 
@@ -216,8 +213,7 @@
   <p>Each rule consists of a left side, a boundary symbol, and a right side. Either of the sides can 
   be empty. The left and right sides use the boundary property values in regular expressions. For 
   more information on regular expression syntax used, see
-  <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression 
-  Guidelines</a>.</p>
+  <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression Guidelines</a>.</p>
   <p>The boundary symbols are:</p>
   <table border="0" class="syntax">
     <tr>
@@ -269,9 +265,9 @@
     <p><b>Note:</b> In previous documentation, default grapheme clusters were previously referred to 
     as “locale-independent graphemes”. The term <i>cluster</i> has been added to emphasize that the 
     term <i>grapheme</i> as used differently in linguistics. For simplicity and to align with
-    <a href="http://www.unicode.org/reports/tr10/">UTS #10: Unicode Collation Algorithm</a>&nbsp; 
-    [<a href="#Reports">Reports</a>], the terms <i>default</i> and <i>tailored</i> are used in 
-    preference to <i>locale-independent</i> and <i>locale-dependent</i>, respectively.</p>
+    <a href="http://www.unicode.org/reports/tr10/">UTS #10: Unicode Collation Algorithm</a>&nbsp; [<a href="#Reports">Reports</a>], 
+    the terms <i>default</i> and <i>tailored</i> are used in preference to <i>locale-independent</i> 
+    and <i>locale-dependent</i>, respectively.</p>
   </blockquote>
   <p>As far as a user is concerned, the underlying representation of text is not important, but it 
   is important that an editing interface present a uniform implementation of what the user thinks of 
@@ -286,8 +282,8 @@
   grapheme cluster, a part of a grapheme clusters, or a sequence of more than one grapheme clusters.</p>
   <p>In those rare circumstances where end-users need character counts, the counts should correspond 
   to the grapheme cluster boundaries. Grapheme clusters are also used in searching and matching; for 
-  more information, see <a href="http://www.unicode.org/reports/tr10/">UTS #10: Unicode 
-  Collation Algorithm</a>&nbsp; [<a href="#Reports">Reports</a>].</p>
+  more information, see <a href="http://www.unicode.org/reports/tr10/">UTS #10: Unicode Collation 
+  Algorithm</a>&nbsp; [<a href="#Reports">Reports</a>].</p>
   <p>The principal requirements for default grapheme cluster boundaries are the handling of 
   non-spacing marks and Hangul conjoining jamo. Boundaries may be further tailored for requirements 
   of different languages, such as the addition of “ch” for Slovak, or Indic, Thai or Tibetan 
@@ -321,8 +317,8 @@
   display. For example, the sequence &lt;f, i&gt; may be displayed as a single glyph on the screen, but 
   would still be two grapheme clusters.</p>
   <p>For more information on the use of grapheme clusters, see
-  <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression 
-  Guidelines</a>&nbsp; [<a href="#Reports">Reports</a>].</p>
+  <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression Guidelines</a>&nbsp; 
+  [<a href="#Reports">Reports</a>].</p>
   <blockquote>
     <p><b>Note: </b>As with the other default specifications, implementations are free to override 
     (tailor) the results to meet the requirements of different environments or particular languages.</p>
@@ -349,8 +345,9 @@
       General_Category = Format (Cf)<br>
       <span class="old_changed"><i>and not </i><span class="charlist">U+000D CARRIAGE RETURN (CR)</span><br>
       <i>and not </i><span class="charlist">U+000A LINE FEED (LF)<br>
-      </span></span><span><i>and not </i>U+200C ZERO WIDTH NON-JOINER (ZWNJ) <br>
-      <i>and not </i>U+200D ZERO WIDTH JOINER (ZWJ) </span></td>
+      </span></span><span><i>and not </i></span><span class="charlist">U+200C ZERO WIDTH NON-JOINER 
+      (ZWNJ)</span><span> <br>
+      <i>and not </i></span><span class="charlist">U+200D ZERO WIDTH JOINER (ZWJ) </span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="Extend">Extend</a></b></td>
@@ -578,21 +575,22 @@
     <tr>
       <td valign="top"><b><a name="Format">Format</a></b></td>
       <td>General_Category = Format (Cf)<span><i><br>
-      <span>and not </span></i><span>U+200C ZERO WIDTH NON-JOINER (ZWNJ) <br>
-      <i>and not </i>U+200D ZERO WIDTH JOINER (ZWJ) </span></span></td>
+      <span>and not </span></i></span><span class="charlist">U+200C ZERO WIDTH NON-JOINER (ZWNJ)
+      </span><span><br>
+      <i>and not </i></span><span class="charlist">U+200D ZERO WIDTH JOINER (ZWJ) </span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="Katakana">Katakana</a></b></td>
       <td>Script = KATAKANA, <i>or<br>
       </i>Any of the following:<br>
-      <span>U+3031 (〱) VERTICAL KANA REPEAT MARK<br>
+      <span class="charlist">U+3031 (〱) VERTICAL KANA REPEAT MARK<br>
       U+3032 (〲) VERTICAL KANA REPEAT WITH VOICED SOUND MARK<br>
       U+3033 (〳) VERTICAL KANA REPEAT MARK UPPER HALF<br>
       U+3034 (〴) VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF<br>
       U+3035 (〵) VERTICAL KANA REPEAT MARK LOWER HALF<br>
       U+309B (゛) KATAKANA-HIRAGANA VOICED SOUND MARK<br>
       U+309C (゜) KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK<br>
-      U+30A0 (゠) KATAKANA-HIRAGANA DOUBLE HYPHEN</span><span class="charlist"><br>
+      U+30A0 (゠) KATAKANA-HIRAGANA DOUBLE HYPHEN<br>
       U+30FC (</span><span class="symbol">ー</span><span class="charlist">) KATAKANA-HIRAGANA 
       PROLONGED SOUND MARK<br>
       U+FF70 (</span><span class="symbol">ｰ</span><span class="charlist">) HALFWIDTH 
@@ -605,14 +603,14 @@
     <tr>
       <td valign="top"><b><a name="ALetter">ALetter</a></b></td>
       <td>Alphabetic = true, <span class="old_changed"><i>or<br>
-      </i></span><span class="charlist">U+00A0 ( ) NO-BREAK SPACE (NBSP) or<br>
+      </i></span><span class="charlist">U+00A0 ( ) NO-BREAK SPACE (NBSP)</span><i> or</i><span class="charlist"><br>
       U+05F3 (</span><span class="symbol">׳</span><span class="charlist">) HEBREW PUNCTUATION GERESH</span><font size="2"><br>
       </font><i>and </i>Ideographic = false<br>
       <i>and </i>Katakana = false<i><br>
       and </i>Script <font face="Lucida Sans Unicode">≠</font> Thai<br>
       <i>and </i>Script <font face="Lucida Sans Unicode">≠</font> Lao<br>
       <i>and </i>Script <font face="Lucida Sans Unicode">≠</font> Hiragana<br>
-      <span><i>and </i>GRAPHEME EXTEND = false</span></td>
+      <span><i>and </i>Grapheme_Extend = false</span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="MidLetter">MidLetter</a></b></td>
@@ -624,12 +622,12 @@
       <span class="charlist">U+2019 (</span><span class="symbol">’</span><span class="charlist">) 
       RIGHT SINGLE QUOTATION MARK (curly apostrophe)<br>
       U+2027 (</span><span class="symbol">‧</span><span class="charlist">) HYPHENATION POINT<br>
-      </span><span>U+003A (:) COLON (used in Swedish)</span></td>
+      U+003A (:) COLON (used in Swedish)</span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="MidNum">MidNum</a></b></td>
       <td>Line_Break = Infix_Numeric<span class="removedspan"><br>
-      </span><span><i>and not </i>U+003A (:) COLON</span></td>
+      </span><span><i>and not </i></span><span class="charlist">U+003A (:) COLON</span></td>
     </tr>
     <tr>
       <td valign="top" class="old_changed"><b><a name="Numeric">Numeric</a></b></td>
@@ -816,7 +814,10 @@
     number are hyphenated names: Smith-Hawkins, etc. When people do a Whole Word Search or query, 
     they expect to find the word within those hyphens. While there are some cases where they are 
     separate words (usually to resolve some ambiguity such as re-sort vs. resort) it’s better 
-    overall to keep the hyphen out of the default definition.</li>
+    overall to keep the hyphen out of the default definition. Hyphens include <span class="charlist">
+    U+002D (-) HYPHEN-MINUS</span>, <span class="charlist">U+2010 (‐) HYPHEN</span>, possibly also
+    <span class="charlist">U+058A ( ֊ ) ARMENIAN HYPHEN</span> and <span class="charlist">U+30A0 (゠) 
+    KATAKANA-HIRAGANA DOUBLE HYPHEN</span>.</li>
     <li>
     <p align="left">Apostrophe is another tricky case. Usually considered part of one word (“can’t”, 
     “aujourd’hui”) it may also be considered two (“l’objectif”). Also, one cannot easily distinguish
@@ -827,17 +828,23 @@
     <table cellspacing="0" cellpadding="4" border="0">
       <tr>
         <td colspan="4">
-        <p align="left"><i>Break between hyphens and vowels (French, Italian)</i></td>
+        <p align="left"><i>Break between apostrophe and vowels (French, Italian)</i></td>
       </tr>
       <tr>
-        <td class="right" width="45%">hyphens</td>
+        <td class="right" width="45%"><i>apostrophe </i></td>
         <td class="center">÷</td>
         <td width="40%">vowels</td>
         <td class="right">(5a)</td>
       </tr>
     </table>
-    <p>and defining appropriate property values for hyphens and vowels.<br>
+    <p>and defining appropriate property values for apostrophe and vowels. Apostrophe includes
+    <span class="charlist">U+0027 (</span><span class="symbol">&#39;</span><span class="charlist">) 
+    APOSTROPHE</span> and <span class="charlist">U+2019 (</span><span class="symbol">’</span><span class="charlist">) 
+    RIGHT SINGLE QUOTATION MARK (curly apostrophe).</span><br>
     </li>
+    <li>
+    <p align="left">A tailoring may also include <span class="charlist">U+002E (.) FULL STOP</span>
+    <span>in <a name="ExtendNumLet">ExtendNumLet</a></span>, to allow acronyms like &quot;U.S.A.&quot;</li>
     <li>
     <p align="left">Certain cases like colon in words (c:a) are included <span>in the default</span> 
     even though they may be specific to relatively small user communities (Swedish) because they do 
@@ -845,10 +852,11 @@
     <li>
     <p align="left">For Hebrew, a tailoring may include a double quotation mark between letters, 
     since legacy data may contain that in place of <span class="charlist">U+05F4 (״) gershayim</span>. 
-    This can be done by adding double quotation mark to MidLetter.</li>
+    This can be done by adding double quotation mark to MidLetter. <span class="charlist">U+05F3 (׳) 
+    HEBREW PUNCTUATION GERESH</span> may also be included in a tailoring.</li>
     <li>
-    <p align="left">Format characters are ignored if they are interior. Thus &lt;LRM&gt;&lt;letter&gt; will 
-    break, and &lt;letter&gt;&lt;LRM&gt; will break, but there is no break in &lt;letter&gt;&lt;LRM&gt;&lt;letter&gt;.</li>
+    <p align="left">Format characters are included if they are not initial. Thus &lt;LRM&gt;&lt;ALetter&gt; will 
+    break before the &lt;letter&gt;, but there is no break in &lt;ALetter&gt;&lt;LRM&gt;&lt;ALetter&gt; or &lt;ALetter&gt;&lt;LRM&gt;.</li>
   </ul>
   <h2><a name="Sentence_Boundaries">5 Sentence Boundaries</a></h2>
   <p>Sentence boundaries are often used for triple-click or some other method of selecting or 
@@ -898,14 +906,15 @@
     <tr>
       <td valign="top"><b>Format</b></td>
       <td>General_Category = Format (Cf)<span><i><br>
-      <span>and not </span></i><span>U+200C ZERO WIDTH NON-JOINER (ZWNJ) <br>
-      <i>and not </i>U+200D ZERO WIDTH JOINER (ZWJ) </span></span></td>
+      <span>and not </span></i></span><span class="charlist">U+200C ZERO WIDTH NON-JOINER (ZWNJ)
+      </span><span><br>
+      <i>and not </i></span><span class="charlist">U+200D ZERO WIDTH JOINER (ZWJ) </span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="Sp">Sp</a></b></td>
       <td>Whitespace = true<br>
       <i>and </i>Sep <font face="Lucida Sans Unicode">=</font> false<br>
-      <span><i>and not</i> U+00A0 ( ) NO-BREAK SPACE (NBSP)</span></td>
+      <span><i>and not</i> </span><span class="charlist">U+00A0 ( ) NO-BREAK SPACE (NBSP)</span></td>
     </tr>
     <tr>
       <td valign="top"><b><a name="Lower">Lower</a></b></td>
@@ -925,7 +934,7 @@
       <span class="charlist">U+05F3 (׳) HEBREW PUNCTUATION GERESH<br>
       </span><i>and </i>Lower = false<br>
       <i>and </i>Upper = false<br>
-      <span><i>and </i>GRAPHEME EXTEND = false</span></td>
+      <span><i>and </i>Grapheme_Extend = false</span></td>
     </tr>
     <tr>
       <td valign="top"><b>Numeric</b></td>
@@ -1203,8 +1212,8 @@
   </blockquote>
   <p>Such a regular expression can also be turned into a fast deterministic finite-state machine. 
   For more information on Unicode Regular Expressions, see
-  <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression 
-  Guidelines</a> [<a href="#Reports">Reports</a>].</p>
+  <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression Guidelines</a> 
+  [<a href="#Reports">Reports</a>].</p>
   <h3><a name="Random_Access">6.4 Random Access</a></h3>
   <p>A further complication is introduced by random access. When iterating through a string from 
   beginning to end, a regular expression / state machine works well. From each boundary to find the 
@@ -1370,7 +1379,7 @@
       <td class="noborder" valign="top" width="1">[<a name="UCD">UCD</a>]</td>
       <td class="noborder" valign="top">Unicode Character Database.<br>
       <a href="http://www.unicode.org/ucd/">http://www.unicode.org/ucd/</a><i><br>
-		For an overview of the Unicode Character Database and a list of its associated files</i></td>
+      For an overview of the Unicode Character Database and a list of its associated files</i></td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="Unicode">Unicode</a>]</td>
@@ -1381,10 +1390,9 @@
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="Versions">Versions</a>]</td>
       <td class="noborder" valign="top">Versions of the Unicode Standard<br>
-      <a href="http://www.unicode.org/versions/">
-		http://www.unicode.org/standard/versions/</a><br>
-		<i>For information on version numbering, and citing and referencing the Unicode Standard, 
-      the Unicode Character Database, and Unicode Technical Reports.</i></td>
+      <a href="http://www.unicode.org/versions/">http://www.unicode.org/standard/versions/</a><br>
+      <i>For information on version numbering, and citing and referencing the Unicode Standard, the 
+      Unicode Character Database, and Unicode Technical Reports.</i></td>
     </tr>
   </table>
   <p><br>

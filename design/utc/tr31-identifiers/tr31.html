@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="en-us">
 <link rel="stylesheet" href="http://www.unicode.org/reports/reports.css" type="text/css">
-<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <title>UAX #31: Identifier and Pattern Syntax</title>
 <style type="text/css">
@@ -102,9 +102,9 @@
       <li>3&nbsp;<a href="#Alternative_Identifier_Syntax">Alternative Identifier Syntax</a></li>
       <li>4&nbsp;<a href="#Pattern_Syntax">Pattern Syntax</a></li>
       <li>5&nbsp;<a href="#normalization_and_case"><span>Normalization and Case</span></a></li>
-      <li> <a href="#Acknowledgements">Acknowledgements</a></li>
-      <li> <a href="#References">References</a></li>
-      <li> <a href="#Modifications">Modifications</a></li>
+      <li><a href="#Acknowledgements">Acknowledgements</a></li>
+      <li><a href="#References">References</a></li>
+      <li><a href="#Modifications">Modifications</a></li>
     </ul>
   </blockquote>
   <hr>
@@ -211,9 +211,16 @@
   properties, with the addition of &quot;$&quot;. By addition or subtraction of a small set of language 
   specific characters, a programming language standard can easily track a growing repertoire of 
   Unicode characters in a compatible way.</span></p>
-  <p><span>Similarly, each programming language can define whitespace characters or syntax 
-  characters relative to the Unicode pattern whitespace or syntax characters, with some specified 
+  <p><span>Similarly, each programming language can define white space characters or syntax 
+  characters relative to the Unicode pattern white space or syntax characters, with some specified 
   set of additions or subtractions.</span></p>
+  <p>Systems that want to extend identifiers so as to encompass words used in natural languages may 
+  add characters identified in Section 4 <i>Word Boundaries</i> of [<a href="#UAX29">UAX29</a>] with 
+  the property values Katakana, ALetter, and MidLetter, plus characters described in the notes at 
+  the end of that section.</p>
+  <p>Note that to preserve the disjoint nature of categories illustrated in the diagram &quot;<span>Character 
+  Classes for Programming</span>&quot;, any character <i>added</i> to one of the categories must be <i>
+  subtracted</i> from the others.</p>
   <p>In some cases there are security implications that may require additional constraints on 
   identifiers. For more information, see [<a href="#UAX36">UTR36</a>].</p>
   <h3>1.1 <a name="Conformance">Conformance</a></h3>
@@ -678,12 +685,17 @@
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="UAX15">UAX15</a>]</td>
       <td class="noborder" valign="top">
-      <p align="left">UAX #15, Unicode Normalization Forms<br>
+      <p align="left">UAX #15: Unicode Normalization Forms<br>
       <a href="http://www.unicode.org/reports/tr15/">http://www.unicode.org/reports/tr15/</a></td>
     </tr>
     <tr>
+      <td class="noborder" valign="top" width="1">[<a name="UAX29">UAX29</a>]</td>
+      <td class="noborder" valign="top">UAX #29: Text Boundaries<br>
+      <a href="http://www.unicode.org/reports/tr29/">http://www.unicode.org/reports/tr29/</a> </td>
+    </tr>
+    <tr>
       <td class="noborder" valign="top" width="1">[<a name="UAX36">UAX36</a>]</td>
-      <td class="noborder" valign="top">UTR #36, Security Considerations for the Implementation of 
+      <td class="noborder" valign="top">UTR #36: Security Considerations for the Implementation of 
       Unicode and Related Technology<br>
       <a href="http://unicode.org/reports/tr36/">http://unicode.org/reports/tr36/</a><br>
       <i>in draft state, as of the publication of this document</i></td>

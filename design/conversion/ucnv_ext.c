@@ -54,6 +54,131 @@
 };
 
 /*
+ * @return lookup value for the byte, if found; else 0
+ */
+static U_INLINE uint32_t
+ucnv_extFindToU(const uint32_t *toUSection, int32_t length, uint8_t byte) {
+    uint32_t word;
+    int32_t i, start, limit;
+
+    /*
+     * Shift byte once instead of each section word and add 0xffffff.
+     * We will compare the shifted/added byte (bbffffff) against
+     * section words which have byte values in the same bit position.
+     * If and only if byte bb < section byte ss then bbffffff<ssvvvvvv
+     * for all v=0..f
+     * so we need not mask off the lower 24 bits of each section word.
+     */
+    word=_CNV_EXT_TO_U_MAKE_WORD(byte, _CNV_EXT_TO_U_VALUE_MASK);
+
+    /* binary search */
+    start=0;
+    limit=length;
+    for(;;) {
+        i=limit-start;
+        if(i<=1) {
+            break; /* done */
+        }
+        /* start<limit-1 */
+
+        if(i<=4) {
+            /* linear search for the last part */
+            if(word>=toUSection[start]) {
+                break;
+            }
+            if(++start<limit && word>=toUSection[start]) {
+                break;
+            }
+            if(++start<limit && word>=toUSection[start]) {
+                break;
+            }
+            /* always break at start==limit-1 */
+            ++start;
+            break;
+        }
+
+        i=(start+limit)/2;
+        if(word<toUSection[i]) {
+            limit=i;
+        } else {
+            start=i;
+        }
+    }
+
+    /* did we really find it? */
+    if(start<limit && byte==_CNV_EXT_TO_U_GET_BYTE(word=toUSection[start])) {
+        return _CNV_EXT_TO_U_GET_VALUE(word); /* never 0 */
+    } else {
+        return 0; /* not found */
+    }
+}
+
+/*
+ * @return index of the UChar, if found; else <0
+ */
+static U_INLINE int32_t
+ucnv_extFindFromU(const UChar *fromUSection, int32_t length, UChar u) {
+    int32_t i, start, limit;
+
+    /* binary search */
+    start=0;
+    limit=length;
+    for(;;) {
+        i=limit-start;
+        if(i<=1) {
+            break; /* done */
+        }
+        /* start<limit-1 */
+
+        if(i<=4) {
+            /* linear search for the last part */
+            if(u>=fromUSection[start]) {
+                break;
+            }
+            if(++start<limit && u>=fromUSection[start]) {
+                break;
+            }
+            if(++start<limit && u>=fromUSection[start]) {
+                break;
+            }
+            /* always break at start==limit-1 */
+            ++start;
+            break;
+        }
+
+        i=(start+limit)/2;
+        if(u<fromUSection[i]) {
+            limit=i;
+        } else {
+            start=i;
+        }
+    }
+
+    /* did we really find it? */
+    if(start<limit && u==fromUSection[start]) {
+        return start;
+    } else {
+        return -1; /* not found */
+    }
+}
+
+static U_INLINE UBool
+ucnv_extFromUUseFallback(UBool useFallback,
+                         const UChar *pre, int32_t preLength) {
+    UChar32 c;
+    int32_t i;
+
+    /* get the first code point in pre[] */
+    if(preLength==0) {
+        c=0;
+    } else {
+        i=0;
+        U16_NEXT(pre, i, preLength, c);
+    }
+    return FROM_U_USE_FALLBACK(useFallback, c);
+}
+
+/*
  * @param cx pointer to extension data; if NULL, returns 0
  * @param pre UChars that must match; !initialMatch: partial match with them
  * @param preLength length of pre, >=1
@@ -62,131 +187,129 @@
  * @param pResult [out] address of pointer to result bytes
  *                      set only in case of a match
  * @param pResultLength [out] address of result length variable;
- *                            gets -2 if *pResult points to a 16-bit value
- *                            where 1..2 bytes are stored in the high/low bytes
- *                            (1 byte: high byte=0; 2 bytes: high then low)
- * @param initialMatch TRUE if new match starting with pre
- *                     FALSE if trying to complete a previously partial match
- * @param useFallback TRUE if fallback mappings are used
+ *                            gets a negative value if the length variable
+ *                            itself contains the length and bytes, encoded in
+ *                            the format of fromUTableValues[] and then inverted
+ * @param useFallback "use fallback" flag, usually from cnv->useFallback
  * @param flush TRUE if the end of the input stream is reached
- * @return >0: matched, return value=total match length
+ * @return >0: matched, return value=total match length (number of input units matched)
  *          0: no match
  *         <0: partial match, return value=negative total match length
+ *             (partial matches are never returned for flush==TRUE)
+ *             (partial matches are never returned as being longer than _CNV_EXT_MAX_LENGTH)
  */
 static int8_t
 ucnv_extMatchFromU(const int32_t *cx,
                    const UChar *pre, int32_t preLength,
                    const UChar *src, int32_t srcLength,
                    const char **pResult, int32_t *pResultLength,
-                   UBool initialMatch, UBool useFallback, UBool flush) {
-    const uint16_t *p, *limit;
-    uint16_t c;
+                   UBool useFallback, UBool flush) {
+    const UChar *fromUTableUChars, *fromUSectionUChars;
+    const uint32_t *fromUTableValues, *fromUSectionValues;
 
-    /* TODO: if match, test useFallback vs. PUA */
+    uint32_t value, matchValue;
+    int32_t i, j, index, length, matchLength;
+    UChar c;
 
     if(cx==NULL) {
         return 0; /* no extension data, no match */
     }
 
-    /* try the fixed-width table first */
-    if(initialMatch && preLength==1) {
-        p=(const uint16_t *)cx+cx[_CNV_EXT_FIXED_RT];
-        limit=(const uint16_t *)cx+cx[useFallback ? _CNV_EXT_FIXED_LIMIT : _CNV_EXT_FIXED_FB];
-        c=(uint16_t)*pre;
+    /* initialize */
+    fromUTableUChars=(const UChar *)cx+cx[_CNV_EXT_FROM_U_UCHARS_INDEX];
+    fromUTableValues=(const uint32_t *)cx+cx[_CNV_EXT_FROM_U_VALUES_INDEX];
 
-        for(; p<limit; p+=2) {
-            if(c==*p) {
-                /* match */
-                *pResult=(const char *)(p+1);
-                *pResultLength=-2;
-                return 1;
+    matchValue=0;
+    i=j=index=matchLength=0;
+
+    /* we must not remember fallback matches when not using fallbacks */
+
+    /* match input units until there is a full match or the input is consumed */
+    for(;;) {
+        /* go to the next section */
+        fromUSectionUChars=fromUTableUChars+index;
+        fromUSectionValues=fromUTableValues+index;
+
+        /* read first pair of the section */
+        length=*fromUSectionUChars++;
+        value=*fromUSectionValues++;
+        if( value!=0 &&
+            (_CNV_EXT_FROM_U_IS_ROUNDTRIP(value) ||
+             ucnv_extFromUUseFallback(useFallback, pre, preLength)
+        ) {
+            /* remember longest match so far */
+            matchValue=value;
+            matchLength=i+j;
+        }
+
+        /* match pre[] then src[] */
+        if(i<preLength) {
+            c=pre[i++];
+        } else if(j<srcLength) {
+            c=src[j++];
+        } else {
+            /* all input consumed, partial match */
+            if(flush || (length=(i+j))>_CNV_EXT_MAX_LENGTH) {
+                /*
+                 * end of the entire input stream, stop with the longest match so far
+                 * or: partial match must not be longer than _CNV_EXT_MAX_LENGTH
+                 * because it must fit into state buffers
+                 */
+                break;
+            } else {
+                /* continue with more input next time */
+                return -length;
+            }
+        }
+
+        /* search for the current UChar */
+        index=ucnv_extFindFromU(fromUSectionUChars, length, c);
+        if(index<0) {
+            /* no match here, stop with the longest match so far */
+            break;
+        } else {
+            value=fromUSectionValues[index];
+            if(_CNV_EXT_FROM_U_IS_PARTIAL(value)) {
+                /* partial match, continue */
+                index=(int32_t)_CNV_EXT_FROM_U_GET_PARTIAL_INDEX(value);
+            } else if(_CNV_EXT_FROM_U_IS_ROUNDTRIP(value) ||
+                      ucnv_extFromUUseFallback(useFallback, pre, preLength)
+            ) {
+                /* full match, stop with result */
+                matchValue=value;
+                matchLength=i+j;
+                break;
             }
         }
     }
 
-    /* try the variable-width table, search for the longest possible match */
-    {
-        const UChar *us;
-        uint16_t i, j, len16, uLen;
-        int8_t match, partialMatch;
-
-        p=(const uint16_t *)cx+cx[_CNV_EXT_VAR_RT];
-        limit=(const uint16_t *)cx+cx[useFallback ? _CNV_EXT_VAR_LIMIT : _CNV_EXT_VAR_FB];
-
-        match=partialMatch=0;
-        for(; p<limit; p+=_CNV_EXT_VAR_LENGTH(len16)) {
-            /* match pre[]+src[] against the Unicode side of one variable-width table entry */
-            len16=*p;
-            uLen=_CNV_EXT_VAR_UCHARS(len16);
-            if(uLen<preLength || (!initialMatch && uLen==preLength)) {
-                /* the current pair cannot match because it does not have enough UChars */
-                continue;
-            }
-
-            /* here: preLength<=uLen */
-            us=(const UChar *)(p+1);
-            for(i=0; i<preLength; ++i) {
-                if(pre[i]!=us[i]) {
-                    break; /* continue below: I want Java-style continue outerLoop; */
-                }
-            }
-            if(i<preLength) {
-                /* no match */
-                continue;
-            }
-
-            /* pre matches us[] so far, match src against rest; keep j=i-preLength */
-            for(j=0;; ++i, ++j) {
-                if(i==uLen) {
-                    /* match */
-                    if(i>match) {
-                        /* longer match than before, use it */
-                        match=i;
-                        *pResult=(const char *)(us+uLen);
-                        *pResultLength=_CNV_EXT_VAR_BYTES(len16);
-                    }
-                    break; /* continue with the next table entry */
-                }
-                if(j==srcLength) {
-                    if(flush) {
-                        /* no match */
-                        break;
-                    } else {
-                        /* partial match */
-                        if(i>partialMatch) {
-                            /* longer partial match than before */
-                            partialMatch=i;
-                        }
-                        break; /* continue with the next table entry */
-                    }
-                }
-                if(src[j]!=us[i]) {
-                    /* no match */
-                    break;
-                }
-            }
-        }
+    if(matchLength==0) {
+        /* no match at all */
+        return 0;
     }
 
-    /*
-     * done searching the entire table
-     *
-     * if we are at the end of the input, then always use the longest match
-     * if there is more to come, then return the longest match, even if it is partial
-     */
-    if(flush || match>partialMatch) {
-        return match;
+    /* return result */
+    matchValue=_CNV_EXT_FROM_U_MASK_ROUNDTRIP(matchValue);
+    length=(int32_t)_CNV_EXT_FROM_U_GET_LENGTH(matchValue);
+    if(length<=_CNV_EXT_FROM_U_MAX_DIRECT_LENGTH) {
+        *pResultLength=-(int32_t)matchValue;
     } else {
-        return -partialMatch;
+        *pResultLength=length;
+        *pResult=(const char *)cx+cx[_CNV_EXT_FROM_U_BYTES_INDEX]+_CNV_EXT_FROM_U_GET_DATA(matchValue);
     }
+
+    return matchLength;
 }
 
 static void
-ucnv_extWriteFromU(const char *result, int32_t resultLength,
+ucnv_extWriteFromU(UConverter *cnv,
+                   const char *result, int32_t resultLength,
                    char **target, const char *targetLimit,
                    int32_t **offsets, int32_t srcIndex,
-                   UBool useFallback, UBool flush,
+                   UBool flush,
                    UErrorCode *pErrorCode) {
+    char buffer[4];
+
     int32_t *o;
     char *t;
 
@@ -194,45 +317,80 @@ ucnv_extWriteFromU(const char *result, int32_t resultLength,
     t=*target;
 
     /* output the result */
-    if(resultLength==-2) {
-        uint16_t res16=*(const uint16_t *)result;
-        /* res16!=0 forced by makeconv */
-        if(res16>0xff) {
-            *t++=(char)(res16>>8);
-            if(o!=NULL) {
-                *o=srcIndex;
-            }
-        }
-        if(t!=targetLimit) {
-            *t++=(char)(res16>>8);
-            if(o!=NULL) {
-                *o=srcIndex;
-            }
-        } else {
-            /* TODO: buffer overflow */
-        }
-    } else /* resultLength>=1 */ {
-        do {
-            *t++=*result++;
-            if(o!=NULL) {
-                *o=srcIndex;
-            }
-        } while(--resultLength>0 && t!=targetLimit);
+    if(resultLength<0) {
+        /*
+         * Generate a byte array and then write it with the loop below.
+         * This is not the fastest possible way, but it should be ok for
+         * extension mappings, and it is much simpler.
+         * Offset and overflow handling are only done once this way.
+         */
+        uint32_t value;
 
-        /* TODO: buffer overflow */
-        while(resultLength>0 && t!=targetLimit) {
-            *overflow++=*result++;
-            --resultLength;
+        resultLength=-resultLength;
+        value=(uint32_t)_CNV_EXT_FROM_U_GET_DATA(resultLength);
+        resultLength=_CNV_EXT_FROM_U_GET_LENGTH(resultLength);
+        /* resultLength<=_CNV_EXT_FROM_U_MAX_DIRECT_LENGTH==3 */
+
+        result=buffer;
+        switch(resultLength) {
+        case 3:
+            *result++=(char)(value>>16);
+        case 2:
+            *result++=(char)(value>>8);
+        case 1:
+            *result++=(char)value;
+        default:
+            break; /* will never occur */
         }
+        result=buffer;
     }
+
+    /* with correct data we have resultLength>0 */
+    if(resultLength<=0) {
+        return;
+    }
+
+    /* write result to target */
+    do {
+        *t++=*result++;
+        if(o!=NULL) {
+            *o=srcIndex;
+        }
+    } while(--resultLength>0 && t!=targetLimit);
 
     if(o!=NULL) {
         *offsets=o;
     }
     *target=t;
+
+    if(resultLength>0) {
+        if(cnv!=NULL) {
+            /* write overflow result to overflow buffer */
+            uint8_t *overflow=(uint8_t *)cnv->charErrorBuffer;
+
+            cnv->charErrorBufferLength=(int8_t)resultLength;
+            while(resultLength>0 && t!=targetLimit) {
+                *overflow++=*result++;
+                --resultLength;
+            }
+        }
+
+        *pErrorCode=U_BUFFER_OVERFLOW_ERROR;
+    }
 }
 
-/* target<targetLimit; set error code for unmappable & overflow */
+/*
+ * target<targetLimit; set error code for unmappable & overflow
+ *
+ * Either used in full conversion function with
+ *   cnv!=NULL
+ *   pSimpleValue==pSimpleLength==NULL
+ *   flush either way
+ * or used in simple, single-character conversion with
+ *   cnv==NULL
+ *   pSimpleValue!=NULL and pSimpleLength!=NULL
+ *   flush==TRUE
+ */
 U_CFUNC void U_CALLCONV
 ucnv_extInitialMatchFromU(UConverter *cnv,
                           const int32_t *cx,
@@ -240,6 +398,7 @@ ucnv_extInitialMatchFromU(UConverter *cnv,
                           const UChar **src, const UChar *srcLimit,
                           char **target, const char *targetLimit,
                           int32_t **offsets, int32_t srcIndex,
+                          uint32_t *pSimpleValue, int32_t *pSimpleLength,
                           UBool useFallback, UBool flush,
                           UErrorCode *pErrorCode) {
     UChar pre[U16_MAX_LENGTH];
@@ -254,24 +413,49 @@ ucnv_extInitialMatchFromU(UConverter *cnv,
     U16_APPEND_UNSAFE(pre, preLength, cp);
 
     /* try to match */
-    match=_cxMatchFromU(cx,
-                        pre, preLength,
-                        *src, (int32_t)(srcLimit-*src),
-                        &result, &resultLength,
-                        TRUE, useFallback, flush);
+    match=ucnv_extMatchFromU(cx,
+                             pre, preLength,
+                             *src, (int32_t)(srcLimit-*src),
+                             &result, &resultLength,
+                             useFallback, flush);
     if(match>0) {
         /* advance src pointer for the consumed input */
         *src+=match-preLength;
 
         /* write result */
-        _cxWriteFromU(result, resultLength,
-                      target, targetLimit,
-                      offsets, srcIndex,
-                      pErrorCode);
+        if(pSimpleValue==NULL) {
+            /* write result to target */
+            ucnv_extWriteFromU(cnv,
+                               result, resultLength,
+                               target, targetLimit,
+                               offsets, srcIndex,
+                               pErrorCode);
+        } else {
+            /* write result for simple, single-character conversion */
+            if(resultLength<0) {
+                resultLength=-resultLength;
+                *pSimpleValue=(uint32_t)_CNV_EXT_FROM_U_GET_DATA(resultLength);
+                *pSimpleLength=_CNV_EXT_FROM_U_GET_LENGTH(resultLength);
+            } else if(resultLength==4) {
+                /* de-serialize a 4-byte result */
+                *pSimpleValue=
+                    (((uint32_t)result[0])<<24)|
+                    (((uint32_t)result[1])<<16)|
+                    (((uint32_t)result[2])<<8)|
+                    ((uint32_t)result[3]);
+                *pSimpleLength=4;
+            } else /* resultLength>4 */ {
+                /* too long for simple conversion, return no match */
+                match=0;
+                /* set the error code for unassigned */
+                *pErrorCode=U_INVALID_CHAR_FOUND;
+                /* assume that cnv==NULL so no output into cnv->invalidUCharBuffer[] */
+            }
+        }
     } else if(match<0) {
-        /* save state for partial match */
+        /* save state for partial match (never for simple conversion because there flush==TRUE) */
         const UChar *s;
-        int8_t i, j;
+        int8_t j;
 
         /* copy pre[] and the newly consumed input to preFromU[] */
         /* pre[] first */
@@ -282,23 +466,27 @@ ucnv_extInitialMatchFromU(UConverter *cnv,
         /* now append the newly consumed input */
         s=*src;
         match=-match;
-        for(i=0; j<match; ++i, ++j) {
-            cnv->preFromU[j]=s[i];
+        for(; j<match; ++j) {
+            cnv->preFromU[j]=*s++;
         }
-        *src=sourceLimit; /* same as *src=s+i; */
+        *src=s; /* same as *src=srcLimit; because we reached the end of input */
         cnv->preFromULength=match;
-    } else /* match==0 */ {
+    } else /* match==0 or simple conversion */ {
         /* no match, prepare for normal unassigned callback for cp */
-        for(match==0; match<preLength; ++match) {
-            cnv->invalidUCharBuffer[match]=pre[match];
+        if(cnv!=NULL) {
+            /* cnv==NULL for simple, single-character conversion */
+            for(match==0; match<preLength; ++match) {
+                cnv->invalidUCharBuffer[match]=pre[match];
+            }
+            cnv->invalidUCharLength=match;
         }
-        cnv->invalidUCharLength=match;
 
         /* set the error code for unassigned */
         *pErrorCode=U_INVALID_CHAR_FOUND;
     }
 }
 
+/* never called for simple, single-character conversion */
 U_CFUNC void U_CALLCONV
 ucnv_extContinueMatchFromU(UConverter *cnv,
                            const int32_t *cx,
@@ -313,35 +501,36 @@ ucnv_extContinueMatchFromU(UConverter *cnv,
         int32_t resultLength;
         int8_t match;
 
-        match=_cxMatchFromU(cx,
-                            cnv->preFromU, cnv->preFromULength,
-                            *src, (int32_t)(srcLimit-*src),
-                            &result, &resultLength,
-                            FALSE, useFallback, flush);
+        match=ucnv_extMatchFromU(cx,
+                                 cnv->preFromU, cnv->preFromULength,
+                                 *src, (int32_t)(srcLimit-*src),
+                                 &result, &resultLength,
+                                 useFallback, flush);
         if(match>0) {
             /* advance src pointer for the consumed input */
             *src+=match-cnv->preFromULength;
 
             /* write result */
-            _cxWriteFromU(result, resultLength,
-                          target, targetLimit,
-                          offsets, srcIndex,
-                          pErrorCode);
+            ucnv_extWriteFromU(cnv,
+                               result, resultLength,
+                               target, targetLimit,
+                               offsets, srcIndex,
+                               pErrorCode);
 
             /* reset the preFromU buffer in the converter */
             cnv->preFromULength=0;
         } else if(match<0) {
             /* save state for partial match */
             const UChar *s;
-            int8_t i, j;
+            int8_t j;
 
             /* just _append_ the newly consumed input to preFromU[] */
             s=*src;
             match=-match;
-            for(i=0, j=cnv->preFromULength; j<match; ++i, ++j) {
-                cnv->preFromU[j]=s[i];
+            for(j=cnv->preFromULength; j<match; ++j) {
+                cnv->preFromU[j]=*s++;
             }
-            *src=sourceLimit; /* same as *src=s+i; */
+            *src=s; /* same as *src=srcLimit; because we reached the end of input */
             cnv->preFromULength=match;
         } else /* match==0 */ {
             /*
@@ -462,15 +651,8 @@ ucnv_extContinueMatchFromU(UConverter *cnv,
  *   if there is a replay buffer, then the callback must be given that
  *   instead of the current source pointer
  * - functions for toU()
- *   + test fromU() first
+ *   + test fromU() functions first before writing toU()
  *   + use cnv->toUBytes[] for initial input
- *   + use binary search on fixed-width table segments, RTs then RFBs
- *   + use linear search on variable-width table segments, RTs then RFBs
- * - Simple (single-code point) MBCS mapping functions need to handle extensions
- *   so that we can shrink tables for complex charsets.
- *   Sufficient to handle only 1:1 mappings.
- *   Pass cnv=NULL, use only initialMatch=TRUE, and never return a partial
- *   match.
  * - EBCDIC_STATEFUL: support extensions, but the charset string must be
  *   either one single-byte character or a sequence of double-byte ones,
  *   to avoid state transitions inside the mapping and to avoid having to

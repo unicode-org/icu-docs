@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="en-us">
-<link rel="stylesheet" href="../reports.css" type="text/css">
+<link rel="stylesheet" href="http://unicode.org/reports/reports.css" type="text/css">
 <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <title>UTR# 36: Security Considerations in the Implementation of Unicode and Related Technology
@@ -115,10 +115,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   For the first time, all of the world&#39;s characters could be represented in a uniform manner, for 
   the first time making it feasible for the vast majority of programs to be <i>globalized:</i> built 
   to handle any language in the world.</p>
-  <p>In many ways, the use of Unicode makes programs much more robust and secure. When systems need 
-  to use a hodge-podge of different charsets for representing characters, it was possible to take 
-  advantage of differences between those charsets, or in the way in which programs converted to and 
-  from them.</p>
+  <p>In many ways, the use of Unicode makes programs much more robust and secure. When systems used 
+  a hodge-podge of different charsets for representing characters, it was possible to take advantage 
+  of differences between those charsets, or in the way in which programs converted to and from them.</p>
   <p>However, because Unicode contains such a large number of characters, and because it 
   incorporates the varied writing systems of the world, incorrect usage can expose programs or 
   systems to possible security attacks. This document describes some of the security considerations 
@@ -245,9 +244,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   domain names (IDN). There is a natural desire for people to see domain names in their own 
   languages and writing systems; English speakers can understand this if they consider what it would 
   be like if they always had to type web addresses with Russian characters! So IDN represents a very 
-  significant advance for most people in the world. The avoidance of spoofing vulnerability requires 
-  proper implementation in browsers and other programs, <span>so as to minimize security risks 
-  without making the use of non-ASCII characters too onerous.</span></p>
+  significant advance for most people in the world. The avoidance of spoofing vulnerabilities 
+  requires proper implementation in browsers and other programs, <span>so as to minimize security 
+  risks while still allowing for effective use of non-ASCII characters.</span></p>
   <p>International domain names are, of course, not the only cases where visual spoofing can occur. 
   For example, you might get a message asking you to allow the installation of software from &quot;IBM&quot;, 
   authenticated with the proper Verisign certificate, but the &quot;M&quot; character happens to be the 
@@ -266,9 +265,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   But the compatibility normalization will convert any sequence of &quot;a&quot; plus &quot;¨&quot; into the regular
   </font>&quot;<font SIZE="3">ä&quot;. </font></p>
   <p>Thus you can&#39;t spoof an <i>a-umlaut</i> with <i>a + umlaut</i>; it simply results in the same 
-  domain name. See example 1 below. The String column shows the actual characters; the UTF-16 shows 
-  the underlying encoding, while the IDNA column shows the IDNA format used to represent the string 
-  internally in International Domain Names.</p>
+  domain name. See the example <i>Safe Domain Names </i>below. The String column shows the actual 
+  characters; the UTF-16 shows the underlying encoding, while the IDNA column shows the IDNA format 
+  used to represent the string internally in International Domain Names.</p>
   <table style="BORDER-COLLAPSE: collapse" cellSpacing="0" cellPadding="4" border="1">
     <caption style="font-size: 14pt; font-weight: bold"><b>Safe Domain Names</b></caption>
     <tr>
@@ -303,16 +302,25 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <p><span>For a list of allowable characters in IDN, see [<a href="#idn-chars">idn-chars</a>]. 
   There are many misperceptions about which characters are allowed in IDN, so referencing this 
   explicit list should be useful for dispelling some of them. The characters are those left after 
-  string processing has been performed, so case-folding and normalization have already been applied.
-  </span></p>
+  string processing has been performed, so case-folding and normalization have already been applied.</span></p>
+  <blockquote>
+    <p><span class="changedspan"><b>Note</b>: people should expect diacriticals to distinguish 
+    domain names. For example, the domain names &quot;resume.com&quot; and &quot;r</span><font SIZE="3"><span class="changedspan">ésumé.com&quot; 
+    are (and should be) distinguished. In languages where the spelling may allow certain words with 
+    and without diacritics, two domain names would need to be registered (just as one may register 
+    both &quot;</span></font><span class="changedspan">analyze<font SIZE="3">.com&quot; and &quot;</font></span><span class="changedspan">analyse</span><font SIZE="3"><span class="changedspan">.com&quot;). 
+    However, if the practice of dropping diacriticals is widespread, a registry may want to pay 
+    attention to this when creating bundles or blocking.</span></p>
+  </blockquote>
+  </font>
   <p><span>Although normalization and case-folding prevent many possible spoofing attacks, </span>
   there remain many cases where visual spoofing can still occur with international domain names.
-  <span>Ideally, much of this would be handled on the registries&#39; side instead of user-agents 
+  <span>Ideally, much of this would be handled on the registry side instead of the user-agent side 
   (browsers, emailers, and other programs that display and process URLs). The registry has the most 
   data available, and process it the most efficiently at the time of registration, using policies to 
   reduce visual spoofing. For example, given confusable mapping data, the registry can easily 
   determine if a proposed registration conflicts with an existing one; that is much more difficult 
-  for user agents because of the sheer number of combinations that it would have to probe.</span></p>
+  for user agents because of the sheer number of combinations that they would have to probe.</span></p>
   <p><span>However:</span></p>
   <ul>
     <li><span>the user agent has more control over the display of characters, which is crucial to 
@@ -333,13 +341,14 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   characters were separate in legacy encodings, and preservation of those distinctions was necessary 
   for existing data to be mapped to Unicode without loss. Moreover, the characters generally have 
   very different behavior: two visually confusable characters may be different in casing behavior, 
-  in category (letter vs. number), or in numeric value. After all, ASCII doesn&#39;t unify lowercase L 
-  and digit 1, even though those are visually confusable. Encoding the Cyrillic character б 
+  in category (letter vs. number), or in numeric value. After all, ASCII doesn&#39;t unify lowercase 
+  letter l and digit 1, even though those are visually confusable. Encoding the Cyrillic character б 
   (corresponding to the letter &quot;b&quot;) by using the numeral 6, would clearly have been a mistake, even 
   though they are visually confusable.</span></p>
-  <p><span>However, the existence of these cases </span>means that there is a significant number of 
-  spoofing possibilities using characters from different scripts. For example, a domain name can be 
-  spoofed by using a Greek omicron instead of an &#39;o&#39;, as in example 2a.</p>
+  <p><span>However, the existence of v</span>isually confusable characters across scripts<span>
+  </span>means that there is a significant number of spoofing possibilities using characters from 
+  different scripts. For example, a domain name can be spoofed by using a Greek omicron instead of 
+  an &#39;o&#39;, as in example 2a.</p>
   <table id="AutoNumber2" style="BORDER-COLLAPSE: collapse" cellSpacing="0" cellPadding="4" border="1">
     <caption style="font-size: 14pt; font-weight: bold"><b>Cross-Script Spoofing</b></caption>
     <tr>
@@ -371,7 +380,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   The lack of IDNs in the past has also led to the usage in some registries (such as the .ru TLD) 
   where Latin names have been used to create pseudo-cyrillic names in the .ru tld. For example, see
   <a href="http://caxap.ru/">http://caxap.ru/</a> (сахар means sugar in Russian)</span>.</p>
-  <p>The Unicode Standard supplies information that can be used for detecting mixed-script text: for 
+  <p>The Unicode Standard supplies information that can be used for detecting mixed-script text. For 
   more information, see UAX #24: <i><a href="http://www.unicode.org/reports/tr24/">Script Names</a></i>.</p>
   <p><span>Cyrillic and Latin represent special challenges, since the number of common glyphs shared 
   between them is so high, as can be seen from [<a href="#idn-chars">idn-chars</a>]. It may be 
@@ -379,12 +388,13 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   essentially always identical in form to Latin letters, such as &quot;scope.com&quot;: with &quot;scope&quot; in 
   Cyrillic looking just like &quot;scope&quot; in Latin. These are called <i>whole-script confusables.</i></span></p>
   <h3>In-Script Spoofing</h3>
-  <p>While compatibility normalization and mixed-script detection can handle the vast majority of 
-  cases, there are other visual confusables that could cause problems. With fonts increasingly able 
-  to handle international characters, and <i>especially</i> with smaller font sizes in the context 
-  of an address bar, these visual confusables could be used to spoof. Importantly, these problems 
-  can be illustrated with common, widely available fonts on widely available operating systems
-  <font face="Lucida Sans Unicode">—</font> this is not pointing a finger at any one vendor.</p>
+  <p>While compatibility normalization and mixed-script detection can handle the majority of cases, 
+  there are other visual confusables that could cause problems. Fonts are increasingly able to 
+  handle international characters. <i>Especially</i> at the smaller font sizes in the context of an 
+  address bar, any visual confusables within a single script can be used in spoofing. Importantly, 
+  these problems can be illustrated with common, widely available fonts on widely available 
+  operating systems <font face="Lucida Sans Unicode">—</font> the problems are not specific to any 
+  single vendor.</p>
   <p>Consider the following examples, all in the same script. In each numbered case, in commonly 
   available browsers, the strings will look identical.</p>
   <table style="BORDER-COLLAPSE: collapse" cellSpacing="0" cellPadding="4" border="1">
@@ -483,6 +493,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   should be &#39;stacked&#39; above the first, producing a distinct visual difference. But as this example 
   shows, common fonts will simply superimpose the second <i>umlaut</i>; and if the positioning is 
   close enough, the user will not see a difference between 8a and 8b.</p>
+  <p>In example 9, we have an even worse case. The <i>underdot</i> character in 9a is <i>actually</i> 
+  under the &#39;l&#39;, but in many fonts, it appears as under the &#39;e&#39;! It is thus visually confusable with 
+  9b (where the <i>underdot</i> is under the e) or the equivalent normalized form 9c.</p>
   <table style="BORDER-COLLAPSE: collapse" cellSpacing="0" cellPadding="4" border="1">
     <caption style="font-size: 14pt; font-weight: bold">Inadequate Rendering Support </caption>
     <tr>
@@ -526,10 +539,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td><span class="mono">xn--l-ewm.com</span></td>
     </tr>
   </table>
-  <p>In example 9, we have an even worse case. The <i>underdot</i> character in 9a is <i>actually</i> 
-  under the &#39;l&#39;, but in many fonts, it appears as under the &#39;e&#39;! It is thus visually confusable with 
-  9b (where the <i>underdot</i> is under the e) or the equivalent normalized form 9c.</p>
-  <h3><span>Syntax Spoofing</span></h3>
+  <h3><span><br>
+  Syntax Spoofing</span></h3>
   <p><span>Spoofing syntax characters can be even worse than regular characters. For example, U+2044 
   &#39;<span title="U+2044 FRACTION SLASH">⁄&#39; <span style="font-variant: small-caps">FRACTION SLASH</span> 
   can look like &#39;/&#39; in many fonts (ideally the spacing and angle is sufficiently different as to be 
@@ -597,17 +608,17 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   Where software simply interprets the numeric value of a string of digits, without detecting that 
   the digits are from different scripts, it is possible to generate such spoofs.</span></span></p>
   <h3><span><a name="Visual_Spoofing_Recommendations">Recommendations</a></span></h3>
-  <p><span>We are in the process of gathering data that would allow for a finer-grained approach, 
-  but until such time as that is more comprehensive, we&#39;d recommend having a more conservative 
-  stance. It is always easier to widen restrictions than narrow them. We do expect these 
-  recommendations to be refined over time.</span></p>
-  <p><span>Some people have proposed prevention of spoofing by restricting domain names according to 
-  language. In practice, that is very problematic. It is very difficult to determine the intended 
-  language of many terms, especially product or company names, which are often constructed to be 
-  neutral regarding language. Moreover, languages tend to be quite fluid; foreign words are 
-  continually being adopted. Except for registries with very special policies (such as the blocking 
-  used by some East Asian registries such as described in [<a href="#RFC3743">RFC3743</a>]), the 
-  language association doesn&#39;t make too much sense. </span></p>
+  <p>The Unicode consortium<span> is in the process of gathering data that would allow for a 
+  finer-grained approach, but until such time as that is more comprehensive, a somewhat conservative 
+  stance is recommended. It is always easier to widen restrictions than narrow them. We do expect 
+  these recommendations to be refined over time.</span></p>
+  <p><span>Some have proposed restricting domain names according to language, to prevent spoofing. 
+  In practice, that is very problematic: it is very difficult to determine the intended language of 
+  many terms, especially product or company names, which are often constructed to be neutral 
+  regarding language. Moreover, languages tend to be quite fluid; foreign words are continually 
+  being adopted. Except for registries with very special policies (such as the blocking used by some 
+  East Asian registries such as described in [<a href="#RFC3743">RFC3743</a>]), the language 
+  association doesn&#39;t make too much sense. </span></p>
   <p><span>Instead, what is recommended is a combination of string preprocessing to remove basic 
   equivalences, promoting adequate rendering support, and putting restrictions in place according to 
   script and restricting by confusable characters. While the ICANN guidelines say &quot;top-level domain 
@@ -674,52 +685,61 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       serif. Use a size that makes it easier to see the differences in characters. Disallow the use 
       of font sizes that are so small as to cause even more characters to be visually confusable.</span></li>
       <li><span>Provide the following optional Security Levels according to the contents of the 
-      domain name (excluding the TLD). Any domain names only satisfying a higher level would 
-      generate appropriate alerts. <span class="changedSpan">A breakdown of characters by script is 
-      given in [<a href="#idn-chars">idn-chars</a>].</span></span><ol>
+      domain name (excluding the TLD). An appropriate alert should be generated if a domain name 
+      failed to satisfy the chosen security level. <span class="changedSpan">A breakdown of 
+      characters by script is given in [<a href="#idn-chars">idn-chars</a>].</span></span><ol>
         <li><b><span>No IDN</span></b><ul>
           <li><span>ASCII only</span></li>
         </ul>
         </li>
         <li><b><span>Minimal (default -- short term)</span></b><ul>
-          <li><span>any single script, or <i>Han + Hiragana + Katakana</i>, or <i>Han + Bopomofo</i>, 
+          <li>A<span>ny single script, or <i>Han + Hiragana + Katakana</i>, or <i>Han + Bopomofo</i>, 
           or <i>Han + Hangul</i>, </span></li>
-          <li><span>plus <i>Common</i>, plus <i>Inherited</i> script characters</span></li>
+          <li>In determining script,<span> <i>Common</i> and <i>Inherited</i> script characters are 
+          ignored.</span></li>
           <li><span><i><b>but:</b></i></span></li>
-          <li><span>exclude special-purpose characters (see [<a href="#special">special</a>])</span></li>
-          <li><span><font color="#FF0000">(possible future extension)</font> exclude any combining 
-          character sequences outside of NamedSequences.txt (Unicode 4.1)</span></li>
+          <li>E<span>xclude special-purpose characters (see [<a href="#special">special</a>])</span></li>
+          <li><span><font color="#FF0000">(possible future extension)</font> Exclude any combining 
+          character sequences outside of <code>NamedSequences.txt</code> (Unicode 4.1)</span></li>
         </ul>
         </li>
         <li><b><span>Moderate = </span></b><span>Minimal + </span>
         <ul>
-          <li><span>allow <i>Latin</i> with other scripts except <i>Cyrillic</i>, <i>Greek</i>, <i>
+          <li>A<span>llow <i>Latin</i> with other scripts except <i>Cyrillic</i>, <i>Greek</i>, <i>
           Cherokee</i></span></li>
         </ul>
         </li>
         <li><b><span>Expanded = </span></b><span>Moderate +</span><ul>
-          <li><span>allow mixtures of scripts, e.g. Ωmega.com, Teχ.org, HλLF-LIFE.com</span></li>
-          <li><span>allow more excluded characters (data — TBD)</span></li>
+          <li>A<span>llow mixtures of scripts, e.g. Ωmega.com, Teχ.org, HλLF-LIFE.com</span></li>
+          <li>A<span>llow more excluded characters (data — TBD)</span></li>
         </ul>
         </li>
         <li><b><span>Unrestricted</span></b><ul>
-          <li><span>any valid IDN, except those starting with combining marks, or using visually 
+          <li>A<span>ny valid IDN, except those starting with combining marks, or using visually 
           confusable syntax characters</span></li>
         </ul>
         </li>
       </ol>
       </li>
-      <li><span>Once confusable data is more comprehensive:</span><ol>
-        <li>R<span>aise the default level to Level3</span></li>
-        <li>A<span>lert on domain names where there is some mapping of confusable characters that 
-        would result in a different domain name that would also be allowed at that security level.</span><ul>
-          <li><span>For example: &quot;ѕсоре.com&quot; (with &quot;ѕсоре&quot; in <i>Cyrillic</i> looking like &quot;scope&quot; 
-          in <i>Latin</i>) would cause an alert at Level 2, even though it is a single script 
-          (excluding the TLD).</span></li>
+      <li><span>Once confusable data ([<a href="#confusables">confusables</a>]) is more 
+      comprehensive:</span><ol>
+        <li>R<span>aise the default level to Level 3<span class="changedspan">, and allow Latin with 
+        any other script</span></span></li>
+        <li><span class="changedSpan">If the domain name is a single script, but has a whole-script 
+        confusable, verify that both point to the same IP address. If not, alert the user.</span><ul>
+          <li><span>For example: &quot;ѕсоре.com&quot; (<i>Cyrillic)</i> would cause an alert if &quot;scope.com&quot; (<i>Latin</i>) 
+          had a different IP address.</span></li>
         </ul>
         </li>
-        <li><span class="changedSpan">If the domain name has a whole-script confusable, verify that 
-        both point to the same IP address. If not, alert the user.</span></li>
+        <li><span class="changedspan">If the domain name has N mixed scripts, generate N new domain 
+        names, whereby each maximizes the number of characters of a given script using the 
+        confusable mappings.</span><ol>
+          <li><span class="changedspan">If any of the new domain names is single script, alert the 
+          user (this catches the paypal.com with Cyrillic <i>a</i>).</span></li>
+          <li><span class="changedspan">Otherwise (that is, all are mixed script), see if any have 
+          different IP addresses. If so, alert the user.</span></li>
+        </ol>
+        </li>
       </ol>
       </li>
       <li><span class="changedSpan">Visually highlight the domain name when a URL is displayed, to 
@@ -729,7 +749,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <li><span><b>Domain Names: Registries</b></span><ol type="A">
       <li><span>In the short term, use Level 2 <span class="changedSpan">from &quot;User Agents&quot;</span> 
       to restrict new domain names.</span></li>
-      <li><span>Once the confusable data is more comprehensive:</span><ol>
+      <li><span>Once the confusable data ([<a href="#confusables">confusables</a>]) is more 
+      comprehensive:</span><ol>
         <li>R<span>aise the allowable level to Level 5</span></li>
         <li><span class="changedSpan">Whenever a new domain name is registered, automatically give 
         the registrant any whole-script confusable variant. Thus a registration of &quot;<span>ѕсоре.com</span>&quot; 
@@ -795,10 +816,10 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       idn-chars.html</a><b><br>
       </b>Lists all the possible IDN chars, after nameprep is performed. Contains all the possible 
       characters, sorted by script, then whether atomic (non-decomposible) or decomposable, then 
-      according to UCA collation order. Scripts that are bicameral (have both upper and lower cases) 
-      are further divided into two sets, based on whether letters have both cases or not. If your 
-      browser supports tool-tips, hovering the mouse over any character will show its name and code 
-      point.</span></td>
+      according to UCA collation order. The characters in bicameral scripts (those that have both 
+      upper and lower cases) are further divided into two sets, based on whether letters have both 
+      upper and lowercase pairs or not. If your browser supports tool-tips, hovering the mouse over 
+      any character will show its name and code point.</span></td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1"><span>[<a name="confusables">confusables</a>]</span></td>

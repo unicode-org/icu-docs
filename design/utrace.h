@@ -34,6 +34,14 @@
 *     pointers if they have been set;
 *     this avoids an indirection at the call site
 *     (which would cost more code for another check and for the indirection)
+*
+*   ### TODO Issues:
+*   - Verify that va_list is portable among compilers for the same platform.
+*     va_list should be portable because printf() would fail otherwise!
+*   - Should enum values like UTraceLevel be passed into int32_t-type arguments,
+*     or should enum types be used?
+*     We use enum types in all public APIs, so they should be safe and more
+*     descriptive/type-safe. (Search case-insensitive for "level".)
 */
 
 #ifndef __UTRACE_H__
@@ -93,6 +101,11 @@ utrace_setLevel(int32_t traceLevel);
  * In C code, must be placed immediately after the last variable declaration.
  * Must be matched with UTRACE_EXIT() at all function exit points.
  *
+ * Tracing should start with UTRACE_ENTRY after checking for
+ * U_FAILURE at function entry, so that if a function returns immediately
+ * because of a pre-existing error condition, it does not show up in the trace,
+ * consistent with ICU's error handling model.
+ *
  * @param fnNumber The UTraceFunctionNumber for the current function.
  * @draft ICU 2.8
  */
@@ -106,11 +119,17 @@ utrace_setLevel(int32_t traceLevel);
  * Trace statement for each exit point of a function that has a UTRACE_ENTRY()
  * statement.
  *
+ * @param errorCode The function's ICU UErrorCode value at function exit,
+ *                  or U_ZERO_ERROR if the function does not use a UErrorCode.
+ *                  0==U_ZERO_ERROR indicates success,
+ *                  positive values an error (see u_errorName()),
+ *                  negative values an informational status.
+ *
  * @draft ICU 2.8
  */
-#define UTRACE_EXIT() \
+#define UTRACE_EXIT(errorCode) \
     if(UTRACE_IS_ON) { \
-        utrace_exit(utraceFnNumber); \
+        utrace_exit(utraceFnNumber, errorCode); \
     }
 
 /**
@@ -126,10 +145,11 @@ utrace_entry(int32_t fnNumber);
  * Trace function for each exit point of a function.
  * Do not use directly, use UTRACE_EXIT instead.
  * @param fnNumber The UTraceFunctionNumber for the current function.
+ * @param errorCode The UErrorCode value at function exit. See UTRACE_EXIT.
  * @internal
  */
 U_CAPI void U_EXPORT2
-utrace_exit(int32_t fnNumber);
+utrace_exit(int32_t fnNumber, UErrorCode errorCode);
 
 /**
  * Trace function used inside functions that have a UTRACE_ENTRY() statement.
@@ -164,8 +184,6 @@ utrace_exit(int32_t fnNumber);
  * The ICU trace macros and functions that are used in ICU source code take
  * a variable number of arguments and pass them into the application trace
  * functions as va_list.
- * ### TODO Verify that va_list is portable among compilers for the same platform.
- * va_arg should be portable because printf() would fail otherwise!
  *
  * Type characters:
  * - c A char character in the default codepage.
@@ -348,7 +366,7 @@ typedef void U_CALLCONV
 UTraceEntry(const void *context, int32_t fnNumber);
 
 typedef void U_CALLCONV
-UTraceExit(const void *context, int32_t fnNumber);
+UTraceExit(const void *context, int32_t fnNumber, UErrorCode errorCode);
 
 typedef void U_CALLCONV
 UTraceData(const void *context, int32_t fnNumber, int32_t level,

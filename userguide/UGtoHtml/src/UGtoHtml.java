@@ -252,6 +252,14 @@ public class UGtoHtml {
             } else if (xmlTag.equals("text:bookmark")) {
              	String target = e.getAttribute("text:name");
              	fHtml.append("<a name=\"" + target + "\"></a>");
+            } else if (xmlTag.equals("text:bookmark-start")) {
+                // Note: OO bookmarks covering a range do not need to nest with evenly within
+                //      other stuff.  To avoid generating bad html, just anchor to the start position,
+                //      and ignore the bookmark-end tag.
+             	String target = e.getAttribute("text:name");
+             	fHtml.append("<a name=\"" + target + "\"></a>");
+            } else if (xmlTag.equals("text:bookmark-end")) {
+                // no action.
             } else if (xmlTag.equals("office:annotation")) {
             	// This is an Open Office "note".
             	//  It may be a reference to an image.

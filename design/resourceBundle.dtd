@@ -43,6 +43,16 @@
 <!ATTLIST str key CDATA #IMPLIED
               val CDATA #IMPLIED>
 
+<!-- Alias,
+     may contain any Unicode characters and may be empty;
+     note CDATA parsing rules in XML:
+     all sequences of whitespace get replaced by single spaces U+0020;
+     if multiple spaces or CR or LF are intended, then
+     they must be written as NCRs &#x20; &#xd; &#xa; etc. -->
+<!ELEMENT alias EMPTY>
+<!ATTLIST alias key CDATA #IMPLIED
+              val CDATA #IMPLIED>
+
 <!-- 28-bit integer (not 32 bits!),
      value range: -2^27..2^28-1 to reach all signed and unsigned 32-bit values;
      for details see icuhtml/design/bnf_rb.txt;

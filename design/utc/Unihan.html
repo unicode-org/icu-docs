@@ -1,0 +1,612 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Unicode Character Database</title>
+<link rel="stylesheet" type="text/css" href="http://www.unicode.org/reports/reports.css">
+<style type="text/css">
+<!--
+th           { background-color: #CCFFCC }
+-->
+</style>
+</head>
+
+<body bgcolor="#ffffff">
+
+<table class="header" width="100%">
+  <tr>
+    <td class="icon"><a href="http://www.unicode.org">
+    <img align="middle" alt="[Unicode]" border="0" src="http://www.unicode.org/webscripts/logo60s2.gif" width="34" height="33"></a>&nbsp;&nbsp;<a class="bar" href="http://www.unicode.org/ucd">Unicode 
+    Character Database</a></td>
+  </tr>
+  <tr>
+    <td class="gray">&nbsp;</td>
+  </tr>
+</table>
+<div class="body">
+  <h1>UNICODE HAN DATABASE</h1>
+  <table class="wide" border="1">
+    <tr>
+      <td valign="TOP" width="144">Revision</td>
+      <td valign="TOP">4.1.0</td>
+    </tr>
+    <tr>
+      <td valign="TOP" width="144">Authors</td>
+      <td valign="TOP">John Jenkins, Richard Cook</td>
+    </tr>
+    <tr>
+      <td valign="TOP" width="144">Date</td>
+      <td valign="TOP">2004-12-28</td>
+    </tr>
+    <tr>
+      <td valign="TOP" width="144">This Version</td>
+      <td valign="TOP"><a href="http://www.unicode.org/Public/4.1.0/ucd/Unihan.html">
+      http://www.unicode.org/Public/4.1.0/ucd/Unihan.html</a></td>
+    </tr>
+    <tr>
+      <td valign="TOP" width="144">Previous Version</td>
+      <td valign="TOP">(was part of
+      <a href="http://www.unicode.org/Public/4.0-Update1/UCD-4.0.1.html">
+      http://www.lm.org/Public/4.0-Update1/UCD-4.0.1.html</a>)</td>
+    </tr>
+    <tr>
+      <td valign="TOP" width="144">Latest Version</td>
+      <td valign="TOP"><a href="http://www.unicode.org/Public/UNIDATA/Unihan.html">
+      http://www.unicode.org/Public/UNIDATA/Unihan.html</a></td>
+    </tr>
+  </table>
+  <h3><br>
+  S<i>ummary</i></h3>
+  <blockquote>
+    <p><i>This document describes the format and content of the Unihan file in the Unicode Character 
+    Database (UCD)</i></p>
+  </blockquote>
+  <h3><i>Status</i></h3>
+  <blockquote>
+    <p><i>This file and the files described herein are part of the Unicode Character Database and 
+    are governed by the terms of use at <a href="http://www.unicode.org/terms_of_use.html">
+    http://www.unicode.org/terms_of_use.html</a>.</i></p>
+    <p><i>The <a href="#References">References</a> provide related information that is useful in 
+    understanding this document.</i></p>
+    <p><i><b>Warning: </b>the information in this file does not completely describe the use and 
+    interpretation of Unicode character properties and behavior. It must be used in conjunction with 
+    the data in the other files in the Unicode Character Database, and relies on the notation and 
+    definitions supplied in <a href="http://www.unicode.org/standard/standard.html">The Unicode 
+    Standard</a>. All chapter references are to Version 4.1.0 of the standard unless otherwise 
+    indicated.</i></p>
+  </blockquote>
+  <h2><a name="Unihan_Tags">File Structure</a></h2>
+  <p class="reviewnote">For John, Richard to fill out.</p>
+  <h2><a name="Unihan_Tags">Unihan Tags</a></h2>
+  <p>The following is a summary of the data tags in the <a href="#Unihan.txt">Unihan.txt</a> file. 
+  Only a few of these correspond to Unicode normative or informative properties: the rest are 
+  provisional. For more information on general structure of the Unicode Character Database, see
+  <a href="UCD.html">UCD.html</a>.</p>
+  <p class="reviewnote">For John, Richard to fill out.</p>
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>Property Name</th>
+      <th>Description from Unihan (abbreviated)</th>
+    </tr>
+    <tr>
+      <th align="left">Numeric</th>
+      <td><a name="kAccountingNumeric">kAccountingNumeric</a></td>
+      <td>The value of the character when used in the writing of accounting numerals.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td><a name="kOtherNumeric">kOtherNumeric</a></td>
+      <td>The numeric value for the character in certain unusual, specialized contexts.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td><a name="kPrimaryNumeric">kPrimaryNumeric</a></td>
+      <td>The value of the character when used in the writing of numbers in the standard fashion.</td>
+    </tr>
+    <tr>
+      <th align="left">Variants </th>
+      <td>kSemanticVariant</td>
+      <td>The Unicode value for a semantic variant for this character. A semantic variant is an x- 
+      or y-variant with similar or identical meaning which can generally be used in place of the 
+      indicated character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kSimplifiedVariant</td>
+      <td>The Unicode value for the simplified Chinese variant for this character (if any).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kSpecializedSemanticVariant</td>
+      <td>The Unicode value for a specialized semantic variant for this character. A specialized 
+      semantic variant is an x- or y-variant with similar or identical meaning only in certain 
+      contexts (such as accountants&#39; numerals).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kTraditionalVariant</td>
+      <td>The Unicode value(s) for the traditional Chinese variant(s) for this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kZVariant</td>
+      <td>The Unicode value(s) for known z-variants of this character.</td>
+    </tr>
+    <tr>
+      <th align="left">Radical/Stroke </th>
+      <td><a name="kRSUnicode">kRSUnicode</a></td>
+      <td>A standard radical/stroke count for this character in the form &quot;radical.additional 
+      strokes&quot;. A &#39; after the radical indicates the simplified version of the given radical.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kRSJapanese</td>
+      <td>A Japanese radical/stroke count for this character in the form &quot;radical.additional 
+      strokes&quot;.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kRSKanWa</td>
+      <td>A Morohashi radical/stroke count for this character in the form &quot;radical.additional 
+      strokes&quot;.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kRSKangXi</td>
+      <td>A KangXi radical/stroke count for this character in the form &quot;radical.additional strokes&quot;.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kRSKorean</td>
+      <td>A Korean radical/stroke count for this character in the form &quot;radical.additional strokes&quot;. 
+      A &#39; after the radical indicates the simplified version of the given radical.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kTotalStrokes</td>
+      <td>The total number of strokes in the character (including the radical).</td>
+    </tr>
+    <tr>
+      <th align="left">Pronunciations </th>
+      <td>kCantonese</td>
+      <td>The Cantonese pronunciation(s) for this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kJapaneseKun</td>
+      <td>The Japanese pronunciation(s) of this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kJapaneseOn</td>
+      <td>The Sino-Japanese pronunciation(s) of this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kKorean</td>
+      <td>The Korean pronunciation(s) of this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kMandarin</td>
+      <td>The Mandarin pronunciation(s) for this character in pinyin.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kTang*</td>
+      <td>The Tang dynasty pronunciation(s) of this character, derived from _T&#39;ang Poetic 
+      Vocabulary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kVietnamese</td>
+      <td>The character&#39;s pronunciation(s) in Quốc ngữ</td>
+    </tr>
+    <tr>
+      <th align="left">Definition </th>
+      <td>kDefinition</td>
+      <td>An English definition for this character.</td>
+    </tr>
+    <tr>
+      <th align="left">Frequency </th>
+      <td>kFrequency</td>
+      <td>A rough frequency measurement for the character based on analysis of Chinese USENET 
+      postings.</td>
+    </tr>
+    <tr>
+      <th align="left">Grade </th>
+      <td>kGradeLevel*</td>
+      <td>The grade in the Hong Kong school system by which a student is expected to know the 
+      character.</td>
+    </tr>
+    <tr>
+      <th align="left">Dictionary Position</th>
+      <td>kAlternateKangXi</td>
+      <td>An alternate possible position for the character in the KangXi dictionary.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kAlternateMorohashi</td>
+      <td>An alternate possible position for the character in the Morohashi dictionary.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kCihaiT* </td>
+      <td>The position of this character in the Cihai (辭海) dictionary, single volume edition, 
+      published in Hong Kong by the Zhonghua Bookstore, 1983 (reprint of the 1947 edition), ISBN 
+      962-231-005-2.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kCowles*</td>
+      <td>The index of this character in Roy T. Cowles, _A Pocket Dictionary of Cantonese_, Hong 
+      Kong: University Press, 1999.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kDaeJaweon</td>
+      <td>The position of this character in the Dae Jaweon (Korean) dictionary used in the 
+      four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kFenn*</td>
+      <td>Data on the character from _Fenn&#39;s Chinese-English Pocket Dictionary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kHanYu</td>
+      <td>The position of this character in the Hanyu Da Zidian (HDZ) Chinese character dictionary 
+      (bibliographic information below).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kHKGlyph*</td>
+      <td>The index of the character in 常用字字形表 (二零零零年修訂本), 香港: 香港教育學院, 2000, ISBN 962-949-040-4. 
+      This publication gives the &quot;proper&quot; shapes for characters as used in the Hong Kong school 
+      system.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRGDaeJaweon</td>
+      <td>The position of this character in the Dae Jaweon (Korean) dictionary used in the 
+      four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRGDaiKanwaZiten</td>
+      <td>The index of this character in the Dae Kanwa Ziten, aka Morohashi dictionary (Japanese) 
+      used in the four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRGHanyuDaZidian</td>
+      <td>The position of this character in the Hanyu Da Zidian (PRC) dictionary used in the 
+      four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRGKangXi</td>
+      <td>The position of this character in the KangXi dictionary used in the four-dictionary 
+      sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kKangXi</td>
+      <td>The position of this character in the KangXi dictionary used in the four-dictionary 
+      sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kKarlgren*</td>
+      <td>The index of this character in _Analytic Dictionary of Chinese and Sino-Japanese_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kLau*</td>
+      <td>The index of this character in _A Practical Cantonese-English Dictionary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kMatthews</td>
+      <td>The index of this character in _Mathews&#39; Chinese-English Dictionary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kMeyerWempe*</td>
+      <td>The index of this character in the Student&#39;s Cantonese-English Dictionary.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kMorohashi</td>
+      <td>The index of this character in the Dae Kanwa Ziten, aka Morohashi dictionary (Japanese) 
+      used in the four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kNelson</td>
+      <td>The index of this character in _The Modern Reader&#39;s Japanese-English Character 
+      Dictionary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kPhonetic*</td>
+      <td>The phonetic index for the character from _Ten Thousand Characters: An Analytic 
+      Dictionary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kSBGY</td>
+      <td>The position of this character in the Song Ben Guang Yun (SBGY) Medieval Chinese character 
+      dictionary (bibliographic and general information below).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kCangjie*</td>
+      <td>The cangjie input code for the character. This incorporates data from the file 
+      cangjie-table.b5 by Christian Wittern.</td>
+    </tr>
+    <tr>
+      <th align="left"></th>
+      <td>kHanyuPinlu</td>
+      <td>The pronunciations and frequencies of the character, as derived from&nbsp;_Xiandai Hanyu Pinlu 
+      Cidian_ (1994).</td>
+    </tr>
+    <tr>
+      <th align="left"></th>
+      <td>kGSR</td>
+      <td>The position of this character in Bernhard&#39;s _Grammata Serica Recensa_&nbsp;(1957).</td>
+    </tr>
+    <tr>
+      <th align="left">Character Mapping </th>
+      <td>kBigFive</td>
+      <td>The Big Five mapping for this character in hex; note that this does *not* cover any of the 
+      Big Five extensions in common use, including the ETEN extensions.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kCCCII</td>
+      <td>The CCCII mapping for this character in hex.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kCNS1986</td>
+      <td>The CNS 11643-1986 mapping for this character in hex.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kCNS1992</td>
+      <td>The CNS 11643-1992 mapping for this character in hex.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kEACC</td>
+      <td>The EACC mapping for this character in hex.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kGB0</td>
+      <td>The GB 2312-80 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kGB1</td>
+      <td>The GB 12345-90 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kGB3</td>
+      <td>The GB 7589-87 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kGB5</td>
+      <td>The GB 7590-87 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kGB7</td>
+      <td>The &quot;General Use Characters for Modern Chinese&quot; mapping for this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kGB8</td>
+      <td>The GB 8565-89 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kHKSCS</td>
+      <td>Mappings to the Big Five extended code points used for the Hong Kong Supplementary 
+      Character Set.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIBMJapan</td>
+      <td>The IBM Japanese mapping for this character in hex.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRG_GSource</td>
+      <td>The IRG &quot;G&quot; source mapping for this character in hex. The IRG &quot;G&quot; source consists of data 
+      from the following national standards, publications, and lists from the People&#39;s Republic of 
+      China and Singapore.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRG_HSource</td>
+      <td>The IRG &quot;H&quot; source mapping for this character in hex. The IRG &quot;H&quot; source consists of data 
+      from the Hong Kong Supplementary Character Set.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRG_JSource</td>
+      <td>The IRG &quot;J&quot; source mapping for this character in hex. The IRG &quot;J&quot; source consists of data 
+      from the following national standards and lists from Japan.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRG_KSource</td>
+      <td>The IRG &quot;K&quot; source mapping for this character in hex. The IRG &quot;K&quot; source consists of data 
+      from the following national standards and lists from the Republic of Korea (South Korea).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRG_KPSource</td>
+      <td>The IRG &quot;KP&quot; source mapping for this character in hex. The IRG &quot;KP&quot; source consists of 
+      data from the following national standards and lists from the Democratic People&#39;s Republic of 
+      Korea (North Korea).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRG_TSource</td>
+      <td>The IRG &quot;T&quot; source mapping for this character in hex. The IRG &quot;T&quot; source consists of data 
+      from the following national standards and lists from the Republic of China (Taiwan).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kIRG_VSource</td>
+      <td>The IRG &quot;V&quot; source mapping for this character in hex. The IRG &quot;V&quot; source consists of data 
+      from the following national standards and lists from Vietnam.</td>
+    </tr>
+    <tr>
+      <th align="left"></th>
+      <td>kIRG_USource</td>
+      <td>The IRG &quot;U&quot; source mapping for this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kJIS0213</td>
+      <td>The JIS X 0213-2000 mapping for this character in min,ku,ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kJis0</td>
+      <td>The JIS X 0208-1990 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kJis1</td>
+      <td>The JIS X 0212-1990 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kKPS0</td>
+      <td>The KP 9566-97 mapping for this character in hexadecimal form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kKPS1</td>
+      <td>The KPS 10721-2000 mapping for this character in hexadecimal form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kKSC0</td>
+      <td>The KS X 1001:1992 (KS C 5601-1989) mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kKSC1</td>
+      <td>The KS X 1002:1991 (KS C 5657-1991) mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kMainlandTelegraph</td>
+      <td>The PRC telegraph code for this character, derived from &quot;Kanzi denpou koudo henkan-hyou&quot;.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kPseudoGB1</td>
+      <td>A &quot;GB 12345-90&quot; code point assigned this character for the purposes of including it within 
+      Unihan.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kTaiwanTelegraph</td>
+      <td>The Taiwanese telegraph code for this character, derived from &quot;Kanzi denpou koudo 
+      henkan-hyou&quot;.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp; </th>
+      <td>kXerox</td>
+      <td>The Xerox code for this character.</td>
+    </tr>
+    <tr>
+      <th align="left">Redundant </th>
+      <td>kCompatibilityVariant*</td>
+      <td>The compatibility decomposition for this ideograph, derived from the UnicodeData.txt file.</td>
+    </tr>
+  </table>
+  <h2>&nbsp;</h2>
+  <h2><a name="References">References</a></h2>
+  <p class="reviewnote">For John, Richard to fill out.</p>
+  <table class="noborder" style="border-collapse: collapse" cellpadding="4" cellspacing="0">
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="FAQ">FAQ</a>]</td>
+      <td valign="top" class="noborder">Unicode Frequently Asked Questions<br>
+      <a href="http://www.unicode.org/faq/">http://www.unicode.org/faq/<br>
+      </a><i>For answers to common questions on technical issues.</i></td>
+    </tr>
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="Glossary">Glossary</a>]</td>
+      <td valign="top" class="noborder">Unicode Glossary<a href="http://www.unicode.org/glossary/"><br>
+      http://www.unicode.org/glossary/<br>
+      </a><i>For explanations of terminology used in this and other documents.</i></td>
+    </tr>
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="Reports">Reports</a>]</td>
+      <td valign="top" class="noborder">Unicode Technical Reports<br>
+      <a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/<br>
+      </a><i>For information on the status and development process for technical reports, and for a 
+      list of technical reports.</i></td>
+    </tr>
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="U4.0">U4.0</a>]</td>
+      <td valign="top" class="noborder">The Unicode Standard Version 4.0<br>
+      <a href="http://www.unicode.org/versions/Unicode4.0.0/">
+      http://www.unicode.org/versions/Unicode4.0.0/</a></td>
+    </tr>
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="U4.0.1">U4.0.1</a>]</td>
+      <td valign="top" class="noborder">The Unicode Standard Version 4.0.1<br>
+      <a href="http://www.unicode.org/versions/Unicode4.0.1/">
+      http://www.unicode.org/versions/Unicode4.0.1/</a></td>
+    </tr>
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="Versions">Versions</a>]</td>
+      <td valign="top" class="noborder">Versions of the Unicode Standard<br>
+      <a href="http://www.unicode.org/versions/">http://www.unicode.org/versions/<br>
+      </a><i>For details on the precise contents of each version of the Unicode Standard, and how to 
+      cite them.</i></td>
+    </tr>
+  </table>
+  <h2><br>
+  <a name="Modification_History">Modification History</a></h2>
+  <p>This section provides a summary of the changes between update versions of the Unicode Standard.
+  </p>
+  <p class="reviewnote">For John, Richard to fill out.</p>
+  <h2><i><a name="UCD_Terms">UCD Terms of Use</a></i></h2>
+  <p>For terms of use, see <i><a href="http://www.unicode.org/terms_of_use.html">
+  http://www.unicode.org/terms_of_use.html</a>.</i></p>
+  <hr width="50%">
+  <div align="center">
+    <center>
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td><a href="http://www.unicode.org/copyright.html">
+        <img src="http://www.unicode.org/img/hb_notice.gif" border="0" alt="Access to Copyright and terms of use" width="216" height="50"></a></td>
+      </tr>
+    </table>
+    <script language="Javascript" type="text/javascript" src="http://www.unicode.org/webscripts/lastModified.js">
+                </script>
+    </center>
+  </div>
+</div>
+
+</body>
+
+</html>

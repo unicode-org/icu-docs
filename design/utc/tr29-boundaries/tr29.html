@@ -40,7 +40,7 @@
   <table class="wide" border="1" width="100%">
     <tr>
       <td>Version</td>
-      <td><span class="changedspan">4.1 (draft 2)</span></td>
+      <td><span class="changedspan">4.1 (draft 3)</span></td>
     </tr>
     <tr>
       <td>Authors</td>
@@ -48,17 +48,17 @@
     </tr>
     <tr>
       <td>Date</td>
-      <td>2004-10-12</td>
+      <td>2004-12-28</td>
     </tr>
     <tr>
       <td>This Version</td>
-      <td class="old_changed"><a href="http://www.unicode.org/reports/tr29/tr29-7.html">
-      http://www.unicode.org/reports/tr29/tr29-7.html</a></td>
+      <td class="old_changed"><a href="http://www.unicode.org/reports/tr29/tr29-8.html">
+      http://www.unicode.org/reports/tr29/tr29-8.html</a></td>
     </tr>
     <tr>
       <td>Previous Version</td>
-      <td class="old_changed"><a href="http://www.unicode.org/reports/tr29/tr29-6.html">
-      http://www.unicode.org/reports/tr29/tr29-6.html</a></td>
+      <td class="old_changed"><a href="http://www.unicode.org/reports/tr29/tr29-7.html">
+      http://www.unicode.org/reports/tr29/tr29-7.html</a></td>
     </tr>
     <tr>
       <td>Latest Version</td>
@@ -67,7 +67,7 @@
     <tr>
       <td>Tracking Number</td>
       <td>
-      <p class="old_changed"><a href="#Modifications">7</a></td>
+      <p class="old_changed">8</td>
     </tr>
   </table>
   <p><br>
@@ -143,7 +143,7 @@
   usually think of as characters), words, and sentences. (Line boundaries are to be found in
   <a href="http://www.unicode.org/unicode/reports/tr14/">UAX #14: Line Breaking Properties</a>.)</p>
   <p>Boundary determination builds upon the uniform character representation of the Unicode 
-  Standard, while handling the large number of characters and special features such as combining 
+  Standard, while handling the large number of characters and special features such as non-spacing 
   marks and conjoining jamo in an effective manner. As this mechanism lends itself to a completely 
   data-driven implementation, it can be tailored to particular orthographic conventions or user 
   preferences without recoding.</p>
@@ -152,7 +152,7 @@
   implementation. The specification needs to allow for the designation of large sets of characters 
   sharing the same characteristics (for example, uppercase letters), while the implementation must 
   provide quick access and matches to those large sets. The mechanism also must handle special 
-  features of the Unicode Standard, such as combining or nonspacing marks and conjoining jamo.</p>
+  features of the Unicode Standard, such as non-spacing marks and conjoining jamo.</p>
   <h3>1.1 <a name="Notation">Notation</a></h3>
   <p>A boundary specification defines boundary property values used in that specification, then 
   lists the rules for boundaries in terms of those property values. The characters having those 
@@ -248,14 +248,14 @@
   is thought of as a single character by users, yet is actually represented by two Unicode code 
   points. For more information on the ambiguity in the term <i>character</i>, see
   <a href="http://www.unicode.org/unicode/reports/tr17/">UTR #17: Character Encoding Model</a> [<a href="#Reports">Reports</a>].</p>
-  <p>Grapheme clusters include, but are not limited to, combining character sequences such as (g + 
-  °), digraphs such as Slovak “ch”, and sequences with letter modifiers such as k<sup>w</sup>. 
-  Grapheme cluster boundaries are important for collation, regular-expressions, and counting 
-  “character” positions within text.&nbsp; Word boundaries, line boundaries and sentence boundaries 
-  do not occur within a grapheme cluster. In this section, the Unicode Standard provides a 
-  determination of where the default grapheme boundaries fall in a string of characters. This 
-  algorithm can be tailored for specific locales or other customizations, which is what is done in 
-  providing contracting characters in collation tailoring tables.</p>
+  <p>Grapheme clusters include, but are not limited to, character sequences such as (g + °), 
+  digraphs such as Slovak “ch”, and sequences with letter modifiers such as k<sup>w</sup>. Grapheme 
+  cluster boundaries are important for collation, regular-expressions, and counting “character” 
+  positions within text.&nbsp; Word boundaries, line boundaries and sentence boundaries do not occur 
+  within a grapheme cluster. In this section, the Unicode Standard provides a determination of where 
+  the default grapheme boundaries fall in a string of characters. This algorithm can be tailored for 
+  specific locales or other customizations, which is what is done in providing contracting 
+  characters in collation tailoring tables.</p>
   <blockquote>
     <p><b>Note:</b> In previous documentation, default grapheme clusters were previously referred to 
     as “locale-independent graphemes”. The term <i>cluster</i> has been added to emphasize that the 
@@ -268,8 +268,8 @@
   is important that an editing interface present a uniform implementation of what the user thinks of 
   as characters. Grapheme clusters commonly commonly behave as units in terms of mouse selection, 
   arrow key movement, backspacing, and so on. When this is done, for example, and an accented 
-  character is represented by a combining character sequence, then using the right arrow key would 
-  skip from the start of the base character to the end of the last combining character.</p>
+  character is represented by a character sequence, then using the right arrow key would skip from 
+  the start of the base character to the end of the last character of the cluster.</p>
   <p>However, in some cases editing a grapheme cluster element by element may be the preferred way. 
   For example, a system might have <i>backspace</i> delete by code point, while the <i>delete </i>
   key may delete an entire cluster. Moreover, there is not a one-to-one relationship between 
@@ -278,11 +278,11 @@
   <p>In those rare circumstances where end-users need character counts, the counts should correspond 
   to the grapheme cluster boundaries.</p>
   <p>The principal requirements for default grapheme cluster boundaries are the handling of 
-  combining marks and Hangul conjoining jamo. Boundaries may be further tailored for requirements of 
-  different languages, such as the addition of “ch” for Slovak, or Indic, Thai or Tibetan character 
-  clusters.</p>
+  non-spacing marks and Hangul conjoining jamo. Boundaries may be further tailored for requirements 
+  of different languages, such as the addition of “ch” for Slovak, or Indic, Thai or Tibetan 
+  character clusters.</p>
   <p>A default grapheme cluster normally begins with a base character. Exceptions are when a 
-  combining mark is at the start of text, or it is preceded by a control (or format) character.
+  non-spacing mark is at the start of text, or it is preceded by a control (or format) character.
   <span class="old_changed">In place of a single base character, a Hangul Syllable composed of one 
   or more characters may serve as the base. </span>For the rules defining the default boundaries, 
   see <i><a href="#Default_Grapheme_Cluster_Table">Table 1, Default Grapheme Cluster Boundaries</a></i><a href="#Default_Grapheme_Cluster_Table">
@@ -632,9 +632,7 @@
     </tr>
     <tr>
       <td valign="top"><span class="changedspan"><b><a name="ExtendNumLet">ExtendNumLet</a></b></span></td>
-      <td><span class="changedspan">General_Category=Connector_Punctuation<br>
-      <i>and not </i>U+30FB KATAKANA MIDDLE DOT<br>
-      <i>and not </i>U+FF65 HALFWIDTH KATAKANA MIDDLE DOT</span></td>
+      <td><span class="changedspan">General_Category=Connector_Punctuation</span></td>
     </tr>
     <tr>
       <td valign="top"><span><b><a name="Any">Any</a></b></span></td>
@@ -1256,35 +1254,18 @@
   boundaries. As with the other default specifications, implementations are also free to override 
   (tailor) the results to meet the requirements of different environments or particular languages. 
   For those who do implement the default boundaries as specified above, and wish to check that that 
-  their implementation matches that specification, three test files have been made available.</p>
+  their implementation matches that specification, three test files have been made available<span class="changedspan"> 
+  in [<a href="#Tests">Tests</a>].</span></p>
   <p>These tests cannot be exhaustive, because of the sheer combinatorics; but they do provide 
   samples that test all pairs of property values, using a representative character for each value, 
   plus certain other sequences.</p>
-  <table border="1">
-    <tr>
-      <th>Test Data</th>
-      <th>Chart</th>
-    </tr>
-    <tr>
-      <td><a href="GraphemeClusterBreakTest.txt">GraphemeClusterBreakTest.txt</a></td>
-      <td><a href="GraphemeClusterBreakTest.html">GraphemeClusterBreakTest.html</a></td>
-    </tr>
-    <tr>
-      <td><a href="WordBreakTest.txt">WordBreakTest.txt</a></td>
-      <td><a href="WordBreakTest.html">WordBreakTest.html</a></td>
-    </tr>
-    <tr>
-      <td><a href="SentenceBreakTest.txt">SentenceBreakTest.txt</a></td>
-      <td><a href="SentenceBreakTest.html">SentenceBreakTest.html</a></td>
-    </tr>
-  </table>
-  <p>A sample HTML file is also available that shows various combinations in chart form. The header 
-  cells of the chart consist of a property value, followed by a representative code point number. 
-  The body cells in the chart show the <i>break status</i>: whether a break occurs between the row 
-  property value and the column property value. If the browser supports tool-tips, then hovering the 
-  mouse over the code point number will show the character name, general category, line break, and 
-  script property values. Hovering over the break status will display the number of the rule 
-  responsible for that status.</p>
+  <p>A sample HTML file is also available for each that shows various combinations in chart form<span class="changedspan">, 
+  in [<a href="#Charts">Charts</a>]</span>. The header cells of the chart consist of a property 
+  value, followed by a representative code point number. The body cells in the chart show the <i>
+  break status</i>: whether a break occurs between the row property value and the column property 
+  value. If the browser supports tool-tips, then hovering the mouse over the code point number will 
+  show the character name, general category, line break, and script property values. Hovering over 
+  the break status will display the number of the rule responsible for that status.</p>
   <blockquote>
     <p class="old_changed"><b>Note:</b> To determine a boundary it is <i>not</i> sufficient to just 
     test the two adjacent characters, except for the case of the default grapheme clusters.</p>
@@ -1299,6 +1280,24 @@
   for their feedback on previous versions of this document.</p>
   <h2><a name="References">References</a></h2>
   <table class="noborder" cellspacing="0" cellpadding="4">
+    <tr>
+      <td class="noborder" valign="top" width="1"><span class="changedspan">[<a name="Charts">Charts</a>]</span></td>
+      <td class="noborder" valign="top"><span class="changedspan">Charts for the test files:</span><p>
+      <span class="changedspan"><i>For the 4.1.0 version, see<br>
+      <a href="http://www.unicode.org/Public/4.1.0/ucd/auxiliary/GraphemeBreakTest.html">
+      http://www.unicode.org/Public/4.1.0/ucd/auxiliary/GraphemeBreakTest.html</a><br>
+      <a href="http://www.unicode.org/Public/4.1.0/ucd/auxiliary/WordBreakTest.html">
+      http://www.unicode.org/Public/4.1.0/ucd/auxiliary/WordBreakTest.html</a><br>
+      <a href="http://www.unicode.org/Public/4.1.0/ucd/auxiliary/SentenceBreakTest.html">
+      http://www.unicode.org/Public/4.1.0/ucd/auxiliary/SentenceBreakTest.html</a></i></span></p>
+      <p><span class="changedspan"><i>For the latest version, see<br>
+      <a href="http://www.unicode.org/Public/UNIDATA/auxiliary/GraphemeBreakTest.html">
+      http://www.unicode.org/Public/UNIDATA/auxiliary/GraphemeBreakTest.html</a><br>
+      <a href="http://www.unicode.org/Public/UNIDATA/auxiliary/WordBreakTest.html">
+      http://www.unicode.org/Public/UNIDATA/auxiliary/WordBreakTest.html</a><br>
+      <a href="http://www.unicode.org/Public/UNIDATA/auxiliary/SentenceBreakTest.html">
+      http://www.unicode.org/Public/UNIDATA/auxiliary/SentenceBreakTest.html</a></i></span></td>
+    </tr>
     <tr>
       <td width="1" class="noborder">[<a name="FAQ">FAQ</a>]</td>
       <td class="noborder">Unicode Frequently Asked Questions<br>
@@ -1318,10 +1317,22 @@
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1"><span>[<a name="Props">Props</a>]</span></td>
-      <td class="noborder" valign="top"><span><i><a href="GraphemeClusterBreakProperty.txt">
-      GraphemeClusterBreakProperty.txt</a><br>
-      <a href="WordBreakProperty.txt">WordBreakProperty.txt</a><br>
-      <a href="SentenceBreakProperty.txt">SentenceBreakProperty.txt</a></i></span></td>
+      <td class="noborder" valign="top">Property Data:<p><span class="changedspan"><i>For the 4.1.0 
+      version, see<br>
+      </i><span style="background-color: #FFFF00">
+      <a href="http://www.unicode.org/Public/4.1.0/ucd/auxiliary/GraphemeBreakProperty.txt">
+      http://www.unicode.org/Public/4.1.0/ucd/auxiliary/GraphemeBreakProperty.txt</a><br>
+      <a href="http://www.unicode.org/Public/4.1.0/ucd/auxiliary/WordBreakProperty.txt">
+      http://www.unicode.org/Public/4.1.0/ucd/auxiliary/WordBreakProperty.txt</a><br>
+      <a href="http://www.unicode.org/Public/4.1.0/ucd/auxiliary/SentenceBreakProperty.txt">
+      http://www.unicode.org/Public/4.1.0/ucd/auxiliary/SentenceBreakProperty.txt</a></span></span></p>
+      <p><span class="changedspan"><i>For the latest version, see<br>
+      </i><a href="http://www.unicode.org/Public/UNIDATA/auxiliary/GraphemeBreakProperty.txt">
+      http://www.unicode.org/Public/UNIDATA/auxiliary/GraphemeBreakProperty.txt</a><br>
+      <a href="http://www.unicode.org/Public/UNIDATA/auxiliary/WordBreakProperty.txt">
+      http://www.unicode.org/Public/UNIDATA/auxiliary/WordBreakProperty.txt</a><br>
+      <a href="http://www.unicode.org/Public/UNIDATA/auxiliary/SentenceBreakProperty.txt">
+      http://www.unicode.org/Public/UNIDATA/auxiliary/SentenceBreakProperty.txt</a></span></td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="Reports">Reports</a>]</td>
@@ -1329,6 +1340,24 @@
       <a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/<br>
       </a><i>For information on the status and development process for technical reports, and for a 
       list of technical reports.</i></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1"><span class="changedspan">[<a name="Tests">Tests</a>]</span></td>
+      <td class="noborder" valign="top"><span class="changedspan">Test data:</span><p>
+      <span class="changedspan"><i>For the 4.1.0 version, see<br>
+      </i><a href="http://www.unicode.org/Public/4.1.0/ucd/auxiliary/GraphemeBreakTest.txt">
+      http://www.unicode.org/Public/4.1.0/ucd/auxiliary/GraphemeBreakTest.txt</a><br>
+      <a href="http://www.unicode.org/Public/4.1.0/ucd/auxiliary/WordBreakTest.txt">
+      http://www.unicode.org/Public/4.1.0/ucd/auxiliary/WordBreakTest.txt</a><br>
+      <a href="http://www.unicode.org/Public/4.1.0/ucd/auxiliary/SentenceBreakTest.txt">
+      http://www.unicode.org/Public/4.1.0/ucd/auxiliary/SentenceBreakTest.txt</a></span></p>
+      <p><span class="changedspan"><i>For the latest version, see<br>
+      </i><a href="http://www.unicode.org/Public/UNIDATA/auxiliary/GraphemeBreakTest.txt">
+      http://www.unicode.org/Public/UNIDATA/auxiliary/GraphemeBreakTest.txt</a><br>
+      <a href="http://www.unicode.org/Public/UNIDATA/auxiliary/WordBreakTest.txt">
+      http://www.unicode.org/Public/UNIDATA/auxiliary/WordBreakTest.txt</a><br>
+      <a href="http://www.unicode.org/Public/UNIDATA/auxiliary/SentenceBreakTest.txt">
+      http://www.unicode.org/Public/UNIDATA/auxiliary/SentenceBreakTest.txt</a></span></td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="UCD">UCD</a>]</td>
@@ -1354,6 +1383,16 @@
   </p>
   <h2><a name="Modifications">Modifications</a></h2>
   <p>The following summarizes modifications from the previous versions of this document.</p>
+  <p><span class="changedspan"><b>Tracking Number 8.</b></span></p>
+  <ul>
+    <li><span class="changedspan">Modified the tables so as to make the property values orthogonal.</span></li>
+    <li><span class="changedspan">Added Joiner/Non-Joiner.</span></li>
+    <li><span class="changedspan">Added additional katakana characters.</span></li>
+    <li><span class="changedspan">Removed MidNumLet, and added ExtendedNumLet (with corresponding 
+    changes to the rules).</span></li>
+    <li><span class="changedspan">Moved the test files to the references.</span></li>
+    <li><span class="changedspan">Fixed up the property file references.</span></li>
+  </ul>
   <p><span><b>Tracking Number 7.</b></span></p>
   <ul>
     <li><span>Incorporated corrigendum for Hangul_Syllable_Type=L explanation, and adjusted for the 

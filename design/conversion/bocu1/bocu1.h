@@ -1,7 +1,7 @@
 /*
 ******************************************************************************
 *
-*   Copyright (C) 2002, International Business Machines
+*   Copyright (C) 2002-2003, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 *
 ******************************************************************************
@@ -57,7 +57,9 @@
 #define BOCU1_MIN               0x21
 #define BOCU1_MIDDLE            0x90
 #define BOCU1_MAX_LEAD          0xfe
-#define BOCU1_MAX_TRAIL         0xff
+
+/* add the L suffix to make computations with BOCU1_MAX_TRAIL work on 16-bit compilers */
+#define BOCU1_MAX_TRAIL         0xffL
 #define BOCU1_RESET             0xff
 
 /* number of lead bytes */

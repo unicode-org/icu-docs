@@ -46,7 +46,7 @@ inter-character state consists of a single integer. It is deterministic, i.e.,
 the
 same complete input text is always encoded the same way by all encoders.</p>
 <p>The byte/code point ratio is 1 for runs of code points from the same block of
-0x80 code points, and 2 for runs of CJK Unihan code points, as with SCSU. This
+0x80 code points (and for Hiragana), and 2 for runs of CJK Unihan code points, as with SCSU. This
 is much better than UTF-8 for Indic scripts, Russian, Greek, Arabic, Hebrew,
 etc. The
 startup overhead is very low (similar to SCSU), which makes it useful for very short strings like
@@ -67,6 +67,10 @@ CRLF-separated lines do not affect each other's encoding. Together with BOCU-1
 being deterministic, this allows line-based file comparisons (diff) and makes BOCU-1 usable
 with RCS, CVS and other source-code control systems (unlike SCSU). This also allows some
 limited random access.</p>
+
+<p>Similarly, the state is also reset at each Newline (U+0085), Line Separator
+(U+2028) and Paragraph Separator (U+2029). This is for texts using non-C0 line
+and paragraph break controls.</p>
 
 <p>Byte values for single-byte codes and lead bytes overlap with trail bytes.
 So unlike UTF-8, character boundaries cannot be determined in random access, except
@@ -100,10 +104,14 @@ encode(int &amp;prev, int c) {
         // encode diff in 1..4 bytes and output them
 
         // adjust prev
-        if(c is CJK Unihan) {
+        if(c is Hiragana) {
+            prev=middle of Hiragana;
+        } else if(c is CJK Unihan) {
             prev=middle of CJK Unihan;
         } else if(c is Hangul) {
             prev=middle of Hangul;
+        } else if(c is Newline or LS or PS) {
+            prev=0x40;
         } else {
             prev=(c&amp;~0x7f)+0x40;
         }
@@ -148,6 +156,11 @@ from this source code is available for download. Aside from basic implementation
 and consistency tests, this also provides file conversion between UTF-8 and
 BOCU-1. Use a command-line argument of &quot;?&quot; or &quot;-h&quot; for
 usage.</p>
+
+<h2>Changes</h2>
+<p>2002-feb-21: Change adjustment of prev to account for Hiragana (not
+128-aligned) and to reset at U+0085 (Newline), U+2028 (Line Separator) and
+U+2029 (Paragraph Separator).</p>
 
 </body>
 

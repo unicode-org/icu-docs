@@ -1,0 +1,180 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Character Conversion Alias Design</title>
+</head>
+
+<body>
+
+<h1>Character Conversion Alias Design</h1>
+<h3>Draft 2001-07-12</h3>
+<p>Character Conversion is complicated by the facts that:</p>
+<ul>
+  <li>different vendors may have different names for the same mapping.</li>
+  <li>different vendors may have the same name for different mappings</li>
+</ul>
+<p>ICU attempts to untangle this morass in the following ways.</p>
+<p>1. There will be unique name for each mapping table on all ICU supported
+platforms (390, 400, AIX, Solaris, Windows, HP/UX) plus on Java and the Mac, in
+the format given by <a href="http://www.unicode.org/unicode/reports/tr22/">UTR
+#22: Character Mapping Tables</a>.</p>
+<p>2. There will be APIs that supply information relating platform names
+(aliases) for character mappings to this canonical name.</p>
+<blockquote>
+  <p><b>Note: </b>by an <i>alias,</i> we mean any name that is commonly used to
+  refer to that character conversion mapping on that platform. For example, if I
+  am working on AIX with HTTP, what CCSID do I use when I encounter
+  charset=&quot;SJIS&quot;? Similarly, what is the (preferred) alias that I
+  would use when generating HTML or XML that is supposed to be in a particular
+  CCSID? The tables that relate aliases to CCSIDs may be in the operating
+  system, or they may be in major products like DB2.</p>
+</blockquote>
+<p>A sketch of the APIs are presented below (in pseudocode, since we don't want
+to worry about the exact signatures yet):</p>
+<h3>Basic</h3>
+<blockquote>
+  <p>Returns the canonical name, given the platform and alias. If the platform
+  is null, then a default is returned.</p>
+  <blockquote>
+    <pre>String ucnv_getCanonicalName(String alias, String platform);</pre>
+  </blockquote>
+  <p>Returns an alias, given the canonical name and a platform. If the platform
+  is null, then a default is returned.</p>
+  <blockquote>
+    <pre>String ucnv_getPreferredAlias(String canonicalName, String platform);</pre>
+  </blockquote>
+  <p>To guarantee interoperability, the default values are chosen to be same
+  across all platforms.</p>
+</blockquote>
+<h3>Listing</h3>
+<blockquote>
+  <p>Returns the platforms for which ICU has mapping tables:</p>
+  <blockquote>
+    <pre>String[] ucnv_getPlatforms();</pre>
+  </blockquote>
+  <p>Returns a list of all the aliases that map to the given canonical name on
+  the given platform. The first name is the preferred one.</p>
+  <blockquote>
+    <pre>String[] ucnv_getAliases(String canonicalName, String platform);</pre>
+  </blockquote>
+</blockquote>
+<p><i>Note: for both basic and listing, the platform value might be an enum
+instead of a string.</i></p>
+<h3>Data Structure</h3>
+<p>Logically, all of this could be supported by the following three mappings</p>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <td>Main</td>
+    <td>alias, platform =&gt; canonicalName</td>
+  </tr>
+  <tr>
+    <td>DefaultForCanonicalName</td>
+    <td>canonicalName =&gt; alias</td>
+  </tr>
+  <tr>
+    <td>DefaultForAlias</td>
+    <td>alias =&gt; canonicalName</td>
+  </tr>
+</table>
+<p>However, we can simplify the mapping considerably, by accepting a superset of
+names that are actually used on each platform. That way, we don't have to mark
+the names with the precise set of platforms that they are used on; only where it
+is important, such as where we need different aliases for different platforms.</p>
+<p>Thoughts on how we could pack this, and still look up items quickly. This is
+a first pass -- we might come up with something cleverer or more compact after
+thinking about it.</p>
+<p>Put the aliases into a sorted list. The index in that list now stands for the
+alias. Do the same for canonical names and platforms. So now all the mappings
+are in terms of integers. The aliases and canonical names fit in 2 bytes; the
+platforms in 1 byte. Actually, we only use 7 bits; the top bit is a termination
+flag. A platform of 0x7F stands for &quot;Any&quot;</p>
+<p>The main table is a list of 2-byte offsets, one for each alias. Each offset
+points to a list of three-byte units. In each unit, the first two bytes are the
+canonical name, and the last byte is the platform. The last unit is indicated by
+an 0x80 bit&nbsp; in the platform byte. The first unit is the default canonical
+name for that alias, and is also the default in case there is no match for the
+platform. There is at most one unit for each platform in the list.</p>
+<p>The reverse table is similar, except that it starts with a list of 2-byte
+offsets, one for each canonical name. Each offset points to a list of three-byte
+units. In each unit, the first two bytes are the alias.&nbsp; The last unit is
+indicated by an 0x80 bit&nbsp; in the platform byte. The first unit is the
+default alias for that canonical, and is also the default in case there is no
+match for the platform. There may be more than one unit for each platform in the
+list. The first unit with a matching platform is the default alias for that
+platform.</p>
+<h3>Resource Bundle Format</h3>
+<p>The current format is the following:</p>
+<p><a
+href="http://oss.software.ibm.com/developerworks/opensource/cvs/icu/data/convrtrs.txt?rev=1.81">http://oss.software.ibm.com/developerworks/opensource/cvs/icu/data/convrtrs.txt?rev=1.81</a></p>
+<p>This format is almost sufficient to get what we need; it basically
+corresponds to the reverse table above. We would need the following changes.</p>
+<ol>
+  <li>Change the &quot;Actual file name&quot; to be the canonical name. Where we
+    need to, add the old one as an alias.</li>
+  <li>Add a tag for each platform.</li>
+  <li>The default alias (for the given canonical name) can be work as above.</li>
+  <li>We add one piece of syntax for marking the default canonical name for a
+    given alias. I suggest the following: Given an alias name A
+    <ol type="a">
+      <li>If there is a * following A on a line, then the canonical name for
+        that line is the default for A.</li>
+      <li>Otherwise, if there is a * following a canonical name, and that line
+        contains A, then that canonical name is the default for A.</li>
+      <li>The builder code throws an error:
+        <ul>
+          <li>If there are no lines satisfying either (a) or (b) for A.</li>
+          <li>If there are two different lines satisfying (a) for A.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>The builder code throws an error two different canonical names have the
+    same &lt;alias, platform&gt;.</li>
+</ol>
+<p>Example:</p>
+<h4>old</h4>
+<table border="1" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td>CName</td>
+    <td>Aliases</td>
+  </tr>
+  <tr>
+    <td>ibm-916</td>
+    <td>iso-8859-8 { MIME } hebrew cp916 8859-8 csisolatinhebrew iso-ir-138
+      ISO_8859-8:1988 { IANA } 916</td>
+  </tr>
+</table>
+<h4>new</h4>
+<table border="1" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td>CName</td>
+    <td>Aliases</td>
+  </tr>
+  <tr>
+    <td>iso-8859_8-1988*</td>
+    <td>iso-8859-8 { MIME } hebrew cp916 8859-8 csisolatinhebrew iso-ir-138
+      ISO_8859-8:1988 { IANA } 916 ibm-916</td>
+  </tr>
+</table>
+<p>The reverse table is easy to build from this. As it is being built, the
+mappings for the main table can be collected and then organized and written out.</p>
+<blockquote>
+  <p>BTW, we should move the converter data files to a subfolder of /data/ so
+  they are not interleaved with other files. Also, I think readability would be
+  improved if we allowed commas in the lists, e.g.</p>
+  <ul>
+    <li>iso-8859-8 { MIME } hebrew cp916 8859-8 csisolatinhebrew iso-ir-138
+      ISO_8859-8:1988 { IANA } 916 ibm-916</li>
+    <li>iso-8859-8 { MIME }, hebrew, cp916, 8859-8, csisolatinhebrew,
+      iso-ir-138, ISO_8859-8:1988 { IANA }, 916, ibm-916</li>
+  </ul>
+</blockquote>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Cummulative Fallback</title>
+</head>
+
+<body>
+
+<h1 align="center">Cumulative Fallback and Fallback Detection</h1>
+<h2 align="center"><font color="#FF0000"><i>Draft</i></font></h2>
+<p align="center">2001 - 07 - 07</p>
+<p>There are a number of places where our current Locale lookup is clumsy, and
+forces us to have artificial locales and duplicate data, leading to maintenance
+problems. Examples are Euro Currency Formats, Traditional Spanish Sort,
+Phonebook German Sort. There undoubtedly will be others.</p>
+<p>For example, every Spanish locale could need a traditional Spanish sort. That
+means having variants of at least the following locales:</p>
+<blockquote>
+  <p><a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_AR&amp;">Argentina</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_BO&amp;">Bolivia</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_CL&amp;">Chile</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_CO&amp;">Colombia</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_CR&amp;">Costa
+  Rica</a>, <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_DO&amp;">Dominican
+  Republic</a>, <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_EC&amp;">Ecuador</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_SV&amp;">El
+  Salvador</a>, <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_GT&amp;">Guatemala</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_HN&amp;">Honduras</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_MX&amp;">Mexico</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_NI&amp;">Nicaragua</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_PA&amp;">Panama</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_PY&amp;">Paraguay</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_PE&amp;">Peru</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_PR&amp;">Puerto
+  Rico</a>, <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_ES&amp;">Spain</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_&amp;">Spanish</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_US&amp;"><i>United
+  States</i></a>, <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_UY&amp;">Uruguay</a>,
+  <a
+  href="http://oss.software.ibm.com/developerworks/opensource/icu/localeexplorer/en_US/?_=es_VE&amp;">Venezuela</a></p>
+</blockquote>
+<p>Here is what we have currently for Spanish, for example:</p>
+<pre>es {
+    Version { &quot;1.0&quot; }
+    CollationElements { 
+        Version { &quot;1.0&quot; }
+        Override { &quot;FALSE&quot; }
+        Sequence { &quot;&amp; N &lt; n\u0303, N\u0303 &quot; }
+    }
+...
+}</pre>
+<pre>es__TRADITIONAL {
+    Version { &quot;1.0&quot; }
+    CollationElements { 
+        Version { &quot;1.0&quot; }
+        Override { &quot;FALSE&quot; }
+        Sequence { &quot;&amp; N &lt; n\u0303, N\u0303&quot;
+        &quot;&amp;C &lt; ch &lt;&lt;&lt; Ch &lt;&lt;&lt; CH&quot;
+        &quot;&amp;l &lt; ll &lt;&lt;&lt; Ll &lt;&lt;&lt; LL&quot;  }
+    }
+    LocaleID { &quot;040a&quot; }
+}</pre>
+<p>The problem is, we can't have locales that match all the Microsoft ones
+without needlessly duplicating _TRADITIONAL for all Spanish locales.</p>
+<h2>Cumulative Approach</h2>
+<p>Here is an idea for changing this. It is pretty rough so far, but I thought I
+would get it down on paper (or electrons) for comment.</p>
+<p>Instead of having these all in separate resource bundles, we modify the
+lookup process and RB format. The RBs could look something like:</p>
+<pre>es {
+    Version { &quot;1.0&quot; }
+    CollationElements { 
+        Version { &quot;1.0&quot; }
+        Override { &quot;FALSE&quot; }
+        Sequence { &quot;&amp; N &lt; n\u0303, N\u0303 &quot; }
+    }
+    CollationElements_TRADITIONAL { 
+        Version { &quot;1.0&quot; }
+        Override { &quot;FALSE&quot; }
+        Sequence { &quot;&amp; N &lt; n\u0303, N\u0303&quot;
+        &quot;&amp;C &lt; ch &lt;&lt;&lt; Ch &lt;&lt;&lt; CH&quot;
+        &quot;&amp;l &lt; ll &lt;&lt;&lt; Ll &lt;&lt;&lt; LL&quot;  }
+    }
+...
+}</pre>
+<p>Suppose our current locale was Spanish, Bolivia, Traditional Sort, Euro
+Currency (just to have a complicated example). This would be specified with
+&quot;es_BO/EURO/TRADITIONAL&quot;. What we would do is look up in the following
+order:</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="0" cellpadding="2">
+    <tr>
+      <th width="50%">Resource Bundle</th>
+      <th width="50%">Tag in Resource Bundle</th>
+    </tr>
+    <tr>
+      <td width="50%">es_BO_EURO_TRADITIONAL</td>
+      <td width="50%">CollationElements</td>
+    </tr>
+    <tr>
+      <td width="50%">es_BO</td>
+      <td width="50%">CollationElements_EURO_TRADITIONAL</td>
+    </tr>
+    <tr>
+      <td width="50%">es</td>
+      <td width="50%">CollationElements_EURO_TRADITIONAL</td>
+    </tr>
+    <tr>
+      <td width="50%">es_BO</td>
+      <td width="50%">CollationElements_EURO</td>
+    </tr>
+    <tr>
+      <td width="50%">es</td>
+      <td width="50%">CollationElements_EURO</td>
+    </tr>
+    <tr>
+      <td width="50%">es_BO</td>
+      <td width="50%">CollationElements_TRADITIONAL</td>
+    </tr>
+    <tr>
+      <td width="50%">es</td>
+      <td width="50%">CollationElements_TRADITIONAL</td>
+    </tr>
+    <tr>
+      <td width="50%">es_BO</td>
+      <td width="50%">CollationElements</td>
+    </tr>
+    <tr>
+      <td width="50%">es</td>
+      <td width="50%">CollationElements</td>
+    </tr>
+    <tr>
+      <td width="50%"><i>default locale...</i></td>
+      <td width="50%">CollationElements</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p>Notice a few things. Variants on the same level would be separated <b>in the
+input </b>by slash, not &quot;_&quot;, and do not form a tree structure.
+Instead, they are treated as tags, and they take precedence over the normal tree
+structure. That is, we take CollationElements_TRADITIONAL in Spanish in
+preference to the plain CollationElements in es_BO.</p>
+<p>Once we find a CollationElements, we cache the result, so the next time we
+look for &quot;es_BO/EURO/TRADITIONAL&quot;, we get it immediately. This is also
+an extreme case: typically there would be fewer lookups.</p>
+<h3>Alternatives</h3>
+<ul>
+  <li>We might want to provide attributes in the RBs, so that for a given set of
+    tags, we could choose which tags took precedence over each other, and over
+    the country. I don't think we would need this for any of our current
+    requirements, however, so I don't recommend it.</li>
+  <li>Instead of having &quot;_&quot; as a separator for variants, we could use
+    a different separator like &quot;/&quot;, or &quot;:&quot;,&nbsp; or
+    &quot;@&quot; (but we would limit it to an invariant character).</li>
+  <li>Instead of the above, like POSIX we could have an &quot;include&quot;
+    statement. This would save copying data, and reduce the maintenance, but not
+    nearly as much as the above. We would still have to have many extra resource
+    bundles, but we wouldn't need to have duplicate copies of the data. This
+    would still be a major pain for a feature that crosses lots of countries,
+    like the Traditional Sort for Spanish.
+    <p>The RB could look something like:</p>
+    <pre>es_BO_TRADITIONAL {
+    Version { &quot;1.0&quot; }
+    CollationElements &lt;include es__TRADITIONAL&gt;
+    LocaleID { &quot;040a&quot; }
+}</pre>
+    <p>If we find an &lt;include XXX&gt; statement, then we redirect to look up
+    the resource bundle chain from XXX. <i>Note: we would want some check to
+    prevent circularity!</i>
+</ul>
+<h2>Fallback Detection</h2>
+<p>Right now, it is not easy for someone to find out whether a particular
+service is a fallback or not: and if it is, which locale it is actually
+appropriate for. For Resource Bundle itself, we note whether or not it was a
+fallback, with U_USING_FALLBACK_ERROR or U_USING_DEFAULT_ERROR, and you can find
+out the bundle that was used with <b>ResourceBundle::getLocale (</b><b>)</b>.
+But if you open a service (like a collator, etc), you can't do that.</p>
+<p>To fix this, I suggest we add a static getInstanceType(locale) to every class
+that has a static createInstance(). It returns the most specific Locale for
+which the createInstance() is appropriate. For example, we would have the
+following:</p>
+<pre>myLocale = Collator::getInstanceType(requestedLocale);</pre>
+<p>Here is an example, with notes below:</p>
+<table border="1" cellspacing="1" cellpadding="4">
+  <tr>
+    <td width="50%">en_US_CALIFORNIA</td>
+    <td width="50%">doesn't exist</td>
+  </tr>
+  <tr>
+    <td width="50%">en_US</td>
+    <td width="50%">exists, doesn't contain CollationElements, is default locale</td>
+  </tr>
+  <tr>
+    <td width="50%">en</td>
+    <td width="50%">exists, contains CollationElements</td>
+  </tr>
+  <tr>
+    <td width="50%">zz_WW</td>
+    <td width="50%">doesn't exist</td>
+  </tr>
+  <tr>
+    <td width="50%">zz</td>
+    <td width="50%">doesn't exist</td>
+  </tr>
+</table>
+<ul>
+  <li>Collator::getInstanceType(&quot;en_US_CALIFORNIA&quot;) returns en_US
+    <ul>
+      <li><b>Note:</b> in our locale model, if there is a RB for some locale (es_BO),
+        then any resource in that locale that is the same as the parent should
+        be deleted. That is, if there is a RB, then even if there is no specific
+        resource in that RB for a given tag, it is assumed that any resource for
+        that tag found in a parent is appropriate for the RB. So we return the
+        first RB that is actually found; we <i>don't</i> search for the first RB
+        that contains the resource.</li>
+    </ul>
+  </li>
+  <li>Collator::getInstanceType(&quot;zz_WW&quot;) returns en_US.
+    <ul>
+      <li>Since &quot;zz_WW&quot; and &quot;zz&quot; don't have RBs, we fall
+        back to the default locale, which happens to be en_US.</li>
+    </ul>
+  </li>
+  <li>myCollator.getLocale(&quot;es_BO_EURO_TRADITIONAL&quot;) returns
+    es_BO_TRADITIONAL.
+    <ul>
+      <li>When using with the above variant tags, we would return the
+        appropriate locale.</li>
+      <li>Notice that because of the way the tags work, the return value has a
+        field missing from the <i>center</i>, not the end.</li>
+    </ul>
+  </li>
+</ul>
+<h3>Alternatives</h3>
+<p>Instead of calling a static method on the class, we could call a an instance
+method on the object. That has two disadvantages:</p>
+<p>(a) someone has to create an object in order to determine what it would be
+appropriate for. For iterating over lists to find out information, that is an
+extra burden.</p>
+<p>(b) we wouldn't have to add storage to each object.</p>
+
+</body>
+
+</html>

@@ -12,10 +12,10 @@ each character of an international string
 <DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.6.7"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>strengthOrder</B>(int32_t order) const  </B>
  <DD><I>
 Gets the comparison order in the desired strength</I>
-<DT><A HREF="#DOC.6.8"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setText</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& str, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+<DT><A HREF="#DOC.6.8"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setText</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& str, <!2><A HREF="#DOC.320">UErrorCode</A>& status) </B>
  <DD><I>
 Sets the source string</I>
-<DT><A HREF="#DOC.6.9"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setText</B>(<!1><A HREF="CharacterIterator.html">CharacterIterator</A>& str, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+<DT><A HREF="#DOC.6.9"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setText</B>(<!1><A HREF="CharacterIterator.html">CharacterIterator</A>& str, <!2><A HREF="#DOC.320">UErrorCode</A>& status) </B>
  <DD><I>
 Sets the source string</I>
 <DT><A HREF="#DOC.6.10"> <IMG BORDER=0 SRC=icon1.gif></A> static  bool_t  <B>isIgnorable</B>(int32_t order) </B>
@@ -24,7 +24,7 @@ Checks if a comparison order is ignorable</I>
 <DT><A HREF="#DOC.6.11"> <IMG BORDER=0 SRC=icon1.gif></A> UTextOffset  <B>getOffset</B>(void) const  </B>
  <DD><I>
 Gets the offset of the currently processed character in the source string</I>
-<DT><A HREF="#DOC.6.12"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setOffset</B>(UTextOffset newOffset, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+<DT><A HREF="#DOC.6.12"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setOffset</B>(UTextOffset newOffset, <!2><A HREF="#DOC.320">UErrorCode</A>& status) </B>
  <DD><I>
 Sets the offset of the currently processed character in the source string</I>
 <DT><A HREF="#DOC.6.26"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>CollationElementIterator</B>(const <!2><A HREF="CollationElementIterator.html#DOC.6.13">CollationElementIterator</A>& other) </B>
@@ -40,10 +40,10 @@ Get the secondary order of a collation order</I>
  <DD><I>
 Get the tertiary order of a collation order</I>
 </DL><DL>
-<DT><h3>Protected Methods</h3><DD><DT><A HREF="#DOC.6.13"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>CollationElementIterator</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+<DT><h3>Protected Methods</h3><DD><DT><A HREF="#DOC.6.13"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>CollationElementIterator</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.320">UErrorCode</A>& status) </B>
  <DD><I>
 CollationElementIterator constructor</I>
-<DT><A HREF="#DOC.6.14"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>CollationElementIterator</B>( const <!1><A HREF="CharacterIterator.html">CharacterIterator</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+<DT><A HREF="#DOC.6.14"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>CollationElementIterator</B>( const <!1><A HREF="CharacterIterator.html">CharacterIterator</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.320">UErrorCode</A>& status) </B>
  <DD><I>
 CollationElementIterator constructor</I>
 <DT><A HREF="#DOC.6.25"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!2><A HREF="CollationElementIterator.html#DOC.6.13">CollationElementIterator</A>&  <B>operator=</B>(const <!2><A HREF="CollationElementIterator.html#DOC.6.13">CollationElementIterator</A>& other) </B>
@@ -80,7 +80,7 @@ to ensure the correctness of the key value.
 .  void CollationElementIterator_Example()
 .  {
 .      UnicodeString str = "This is a test";
-.      UErrorCode success = ZERO_ERROR;
+.      UErrorCode success = U_ZERO_ERROR;
 .      RuleBasedCollator* rbc =
 .          (RuleBasedCollator*) RuleBasedCollator::createInstance(success);
 .      CollationElementIterator* c =
@@ -114,14 +114,14 @@ differences.
 <DL><DT><B>Parameters:</B><DD><B>order</B> -  The order value<br></DL><P>
 <A NAME="setText">
 <A NAME ="DOC.6.8">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setText(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& str, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setText(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& str, <!2><A HREF="#DOC.320">UErrorCode</A>& status)</B></TT>
 <DD>
 Sets the source string
 <DL><DT><B>Parameters:</B><DD><B>str</B> -  the source string.
 <br><B>status</B> -  the error code status.<br></DL><P>
 <A NAME="setText">
 <A NAME ="DOC.6.9">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setText(<!1><A HREF="CharacterIterator.html">CharacterIterator</A>& str, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setText(<!1><A HREF="CharacterIterator.html">CharacterIterator</A>& str, <!2><A HREF="#DOC.320">UErrorCode</A>& status)</B></TT>
 <DD>
 Sets the source string
 <DL><DT><B>Parameters:</B><DD><B>str</B> -  the source character iterator.
@@ -143,7 +143,7 @@ Gets the offset of the currently processed character in the source string
 </DL><P>
 <A NAME="setOffset">
 <A NAME ="DOC.6.12">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setOffset(UTextOffset newOffset, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setOffset(UTextOffset newOffset, <!2><A HREF="#DOC.320">UErrorCode</A>& status)</B></TT>
 <DD>
 Sets the offset of the currently processed character in the source string
 <DL><DT><B>Returns:</B><DD>the offset of the character.
@@ -152,7 +152,7 @@ Sets the offset of the currently processed character in the source string
 <br></DL><P>
 <A NAME="CollationElementIterator">
 <A NAME ="DOC.6.13">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  CollationElementIterator( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  CollationElementIterator( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.320">UErrorCode</A>& status)</B></TT>
 <DD>
 CollationElementIterator constructor.  This takes the source string and
 the collation object.  The cursor will walk thru the source string based
@@ -167,7 +167,7 @@ stops the iterating.
 <br><B>order</B> -  the collation object.<br></DL><P>
 <A NAME="CollationElementIterator">
 <A NAME ="DOC.6.14">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  CollationElementIterator( const <!1><A HREF="CharacterIterator.html">CharacterIterator</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  CollationElementIterator( const <!1><A HREF="CharacterIterator.html">CharacterIterator</A>& sourceText, const <!1><A HREF="RuleBasedCollator.html">RuleBasedCollator</A>* order, <!2><A HREF="#DOC.320">UErrorCode</A>& status)</B></TT>
 <DD>
 CollationElementIterator constructor.  This takes the source string and
 the collation object.  The cursor will walk thru the source string based

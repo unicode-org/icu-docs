@@ -1,6 +1,6 @@
 <html><head><TITLE>ChoiceFormat</TITLE></head>
 <body>
-<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API ChoiceFormat : public <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A> </H2><BLOCKQUOTE>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API ChoiceFormat : public <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A> </H2><BLOCKQUOTE>
 
 A ChoiceFormat allows you to attach a format to a range of numbers
 </BLOCKQUOTE>
@@ -17,7 +17,7 @@ A ChoiceFormat allows you to attach a format to a range of numbers
 
 <DL>
 <DL>
-<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.5.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ChoiceFormat</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& newPattern, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.5.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ChoiceFormat</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& newPattern, <!2><A HREF="#DOC.320">UErrorCode</A>& status) </B>
  <DD><I>
 Construct a new ChoiceFormat with the limits and the corresponding formats
 based on the pattern</I>
@@ -33,13 +33,13 @@ Assignment operator</I>
 <DT><A HREF="#DOC.5.20"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <B>~ChoiceFormat</B>() </B>
  <DD><I>
 Destructor</I>
-<DT><A HREF="#DOC.5.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="Format.html#DOC.14.8">Format</A>*  <B>clone</B>(void) const  </B>
+<DT><A HREF="#DOC.5.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="Format.html#DOC.25.8">Format</A>*  <B>clone</B>(void) const  </B>
  <DD><I>
 Clone this Format object polymorphically</I>
-<DT><A HREF="#DOC.5.4"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!2><A HREF="Format.html#DOC.14.8">Format</A>& other) const  </B>
+<DT><A HREF="#DOC.5.4"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!2><A HREF="Format.html#DOC.25.8">Format</A>& other) const  </B>
  <DD><I>
 Return true if the given Format objects are semantically equal</I>
-<DT><A HREF="#DOC.5.5"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>applyPattern</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& pattern, <!2><A HREF="#DOC.301">UErrorCode</A>& status) </B>
+<DT><A HREF="#DOC.5.5"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>applyPattern</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& pattern, <!2><A HREF="#DOC.320">UErrorCode</A>& status) </B>
  <DD><I>
 Sets the pattern</I>
 <DT><A HREF="#DOC.5.21"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>toPattern</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A> &pattern) const  </B>
@@ -60,13 +60,22 @@ Get the formats passed in the constructor</I>
 <DT><A HREF="#DOC.5.10"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos) const  </B>
  <DD><I>
 Format a double or long number using this object's choices</I>
+<DT><A HREF="#DOC.5.22"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Redeclared NumberFormat method</I>
+<DT><A HREF="#DOC.5.23"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>( double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& output) const  </B>
+ <DD><I>
+Redeclared NumberFormat method</I>
+<DT><A HREF="#DOC.5.24"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>( int32_t number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& output) const  </B>
+ <DD><I>
+Redeclared NumberFormat method</I>
 <DT><A HREF="#DOC.5.11"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>parse</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parsePosition) const  </B>
  <DD><I>
 Return a long if possible (e</I>
-<DT><A HREF="#DOC.5.12"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="ClassID.html">ClassID</A>  <B>getDynamicClassID</B>(void) const  </B>
+<DT><A HREF="#DOC.5.12"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UClassID.html">UClassID</A>  <B>getDynamicClassID</B>(void) const  </B>
  <DD><I>
 Returns a unique class ID POLYMORPHICALLY</I>
-<DT><A HREF="#DOC.5.13"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="ClassID.html">ClassID</A>  <B>getStaticClassID</B>(void) </B>
+<DT><A HREF="#DOC.5.13"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="UClassID.html">UClassID</A>  <B>getStaticClassID</B>(void) </B>
  <DD><I>
 Return the class ID for this class</I>
 <DT><A HREF="#DOC.5.14"> <IMG BORDER=0 SRC=icon1.gif></A> static  double  <B>nextDouble</B>(double d ) </B>
@@ -83,7 +92,7 @@ Finds the greatest double less than d</I>
 <DT><h3>Public Classes</h3><DD><DT><IMG SRC=icon2.gif>  enum  <B>EAlignmentFields</B>
 
 <DL>
-<DT><A HREF="#DOC.19.1.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>INTEGER_FIELD</B> </B>
+<DT><A HREF="#DOC.30.1.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>INTEGER_FIELD</B> </B>
  <DD><I>
 These constants are provided for backwards compatibility only,
 and are deprecated</I>
@@ -93,14 +102,14 @@ and are deprecated</I>
 <DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> virtual  void  <B>parseObject</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& source, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parse_pos) const 
 <DT><IMG SRC=icon2.gif> bool_t  <B>isParseIntegerOnly</B>(void) const 
 <DT><IMG SRC=icon2.gif> virtual  void  <B>setParseIntegerOnly</B>(bool_t value)
-<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&)
-<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)
-<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createCurrencyInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&)
-<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createCurrencyInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)
-<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createPercentInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&)
-<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createPercentInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)
-<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createScientificInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&)
-<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createScientificInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createInstance</B>(<!2><A HREF="#DOC.320">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createCurrencyInstance</B>(<!2><A HREF="#DOC.320">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createCurrencyInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createPercentInstance</B>(<!2><A HREF="#DOC.320">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createPercentInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createScientificInstance</B>(<!2><A HREF="#DOC.320">UErrorCode</A>&)
+<DT><IMG SRC=icon2.gif> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createScientificInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&)
 <DT><IMG SRC=icon2.gif> static  const  Locale*  <B>getAvailableLocales</B>(int32_t& count)
 <DT><IMG SRC=icon2.gif> bool_t  <B>isGroupingUsed</B>(void) const 
 <DT><IMG SRC=icon2.gif> virtual  void  <B>setGroupingUsed</B>(bool_t newValue)
@@ -117,7 +126,7 @@ and are deprecated</I>
 
 <DL>
 <DL>
-<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> bool_t  <B>operator!=</B>(const <!2><A HREF="Format.html#DOC.14.8">Format</A>& other) const 
+<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> bool_t  <B>operator!=</B>(const <!2><A HREF="Format.html#DOC.25.8">Format</A>& other) const 
 </DL></DL>
 <A NAME="DOC.DOCU">
 <hr>
@@ -173,7 +182,7 @@ Here is a more complex example, with a pattern format.
 .      double filelimits[] = {0,1,2};
 .      UnicodeString filepart[] = {"are no files","is one file","are {2} files"};
 .      ChoiceFormat* fileform = new ChoiceFormat(filelimits, filepart, 3 );
-.      UErrorCode success = ZERO_ERROR;
+.      UErrorCode success = U_ZERO_ERROR;
 .      const Format* testFormats[] = { fileform, NULL, NumberFormat::createInstance(success) };
 .      MessageFormat* pattform = new MessageFormat("There {0} on {1}", success );
 .      pattform->setFormats( testFormats, 3 );
@@ -216,7 +225,7 @@ is terminated by the end of the string.
 
 <A NAME="ChoiceFormat">
 <A NAME ="DOC.5.1">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ChoiceFormat(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& newPattern, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ChoiceFormat(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& newPattern, <!2><A HREF="#DOC.320">UErrorCode</A>& status)</B></TT>
 <DD>
 Construct a new ChoiceFormat with the limits and the corresponding formats
 based on the pattern.
@@ -256,21 +265,21 @@ Destructor
 <DL></DL><P>
 <A NAME="clone">
 <A NAME ="DOC.5.3">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="Format.html#DOC.14.8">Format</A>*  clone(void) const </B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="Format.html#DOC.25.8">Format</A>*  clone(void) const </B></TT>
 <DD>
 Clone this Format object polymorphically. The caller owns the
 result and should delete it when done.
 <DL></DL><P>
 <A NAME="operator==">
 <A NAME ="DOC.5.4">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!2><A HREF="Format.html#DOC.14.8">Format</A>& other) const </B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!2><A HREF="Format.html#DOC.25.8">Format</A>& other) const </B></TT>
 <DD>
 Return true if the given Format objects are semantically equal.
 Objects of different subclasses are considered unequal.
 <DL></DL><P>
 <A NAME="applyPattern">
 <A NAME ="DOC.5.5">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  applyPattern(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& pattern, <!2><A HREF="#DOC.301">UErrorCode</A>& status)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  applyPattern(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& pattern, <!2><A HREF="#DOC.320">UErrorCode</A>& status)</B></TT>
 <DD>
 Sets the pattern
 <DL><DT><B>Parameters:</B><DD><B>pattern</B> -    The pattern to be applied.
@@ -340,6 +349,24 @@ This is an output parameter.
 <br><B>pos</B> -         On input: an alignment field, if desired.
 On output: the offsets of the alignment field.
 <br></DL><P>
+<A NAME="format">
+<A NAME ="DOC.5.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const </B></TT>
+<DD>
+Redeclared NumberFormat method
+<DL></DL><P>
+<A NAME="format">
+<A NAME ="DOC.5.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format( double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& output) const </B></TT>
+<DD>
+Redeclared NumberFormat method
+<DL></DL><P>
+<A NAME="format">
+<A NAME ="DOC.5.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format( int32_t number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& output) const </B></TT>
+<DD>
+Redeclared NumberFormat method
+<DL></DL><P>
 <A NAME="parse">
 <A NAME ="DOC.5.11">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  parse(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parsePosition) const </B></TT>
@@ -362,10 +389,10 @@ If parse fails, return contents are undefined.
 <br><B>parsePosition</B> -   The position to start parsing at on input.
 On output, moved to after the last successfully
 parse character. On parse failure, does not change.
-<br><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.9">NumberFormat::isParseIntegerOnly</A><br></DL><P>
+<br><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.9">NumberFormat::isParseIntegerOnly</A><br></DL><P>
 <A NAME="getDynamicClassID">
 <A NAME ="DOC.5.12">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="ClassID.html">ClassID</A>  getDynamicClassID(void) const </B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UClassID.html">UClassID</A>  getDynamicClassID(void) const </B></TT>
 <DD>
 Returns a unique class ID POLYMORPHICALLY.  Pure virtual override.
 This method is to implement a simple version of RTTI, since not all
@@ -379,7 +406,7 @@ other classes have different class IDs.
 </DL><P>
 <A NAME="getStaticClassID">
 <A NAME ="DOC.5.13">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="ClassID.html">ClassID</A>  getStaticClassID(void)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="UClassID.html">UClassID</A>  getStaticClassID(void)</B></TT>
 <DD>
 Return the class ID for this class.  This is useful only for
 comparing to a return value from getDynamicClassID().  For example:

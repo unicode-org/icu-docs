@@ -1,9 +1,9 @@
 <html><head><TITLE>ucnv_getStarters</TITLE></head>
 <body>
-<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> CAPI  void  U_EXPORT2  ucnv_getStarters (const UConverter* converter, bool_t starters[256], <!2><A HREF="#DOC.301">UErrorCode</A>* err) </H2><BLOCKQUOTE>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> U_CAPI  void  U_EXPORT2  ucnv_getStarters (const UConverter* converter, bool_t starters[256], <!2><A HREF="#DOC.320">UErrorCode</A>* err) </H2><BLOCKQUOTE>
 
 Gets the "starter" bytes for the converters of type MBCS
-will fill in an <TT>ILLEGAL_ARGUMENT_ERROR</TT> if converter passed in
+will fill in an <TT>U_ILLEGAL_ARGUMENT_ERROR</TT> if converter passed in
 is not MBCS
 </BLOCKQUOTE>
 <A NAME="DOC.DOCU">
@@ -12,7 +12,7 @@ is not MBCS
 <BLOCKQUOTE>
 
 Gets the "starter" bytes for the converters of type MBCS
-will fill in an <TT>ILLEGAL_ARGUMENT_ERROR</TT> if converter passed in
+will fill in an <TT>U_ILLEGAL_ARGUMENT_ERROR</TT> if converter passed in
 is not MBCS.
 fills in an array of boolean, with the value of the byte as offset to the array.
 At return, if TRUE is found in at offset 0x20, it means that the byte 0x20 is a starter byte

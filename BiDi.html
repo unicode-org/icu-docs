@@ -10,15 +10,15 @@ BiDi is a C++ wrapper class for UBiDi
 <DL>
 <DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.1.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>BiDi</B>() </B>
  <DD><I>Default constructor, calls ubidi_open(). </I>
-<DT><A HREF="#DOC.1.2"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>BiDi</B>(<!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode) </B>
+<DT><A HREF="#DOC.1.2"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>BiDi</B>(<!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode) </B>
  <DD><I>Constructor, calls ubidi_open(). </I>
-<DT><A HREF="#DOC.1.3"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>BiDi</B>(UTextOffset maxLength, UTextOffset maxRunCount, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode) </B>
+<DT><A HREF="#DOC.1.3"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>BiDi</B>(UTextOffset maxLength, UTextOffset maxRunCount, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode) </B>
  <DD><I>Preallocating constructor, calls ubidi_openSized(). </I>
 <DT><A HREF="#DOC.1.4"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>~BiDi</B>() </B>
  <DD><I>Destructor, calls ubidi_close(). </I>
-<DT><A HREF="#DOC.1.5"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A>&  <B>setPara</B>(const UChar *text, UTextOffset length, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> paraLevel, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> *embeddingLevels, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode) </B>
+<DT><A HREF="#DOC.1.5"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A>&  <B>setPara</B>(const UChar *text, UTextOffset length, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> paraLevel, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> *embeddingLevels, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode) </B>
  <DD><I>Set this object for one paragraph's text. </I>
-<DT><A HREF="#DOC.1.6"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A>&  <B>setLine</B>(const <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A> &rParaBiDi, UTextOffset start, UTextOffset limit, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode) </B>
+<DT><A HREF="#DOC.1.6"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A>&  <B>setLine</B>(const <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A> &rParaBiDi, UTextOffset start, UTextOffset limit, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode) </B>
  <DD><I>Set this object for one line of the paragraph object's text. </I>
 <DT><A HREF="#DOC.1.7"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UBiDiDirection.html">UBiDiDirection</A>  <B>getDirection</B>() const  </B>
  <DD><I>Get the directionality of the text. </I>
@@ -28,23 +28,23 @@ BiDi is a C++ wrapper class for UBiDi
  <DD><I>Get the paragraph level of the text. </I>
 <DT><A HREF="#DOC.1.10"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A>  <B>getLevelAt</B>(UTextOffset charIndex) const  </B>
  <DD><I>Get the level for one character. </I>
-<DT><A HREF="#DOC.1.11"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A>*  <B>getLevels</B>(<!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode) </B>
+<DT><A HREF="#DOC.1.11"> <IMG BORDER=0 SRC=icon1.gif></A> const  <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A>*  <B>getLevels</B>(<!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode) </B>
  <DD><I>Get an array of levels for each character. </I>
 <DT><A HREF="#DOC.1.12"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getLogicalRun</B>(UTextOffset logicalStart, UTextOffset &rLogicalLimit, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> &rLevel) const  </B>
  <DD><I>Get a logical run. </I>
-<DT><A HREF="#DOC.1.13"> <IMG BORDER=0 SRC=icon1.gif></A> UTextOffset  <B>countRuns</B>(<!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode) </B>
+<DT><A HREF="#DOC.1.13"> <IMG BORDER=0 SRC=icon1.gif></A> UTextOffset  <B>countRuns</B>(<!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode) </B>
  <DD><I>Get the number of runs. </I>
 <DT><A HREF="#DOC.1.14"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UBiDiDirection.html">UBiDiDirection</A>  <B>getVisualRun</B>(UTextOffset runIndex, UTextOffset &rLogicalStart, UTextOffset &rLength) </B>
  <DD><I>Get one run's logical start, length, and directionality,
 which can be 0 for LTR or 1 for RTL.</I>
-<DT><A HREF="#DOC.1.15"> <IMG BORDER=0 SRC=icon1.gif></A> UTextOffset  <B>getVisualIndex</B>(UTextOffset logicalIndex, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode) </B>
+<DT><A HREF="#DOC.1.15"> <IMG BORDER=0 SRC=icon1.gif></A> UTextOffset  <B>getVisualIndex</B>(UTextOffset logicalIndex, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode) </B>
  <DD><I>Get the visual position from a logical text position. </I>
-<DT><A HREF="#DOC.1.16"> <IMG BORDER=0 SRC=icon1.gif></A> UTextOffset  <B>getLogicalIndex</B>(UTextOffset visualIndex, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode) </B>
+<DT><A HREF="#DOC.1.16"> <IMG BORDER=0 SRC=icon1.gif></A> UTextOffset  <B>getLogicalIndex</B>(UTextOffset visualIndex, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode) </B>
  <DD><I>Get the logical text position from a visual position. </I>
-<DT><A HREF="#DOC.1.17"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getLogicalMap</B>(UTextOffset *indexMap, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode) </B>
+<DT><A HREF="#DOC.1.17"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getLogicalMap</B>(UTextOffset *indexMap, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode) </B>
  <DD><I>Get a logical-to-visual index map (array) for the characters in the UBiDi
 (paragraph or line) object.</I>
-<DT><A HREF="#DOC.1.18"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getVisualMap</B>(UTextOffset *indexMap, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode) </B>
+<DT><A HREF="#DOC.1.18"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getVisualMap</B>(UTextOffset *indexMap, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode) </B>
  <DD><I>Get a visual-to-logical index map (array) for the characters in the UBiDi
 (paragraph or line) object.</I>
 <DT><A HREF="#DOC.1.19"> <IMG BORDER=0 SRC=icon1.gif></A> static  void  <B>reorderLogical</B>(const <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> *levels, UTextOffset length, UTextOffset *indexMap) </B>
@@ -76,12 +76,12 @@ Unicode BiDi algorithm, see ubidi.h.
 <DL></DL><P>
 <A NAME="BiDi">
 <A NAME ="DOC.1.2">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  BiDi(<!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  BiDi(<!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode)</B></TT>
 <DD>Constructor, calls ubidi_open(). 
 <DL></DL><P>
 <A NAME="BiDi">
 <A NAME ="DOC.1.3">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  BiDi(UTextOffset maxLength, UTextOffset maxRunCount, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  BiDi(UTextOffset maxLength, UTextOffset maxRunCount, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode)</B></TT>
 <DD>Preallocating constructor, calls ubidi_openSized(). 
 <DL></DL><P>
 <A NAME="~BiDi">
@@ -91,12 +91,12 @@ Unicode BiDi algorithm, see ubidi.h.
 <DL></DL><P>
 <A NAME="setPara">
 <A NAME ="DOC.1.5">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A>&  setPara(const UChar *text, UTextOffset length, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> paraLevel, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> *embeddingLevels, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A>&  setPara(const UChar *text, UTextOffset length, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> paraLevel, <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A> *embeddingLevels, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode)</B></TT>
 <DD>Set this object for one paragraph's text. 
 <DL></DL><P>
 <A NAME="setLine">
 <A NAME ="DOC.1.6">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A>&  setLine(const <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A> &rParaBiDi, UTextOffset start, UTextOffset limit, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A>&  setLine(const <!2><A HREF="BiDi.html#DOC.1.1">BiDi</A> &rParaBiDi, UTextOffset start, UTextOffset limit, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode)</B></TT>
 <DD>Set this object for one line of the paragraph object's text. 
 <DL></DL><P>
 <A NAME="getDirection">
@@ -121,7 +121,7 @@ Unicode BiDi algorithm, see ubidi.h.
 <DL></DL><P>
 <A NAME="getLevels">
 <A NAME ="DOC.1.11">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A>*  getLevels(<!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  <!1><A HREF="UBiDiLevel.html">UBiDiLevel</A>*  getLevels(<!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode)</B></TT>
 <DD>Get an array of levels for each character. 
 <DL></DL><P>
 <A NAME="getLogicalRun">
@@ -131,7 +131,7 @@ Unicode BiDi algorithm, see ubidi.h.
 <DL></DL><P>
 <A NAME="countRuns">
 <A NAME ="DOC.1.13">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UTextOffset  countRuns(<!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UTextOffset  countRuns(<!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode)</B></TT>
 <DD>Get the number of runs. 
 <DL></DL><P>
 <A NAME="getVisualRun">
@@ -142,23 +142,23 @@ which can be 0 for LTR or 1 for RTL.
 <DL></DL><P>
 <A NAME="getVisualIndex">
 <A NAME ="DOC.1.15">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UTextOffset  getVisualIndex(UTextOffset logicalIndex, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UTextOffset  getVisualIndex(UTextOffset logicalIndex, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode)</B></TT>
 <DD>Get the visual position from a logical text position. 
 <DL></DL><P>
 <A NAME="getLogicalIndex">
 <A NAME ="DOC.1.16">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UTextOffset  getLogicalIndex(UTextOffset visualIndex, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UTextOffset  getLogicalIndex(UTextOffset visualIndex, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode)</B></TT>
 <DD>Get the logical text position from a visual position. 
 <DL></DL><P>
 <A NAME="getLogicalMap">
 <A NAME ="DOC.1.17">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getLogicalMap(UTextOffset *indexMap, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getLogicalMap(UTextOffset *indexMap, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode)</B></TT>
 <DD>Get a logical-to-visual index map (array) for the characters in the UBiDi
 (paragraph or line) object.
 <DL></DL><P>
 <A NAME="getVisualMap">
 <A NAME ="DOC.1.18">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getVisualMap(UTextOffset *indexMap, <!2><A HREF="#DOC.301">UErrorCode</A> &rErrorCode)</B></TT>
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getVisualMap(UTextOffset *indexMap, <!2><A HREF="#DOC.320">UErrorCode</A> &rErrorCode)</B></TT>
 <DD>Get a visual-to-logical index map (array) for the characters in the UBiDi
 (paragraph or line) object.
 <DL></DL><P>

@@ -1,6 +1,6 @@
 <html><head><TITLE>DateFormat</TITLE></head>
 <body>
-<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API DateFormat : public <!2><A HREF="Format.html#DOC.14.8">Format</A> </H2><BLOCKQUOTE>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API DateFormat : public <!2><A HREF="Format.html#DOC.25.8">Format</A> </H2><BLOCKQUOTE>
 
 DateFormat is an abstract class for a family of classes that convert dates and
 times from their internal representations to textual form and back again in a
@@ -19,207 +19,126 @@ language-independent manner
 
 <DL>
 <DL>
-<DT><h3>Public Classes</h3><DD><DT><A HREF="#DOC.8.25"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EField</B> </B>
+<DT><h3>Public Classes</h3><DD><DT><A HREF="#DOC.19.1"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EField</B> </B>
  <DD><I>
 The following enum values are used in FieldPosition with date/time formatting</I>
 
 <DL>
-<DT><A HREF="#DOC.8.25.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ERA_FIELD</B> </B>
+<DT><A HREF="#DOC.19.1.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ERA_FIELD</B> </B>
  <DD><I>
 These constants are provided for backwards compatibility only,
 and are deprecated</I>
 
 </DL>
-<DT><A HREF="#DOC.8.26"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EStyle</B> </B>
+<DT><A HREF="#DOC.19.2"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EStyle</B> </B>
  <DD><I>
 Constants for various style patterns</I>
 
 <DL>
-<DT><A HREF="#DOC.8.26.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>FULL</B> </B>
+<DT><A HREF="#DOC.19.2.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>FULL</B> </B>
  <DD><I>
 These constants are provided for backwards compatibility only,
 and are deprecated</I>
 
 </DL>
 </DL><DL>
-<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.8.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeConverterCPP</B>() </B>
- <DD><I>
-Creates Unicode Conversion Object will default to LATIN1 <-> encoding
-</I>
-<DT><A HREF="#DOC.8.2"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeConverterCPP</B>(const char* name, <!2><A HREF="#DOC.301">UErrorCode</A>& err) </B>
- <DD><I>
-Creates Unicode Conversion Object by specifying the codepage name</I>
-<DT><A HREF="#DOC.8.3"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeConverterCPP</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& name, <!2><A HREF="#DOC.301">UErrorCode</A>& err) </B>
- <DD><I>
-Creates a UnicodeConverter object with the names specified as unicode strings</I>
-<DT><A HREF="#DOC.8.4"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>UnicodeConverterCPP</B>(int32_t codepageNumber, UCNV_PLATFORM platform, <!2><A HREF="#DOC.301">UErrorCode</A>& err) </B>
- <DD><I>
-Creates Unicode Conversion Object using the codepage ID number</I>
-<DT><A HREF="#DOC.8.5"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>fromUnicodeString</B>(char* target, int32_t& targetSize, const <!1><A HREF="UnicodeString.html">UnicodeString</A>& source, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
- <DD><I>
-Transcodes the source UnicodeString to the target string in a codepage encoding
-with the specified Unicode converter</I>
-<DT><A HREF="#DOC.8.6"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>toUnicodeString</B>(<!1><A HREF="UnicodeString.html">UnicodeString</A>& target, const char* source, int32_t sourceSize, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
- <DD><I>
-Transcode the source string in codepage encoding to the target string in
-Unicode encoding</I>
-<DT><A HREF="#DOC.8.7"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>fromUnicode</B>(char*& target, const char* targetLimit, const UChar*& source, const UChar* sourceLimit, int32_t * offsets, bool_t flush, <!2><A HREF="#DOC.301">UErrorCode</A>& err) </B>
- <DD><I>
-Transcodes an array of unicode characters to an array of codepage characters</I>
-<DT><A HREF="#DOC.8.8"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>toUnicode</B>(UChar*& target, const UChar* targetLimit, const char*& source, const char* sourceLimit, int32_t * offsets, bool_t flush, <!2><A HREF="#DOC.301">UErrorCode</A>& err) </B>
- <DD><I>
-Converts an array of codepage characters into an array of unicode characters</I>
-<DT><A HREF="#DOC.8.9"> <IMG BORDER=0 SRC=icon1.gif></A> int8_t  <B>getMinBytesPerChar</B>(void) const  </B>
- <DD><I>
-Returns the minimum byte length for characters in this codepage</I>
-<DT><A HREF="#DOC.8.10"> <IMG BORDER=0 SRC=icon1.gif></A> UCNV_TYPE  <B>getType</B>(void) const  </B>
- <DD><I>
-Gets the type of conversion associated with the converter
-e</I>
-<DT><A HREF="#DOC.8.11"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getStarters</B>(bool_t starters[256], <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
- <DD><I>
-Gets the "starter" bytes for the converters of type MBCS
-will fill in an <TT>ILLEGAL_ARGUMENT_ERROR</TT> if converter passed in
-is not MBCS</I>
-<DT><A HREF="#DOC.8.12"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getSubstitutionChars</B>(char* subChars, int8_t& len, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
- <DD><I>
-Fills in the output parameter, subChars, with the substitution characters
-as multiple bytes</I>
-<DT><A HREF="#DOC.8.13"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setSubstitutionChars</B>(const char* subChars, int8_t len, <!2><A HREF="#DOC.301">UErrorCode</A>& err) </B>
- <DD><I>
-Sets the substitution chars when converting from unicode to a codepage</I>
-<DT><A HREF="#DOC.8.14"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>resetState</B>(void) </B>
- <DD><I>
-Resets the state of stateful conversion to the default state</I>
-<DT><A HREF="#DOC.8.15"> <IMG BORDER=0 SRC=icon1.gif></A> const  char*  <B>getName</B>( <!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
- <DD><I>
-Gets the name of the converter (zero-terminated)</I>
-<DT><A HREF="#DOC.8.16"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getCodepage</B>(<!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
- <DD><I>
-Gets a codepage number associated with the converter</I>
-<DT><A HREF="#DOC.8.17"> <IMG BORDER=0 SRC=icon1.gif></A> UCNV_ToUCallBack  <B>getMissingCharAction</B>(void) const  </B>
- <DD><I>
-Returns the current setting action taken when a character from a codepage
-is missing</I>
-<DT><A HREF="#DOC.8.18"> <IMG BORDER=0 SRC=icon1.gif></A> UCNV_FromUCallBack  <B>getMissingUnicodeAction</B>(void) const  </B>
- <DD><I>
-Return the current setting action taken when a unicode character is missing</I>
-<DT><A HREF="#DOC.8.19"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setMissingCharAction</B>(UCNV_ToUCallBack action, <!2><A HREF="#DOC.301">UErrorCode</A>& err) </B>
- <DD><I>
-Sets the current setting action taken when a character from a codepage is
-missing</I>
-<DT><A HREF="#DOC.8.20"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>setMissingUnicodeAction</B>(UCNV_FromUCallBack action, <!2><A HREF="#DOC.301">UErrorCode</A>& err) </B>
- <DD><I>
-Sets the current setting action taken when a unicode character is missing</I>
-<DT><A HREF="#DOC.8.21"> <IMG BORDER=0 SRC=icon1.gif></A> void  <B>getDisplayName</B>(const Locale& displayLocale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& displayName) const  </B>
- <DD><I>
-Returns the localized name of the UnicodeConverter, if for any reason it is
-available, the internal name will be returned instead</I>
-<DT><A HREF="#DOC.8.22"> <IMG BORDER=0 SRC=icon1.gif></A> UCNV_PLATFORM  <B>getCodepagePlatform</B>(<!2><A HREF="#DOC.301">UErrorCode</A>& err) const  </B>
- <DD><I>
-Returns the T_UnicodeConverter_platform (ICU defined enum) of a UnicodeConverter
-available, the internal name will be returned instead</I>
-<DT><A HREF="#DOC.8.23"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  char*  const*  <B>getAvailableNames</B>(int32_t& num, <!2><A HREF="#DOC.301">UErrorCode</A>& err) </B>
- <DD><I>
-Returns the available names</I>
-<DT><A HREF="#DOC.8.24"> <IMG BORDER=0 SRC=icon1.gif></A> static  int32_t  <B>flushCache</B>(void) </B>
- <DD><I>
-Iterates through every cached converter and frees all the unused ones
-</I>
-<DT><A HREF="#DOC.8.53"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <B>~DateFormat</B>() </B>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.19.29"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <B>~DateFormat</B>() </B>
  <DD><I>
 Destructor</I>
-<DT><A HREF="#DOC.8.27"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!2><A HREF="Format.html#DOC.14.8">Format</A>&) const  </B>
+<DT><A HREF="#DOC.19.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!2><A HREF="Format.html#DOC.25.8">Format</A>&) const  </B>
  <DD><I>
 Equality operator</I>
-<DT><A HREF="#DOC.8.28"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+<DT><A HREF="#DOC.19.4"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const  </B>
  <DD><I>
 Format an object to produce a string</I>
-<DT><A HREF="#DOC.8.29"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>( UDate date, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& fieldPosition) const  </B>
+<DT><A HREF="#DOC.19.5"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>( <!1><A HREF="UDate.html">UDate</A> date, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& fieldPosition) const  </B>
  <DD><I>
 Formats a UDate into a date/time string</I>
-<DT><A HREF="#DOC.8.30"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(UDate date, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
+<DT><A HREF="#DOC.19.6"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(<!1><A HREF="UDate.html">UDate</A> date, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const  </B>
  <DD><I>
 Formats a UDate into a date/time string</I>
-<DT><A HREF="#DOC.8.31"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UDate  <B>parse</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+<DT><A HREF="#DOC.19.30"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Redeclared Format method</I>
+<DT><A HREF="#DOC.19.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UDate.html">UDate</A>  <B>parse</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const  </B>
  <DD><I>
 Parse a date/time string</I>
-<DT><A HREF="#DOC.8.32"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  UDate  <B>parse</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="ParsePosition.html">ParsePosition</A>& pos) const  </B>
+<DT><A HREF="#DOC.19.8"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UDate.html">UDate</A>  <B>parse</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="ParsePosition.html">ParsePosition</A>& pos) const  </B>
  <DD><I>
 Parse a date/time string beginning at the given parse position</I>
-<DT><A HREF="#DOC.8.33"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>parseObject</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& source, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parse_pos) const  </B>
+<DT><A HREF="#DOC.19.9"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>parseObject</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& source, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parse_pos) const  </B>
  <DD><I>
 Parse a string to produce an object</I>
-<DT><A HREF="#DOC.8.34"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>*  <B>createInstance</B>(void) </B>
+<DT><A HREF="#DOC.19.10"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>*  <B>createInstance</B>(void) </B>
  <DD><I>
 Create a default date/time formatter that uses the SHORT style for both
 the date and the time</I>
-<DT><A HREF="#DOC.8.35"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>*  <B>createTimeInstance</B>(<!2><A HREF="DateFormat.html#DOC.8.26">EStyle</A> style = kDefault, const Locale& aLocale = Locale::getDefault()) </B>
+<DT><A HREF="#DOC.19.11"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>*  <B>createTimeInstance</B>(<!2><A HREF="DateFormat.html#DOC.19.2">EStyle</A> style = kDefault, const Locale& aLocale = Locale::getDefault()) </B>
  <DD><I>
 Creates a time formatter with the given formatting style for the given
 locale</I>
-<DT><A HREF="#DOC.8.36"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>*  <B>createDateInstance</B>(<!2><A HREF="DateFormat.html#DOC.8.26">EStyle</A> style = kDefault, const Locale& aLocale = Locale::getDefault()) </B>
+<DT><A HREF="#DOC.19.12"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>*  <B>createDateInstance</B>(<!2><A HREF="DateFormat.html#DOC.19.2">EStyle</A> style = kDefault, const Locale& aLocale = Locale::getDefault()) </B>
  <DD><I>
 Creates a date formatter with the given formatting style for the given
 const locale</I>
-<DT><A HREF="#DOC.8.37"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>*  <B>createDateTimeInstance</B>(<!2><A HREF="DateFormat.html#DOC.8.26">EStyle</A> dateStyle = kDefault, <!2><A HREF="DateFormat.html#DOC.8.26">EStyle</A> timeStyle = kDefault, const Locale& aLocale = Locale::getDefault()) </B>
+<DT><A HREF="#DOC.19.13"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>*  <B>createDateTimeInstance</B>(<!2><A HREF="DateFormat.html#DOC.19.2">EStyle</A> dateStyle = kDefault, <!2><A HREF="DateFormat.html#DOC.19.2">EStyle</A> timeStyle = kDefault, const Locale& aLocale = Locale::getDefault()) </B>
  <DD><I>
 Creates a date/time formatter with the given formatting styles for the
 given locale</I>
-<DT><A HREF="#DOC.8.38"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  Locale*  <B>getAvailableLocales</B>(int32_t& count) </B>
+<DT><A HREF="#DOC.19.14"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  Locale*  <B>getAvailableLocales</B>(int32_t& count) </B>
  <DD><I>
 Gets the set of locales for which DateFormats are installed</I>
-<DT><A HREF="#DOC.8.54"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>isLenient</B>(void) const  </B>
+<DT><A HREF="#DOC.19.31"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>isLenient</B>(void) const  </B>
  <DD><I>
 Returns true if the formatter is set for lenient parsing</I>
-<DT><A HREF="#DOC.8.39"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setLenient</B>(bool_t lenient) </B>
+<DT><A HREF="#DOC.19.15"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setLenient</B>(bool_t lenient) </B>
  <DD><I>
 Specify whether or not date/time parsing is to be lenient</I>
-<DT><A HREF="#DOC.8.40"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  const  <!1><A HREF="Calendar.html">Calendar</A>*  <B>getCalendar</B>(void) const  </B>
+<DT><A HREF="#DOC.19.16"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  const  <!1><A HREF="Calendar.html">Calendar</A>*  <B>getCalendar</B>(void) const  </B>
  <DD><I>
 Gets the calendar associated with this date/time formatter</I>
-<DT><A HREF="#DOC.8.41"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>adoptCalendar</B>(<!1><A HREF="Calendar.html">Calendar</A>* calendarToAdopt) </B>
+<DT><A HREF="#DOC.19.17"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>adoptCalendar</B>(<!1><A HREF="Calendar.html">Calendar</A>* calendarToAdopt) </B>
  <DD><I>
 Set the calendar to be used by this date format</I>
-<DT><A HREF="#DOC.8.42"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setCalendar</B>(const <!1><A HREF="Calendar.html">Calendar</A>& newCalendar) </B>
+<DT><A HREF="#DOC.19.18"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setCalendar</B>(const <!1><A HREF="Calendar.html">Calendar</A>& newCalendar) </B>
  <DD><I>
 Set the calendar to be used by this date format</I>
-<DT><A HREF="#DOC.8.43"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  const  <!1><A HREF="NumberFormat.html">NumberFormat</A>*  <B>getNumberFormat</B>(void) const  </B>
+<DT><A HREF="#DOC.19.19"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  const  <!1><A HREF="NumberFormat.html">NumberFormat</A>*  <B>getNumberFormat</B>(void) const  </B>
  <DD><I>
 Gets the number formatter which this date/time formatter uses to format
 and parse the numeric portions of the pattern</I>
-<DT><A HREF="#DOC.8.44"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>adoptNumberFormat</B>(<!1><A HREF="NumberFormat.html">NumberFormat</A>* formatToAdopt) </B>
+<DT><A HREF="#DOC.19.20"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>adoptNumberFormat</B>(<!1><A HREF="NumberFormat.html">NumberFormat</A>* formatToAdopt) </B>
  <DD><I>
 Allows you to set the number formatter</I>
-<DT><A HREF="#DOC.8.45"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setNumberFormat</B>(const <!1><A HREF="NumberFormat.html">NumberFormat</A>& newNumberFormat) </B>
+<DT><A HREF="#DOC.19.21"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setNumberFormat</B>(const <!1><A HREF="NumberFormat.html">NumberFormat</A>& newNumberFormat) </B>
  <DD><I>
 Allows you to set the number formatter</I>
-<DT><A HREF="#DOC.8.46"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  const  <!1><A HREF="TimeZone.html">TimeZone</A>&  <B>getTimeZone</B>(void) const  </B>
+<DT><A HREF="#DOC.19.22"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  const  <!1><A HREF="TimeZone.html">TimeZone</A>&  <B>getTimeZone</B>(void) const  </B>
  <DD><I>
 Returns a reference to the TimeZone used by this DateFormat's calendar</I>
-<DT><A HREF="#DOC.8.47"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>adoptTimeZone</B>(<!1><A HREF="TimeZone.html">TimeZone</A>* zoneToAdopt) </B>
+<DT><A HREF="#DOC.19.23"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>adoptTimeZone</B>(<!1><A HREF="TimeZone.html">TimeZone</A>* zoneToAdopt) </B>
  <DD><I>
 Sets the time zone for the calendar of this DateFormat object</I>
-<DT><A HREF="#DOC.8.48"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setTimeZone</B>(const <!1><A HREF="TimeZone.html">TimeZone</A>& zone) </B>
+<DT><A HREF="#DOC.19.24"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setTimeZone</B>(const <!1><A HREF="TimeZone.html">TimeZone</A>& zone) </B>
  <DD><I>
 Sets the time zone for the calendar of this DateFormat object</I>
 </DL><DL>
-<DT><h3>Protected Fields</h3><DD><DT><A HREF="#DOC.8.50"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="Calendar.html">Calendar</A>*  <B>fCalendar</B> </B>
+<DT><h3>Protected Fields</h3><DD><DT><A HREF="#DOC.19.26"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="Calendar.html">Calendar</A>*  <B>fCalendar</B> </B>
  <DD><I>
 The calendar that DateFormat uses to produce the time field values needed
 to implement date/time formatting</I>
-<DT><A HREF="#DOC.8.51"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="NumberFormat.html">NumberFormat</A>*  <B>fNumberFormat</B> </B>
+<DT><A HREF="#DOC.19.27"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="NumberFormat.html">NumberFormat</A>*  <B>fNumberFormat</B> </B>
  <DD><I>
 The number formatter that DateFormat uses to format numbers in dates and
 times</I>
 </DL><DL>
-<DT><h3>Protected Methods</h3><DD><DT><A HREF="#DOC.8.49"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DateFormat</B>() </B>
+<DT><h3>Protected Methods</h3><DD><DT><A HREF="#DOC.19.25"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DateFormat</B>() </B>
  <DD><I>
 Default constructor</I>
-<DT><A HREF="#DOC.8.55"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DateFormat</B>(const <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>&) </B>
+<DT><A HREF="#DOC.19.32"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DateFormat</B>(const <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>&) </B>
  <DD><I>
 Copy constructor</I>
-<DT><A HREF="#DOC.8.56"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>&  <B>operator=</B>(const <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>&) </B>
+<DT><A HREF="#DOC.19.33"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>&  <B>operator=</B>(const <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>&) </B>
  <DD><I>
 Default assignment operator</I>
 </DL></DL>
@@ -227,9 +146,9 @@ Default assignment operator</I>
 
 <DL>
 <DL>
-<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> bool_t  <B>operator!=</B>(const <!2><A HREF="Format.html#DOC.14.8">Format</A>& other) const 
-<DT><IMG SRC=icon2.gif> virtual  <!2><A HREF="Format.html#DOC.14.8">Format</A>*  <B>clone</B>() const 
-<DT><IMG SRC=icon2.gif> virtual  <!1><A HREF="ClassID.html">ClassID</A>  <B>getDynamicClassID</B>() const 
+<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> bool_t  <B>operator!=</B>(const <!2><A HREF="Format.html#DOC.25.8">Format</A>& other) const 
+<DT><IMG SRC=icon2.gif> virtual  <!2><A HREF="Format.html#DOC.25.8">Format</A>*  <B>clone</B>() const 
+<DT><IMG SRC=icon2.gif> virtual  <!1><A HREF="UClassID.html">UClassID</A>  <B>getDynamicClassID</B>() const 
 </DL></DL>
 <A NAME="DOC.DOCU">
 <hr>
@@ -275,7 +194,7 @@ getDateInstance().
 </pre>
 You can use a DateFormat to parse also.
 <pre>
-.       UErrorCode status = ZERO_ERROR;
+.       UErrorCode status = U_ZERO_ERROR;
 .       UDate myDate = df->parse(myString, status);
 </pre>
 Use createDateInstance() to produce the normal date format for that country.
@@ -309,288 +228,8 @@ on the screen.
 </BLOCKQUOTE>
 <DL>
 
-<A NAME="UnicodeConverterCPP">
-<A NAME ="DOC.8.1">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeConverterCPP()</B></TT>
-<DD>
-Creates Unicode Conversion Object will default to LATIN1 <-> encoding
-
-<DL><DT><B>Returns:</B><DD>An object Handle if successful or a NULL if the creation failed
-</DL><P>
-<A NAME="UnicodeConverterCPP">
-<A NAME ="DOC.8.2">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeConverterCPP(const char* name, <!2><A HREF="#DOC.301">UErrorCode</A>& err)</B></TT>
-<DD>
-Creates Unicode Conversion Object by specifying the codepage name.  The name
-string is in ASCII format.
-
-<DL><DT><B>Returns:</B><DD>An object Handle if successful or a NULL if the creation failed
-<DT><B>Parameters:</B><DD><B>code_set</B> -  the pointer to a char[] object containing a codepage name. (I)
-<br><B>UErrorCode</B> -  Error status (I/O) IILLEGAL_ARGUMENT_ERROR will be returned if the string is empty.
-If the internal program does not work correctly, for example, if there's no such codepage,
-INTERNAL_PROGRAM_ERROR will be returned.
-<br></DL><P>
-<A NAME="UnicodeConverterCPP">
-<A NAME ="DOC.8.3">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeConverterCPP(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& name, <!2><A HREF="#DOC.301">UErrorCode</A>& err)</B></TT>
-<DD>
-Creates a UnicodeConverter object with the names specified as unicode strings. The name should be limited to
-the ASCII-7 alphanumerics. Dash and underscore characters are allowed for readability, but are ignored in the
-search.
-
-<DL><DT><B>Returns:</B><DD>the created Unicode converter object
-<DT><B>Parameters:</B><DD><B>code_set</B> -  name of the uconv table in Unicode string (I)
-<br><B>err</B> -  error status (I/O) IILLEGAL_ARGUMENT_ERROR will be returned if the string is empty.  If the internal
-program does not work correctly, for example, if there's no such codepage, INTERNAL_PROGRAM_ERROR will be
-returned.
-<br></DL><P>
-<A NAME="UnicodeConverterCPP">
-<A NAME ="DOC.8.4">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  UnicodeConverterCPP(int32_t codepageNumber, UCNV_PLATFORM platform, <!2><A HREF="#DOC.301">UErrorCode</A>& err)</B></TT>
-<DD>
-Creates Unicode Conversion Object using the codepage ID number
-<DL><DT><B>Returns:</B><DD>An object Handle if successful or a NULL if failed
-
-<DT><B>Parameters:</B><DD><B>code_set</B> -  a codepage # (I)
-@UErrorCode Error status (I/O) IILLEGAL_ARGUMENT_ERROR will be returned if the string is empty.
-If the internal program does not work correctly, for example, if there's no such codepage,
-INTERNAL_PROGRAM_ERROR will be returned.
-<br></DL><P>
-<A NAME="fromUnicodeString">
-<A NAME ="DOC.8.5">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  fromUnicodeString(char* target, int32_t& targetSize, const <!1><A HREF="UnicodeString.html">UnicodeString</A>& source, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
-<DD>
-Transcodes the source UnicodeString to the target string in a codepage encoding
-with the specified Unicode converter.  For example, if a Unicode to/from JIS
-converter is specified, the source string in Unicode will be transcoded to JIS
-encoding.  The result will be stored in JIS encoding.
-
-
-<DL><DT><B>Parameters:</B><DD><B>source</B> -  the source Unicode string
-<br><B>target</B> -  the target string in codepage encoding
-<br><B>targetSize</B> -  Input the number of bytes available in the "target" buffer, Output the number of bytes copied to it
-<br><B>err</B> -  the error status code.  MEMORY_ALLOCATION_ERROR will be returned if the
-the internal process buffer cannot be allocated for transcoding.  ILLEGAL_ARGUMENT_ERROR
-is returned if the converter is null or the source or target string is empty.<br></DL><P>
-<A NAME="toUnicodeString">
-<A NAME ="DOC.8.6">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  toUnicodeString(<!1><A HREF="UnicodeString.html">UnicodeString</A>& target, const char* source, int32_t sourceSize, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
-<DD>
-Transcode the source string in codepage encoding to the target string in
-Unicode encoding.  For example, if a Unicode to/from JIS
-converter is specified, the source string in JIS encoding will be transcoded
-to Unicode encoding.  The result will be stored in Unicode encoding.
-
-<DL><DT><B>Parameters:</B><DD><B>source</B> -  the source string in codepage encoding
-<br><B>target</B> -  the target string in Unicode encoding
-<br><B>targetSize</B> -  : I/O parameter, Input size buffer, Output # of bytes copied to it
-<br><B>err</B> -  the error status code MEMORY_ALLOCATION_ERROR will be returned if the
-the internal process buffer cannot be allocated for transcoding.  ILLEGAL_ARGUMENT_ERROR
-is returned if the converter is null or the source or target string is empty.<br></DL><P>
-<A NAME="fromUnicode">
-<A NAME ="DOC.8.7">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  fromUnicode(char*& target, const char* targetLimit, const UChar*& source, const UChar* sourceLimit, int32_t * offsets, bool_t flush, <!2><A HREF="#DOC.301">UErrorCode</A>& err)</B></TT>
-<DD>
-Transcodes an array of unicode characters to an array of codepage characters.
-The source pointer is an I/O parameter, it starts out pointing at the place
-to begin translating, and ends up pointing after the first sequence of the bytes
-that it encounters that are semantically invalid.
-if T_UnicodeConverter_setMissingCharAction is called with an action other than STOP
-before a call is made to this API, consumed and source should point to the same place
-(unless target ends with an imcomplete sequence of bytes and flush is FALSE).
-
-<DL><DT><B>Parameters:</B><DD><B>target</B> -  : I/O parameter. Input : Points to the beginning of the buffer to copy
-codepage characters to. Output : points to after the last codepage character copied
-to target.
-<br><B>targetLimit</B> -  the pointer to the end of the target array
-<br><B>source</B> -  the source Unicode character array
-<br><B>sourceLimit</B> -  the pointer to the end of the source array
-<br><B>flush</B> -  TRUE if the buffer is the last buffer and the conversion will finish
-in this call, FALSE otherwise.  (future feature pending)
-<br><B>UErrorCode</B> -  the error status.  ILLEGAL_ARGUMENT_ERROR will be returned if the
-converter is null.<br></DL><P>
-<A NAME="toUnicode">
-<A NAME ="DOC.8.8">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  toUnicode(UChar*& target, const UChar* targetLimit, const char*& source, const char* sourceLimit, int32_t * offsets, bool_t flush, <!2><A HREF="#DOC.301">UErrorCode</A>& err)</B></TT>
-<DD>
-Converts an array of codepage characters into an array of unicode characters.
-The source pointer is an I/O parameter, it starts out pointing at the place
-to begin translating, and ends up pointing after the first sequence of the bytes
-that it encounters that are semantically invalid.
-if T_UnicodeConverter_setMissingUnicodeAction is called with an action other than STOP
-before a call is made to this API, consumed and source should point to the same place
-(unless target ends with an imcomplete sequence of bytes and flush is FALSE).
-
-<DL><DT><B>Parameters:</B><DD><B>target</B> -  : I/O parameter. Input : Points to the beginning of the buffer to copy
-Unicode characters to. Output : points to after the last UChar copied to target.
-<br><B>targetLimit</B> -  the pointer to the end of the target array
-<br><B>source</B> -  the source codepage character array
-<br><B>sourceLimit</B> -  the pointer to the end of the source array
-<br><B>flush</B> -  TRUE if the buffer is the last buffer and the conversion will finish
-in this call, FALSE otherwise.  (future feature pending)
-<br><B>err</B> -  the error code status  ILLEGAL_ARGUMENT_ERROR will be returned if the
-converter is null, targetLimit < target, sourceLimit < source<br></DL><P>
-<A NAME="getMinBytesPerChar">
-<A NAME ="DOC.8.9">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int8_t  getMinBytesPerChar(void) const </B></TT>
-<DD>
-Returns the minimum byte length for characters in this codepage. This is either
-1 or 2 for all supported codepages.
-
-<DL><DT><B>Returns:</B><DD>the minimum number of byte per codepage character
-</DL><P>
-<A NAME="getType">
-<A NAME ="DOC.8.10">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UCNV_TYPE  getType(void) const </B></TT>
-<DD>
-Gets the type of conversion associated with the converter
-e.g. SBCS, MBCS, DBCS, UTF8, UTF16_BE, UTF16_LE, ISO_2022, EBCDIC_STATEFUL, LATIN_1
-
-<DL><DT><B>Returns:</B><DD>the type of the converter
-</DL><P>
-<A NAME="getStarters">
-<A NAME ="DOC.8.11">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getStarters(bool_t starters[256], <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
-<DD>
-Gets the "starter" bytes for the converters of type MBCS
-will fill in an <TT>ILLEGAL_ARGUMENT_ERROR</TT> if converter passed in
-is not MBCS.
-fills in an array of boolean, with the value of the byte as offset to the array.
-At return, if TRUE is found in at offset 0x20, it means that the byte 0x20 is a starter byte
-in this converter.
-
-<DL><DT><B>Parameters:</B><DD><B>starters</B> - : an array of size 256 to be filled in
-<br><B>err</B> - : an array of size 256 to be filled in
-<br><DT><B>See Also:</B><DD><!1><A HREF="ucnv_getType.html">ucnv_getType</A><br></DL><P>
-<A NAME="getSubstitutionChars">
-<A NAME ="DOC.8.12">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getSubstitutionChars(char* subChars, int8_t& len, <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
-<DD>
-Fills in the output parameter, subChars, with the substitution characters
-as multiple bytes
-<DL><DT><B>Parameters:</B><DD><B>subChars</B> -  the subsitution characters
-<br><B>len</B> -  the number of bytes of the substitution character array
-<br><B>err</B> -  the error status code.  ILLEGAL_ARGUMENT_ERROR will be returned if
-the converter is null.  If the substitution character array is too small, an
-INDEX_OUTOFBOUNDS_ERROR will be returned.<br></DL><P>
-<A NAME="setSubstitutionChars">
-<A NAME ="DOC.8.13">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setSubstitutionChars(const char* subChars, int8_t len, <!2><A HREF="#DOC.301">UErrorCode</A>& err)</B></TT>
-<DD>
-Sets the substitution chars when converting from unicode to a codepage. The
-substitution is specified as a string of 1-4 bytes, and may contain null byte.
-The fill-in parameter err will get the error status on return.
-
-<DL><DT><B>Parameters:</B><DD><B>cstr</B> -  the substitution character array to be set with
-<br><B>len</B> -  the number of bytes of the substitution character array and upon return will contain the
-number of bytes copied to that buffer
-<br><B>err</B> -  the error status code.  ILLEGAL_ARGUMENT_ERROR if the converter is
-null.   or if the number of bytes provided are not in the codepage's range (e.g length 1 for ucs-2)<br></DL><P>
-<A NAME="resetState">
-<A NAME ="DOC.8.14">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  resetState(void)</B></TT>
-<DD>
-Resets the state of stateful conversion to the default state. This is used
-in the case of error to restart a conversion from a known default state.
-<DL></DL><P>
-<A NAME="getName">
-<A NAME ="DOC.8.15">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  char*  getName( <!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
-<DD>
-Gets the name of the converter (zero-terminated).
-the name will be the internal name of the converter
-
-<DL><DT><B>Parameters:</B><DD><B>converter</B> -  the Unicode converter
-<br><B>err</B> -  the error status code. INDEX_OUTOFBOUNDS_ERROR in the converterNameLen is too
-small to contain the name.<br></DL><P>
-<A NAME="getCodepage">
-<A NAME ="DOC.8.16">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getCodepage(<!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
-<DD>
-Gets a codepage number associated with the converter. This is not guaranteed
-to be the one used to create the converter. Some converters do not represent
-IBM registered codepages and return zero for the codepage number.
-The error code fill-in parameter indicates if the codepage number is available.
-
-<DL><DT><B>Returns:</B><DD>If any error occurrs, null will be returned.
-<DT><B>Parameters:</B><DD><B>err</B> -  the error status code.  ILLEGAL_ARGUMENT_ERROR will returned if
-the converter is null or if converter's data table is null.
-<br></DL><P>
-<A NAME="getMissingCharAction">
-<A NAME ="DOC.8.17">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UCNV_ToUCallBack  getMissingCharAction(void) const </B></TT>
-<DD>
-Returns the current setting action taken when a character from a codepage
-is missing. (Currently STOP or SUBSTITUTE).
-
-<DL><DT><B>Returns:</B><DD>the action constant when a Unicode character cannot be converted to a
-codepage equivalent
-</DL><P>
-<A NAME="getMissingUnicodeAction">
-<A NAME ="DOC.8.18">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UCNV_FromUCallBack  getMissingUnicodeAction(void) const </B></TT>
-<DD>
-Return the current setting action taken when a unicode character is missing.
-(Currently STOP or SUBSTITUTE).
-
-<DL><DT><B>Returns:</B><DD>the action constant when a codepage character cannot be converted to a
-Unicode eqivalent
-</DL><P>
-<A NAME="setMissingCharAction">
-<A NAME ="DOC.8.19">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setMissingCharAction(UCNV_ToUCallBack action, <!2><A HREF="#DOC.301">UErrorCode</A>& err)</B></TT>
-<DD>
-Sets the current setting action taken when a character from a codepage is
-missing. (Currently STOP or SUBSTITUTE).
-
-<DL><DT><B>Parameters:</B><DD><B>action</B> -  the action constant if an equivalent codepage character is missing<br></DL><P>
-<A NAME="setMissingUnicodeAction">
-<A NAME ="DOC.8.20">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setMissingUnicodeAction(UCNV_FromUCallBack action, <!2><A HREF="#DOC.301">UErrorCode</A>& err)</B></TT>
-<DD>
-Sets the current setting action taken when a unicode character is missing.
-(currently T_UnicodeConverter_MissingUnicodeAction is either STOP or SUBSTITUTE,
-SKIP, CLOSEST_MATCH, ESCAPE_SEQ may be added in the future).
-
-<DL><DT><B>Parameters:</B><DD><B>action</B> -  the action constant if an equivalent Unicode character is missing
-<br><B>err</B> -  the error status code<br></DL><P>
-<A NAME="getDisplayName">
-<A NAME ="DOC.8.21">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  getDisplayName(const Locale& displayLocale, <!1><A HREF="UnicodeString.html">UnicodeString</A>& displayName) const </B></TT>
-<DD>
-Returns the localized name of the UnicodeConverter, if for any reason it is
-available, the internal name will be returned instead
-<DL><DT><B>Parameters:</B><DD><B>displayLocale</B> -  the valid Locale, from which we want to localize
-<br><B>displayString</B> -  a UnicodeString that is going to be filled in.<br></DL><P>
-<A NAME="getCodepagePlatform">
-<A NAME ="DOC.8.22">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> UCNV_PLATFORM  getCodepagePlatform(<!2><A HREF="#DOC.301">UErrorCode</A>& err) const </B></TT>
-<DD>
-Returns the T_UnicodeConverter_platform (ICU defined enum) of a UnicodeConverter
-available, the internal name will be returned instead
-<DL><DT><B>Returns:</B><DD>the codepages platform
-<DT><B>Parameters:</B><DD><B>err</B> -  the error code status
-<br></DL><P>
-<A NAME="getAvailableNames">
-<A NAME ="DOC.8.23">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  const  char*  const*  getAvailableNames(int32_t& num, <!2><A HREF="#DOC.301">UErrorCode</A>& err)</B></TT>
-<DD>
-Returns the available names. Lazy evaluated, Library owns the storage
-
-<DL><DT><B>Returns:</B><DD>the name array
-<DT><B>Parameters:</B><DD><B>num</B> -  the number of available converters
-<br><B>err</B> -  the error code status
-<br></DL><P>
-<A NAME="flushCache">
-<A NAME ="DOC.8.24">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  int32_t  flushCache(void)</B></TT>
-<DD>
-Iterates through every cached converter and frees all the unused ones
-
-<DL><DT><B>Returns:</B><DD>the number of cached converters successfully deleted
-</DL><P>
 <A NAME="EField">
-<A NAME ="DOC.8.25">
+<A NAME ="DOC.19.1">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  EField</B></TT>
 <DD>
 The following enum values are used in FieldPosition with date/time formatting.
@@ -604,7 +243,7 @@ resource bundle data files.
 <DL></DL><P><DL>
 
 <A NAME="ERA_FIELD">
-<A NAME ="DOC.8.25.1">
+<A NAME ="DOC.19.1.1">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ERA_FIELD</B></TT>
 <DD>
 These constants are provided for backwards compatibility only,
@@ -612,7 +251,7 @@ and are deprecated.  Please use the C++ style constants defined above.
 <DL></DL><P></DL>
 
 <A NAME="EStyle">
-<A NAME ="DOC.8.26">
+<A NAME ="DOC.19.2">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  EStyle</B></TT>
 <DD>
 Constants for various style patterns. These reflect the order of items in
@@ -622,7 +261,7 @@ in the order full, long, medium, short.
 <DL></DL><P><DL>
 
 <A NAME="FULL">
-<A NAME ="DOC.8.26.1">
+<A NAME ="DOC.19.2.1">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  FULL</B></TT>
 <DD>
 These constants are provided for backwards compatibility only,
@@ -630,20 +269,20 @@ and are deprecated.  Please use the C++ style constants defined above.
 <DL></DL><P></DL>
 
 <A NAME="~DateFormat">
-<A NAME ="DOC.8.53">
+<A NAME ="DOC.19.29">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  ~DateFormat()</B></TT>
 <DD>
 Destructor
 <DL></DL><P>
 <A NAME="operator==">
-<A NAME ="DOC.8.27">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!2><A HREF="Format.html#DOC.14.8">Format</A>&) const </B></TT>
+<A NAME ="DOC.19.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!2><A HREF="Format.html#DOC.25.8">Format</A>&) const </B></TT>
 <DD>
 Equality operator.  Returns true if the two formats have the same behavior.
 <DL></DL><P>
 <A NAME="format">
-<A NAME ="DOC.8.28">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<A NAME ="DOC.19.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const </B></TT>
 <DD>
 Format an object to produce a string. This method handles Formattable
 objects with a UDate type. If a the Formattable object type is not a Date,
@@ -660,8 +299,8 @@ On output: the offsets of the alignment field.
 <br><B>status</B> -         Output param filled with success/failure status.
 <br></DL><P>
 <A NAME="format">
-<A NAME ="DOC.8.29">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format( UDate date, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& fieldPosition) const </B></TT>
+<A NAME ="DOC.19.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format( <!1><A HREF="UDate.html">UDate</A> date, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& fieldPosition) const </B></TT>
 <DD>
 Formats a UDate into a date/time string. This is an abstract method which
 concrete subclasses must implement.
@@ -691,8 +330,8 @@ the end of this string.
 On output: the offsets of the alignment field (see examples above)
 <br></DL><P>
 <A NAME="format">
-<A NAME ="DOC.8.30">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(UDate date, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const </B></TT>
+<A NAME ="DOC.19.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(<!1><A HREF="UDate.html">UDate</A> date, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result) const </B></TT>
 <DD>
 Formats a UDate into a date/time string. If there is a problem, you won't
 know, using this method. Use the overloaded format() method which takes a
@@ -703,9 +342,15 @@ FieldPosition& to detect formatting problems.
 <DT><B>Parameters:</B><DD><B>date</B> -       The UDate value to be formatted into a string.
 <br><B>result</B> -     Output param which will receive the formatted date.
 <br></DL><P>
+<A NAME="format">
+<A NAME ="DOC.19.30">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const </B></TT>
+<DD>
+Redeclared Format method
+<DL></DL><P>
 <A NAME="parse">
-<A NAME ="DOC.8.31">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UDate  parse( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<A NAME ="DOC.19.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UDate.html">UDate</A>  parse( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const </B></TT>
 <DD>
 Parse a date/time string.
 
@@ -716,8 +361,8 @@ Parse a date/time string.
 code.
 @result          The parsed UDate value, if successful.<br></DL><P>
 <A NAME="parse">
-<A NAME ="DOC.8.32">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  UDate  parse( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="ParsePosition.html">ParsePosition</A>& pos) const </B></TT>
+<A NAME ="DOC.19.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UDate.html">UDate</A>  parse( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="ParsePosition.html">ParsePosition</A>& pos) const </B></TT>
 <DD>
 Parse a date/time string beginning at the given parse position. For
 example, a time text "07/10/96 4:5 PM, PDT" will be parsed into a Date
@@ -734,10 +379,10 @@ calling setLenient(false).
 <br><B>pos</B> -    On input, the position at which to start parsing; on
 output, the position at which parsing terminated, or the
 start position if the parse failed.
-<br><DT><B>See Also:</B><DD><!2><A HREF="DateFormat.html#DOC.8.39">DateFormat::setLenient</A>(boolean)
+<br><DT><B>See Also:</B><DD><!2><A HREF="DateFormat.html#DOC.19.15">DateFormat::setLenient</A>(boolean)
 <br></DL><P>
 <A NAME="parseObject">
-<A NAME ="DOC.8.33">
+<A NAME ="DOC.19.9">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  parseObject(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& source, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parse_pos) const </B></TT>
 <DD>
 Parse a string to produce an object. This methods handles parsing of
@@ -766,8 +411,8 @@ source is not parsed successfully, this param
 will remain unchanged.
 <br></DL><P>
 <A NAME="createInstance">
-<A NAME ="DOC.8.34">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>*  createInstance(void)</B></TT>
+<A NAME ="DOC.19.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>*  createInstance(void)</B></TT>
 <DD>
 Create a default date/time formatter that uses the SHORT style for both
 the date and the time.
@@ -776,8 +421,8 @@ the date and the time.
 <DL><DT><B>Returns:</B><DD>A date/time formatter which the caller owns.
 </DL><P>
 <A NAME="createTimeInstance">
-<A NAME ="DOC.8.35">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>*  createTimeInstance(<!2><A HREF="DateFormat.html#DOC.8.26">EStyle</A> style = kDefault, const Locale& aLocale = Locale::getDefault())</B></TT>
+<A NAME ="DOC.19.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>*  createTimeInstance(<!2><A HREF="DateFormat.html#DOC.19.2">EStyle</A> style = kDefault, const Locale& aLocale = Locale::getDefault())</B></TT>
 <DD>
 Creates a time formatter with the given formatting style for the given
 locale.
@@ -789,8 +434,8 @@ SHORT for "h:mm a" in the US locale.
 <br><B>aLocale</B> -    The given locale.
 <br></DL><P>
 <A NAME="createDateInstance">
-<A NAME ="DOC.8.36">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>*  createDateInstance(<!2><A HREF="DateFormat.html#DOC.8.26">EStyle</A> style = kDefault, const Locale& aLocale = Locale::getDefault())</B></TT>
+<A NAME ="DOC.19.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>*  createDateInstance(<!2><A HREF="DateFormat.html#DOC.19.2">EStyle</A> style = kDefault, const Locale& aLocale = Locale::getDefault())</B></TT>
 <DD>
 Creates a date formatter with the given formatting style for the given
 const locale.
@@ -802,8 +447,8 @@ SHORT for "M/d/yy" in the US locale.
 <br><B>aLocale</B> -    The given locale.
 <br></DL><P>
 <A NAME="createDateTimeInstance">
-<A NAME ="DOC.8.37">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>*  createDateTimeInstance(<!2><A HREF="DateFormat.html#DOC.8.26">EStyle</A> dateStyle = kDefault, <!2><A HREF="DateFormat.html#DOC.8.26">EStyle</A> timeStyle = kDefault, const Locale& aLocale = Locale::getDefault())</B></TT>
+<A NAME ="DOC.19.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>*  createDateTimeInstance(<!2><A HREF="DateFormat.html#DOC.19.2">EStyle</A> dateStyle = kDefault, <!2><A HREF="DateFormat.html#DOC.19.2">EStyle</A> timeStyle = kDefault, const Locale& aLocale = Locale::getDefault())</B></TT>
 <DD>
 Creates a date/time formatter with the given formatting styles for the
 given locale.
@@ -817,7 +462,7 @@ For example, SHORT for "h:mm a" in the US locale.
 <br><B>aLocale</B> -    The given locale.
 <br></DL><P>
 <A NAME="getAvailableLocales">
-<A NAME ="DOC.8.38">
+<A NAME ="DOC.19.14">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  const  Locale*  getAvailableLocales(int32_t& count)</B></TT>
 <DD>
 Gets the set of locales for which DateFormats are installed
@@ -826,13 +471,13 @@ does NOT own this list and must not delete it.
 <DT><B>Parameters:</B><DD><B>count</B> -  Filled in with the number of locales in the list that is returned.
 <br></DL><P>
 <A NAME="isLenient">
-<A NAME ="DOC.8.54">
+<A NAME ="DOC.19.31">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  isLenient(void) const </B></TT>
 <DD>
 Returns true if the formatter is set for lenient parsing
 <DL></DL><P>
 <A NAME="setLenient">
-<A NAME ="DOC.8.39">
+<A NAME ="DOC.19.15">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setLenient(bool_t lenient)</B></TT>
 <DD>
 Specify whether or not date/time parsing is to be lenient. With lenient
@@ -842,14 +487,14 @@ match this object's format.
 
 <DL><DT><B>See Also:</B><DD><!2><A HREF="Calendar.html#DOC.3.29">Calendar::setLenient</A><br></DL><P>
 <A NAME="getCalendar">
-<A NAME ="DOC.8.40">
+<A NAME ="DOC.19.16">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  const  <!1><A HREF="Calendar.html">Calendar</A>*  getCalendar(void) const </B></TT>
 <DD>
 Gets the calendar associated with this date/time formatter
 <DL><DT><B>Returns:</B><DD>the calendar associated with this date/time formatter.
 </DL><P>
 <A NAME="adoptCalendar">
-<A NAME ="DOC.8.41">
+<A NAME ="DOC.19.17">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  adoptCalendar(<!1><A HREF="Calendar.html">Calendar</A>* calendarToAdopt)</B></TT>
 <DD>
 Set the calendar to be used by this date format. Initially, the default
@@ -857,14 +502,14 @@ calendar for the specified or default locale is used.  The caller should
 not delete the Calendar object after it is adopted by this call.
 <DL></DL><P>
 <A NAME="setCalendar">
-<A NAME ="DOC.8.42">
+<A NAME ="DOC.19.18">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setCalendar(const <!1><A HREF="Calendar.html">Calendar</A>& newCalendar)</B></TT>
 <DD>
 Set the calendar to be used by this date format. Initially, the default
 calendar for the specified or default locale is used.
 <DL></DL><P>
 <A NAME="getNumberFormat">
-<A NAME ="DOC.8.43">
+<A NAME ="DOC.19.19">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  const  <!1><A HREF="NumberFormat.html">NumberFormat</A>*  getNumberFormat(void) const </B></TT>
 <DD>
 Gets the number formatter which this date/time formatter uses to format
@@ -872,7 +517,7 @@ and parse the numeric portions of the pattern
 <DL><DT><B>Returns:</B><DD>the number formatter which this date/time formatter uses.
 </DL><P>
 <A NAME="adoptNumberFormat">
-<A NAME ="DOC.8.44">
+<A NAME ="DOC.19.20">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  adoptNumberFormat(<!1><A HREF="NumberFormat.html">NumberFormat</A>* formatToAdopt)</B></TT>
 <DD>
 Allows you to set the number formatter.  The caller should
@@ -880,20 +525,20 @@ not delete the NumberFormat object after it is adopted by this call.
 
 <DL><DT><B>Parameters:</B><DD><B>formatToAdopt</B> -      NumberFormat object to be adopted.<br></DL><P>
 <A NAME="setNumberFormat">
-<A NAME ="DOC.8.45">
+<A NAME ="DOC.19.21">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setNumberFormat(const <!1><A HREF="NumberFormat.html">NumberFormat</A>& newNumberFormat)</B></TT>
 <DD>
 Allows you to set the number formatter
 <DL><DT><B>Parameters:</B><DD><B>formatToAdopt</B> -      NumberFormat object to be adopted.<br></DL><P>
 <A NAME="getTimeZone">
-<A NAME ="DOC.8.46">
+<A NAME ="DOC.19.22">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  const  <!1><A HREF="TimeZone.html">TimeZone</A>&  getTimeZone(void) const </B></TT>
 <DD>
 Returns a reference to the TimeZone used by this DateFormat's calendar
 <DL><DT><B>Returns:</B><DD>the time zone associated with the calendar of DateFormat.
 </DL><P>
 <A NAME="adoptTimeZone">
-<A NAME ="DOC.8.47">
+<A NAME ="DOC.19.23">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  adoptTimeZone(<!1><A HREF="TimeZone.html">TimeZone</A>* zoneToAdopt)</B></TT>
 <DD>
 Sets the time zone for the calendar of this DateFormat object. The caller
@@ -901,13 +546,13 @@ no longer owns the TimeZone object and should not delete it after this call.
 
 <DL><DT><B>Parameters:</B><DD><B>zone</B> -  the new time zone.<br></DL><P>
 <A NAME="setTimeZone">
-<A NAME ="DOC.8.48">
+<A NAME ="DOC.19.24">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setTimeZone(const <!1><A HREF="TimeZone.html">TimeZone</A>& zone)</B></TT>
 <DD>
 Sets the time zone for the calendar of this DateFormat object
 <DL><DT><B>Parameters:</B><DD><B>zone</B> -  the new time zone.<br></DL><P>
 <A NAME="DateFormat">
-<A NAME ="DOC.8.49">
+<A NAME ="DOC.19.25">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DateFormat()</B></TT>
 <DD>
 Default constructor.  Creates a DateFormat with no Calendar or NumberFormat
@@ -915,19 +560,19 @@ associated with it.  This constructor depends on the subclasses to fill in
 the calendar and numberFormat fields.
 <DL></DL><P>
 <A NAME="DateFormat">
-<A NAME ="DOC.8.55">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DateFormat(const <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>&)</B></TT>
+<A NAME ="DOC.19.32">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DateFormat(const <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>&)</B></TT>
 <DD>
 Copy constructor
 <DL></DL><P>
 <A NAME="operator=">
-<A NAME ="DOC.8.56">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>&  operator=(const <!2><A HREF="DateFormat.html#DOC.8.49">DateFormat</A>&)</B></TT>
+<A NAME ="DOC.19.33">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>&  operator=(const <!2><A HREF="DateFormat.html#DOC.19.25">DateFormat</A>&)</B></TT>
 <DD>
 Default assignment operator
 <DL></DL><P>
 <A NAME="fCalendar">
-<A NAME ="DOC.8.50">
+<A NAME ="DOC.19.26">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="Calendar.html">Calendar</A>*  fCalendar</B></TT>
 <DD>
 The calendar that DateFormat uses to produce the time field values needed
@@ -935,7 +580,7 @@ to implement date/time formatting. Subclasses should generally initialize
 this to the default calendar for the locale associated with this DateFormat.
 <DL></DL><P>
 <A NAME="fNumberFormat">
-<A NAME ="DOC.8.51">
+<A NAME ="DOC.19.27">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="NumberFormat.html">NumberFormat</A>*  fNumberFormat</B></TT>
 <DD>
 The number formatter that DateFormat uses to format numbers in dates and

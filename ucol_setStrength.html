@@ -1,6 +1,6 @@
 <html><head><TITLE>ucol_setStrength</TITLE></head>
 <body>
-<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> CAPI  void  ucol_setStrength ( <!2><A HREF="#DOC.154">UCollator</A> *coll, <!1><A HREF="UCollationStrength.html">UCollationStrength</A> strength) </H2><BLOCKQUOTE>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> U_CAPI  void  ucol_setStrength ( <!2><A HREF="#DOC.170">UCollator</A> *coll, <!1><A HREF="UCollationStrength.html">UCollationStrength</A> strength) </H2><BLOCKQUOTE>
 
 Set the collation strength used in a UCollator
 </BLOCKQUOTE>
@@ -15,9 +15,9 @@ The strength influences how strings are compared.
 <pre>
 .       UCollationResult result;
 .       UChar *source, *target;
-.       UErrorCode status = ZERO_ERROR;
+.       UErrorCode status = U_ZERO_ERROR;
 .       UCollator *myCollation = ucol_open("en_US", status);
-.       if (FAILURE(&status)) return;
+.       if (U_FAILURE(&status)) return;
 .       ucol_setStrength(myCollation, UCOL_PRIMARY);
 .       u_uastrcpy(source, "abc");
 .       u_uastrcpy(target, "ABC");

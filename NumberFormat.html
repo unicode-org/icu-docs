@@ -1,6 +1,6 @@
 <html><head><TITLE>NumberFormat</TITLE></head>
 <body>
-<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API NumberFormat : public <!2><A HREF="Format.html#DOC.14.8">Format</A> </H2><BLOCKQUOTE>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  U_I18N_API NumberFormat : public <!2><A HREF="Format.html#DOC.25.8">Format</A> </H2><BLOCKQUOTE>
 
 Abstract base class for all number formats
 </BLOCKQUOTE>
@@ -17,128 +17,131 @@ Abstract base class for all number formats
 
 <DL>
 <DL>
-<DT><h3>Public Classes</h3><DD><DT><A HREF="#DOC.19.1"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EAlignmentFields</B> </B>
+<DT><h3>Public Classes</h3><DD><DT><A HREF="#DOC.30.1"> <IMG BORDER=0 SRC=icon1.gif></A>  enum  <B>EAlignmentFields</B> </B>
  <DD><I>
 Alignment Field constants used to construct a FieldPosition object</I>
 
 <DL>
-<DT><A HREF="#DOC.19.1.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>INTEGER_FIELD</B> </B>
+<DT><A HREF="#DOC.30.1.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>INTEGER_FIELD</B> </B>
  <DD><I>
 These constants are provided for backwards compatibility only,
 and are deprecated</I>
 
 </DL>
 </DL><DL>
-<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.19.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!2><A HREF="Format.html#DOC.14.8">Format</A>& other) const  </B>
+<DT><h3>Public Methods</h3><DD><DT><A HREF="#DOC.30.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool_t  <B>operator==</B>(const <!2><A HREF="Format.html#DOC.25.8">Format</A>& other) const  </B>
  <DD><I>
 Return true if the given Format objects are semantically equal</I>
-<DT><A HREF="#DOC.19.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+<DT><A HREF="#DOC.30.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const  </B>
  <DD><I>
 Format an object to produce a string</I>
-<DT><A HREF="#DOC.19.4"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>parseObject</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& source, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parse_pos) const  </B>
+<DT><A HREF="#DOC.30.4"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>parseObject</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& source, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parse_pos) const  </B>
  <DD><I>
 Parse a string to produce an object</I>
-<DT><A HREF="#DOC.19.5"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>( double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& output) const  </B>
+<DT><A HREF="#DOC.30.5"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>( double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& output) const  </B>
  <DD><I>
 Format a double or long number</I>
-<DT><A HREF="#DOC.19.6"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos) const  </B>
+<DT><A HREF="#DOC.30.6"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos) const  </B>
  <DD><I>
 Format a double or long number</I>
-<DT><A HREF="#DOC.19.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>parse</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parsePosition) const  </B>
+<DT><A HREF="#DOC.30.25"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  <B>format</B>(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const  </B>
+ <DD><I>
+Redeclared Format method</I>
+<DT><A HREF="#DOC.30.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>parse</B>(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parsePosition) const  </B>
  <DD><I>
 Return a long if possible (e</I>
-<DT><A HREF="#DOC.19.8"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>parse</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const  </B>
+<DT><A HREF="#DOC.30.8"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>parse</B>( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const  </B>
  <DD><I>
 Parse a string as a numeric value, and return a Formattable
 numeric object</I>
-<DT><A HREF="#DOC.19.9"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>isParseIntegerOnly</B>(void) const  </B>
+<DT><A HREF="#DOC.30.9"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>isParseIntegerOnly</B>(void) const  </B>
  <DD><I>
 Return true if this format will parse numbers as integers
 only</I>
-<DT><A HREF="#DOC.19.10"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setParseIntegerOnly</B>(bool_t value) </B>
+<DT><A HREF="#DOC.30.10"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setParseIntegerOnly</B>(bool_t value) </B>
  <DD><I>
 Sets whether or not numbers should be parsed as integers only</I>
-<DT><A HREF="#DOC.19.11"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&) </B>
+<DT><A HREF="#DOC.30.11"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createInstance</B>(<!2><A HREF="#DOC.320">UErrorCode</A>&) </B>
  <DD><I>
 Returns the default number format for the current default
 locale</I>
-<DT><A HREF="#DOC.19.12"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&) </B>
+<DT><A HREF="#DOC.30.12"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&) </B>
  <DD><I>
 Returns the default number format for the specified locale</I>
-<DT><A HREF="#DOC.19.25"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createCurrencyInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&) </B>
+<DT><A HREF="#DOC.30.26"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createCurrencyInstance</B>(<!2><A HREF="#DOC.320">UErrorCode</A>&) </B>
  <DD><I>
 Returns a currency format for the current default locale</I>
-<DT><A HREF="#DOC.19.26"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createCurrencyInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&) </B>
+<DT><A HREF="#DOC.30.27"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createCurrencyInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&) </B>
  <DD><I>
 Returns a currency format for the specified locale</I>
-<DT><A HREF="#DOC.19.27"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createPercentInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&) </B>
+<DT><A HREF="#DOC.30.28"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createPercentInstance</B>(<!2><A HREF="#DOC.320">UErrorCode</A>&) </B>
  <DD><I>
 Returns a percentage format for the current default locale</I>
-<DT><A HREF="#DOC.19.28"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createPercentInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&) </B>
+<DT><A HREF="#DOC.30.29"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createPercentInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&) </B>
  <DD><I>
 Returns a percentage format for the specified locale</I>
-<DT><A HREF="#DOC.19.29"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createScientificInstance</B>(<!2><A HREF="#DOC.301">UErrorCode</A>&) </B>
+<DT><A HREF="#DOC.30.30"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createScientificInstance</B>(<!2><A HREF="#DOC.320">UErrorCode</A>&) </B>
  <DD><I>
 Returns a scientific format for the current default locale</I>
-<DT><A HREF="#DOC.19.30"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  <B>createScientificInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&) </B>
+<DT><A HREF="#DOC.30.31"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  <B>createScientificInstance</B>(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&) </B>
  <DD><I>
 Returns a scientific format for the specified locale</I>
-<DT><A HREF="#DOC.19.31"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  Locale*  <B>getAvailableLocales</B>(int32_t& count) </B>
+<DT><A HREF="#DOC.30.32"> <IMG BORDER=0 SRC=icon1.gif></A> static  const  Locale*  <B>getAvailableLocales</B>(int32_t& count) </B>
  <DD><I>
 Get the set of Locales for which NumberFormats are installed</I>
-<DT><A HREF="#DOC.19.13"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>isGroupingUsed</B>(void) const  </B>
+<DT><A HREF="#DOC.30.13"> <IMG BORDER=0 SRC=icon1.gif></A> bool_t  <B>isGroupingUsed</B>(void) const  </B>
  <DD><I>
 Returns true if grouping is used in this format</I>
-<DT><A HREF="#DOC.19.14"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setGroupingUsed</B>(bool_t newValue) </B>
+<DT><A HREF="#DOC.30.14"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setGroupingUsed</B>(bool_t newValue) </B>
  <DD><I>
 Set whether or not grouping will be used in this format</I>
-<DT><A HREF="#DOC.19.15"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getMaximumIntegerDigits</B>(void) const  </B>
+<DT><A HREF="#DOC.30.15"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getMaximumIntegerDigits</B>(void) const  </B>
  <DD><I>
 Returns the maximum number of digits allowed in the integer portion of a
 number</I>
-<DT><A HREF="#DOC.19.16"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setMaximumIntegerDigits</B>(int32_t newValue) </B>
+<DT><A HREF="#DOC.30.16"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setMaximumIntegerDigits</B>(int32_t newValue) </B>
  <DD><I>
 Sets the maximum number of digits allowed in the integer portion of a
 number</I>
-<DT><A HREF="#DOC.19.17"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getMinimumIntegerDigits</B>(void) const  </B>
+<DT><A HREF="#DOC.30.17"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getMinimumIntegerDigits</B>(void) const  </B>
  <DD><I>
 Returns the minimum number of digits allowed in the integer portion of a
 number</I>
-<DT><A HREF="#DOC.19.18"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setMinimumIntegerDigits</B>(int32_t newValue) </B>
+<DT><A HREF="#DOC.30.18"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setMinimumIntegerDigits</B>(int32_t newValue) </B>
  <DD><I>
 Sets the minimum number of digits allowed in the integer portion of a
 number</I>
-<DT><A HREF="#DOC.19.19"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getMaximumFractionDigits</B>(void) const  </B>
+<DT><A HREF="#DOC.30.19"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getMaximumFractionDigits</B>(void) const  </B>
  <DD><I>
 Returns the maximum number of digits allowed in the fraction portion of a
 number</I>
-<DT><A HREF="#DOC.19.20"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setMaximumFractionDigits</B>(int32_t newValue) </B>
+<DT><A HREF="#DOC.30.20"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setMaximumFractionDigits</B>(int32_t newValue) </B>
  <DD><I>
 Sets the maximum number of digits allowed in the fraction portion of a
 number</I>
-<DT><A HREF="#DOC.19.21"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getMinimumFractionDigits</B>(void) const  </B>
+<DT><A HREF="#DOC.30.21"> <IMG BORDER=0 SRC=icon1.gif></A> int32_t  <B>getMinimumFractionDigits</B>(void) const  </B>
  <DD><I>
 Returns the minimum number of digits allowed in the fraction portion of a
 number</I>
-<DT><A HREF="#DOC.19.22"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setMinimumFractionDigits</B>(int32_t newValue) </B>
+<DT><A HREF="#DOC.30.22"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void  <B>setMinimumFractionDigits</B>(int32_t newValue) </B>
  <DD><I>
 Sets the minimum number of digits allowed in the fraction portion of a
 number</I>
-<DT><A HREF="#DOC.19.23"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="ClassID.html">ClassID</A>  <B>getStaticClassID</B>(void) </B>
+<DT><A HREF="#DOC.30.23"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!1><A HREF="UClassID.html">UClassID</A>  <B>getStaticClassID</B>(void) </B>
  <DD><I>
 Return the class ID for this class</I>
-<DT><A HREF="#DOC.19.24"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="ClassID.html">ClassID</A>  <B>getDynamicClassID</B>(void) const  </B>
+<DT><A HREF="#DOC.30.24"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="UClassID.html">UClassID</A>  <B>getDynamicClassID</B>(void) const  </B>
  <DD><I>
 Override Calendar
 Returns a unique class ID POLYMORPHICALLY</I>
 </DL><DL>
-<DT><h3>Protected Methods</h3><DD><DT><A HREF="#DOC.19.32"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>NumberFormat</B>() </B>
+<DT><h3>Protected Methods</h3><DD><DT><A HREF="#DOC.30.33"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>NumberFormat</B>() </B>
  <DD><I>
 Default constructor for subclass use only</I>
-<DT><A HREF="#DOC.19.33"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>NumberFormat</B>(const <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>&) </B>
+<DT><A HREF="#DOC.30.34"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>NumberFormat</B>(const <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>&) </B>
  <DD><I>
 Copy constructor</I>
-<DT><A HREF="#DOC.19.34"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>&  <B>operator=</B>(const <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>&) </B>
+<DT><A HREF="#DOC.30.35"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>&  <B>operator=</B>(const <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>&) </B>
  <DD><I>
 Assignment operator</I>
 </DL></DL>
@@ -146,8 +149,8 @@ Assignment operator</I>
 
 <DL>
 <DL>
-<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> bool_t  <B>operator!=</B>(const <!2><A HREF="Format.html#DOC.14.8">Format</A>& other) const 
-<DT><IMG SRC=icon2.gif> virtual  <!2><A HREF="Format.html#DOC.14.8">Format</A>*  <B>clone</B>() const 
+<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> bool_t  <B>operator!=</B>(const <!2><A HREF="Format.html#DOC.25.8">Format</A>& other) const 
+<DT><IMG SRC=icon2.gif> virtual  <!2><A HREF="Format.html#DOC.25.8">Format</A>*  <B>clone</B>() const 
 </DL></DL>
 <A NAME="DOC.DOCU">
 <hr>
@@ -169,7 +172,7 @@ factory methods:
 <pre>
 .   double myNumber = 7.0;
 .   UnicodeString myString;
-.   UErrorCode success = ZERO_ERROR;
+.   UErrorCode success = U_ZERO_ERROR;
 .   NumberFormat* nf = NumberFormat::createInstance(success)
 .   nf->format(myNumber, myString);
 .   cout &lt;&lt; " Example 1: " &lt;&lt; myString &lt;&lt; endl;
@@ -180,7 +183,7 @@ have to fetch the information about the local language and country
 conventions multiple times.
 <pre>
 .    UnicodeString myString;
-.    UErrorCode success = ZERO_ERROR;
+.    UErrorCode success = U_ZERO_ERROR;
 .    nf = NumberFormat::createInstance( success );
 .    int32_t a[] = { 123, 3333, -1234567 };
 .    const int32_t a_len = sizeof(a) / sizeof(a[0]);
@@ -242,7 +245,7 @@ the end, e.g. with parentheses in negative numbers: "(12)" for -12.
 <DL>
 
 <A NAME="EAlignmentFields">
-<A NAME ="DOC.19.1">
+<A NAME ="DOC.30.1">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  EAlignmentFields</B></TT>
 <DD>
 Alignment Field constants used to construct a FieldPosition object.
@@ -253,7 +256,7 @@ a formatted number should be returned.
 <DL><DT><B>See Also:</B><DD><!1><A HREF="FieldPosition.html">FieldPosition</A><br></DL><P><DL>
 
 <A NAME="INTEGER_FIELD">
-<A NAME ="DOC.19.1.1">
+<A NAME ="DOC.30.1.1">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  INTEGER_FIELD</B></TT>
 <DD>
 These constants are provided for backwards compatibility only,
@@ -261,15 +264,15 @@ and are deprecated.  Please use the C++ style constants defined above.
 <DL></DL><P></DL>
 
 <A NAME="operator==">
-<A NAME ="DOC.19.2">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!2><A HREF="Format.html#DOC.14.8">Format</A>& other) const </B></TT>
+<A NAME ="DOC.30.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool_t  operator==(const <!2><A HREF="Format.html#DOC.25.8">Format</A>& other) const </B></TT>
 <DD>
 Return true if the given Format objects are semantically equal.
 Objects of different subclasses are considered unequal.
 <DL></DL><P>
 <A NAME="format">
-<A NAME ="DOC.19.3">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<A NAME ="DOC.30.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const </B></TT>
 <DD>
 Format an object to produce a string.  This method handles
 Formattable objects with numeric types. If the Formattable
@@ -286,7 +289,7 @@ On output: the offsets of the alignment field.
 <br><B>status</B> -         Output param filled with success/failure status.
 <br></DL><P>
 <A NAME="parseObject">
-<A NAME ="DOC.19.4">
+<A NAME ="DOC.30.4">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  parseObject(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& source, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parse_pos) const </B></TT>
 <DD>
 Parse a string to produce an object.  This methods handles
@@ -317,7 +320,7 @@ source is not parsed successfully, this param
 will remain unchanged.
 <br></DL><P>
 <A NAME="format">
-<A NAME ="DOC.19.5">
+<A NAME ="DOC.30.5">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format( double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& output) const </B></TT>
 <DD>
 Format a double or long number. These methods call the NumberFormat
@@ -329,7 +332,7 @@ pure virtual format() methods with the default FieldPosition.
 <br><B>output</B> -     Output param with the formatted string.
 <br></DL><P>
 <A NAME="format">
-<A NAME ="DOC.19.6">
+<A NAME ="DOC.30.6">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(double number, <!1><A HREF="UnicodeString.html">UnicodeString</A>& toAppendTo, <!1><A HREF="FieldPosition.html">FieldPosition</A>& pos) const </B></TT>
 <DD>
 Format a double or long number. Concrete subclasses must implement
@@ -343,8 +346,14 @@ This is an output parameter.
 <br><B>pos</B> -         On input: an alignment field, if desired.
 On output: the offsets of the alignment field.
 <br></DL><P>
+<A NAME="format">
+<A NAME ="DOC.30.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="UnicodeString.html">UnicodeString</A>&  format(const <!1><A HREF="Formattable.html">Formattable</A>& obj, <!1><A HREF="UnicodeString.html">UnicodeString</A>& result, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const </B></TT>
+<DD>
+Redeclared Format method
+<DL></DL><P>
 <A NAME="parse">
-<A NAME ="DOC.19.7">
+<A NAME ="DOC.30.7">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  parse(const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!1><A HREF="ParsePosition.html">ParsePosition</A>& parsePosition) const </B></TT>
 <DD>
 Return a long if possible (e.g. within range LONG_MAX,
@@ -368,8 +377,8 @@ On output, moved to after the last successfully
 parse character. On parse failure, does not change.
 <br></DL><P>
 <A NAME="parse">
-<A NAME ="DOC.19.8">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  parse( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!2><A HREF="#DOC.301">UErrorCode</A>& status) const </B></TT>
+<A NAME ="DOC.30.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  parse( const <!1><A HREF="UnicodeString.html">UnicodeString</A>& text, <!1><A HREF="Formattable.html">Formattable</A>& result, <!2><A HREF="#DOC.320">UErrorCode</A>& status) const </B></TT>
 <DD>
 Parse a string as a numeric value, and return a Formattable
 numeric object. This method parses integers only if IntegerOnly
@@ -383,9 +392,9 @@ owns this an must delete it.  NULL on failure.
 <br><B>result</B> -         Formattable to be set to the parse result.
 If parse fails, return contents are undefined.
 <br><B>status</B> -         Success or failure output parameter.
-<br><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.9">NumberFormat::isParseIntegerOnly</A><br></DL><P>
+<br><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.9">NumberFormat::isParseIntegerOnly</A><br></DL><P>
 <A NAME="isParseIntegerOnly">
-<A NAME ="DOC.19.9">
+<A NAME ="DOC.30.9">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  isParseIntegerOnly(void) const </B></TT>
 <DD>
 Return true if this format will parse numbers as integers
@@ -396,14 +405,14 @@ the exact format accepted by the parse operation is locale
 dependant and determined by sub-classes of NumberFormat.
 <DL></DL><P>
 <A NAME="setParseIntegerOnly">
-<A NAME ="DOC.19.10">
+<A NAME ="DOC.30.10">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setParseIntegerOnly(bool_t value)</B></TT>
 <DD>
 Sets whether or not numbers should be parsed as integers only
-<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.9">isParseIntegerOnly</A><br></DL><P>
+<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.9">isParseIntegerOnly</A><br></DL><P>
 <A NAME="createInstance">
-<A NAME ="DOC.19.11">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  createInstance(<!2><A HREF="#DOC.301">UErrorCode</A>&)</B></TT>
+<A NAME ="DOC.30.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  createInstance(<!2><A HREF="#DOC.320">UErrorCode</A>&)</B></TT>
 <DD>
 Returns the default number format for the current default
 locale.  The default format is one of the styles provided by
@@ -412,8 +421,8 @@ getCurrencyInstance or getPercentInstance.  Exactly which one
 is locale dependant.
 <DL></DL><P>
 <A NAME="createInstance">
-<A NAME ="DOC.19.12">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  createInstance(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)</B></TT>
+<A NAME ="DOC.30.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  createInstance(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&)</B></TT>
 <DD>
 Returns the default number format for the specified locale.
 The default format is one of the styles provided by the other
@@ -421,49 +430,49 @@ factory methods: getNumberInstance, getCurrencyInstance or
 getPercentInstance.  Exactly which one is locale dependant.
 <DL></DL><P>
 <A NAME="createCurrencyInstance">
-<A NAME ="DOC.19.25">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  createCurrencyInstance(<!2><A HREF="#DOC.301">UErrorCode</A>&)</B></TT>
+<A NAME ="DOC.30.26">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  createCurrencyInstance(<!2><A HREF="#DOC.320">UErrorCode</A>&)</B></TT>
 <DD>
 Returns a currency format for the current default locale
 <DL></DL><P>
 <A NAME="createCurrencyInstance">
-<A NAME ="DOC.19.26">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  createCurrencyInstance(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)</B></TT>
+<A NAME ="DOC.30.27">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  createCurrencyInstance(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&)</B></TT>
 <DD>
 Returns a currency format for the specified locale
 <DL></DL><P>
 <A NAME="createPercentInstance">
-<A NAME ="DOC.19.27">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  createPercentInstance(<!2><A HREF="#DOC.301">UErrorCode</A>&)</B></TT>
+<A NAME ="DOC.30.28">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  createPercentInstance(<!2><A HREF="#DOC.320">UErrorCode</A>&)</B></TT>
 <DD>
 Returns a percentage format for the current default locale
 <DL></DL><P>
 <A NAME="createPercentInstance">
-<A NAME ="DOC.19.28">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  createPercentInstance(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)</B></TT>
+<A NAME ="DOC.30.29">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  createPercentInstance(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&)</B></TT>
 <DD>
 Returns a percentage format for the specified locale
 <DL></DL><P>
 <A NAME="createScientificInstance">
-<A NAME ="DOC.19.29">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  createScientificInstance(<!2><A HREF="#DOC.301">UErrorCode</A>&)</B></TT>
+<A NAME ="DOC.30.30">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  createScientificInstance(<!2><A HREF="#DOC.320">UErrorCode</A>&)</B></TT>
 <DD>
 Returns a scientific format for the current default locale
 <DL></DL><P>
 <A NAME="createScientificInstance">
-<A NAME ="DOC.19.30">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>*  createScientificInstance(const Locale& inLocale, <!2><A HREF="#DOC.301">UErrorCode</A>&)</B></TT>
+<A NAME ="DOC.30.31">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>*  createScientificInstance(const Locale& inLocale, <!2><A HREF="#DOC.320">UErrorCode</A>&)</B></TT>
 <DD>
 Returns a scientific format for the specified locale
 <DL></DL><P>
 <A NAME="getAvailableLocales">
-<A NAME ="DOC.19.31">
+<A NAME ="DOC.30.32">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  const  Locale*  getAvailableLocales(int32_t& count)</B></TT>
 <DD>
 Get the set of Locales for which NumberFormats are installed
 <DL></DL><P>
 <A NAME="isGroupingUsed">
-<A NAME ="DOC.19.13">
+<A NAME ="DOC.30.13">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool_t  isGroupingUsed(void) const </B></TT>
 <DD>
 Returns true if grouping is used in this format. For example,
@@ -472,22 +481,22 @@ might be formatted as "1,234,567". The grouping separator as
 well as the size of each group is locale dependant and is
 determined by sub-classes of NumberFormat.
 
-<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.14">setGroupingUsed</A><br></DL><P>
+<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.14">setGroupingUsed</A><br></DL><P>
 <A NAME="setGroupingUsed">
-<A NAME ="DOC.19.14">
+<A NAME ="DOC.30.14">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setGroupingUsed(bool_t newValue)</B></TT>
 <DD>
 Set whether or not grouping will be used in this format
 <DL><DT><B>See Also:</B><DD>getGroupingUsed<br></DL><P>
 <A NAME="getMaximumIntegerDigits">
-<A NAME ="DOC.19.15">
+<A NAME ="DOC.30.15">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getMaximumIntegerDigits(void) const </B></TT>
 <DD>
 Returns the maximum number of digits allowed in the integer portion of a
 number
-<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.16">setMaximumIntegerDigits</A><br></DL><P>
+<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.16">setMaximumIntegerDigits</A><br></DL><P>
 <A NAME="setMaximumIntegerDigits">
-<A NAME ="DOC.19.16">
+<A NAME ="DOC.30.16">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setMaximumIntegerDigits(int32_t newValue)</B></TT>
 <DD>
 Sets the maximum number of digits allowed in the integer portion of a
@@ -497,16 +506,16 @@ of minimumIntegerDigits, then minimumIntegerDigits will also be set to
 the new value.
 
 
-<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.15">getMaximumIntegerDigits</A><br></DL><P>
+<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.15">getMaximumIntegerDigits</A><br></DL><P>
 <A NAME="getMinimumIntegerDigits">
-<A NAME ="DOC.19.17">
+<A NAME ="DOC.30.17">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getMinimumIntegerDigits(void) const </B></TT>
 <DD>
 Returns the minimum number of digits allowed in the integer portion of a
 number
-<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.18">setMinimumIntegerDigits</A><br></DL><P>
+<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.18">setMinimumIntegerDigits</A><br></DL><P>
 <A NAME="setMinimumIntegerDigits">
-<A NAME ="DOC.19.18">
+<A NAME ="DOC.30.18">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setMinimumIntegerDigits(int32_t newValue)</B></TT>
 <DD>
 Sets the minimum number of digits allowed in the integer portion of a
@@ -515,16 +524,16 @@ new value for minimumIntegerDigits exceeds the current value
 of maximumIntegerDigits, then maximumIntegerDigits will also be set to
 the new value.
 
-<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.17">getMinimumIntegerDigits</A><br></DL><P>
+<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.17">getMinimumIntegerDigits</A><br></DL><P>
 <A NAME="getMaximumFractionDigits">
-<A NAME ="DOC.19.19">
+<A NAME ="DOC.30.19">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getMaximumFractionDigits(void) const </B></TT>
 <DD>
 Returns the maximum number of digits allowed in the fraction portion of a
 number
-<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.20">setMaximumFractionDigits</A><br></DL><P>
+<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.20">setMaximumFractionDigits</A><br></DL><P>
 <A NAME="setMaximumFractionDigits">
-<A NAME ="DOC.19.20">
+<A NAME ="DOC.30.20">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setMaximumFractionDigits(int32_t newValue)</B></TT>
 <DD>
 Sets the maximum number of digits allowed in the fraction portion of a
@@ -533,16 +542,16 @@ new value for maximumFractionDigits is less than the current value
 of minimumFractionDigits, then minimumFractionDigits will also be set to
 the new value.
 
-<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.19">getMaximumFractionDigits</A><br></DL><P>
+<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.19">getMaximumFractionDigits</A><br></DL><P>
 <A NAME="getMinimumFractionDigits">
-<A NAME ="DOC.19.21">
+<A NAME ="DOC.30.21">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int32_t  getMinimumFractionDigits(void) const </B></TT>
 <DD>
 Returns the minimum number of digits allowed in the fraction portion of a
 number
-<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.22">setMinimumFractionDigits</A><br></DL><P>
+<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.22">setMinimumFractionDigits</A><br></DL><P>
 <A NAME="setMinimumFractionDigits">
-<A NAME ="DOC.19.22">
+<A NAME ="DOC.30.22">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setMinimumFractionDigits(int32_t newValue)</B></TT>
 <DD>
 Sets the minimum number of digits allowed in the fraction portion of a
@@ -551,10 +560,10 @@ new value for minimumFractionDigits exceeds the current value
 of maximumFractionDigits, then maximumIntegerDigits will also be set to
 the new value
 
-<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.19.21">getMinimumFractionDigits</A><br></DL><P>
+<DL><DT><B>See Also:</B><DD><!2><A HREF="NumberFormat.html#DOC.30.21">getMinimumFractionDigits</A><br></DL><P>
 <A NAME="getStaticClassID">
-<A NAME ="DOC.19.23">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="ClassID.html">ClassID</A>  getStaticClassID(void)</B></TT>
+<A NAME ="DOC.30.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!1><A HREF="UClassID.html">UClassID</A>  getStaticClassID(void)</B></TT>
 <DD>
 Return the class ID for this class.  This is useful only for
 comparing to a return value from getDynamicClassID().  For example:
@@ -567,8 +576,8 @@ comparing to a return value from getDynamicClassID().  For example:
 <DL><DT><B>Returns:</B><DD>The class ID for all objects of this class.
 </DL><P>
 <A NAME="getDynamicClassID">
-<A NAME ="DOC.19.24">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="ClassID.html">ClassID</A>  getDynamicClassID(void) const </B></TT>
+<A NAME ="DOC.30.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="UClassID.html">UClassID</A>  getDynamicClassID(void) const </B></TT>
 <DD>
 Override Calendar
 Returns a unique class ID POLYMORPHICALLY.  Pure virtual override.
@@ -582,20 +591,20 @@ given class have the same class ID.  Objects of
 other classes have different class IDs.
 </DL><P>
 <A NAME="NumberFormat">
-<A NAME ="DOC.19.32">
+<A NAME ="DOC.30.33">
 <DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  NumberFormat()</B></TT>
 <DD>
 Default constructor for subclass use only
 <DL></DL><P>
 <A NAME="NumberFormat">
-<A NAME ="DOC.19.33">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  NumberFormat(const <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>&)</B></TT>
+<A NAME ="DOC.30.34">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  NumberFormat(const <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>&)</B></TT>
 <DD>
 Copy constructor
 <DL></DL><P>
 <A NAME="operator=">
-<A NAME ="DOC.19.34">
-<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>&  operator=(const <!2><A HREF="NumberFormat.html#DOC.19.33">NumberFormat</A>&)</B></TT>
+<A NAME ="DOC.30.35">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>&  operator=(const <!2><A HREF="NumberFormat.html#DOC.30.34">NumberFormat</A>&)</B></TT>
 <DD>
 Assignment operator
 <DL></DL><P></DL>

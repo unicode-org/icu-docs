@@ -253,7 +253,7 @@
   treats <em>ä</em> as an individual letter, sorting it after <em>z</em> in the alphabet; German, 
   however, sorts it either like <em>ae</em> or like other accented forms of <em>a</em>, thus 
   following <em>a</em>. In Slovak, the digraph <i>ch</i> sorts as if it were a separate letter after
-  <i>c</i>. Examples from other languages (and scripts) abound. Languages whose writing systems use 
+  <i>h</i>. Examples from other languages (and scripts) abound. Languages whose writing systems use 
   uppercase and lowercase typically ignore the differences in case, <i>unless</i> there are no other 
   differences in the text.</p>
   <p><span>It is important to ensure that collation meets user expectations as fully as possible. 
@@ -678,7 +678,7 @@
     </ul>
     </li>
     <li>Collation order is not a <i>stable sort;</i> that is a property of a sort algorithm, not a 
-    collation sequence. For more information, see <a href="#Stability">§3.4 Stability</a>.</li>
+    collation sequence. For more information, see <a href="#Stability">Section 3.4 Stability</a>.</li>
     <li>Collation order is <i>not</i> fixed. Over time, collation order will vary: there may be 
     fixes that are discovered as more information becomes available about languages; there may be 
     new government or industry standards for the language that require changes; and finally, the new 
@@ -747,7 +747,7 @@
   <blockquote>
     <p><b>Note: </b>The Default Unicode Collation Element Table does not explicitly list weights for 
     all assigned Unicode characters. However, the algorithm is well defined over <i>all</i> Unicode 
-    code points. See <a href="#Legal_Code_Points">§7.1.2 Legal code points</a>.</p>
+    code points. See <a href="#Legal_Code_Points">Section 7.1.2 Legal code points</a>.</p>
   </blockquote>
   <h4>1.9.2 <a name="Non-Goals">Non-Goals</a></h4>
   <p>The Default Unicode Collation Element Table explicitly does not provide for the following 
@@ -761,9 +761,9 @@
     <li><i>title sorting:</i> for example, removing articles such as <i>a</i> and <i>the </i>during 
     bibliographic sorting is not provided. </li>
     <li><i>Stability of binary sort key values between versions:</i> For more information, see
-    <a href="#Stability">§3.4 Stability</a>.</li>
+    <a href="#Stability">Section 3.4 Stability</a>.</li>
     <li><i>linguistic applicability:</i> to meet most user expectations, a linguistic tailoring is 
-    needed. For more information, see <a href="#Tailoring">§5 Tailoring</a>.</li>
+    needed. For more information, see <a href="#Tailoring">Section 5 Tailoring</a>.</li>
   </ol>
   <h2><a name="Conformance"></a>2 Conformance</h2>
   <p>There are many different ways to compare strings, and the Unicode Standard does not restrict 
@@ -778,7 +778,7 @@
   algorithm. They are also free to use a different format for the data in the Collation Element 
   Table. The sort key is also a <i>logical</i> intermediate object: as long as an implementation 
   produces the same results in comparison of strings, the sort keys can differ in format from what 
-  is specified here. (See <a href="#Implementation_Notes">§6 Implementation Notes</a>.)</p>
+  is specified here. (See <a href="#Implementation_Notes">Section 6 Implementation Notes</a>.)</p>
   <p>The requirements for conformance on implementations of the Unicode Collation Algorithm are as 
   follows:</p>
   <table class="noborder" cellpadding="8">
@@ -786,7 +786,7 @@
       <td class="noborder"><b><a name="C1&nbsp;">C1</a>&nbsp;</b></td>
       <td class="noborder"><i>Given a well-formed Unicode Collation Element Table, a conformant 
       implementation shall replicate the same comparisons of strings as those produced by
-      <a href="#Main_Algorithm">§4 Main Algorithm</a>.</i><p>In particular, a conformant 
+      <a href="#Main_Algorithm">Section 4 Main Algorithm</a>.</i><p>In particular, a conformant 
       implementation must be able to compare any two canonically equivalent strings as being equal, 
       for all Unicode characters supported by that implementation.</p>
       <p>If a conformant implementation compares strings in a legacy character set, it must provide 
@@ -800,12 +800,12 @@
     </tr>
     <tr>
       <td width="1%" class="noborder"><b><a name="C3&nbsp;">C3</a>&nbsp;</b></td>
-      <td class="noborder"><i>A conformant implementation that supports backward levels, variable 
-      weighting, semi-stability or rearrangement shall do so in accordance with this specification.</i><p>
-      A conformant implementation is not required to support these features; however, if it does so, 
-      it must interpret them properly. Unless they are functioning in a very restricted domain, it 
-      is strongly recommended that implementations support a backwards secondary level, since this 
-      is required for French.</td>
+      <td class="noborder"><i>A conformant implementation that supports any of the features backward 
+      levels, variable weighting, and semi-stability shall do so in accordance with this 
+      specification.</i><p>A conformant implementation is not required to support these features; 
+      however, if it does so, it must interpret them properly. Unless they are functioning in a very 
+      restricted domain, it is strongly recommended that implementations support a backwards 
+      secondary level, since this is required for French.</td>
     </tr>
     <tr>
       <td width="1%" class="noborder"><b><a name="C4">C4</a></b></td>
@@ -815,15 +815,21 @@
       characters are added to the Unicode Standard. <span>The version number of this document is 
       synchronized with the version of the Unicode Standard for which it specifies the repertoire.</span></td>
     </tr>
+    <tr>
+      <td width="1%" class="noborder"><b><a name="C4">C</a></b><a name="C4"><b>5</b></a></td>
+      <td class="noborder"><i>An implementation claiming conformance to Matching and Searching 
+      according to UTS #10, shall meet the requirements described in Section </i>
+      <span style="font-style: italic">8 <a href="#Searching">Searching and Matching</a></span><i>.</i></td>
+    </tr>
   </table>
   <h2><a name="Data_Table_Format"></a>3 Collation Element Table</h2>
   <p>A Collation Element Table contains a mapping from one (or more) characters to one (or more) <i>
   collation elements</i>, where a collation element is an ordered list of three or more 16-bit 
   weights. (All code points not explicitly mentioned in the mapping are given an implicit weight: 
-  see <a href="#Weight_Derivation">§7 Weight Derivation</a>).</p>
+  see <a href="#Weight_Derivation">Section 7 Weight Derivation</a>).</p>
   <blockquote>
     <p><b>Note: </b>Implementations can produce the same result without using 16-bit weights — see
-    <a href="#Implementation_Notes">§6 Implementation Notes</a>.</p>
+    <a href="#Implementation_Notes">Section 6 Implementation Notes</a>.</p>
   </blockquote>
   <p>The first weight is called the <i>Level 1</i> weight (or <i>primary</i> weight), the second is 
   called the <i>Level 2</i> weight (<i>secondary</i> weight), the third is called the <i>Level 3</i> 
@@ -1010,7 +1016,7 @@
   </blockquote>
   <h3>3.1 <a name="Linguistic_Features">Linguistic Features</a></h3>
   <p>The following section describes the implications of the features discussed in
-  <a href="#Introduction">§1 Introduction</a>.</p>
+  <a href="#Introduction">Section 1 Introduction</a>.</p>
   <h4>3.1.1 <a name="Multiple_Mappings">Multiple Mappings</a></h4>
   <p>The mapping from characters to collation elements may not be a simple mapping from one 
   character to one collation element: in general, it may map from one to many, from many to one, or 
@@ -1078,19 +1084,8 @@
   Lao vowels ເ through ໄ (this list is indicated by the
   <a href="http://www.unicode.org/Public/UNIDATA/PropList.html">Logical_Order_Exception</a> 
   property). For collation, they are rearranged by swapping with the following character before 
-  further processing, since logically they belong afterwards. For example, here is a string 
-  processed by rearrangement:</p>
-  <table class="wide">
-    <tr>
-      <td width="15%">input string:</td>
-      <td><tt>0E01 <b>0E40</b> 0E02 0E03</tt></td>
-    </tr>
-    <tr>
-      <td>normalized string:</td>
-      <td><tt>0E01 0E02 <b>0E40</b> 0E03</tt></td>
-    </tr>
-  </table>
-  <p>This is done by providing these sequences as contractions in the Collation Element Table.<br>
+  further processing, since logically they belong afterwards. This is done by providing these 
+  sequences as contractions in the Collation Element Table.<br>
   </p>
   <h4><a name="Default_Values"></a>3.1.4 Default Values</h4>
   <p>Both in the Default Unicode Collation Element Table and in typical tailorings, most unaccented 
@@ -1153,8 +1148,8 @@
   This table provides a mapping from characters to collation elements for all the explicitly 
   weighted characters. The mapping lists characters in the order that they would be weighted. Any 
   code points that are not explicitly mentioned in this table are given a derived collation element, 
-  as described in <a href="#Weight_Derivation">§7 Weight Derivation</a>. There are three types of 
-  mappings:</p>
+  as described in <a href="#Weight_Derivation">Section 7 Weight Derivation</a>. There are three 
+  types of mappings:</p>
   <ul>
     <li><b>Normal. </b>One Unicode character maps to one collation element.</li>
     <li><b>Expansions.</b> One Unicode character maps to a sequence of collation elements.</li>
@@ -1178,7 +1173,7 @@
   <p>Any character may have variant forms or applied accents which affect collation. Thus, for <tt>
   FULL STOP</tt> there are three compatibility variants, a fullwidth form, a compatibility form, and 
   a small form. These get different tertiary weights, accordingly. For more information on how the 
-  table was constructed, see <a href="#Weight_Derivation">§7 Weight Derivation</a>.</p>
+  table was constructed, see <a href="#Weight_Derivation">Section 7 Weight Derivation</a>.</p>
   <p>The following table shows the layout of the collation elements in the Default Unicode Collation 
   Element Table, ordered by primary weight:</p>
   <center>
@@ -1238,14 +1233,14 @@
   </table>
   </center>
   <p>For most languages, some degree of tailoring is required to match user expectations. For more 
-  information, see <a href="#Tailoring">§5 Tailoring</a>.</p>
+  information, see <a href="#Tailoring">Section 5 Tailoring</a>.</p>
   <h4>3.2.1 <a name="File_Format">File Format</a></h4>
   <p>Each of the files consists of a version line followed by an optional variable-weight line, 
-  optional rearrangement lines, optional backwards lines, and a series of entries, all separated by 
-  newlines. A &#39;#&#39; or &#39;%&#39; and any following characters on a line are comments. Whitespace between 
-  literals is ignored. The following is an extended BNF description of the format, where &quot;<i>x</i>+&quot; 
-  indicates one or more <i>x</i>&#39;s, &quot;<i>x</i>*&quot; indicates zero or more <i>x</i>&#39;s, &quot;<i>x?</i>&quot; 
-  indicates zero or one <i>x</i>, and &lt;char&gt; is a hexadecimal Unicode code value.</p>
+  optional backwards lines, and a series of entries, all separated by newlines. A &#39;#&#39; or &#39;%&#39; and any 
+  following characters on a line are comments. Whitespace between literals is ignored. The following 
+  is an extended BNF description of the format, where &quot;<i>x</i>+&quot; indicates one or more <i>x</i>&#39;s, 
+  &quot;<i>x</i>*&quot; indicates zero or more <i>x</i>&#39;s, &quot;<i>x?</i>&quot; indicates zero or one <i>x</i>, and 
+  &lt;char&gt; is a hexadecimal Unicode code value.</p>
   <pre>&lt;collationElementTable&gt; := &lt;version&gt; 
                            &lt;variable&gt;?
                            &lt;backwards&gt;*
@@ -1253,8 +1248,8 @@
   <p>The version line is of the form:</p>
   <pre>@&lt;version&gt; := &lt;major&gt;.&lt;minor&gt;.&lt;variant&gt; &lt;eol&gt;</pre>
   <p>The variable-weight line has three possible values that may change the weights of collation 
-  elements in processing (see <a href="#3.2.2_Variable_Collation_Elements">§3.2.2 Variable Collation 
-  Elements</a>). The default is <code>shifted</code>.</p>
+  elements in processing (see <a href="#3.2.2_Variable_Collation_Elements">Section 3.2.2 Variable 
+  Collation Elements</a>). The default is <code>shifted</code>.</p>
   <pre>&lt;variable&gt;       := &#39;@variable &#39; &lt;variableChoice&gt; &lt;eol&gt;
 &lt;variableChoice&gt; := &#39;blanked&#39; | &#39;non-ignorable&#39; | &#39;shifted&#39;</pre>
   <p>A backwards line lists a level that is to be processed in reverse order. A forwards line does 
@@ -1282,7 +1277,7 @@
   comparison. This makes it easy to see the order in which characters would be collated. Although 
   this document describes collation elements as three levels, the file contains a fourth level (as 
   in <tt>[.0712.0020.0008.<b>0044</b>]</tt>) which is computable. For more information, see
-  <a href="#Stability">§3.4 Stability</a>.</p>
+  <a href="#Stability">Section 3.4 Stability</a>.</p>
   <p>Implementations can also add more customizable levels, as discussed above under conformance. 
   For example, an implementation might want to be capable not only of handling the standard Unicode 
   Collation, but also capable of emulating an EBCDIC multi-level ordering (having a fourth-level 
@@ -1381,8 +1376,8 @@
     <p><b>Note: </b>The <i>shifted</i> option provides for improved orderings when the variable 
     collation elements are ignorable, while still only requiring three fields to be stored in memory 
     for each collation element. It does result in somewhat longer sort keys, although they can be 
-    compressed (see <a href="#Reducing_Sort_Key_Lengths">§6.1 Reducing Sort Key Lengths</a> and
-    <a href="#Reducing_Table_Sizes">§6.3 Reducing Table Sizes)</a>.</p>
+    compressed (see <a href="#Reducing_Sort_Key_Lengths">Section 6.1 Reducing Sort Key Lengths</a> 
+    and <a href="#Reducing_Table_Sizes">Section 6.3 Reducing Table Sizes)</a>.</p>
   </blockquote>
   <p align="left">The following gives an example of the differences between orderings using the 
   different options for variable collation elements. In this example, sample strings differ by the 
@@ -1469,9 +1464,9 @@
   conditions:</p>
   <blockquote>
     <ol>
-      <li>Except in special cases detailed in <a href="#Large_Weight_Values">§6.2 Large Weight 
-      Values</a>, no collation element can have a zero weight at Level N and a non-zero weight at 
-      Level N-1.
+      <li>Except in special cases detailed in <a href="#Large_Weight_Values">Section 6.2 Large 
+      Weight Values</a>, no collation element can have a zero weight at Level N and a non-zero 
+      weight at Level N-1.
       <ul>
         <li>For example, the secondary can only be ignorable if the primary is.</li>
         <li>The reason for this will be explained under Step 4 of the main algorithm.</li>
@@ -1552,7 +1547,7 @@
   <a href="http://www.unicode.org/reports/tr15/">UTR #15: Unicode Normalization Forms</a>).</p>
   <ul>
     <li>Conformant implementations may skip this step in certain circumstances: see
-    <a href="#Weight_Derivation">§7 Weight Derivation</a> for more information.</li>
+    <a href="#Weight_Derivation">Section 7 Weight Derivation</a> for more information.</li>
   </ul>
   <h3><a name="Step_2"></a>4.2 Produce Array</h3>
   <p><b>Step 2. </b>The collation element array is built by sequencing through the normalized form 
@@ -1575,7 +1570,8 @@
   there is a match. If there is no match, synthesize a weight as described in
   <a href="#Derived_Collation_Elements">7.1 Derived Collation Elements</a>.</p>
   <p><b><a name="S2.3">S2.3</a> </b>Process collation elements according to the variable-weight 
-  setting, as described in <a href="#3.2.2_Variable_Collation_Elements">§3.2.2 Variable Weighting</a>.</p>
+  setting, as described in <a href="#3.2.2_Variable_Collation_Elements">Section 3.2.2 Variable 
+  Weighting</a>.</p>
   <p><b><a name="S2.4">S2.4</a></b> Append the collation element(s) to the collation element array.</p>
   <p><b><a name="S2.5">S2.5</a> </b>Proceed to the next point in the string (past S).</p>
   <p><b><a name="S2.6">S2.6</a> </b>Loop until the end of the string is reached.</p>
@@ -1739,8 +1735,9 @@
     </ol>
     <p>However, there are circumstances--typically in expansions--where higher-level weights in 
     collation elements can be zeroed (resulting in ill-formed collation elements) without 
-    consequence (see <a href="#Large_Weight_Values">§6.2 Large Weight Values</a>). Implementations 
-    are free to do this as long as they produce the same result as with well-formed tables.</p>
+    consequence (see <a href="#Large_Weight_Values">Section 6.2 Large Weight Values</a>). 
+    Implementations are free to do this as long as they produce the same result as with well-formed 
+    tables.</p>
   </blockquote>
   <h2 align="left"><a name="Tailoring"></a>5 Tailoring</h2>
   <p align="left">Tailoring is any well-defined syntax that takes the Default Unicode Collation 
@@ -1760,8 +1757,8 @@
     <li>
     <p align="left">Customizing the exact list of variable collation elements. </li>
   </ol>
-  <p align="left">For examples of tailoring syntax, see <a href="#Comparison_to_Java">§6.9 Tailoring 
-  Example: Java</a>.</p>
+  <p align="left">For examples of tailoring syntax, see <a href="#Comparison_to_Java">Section 6.9 
+  Tailoring Example: Java</a>.</p>
   <h3 align="left"><a name="Preprocessing"></a>5.1 Preprocessing</h3>
   <p align="left">In addition to tailoring, some implementations may choose to preprocess the text 
   for special purposes. Once such preprocessing is done, the standard algorithm can be applied.</p>
@@ -1985,13 +1982,13 @@ FF</pre>
   implementations.</p>
   <h4>6.3.1 <a name="Contiguous_weight_ranges">Contiguous Weight Ranges</a></h4>
   <p>The Default Unicode Collation Element Table has secondary weights that are greater than 00FF. 
-  This is the result of the derivation described in <a href="#Weight_Derivation">§7 Weight 
+  This is the result of the derivation described in <a href="#Weight_Derivation">Section 7 Weight 
   Derivation</a>. However, these values can be compacted to a range of values that do not exceed 
   00FF. Whenever collation elements have different primary weights, the ordering of their secondary 
   weights is immaterial. Thus all of the secondaries that share a single primary can be renumbered 
   to a contiguous range without affecting the resulting order. Composite characters still need to be 
-  handled correctly if normalization is avoided as discussed in <a href="#Weight_Derivation">§7 
-  Weight Derivation</a>.</p>
+  handled correctly if normalization is avoided as discussed in <a href="#Weight_Derivation">Section 
+  7 Weight Derivation</a>.</p>
   <p>For example, for the primary value 0820 (for the letter O), there are 31 distinct secondary 
   values ranging from 0020 to 012D. These can be renumbered to the contiguous range from 0020 to 
   003F, which is less than 00FF.</p>
@@ -2015,7 +2012,7 @@ FF</pre>
   characters: the collation elements can be generated on the fly with only a few exceptions entered 
   in the table. The collation elements for the Han characters (unless tailored) are algorithmically 
   derived; no collation elements need to be stored for them either. For more information, see
-  <a href="#Weight_Derivation">§7 Weight Derivation</a>.</p>
+  <a href="#Weight_Derivation">Section 7 Weight Derivation</a>.</p>
   <p>This means that only a small fraction of the total number of Unicode characters needs to have 
   an explicit collation element. This can cut down the memory storage considerably.</p>
   <h4>6.3.4 <a name="Reducing_the_Repertoire">Reducing the Repertoire</a></h4>
@@ -2030,7 +2027,7 @@ FF</pre>
   the tertiary. Then applying techniques such as the Two-Stage table approach described in Section 
   5.7 of [<a href="#Unicode">Unicode</a>], the mapping table from characters to collation elements 
   can both fast and small. For an example of how this can be done, see <a href="#Flat_File_Example">
-  §6.10 Flat File Example</a>.</p>
+  Section 6.10 Flat File Example</a>.</p>
   <h3><a name="Avoiding_Zero_Bytes"></a>6.4 Avoiding Zero Bytes</h3>
   <p>If the resulting sort key is to be a C-string, then zero bytes must be avoided. This can be 
   done by:</p>
@@ -2052,7 +2049,7 @@ FF</pre>
   <h3><a name="Avoiding_Normalization"></a>6.5 Avoiding Normalization</h3>
   <p><a name="noCombining"></a>Implementations that do not handle separate combining marks can map 
   decomposable characters (such as &quot;à&quot;) to single collation elements with different Level 2 weights 
-  for the different accents. For more information, see <a href="#Weight_Derivation">§7 Weight 
+  for the different accents. For more information, see <a href="#Weight_Derivation">Section 7 Weight 
   Derivation</a>. However, this does require including the mappings for these characters in the 
   collation table, which will increase the size substantially unless the collation elements for the 
   Hangul Syllables are computed algorithmically.</p>
@@ -2062,7 +2059,7 @@ FF</pre>
   single language. It is strongly recommended that implementations provide parameterization that 
   allow uppercase to be sorted before lowercase, and provide information as to the standard (if any) 
   for particular countries. This can easily be done to the Default Unicode Collation Element Table 
-  before tailoring by remapping the L3 weights (see <a href="#Weight_Derivation">§7 Weight 
+  before tailoring by remapping the L3 weights (see <a href="#Weight_Derivation">Section 7 Weight 
   Derivation</a>). It can be done after tailoring by finding the case pairs and swapping the 
   collation elements.</p>
   <h3><a name="Incremental_Comparison"></a>6.7 Incremental Comparison</h3>
@@ -2600,9 +2597,9 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
       of [<a href="#U4.1.0">U4.1.0</a>]. Process each syllable separately:</span><ol>
         <li><span>If a syllable is canonically equivalent to one of the precomposed Hangul 
         Syllables, then just assign the weight as above</span></li>
-        <li><span>If not, then find the least syllable that it is greater than; call that the base 
-        syllable. Generate a weight sequence corresponding to the following gap weight, followed by 
-        all the Jamo weight bytes, followed by the terminator byte.</span></li>
+        <li><span>If not, then find the greatest syllable that it is greater than; call that the 
+        base syllable. Generate a weight sequence corresponding to the following gap weight, 
+        followed by all the Jamo weight bytes, followed by the terminator byte.</span></li>
       </ol>
       </li>
     </ol>
@@ -2884,12 +2881,12 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
 0032 [.06C8.0020.0002] % DIGIT TWO
 0029 [*023E.0020.0002] % RIGHT PARENTHESIS</pre>
   </blockquote>
-  <p><b>3. </b>Set the first two L3 values to be lookup(L3), where the lookup uses the table in
-  <a href="#Tertiary_Weight_Table">§7.3.1 Tertiary Weight Table</a>. Set the remaining L3 values to 
-  MAX (which in the default table is 001F):</p>
+  <p><b>3. </b>Set the first two L3 values to be lookup (L3), where the lookup uses the table in
+  <a href="#Tertiary_Weight_Table">Section 7.3.1 Tertiary Weight Table</a>. Set the remaining L3 
+  values to MAX (which in the default table is 001F):</p>
   <blockquote>
     <pre>0028 [*023D.0020.0004] % LEFT PARENTHESIS
-0032 [.06C8.0020.001F] % DIGIT TWO
+0032 [.06C8.0020.0004] % DIGIT TWO
 0029 [*023E.0020.001F] % RIGHT PARENTHESIS</pre>
   </blockquote>
   <p><b>4.</b> Concatenate the result to produce the sequence of collation elements that the 
@@ -3283,11 +3280,6 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
     &quot;Whole Characters Only&quot;; very similar to the common &quot;Whole Words Only&quot; checkbox that is included 
     in most search dialog boxes.</font> (For more information on grapheme clusters, see
     <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression Guidelines</a>)</li>
-    <li>Certain Thai and Lao vowels are swapped with the preceding character. For example, the text 
-    string “เข” (...\u0E40\u0E02...) is modified internally in collation to “ขเ” 
-    (...\u0E02\u0E40...). This may mean that a string logically matches a discontiguous section of 
-    another string. If, however, the vowels are considered to be part of a grapheme cluster, then 
-    this situation is handled by the <font size="3">&quot;whole grapheme clusters only&quot; option.</font></li>
     <li>If the matching is does not check for <font size="3">&quot;Whole Grapheme Clusters Only&quot;</font>, 
     then some other complications may occur. For example, suppose that P is &quot;x<font size="3">^&quot;, and 
     Q is &quot;</font>x ^<font size="3">¸&quot;. Because the cedilla and circumflex can be written in 
@@ -3300,20 +3292,32 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   <p><b>DS1. </b>Define <i>S[start,end]</i> to be the substring of S that includes the character 
   after the offset <i>start</i> up to the character before offset <i>end</i>. For example, if S is &quot;abcd&quot;, 
   then S[1,3] is &quot;bc&quot;.</p>
-  <p>Suppose there is a collation C, a pattern string P and a target string Q. C has some particular 
-  set of attributes, such as a strength setting, and choice of variable weighting.</p>
-  <p><b>DS2. </b>There is a <i>match</i> according to C for P within Q[<i>s,e</i>] if and only if C 
-  generates the same sort key for P as for Q[s,e].</p>
+  <p><span class="changedspan"><b>DS1a. </b>A boundary condition is a test imposed on an offset 
+  within a string. Examples include <font size="3">Whole Grapheme Cluster Search and Whole Word 
+  Search, as defined in UAX #29. </font>See [<a href="http://www.unicode.org/reports/tr10/tr10-12.html#Breaks">Breaks</a>]).</span></p>
+  <p><span class="changedspan">By using grapheme-complete conditions, contractions and combining 
+  sequences are not interrupted. This also avoids the need to present visually discontiguous 
+  selections to the user (except for BIDI text).</span></p>
+  <p><span class="changedspan">Suppose there is a collation C, a pattern string P and a target 
+  string Q, and a boundary condition B. C has some particular set of attributes, such as a strength 
+  setting, and choice of variable weighting.</span></p>
+  <p><span class="changedspan"><b>DS2. </b>There is a <i>match</i> according to C for P within Q[<i>s,e</i>] 
+  if and only if C generates the same sort key for P as for Q[s,e], and the offsets <i>s</i> and <i>
+  e</i> meet the condition B.</span></p>
+  <p><span class="changedspan"><b>DS2a.</b> A match <font size="3">is</font> <i>grapheme-complete</i> 
+  if B requires that the offset be at a grapheme cluster boundary. Note that Whole Word Search as 
+  defined in UAX #29 is grapheme complete. See [<a href="http://www.unicode.org/reports/tr10/tr10-12.html#Breaks">Breaks</a>]).</span></p>
   <p><b>DS3. </b>There is a <i>canonical match</i> according to C for P within Q[<i>s,e</i>] if and 
   only if there is some Q&#39;, canonically equivalent to Q[<i>s,e</i>], and some <i>s&#39;</i> and <i>e&#39;</i> 
   such that P matches within Q[<i>s&#39;,e&#39;</i>].</p>
   <p><b>DS4. </b>The match is <i>minimal</i> if for all positive <i>i</i> and <i>j</i>, there is no 
   match at Q[<i>s+i,e-j</i>]. In such a case, we also say that P minimal matchs <i>at</i> Q[<i>s,e</i>].</p>
-  <p><span><b>DS4a. </b>The match is <i>maximal</i> if for all positive <i>i</i> and <i>j</i>, there 
-  is no match at Q[<i>s-i,e+j</i>]. In such a case, we also say that P maximal matchs <i>at</i> Q[<i>s,e</i>].</span></p>
-  <p><span><b>DS4b. </b>The match is <i>medial</i> when it contains the minimal match, and is 
-  extended beyond whenever there is a successive binary match between the extra characters in 
-  pattern and target.</span></p>
+  <p><span><b>DS4<span class="changedspan">a</span>. </b>The match is <i>medial</i> when it contains 
+  the minimal match, and is extended beyond whenever there is a successive binary match between the 
+  extra characters in pattern and target.</span></p>
+  <p><span><b>DS4<span class="changedspan">b</span>. </b>The match is <i>maximal</i> if for all 
+  positive <i>i</i> and <i>j</i>, there is no match at Q[<i>s-i,e+j</i>]. In such a case, we also 
+  say that P maximal matchs <i>at</i> Q[<i>s,e</i>].</span></p>
   <p><span>As an example of the differences between these, consider the following case, where the 
   collation strength is set to ignore punctuation and case:</span></p>
   <table border="1" cellpadding="2" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber1">
@@ -3338,23 +3342,51 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
       <td><span>The minimal match is the tightest one, since $! and %$ are ignored in the target.</span></td>
     </tr>
     <tr>
+      <th style="text-align: right"><span>Medial Match</span></th>
+      <td><span>def$<b><span style="background-color: #00FFFF">!</span></b><span style="background-color: #00FFFF"><b>Abc</b></span>%$ghi</span></td>
+      <td><span>The medial one includes those characters that are binary equal.</span></td>
+    </tr>
+    <tr>
       <th style="text-align: right"><span>Maximal Match</span></th>
       <td><span><span>def<b><span style="background-color: #00FFFF">$!Abc%$</span></b>ghi</span></span></td>
       <td><span>The maximal match is the loosest one, including the surrounding ignored characters.</span></td>
     </tr>
-    <tr>
-      <th style="text-align: right"><span>Medial Match</span></th>
-      <td><span><span>def$<b><span style="background-color: #00FFFF">!</span></b><span style="background-color: #00FFFF"><b>Abc</b></span>%$ghi</span></span></td>
-      <td><span>The medial one includes those characters that are binary equal.</span></td>
-    </tr>
   </table>
   <p>By using minimal<span>, maximal, or medial </span>matches, the issue with ignorables is 
-  avoided. <span>Medial matches tend to match user expectations the best. </span></p>
-  <p><b>DS5. </b>The match is <i>grapheme-complete</i> if <i>s</i> and <i>e </i>are both at grapheme 
-  cluster boundaries. <span>See [<a href="#Breaks">Breaks</a>]).</span></p>
-  <p>By using grapheme-complete matches, contractions and combining sequences are not interrupted.<span> 
-  This also avoids the need to present visually discontiguous selections to the user (except for 
-  BIDI text).</span></p>
+  avoided. <span>Medial matches tend to match user expectations the best.</span></p>
+  <p><span class="changedspan">When an additional condition is set on the match, the types (minimal, 
+  maximal, medial) are based on the matches <i>that meet that condition.</i> Consider the following.</span></p>
+  <table id="AutoNumber1" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="2" border="1">
+    <tr>
+      <th><span class="changedspan">&nbsp;</span></th>
+      <th><span class="changedspan">Value</span></th>
+      <th><span class="changedspan">Notes</span></th>
+    </tr>
+    <tr>
+      <th><span class="changedspan">Pattern:</span></th>
+      <td><span class="changedspan">abc</span></td>
+      <td><span class="changedspan">&nbsp;</span></td>
+    </tr>
+    <tr>
+      <th><span class="changedspan">Strength:</span></th>
+      <td><span class="changedspan">primary</span></td>
+      <td><span class="changedspan">thus ignoring combining marks, punctuation</span></td>
+    </tr>
+    <tr>
+      <th><span class="changedspan">Text:</span></th>
+      <td><span class="changedspan">abc<font size="3">¸-°d</font></span></td>
+      <td><span class="changedspan">two combining marks, cedilla and ring</span></td>
+    </tr>
+    <tr>
+      <th><span class="changedspan">Matches:</span></th>
+      <td><span class="changedspan">|abc|<font size="3">¸|-|°|d</font></span></td>
+      <td><span class="changedspan">four possible endpoints, indicated by |</span></td>
+    </tr>
+  </table>
+  <p><span class="changedspan"><span style="background-color: #FFFF00">Thus i</span>f the condition 
+  is Whole Grapheme, then the matches are restricted to &quot;abc<font size="3">¸|-°|d&quot;, thus discarding 
+  match positions that would not be on a grapheme cluster boundary. Thus the minimal </font>match 
+  would be &quot;abc<font size="3">¸|-°d&quot;</font></span></p>
   <p><b>DS6.</b> The <i>first forward match</i> for P in Q starting at <i>b</i> is the least offset
   <i>s</i> greater than or equal to <i>b</i> such that for some <i>e</i>, P matches within Q[s,e].</p>
   <p><b>DS7.</b> The <i>first backward match</i> for P in Q starting at <i>b</i> is the greatest 
@@ -3364,10 +3396,10 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   rejected on the basis of other conditions, such as being grapheme-complete or applying Whole Word 
   Search, as described in [<a href="#Breaks">Breaks</a>]). </span></p>
   <h2><a name="Acknowledgements">Acknowledgements</a></h2>
-  <p>Thanks to Richard Gillam, Kent Karlsson, Åke Persson, Roozbeh Pournader, Javier Sol, and 
-  Vladimir Weinstein for their feedback on previous versions of this document, and Cathy Wissink for 
-  her <span>many</span> contributions to the text,<span> and to Jianping Yang and Claire Ho for 
-  their contributions on matching</span>.</p>
+  <p>Thanks to Bernard Desgraupes, Richard Gillam, Kent Karlsson, Åke Persson, Roozbeh Pournader, 
+  Markus Scherer, Javier Sol, and Vladimir Weinstein for their feedback on previous versions of this 
+  document, <span>to Jianping Yang and Claire Ho for their contributions on matching, </span>and to 
+  Cathy Wissink for her <span>many</span> contributions to the text.</p>
   <h2><a name="References">References</a></h2>
   <table class="noborder" cellpadding="8">
     <tr>
@@ -3495,7 +3527,10 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
       <td width="1" class="noborder"><a name="TrackingNumber11">13</a></td>
       <td class="noborder">
       <ul>
-        <li>Minor Editing</li>
+        <li>Removed left-over Thai/Lao text.</li>
+        <li>Removed DS5, added DS1a, DS2a, explanations of interactions with other conditions, such 
+        as Whole Word or Whole Grapheme.</li>
+        <li>Many minor edits</li>
       </ul>
       </td>
     </tr>
@@ -3522,8 +3557,8 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
         <li><span>The additions of weights for all the new Unicode 4.1.0 characters</span></li>
         <li><span>The change of weights for characters Æ, Ǽ, Ǣ; Đ, Ð; Ħ; Ł, Ŀ; and Ø, Ǿ (and their 
         lowercase and accented forms) to have secondary (accent) differences from AE; D; H; L; and 
-        O, respectively. This is to provide a better much better default for languages in which 
-        those characters are not tailored. See also the section on user expectations.</span></li>
+        O, respectively. This is to provide a much better default for languages in which those 
+        characters are not tailored. See also the section on user expectations.</span></li>
         <li><span>Change in weights for U+0600 ARABIC NUMBER SIGN and U+2062 INVISIBLE TIMES and 
         like characters (U+0600..U+0603, U+06DD, U+2061..U+2063) to be not completely ignorable, 
         since their effect on the interpretation of the text can be substantial.</span></li>

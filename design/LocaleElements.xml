@@ -12,7 +12,7 @@ See ftp://ftp.unicode.org/Public/UNIDATA/UnicodeCharacterDatabase.html.
 
 NOTE: The data below is purely illustrative, and doesn't match any particular language.
 NOTE: The data for any given locale will only contain items that are different from the parent locale.
-For example, most country locales will inherit the bulk of their data from the language locale: 
+For example, most country locales will inherit the bulk of their data from the language locale:
 "en" will contain the bulk of the data: en_US will only contain a few items like currency.
 -->
     <versioning>
@@ -27,7 +27,7 @@ For example, most country locales will inherit the bulk of their data from the l
         <country id="US" />
 
         <!-- Only one variant allowed for now -->
-	   <variant id="B"/> 
+	   <variant id="B"/>
         <correspondsTo vendor="windows">0409</correspondsTo>
      </identity>
 
@@ -56,14 +56,14 @@ For example, most country locales will inherit the bulk of their data from the l
             <script id="Latin">Romana</script>
             <script id="Cyrillic">Kyrillica</script>
          </scripts>
-    
+
         <languages>
             <language id="ab">Abkhazian</language>
             <language id="aa">Afar</language>
             <language id="af">Afrikaans</language>
             <language id="sq">Albanian</language>
         </languages>
-    
+
         <countries>
             <country id="AF">Afghanistan</country>
             <country id="AL">Albania</country>
@@ -72,13 +72,13 @@ For example, most country locales will inherit the bulk of their data from the l
             <country id="AO">Angola</country>
 			<country id="US">United States</country>
         </countries>
-    
+
 		<!-- Variant IDs must be unique across ALL locales. Currently they include
 				B, NY, EURO -->
         <variants>
             <variant id="B">Bokm&#x00e5;l</variant>
         </variants>
-    
+
         <!--
         Java/ICU choice format syntax for producing the name of a locale in a particular language.
         -->
@@ -121,8 +121,8 @@ The ids must match what is produced by the calendar system.
             <month id="10">Oct</month>
             <month id="11">Nov</month>
             <month id="12">Dec</month>
-		</monthAbbr>		
-		
+		</monthAbbr>
+
         <dayNames>
 			<day id="SUN">Sunday</day>
             <day id="MON">Monday</day>
@@ -180,7 +180,7 @@ The ids must match what is produced by the calendar system.
                <era id="0">BE</era>
         </eras>
     </calendar>
-   </calendars>     
+   </calendars>
  <!--
 There can be multiple number formats for the same locale.
 Only one can be marked as "default"
@@ -212,8 +212,9 @@ Only one can be marked as "default"
             <symbol>$</symbol>
             <pattern>¤ #,##0.00;(¤ #,##0.00)</pattern>
             <decimal>.</decimal>
+            <group>,</group>
         </currency>
-        <currency id ="JAY">
+        <currency id ="YEN">
             <name>¥</name>
             <pattern>¤ #,##0;(¤ #,##0)</pattern>
             <decimal>.</decimal>
@@ -226,8 +227,8 @@ Only one can be marked as "default"
     The main difference is that the < sign is replaced by «, and the & is replaced by "§",
     since otherwise the XML is clumsy!
 
-    Note that collation needs its own version, independent of the Locale version. 
-    For more information, see 
+    Note that collation needs its own version, independent of the Locale version.
+    For more information, see
     http://java.sun.com/products/jdk/1.2/docs/api/java/text/RuleBasedCollator.html
     and
     http://www.unicode.org/unicode/reports/tr10/#Comparison to Java.
@@ -261,7 +262,7 @@ Only one can be marked as "default"
 			</short>
 			<city>Los Angeles</city>
 		</zone>
-		
+
         <zone id="America/Denver">
             <long>
 				<generic>Mountain Time</generic>
@@ -275,7 +276,7 @@ Only one can be marked as "default"
 			</short>
             <city>Denver</city>
         </zone>
-		
+
         <zone id="Europe/London">
             <long>
 				<generic>British Time</generic>
@@ -284,17 +285,17 @@ Only one can be marked as "default"
 			</long>
             <city>York</city>
         </zone>
- 
+
     </timeZoneNames>
-    
+
     <miscellaneous>
 		<yes>Yes</yes>
 		<no>No</no>
 	    <listSeparator>,</listSeparator>
 	</miscellaneous>
 
-     <!-- Boundary rules. 
-    Selected samples are given with no attempt to make them work. 
+     <!-- Boundary rules.
+    Selected samples are given with no attempt to make them work.
     This format is the Java/ICU syntax, at the top level.
     For real data, see http://oss.software.ibm.com/developerworks/opensource/cvs/icu4j
     in BreakIteratorRules.java
@@ -333,7 +334,7 @@ Only one can be marked as "default"
                  used for book numbering (ISBN), according to ISO 2108. ISBN numbers are
                  allocated according to country. -->
             <CountryISBNNumber>666</CountryISBNNumber>
-            <!-- Papersize. The numbers are always in millimeters. 
+            <!-- Papersize. The numbers are always in millimeters.
                  The units name is the customary unit for that locale for measuring paper. -->
             <PaperSize>
 		<Height>279</Height>
@@ -356,7 +357,7 @@ Only one can be marked as "default"
 		</messages>
                 <!--
 Postal format:
-POSIX       ICU         Description  
+POSIX       ICU         Description
 %a         {0}          C/O address.
 %f         {1}          Firm name.
 %d         {2}          department name.
@@ -434,7 +435,7 @@ ICU	 : NameFormat "{8}\s{2}\s{6}\s{0}"
 	           </Identification>
 <!--
 Telephone format:
-POSIX       ICU         Description  
+POSIX       ICU         Description
 %a         {0}          area code without prefix (prefix is often <0>).
 %A         {1}          area code including prefix (prefix is often <0>).
 %l         {2}          local number.

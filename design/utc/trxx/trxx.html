@@ -1,0 +1,650 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<link rel="stylesheet" href="http://www.unicode.org/reports/reports.css" type="text/css">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>UTR# xx: Unicode Security Considerations</title>
+<style>
+<!--
+span.special { text-decoration: underline; font-weight: bold; color: #FF0000;font-family: monospace; font-size: 80% }
+span.mono    { font-family: monospace; font-size: 80% }
+td {text-size: 10pt; font-size:10pt; font-family:serif}
+span.border {background-color: white; color: red; border-left: 1px solid  blue; border-right: 1px solid blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table class="header" cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td class="icon"><a href="http://www.unicode.org">
+    <img align="middle" alt="[Unicode]" border="0" src="http://www.unicode.org/webscripts/logo60s2.gif" width="34" height="33"></a>&nbsp;&nbsp;<a class="bar" href="http://www.unicode.org/unicode/reports">Technical 
+    Reports</a></td>
+  </tr>
+  <tr>
+    <td class="gray">&nbsp;</td>
+  </tr>
+</table>
+<div class="body">
+  <h2 align="center">Proposed Draft Unicode Technical Note #xx</h2>
+  <h1>Unicode Security Considerations</h1>
+  <table border="1" cellpadding="2" width="95%">
+    <tr>
+      <td valign="top" width="20%">Version</td>
+      <td valign="top">1.0 <font color="#FF0000">WORKING DRAFT</font></td>
+    </tr>
+    <tr>
+      <td valign="top">Authors</td>
+      <td valign="top">Mark Davis (<a href="mailto:mark.davis@us.ibm.com">mark.davis@us.ibm.com</a>)</td>
+    </tr>
+    <tr>
+      <td valign="top">Date</td>
+      <td valign="top" class="old_changed">2004-10-06</td>
+    </tr>
+    <tr>
+      <td valign="top">This Version</td>
+      <td valign="top"><span style="background-color: #FF3333">&lt;waiting on number&gt;</span></td>
+    </tr>
+    <tr>
+      <td valign="top">Previous Version</td>
+      <td valign="top">n/a</td>
+    </tr>
+    <tr>
+      <td valign="top">Latest Version</td>
+      <td valign="top"><span style="background-color: #FF3333">&lt;waiting on number&gt;</span></td>
+    </tr>
+    <tr>
+      <td valign="top">Tracking Number</td>
+      <td valign="top"><a href="#TrackingNumber1">1</a></td>
+    </tr>
+  </table>
+  <h3>&nbsp;</h3>
+  <h3><i>Summary</i></h3>
+  <p><i>This document describes security considerations that are important to be aware of when 
+  working with Unicode.</i></p>
+  <h3><i>Status</i></h3>
+  <p><i>This document is a proposed draft Unicode Technical Report. Publication does not imply 
+  endorsement by the Unicode Consortium. This is a draft document which may be updated, replaced, or 
+  superseded by other documents at any time. This is not a stable document; it is inappropriate to 
+  cite this document as other than a work in progress.</i></p>
+  <blockquote>
+    <p class="old_changed"><i><b>A Unicode Technical Report (UTR) </b>contains informative material. 
+    Conformance to the Unicode Standard does not imply conformance to any UTR. Other specifications, 
+    however, are free to make normative references to a UTR.</i></p>
+  </blockquote>
+  <p class="old_changed"><i>Please submit corrigenda and other comments with the online reporting 
+  form [<a href="#Feedback">Feedback</a>]. Related information that is useful in understanding this 
+  document is found in <a href="#References">References</a>. For the latest version of the Unicode 
+  Standard see [<a href="#Unicode">Unicode</a>]. For a list of current Unicode Technical Reports see 
+  [<a href="#Reports">Reports</a>]. For more information about versions of the Unicode Standard, see 
+  [<a href="#Versions">Versions</a>].</i></p>
+  <h3><i>Contents</i></h3>
+  <ul>
+    <li><a href="#3.1_Bidirectional_Behavior">1. Introduction</a></li>
+    <li><a href="#canonicalization_exploits">2. Canonical Representation</a></li>
+    <li><a href="#visual_spoofing">3. Visual Spoofing</a><ul>
+      <li><a href="#international_domain_names">3.1. International Domain Names</a></li>
+    </ul>
+    </li>
+    <li><a href="#Acknowledgements">Acknowledgements</a></li>
+    <li><a href="#References">References</a></li>
+    <li><a href="#Modifications">Modifications</a></li>
+  </ul>
+  <hr>
+  <h2 align="left"><a name="3.1_Bidirectional_Behavior"></a>1. Introduction</h2>
+  <p>Unicode represents a very significant advance over all previous methods of encoding characters. 
+  For the first time, all of the worlds characters could be represented in a uniform manner, for the 
+  first time making it feasible for the vast majority of programs to be <i>globalized:</i> to handle 
+  any language in the world.</p>
+  <p>In many ways, the use of Unicode makes programs much more robust and secure. When systems need 
+  to use a hodge-podge of different charsets for representing characters, it was possible to take 
+  advantage of differences between those charsets, or in the way in which programs converted to and 
+  from them.</p>
+  <p>However, because Unicode contains such a large number of characters, and because it 
+  incorporates, incorrect usage can expose programs or systems to possible security attacks. This 
+  document describes some of the security considerations that should be taken into account by 
+  programmers, system analysts, standards-developers, and others.</p>
+  <p>We anticipate that this document will grow over time, adding additional sections as needed. 
+  Initially, there are two areas that will be discussed: canonical representation and visual 
+  spoofing. For more information, see also the Unicode
+  <a href="http://www.unicode.org/faq/security.html">FAQ on Security Issues</a>.</p>
+  <blockquote>
+    <p class="reviewnote"><b>Note to Reviewers:</b> Some of the examples below use Unicode 
+    characters which some browsers will not show, or at least will not show in a way that 
+    illustrates the problem. You can open up a
+    <a href="http://www.unicode.org/L2/L2004/04305-spoofing-image002.jpg" target="_blank">screen 
+    shot</a> of the examples that demonstrates the issues, using a common browser. In the final 
+    version of this document, we will probably replace each examples by the corresponding image.</p>
+  </blockquote>
+  <h2><a name="canonicalization_exploits"></a>2. Canonical Representation</h2>
+  <p>A common practice is to have a &#39;gatekeeper&#39; for a system. That gatekeeper checks over incoming 
+  data to ensure that it is safe, and passes only safe data through. Once in the system, the other 
+  components assume that the data is safe. A problem arises when a component treats two pieces of 
+  text as identical -- typically by canonicalizing them to the same form -- while the gatekeeper 
+  only detected that one of them was unsafe.</p>
+  <h3>UTF-8 Exploit</h3>
+  <p>There are three equivalent encoding forms for Unicode: UTF-8, UTF-16, and UTF-32. UTF-8 is 
+  commonly used in XML and HTML; UTF-16 is the most common in program APIs; and UTF-32 is the best 
+  for representing single characters. While these forms are all equivalent in terms of the ability 
+  to express Unicode, the original usage of UTF-8 was open to a canonicalization exploit.</p>
+  <p>Up to <a href="http://www.unicode.org/unicode/uni2book/u2.html"><i>The Unicode Standard, 
+  Version 3.0</i></a> the <i>generation</i> of &quot;non-shortest form&quot; UTF-8 was forbidden, and as was 
+  the <i>interpretation</i> of illegal sequences, but not the interpretation of &quot;non-shortest form&quot;. 
+  Where software does interpret the non-shortest forms, security issues can arise. For example: </p>
+  <ul>
+    <li>Process <i>A</i> performs security checks, but does not check for non-shortest forms. </li>
+    <li>Process <i>B</i> accepts the byte sequence from process <i>A</i>, and transforms it into 
+    UTF-16 while interpreting non-shortest forms. </li>
+    <li>The UTF-16 text may then contain characters that should have been filtered out by process <i>
+    A</i>.</li>
+  </ul>
+  <p>For example, the backslash character &quot;\&quot; can often be a dangerous character to let through a 
+  gatekeeper, since it can be used to access different directories. Thus a gatekeeper might 
+  specifically prevent it from getting through. The backslash is represented in UTF-8 as the byte 
+  sequence &lt;5C&gt;. However, as a non-shortest form, backslash could also be represented as the byte 
+  sequence&lt;C1 9C&gt;. When a gatekeeper doesn&#39;t catch that, but a component converts non-shortest 
+  forms, it can allow a real security breech. For more information, see
+  <a href="http://www.microsoft.com/technet/security/bulletin/MS00-078.mspx">
+  http://www.microsoft.com/technet/security/bulletin/MS00-078.mspx</a> and
+  <a href="http://www.ins.com/downloads/whitepapers/ins_white_paper_ms_iis_unicode_exploit_0801.pdf">
+  http://www.ins.com/downloads/whitepapers/ins_white_paper_ms_iis_unicode_exploit_0801.pdf</a>.</p>
+  <p>To address this issue, the Unicode Technical Committee modified the definition of UTF-8 in
+  <a href="http://www.unicode.org/reports/tr27/">Unicode 3.1</a> to forbid conformant 
+  implementations from interpreting non-shortest forms for
+  <a href="http://www.unicode.org/glossary/#BMP_character">BMP characters</a>, and clarified some of 
+  the conformance clauses.</p>
+  <p><i>Recommendation: </i>Ensure that all implementations of UTF-8 used in a system are conformant 
+  to the latest version of Unicode.</p>
+  <p class="reviewnote">To Do: add information about other possible exploits in this area:</p>
+  <ul>
+    <li>
+    <p class="reviewnote">Unicode Normalization</li>
+    <li>
+    <p class="reviewnote">Case mapping</li>
+    <li>
+    <p class="reviewnote">Buffer overflows with all of the above, and when converting encoding forms</li>
+  </ul>
+  <h2><a name="visual_spoofing"></a>3. Visual Spoofing</h2>
+  <p>Visual spoofing is where a similarity in visual appearance fools a user, and causes him or her 
+  to take unsafe actions. This is not new to Unicode: it was possible to spoof simply with ASCII 
+  character: &quot;<font face="sans-serif">inteI.com</font>&quot; for example, uses a capital I instead of an 
+  L. The infamous example here is of course &quot;<font face="sans-serif">paypaI.com</font>&quot;:&nbsp; </p>
+  <blockquote>
+    <p class="stBodyText"><font size="2">... Not only was &quot;Paypai.com&quot; very convincing, but the scam 
+    artist even goes one step further. He or she is apparently emailing PayPal customers, saying 
+    they have a large payment waiting for them in their account.</font></p>
+    <p class="stBodyText"><font size="2">The message then offers up a link, urging the recipient to 
+    claim the funds. But the URL that is displayed for the unwitting victim uses a capital &quot;i&quot; (I), 
+    which looks just like a lowercase &quot;L&quot; (l), in many computer fonts. ...</font></p>
+    <p class="stBodyText" align="right"><span class="h1"><font size="2">-- </font>
+    <a href="http://news.zdnet.co.uk/internet/security/0,39020375,2080344,00.htm"><font size="2">
+    Beware the &#39;PaypaI&#39; scam</font></a></span></p>
+  </blockquote>
+  <p>And the spoofs nowadays are pretty clever. One is an email that looks like it comes from a 
+  trusted source, like your bank. It even has an explicit disclaimer to not trust links in email, 
+  and directs you to copy text to your address bar in your browser. The text looks ok to you, so you 
+  won&#39;t realize that you are going to a completely different site, which is then set up to simulate 
+  your bank well enough to get your password.</p>
+  <p>To a certain extent, the new forms of spoofing available with Unicode are a matter of degree 
+  and not kind. However, because of the very large number of Unicode characters (over 94,000 in the 
+  current version), the number of opportunities for visual spoofing are significantly larger than 
+  with a restricted character set such as ASCII. </p>
+  <h3><a name="international_domain_names"></a>International Domain Names</h3>
+  <p>Spoofing is an especially important subject given the recent introduction of international 
+  domain names (IDN). There is a natural desire for people to see domain names in their own 
+  languages and writing systems; English speakers can understand this if they consider what it would 
+  be like if they always had to type web addresses with Russian characters! So IDN represents a very 
+  significant advance for most people in the world. Yet the avoidance of spoofing vulnerability 
+  requires proper implementation in browsers and other programs.</p>
+  <p>Fortunately, there is a bit of breathing space, while new international domain names and 
+  programs using them have been widely deployed. However, unless people take security considerations 
+  into account in their designs, this will soon lead to problems.</p>
+  <p>International domain names are, of course, not the only cases where visual spoofing can occur. 
+  For example, you might get a message asking you to allow allowing the installation of software 
+  from &quot;IBM&quot;, authenticated with the proper Verisign certificate, but the &quot;M&quot; character happens to 
+  be the Russian (Cyrillic) character that looks precisely like the English &quot;M&quot;. However, IDN 
+  provides a good starting point for a discussion of visual spoofing.</p>
+  <p>The good news is that the design of IDN prevents a huge number of spoofing attacks. All 
+  conformant users of IDN are required to process domain names to convert <i>c<a href="http://www.unicode.org/glossary/#compatibility_equivalent">ompatibility-equivalent</a></i> 
+  characters into a unique form; this processing eliminates most of the possibilities for visual 
+  spoofing by mapping away a large number of visually confusable characters and sequences. For 
+  example, Unicode contains the &quot;<font SIZE="3">ä&quot; (a-umlaut) character, but also contains a 
+  free-standing umlaut (&quot;¨&quot;) which can be used in combination with any character, including an &quot;a&quot;. 
+  But the compatibility normalization will convert any sequence of &quot;a&quot; plus &quot;¨&quot; into the regular
+  </font>&quot;<font SIZE="3">ä&quot;. </font></p>
+  <p>Thus you can&#39;t spoof an <i>a-umlaut</i> with <i>a + umlaut</i>; it simply results in the same 
+  domain name. See example 1 below. The String column shows the actual characters; the UTF-16 shows 
+  the underlying encoding, while the IDNA column shows the IDNA format used to represent the string 
+  internally in International Domain Names.</p>
+  <table id="AutoNumber1" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" width="100%" border="1">
+    <caption style="font-size: 14pt; font-weight: bold"><b>Safe Domain Names</b></caption>
+    <tr>
+      <th bgColor="#c0c0c0" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">&nbsp;</th>
+      <th bgColor="#c0c0c0" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      String</th>
+      <th bgColor="#c0c0c0" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      UTF-16</th>
+      <th bgColor="#c0c0c0" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      IDNA</th>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">1a</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">ät.com</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="special">0061 0308</span><span class="mono"> 0074 002E 0063 006F 006D</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--t-zfa.com">xn--t-zfa.com</a></span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">1b</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">ät.com</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="special">00E4</span><span class="mono"> 0074 002E 0063 006F 006D</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--t-zfa.com">xn--t-zfa.com</a></span></td>
+    </tr>
+  </table>
+  <blockquote>
+    <p><b>Note: </b>The ICU demo at <a href="http://oss.software.ibm.com/cgi-bin/icu/idnademo">
+    http://oss.software.ibm.com/cgi-bin/icu/idnademo</a> can be used to demonstrate the results of 
+    processing different domain names. That demo was also used to get the IDNA values shown here.</p>
+  </blockquote>
+  <p>However, there remain many cases where visual spoofing can still occur with international 
+  domain names.</p>
+  <h3><b>Cross-Script Spoofing</b></h3>
+  <p>Visually similar characters are not usually unified across scripts. Thus a Greek <i>omicron</i> 
+  is encoded as a different character from the Latin &quot;o&quot;, even though it is usually identical in 
+  appearance. This means that there is a significant number of spoofing possibilities using 
+  characters from different scripts. For example, a domain name can be spoofed by using a Greek 
+  omicron instead of an &#39;o&#39;, as in example 2a.</p>
+  <table id="AutoNumber2" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" width="100%" border="1">
+    <caption style="font-size: 14pt; font-weight: bold"><b>Script Spoofing</b></caption>
+    <tr>
+      <th style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt" bgColor="#c0c0c0">&nbsp;</th>
+      <th style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt" bgColor="#c0c0c0">
+      String</th>
+      <th style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt" bgColor="#c0c0c0">
+      UTF-16</th>
+      <th style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt" bgColor="#c0c0c0">
+      IDNA</th>
+    </tr>
+    <tr>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Arial Unicode MS">2a</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Arial Unicode MS">tοp.com</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="mono">0074 </span><span class="special">03BF</span><span class="mono"> 0070 002E 
+      0063 006F 006D</span></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <a href="http://xn--tp-jbc.com"><span class="mono">xn--tp-jbc.com</span></a></td>
+    </tr>
+    <tr>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Arial Unicode MS">2b</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <code><font face="Arial Unicode MS">tοp.com</font></code></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="mono">0074 </span><span class="special">006F</span><span class="mono"> 0070 002E 
+      0063 006F 006D</span></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="mono"><a href="http://top.com%20">top.com</a></span></td>
+    </tr>
+  </table>
+  <p>However, there are many legitimate uses of mixed scripts. It is quite common, for example, to 
+  use English words (with Latin characters) in the middle of other languages using other scripts. 
+  This often happens with product names, for example, such as &quot;Sony&quot;.</p>
+  <p><i>Recommendation: </i>the user should be alerted to these cases by displaying mixed scripts 
+  with some special formatting to alert the user to the situation. For example, a different color 
+  and special boundary marks, are used in Example 2c. A tool-tip can be displayed when the user 
+  moves the mouse over the address to display more information about the situation.</p>
+  <table id="AutoNumber2" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" width="100%" border="1">
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">2c</font></td>
+      <td class="border"><font face="Arial Unicode MS">t<span class="border">ο</span>p.com</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="mono">0074 </span><span class="special">03BF</span><span class="mono"> 0070 002E 
+      0063 006F 006D</span></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <a href="http://xn--tp-jbc.com"><span class="mono">xn--tp-jbc.com</span></a></td>
+    </tr>
+  </table>
+  <p>The Unicode Standard supplies information that can be used for detecting mixed-script text: for 
+  more information, see UAX 24 <a href="http://www.unicode.org/reports/tr24/">Script Names</a>.</p>
+  <h3>In-Script Spoofing</h3>
+  <p>However, while compatibility normalization and mixed-script detection can handle the vast 
+  majority of cases, there are other visual confusables that could cause problems. With fonts 
+  increasing able to handle international characters, and <i>especially</i> with smaller font sizes 
+  in the context of an address bar, these visual confusables could be used to spoof. Importantly, 
+  these problems can be illustrated with common, widely available fonts on widely available 
+  operating systems -- this is not pointing a finger at any one vendor.</p>
+  <p>Consider the following examples, all in the same script. In each numbered case, in commonly 
+  available browsers, the strings will look identical.</p>
+  <table id="AutoNumber1" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" width="100%" border="1">
+    <caption style="font-size: 14pt; font-weight: bold"><b>Spoofed Domain Names</b></caption>
+    <tr>
+      <th bgColor="#c0c0c0" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">&nbsp;</th>
+      <th bgColor="#c0c0c0" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      String</th>
+      <th bgColor="#c0c0c0" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      UTF-16</th>
+      <th bgColor="#c0c0c0" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      IDNA</th>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">3a</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">a‐b.com</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono">0061 </span><span class="special">2010</span><span class="mono"> 0062 002E 
+      0063 006F 006D</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--ab-v1t.com">xn--ab-v1t.com</a></span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">3b</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">a-b.com</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono">0061 </span><span class="special">002D</span><span class="mono"> 0062 002E 
+      0063 006F 006D</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://a-b.com">a-b.com</a></span></td>
+    </tr>
+    <tr>
+      <td bgColor="#c0c0c0" colSpan="4" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">4a</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">so̷s.com</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono">0073 </span><span class="special">006F 0337</span><span class="mono"> 0073 
+      002E 0063 006F 006D</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--sos-rjc.com">xn--sos-rjc.com</a></span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">4b</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">søs.com</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono">0073 </span><span class="special">00F8</span><span class="mono"> 0073 002E 
+      0063 006F 006D</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--ss-lka.com">xn--ss-lka.com</a></span></td>
+    </tr>
+    <tr>
+      <td bgColor="#c0c0c0" colSpan="4" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">5a</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">z̵o.com</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="special">007A 0335</span><span class="mono"> 006F 002E 0063 006F 006D</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--zo-pyb.com">xn--zo-pyb.com</a></span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">5b</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">ƶo.com</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="special">01B6</span><span class="mono"> 006F 002E 0063 006F 006D</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--o-zra.com">xn--o-zra.com</a></span></td>
+    </tr>
+    <tr>
+      <td bgColor="#c0c0c0" colSpan="4" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">6a</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">an͂o.com</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono">0061 </span><span class="special">006E 0342</span><span class="mono"> 006F 
+      002E 0063 006F 006D</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--ano-0kc.com">xn--ano-0kc.com</a></span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">6b</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">año.com</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono">0061 </span><span class="special">00F1</span><span class="mono"> 006F 002E 
+      0063 006F 006D</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--ao-zja.com">xn--ao-zja.com</a></span></td>
+    </tr>
+    <tr>
+      <td bgColor="#c0c0c0" colSpan="4" style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">7a</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">Đo.org</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="special">0110</span><span class="mono"> 006F 002E 006F 0072 0067</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--o-kia.org">xn--o-kia.org</a></span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">7b</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <font face="Arial Unicode MS">Ɖo.org</font></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="special">0189</span><span class="mono"> 006F 002E 006F 0072 0067</span></td>
+      <td style="text-align: left; text-size: 10pt; font-size: 10pt; font-family: serif; padding: 1pt">
+      <span class="mono"><a href="http://xn--o-40a.org">xn--o-40a.org</a></span></td>
+    </tr>
+  </table>
+  <p class="reviewnote"><i>Note to Reviewers: In addition to this proposed draft, it is proposed 
+  that one of the Unicode Technical Committees consider a project to gather data on sequences of 
+  characters that are visually confusable under common&nbsp; fonts, and get outside companies and 
+  organizations who would have an interest in this work to join in these efforts. This would provide 
+  data for browsers and other products to alert users as to potential problems, as above.</i></p>
+  <p class="reviewnote"><i>Feedback (positive or negative) on the usefulness of this project would 
+  be appreciated.</i></p>
+  <h3>Inadequate Rendering Support</h3>
+  <p>An additional problem arises when a font and/or rendering engine has inadequate support for 
+  certain sequences of characters. These are characters that <i>should</i> be visually 
+  distinguishable, but don&#39;t appear that way. In example 8a, the <i>a-umlaut</i> is followed by 
+  another <i>umlaut</i>. The Unicode Standard guidelines indicate that the second <i>umlaut</i> 
+  should be &#39;stacked&#39; above the first, producing a distinct visual difference. But as this example 
+  shows, common fonts will simply superimpose the second <i>umlaut</i>; and if the positioning is 
+  close enough, the user will not see a difference between 8a and 8b.</p>
+  <table id="AutoNumber1" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" width="100%" border="1">
+    <caption style="font-size: 14pt; font-weight: bold">Inadequate Rendering Support </caption>
+    <tr>
+      <th style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt" bgColor="#c0c0c0">&nbsp;</th>
+      <th style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt" bgColor="#c0c0c0">
+      String</th>
+      <th style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt" bgColor="#c0c0c0">
+      UTF-16</th>
+      <th style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt" bgColor="#c0c0c0">
+      IDNA</th>
+    </tr>
+    <tr>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Arial Unicode MS">8a</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Arial Unicode MS">ä̈t.com</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="special">00E4 0308</span><span class="mono"> 0074 002E 0063 006F 006D</span></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="mono"><a href="http://xn--t-zfa85n.com">xn--t-zfa85n.com</a></span></td>
+    </tr>
+    <tr>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Arial Unicode MS">8b</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Arial Unicode MS">ät.com</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="special">00E4</span><span class="mono"> 0074 002E 0063 006F 006D</span></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="mono"><a href="http://xn--t-zfa.com">xn--t-zfa.com</a></span></td>
+    </tr>
+    <tr>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt" bgColor="#c0c0c0" colSpan="4">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Arial Unicode MS">9a</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      eḷ<font face="Times New Roman">.com</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="special">0065</span><span class="mono"> 006C </span><span class="special">0323</span><span class="mono"> 
+      002E 0063 006F 006D</span></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="mono"><a href="http://xn--e-zom.com">xn--e-zom.com</a></span></td>
+    </tr>
+    <tr>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Arial Unicode MS">9b</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Times New Roman">ẹl.com</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="special">0065 0323</span><span class="mono"> 006C 002E 0063 006F 006D</span></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="mono"><a href="http://xn--l-ewm.com">xn--l-ewm.com</a></span></td>
+    </tr>
+    <tr>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Arial Unicode MS">9c</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <font face="Times New Roman">ẹl.com</font></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="special">1EB9</span><span class="mono"> 006C 002E 0063 006F 006D</span></td>
+      <td style="font-size: 10pt; font-family: serif; text-align: left; text-size: 10pt; padding: 1pt">
+      <span class="mono"><a href="http://xn--l-ewm.com">xn--l-ewm.com</a></span></td>
+    </tr>
+  </table>
+  <p>In example 9, we have an even worse case. The <i>underdot</i> character in 9a is <i>actually</i> 
+  under the &#39;l&#39;, but with this font, it appears as under the &#39;e&#39;! It is thus visually confusable 
+  with 9b (where the <i>underdot</i> is under the e) or the equivalent normalized form 9c.</p>
+  <p><i>Recommendation: Browsers and similar programs should follow the Unicode Standard guidelines 
+  to avoid spoofing problems. There is a technical note, <a href="http://www.unicode.org/notes/tn2/">
+  UTN #2: Rendering Combining Marks</a>, which provides information as to how this can be 
+  implemented even in the absence of font support.</i></p>
+  <hr width="50%" color="#000000">
+  <p class="reviewnote">To Do: add discussions of:</p>
+  <ul>
+    <li>
+    <p class="reviewnote">Other applications of visual spoofing, aside from the example of IDN. 
+    International domain names are actually in much better shape than many other areas, since the 
+    problem will be much more severe in any area where text is not normalized. So focus on those 
+    issues.</li>
+    <li>
+    <p class="reviewnote">Bidirectional visual spoofs</li>
+    <li>
+    <p class="reviewnote">Guidelines for registrars of identifiers subject to spoofing, and for 
+    displayers of identifiers. For IDNA, the latter two would be NICs and browsers.</li>
+    <li>
+    <p class="reviewnote">Unicode properties. Eg more characters have numeric properties than 
+    developers might expect.</li>
+    <li>
+    <p class="reviewnote">Use of Regular Expressions in validating data -- ensuring that the Regular 
+    Expression Engine follows the Unicode Guidelines, but also that use of regular expressions makes 
+    use of properties rather than fixed lists of characters.</li>
+    <li>
+    <p class="reviewnote">Comparison and sorting</li>
+    <li>
+    <p class="reviewnote">Discuss and/or point to other items:<ul>
+      <li>
+      <p class="reviewnote"><a href="http://www.nextgenss.com/papers/unicodebo.pdf">
+      http://www.nextgenss.com/papers/unicodebo.pdf</a></li>
+      <li>
+      <p class="reviewnote"><a href="http://www.cs.technion.ac.il/~gabr/papers/homograph_full.pdf">
+      http://www.cs.technion.ac.il/~gabr/papers/homograph_full.pdf</a></li>
+    </ul>
+    </li>
+  </ul>
+  <p class="reviewnote">Reviewers: additional topics and links would be appreciated.</p>
+  <hr width="50%" color="#000000">
+  <h2 class="old_changed"><a name="Acknowledgements">Acknowledgements</a></h2>
+  <p class="old_changed">Steven Loomis and other people on the ICU team were very helpful in 
+  developing the original proposal for this technical report. Thanks also to the following people 
+  for their feedback or contributions to this document: Martin Duerst, Paul Hoffman.</p>
+  <h2><a name="References">References</a></h2>
+  <p class="reviewnote">To Do: comb through the text and convert the references to the standard 
+  form.</p>
+  <table cellspacing="12" cellpadding="0" width="100%" border="0" class="noborder" style="border-collapse: collapse">
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="Feedback">Feedback</a>]</td>
+      <td class="noborder" valign="top">Reporting Errors and Requesting Information Online<i><br>
+      </i><a href="http://www.unicode.org/reporting.html">http://www.unicode.org/reporting.html</a></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1"><a name="Reports">Reports</a>]</td>
+      <td class="noborder" valign="top">Unicode Technical Reports<br>
+      <a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/<br>
+      </a><i>For information on the status and development process for technical reports, and for a 
+      list of technical reports.</i></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="UCD">UCD</a>]</td>
+      <td class="noborder" valign="top">Unicode Character Database.<br>
+      <a href="http://www.unicode.org/ucd">http://www.unicode.org/ucd<br>
+      </a><i>For an overview of the Unicode Character Database and a list of its associated files</i></td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="Unicode">Unicode</a>]</td>
+      <td class="noborder" valign="top">The Unicode Consortium.
+      <a href="http://www.unicode.org/uni2book/u2.html">The Unicode Standard, Version 4.0</a>. 
+      Reading, MA, Addison-Wesley, 2003. 0-321-18578-1.</td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="Versions">Versions</a>]</td>
+      <td class="noborder" valign="top">Versions of the Unicode Standard<br>
+      <a href="http://www.unicode.org/standard/versions">http://www.unicode.org/standard/versions<br>
+      </a><i>For information on version numbering, and citing and referencing the Unicode Standard, 
+      the Unicode Character Database, and Unicode Technical Reports.</i></td>
+    </tr>
+  </table>
+  <h2><a name="Modifications">Modifications</a></h2>
+  <p>The following summarizes modifications from the previous version of this document.</p>
+  <table border="0" width="100%" cellspacing="4" class="noborder" style="border-collapse: collapse" cellpadding="0">
+    <tr>
+      <td valign="top" width="1" class="noborder"><a name="TrackingNumber1">1</a></td>
+      <td valign="top" class="noborder">
+      <ul>
+        <li>Initial version, following proposal to UTC</li>
+        <li>Incorporated comments, restructured, added To Do items</li>
+      </ul>
+      </td>
+    </tr>
+  </table>
+  <hr>
+  <p class="copyright">Copyright © 2000-2004 Unicode, Inc. All Rights Reserved. The Unicode 
+  Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors 
+  or omissions. No liability is assumed for incidental and consequential damages in connection with 
+  or arising out of the use of the information or programs contained or accompanying this technical 
+  report. The Unicode <a href="http://www.unicode.org/copyright.html">Terms of Use</a> apply.</p>
+  <p class="copyright">Unicode and the Unicode logo are trademarks of Unicode, Inc., and are 
+  registered in some jurisdictions.</div>
+
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Currency</title>
+</head>
+
+<body>
+
+<h1>Currency</h1>
+<h2>Draft 2001-08-28</h2>
+<p>We had some discussions connected with the Euro conversion. Especially for
+the transition period, it is important to help people avoid bugs with currency
+formatting and display. Currently, the burden is on the programmer to make sure
+that the correct number is used with the correct format: you need to know
+whether it is dollars or francs, plus call the right formatter.</p>
+<p>The proposal is to add a Currency object (in C this will be a struct, but for
+simplicity we'll use Java syntax here).</p>
+<pre>/*
+The Currency class encapsulates both a BigDecimal and a currency (ISO 4217 3-letter code).
+It has three purposes:
+
+- avoid type errors when formatting currencies where the wrong value is displayed.
+- allow non-locale currencies to be displayed, e.g. Yen as displayed in the US.
+- allow for conversion in display (but only where it can be done rigorously (i.e. EURO)!)
+
+
+The change in behavior for formatting in NumberFormat should be:
+
+1.  if the currency is native to the locale, format it normally.
+2.  if the currency can be rigorously converted, e.g EUR to FRF or back
+    convert it, and format normally
+Otherwise, get the number of decimal places from the representative locale, then
+3.  if the locale has a currency symbol for that currency, use it.
+4.  otherwise use the ISO currency symbol
+        
+To support this, we need to add a new element to the DecimalFormatSymbols
+and the resource bundle. Here is an example:
+        
+foreignCurrencies: {{&quot;JPY&quot;, &quot;¥&quot;}, {&quot;CHF&quot;, &quot;sFr&quot;}, {&quot;GBP&quot;, &quot;£&quot;}};
+        
+We will also have a global mapping from currency codes to representative locales.
+Usually there is only one (USD -&gt; en_US), but sometimes there are several
+possibilities so we pick one (EUR -&gt; de_DE).
+
+[Note: this could be generated at build time.]
+        
+Examples:
+        
+NumberFormat nf = NumberFormat.getCurrencyInstance( );
+Currency a = new Currency(1234.56,&quot;EUR&quot;);
+Currency a = new Currency(1234.56,&quot;JPY&quot;);
+        
+1. fr_FR_EURO:   nf.format(a) = &quot;€ 1 234,56&quot;
+2. fr_FR_NOEURO: nf.format(a) = &quot;Fr 8 665,00&quot;
+3. en_US:        nf.format(a) = &quot;€1,234.56&quot;, nf.format(b) = &quot;¥1,235&quot;
+4. fr_FR:        nf.format(b) = &quot;JPY 1 235&quot;
+        
+These examples are for the situation where:
+#3, the en_US locale has the extra ForeignCurrencies resources for those currencies,
+#4, the fr_FR lacks them, and so defaults to the currency symbol.
+
+Note that before January 1, 2002, the default for fr_FR will be #2;
+after it will be #1.
+        
+ISSUE: Possibly make this a subclass of BigDecimal.
+Makes it easier to use, but might be considered to violate the
+semantics since part of the point of the class is to disallow
+combining mismatched currencies.
+
+*/
+
+
+public final class Currency {
+  BigDecimal amount;
+  int ISOcode;
+  
+  // note: we compress the ISO 4217 code to fit into 16 bits,
+  // It is always 3 uppercase ASCII digits
+  // this isn't really necessary in Java, but might be useful
+  // in the C version.
+  
+  public Currency(BigDecimal amount, String ISOcode) {
+    this.amount = amount;
+    this.ISOcode = compress(ISOcode);
+  }
+  
+  public Currency(double amount, String ISOcode) {
+    this.amount = new BigDecimal(amount);
+    this.ISOcode = compress(ISOcode);
+  }
+  
+  public BigDecimal getAmount() {
+    return amount;
+  }
+  
+  public String getISOcode() {
+    return restore(ISOcode);
+  }
+  
+  // have a few convenience functions.
+  // for anything else, extract the amount and use BigDecimal functions
+  
+  public Currency add(Currency other) {
+    if (ISOcode != other.ISOcode) throw new NumberFormatException(&quot;Mismatched Currency Types&quot;);
+    return new Currency(amount.add(other.amount), ISOcode);
+  }
+  
+  public Currency negate() {
+    return new Currency(amount.negate(), ISOcode);
+  }
+  
+  public Currency convertTo(String ISOcode) {
+    // TODO: add EURO
+    // returns null if the code can't be rigorously converted.
+    return null;
+  }
+  
+  // ==================
+  
+  private Currency(BigDecimal amount, int ISOcode) {
+    this.amount = amount;
+    this.ISOcode = ISOcode;
+  }
+  
+  private int compress(String code) {
+    int result = 0;
+    main:
+    if (code.length() == 3) {
+      for (int i = 0; i &lt; 3; ++i) {
+        int c = code.charAt(i);
+        if (c &lt; 'A' || c &gt; 'z') break main;
+        c &amp;= 0x1F;
+        if (c &gt; 25) break main;
+        result &lt;&lt;= 5;
+        result += c;
+      }
+      return result;
+    }
+    throw new IllegalArgumentException(&quot;Illegal ISO Code&quot;);
+  }
+  
+  private String restore (int i) {
+    char[] temp = new char[3];
+    temp[2] = (char)((i &amp; 0x1F) + 0x40);
+    temp[1] = (char)(((i &gt;&gt;= 5) &amp; 0x1F) + 0x40);
+    temp[0] = (char)((i &gt;&gt; 5) + 0x40);
+    return new String(temp);
+  }
+  
+  public String toString() {
+    // for debugging only, should use NumberFormat for formatting
+    return &quot;[&quot; + getAmount() + &quot;, &quot; + getISOcode() + &quot;]&quot;;
+  }
+}
+</pre>
+
+</body>
+
+</html>

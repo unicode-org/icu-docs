@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="http://www.unicode.org/reports/reports.css" type="text/css">
 <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>UTS #31: Identifier and Pattern Syntax</title>
-<style>
+<title>UAX #31: Identifier and Pattern Syntax</title>
+<style type="text/css">
 <!--
 .rule_head { font-style: italic; border-width: 0 }
 .rule_head   { font-weight: bold }
@@ -30,13 +30,13 @@
   </tr>
 </table>
 <div class="body">
-  <h2 align="center"><font color="#ff0000">Draft </font>Unicode <span>Standard Annex</span> #31</h2>
+  <h2 align="center">Unicode <span>Standard Annex</span> #31</h2>
   <h1>Identifier and Pattern Syntax</h1>
   <table border="1" cellpadding="2" width="100%">
     <tr>
       <td valign="top" width="20%">Version</td>
       <td valign="top">
-      <p class="old_changed"><span>4<font color="#FF0000"> (draft)</font></span></td>
+      <p class="old_changed">4.1<span><font color="#FF0000">.0 (draft)</font></span></td>
     </tr>
     <tr>
       <td valign="top">Authors</td>
@@ -44,24 +44,28 @@
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top" class="old_changed"><span>2004-10-08</span></td>
+      <td valign="top" class="old_changed"><span>2005-02-15</span></td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
+      <td valign="top" class="old_changed"><span>
+      <a href="http://www.unicode.org/reports/tr31/tr31-5.html">
+      http://www.unicode.org/reports/tr31/tr31-5.html</a></span></td>
+    </tr>
+    <tr>
+      <td valign="top">Previous Version</td>
       <td valign="top" class="old_changed"><span>
       <a href="http://www.unicode.org/reports/tr31/tr31-4.html">
       http://www.unicode.org/reports/tr31/tr31-4.html</a></span></td>
     </tr>
     <tr>
-      <td valign="top">Previous Version</td>
-      <td valign="top" class="old_changed">
-      <a href="http://www.unicode.org/reports/tr31/tr31-3.html"><span>
-      http://www.unicode.org/reports/tr31/tr31-3.html</span></a></td>
-    </tr>
-    <tr>
       <td valign="top">Latest Version</td>
       <td valign="top"><a href="http://www.unicode.org/reports/tr31/">
       http://www.unicode.org/reports/tr31/</a></td>
+    </tr>
+    <tr>
+      <td valign="top">Revision</td>
+      <td valign="top">5</td>
     </tr>
   </table>
   <p><br>
@@ -74,15 +78,14 @@
   Database. It also incorporates guidelines for use of normalization with identifiers (from UAX 
   #15).</i></p>
   <ul>
-    <li><b>Section 2 supersedes Section 5.15 Identifiers from The Unicode Standard 4.0.</b></li>
-    <li><b>Section 5 supersedes Annex 7 in UAX #15.</b></li>
+    <li><b>Section 2 supersedes Section 5.15 <i>Identifiers</i> from [<a href="#Unicode4.0">Unicode4.0</a>].</b></li>
+    <li><b>Section 5 supersedes Annex 7 in UAX #15: <i>Normalization</i> from [<a href="#Unicode4.0.1">Unicode4.0.1</a>].</b></li>
   </ul>
   <h3><i>Status</i></h3>
-  <p class="old_changed"><i>This document has been approved by the Unicode Technical Committee for 
-  public review as a <b>Draft Unicode Standard Annex</b>. Making this document available for </i>
-  public review<i> does not imply endorsement by the Unicode Consortium. This is a draft document 
-  which may be updated, replaced, or superseded by other documents at any time. This is not a stable 
-  document; it is inappropriate to cite this document as other than a work in progress.</i></p>
+  <p class="old_changed"><span class="changedspan"><i>This document has been reviewed by Unicode 
+  members and other interested parties, and has been approved by the Unicode Technical Committee as 
+  a <b>Unicode Standard Annex</b>. This is a stable document and may be used as reference material 
+  or cited as a normative reference by other specifications.</i></span></p>
   <blockquote>
     <p class="old_changed"><i><b>A Unicode Standard Annex (UAX)</b> forms an integral part of the 
     Unicode Standard, but is published as a separate document. The Unicode Standard may require 
@@ -117,10 +120,115 @@
   Unicode character-based parsers, a set of specifications is provided here as a recommended default 
   for the definition of identifier syntax. These guidelines are no more complex than current rules 
   in the common programming languages, except that they include more characters of different types.
-  </p>
-  <p>In addition, this document provides the definition of the Unicode properties used to define 
-  stable pattern syntax: syntax that is stable over future versions of the Unicode Standard. It also 
-  provides guidelines for the user of normalization with identifiers, originally in UAX #15.</p>
+  <span class="changedspan">This document also provides guidelines for the user of normalization and 
+  case-insensitivity with identifiers, expanding on a section that was originally in UAX #15: <i>
+  Unicode Normalization Forms</i> [<a href="#UAX15">UAX15</a>].</span></p>
+  <p><span class="changedspan">These specifications provide a definition of identifiers that is 
+  guaranteed to be backward compatible with each successive release of Unicode, but also makes 
+  available any appropriate new Unicode characters. Unicode properties are also provided for stable 
+  pattern syntax: syntax that is stable over future versions of the Unicode Standard. These can 
+  either be used alone or with the identifier characters.</span></p>
+  <p><span class="changedspan">The following types of code points are defined (the sizes of the 
+  boxes are not to scale):</span></p>
+  <div align="center">
+    <center>
+    <table border="1" cellpadding="20" cellspacing="0" style="border-collapse: collapse">
+      <caption><span class="changedspan">Character Classes for Programming</span></caption>
+      <tr>
+        <td style="vertical-align: middle; text-align: center"><span class="changedspan">Identifier 
+        Start<br>
+        Characters</span></td>
+        <td style="vertical-align: middle; text-align: center" bgcolor="#EEEEFF">&nbsp;<p>
+        <span class="changedspan">Pattern Syntax<br>
+        Characters</span></p>
+        <p>&nbsp;</td>
+        <td style="vertical-align: middle; text-align: center" bgcolor="#C0C0C0" rowspan="3" width="50%">
+        <span class="changedspan">Unassigned Code Points</span></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle; text-align: center"><span class="changedspan">Identifier 
+        Only-Continue<br>
+        Characters</span></td>
+        <td style="text-align: center; vertical-align: middle" bgcolor="#EEEEFF">
+        <span class="changedspan">Pattern Whitespace<br>
+        Characters</span></td>
+      </tr>
+      <tr>
+        <td style="text-align: center; vertical-align: middle" height="66" colspan="2" bgcolor="#FFFF80">&nbsp;<p>
+        <span class="changedspan">Other Assigned<br>
+        Code Points</span></p>
+        <p>&nbsp;</td>
+      </tr>
+    </table>
+    </center>
+  </div>
+  <p><span class="changedspan">The set consisting of both Identifier Start and Only-Continue 
+  characters is are known as <i>Identifier Characters</i>, also as <i>Identifier Continue</i> 
+  characters.</span></p>
+  <p><span class="changedspan">There are certain features that developers can depend on for 
+  stability:</span></p>
+  <ul>
+    <li><span class="changedspan">Identifier characters, Pattern Syntax characters, and Pattern 
+    Whitespace are disjoint: they will never overlap.</span></li>
+    <li><span class="changedspan">The Identifier characters are always a superset of the Identifier 
+    Start characters</span></li>
+    <li><span class="changedspan">The Pattern Syntax characters and Pattern Whitespace characters 
+    are immutable, and will not change over successive versions of Unicode.</span></li>
+    <li><span class="changedspan">The Identifier characters and the Identifier Start characters may 
+    grow over time, either by the addition of new characters provided in a future version of 
+    Unicode, or (in rare cases) by the addition of characters that were in Other. However, neither 
+    will ever decrease.</span></li>
+  </ul>
+  <p><span class="changedspan">In successive versions of Unicode, only the following changes are 
+  allowed, from one of the above classes to another:</span></p>
+  <div align="center">
+    <center>
+    <table border="1" cellpadding="0" cellspacing="1" style="border-collapse: collapse" id="AutoNumber6">
+      <caption><span class="changedspan">Permitted Changes in Future Versions</span></caption>
+      <tr>
+        <td width="25%">&nbsp;</td>
+        <th width="25%" style="text-align: center"><span class="changedspan">Identifier Start</span></th>
+        <th width="25%" style="text-align: center"><span class="changedspan">Identifier Only 
+        Continue</span></th>
+        <th width="25%" style="text-align: center"><span class="changedspan">Other Assigned</span></th>
+      </tr>
+      <tr>
+        <th width="25%" style="text-align: center"><span class="changedspan">Unassigned</span></th>
+        <td width="25%" style="text-align: center"><b><span class="changedspan"><font size="4">+</font></span></b></td>
+        <td width="25%" style="text-align: center"><b><span class="changedspan"><font size="4">+</font></span></b></td>
+        <td width="25%" style="text-align: center"><b><span class="changedspan"><font size="4">+</font></span></b></td>
+      </tr>
+      <tr>
+        <th width="25%" style="text-align: center"><span class="changedspan">Other Assigned</span></th>
+        <td width="25%" style="text-align: center"><b><span class="changedspan"><font size="4">+</font></span></b></td>
+        <td width="25%" style="text-align: center"><b><span class="changedspan"><font size="4">+</font></span></b></td>
+        <td width="25%" style="text-align: center">&nbsp;</td>
+      </tr>
+      <tr>
+        <th width="25%" style="text-align: center"><span class="changedspan">Identifier Only 
+        Continue</span></th>
+        <td width="25%" style="text-align: center"><b><span class="changedspan"><font size="4">+</font></span></b></td>
+        <td width="25%" style="text-align: center">&nbsp;</td>
+        <td width="25%" style="text-align: center">&nbsp;</td>
+      </tr>
+    </table>
+    </center>
+  </div>
+  <p><span class="changedspan">The Unicode Consortium has formally adopted a stability policy on 
+  identifiers. For more information, see [<a href="#Stability">Stability</a>].</span></p>
+  <p>Each programming language standard has its own identifier syntax; different programming 
+  languages have different conventions for the use of certain characters from the ASCII range ($, @, 
+  #, _) in identifiers. To extend such a syntax to cover the full behavior of a Unicode 
+  implementation, implementers need only combine these specific rules with the syntax
+  <span class="changedspan">and properties </span>provided here.</p>
+  <p><span class="changedspan">That is, each programming language can define their identifier syntax 
+  as <i>relative</i> to the Unicode identifier syntax, such as saying that identifiers are defined 
+  by the Unicode properties, with the addition of &quot;$&quot;. By addition or subtraction of a small set of 
+  language specific characters, a programming language standard can easily track a growing 
+  repertoire of Unicode characters in a compatible way.</span></p>
+  <p><span class="changedspan">Similarly, each programming language can define whitespace characters 
+  or syntax characters relative to the Unicode pattern whitespace or syntax characters, with some 
+  specified set of additions or subtractions.</span></p>
   <h3>1.1 <a name="Conformance">Conformance</a></h3>
   <p>The following describes the possible ways that an implementation can claim conformance to this 
   technical standard.</p>
@@ -150,33 +258,33 @@
   <h2>2. <a name="Default_Identifier_Syntax">Default Identifier Syntax</a></h2>
   <p>The formal syntax provided here is intended to capture the general intent that an identifier 
   consists of a string of characters that begins with a letter or an ideograph, and then includes 
-  any number of letters, ideographs, digits, or underscores. Each programming language standard has 
-  its own identifier syntax; different programming languages have different conventions for the use 
-  of certain characters from the ASCII range ($, @, #, _) in identifiers. To extend such a syntax to 
-  cover the full behavior of a Unicode implementation, implementers need only combine these specific 
-  rules with the syntax provided here. </p>
+  any number of letters, ideographs, digits, or underscores. <span class="changedspan">It provides a 
+  definition of identifiers that is guaranteed to be backward compatible with each successive 
+  release of Unicode, but also makes available any appropriate Unicode characters.</span></p>
   <h4>D1. Default Identifier Syntax</h4>
-  <p><code>&lt;identifier&gt; := &lt;identifier_start&gt; &lt;identifier_continue&gt;*</code> </p>
+  <p><code>&lt;identifier&gt; := &lt;<span>ID_Start</span>&gt; &lt;<span>ID_Continue</span>&gt;*</code> </p>
   <p>Identifiers are defined by the following sets of character categories from the Unicode 
   Character Database.</p>
   <table cellspacing="0" cellpadding="4" border="1">
     <caption><b>Syntactic Classes for Identifiers</b></caption>
     <tr>
-      <th align="left">Syntactic Class</th>
       <th align="left">Properties</th>
       <th align="left">Coverage</th>
     </tr>
     <tr>
-      <td><span><code>&lt;identifier_start&gt;</code></span></td>
       <td><code><span>ID_Start</span></code></td>
-      <td>Uppercase letter, lowercase letter, titlecase letter, modifier letter, other letter, 
-      letter number, stability extensions</td>
+      <td>Uppercase letters, lowercase letters, titlecase letters, modifier letters, other letters, 
+      letter numbers, stability extensions</td>
     </tr>
     <tr>
-      <td><code><span>&lt;identifier_continue&gt;</span></code></td>
       <td><code><span>ID_Continue</span></code></td>
-      <td><span>Plus </span>nonspacing mark, spacing combining mark, decimal number, connector 
-      punctuation, formatting code<span>, stability extensions</span></td>
+      <td><b><code><span>ID_Start</span></code></b> pl<span>us </span>nonspacing marks, spacing 
+      combining marks, decimal numbers, connector punctuations, formatting code<span>s, stability 
+      extensions. <span class="changedspan">These are also known simply as <i>Identifier Characters</i>, 
+      since they are a superset of the </span></span><span class="changedspan"><span><code><b>
+      ID_Start</b></code></span>. The set of <span><code>ID_Start</code></span> characters minus the
+      <span><code>ID_Continue</code></span> characters are known as <span><code>ID_Only_ Continue</code></span> 
+      characters.</span></td>
     </tr>
   </table>
   <p>The innovations in the identifier syntax to cover the Unicode Standard include the following:
@@ -193,17 +301,18 @@
   representation of many languages, and the conformance rules in Chapter 3 regarding interpretation 
   of canonical-equivalent character sequences. </p>
   <p>Enclosing combining marks (for example, <code>U+20DD..U+20E0</code>) are excluded from the 
-  syntactic definition of <code>&lt;identifier_continue&gt;</code>, because the composite characters that 
-  result from their composition with letters (for example, U+24B6
-  <span style="FONT-VARIANT: small-caps">circled latin capital letter a</span>) are themselves not 
-  normally considered valid constituents of these identifiers.</p>
+  syntactic definition of <code>ID_Continue</code>, because the composite characters that result 
+  from their composition with letters (for example, U+24B6 <span style="FONT-VARIANT: small-caps">
+  circled latin capital letter a</span>) are themselves not normally considered valid constituents 
+  of these identifiers.</p>
   <h3>2.2 Layout and Format Control Characters</h3>
   <p>The Unicode characters that are used to control joining behavior, bidirectional ordering 
   control, and alternative formats for display are explicitly defined as not affecting breaking 
   behavior. Unlike space characters or other delimiters, they do not serve to indicate word, line, 
   or other unit boundaries. Accordingly, they should normally be ignored for the purposes of 
-  identifier definition. Implementations that cannot ignore characters in identifiers should exclude 
-  these characters. </p>
+  identifier definition.</p>
+  <p><i>Implementations that cannot ignore characters in identifiers should exclude these 
+  characters. </i></p>
   <h3>2.3 Specific Character Adjustments</h3>
   <p>Specific identifier syntaxes can be treated as tailorings of the generic syntax based on 
   character properties. For example, SQL identifiers allow an underscore as an identifier part (but 
@@ -218,27 +327,59 @@
   <h3>2.4 Backward Compatibility</h3>
   <p>Unicode General Category values are kept as stable as possible, but they can change across 
   versions of the Unicode Standard. The Other_ID_Start property contains a small list of characters 
-  that qualified as <code>&lt;identifier_start&gt;</code> characters in some previous version of Unicode 
-  solely on the basis of their General Category properties, but that no longer qualify in the 
-  current version. In Unicode 4.0, this list consists of four characters: </p>
-  <ul>
-    <li>U+2118 <span style="FONT-VARIANT: small-caps">script capital p</span> </li>
-    <li>U+212E <span style="FONT-VARIANT: small-caps">estimated symbol</span> </li>
-    <li>U+309B <span style="FONT-VARIANT: small-caps">katakana-hiragana voiced sound mark</span>
-    </li>
-    <li>U+309C <span style="FONT-VARIANT: small-caps">katakana-hiragana semi-voiced sound mark</span></li>
-  </ul>
+  that qualified as <code>ID_Start</code> characters in some previous version of Unicode solely on 
+  the basis of their General Category properties, but that no longer qualify in the current version. 
+  In Unicode 4.<span class="changedspan">1.0</span>, this list consists of four characters:</p>
+  <blockquote>
+    <table border="1" cellpadding="2" cellspacing="0" style="border-collapse: collapse" id="AutoNumber3">
+      <tr>
+        <td style="vertical-align: middle">U+2118</td>
+        <td style="vertical-align: middle"><span style="font-variant: small-caps">Script Capital P</span></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle">U+212E</td>
+        <td style="vertical-align: middle"><span style="font-variant: small-caps">Estimated Symbol</span></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle">U+309B</td>
+        <td style="vertical-align: middle"><span style="font-variant: small-caps">Katakana-Hiragana 
+        Voiced Sound Mark</span></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle">U+309C</td>
+        <td style="vertical-align: middle"><span style="font-variant: small-caps">Katakana-Hiragana 
+        Semi-Voiced Sound Mark</span></td>
+      </tr>
+    </table>
+  </blockquote>
   <p>Similarly, the Other_ID_Continue property contains a small list of characters that qualified as
-  <code>&lt;identifier_continue&gt;</code> characters in some previous version of Unicode solely on the 
-  basis of their General Category properties, but that no longer qualify in the current version.</p>
+  <code>ID_Continue</code> characters in some previous version of Unicode solely on the basis of 
+  their General Category properties, but that no longer qualify in the current version.
+  <span class="changedspan">In Unicode 4.1.0, this list consists of nine characters: </span></p>
+  <blockquote>
+    <table border="1" cellpadding="2" cellspacing="0" style="border-collapse: collapse">
+      <tr>
+        <td style="vertical-align: middle"><span class="changedspan">U+1369</span></td>
+        <td style="vertical-align: middle"><span style="font-variant: small-caps">ETHIOPIC DIGIT ONE</span></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle" colspan="2">...</td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle"><span class="changedspan">U+1371</span></td>
+        <td style="vertical-align: middle"><span style="font-variant: small-caps">ETHIOPIC DIGIT 
+        NINE</span></td>
+      </tr>
+    </table>
+  </blockquote>
   <p>The Other_ID_Start and <span>Other_ID_Continue</span><span> properties are</span> thus designed 
   to ensure that the Unicode identifier specification is backward compatible: Any sequence of 
   characters that qualified as an identifier in some version of Unicode will continue to qualify as 
   an identifier in future versions.</p>
   <table class="noborder">
     <tr>
-      <td class="noborder"><a name="R1" href="#RL1.1">R1</a></td>
-      <td class="noborder">Default Identifiers</td>
+      <td class="noborder"><b><i><a name="R1" href="#RL1.1">R1</a></i></b></td>
+      <td class="noborder"><b><i>Default Identifiers</i></b></td>
     </tr>
     <tr>
       <td class="noborder">&nbsp;</td>
@@ -283,8 +424,8 @@
   advantage of simplicity and small tables, but allows many more “unnatural” identifiers.</p>
   <table class="noborder">
     <tr>
-      <td class="noborder"><a name="R2" href="#R2">R2</a></td>
-      <td class="noborder">Alternative Identifiers</td>
+      <td class="noborder"><b><i><a name="R2" href="#R2">R2</a></i></b></td>
+      <td class="noborder"><b><i>Alternative Identifiers</i></b></td>
     </tr>
     <tr>
       <td class="noborder">&nbsp;</td>
@@ -327,7 +468,7 @@
       ignoring ≈ or turning it into a literal), it has the opportunity signal an error.</li>
     </ul>
   </blockquote>
-  <p><span class="changedspan">As of Unicode 4.1, there are two Unicode character properties that 
+  <p><span class="changedspan">As of Unicode 4.1.0, there are two Unicode character properties that 
   can be used for for stable syntax: Pattern_White_Space and Pattern_Syntax. </span>&nbsp;Particular 
   pattern languages may, of course, override these recommendations (for example, adding or removing 
   other characters for compatibility in ASCII). </p>
@@ -357,8 +498,8 @@
   </blockquote>
   <table class="noborder">
     <tr>
-      <td class="noborder"><a name="R3" href="#R5">R3</a></td>
-      <td class="noborder">Pattern Syntax Characters</td>
+      <td class="noborder"><i><b><a name="R3" href="#R5">R3</a></b></i></td>
+      <td class="noborder"><i><b>Pattern Syntax Characters</b></i></td>
     </tr>
     <tr>
       <td class="noborder">&nbsp;</td>
@@ -377,8 +518,8 @@
   <h2>5<span>. </span><a name="normalization_and_case"><span>Normalization and Case</span></a></h2>
   <table class="noborder">
     <tr>
-      <td class="noborder"><a name="R4" href="#R5">R4</a></td>
-      <td class="noborder">Normalized Identifiers</td>
+      <td class="noborder"><i><b><a name="R4" href="#R5">R4</a></b></i></td>
+      <td class="noborder"><i><b>Normalized Identifiers</b></i></td>
     </tr>
     <tr>
       <td class="noborder">&nbsp;</td>
@@ -390,8 +531,8 @@
       the implementation.</td>
     </tr>
     <tr>
-      <td class="noborder"><a name="R5" href="#R5">R5</a></td>
-      <td class="noborder">Case-Insensitive Identifiers</td>
+      <td class="noborder"><i><b><a name="R5" href="#R5">R5</a></b></i></td>
+      <td class="noborder"><i><b>Case-Insensitive Identifiers</b></i></td>
     </tr>
     <tr>
       <td class="noborder">&nbsp;</td>
@@ -428,19 +569,19 @@
   <ol>
     <li><b><span>Middle Dot. </span></b><span>Because most Catalan legacy data will be encoded in 
     Latin-1, </span><code><span>U+00B7 MIDDLE DOT</span></code><span> needs to be allowed in </span>
-    <code><span>&lt;identifier_continue&gt;</span></code><span>. (If the programming language is using a 
-    dot as an operator, then </span><code><span>U+2219 BULLET OPERATOR</span></code><span> or </span>
-    <code><span>U+22C5 DOT OPERATOR</span></code><span> should be used instead. However, care should 
-    be taken when dealing with </span><code><span>U+00B7 MIDDLE DOT</span></code><span>, as many 
+    <code><span>ID_Continue</span></code><span>. (If the programming language is using a dot as an 
+    operator, then </span><code><span>U+2219 BULLET OPERATOR</span></code><span> or </span><code>
+    <span>U+22C5 DOT OPERATOR</span></code><span> should be used instead. However, care should be 
+    taken when dealing with </span><code><span>U+00B7 MIDDLE DOT</span></code><span>, as many 
     processes will assume its use as punctuation, rather than as a letter extender.) </span></li>
     <li><b><span>Combining-like characters. </span></b><span>Certain characters are not formally 
     combining characters, although they behave in most respects as if they were. Ideally, they 
-    should not be in </span><code><span>&lt;identifier_start&gt;</span></code><span>, but rather in </span>
-    <code><span>&lt;identifier_continue&gt;</span></code><span>, along with combining characters. In most 
-    cases, the mismatch does not cause a problem, but when these characters have compatibility 
-    decompositions, they can cause identifiers not to be closed under Normalization Form KC. In 
-    particular, the following four characters are to be in </span><code><span>&lt;identifier_continue&gt;</span></code><span> 
-    and not </span><code><span>&lt;identifier_start&gt;</span></code><span>: </span>
+    should not be in </span><code><span>ID_Start</span></code><span>, but rather in </span><code>
+    <span>ID_Continue</span></code><span>, along with combining characters. In most cases, the 
+    mismatch does not cause a problem, but when these characters have compatibility decompositions, 
+    they can cause identifiers not to be closed under Normalization Form KC. In particular, the 
+    following four characters are to be in </span><code><span>ID_Continue</span></code><span> and 
+    not </span><code><span>ID_Start</span></code><span>: </span>
     <ul>
       <li><code><span>0E33 THAI CHARACTER SARA AM</span></code><span> </span></li>
       <li><code><span>0EB3 LAO VOWEL SIGN AM</span></code><span> </span></li>
@@ -451,10 +592,10 @@
     </li>
     <li><b><span>Irregularly decomposing characters. </span></b><code><span>U+037A GREEK 
     YPOGEGRAMMENI</span></code><span> and certain Arabic presentation forms have irregular 
-    compatibility decompositions, and must be excluded from both </span><code><span>&lt;identifier_start&gt;</span></code><span> 
-    and </span><code><span>&lt;identifier_continue&gt;</span></code><span>. It is recommended that all 
-    Arabic presentation forms be excluded from identifiers in any event, although only a few of them 
-    are required to be excluded for normalization to guarantee identifier closure. </span></li>
+    compatibility decompositions, and must be excluded from both </span><code><span>ID_Start</span></code><span> 
+    and </span><code><span>ID_Continue</span></code><span>. It is recommended that all Arabic 
+    presentation forms be excluded from identifiers in any event, although only a few of them are 
+    required to be excluded for normalization to guarantee identifier closure. </span></li>
   </ol>
   <p><span>With these amendments to the identifier syntax, all identifiers are closed under all four 
   Normalization forms. This means that for any string S,</span></p>
@@ -471,16 +612,14 @@
   isIdentifier(toFoldedcase(S))</span></code></p>
   <p><span>The one exception is </span><code><span>U+0345 COMBINING GREEK YPOGEGRAMMENI</span></code><span>. 
   In the very unusual case that </span><code><span>U+0345</span></code><span> is at the start of S,&nbsp;
-  </span><code><span>U+0345</span></code><span> is not in </span><code><span>&lt;identifier_start&gt;</span></code><span>, 
-  but its uppercase and case-folder version are. In practice this is not a problem, because of the 
+  </span><code><span>U+0345</span></code><span> is not in </span><code><span>ID_Start</span></code><span>, 
+  but its uppercase and case-folded version are. In practice this is not a problem, because of the 
   way normalization is used with identifiers.</span></p>
   <blockquote>
     <p><b><span>Note: </span></b><span>Those programming languages with case-insensitive identifiers 
     should use the case </span><span>foldings</span><span> described in </span><i><span>Section 3.13 
     Default Case Operations</span></i><span> to produce a case-insensitive normalized form.</span></p>
   </blockquote>
-  <p><span>When source text (such as program source) is parsed for identifiers, the identifiers must 
-  be parsed before folding distinctions using case mapping or </span><span>NFKC</span><span>.</span></p>
   <p><span>When source text (such as program source) is parsed for identifiers, the folding of 
   distinctions (using case mapping or </span><span>NFKC</span><span>) must be delayed until after 
   parsing has located the identifiers. Thus such folding of distinctions should not be applied to 
@@ -508,6 +647,12 @@
       </i><a href="http://www.unicode.org/reporting.html">http://www.unicode.org/reporting.html</a></td>
     </tr>
     <tr>
+      <td class="noborder" valign="top" width="1">[<a name="Stability">Stability</a>]</td>
+      <td class="noborder" valign="top"><i>Unicode Consortium Stability Policies<br>
+      <a href="http://www.unicode.org/standard/stability_policy.html">
+      http://www.unicode.org/standard/stability_policy.html</a> </i></td>
+    </tr>
+    <tr>
       <td class="noborder" valign="top" width="1">[<a name="Reports">Reports</a>]</td>
       <td class="noborder" valign="top">Unicode Technical Reports<br>
       <a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/<br>
@@ -521,10 +666,28 @@
       </a><i>For an overview of the Unicode Character Database and a list of its associated files</i></td>
     </tr>
     <tr>
-      <td class="noborder" valign="top" width="1">[<a name="Unicode">Unicode</a>]</td>
+      <td class="nb" vAlign="top" width="126">[<a name="Unicode">Unicode</a>]</td>
+      <td class="nb" vAlign="top">The Unicode Standard<i><br>
+      For the latest version see:</i> <a href="http://www.unicode.org/versions/latest/">
+      http://www.unicode.org/versions/latest/</a>.<br>
+      <i>For the current version see:</i> <a href="http://www.unicode.org/versions/Unicode4.1.0/">
+      http://www.unicode.org/versions/Unicode4.1.0</a>/.<br>
+      <i>For the last major version see:</i> The Unicode Consortium.
+      <a href="http://www.unicode.org/versions/Unicode4.0.0/">The Unicode Standard, Version 4.0</a>. 
+      (Boston, MA, Addison-Wesley, 2003. 0-321-18578-1).</td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="Unicode4.0">Unicode4.0</a>]</td>
       <td class="noborder" valign="top">The Unicode Consortium.
       <a href="http://www.unicode.org/versions/Unicode4.0.0/">The Unicode Standard, Version 4.0</a>. 
       Reading, MA, Addison-Wesley, 2003. 0-321-18578-1.</td>
+    </tr>
+    <tr>
+      <td class="noborder" valign="top" width="1">[<a name="Unicode4.0.1">Unicode4.0.1</a>]</td>
+      <td class="noborder" valign="top">
+      <p class="small">The Unicode Consortium. The Unicode Standard, Version 4.0.1, defined by:<br>
+      <i>The Unicode Standard, Version 4.0</i> (Boston, MA, Addison-Wesley, 2003. ISBN 
+      0-321-18578-1), as amended by <i>Unicode 4.0.1</i> (<a href="http://www.unicode.org/versions/Unicode4.0.1/">http://www.unicode.org/versions/Unicode4.0.1/</a>).</td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1">[<a name="UAX15">UAX15</a>]</td>
@@ -546,14 +709,20 @@
     </tr>
   </table>
   <h2><a name="Modifications">Modifications</a></h2>
-  <p>The following summarizes modifications from the previous version of this document.</p>
+  <p>The following summarizes modifications from previous revisions of this document.</p>
   <table border="0" width="100%" cellspacing="4" class="noborder" style="border-collapse: collapse" cellpadding="0">
     <tr>
-      <td valign="top" width="1" class="noborder"><span class="changedspan">4</span></td>
+      <td valign="top" width="1" class="noborder"><span class="changedspan">5</span></td>
       <td valign="top" class="noborder">
       <ul>
         <li><span class="changedspan">Removed section 4.1, since the two properties have been 
         accepted for Unicode 4.1.</span></li>
+        <li><span class="changedspan">Expanded introduction</span></li>
+        <li><span class="changedspan">Adding information about stability, and tailoring for 
+        identifiers.</span></li>
+        <li><span class="changedspan">Added the list of characters in Other_ID_Continue .</span></li>
+        <li><span class="changedspan">Changed &lt;identifier_continue&gt; and &lt;identifier_start&gt; to just 
+        use the property names, to avoid confusion.</span></li>
         <li><span class="changedspan">Minor editing</span></li>
       </ul>
       </td>
@@ -593,7 +762,7 @@
   <p><br>
   </p>
   <hr>
-  <p class="copyright">Copyright © 2000-2004 Unicode, Inc. All Rights Reserved. The Unicode 
+  <p class="copyright">Copyright © 2000-2005 Unicode, Inc. All Rights Reserved. The Unicode 
   Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors 
   or omissions. No liability is assumed for incidental and consequential damages in connection with 
   or arising out of the use of the information or programs contained or accompanying this technical 

@@ -1,4 +1,25 @@
 <!-- DTD for ICU resource bundles -->
+
+<!--
+    Deprecated format!
+
+    ICU4C (and to some extent ICU4J) uses its own binary and .txt formats for resource bundles.
+    Some time ago we defined this XML format that exactly mirrors the binary/.txt formats.
+    We are retracting this format because
+
+    - We are not aware of anyone using it.
+    - It does not provide any significant advantages over the .txt format.
+    - It is only now (ICU 2.4) barely supported by ICU tools.
+    - For application localization we now recommend to use XLIFF,
+       for which we plan to develop some tools this year
+       (at least an XLIFF->.txt transformer).
+
+    For details about the last two points please see 
+    http://oss.software.ibm.com/icu/userguide/localizing.html
+
+    See Jitterbug 2702 and the proposal to the icu mailing list on 2003-jan-07.
+-->
+
 <!-- some element and attribute names are truncated to save space -->
 
 <!-- a resource bundle has a name (locale ID if it is a locale resource bundle)

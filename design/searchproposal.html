@@ -15,17 +15,17 @@ xmlns="http://www.w3.org/TR/REC-html40">
   <o:Author>attillathecat</o:Author>
   <o:LastAuthor>attillathecat</o:LastAuthor>
   <o:Revision>2</o:Revision>
-  <o:TotalTime>31</o:TotalTime>
+  <o:TotalTime>33</o:TotalTime>
   <o:LastPrinted>2001-07-10T17:14:00Z</o:LastPrinted>
-  <o:Created>2001-07-20T18:42:00Z</o:Created>
-  <o:LastSaved>2001-07-20T18:42:00Z</o:LastSaved>
+  <o:Created>2001-07-23T21:46:00Z</o:Created>
+  <o:LastSaved>2001-07-23T21:46:00Z</o:LastSaved>
   <o:Pages>26</o:Pages>
-  <o:Words>9937</o:Words>
-  <o:Characters>56645</o:Characters>
+  <o:Words>9946</o:Words>
+  <o:Characters>56697</o:Characters>
   <o:Company>ibm</o:Company>
   <o:Lines>472</o:Lines>
   <o:Paragraphs>113</o:Paragraphs>
-  <o:CharactersWithSpaces>69564</o:CharactersWithSpaces>
+  <o:CharactersWithSpaces>69627</o:CharactersWithSpaces>
   <o:Version>9.2720</o:Version>
  </o:DocumentProperties>
 </xml><![endif]-->
@@ -37,9 +37,8 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	panose-1:2 11 6 4 2 2 2 2 2 4;
 	mso-font-charset:0;
 	mso-generic-font-family:swiss;
-	mso-font-format:other;
 	mso-font-pitch:variable;
-	mso-font-signature:3 0 0 0 1 0;}
+	mso-font-signature:536902279 -2147483648 8 0 511 0;}
 @font-face
 	{font-family:Courier;
 	panose-1:0 0 0 0 0 0 0 0 0 0;
@@ -1068,7 +1067,8 @@ collator from <i>StringSearch</i> and sets them using the collation APIs.<o:p></
  <li class=MsoNormal style='mso-list:l2 level1 lfo18;tab-stops:list .5in'><i><span
      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>StringSearch</span></i><span
      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'> will
-     use UnicodeData 3.1.<o:p></o:p></span></li>
+     use the same version of the Unicode database as the rest of ICU4C, e.g.
+     collation.<o:p></o:p></span></li>
 </ul>
 
 <b><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;
@@ -1082,7 +1082,7 @@ page-break-before:always'>
 <h1><span style='font-family:Arial'>Proposed C header and API<o:p></o:p></span></h1>
 
 <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
-<hr>
+
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
 "Arial Unicode MS"'>#include &quot;unicode/utypes.h&quot;<o:p></o:p></span></p>
@@ -1550,8 +1550,7 @@ length is %d\n&quot;, pos, <o:p></o:p></span></p>
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
 "Arial Unicode MS"'><span style="mso-spacerun: yes"> </span>*<span
-style="mso-spacerun: yes">                                       
-</span>usearch_getMatchLength(search));<o:p></o:p></span></p>
+style="mso-spacerun: yes">                                        </span>usearch_getMatchLength(search));<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -1658,7 +1657,8 @@ font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-fam
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'><span style="mso-spacerun: yes">    </span>USEARCH_CANONICAL_MATCH,<o:p></o:p></span></p>
+"Arial Unicode MS"'><span style="mso-spacerun: yes">   
+</span>USEARCH_CANONICAL_MATCH,<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -1907,14 +1907,14 @@ restrict the points<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'>*<span style="mso-spacerun: yes">                 
-</span>at which matches are detected. If a match is found, but <o:p></o:p></span></p>
+"Arial Unicode MS"'>*<span style="mso-spacerun: yes">                </span><span
+style="mso-spacerun: yes">  </span>at which matches are detected. If a match is
+found, but <o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'>*<span style="mso-spacerun: yes">  </span><span
-style="mso-spacerun: yes">                </span>the match's start or end index
-is not a boundary as <o:p></o:p></span></p>
+"Arial Unicode MS"'>*<span style="mso-spacerun: yes">                 
+</span>the match's start or end index is not a boundary as <o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -1956,9 +1956,8 @@ font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-fam
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
 "Arial Unicode MS"'><span style="mso-spacerun:
-yes">                                     </span><span style="mso-spacerun:
-yes">          </span>int32_t<span style="mso-spacerun: yes">        
-</span>patternlength,<o:p></o:p></span></p>
+yes">                                               </span>int32_t<span
+style="mso-spacerun: yes">         </span>patternlength,<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -1974,8 +1973,9 @@ style="mso-spacerun: yes">         </span>textlength,<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'><span style="mso-spacerun:
-yes">                                               </span>UCollator<span
+"Arial Unicode MS"'><span style="mso-spacerun: yes">        </span><span
+style="mso-spacerun:
+yes">                                       </span>UCollator<span
 style="mso-spacerun: yes">      </span>*collator,<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
@@ -2191,14 +2191,15 @@ style="mso-spacerun: yes">       </span>attribute,<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'><span style="mso-spacerun:
-yes">                                 </span>USearchAttributeValue<span
+"Arial Unicode MS"'><span style="mso-spacerun: yes">       </span><span
+style="mso-spacerun:
+yes">                          </span>USearchAttributeValue<span
 style="mso-spacerun: yes">  </span>value,<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'><span style="mso-spacerun: yes">      </span><span
-style="mso-spacerun: yes">                           </span>UErrorCode<span
+"Arial Unicode MS"'><span style="mso-spacerun:
+yes">                                 </span>UErrorCode<span
 style="mso-spacerun: yes">            </span>*status);<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
@@ -2246,8 +2247,8 @@ style="mso-spacerun: yes">    </span>*strsrch,<o:p></o:p></span></p>
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
 "Arial Unicode MS"'><span style="mso-spacerun:
-yes">                                              
-</span>USearchAttribute<span style="mso-spacerun: yes">  </span>attribute);<o:p></o:p></span></p>
+yes">                                               </span>USearchAttribute<span
+style="mso-spacerun: yes">  </span>attribute);<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -2517,9 +2518,8 @@ restrict the points<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'>*<span style="mso-spacerun: yes">                </span><span
-style="mso-spacerun: yes">  </span>at which matches are detected. If a match is
-found, but <o:p></o:p></span></p>
+"Arial Unicode MS"'>*<span style="mso-spacerun: yes">                 
+</span>at which matches are detected. If a match is found, but <o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -2692,9 +2692,9 @@ font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-fam
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'><span style="mso-spacerun: yes">      </span><span
-style="mso-spacerun: yes">                            </span>int32_t<span
-style="mso-spacerun: yes">        </span>textlength,<o:p></o:p></span></p>
+"Arial Unicode MS"'><span style="mso-spacerun:
+yes">                                  </span>int32_t<span style="mso-spacerun:
+yes">        </span>textlength,<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -2840,8 +2840,7 @@ font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-fam
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
 "Arial Unicode MS"'>U_CAPI void usearch_setCollator(<span style="mso-spacerun:
-yes">     </span><span style="mso-spacerun: yes"> </span>UStringSearch
-*strsrch, <o:p></o:p></span></p>
+yes">      </span>UStringSearch *strsrch, <o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -2917,8 +2916,9 @@ style="mso-spacerun: yes">        </span>patternlength,<o:p></o:p></span></p>
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
 "Arial Unicode MS"'><span style="mso-spacerun:
-yes">                                     </span>UErrorCode<span
-style="mso-spacerun: yes">    </span>*status);<o:p></o:p></span></p>
+yes">                               </span><span style="mso-spacerun:
+yes">      </span>UErrorCode<span style="mso-spacerun: yes">   
+</span>*status);<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -2955,8 +2955,9 @@ font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-fam
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'><span style="mso-spacerun:
-yes">                                              </span>int32_t<span
+"Arial Unicode MS"'><span style="mso-spacerun: yes">      </span><span
+style="mso-spacerun:
+yes">                                        </span>int32_t<span
 style="mso-spacerun: yes">       </span>*length);<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
@@ -3115,8 +3116,8 @@ font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-fam
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'><span style="mso-spacerun: yes">                         
-</span><span style="mso-spacerun: yes">       </span>UTextOffset<span
+"Arial Unicode MS"'><span style="mso-spacerun:
+yes">                                 </span>UTextOffset<span
 style="mso-spacerun: yes">    </span>position, <o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
@@ -3197,8 +3198,8 @@ font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-fam
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'>* Returns the first index less than &lt;tt&gt;position&lt;/tt&gt;
-at which the string text <o:p></o:p></span></p>
+"Arial Unicode MS"'>* Returns the first index less than
+&lt;tt&gt;position&lt;/tt&gt; at which the string text <o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -3438,8 +3439,8 @@ backwards <o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
-"Arial Unicode MS"'>* iteration is initiated before a forwards iteration, the search
-will begin<o:p></o:p></span></p>
+"Arial Unicode MS"'>* iteration is initiated before a forwards iteration, the
+search will begin<o:p></o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Courier;mso-fareast-font-family:"Arial Unicode MS";mso-bidi-font-family:
@@ -3485,7 +3486,7 @@ style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:Courier'><o:p></o:p
 
 <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
 font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
-<hr>
+
 <pre><span style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'>#include &quot;unicode/unistr.h&quot;<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -3675,7 +3676,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span>void setAttribute(USearchAttribute<span style="mso-spacerun: yes">       </span>attribute,<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span><span style="mso-spacerun: yes">                 </span>USearchAttributeValue<span style="mso-spacerun: yes">  </span>value,<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">                      </span>USearchAttributeValue<span style="mso-spacerun: yes">  </span>value,<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">                      </span>UErrorCode<span style="mso-spacerun: yes">            </span>&amp;status);<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -3701,7 +3702,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span>* This call returns a valid result only after a successful call to <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">   </span><span style="mso-spacerun: yes"> </span>* {@link #first}, {@link #next}, {@link #previous}, or {@link #last}.<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span>* {@link #first}, {@link #next}, {@link #previous}, or {@link #last}.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span>* Just after construction, or after a searching method returns <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -3767,7 +3768,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span>/**<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* Set the BreakIterator that will be used to restrict the points<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'> <span style="mso-spacerun: yes">    </span>* Set the BreakIterator that will be used to restrict the points<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* at which matches are detected.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -3783,7 +3784,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>for. If this parameter is &lt;tt&gt;NULL&lt;/tt&gt;, no break<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">         </span><span style="mso-spacerun: yes">       </span>detection is attempted.<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>detection is attempted.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param<span style="mso-spacerun: yes">  </span>status for errors if it occurs<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -3817,7 +3818,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* Set the string text to be searched. Text iteration will hence begin at <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* the start of the text string. This method is useful if you want to <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes"> </span><span style="mso-spacerun: yes">    </span>* the start of the text string. This method is useful if you want to <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* re-use an iterator to search for the same pattern within a different <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -3849,7 +3850,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* will be done during searching for this version. The block of text <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* in &lt;tt&gt;CharacterIterator&lt;/tt&gt; will be used as it is.<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">   </span><span style="mso-spacerun: yes">  </span>* in &lt;tt&gt;CharacterIterator&lt;/tt&gt; will be used as it is.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param text string iterator to be searched.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -3895,7 +3896,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'> <span style="mso-spacerun: yes">   </span>/**<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span>/**<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* Not-equal operator. <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -3935,7 +3936,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* pattern. The iterator is adjusted so that its current index (as <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">   </span><span style="mso-spacerun: yes">  </span>* returned by {@link #usearch_getOffset}) is the match position if one <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* returned by {@link #usearch_getOffset}) is the match position if one <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* was found.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -3973,7 +3974,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param<span style="mso-spacerun: yes">  </span>status for errors if it occurs<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @return The character index of the first match following <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">   </span><span style="mso-spacerun: yes">  </span>* @return The character index of the first match following <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">         </span>&lt;tt&gt;position&lt;/tt&gt;, or &lt;tt&gt;USEARCH_DONE&lt;/tt&gt; if there are no <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4011,7 +4012,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">   </span><span style="mso-spacerun: yes"> </span>/**<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span>/**<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* Returns the first index less than &lt;tt&gt;position&lt;/tt&gt; at which the string <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4029,7 +4030,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param<span style="mso-spacerun: yes">  </span>status for errors if it occurs<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span><span style="mso-spacerun: yes"> </span>* @return The character index of the first match preceding <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @return The character index of the first match preceding <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">         </span>&lt;tt&gt;position&lt;/tt&gt;, or &lt;tt&gt;USEARCH_DONE&lt;/tt&gt; if there are <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4051,7 +4052,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* {@link #getIndex}) is the match position if one was found.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'> <span style="mso-spacerun: yes">    </span>* If a match is not found, &lt;tt&gt;USEARCH_DONE&lt;/tt&gt; will be returned and<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* If a match is not found, &lt;tt&gt;USEARCH_DONE&lt;/tt&gt; will be returned and<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* the iterator will be adjusted to a position after the end of the text <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4087,7 +4088,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @return The index of the previous match before the current position,<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">          </span>or &lt;tt&gt;USEARCH_DONE&lt;/tt&gt; if there are no more matches.<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* <span style="mso-spacerun: yes">         </span>or &lt;tt&gt;USEARCH_DONE&lt;/tt&gt; if there are no more matches.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*/<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4185,7 +4186,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>match, but the match's start or end index is not a <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">    </span><span style="mso-spacerun: yes">            </span>boundary as determined by the &lt;tt&gt;BreakIterator&lt;/tt&gt;, <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>boundary as determined by the &lt;tt&gt;BreakIterator&lt;/tt&gt;, <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>the match is rejected and &lt;tt&gt;handleNext&lt;/tt&gt; or <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4245,7 +4246,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* subclasses to provide different search algorithms.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* &lt;p&gt;<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'> <span style="mso-spacerun: yes">    </span>* &lt;p&gt;<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* If a match is found, the implementation should return the index at<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4281,7 +4282,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* methods should call this when they find a match in the target text.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span><span style="mso-spacerun: yes"> </span>* @param length length of the matched text.<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param length length of the matched text.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*/<o:p></o:p></span></pre><pre
 style='tab-stops:.5in'><span style='mso-bidi-font-size:12.0pt;font-family:Courier;
@@ -4292,9 +4293,7 @@ style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Courier;
 mso-fareast-font-family:"Times New Roman";mso-bidi-font-family:Arial;
 mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br
 clear=all style='mso-special-character:line-break;page-break-before:always'>
-</span>
-<hr>
-<pre style='tab-stops:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+</span><pre style='tab-stops:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4418,7 +4417,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes"> </span>*<span style="mso-spacerun: yes">      </span>requires to be swapped with the next character. E.g certain Thai and<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'> *<span style="mso-spacerun: yes">   </span><span style="mso-spacerun: yes">   </span>Lao characters require swapping.<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'> *<span style="mso-spacerun: yes">      </span>Lao characters require swapping.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'> * &lt;li&gt; If a following pattern match is to be found, any position within a <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4480,7 +4479,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'> *<span style="mso-spacerun: yes">     </span>printf(&quot;Found match at %d pos, length is %d\n&quot;, pos, <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes"> </span>*<span style="mso-spacerun: yes">                                       </span><span style="mso-spacerun: yes">      </span>iter.getMatchLength());<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes"> </span>*<span style="mso-spacerun: yes">                                             </span>iter.getMatchLength());<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'> * }<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4522,9 +4521,9 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param locale<span style="mso-spacerun: yes">  </span>A locale which defines the language-sensitive <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>comparison rules used to determine whether text in the <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">             </span><span style="mso-spacerun: yes">   </span>comparison rules used to determine whether text in the <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">   </span><span style="mso-spacerun: yes">  </span>*<span style="mso-spacerun: yes">                </span>pattern and target matches. <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>pattern and target matches. <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param breakiter A &lt;tt&gt;BreakIterator&lt;/tt&gt; object used to constrain <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4540,7 +4539,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param status<span style="mso-spacerun: yes">  </span>for errors if any<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">   </span><span style="mso-spacerun: yes">  </span>*/<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*/<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span>StringSearch(const UnicodeString &amp;pattern, const UnicodeString &amp;text,<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4548,7 +4547,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">                       </span>BreakIterator *breakiter,<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">                       </span>UErrorCode<span style="mso-spacerun: yes">    </span>&amp;status);<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">             </span><span style="mso-spacerun: yes">          </span>UErrorCode<span style="mso-spacerun: yes">    </span>&amp;status);<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4582,9 +4581,9 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>determined by the &lt;tt&gt;BreakIterator&lt;/tt&gt; are <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>ignored. If this behavior is not desired, <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* <span style="mso-spacerun: yes">               </span>ignored. If this behavior is not desired, <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span><span style="mso-spacerun: yes"> </span>*<span style="mso-spacerun: yes">                </span>&lt;tt&gt;NULL&lt;/tt&gt; can be passed in instead.<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>&lt;tt&gt;NULL&lt;/tt&gt; can be passed in instead.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param status<span style="mso-spacerun: yes">  </span>for errors if any<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4594,7 +4593,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">                 </span>const UnicodeString<span style="mso-spacerun: yes">     </span>&amp;text,<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">                       </span>RuleBasedCollator *coll,<span style="mso-spacerun: yes">   </span><span style="mso-spacerun: yes">    </span><o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">                       </span>RuleBasedCollator *coll,<span style="mso-spacerun: yes">       </span><o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">                       </span>BreakIterator<span style="mso-spacerun: yes">     </span>*breakiter,<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4630,7 +4629,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>pattern and target matches. User is responsible for <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>the clearing of this object.<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">              </span><span style="mso-spacerun: yes">  </span>the clearing of this object.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param breakiter A &lt;tt&gt;BreakIterator&lt;/tt&gt; object used to constrain <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4650,7 +4649,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span>StringSearch(const UnicodeString &amp;pattern, CharacterIterator &amp;text,<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">  </span><span style="mso-spacerun: yes">               </span>const Locale<span style="mso-spacerun: yes">        </span>&amp;locale, <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">                 </span>const Locale<span style="mso-spacerun: yes">        </span>&amp;locale, <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">                       </span>BreakIterator *breakiter,<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4684,23 +4683,23 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>determine whether text in the pattern and target <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>matches. User is responsible for the clearing of this<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">            </span><span style="mso-spacerun: yes">    </span>matches. User is responsible for the clearing of this<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span><span style="mso-spacerun: yes"> </span>*<span style="mso-spacerun: yes">                </span>object.<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>object.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param breakiter A &lt;tt&gt;BreakIterator&lt;/tt&gt; object used to constrain <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>the matches that are found. Matches whose start and end <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>indices in the target text are not boundaries as <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">        </span><span style="mso-spacerun: yes">        </span>indices in the target text are not boundaries as <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span><span style="mso-spacerun: yes"> </span>*<span style="mso-spacerun: yes">                </span>determined by the &lt;tt&gt;BreakIterator&lt;/tt&gt; are <o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>determined by the &lt;tt&gt;BreakIterator&lt;/tt&gt; are <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>ignored. If this behavior is not desired, <o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*<span style="mso-spacerun: yes">                </span>&lt;tt&gt;NULL&lt;/tt&gt; can be passed in instead.<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @param status<span style="mso-spacerun: yes">  </span>for errors if any<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">   </span><span style="mso-spacerun: yes">  </span>* @param status<span style="mso-spacerun: yes">  </span>for errors if any<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*/<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
@@ -4858,7 +4857,7 @@ style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>* @return collator used for string search<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
-"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">     </span>*/<o:p></o:p></span></pre><pre><span
+"Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">  </span><span style="mso-spacerun: yes">   </span>*/<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:
 "Times New Roman";mso-bidi-font-family:Arial'><span style="mso-spacerun: yes">    </span>RuleBasedCollator * getCollator() const;<o:p></o:p></span></pre><pre><span
 style='mso-bidi-font-size:12.0pt;font-family:Courier;mso-fareast-font-family:

@@ -19,7 +19,7 @@
   </tr>
   <tr>
     <td>Date:</td>
-    <td>2003-06-03..04</td>
+    <td>2003-06-03..19</td>
   </tr>
   <tr>
     <td>Latest Version:</td>
@@ -36,7 +36,8 @@
   <li>There are often several Unicode conversion tables per charset.</li>
   <li>Ideally, ICU would support as many of them out of the box as possible.</li>
   <li>Out of the box, ICU already supports &gt;200 conversion tables, taking up 
-    5MB of its 8MB data. There are hundreds more conversion tables in the <a href="http://oss.software.ibm.com/icu/charset/">ICU 
+    more than half of its 8MB data.
+    There are hundreds more conversion tables in the <a href="http://oss.software.ibm.com/icu/charset/">ICU 
     charset repository</a>.</li>
   <li>ICU's data structures (.ucm source files and .cnv binaries) do not  
     currently support conversion of multiple characters/code points at once. For  
@@ -89,57 +90,28 @@ be possible and offsets should be able to be provided.</p>
 while increasing the set of supported charsets.</p>
 <p>Jitterbug: <a href="http://www.jtcsv.com/cgibin/icu-bugs?findid=2404">2404</a></p>
 <p>The section below contains ideas for binary data structures.</p>
-<h2>Extension Data Structure</h2>
+<h2>Extension Tables</h2>
 <p>The basic idea is to handle most mappings via the existing state table (to 
 Unicode) and trie (from Unicode). When an unmappable result or a special, new 
 marker is found, then an additional table is searched. A new marker in a 
 fromUnicode table could be a result byte sequence with a trailing 00 byte, for 
 example. Using a special marker would avoid slowing down processing of 
 unmappable characters, which might be common when output-escaping XML.</p>
-<p>An additional table need not be designed for high performance if its mappings 
-are rarely used. The most compact would be to store a list of pairs of (Unicode 
-code units, charset bytes) where the unit/byte sequences are of variable length. 
-Variable length entries would allow multiple-character mappings.</p>
-<p>The list would be segmented into the three main types of mappings: First 
-fallbacks (only fromUnicode), then roundtrips, then reverse fallbacks (only 
-toUnicode). Only relevant segments would be searched.</p>
-<p>One simple optimization would be to store a fixed-width variant of the list  
-for those cases where there is only one 16-bit Unicode code unit (BMP character)  
-and only one or two charset bytes. This would cover many simple cases, save 
-space, and allow much faster searches.</p>
-<p>The lists could simply be searched linearly. The use of the same lists for 
-both mapping directions and of per-mapping-type segments saves space but makes 
-it hard to provide for faster access. The expectation is that this is acceptable 
-because this is for legacy charsets and for infrequently used characters. Full 
-performance (except for m:n mappings) is available by using a separate .cnv file 
-per table variant.</p>
-<pre>
-// array of indexes to extension table segments
-// each indexes[i] is a 16-bit-addressed index from the start of indexes itself
-// indexes[0], [1], [2] contain indexes to the fixedTable[] segments for
-// fallback/roundtrip/reverse fallback mappings
-// [0] also indicates the length of the indexes[] array before the
-//     conversion data (==2*16 uint16_t==16 uint32_t)
-// [3], [4], [5] contain indexes to the variableTable[] segments
-// [3] also indicates the first index after the fixedTable[]
-// [6] indicates the first index after the variableTable[]
-// [7]..[14] reserved
-// [15] number of bytes for the entire extension structure
-uint32_t indexes[16];
-
-// each two words contain a Unicode BMP code point and 1..2 charset bytes,
-// both encoded as platform-endian 16-bit words
-uint16_t fixedTable[(i3-i0)*2];
-
-// each pair of (Unicode units, charset bytes) is encoded as follows:
-// uint16_t lengths;
-// UChar unicodeUnits[lengths bits 3..0]
-// uint8_t charsetBytes[lengths bits 7..4]
-// padded to 16-bit boundary;
-// total number of 16-bit units including lengths word: lengths bits 15..8
-uint16_t variableTable[i6];
-</pre>
-<h3>Multiple Extension Tables per File</h3>
+<p>An extension table need not be designed for highest performance if its mappings  
+are rarely used. The most compact would be to store a list of pairs of (Unicode  
+code units, charset bytes) where the unit/byte sequences are of variable length.  
+Variable length entries are required for multiple-character mappings.</p> 
+<p>On the other hand, searching the extension data must not be outrageously slow 
+(as it would be with linear searches on thousands of entries), or else total 
+conversion performance will be unacceptable. It seems that, at a minimum, there 
+would have to be data structures for each direction (to/from Unicode) that allow 
+at least a binary search.</p>
+<p>Reasonable performance of extension lookups is especially important when the 
+base table does not have special markers for extension mappings.</p>
+<p>For ideas about data structures for conversion extension data see <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/conversion/ucnv_ext.h">ucnv_ext.h</a> 
+and <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/conversion/ucnv_ext.c">ucnv_ext.c</a> 
+in this same design folder (<a href="http://oss.software.ibm.com/cvs/icu/icuhtml/design/conversion/">icuhtml/design/conversion</a>).</p>
+<h3>Multiple Extension Tables per File</h3> 
 <p>A single .cnv file may contain multiple such data structures, one per   
 conversion table variant. A Shift-JIS .cnv table would use the regular state   
 table + trie for all common mappings and one extension data structure per   
@@ -155,7 +127,7 @@ generate a combined .cnv file. Real canonical names stored in the .cnv file
 would be easiest to automate and best for ucnv_getName() returning a const char 
 *.</p>
 
-<h3>Single Extension Tables per File</h3>
+<h3>Single Extension Tables per File (preferred approach)</h3>
 <p>Alternatively, one .cnv file may contain at most one extension data 
 structure. Multiple extension files would refer by name to the base table. 
 Variants could be added much more easily than if all are stored in a single file 
@@ -180,24 +152,19 @@ generate a .cnv file with a new internal format. Eventually it should read the
 base .ucm or .cnv file as well and verify that the base does not contain  
 conflicting mappings, as well as verifying that the charset byte sequences are  
 legal. It would never have to read all variants at once.</p> 
-<p>To simplify .ucm file maintenance, makeconv should accept complete conversion 
-tables for extensions, including the base mappings, and simply ignore the base 
-mappings. This of course requires that makeconv read the base table along with 
-the extension .ucm file. Otherwise one would have to slice the extension part 
-off the base mappings manually or with a separate tool.</p>
-<h3>Minimum Conversion Table Size</h3>
-<p>An interesting by-product of these ideas is that the extension data structure 
-is designed to be compact, not fast. For conversions where speed is not 
-important but where basic support is desired, there could be one regular .cnv 
-file without any mappings, only with an all-unassigned state table (and empty 
-trie) to document the charset structure, plus an extension table in the same or 
-a different file with the actual mappings.</p>
-<p>Another way to save space is to combine multiple conversion tables that are 
-not logically related in that they are not variants of what is supposed to be 
-the same charset. For example, several SBCS tables could share a base table for 
-invariant ASCII or EBCDIC mappings and use extensions for all the other 
-characters. Even though SBCS tables are small, extension tables for some 150 
-mappings would be even smaller.</p>
+<p>To simplify .ucm file maintenance, makeconv should accept complete conversion  
+tables for extensions, including the base mappings, and simply omit the base 
+mappings when writing the extension table . This of course requires that makeconv read the base table along with  
+the extension .ucm file. Otherwise one would have to slice the extension part  
+off the base mappings manually or with a separate tool.</p> 
+<h3> Conversion Data Size</h3>
+<p>In order to be useful for handling both table variants and m:n mappings well, 
+there will - as usual - be a compromise between size and lookup speed for the 
+extension data structure. Still, there will be far fewer mappings in a variant 
+extension table than in a complete conversion table, so several variants will 
+use less memory and disk space than a second full table file. Extension tables 
+will allow ICU to improve the set of conversion tables while reducing their 
+total size.</p>
 
 </body>
 

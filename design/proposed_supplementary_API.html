@@ -10,7 +10,8 @@
 <body bgcolor="#FFFFFF">
 
 <h1>Proposed Supplementary API (JSR 204)</h1>
-<p><i>Mark Davis, 2003-06-04</i></p>
+<p><i>Mark Davis, 2003-06-05</i></p>
+<p><i>Note: all offsets are char offsets, except in </i><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findOffsetFromCodePoint(java.lang.String, int)">findOffsetFromCodePoint</a></b></code></p>
 <h2>Character</h2>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
@@ -82,9 +83,11 @@
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;class</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.StringComparator.html">UTF16StringComparator</a></b></code><br>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.StringComparator.html">StringCPComparator</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UTF16 string
-      comparator class.</td>
+      comparator class. Its compare method differs from the String compareTo
+      method in that the comparison is by code point, not code unit. Thus
+      &quot;\uD800\DC00&quot; &gt; &quot;\uFFFF&quot;</td>
   </tr>
 </table>
 <p>&nbsp;</p>
@@ -139,8 +142,8 @@
 <p>Other property methods on Character need overloads for int, as in <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html">ICU4J's
 UCharacter.html</a>.</p>
 <h2>CharSequence</h2>
-<p><i>[Or String and StringBuffer, if not possible there.]</i></p>
-<p><i>Note: all offsets are char offsets, except in </i><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findOffsetFromCodePoint(java.lang.String, int)">findOffsetFromCodePoint</a></b></code></p>
+<p><i>The following functions should go on subclasses of CharSequence (char32At
+should go on CharSequence itself, if possible).</i></p>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
     <td colspan="2" bgcolor="#ccccff"><font size="3"><b>Field Summary</b></font></td>
@@ -179,13 +182,13 @@ UCharacter.html</a>.</p>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#bounds(java.lang.String, int)">bounds32</a></b>(int&nbsp;offset16)</code><br>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#bounds(java.lang.String, int)">bounds32</a></b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
-      type of the boundaries around the char at offset16.</td>
+      type of the boundaries around the char at offset.</td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#charAt(java.lang.String, int)">char32At</a></b>(int&nbsp;offset16)</code><br>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#charAt(java.lang.String, int)">char32At</a></b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extract a
       single UTF-32 value from a string. If offset is in the middle of a
       codepoint, returns that code point.</td>
@@ -198,16 +201,16 @@ UCharacter.html</a>.</p>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a></b>(int&nbsp;offset16)</code><br>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a></b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
       UTF-32 offset corresponding to the first UTF-32 boundary at or after the
-      given UTF-16 offset.</td>
+      given UTF-16 offset. Inverse of <code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a>.</b></code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findOffsetFromCodePoint(java.lang.String, int)">findOffsetFromCodePoint</a></b>(int&nbsp;offset32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
-      UTF-16 offset that corresponds to a UTF-32 offset.</td>
+      UTF-16 offset that corresponds to a UTF-32 offset. Inverse of <code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a>.</b></code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
@@ -255,17 +258,17 @@ UCharacter.html</a>.</p>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#moveCodePointOffset(java.lang.String, int, int)">moveCodePointOffset</a></b>(java.lang.String&nbsp;source,
-      int&nbsp;offset16, int&nbsp;shift32)</code><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shifts
-      offset16 by the argument number of code points. Equivalent to but <i>much</i>
-      faster than: <code>str.findOffsetFromCodePoint(str.findCodePointOffset(offset16)
+      int&nbsp;offset, int&nbsp;shift32)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shifts offset
+      by the argument number of code points. Equivalent to but <i>much</i>
+      faster than: <code>str.findOffsetFromCodePoint(str.findCodePointOffset(offset)
       + shift32)</code></td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.String</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#valueOf(java.lang.String, int)">value32Of</a></b>(int&nbsp;offset16)</code><br>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#valueOf(java.lang.String, int)">value32Of</a></b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convenience
-      method corresponding to, but much faster than, <code>String.valueOf(myString.charAt(offset16))</code></td>
+      method corresponding to, but much faster than, <code>String.valueOf(myString.charAt(offset))</code></td>
   </tr>
 </table>
 <blockquote>
@@ -288,41 +291,65 @@ UCharacter.html</a>.</p>
     <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#append(java.lang.StringBuffer, int)">append</a>32</b>(int&nbsp;char32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append a
       single UTF-32 value to the end of a StringBuffer. Equivalent to but faster
-      than: <code>append(String.value32Of(char32))</code></td>
+      than:<br>
+      <code>append(String.value32Of(char32))</code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.StringBuffer</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#delete(java.lang.StringBuffer, int)">delete</a>32</b>(int&nbsp;offset16)</code><br>
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#delete(java.lang.StringBuffer, int)">delete</a>32</b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Removes the
       codepoint at the specified position in this target (shortening target by 1
       character if the codepoint is a non-supplementary, 2 otherwise).
       Equivalent to (but faster than):<br>
-      <code>int start = offset - (bounds() == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
+      <code>int start = offset - (bounds32() == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
       ? 1 : 0);<br>
-      int end = offset + (bounds() == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a>
+      int end = offset + (bounds32() == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a>
       ? 2 : 1);<br>
       delete(start, end);</code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.StringBuffer</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#insert(java.lang.StringBuffer, int, int)">insert</a>32</b>(int&nbsp;offset16,
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#insert(java.lang.StringBuffer, int, int)">insert</a>32</b>(int&nbsp;offset,
       int&nbsp;char32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inserts char32
-      codepoint into target at (or before) the argument offset16. Equivalent to
+      codepoint into target at (or before) the argument offset. Equivalent to
       but faster than:<br>
-      <code>int start = offset - (bounds() == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
+      <code>int start = offset - (bounds32(offset) == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
       ? 1 : 0);<br>
       </code><code>insert(String.value32Of(char32), start);</code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>void</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#setCharAt(java.lang.StringBuffer, int, int)">setChar32At</a></b>(int&nbsp;offset16,
+    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#setCharAt(java.lang.StringBuffer, int, int)">setChar32At</a></b>(int&nbsp;offset,
       int&nbsp;char32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set a code
-      point into a UTF16 position. Equivalent to but faster than: <code>delete(offset16);<br>
-      insert(String.value32Of(char32), offset16);</code></td>
+      point into a UTF16 position. Equivalent to but faster than:<br>
+      <code>delete(offset);<br>
+      insert(String.value32Of(char32), offset);</code></td>
   </tr>
 </table>
+<h2>Open Issues:</h2>
+<ol>
+  <li>The names are only suggestions. In some cases it uses code point, in
+    others char32. This should be resolved one way or another so that it is
+    consistent. Code point is more explicit, but 32 make a short addition to
+    names, like char32At. Overloading can be used, but wouldn't be sufficient in
+    cases where only the return value is different.</li>
+  <li>It is probably better to give <code>StringBuffer.getCharCount(int offset)</code>
+    and <code>Character.getCharCount(int char32)</code> different names. While
+    the target functionality is the same, there could be confusion since the
+    arguments are both ints: one is an offset and one is a code point.</li>
+  <li>If <code>char32At()</code> cannot go on CharSequence, it might be worth
+    having a CodePointSequence that extends CharSequence that adds a similar
+    (e.g. small) number of methods such as <code>char32At()</code>. String and
+    StringBuffer could then implement CodePointSequence.
+    <ul>
+      <li><i>My own personal preference would be to have all the methods in
+        common among String and StringBuffer; that way people could use a
+        CodePointSequence without having to know what the underlying storage is.</i></li>
+    </ul>
+  </li>
+</ol>
 
 </body>
 

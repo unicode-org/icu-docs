@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html lang="en-US">
+<head>
+  <title>ICU Userguide</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="keywords" content=
+  "ICU, ICU4C, ICU4J, International Components for Unicode, unicode, internationalization, i18n, localization, l10n, globalization, g11n, nls, code page, codepage, encoding, locale, collation">
+  <meta name="description" content=
+  "The International Components for Unicode (ICU) library user guide.">
+  <link rel="stylesheet" href="icu.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF">
+ 
+
+   <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+
+      <td valign="top" bgcolor="#006699" width="1%" nowrap>
+		<img src="images/ibm_logo.gif" border="0" 
+		alt="IBM" width="150" height="47">   </td>
+      <td valign="top" class="fadedtop"><a href="#main">
+		<img src="images/c.gif" border="0" width="100"
+			height="1" alt="Skip to main content"></a>
+			</td>
+      <td bgcolor="#006699" width="100%">
+	<span class="toptitle">ICU User Guide</span></td>
+    </tr>
+    <tr>
+      <td valign="top" bgcolor="#6699CC" width="1%" nowrap>
+	<table width="100%" cellpadding="0" cellspacing="0" 
+		summary="The ICU navigation menu on the left side with content on the right side">
+		
+	    <tr><td class="sidebar1">
+	    ICU</td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="intro.html">Introduction</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="i18n.html">Internationalization</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2"
+		href="unicodeBasics.html">Unicode Basics</a></td></tr>
+	
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="framework.html">ICU Services</a></td></tr>
+	
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="design.html">ICU Design</a></td></tr>
+		
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="posix.html">C/POSIX Migration</a></td></tr>
+		
+	    <tr><td class="sidebar1">Chars &amp; Strings</td></tr>
+	    
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="strings.html">Strings</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="properties.html">Properties</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="characterIterator.html">CharacterIterator</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="unicodeSet.html">UnicodeSet</a></td></tr>
+		
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="regexp.html">Regular Expressions</a></td></tr>
+
+	    <tr><td class="sidebar1">Conversion</td></tr>
+	    
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="conversion.html">Conversion Basics</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="codepageConverters.html">Converter</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="conversion-data.html">Conversion Data</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="compression.html">Compression</a></td></tr>
+
+	    <tr><td class="sidebar1">Locales &amp; Resources</td></tr>
+	    
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="locale.html">Locale Class</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="ResourceManagement.html">Resources</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="localizing.html">Localizing with ICU</a></td></tr>
+
+	    <tr><td class="sidebar1">Date/Time</td></tr>
+	    
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="dateTime.html">Date/Time Services</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="dateCalendar.html">Calendar Services</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="dateTimezone.html">TimeZone class</a></td></tr>
+
+	    <tr><td class="sidebar1">Formatting</td></tr>
+	    
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="formatParse.html">Format &amp; Parse</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="formatNumbers.html">Format Numbers</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="formatDateTime.html">Format Date/Time</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="formatMessages.html">Format Messages</a></td></tr>
+
+	    <tr><td class="sidebar1">Transforms</td></tr>
+	    
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="Transformations.html">Transformations</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="caseMappings.html">Case Mapping</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="bidi.html">BiDi Algorithm</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="normalization.html">Normalization</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="Transform.html">Transform</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="TransformRule.html">Rule Tutorial</a></td></tr>
+
+	    <tr><td class="sidebar1">Collation</td></tr>
+	    
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="Collate_Intro.html">Introduction</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="Collate_Concepts.html">Concepts</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="Collate_ServiceArchitecture.html">Architecture</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="Collate_Customization.html">Customization</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="searchString.html">Search String</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="Collate_FAQ.html">Collation FAQ</a></td></tr>
+
+	    <tr><td class="sidebar1">Boundary Analysis</td></tr>
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2"
+		href="boundaryAnalysis.html">Boundary Analysis</a></td></tr>
+
+	    <tr><td class="sidebar1">Layout Engine</td></tr>
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2"
+		href="layoutEngine.html">Layout Engine</a></td></tr>
+
+	    <tr><td class="sidebar1">ICU Data</td></tr>
+	    
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="icudata.html">ICU Data</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="packaging.html">Packaging ICU</a></td></tr>
+		
+	    <tr><td class="sidebar1">Use From ...</td></tr>
+	    
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="JNI.html">Java Native Interface</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="cobol.html">Cobol</a></td></tr>
+		
+	    <tr><td class="sidebar1">Misc</td></tr>
+	    
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="conventions.html">Coding Guidelines</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="sync.html">Synchronization</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="icufaq.html">ICU FAQs</a></td></tr>
+
+		<tr><td class="sidebar2">&nbsp;&middot;&nbsp;<a class="sidebar2" 
+		href="glossary.html">Glossary</a></td></tr>
+		
+		<tr><td class="sidebar2">&nbsp;&nbsp;</td></tr>
+
+	</table>
+      </td>
+ 
+<!-- Start of the main content portion of the page  -->
+  <td valign="top" colspan="2" class="mainbody">
+    <img src="images/w24.gif" width="96" height="81" align="right"
+    alt="Languages Around The World"><br>
+
+    <a name="main"></a>
+
+<!-- HTML conversion tool insert content HERE -->
+	
+<h1>FAKE ICU USER GUIDE</h1>
+
+<h2>Introduction</h2>
+<hr>
+
+<h3>text in h3 format?</h3>
+
+<p>ICU is a mature, widely used set of C/C++ and Java libraries for
+Unicode support, software internationalization and globalization
+(i18n/g11n). It grew out of the JDK 1.1 internationalization APIs,
+which the ICU team contributed, and the project continues to be
+developed for the most advanced Unicode/i18n support. ICU is widely
+portable and gives applications the same results on all platforms and
+between C/C++ and Java software.</p>
+
+<ul>
+  <li>Features: See the overview below.</li>
+
+  <li>Performance: See <a href=
+  "http://oss.software.ibm.com/icu/charts/performance/">our
+  comparison charts</a></li>
+
+  <li>Users: See <a href=
+  "http://oss.software.ibm.com/icu/credits/companies.html">our list
+  of companies and organizations using ICU</a>. Please let us know if
+  you use ICU but cannot find your name!</li>
+
+  <li>Please find further information on this page and through the
+  navigation bar</li>
+</ul>
+
+<h3>Why Unicode?</h3>
+
+<p>Unicode (and the parallel ISO 10646 standard) defines the
+character set necessary for efficiently processing text in any
+language and for maintaining text data integrity. In addition to
+global character coverage, the Unicode standard is unique among
+character set standards because it also defines data and algorithms
+for efficient and consistent text processing. This simplifies
+high-level processing and ensures that all conformant software
+produces the same results. The widespread adoption of Unicode over
+the last decade made text data truly portable and formed a
+cornerstone of the Internet.</p>
+
+<!-- END of generated html content -->
+
+   </td>
+  </tr>
+</table>
+
+</body>
+</html>

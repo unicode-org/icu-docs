@@ -49,6 +49,10 @@ information where possible. For example, &quot;<font color="#0000ff">&#913;&#955
 color="#ff0000">&#946;&#951;&#964;&#953;&#954;&#972;&#962;</font>&quot; will
 maintain the two colors in transliterating to &quot;<font color="#0000ff">Alpha</font><font
 color="#ff0000">b<font size="3">&#275;</font>tikós</font>&quot;.</p>
+<p>For an online demonstration of ICU transliteration, see <a
+href="http://oss.software.ibm.com/icu/demo" target="_parent"
+onclick="window.event.cancelBubble=true;" style="position:relative">http://oss.software.ibm.com/icu/demo</a>.
+</p>
 <h2>Script Transliteration</h2>
 <p>Script Transliteration is the general process of converting characters from
 one script to another, such as converting from Greek to Latin, or Japanese <i>katakana</i>
@@ -132,7 +136,8 @@ same script, such as converting Icelandic THORN (þ) to <i>th</i>.</p>
     assumed to be the default.</li>
 </ul>
 <p>For example, &quot;hex/xml&quot; means &quot;any-hex/xml&quot;; &quot;hex-/xml&quot;
-means &quot;hex-any/xml&quot;.</p>
+means &quot;hex-any/xml&quot;. Another example of a variant is &quot;<span
+style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-hansi-font-family:&quot;Times New Roman&quot;">Greek-Latin/ISO-843</span>&quot;.</p>
 <p>When constructing Transliterators from strings, the general format is</p>
 <p align="center"><i><b>filter? transliterator (&quot;;&quot; filter?
 transliterator)*</b></i></p>
@@ -144,6 +149,9 @@ transliteration:</p>
 <p align="center">NFD; [:nonspacing mark:] remove; NFC</p>
 <p>this is short for</p>
 <p align="center">any-NFD; [:nonspacing mark:] any-remove; any-NFC</p>
+<p>Another example of a filter is one used to convert uppercase Latin to
+Katakana and lowercase to Hiragana:</p>
+<p align="center">[:uppercaseLetter:] Latin - Katakana; Latin - Hiragana;</p>
 <h2><a name="ICU Transliterators">ICU Transliterators</a></h2>
 <p>There are a number of basic transliterations currently supplied with ICU.
 Additional ones will be added over time.</p>
@@ -392,38 +400,50 @@ quality checks, for one thing. For example, even though the letter <i>q</i>
 might not be necessary in a transliteration of Greek, it can be mapped to a
 KAPPA (&#954;). Such reverse mappings will not, in general, be unambiguous.</p>
 <h2><a name="Using Transliterators">Using Transliterators</a></h2>
-<p>The international classes in ICU (and Java) all allow the same pattern for
-naming. Objects are accessed with an ID, which is just an string. The convention
-for script transliterators is to list the source script (or language) and the
-target script (or language) separated by a hyphen. So to get a transliterator
-for Latin to Greek, you would call:</p>
-<p><i>[Ed Note: the following samples are in Java. The equivalent C/C++ examples
-need to be added.]</i></p>
-<pre>myTrans = Translator.getInstance(&quot;Latin-Greek&quot;);</pre>
-<p>If you want to get a pre-made compound transliterator, use a series of IDs
-separated by &quot;;&quot;. For example:</p>
-<pre>myTrans = Translator.getInstance(&quot;any-NFD; [:nonspacing mark:] any-remove; any-NFC&quot;);</pre>
-<p>If you want to get the reverse transliteration, then you can do that with:</p>
-<pre>reverseTrans = myTrans.getInverse();</pre>
-<p>To get a list of all the available transliterators, call:</p>
-<pre>enum = Transliterator.getAvailableIDs();</pre>
+<p>Transliterators have APIs in C, C++ and Java. For simplicity, only the C++
+APIs are listed here. For more information on them and the other APIs, see the
+relevant API docs.</p>
+<p>To list the available Transliterators, use code like the following:</p>
+<pre>count = Transliterator:: countAvailableIDs();
+myID = Transliterator::getAvailableID(n);</pre>
 <p>The ID should not be displayed to users; it is for internal use only. A
 separate string, one that can be localized to different languages, is obtained
 with a static method. (This method is static to allow the translated names to be
-augmented without changing the code.) So here is how you get a name that you
-would show to an end user:</p>
-<pre>nameForUser = Transliterator.getDisplayName(myTrans.getID());</pre>
-<p>The simplest way to use a transliterator is to just convert one string to
-another:</p>
-<pre>newString = myTrans.transliterate(oldString);</pre>
+augmented without changing the code.) To get a localized name for use in a GUI,
+use the following:</p>
+<blockquote>
+  <pre>Transliterator::getDisplayName(myID, france, nameForUser);</pre>
+</blockquote>
+<p>To create a Transliterator, use the following:</p>
+<blockquote>
+  <pre>myTrans = Transliterator::createInstance(&quot;Latin-Greek&quot;);</pre>
+</blockquote>
+<p>If you want to get a pre-made compound transliterator, use a series of IDs
+separated by &quot;;&quot;. For example:</p>
+<blockquote>
+  <pre>myTrans = Transliterator::createInstance(&quot;any-NFD; [:nonspacing mark:] any-remove; any-NFC&quot;);</pre>
+</blockquote>
+<p>To convert an entire string, use: </p>
+<blockquote>
+  <pre>myTrans.transliterate(myString);</pre>
+</blockquote>
 <p>For simple cases, that suffices. For more complex cases, such a keyboard
 input, the full method provides more control. Here is an example of that method:</p>
-<pre>myTrans.transliterate(replaceable, positions, complete);</pre>
-<p>The Replaceable interface allows more complex text to be used with
-Transliterators, such as styled text. (In ICU4J a wrapper is supplied for
-StringBuffer, in case you are not using such.) The positions parameter contains
-information about the range of text that should be transliterated, plus the
-possibly larger range of text that can serve as context.</p>
+<blockquote>
+  <pre>myTrans.transliterate(replaceable, positions, complete);</pre>
+</blockquote>
+<p>The Replaceable interface (or abstract class in C++) allows more complex text
+to be used with Transliterators, such as styled text. (In ICU4J a wrapper is
+supplied for StringBuffer.) This is an interface to text that handles a very few
+operations: essentially access to characters, plus replacement of a substring by
+another. By using this interface, replacement text can take on the same style as
+the text it is replacing, so that style information is not lost. With a
+replaceable interface to HTML or XML, even higher level structure can be
+preserved.</p>
+<p>The positions parameter contains information about the range of text that
+should be transliterated, plus the possibly larger range of text that can serve
+as context.</p>
+<p align="center"><img border="0" src="user_g1.gif" width="540" height="237"></p>
 <p>The <code>complete</code> parameter indicates whether or not you are to
 consider the text up to limit to be complete or not. For example, for keyboard
 input this should normally be false. Only when the conversion is complete is
@@ -434,15 +454,21 @@ complete parameter is false, then the dangling &quot;s&quot; should not be
 converted, since there is more text to come.</p>
 <p>For example, in keyboard input, normally start/cursor and limit/end are set
 to the selection at the time the transliterator is chosen.</p>
-<pre>positions.start = positions.cursor = selection.getStart();
+<blockquote>
+  <pre>positions.start = positions.cursor = selection.getStart();
 positions.limit = positions.end = selection.getEnd();</pre>
+</blockquote>
 <p>As the user types or inserts inputChars, you would call:</p>
-<pre>replacable.replace(positions.limit, positions.limit, inputChars); // update the text
+<blockquote>
+  <pre>replacable.replace(positions.limit, positions.limit, inputChars); // update the text
 positions.limit += inputChars.length(); // update the positions
 myTrans.transliterate(replaceable, positions, false);</pre>
+</blockquote>
 <p>If the user performs an action that indicates s/he is done with the text,
 then transliterate is called one last time:</p>
-<pre>myTrans.transliterate(replaceable, positions, false);</pre>
+<blockquote>
+  <pre>myTrans.transliterate(replaceable, positions, false);</pre>
+</blockquote>
 <h2><a name="Designing Transliterators">Designing Transliterators</a></h2>
 <p>Many people will just use the supplied transliterators. In case you are
 interested in designing transliterators yourself, there are two avenues. Many
@@ -481,8 +507,38 @@ mechanism for producing transliterations is called a RuleBasedTransliterator. It
 is a data-based class that allows transliterations to be built up with a series
 of rules. These rules allow for a specialized set of context-sensitive matching
 operations. The operations are similar to regular-expression rules, but adapted
-to the specific domain of transliterations. For more details, see the
-Transliterator Rule Tutorial [add link].</p>
+to the specific domain of transliterations.</p>
+<p>The simplest rule is of the following form, which simply replaces x with y:</p>
+<blockquote>
+  <p>x &gt; y ;</p>
+</blockquote>
+<p>Context can be used to have the results of a transformation be different
+depending on the characters before or after. The following means: Convert gamma
+into n <b><i>if </i></b>followed by any of gamma, kappa, chi or ksi; otherwise
+convert gamma into g.</p>
+<blockquote>
+  <p>{ &#947; } [ &#915; &#922; &#935; &#926; &#947; &#954; &#967; &#958; ] &gt;
+  n;<br>
+  &#947; &gt; g;</p>
+</blockquote>
+<p>Note: The context itself (e.g. &#915;, …, &#958;) is unaffected by the
+replacement; only the text between the curly braces is changed.</p>
+<h3>Regular Expressions</h3>
+<p>The rules are similar to Regular Expressions in offering: Variables, Property
+matches, Contextual matches, Rearrangement ($1, $2…), and Quantifiers (*, +,
+?). They are more powerful in offering: Ordered Rules, Cursor Backup,
+Buffered/Keyboard support. They are less powerful in that they have only greedy
+quantifiers, no backup (so no X | Y), and no input-side back references.</p>
+<p>Here is an example that shows the difference between a set of Transliterator
+rules, and successively applying regular expression replacements.</p>
+<p align="center"><img border="0" src="user_g2.gif" width="463" height="388"></p>
+<p>Since the transliterator processes each of its rules at each point, it
+catches the yx before the xy in the second case. Since each of the regular
+expressions is evaluated over the whole string, that isn’t possible. Simply
+using multiple regular expressions can’t account for the interaction and
+ordering of characters and rules.</p>
+<p>For more details on constructing rules, see the Transliterator Rule Tutorial
+[add link].</p>
 
 </body>
 

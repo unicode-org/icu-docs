@@ -1,7 +1,17 @@
-/*
- * Created on Sep 17, 2004
- *
+/**
+ * Convert the ICU Userguide from Open Office to HTML format.
+ * Must be executed from the user guide directory.
+ * With no paramters, convert the entire userguide.
+ * With parameters, convert only the specified open office (.sxw) files.
+ * 
+ */
+ 
+ /*
+  *   Copyright (C) 2004, International Business Machines
+  *   Corporation and others.  All Rights Reserved.
+  *
   */
+
 
 import java.util.zip.*;
 import java.io.*;
@@ -11,16 +21,6 @@ import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import java.util.HashMap;
 import java.util.Map;
-
-/**
- * @author andy
- * 
- * Convert the ICU Userguide from Open Office to HTML format.
- * Must be executed from the user guide directory.
- * With no paramters, convert the entire userguide.
- * With parameters, convert only the specified open office (.sxw) files.
- * 
- */
 
 
 
@@ -105,6 +105,14 @@ public class UGtoHtml {
             OutputStreamWriter o = new OutputStreamWriter(f, "utf8");
             o.write(html);
             o.close();
+            
+            //
+            // if we are converting "intro.sxw", make a second copy of the new intro.html as index.html.
+            //   More reliable than forwarding.
+            //   Less breakage and general confusion than reanming intro.* to index.* everywhere.
+            if (outFileName.equals("html/intro.html")) {
+                UGtoHtml.copyFile("html/intro.html", "html/index.html");
+            }
 
         }
         catch (Exception e) {

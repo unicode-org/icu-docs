@@ -243,7 +243,10 @@ public class UGtoHtml {
                  //   converting.  Switch the .sxw to link to the html.
                  String fixedTarget = target.replaceFirst("\\.sxw(?:(?=#)|$)", ".html");
                  fixedTarget = fixedTarget.replaceAll("&", "&amp;");
-                 fHtml.append("<a href=\"" + fixedTarget + "\">");         
+                 fHtml.append("<a href=\"" + fixedTarget + "\">"); 
+                 if (fixedTarget.equals("#")) {
+                 	System.out.println("Bad href of \"#\"");
+                 }
              } else if (xmlTag.equals("text:initial-creator")) {
              	// No action required.
             } else if (xmlTag.equals("text:bookmark")) {

@@ -20,141 +20,232 @@ td, th       { vertical-align: Top }
 map well to the broader types of characters available in Unicode/10646. For
 example, there is no provision for titlecase. However, many programs use them,
 so for compatibility it is best to come up with uniform set of recommendations
-for how they should be interpreted in a Unicode context. </p>
-<p>Feedback is welcome.</p>
-<p><i><b>Broken Links</b></i>: some of the following links may not work, since
-they are to beta versions. If so, see the <a href="#Notes">Notes</a>.</p>
-<table border="1" width="100%" cellspacing="0" cellpadding="2">
+for how they should be interpreted in a Unicode context. The following compares
+Perl, ICU, and Java, and tries to derive a recommendation. Feedback is welcome.</p>
+<p><b>Notes:</b></p>
+<ul>
+  <li>The Java function names are methods on Character, unless otherwise noted.
+    Note that the Java functions use out-of-date properties and/or definitions,
+    especially in the cases marked *.</li>
+  <li>The normal property abbreviations are used, e.g. gc for General_Category.</li>
+  <li>For values of the General Category, see <a href="#General_Categories">General_Categories</a>.</li>
+  <li>HT is U+0009 &lt;CHARACTER TABULATION (HT)&gt;</li>
+  <li><i><b>Broken Links</b></i>: some of the following links may not work,
+    since they are to beta versions. If so, see the <a href="#Notes">Notes</a>. </li>
+</ul>
+<table border="1" cellspacing="0" cellpadding="2">
   <tr>
-    <th>Perl</th>
-    <th>POSIX</th>
-    <th width="45%">Recommendations with Unicode</th>
-    <th width="45%">Comments</th>
+    <th width="15%">Perl</th>
+    <th width="15%">ICU</th>
+    <th width="15%">Java</th>
+    <th width="15%">Recommended</th>
+    <th>Comments</th>
   </tr>
   <tr>
+    <td><b>punct</b><br>
+      P</td>
+    <td><b>U_GC_P_MASK</b></td>
     <td>&nbsp;</td>
-    <td>alpha</td>
-    <td>[\p{Alphabetic} \p{General_Category=Mark}]</td>
-    <td>Alphabetic includes more than General_Category = Letter. Note that marks
-      (Me, Mn, Mc) are required in many languages. It is a simplification to
-      include them, since they could be applied to non-alphabetics, but
-      excluding them would cause many words to fail the isAlpha test. See <a href="http://www.unicode.org/Public/4.0-Update/DerivedCoreProperties-4.0.0d20b.txt">DerivedCoreProperties-4.0.0d20b.txt</a>
+    <td>\p{gc=P}</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><b>alpha</b><br>
+      gc=L or M</td>
+    <td><b>u_isalpha</b><br>
+      gc=L</td>
+    <td><b>isLetter</b><br>
+      gc=L</td>
+    <td>\p{Alphabetic}<br>
+      \p{gc=Mark}</td>
+    <td>Alphabetic includes more than gc = Letter. Note that marks (Me, Mn, Mc)
+      are required in many languages. It is a simplification to include them,
+      since they could be applied to non-alphabetics, but excluding them would
+      cause many words to fail the isAlpha test. See <a href="http://www.unicode.org/Public/4.0-Update/DerivedCoreProperties-4.0.0d20b.txt">DerivedCoreProperties-4.0.0d20b.txt</a>
       for Alphabetic, also <a href="http://www.unicode.org/Public/4.0-Update/extracted/DerivedGeneralCategory-4.0.0d19b.txt">DerivedGeneralCategory-4.0.0d19b.txt</a></td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
-    <td>alnum</td>
-    <td>[\p{alpha}\p{digit}]</td>
-    <td>Simple combination of other properties</td>
+    <td><b>lower</b><br>
+      gc=Ll<br>
+    </td>
+    <td><b>u_islower</b><br>
+      gc=Ll</td>
+    <td><b>isLowerCase</b><br>
+      gc=Ll</td>
+    <td>\p{Lowercase}</td>
+    <td>Lowercase includes more than gc = Lowercase_Letter (Ll). See <a href="http://www.unicode.org/Public/4.0-Update/DerivedCoreProperties-4.0.0d20b.txt">DerivedCoreProperties-4.0.0d20b.txt</a>.</td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
-    <td>blank</td>
-    <td>[[\p{Whitespace} - {cntl}]<br>
-      \N{CHARACTER TABULATION} ]</td>
-    <td>&quot;horizontal&quot; whitespace. See <a href="http://www.unicode.org/Public/4.0-Update/PropList-4.0.0d20b.txt">PropList-4.0.0d20b.txt</a>
-      for WhiteSpace.</td>
+    <td><b>upper</b><br>
+      gc=Lu</td>
+    <td><b>u_isupper</b></td>
+    <td><b>isUpperCase</b><br>
+      gc=Lu</td>
+    <td>\p{Uppercase}</td>
+    <td>Uppercase includes more than gc = Uppercase_Letter (Lu).</td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
-    <td>cntrl</td>
-    <td>[\p{General_Category=Control} \p{General_Category=Line_Separator} \p{General_Category=Paragraph_Separator}]</td>
-    <td>Does not include Format, since some of those are needed in the
-      representation of normal text. However, includes the Zl, Zp, since they
-      are very control-like.</td>
-  </tr>
-  <tr>
-    <td>\d</td>
-    <td>digit</td>
-    <td>[\p{Number_Type = Decimal}]</td>
+    <td><b>digit</b><br>
+      gc=Nd
+      <p><b>\d</b></p>
+    </td>
+    <td><b>u_isdigit<br>
+      </b>gc=Nd</td>
+    <td><b>isDigit</b><br>
+      gc=Nd</td>
+    <td>\p{gc=Nd}</td>
     <td>Non-decimal numbers (like Roman numerals) are normally excluded. In
-      U4.0+, this is the same as General_Category = Decimal_Number (Nd). See <a href="http://www.unicode.org/Public/4.0-Update/extracted/DerivedNumericType-4.0.0d19b.txt">DerivedNumericType-4.0.0d19b.txt</a></td>
+      U4.0+, this is the same as gc = Decimal_Number (Nd). See <a href="http://www.unicode.org/Public/4.0-Update/extracted/DerivedNumericType-4.0.0d19b.txt">DerivedNumericType-4.0.0d19b.txt</a></td>
   </tr>
   <tr>
+    <td><b>xDigit</b><br>
+      0..9, A..F, a..f<br>
+    </td>
+    <td><b>UCHAR_ASCII_HEX_DIGIT</b><br>
+      0-9 A-F a-f
+      <p><b>UCHAR_HEX_DIGIT<br>
+      </b>adds fullwidth</p>
+    </td>
     <td>&nbsp;</td>
-    <td>graph</td>
-    <td>[^\p{cntl}\p{space}]</td>
-    <td>Simple combination of other properties</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>lower</td>
-    <td>[\p{Lowercase}]</td>
-    <td>Lowercase includes more than General_Category = Lowercase_Letter (Ll).
-      See <a href="http://www.unicode.org/Public/4.0-Update/DerivedCoreProperties-4.0.0d20b.txt">DerivedCoreProperties-4.0.0d20b.txt</a>.</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>print</td>
-    <td>[^\p{cntrl}]</td>
-    <td>Simple combination of other properties</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>punct</td>
-    <td>[\p{General_Category=Punctuation}]</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>\s</td>
-    <td>space</td>
-    <td>[\p{Whitespace}]</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>upper</td>
-    <td>[\p{Uppercase} \p{General_Category=Titlecase_Letter}]</td>
-    <td>Uppercase includes more than General_Category = Uppercase_Letter (Lu).
-      The titlecase letters (Lt) are added because although neither fish nor
-      fowl, adding them will probably work better for old software. See <a href="http://www.unicode.org/Public/4.0-Update/DerivedCoreProperties-4.0.0d20b.txt">DerivedCoreProperties-4.0.0d20b.txt</a>.</td>
-  </tr>
-  <tr>
-    <td>\w</td>
-    <td>word</td>
-    <td>[\p{alpha} \p{digit} \N{LOW LINE}]</td>
-    <td>This is only an approximation to Word Boundaries (See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX
-      #29: Text Boundaries</a>). The digits and &quot;_&quot; are lumped in for
-      compatibility.</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>xDigit</td>
-    <td>[\p{Hex_Digit}]</td>
+    <td>\p{ASCII_Hex_Digit}</td>
     <td>See <a href="http://www.unicode.org/Public/4.0-Update/PropList-4.0.0d20b.txt">PropList-4.0.0d20b.txt</a></td>
   </tr>
   <tr>
-    <td>\X</td>
+    <td><b>alnum</b><br>
+      gc=L or M or N<br>
+    </td>
+    <td><b>u_isalnum</b><br>
+      gc=L or Nd</td>
+    <td><b>isLetterOrDigit</b><br>
+      gc=L or Nd</td>
+    <td>\p{alpha}<br>
+      \p{digit}</td>
+    <td>Simple combination of other properties</td>
+  </tr>
+  <tr>
+    <td><b>word</b><br>
+      L or M or N or &quot;_&quot;
+      <p><b>\w</b></p>
+    </td>
+    <td>see below</td>
+    <td>see below</td>
+    <td>\p{alpha}<br>
+      \p{digit}<br>
+      \N{LOW LINE}</td>
+    <td>This is only an approximation to Word Boundaries (See below). The digits
+      and &quot;_&quot; are lumped in for compatibility.</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><b>cntrl</b><br>
+      gc=C</td>
+    <td><b>u_isISOControl<br>
+      </b>gc=C</td>
+    <td><b>isISOControl<br>
+      </b>gc=C</td>
+    <td>\p{gc=Control}</td>
+    <td>Does not include Format, since some of those are needed in the
+      representation of normal text.<br>
+      <b>Open Issue:</b> add&nbsp; \p{gc=Zl} \p{gc=Zp}?</td>
+  </tr>
+  <tr>
+    <td><b>graph</b><br>
+      gc=L or M or N or P or S or Co</td>
     <td>&nbsp;</td>
-    <td>Default Grapheme Cluster</td>
-    <td>See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX #29:
-      Text Boundaries</a>, also <a href="http://www.unicode.org/reports/tr29/GraphemeClusterBreakTest.html">GraphemeClusterBreakTest.html</a>
+    <td>&nbsp;</td>
+    <td><b>^</b>\p{cntl}</td>
+    <td>Perl's is the same as excluding: Z (except S), Cc, Cf, Cs, Cn</td>
+  </tr>
+  <tr>
+    <td><b>print</b><br>
+      gc=graph + Zs</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\p{graph}<br>
+      \p{space}</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><b>space</b><br>
+      Z or HT..CR
+      <p><b>\s</b></p>
+    </td>
+    <td><b>u_isWhitespace<br>
+      = </b>Java_isWhitespace + NEL
+      <p><b>u_isJavaSpaceChar<br>
+      = </b>Java_isSpace</p>
+      <p><b>u_isspace<br>
+      </b>= isSpace??</p>
+      <p><b>u_isUWhiteSpace<br>
+      </b>Unicode WhiteSpace</td>
+    <td><b>isWhitespace<br>
+      </b>&nbsp;Z* +&nbsp; HT..CR + U+001C.. U+001F
+      <p><b>isSpaceChar:<br>
+      </b>gc=Z*</p>
+      <p><b>isSpace</b> (depre.):<br>
+      HT..CR</td>
+    <td>\p{Whitespace}</td>
+    <td>See <a href="#Whitespace_Comparison">Whitespace_Comparison</a>.
+      <p>Note, U+200B (ZWSP) while a Z character, is for line break control and
+      should not be included. NEL is U+0085 NEXT LINE</p>
+      <p>Z' is an old version of the Unicode gc=Z</p>
     </td>
   </tr>
   <tr>
-    <td>\b</td>
+    <td><b>blank</b><br>
+      gc=Zl or Zp or HT, SP</td>
     <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>[\p{Whitespace}<br>
+      &nbsp;- {cntl}]<br>
+      \N{HT}</td>
+    <td>&quot;horizontal&quot; whitespace?</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+    <td bgcolor="#FFFF00">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><b>\X</b></td>
+    <td>BreakIterator</td>
+    <td>BreakIterator*</td>
+    <td>Default Grapheme Cluster</td>
+    <td>See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX #29:
+      Text Boundaries</a>, also <a href="http://www.unicode.org/reports/tr29/GraphemeClusterBreakTest.html">GraphemeClusterBreakTest.html</a></td>
+  </tr>
+  <tr>
+    <td><b>\b</b></td>
+    <td>BreakIterator</td>
+    <td>BreakIterator*</td>
     <td>Default Word Boundaries</td>
     <td>If there is a requirement that /b align with \w, then it would use the
       approximation above instead. See <a href="http://www.unicode.org/reports/tr29/tr29-4d4.html">UAX
-      #29: Text Boundaries</a>, also <a href="http://www.unicode.org/reports/tr29/WordBreakTest.html">WordBreakTest.html</a>.
-    </td>
+      #29: Text Boundaries</a>, also <a href="http://www.unicode.org/reports/tr29/WordBreakTest.html">WordBreakTest.html</a>.</td>
   </tr>
 </table>
-<p><b><a name="Notes">Notes</a>:</b></p>
+<h3><b><a name="Notes">Notes</a>:</b></h3>
 <ul>
-  <li>Open Issues
-    <ul>
-      <li>We may want to move \p{General_Category=Mark} to word instead of
-        alpha. Depends on what gets the best level of compatibility.</li>
-    </ul>
-  </li>
   <li>Other Unicode Links
     <ul>
       <li><a href="http://www.unicode.org/unicode/reports/tr18/">UTR #18:
         Unicode Regular Expression Guidelines</a></li>
-      <li><a href="http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d20b.html">http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d20b.html</a>
-      </li>
+      <li><a href="http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d20b.html">http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d20b.html</a></li>
     </ul>
   </li>
   <li>Related Perl Links
@@ -169,6 +260,20 @@ they are to beta versions. If so, see the <a href="#Notes">Notes</a>.</p>
       <li><a href="http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d5b.html">http://www.unicode.org/Public/4.0-Update/UCD-4.0.0d5b.html</a></li>
     </ul>
   </li>
+  <li>ICU Links
+    <ul>
+      <li><a href="http://oss.software.ibm.com/icu/apiref/uchar_8h.html">http://oss.software.ibm.com/icu/apiref/uchar_8h.html</a>
+      </li>
+      <li><a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icu/source/common/unicode/uchar.h">http://oss.software.ibm.com/cvs/icu/~checkout~/icu/source/common/unicode/uchar.h</a>
+        (latest version)</li>
+    </ul>
+  </li>
+  <li>Java Links
+    <ul>
+      <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html">http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Character.html</a>
+      </li>
+    </ul>
+  </li>
   <li><i><b>Broken Links</b></i>: some of the above links may not work, since
     they are to beta versions. If so, go to the latest links through the
     following:
@@ -178,6 +283,234 @@ they are to beta versions. If so, see the <a href="#Notes">Notes</a>.</p>
     </ul>
   </li>
 </ul>
+<h3><a name="Whitespace_Comparison"><b>Whitespace Comparison</b></a><b>:</b></h3>
+<p><i>(Using Unicode 4.0 properties for comparison. Note that the Java
+properties use old versions of Unicode properties).</i></p>
+<pre><b>In White_Space, but not in Z:
+</b>        U+0009  # &lt;CHARACTER TABULATION (HT)&gt;
+        U+000A  # &lt;LINE FEED (LF)&gt;
+        U+000B  # &lt;LINE TABULATION (VT)&gt;
+        U+000C  # &lt;FORM FEED (FF)&gt;
+        U+000D  # &lt;CARRIAGE RETURN (CR)&gt;
+        U+0085  # &lt;NEXT LINE (NEL)&gt;
+<b>Not in White_Space, but in Z:
+</b>        U+200B  # ZERO WIDTH SPACE
+<b>In both White_Space and Z:
+</b>        U+0020  # SPACE
+        U+00A0  # NO-BREAK SPACE
+        U+1680  # OGHAM SPACE MARK
+        U+180E  # MONGOLIAN VOWEL SEPARATOR
+        U+2000  # EN QUAD
+        U+2001  # EM QUAD
+        U+2002  # EN SPACE
+        U+2003  # EM SPACE
+        U+2004  # THREE-PER-EM SPACE
+        U+2005  # FOUR-PER-EM SPACE
+        U+2006  # SIX-PER-EM SPACE
+        U+2007  # FIGURE SPACE
+        U+2008  # PUNCTUATION SPACE
+        U+2009  # THIN SPACE
+        U+200A  # HAIR SPACE
+        U+2028  # LINE SEPARATOR
+        U+2029  # PARAGRAPH SEPARATOR
+        U+202F  # NARROW NO-BREAK SPACE
+        U+205F  # MEDIUM MATHEMATICAL SPACE
+        U+3000  # IDEOGRAPHIC SPACE</pre>
+<pre><b>In White_Space, but not in isSpaceChar:
+</b>        U+0009  # &lt;CHARACTER TABULATION&gt;
+        U+000A  # &lt;LINE FEED (LF)&gt;
+        U+000B  # &lt;LINE TABULATION&gt;
+        U+000C  # &lt;FORM FEED (FF)&gt;
+        U+000D  # &lt;CARRIAGE RETURN (CR)&gt;
+        U+0085  # &lt;NEXT LINE (NEL)&gt;
+        U+1680  # OGHAM SPACE MARK
+        U+180E  # MONGOLIAN VOWEL SEPARATOR
+        U+202F  # NARROW NO-BREAK SPACE
+        U+205F  # MEDIUM MATHEMATICAL SPACE
+<b>Not in White_Space, but in isSpaceChar:
+</b>        U+200B  # ZERO WIDTH SPACE
+<b>In both White_Space and isSpaceChar:
+</b>        U+0020  # SPACE
+        U+00A0  # NO-BREAK SPACE
+        U+2000  # EN QUAD
+        U+2001  # EM QUAD
+        U+2002  # EN SPACE
+        U+2003  # EM SPACE
+        U+2004  # THREE-PER-EM SPACE
+        U+2005  # FOUR-PER-EM SPACE
+        U+2006  # SIX-PER-EM SPACE
+        U+2007  # FIGURE SPACE
+        U+2008  # PUNCTUATION SPACE
+        U+2009  # THIN SPACE
+        U+200A  # HAIR SPACE
+        U+2028  # LINE SEPARATOR
+        U+2029  # PARAGRAPH SEPARATOR
+        U+3000  # IDEOGRAPHIC SPACE</pre>
+<pre><b>In White_Space, but not in isWhitespace:
+</b>        U+0085  # &lt;NEXT LINE (NEL)&gt;
+        U+00A0  # NO-BREAK SPACE
+        U+1680  # OGHAM SPACE MARK
+        U+180E  # MONGOLIAN VOWEL SEPARATOR
+        U+202F  # NARROW NO-BREAK SPACE
+        U+205F  # MEDIUM MATHEMATICAL SPACE
+<b>Not in White_Space, but in isWhitespace:
+</b>        U+001C  # &lt;INFORMATION SEPARATOR FOUR&gt;
+        U+001D  # &lt;INFORMATION SEPARATOR THREE&gt;
+        U+001E  # &lt;INFORMATION SEPARATOR TWO&gt;
+        U+001F  # &lt;INFORMATION SEPARATOR ONE&gt;
+        U+200B  # ZERO WIDTH SPACE
+<b>In both White_Space and isWhitespace:
+</b>        U+0009  # &lt;CHARACTER TABULATION&gt;
+        U+000A  # &lt;LINE FEED (LF)&gt;
+        U+000B  # &lt;LINE TABULATION&gt;
+        U+000C  # &lt;FORM FEED (FF)&gt;
+        U+000D  # &lt;CARRIAGE RETURN (CR)&gt;
+        U+0020  # SPACE
+        U+2000  # EN QUAD
+        U+2001  # EM QUAD
+        U+2002  # EN SPACE
+        U+2003  # EM SPACE
+        U+2004  # THREE-PER-EM SPACE
+        U+2005  # FOUR-PER-EM SPACE
+        U+2006  # SIX-PER-EM SPACE
+        U+2007  # FIGURE SPACE
+        U+2008  # PUNCTUATION SPACE
+        U+2009  # THIN SPACE
+        U+200A  # HAIR SPACE
+        U+2028  # LINE SEPARATOR
+        U+2029  # PARAGRAPH SEPARATOR
+        U+3000  # IDEOGRAPHIC SPACE</pre>
+<h3><a name="General_Categories">General Categories</a></h3>
+<table>
+  <tr>
+    <th>
+      <p align="left">Abbr.</p>
+    </th>
+    <th>
+      <p align="left">Description</p>
+    </th>
+  </tr>
+  <tr>
+    <td align="middle">Lu</td>
+    <td>Letter, Uppercase</td>
+  </tr>
+  <tr>
+    <td align="middle">Ll</td>
+    <td>Letter, Lowercase</td>
+  </tr>
+  <tr>
+    <td align="middle">Lt</td>
+    <td>Letter, Titlecase</td>
+  </tr>
+  <tr>
+    <td align="middle">Lm</td>
+    <td>Letter, Modifier</td>
+  </tr>
+  <tr>
+    <td align="middle">Lo</td>
+    <td>Letter, Other</td>
+  </tr>
+  <tr>
+    <td align="middle">Mn</td>
+    <td>Mark, Non-Spacing</td>
+  </tr>
+  <tr>
+    <td align="middle">Mc</td>
+    <td>Mark, Spacing Combining</td>
+  </tr>
+  <tr>
+    <td align="middle">Me</td>
+    <td>Mark, Enclosing</td>
+  </tr>
+  <tr>
+    <td align="middle">Nd</td>
+    <td>Number, Decimal</td>
+  </tr>
+  <tr>
+    <td align="middle">Nl</td>
+    <td>Number, Letter</td>
+  </tr>
+  <tr>
+    <td align="middle">No</td>
+    <td>Number, Other</td>
+  </tr>
+  <tr>
+    <td align="middle">Pc</td>
+    <td>Punctuation, Connector</td>
+  </tr>
+  <tr>
+    <td align="middle">Pd</td>
+    <td>Punctuation, Dash</td>
+  </tr>
+  <tr>
+    <td align="middle">Ps</td>
+    <td>Punctuation, Open</td>
+  </tr>
+  <tr>
+    <td align="middle">Pe</td>
+    <td>Punctuation, Close</td>
+  </tr>
+  <tr>
+    <td align="middle">Pi</td>
+    <td>Punctuation, Initial quote (may behave like Ps or Pe depending on usage)</td>
+  </tr>
+  <tr>
+    <td align="middle">Pf</td>
+    <td>Punctuation, Final quote (may behave like Ps or Pe depending on usage)</td>
+  </tr>
+  <tr>
+    <td align="middle">Po</td>
+    <td>Punctuation, Other</td>
+  </tr>
+  <tr>
+    <td align="middle">Sm</td>
+    <td>Symbol, Math</td>
+  </tr>
+  <tr>
+    <td align="middle">Sc</td>
+    <td>Symbol, Currency</td>
+  </tr>
+  <tr>
+    <td align="middle">Sk</td>
+    <td>Symbol, Modifier</td>
+  </tr>
+  <tr>
+    <td align="middle">So</td>
+    <td>Symbol, Other</td>
+  </tr>
+  <tr>
+    <td align="middle">Zs</td>
+    <td>Separator, Space</td>
+  </tr>
+  <tr>
+    <td align="middle">Zl</td>
+    <td>Separator, Line</td>
+  </tr>
+  <tr>
+    <td align="middle">Zp</td>
+    <td>Separator, Paragraph</td>
+  </tr>
+  <tr>
+    <td align="middle">Cc</td>
+    <td>Other, Control</td>
+  </tr>
+  <tr>
+    <td align="middle">Cf</td>
+    <td>Other, Format</td>
+  </tr>
+  <tr>
+    <td align="middle">Cs</td>
+    <td>Other, Surrogate</td>
+  </tr>
+  <tr>
+    <td align="middle">Co</td>
+    <td>Other, Private Use</td>
+  </tr>
+  <tr>
+    <td align="middle">Cn</td>
+    <td>Other, Not Assigned (no characters in the file have this property)</td>
+  </tr>
+</table>
 
 </body>
 

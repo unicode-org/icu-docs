@@ -16,7 +16,7 @@ body         { font-family: serif }
 <body bgcolor="#FFFFFF">
 
 <h1>Universal Time Scale</h1>
-<p>M. Davis, 2004-03-11</p>
+<p>M. Davis, 2004-05-11</p>
 <p>There are quite a few different conventions for binary datetime, depending on different platforms and protocols. Some of these have severe drawbacks. For example, people using
 Unix time (seconds since Jan 1, 1970) think that they are safe until near the year 2038. But cases can and do arise where arithmetic manipulations causes serious problems. Consider
 the computation of the average of two datetimes, for example: if one calculates them with <code>averageTime = (time1 + time2)/2</code>, there will be overflow even with dates
@@ -72,7 +72,7 @@ around the present. Moreover, even if these problems don't occur, there is the i
     </tr>
     <tr>
       <td>MAC_TIME</td>
-      <td>?</td>
+      <td>double</td>
       <td>seconds</td>
       <td>Jan 1, 2001</td>
     </tr>
@@ -143,7 +143,7 @@ values of the datatype. The range of years for double is the range that would be
   </center>
 </div>
 <p>The Unix time exhibits two of the main problems: it is not precise enough, and it does not have enough range. It is a signed value with origin at 1970. So with a range of 136
-years, it extends back to Dec 1901 and up to Jan 1938.</p>
+years, it extends back to Dec 1901 and up to Jan 2038.</p>
 <h2>Proposal</h2>
 <p>Pick a particular time scale as a universal 'pivot', and provide conversion functions to and from all other major time scales. That will allow for datetimes to be converted to
 the pivot time, safely manipulated, and converted back to any other datetime time scale.</p>
@@ -185,8 +185,11 @@ would be small.</p>
 we can have GREGORIAN_DAYS be the main selector, with, say, DELPHI = GREGORIAN_DAYS as an alias.</p>
 <h2>References</h2>
 <ul>
-  <li><a href="http://longhorn.msdn.microsoft.com/lhsdk/ref/ns/system/s/datetime/datetime.aspx">http://longhorn.msdn.microsoft.com/lhsdk/ref/ns/system/s/datetime/datetime.aspx</a></li>
-  <li><b><font color="#FF0000">[TBD: others.]</font></b></li>
+  <li><a href="http://longhorn.msdn.microsoft.com/lhsdk/ref/ns/system/s/datetime/datetime.aspx">Longhorn Datetime</a></li>
+  <li><a
+    href="http://developer.apple.com/documentation/CoreFoundation/Reference/CFTimeUtils/Reference/DataTypeGroupIndex.html/apple_ref/c/tdef/DataTypeGroupIndex.html#//apple_ref/c/tdef/CFAbsoluteTime">Mac
+    CFAbsoluteTime</a></li>
+  <li><font color="#FF0000">[Ed Note: extend]</font></li>
 </ul>
 
 </body>

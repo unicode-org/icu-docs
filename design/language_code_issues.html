@@ -5,10 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>The Language Code Mess</title>
+<title>The Language Code Issue</title>
 <style>
 <!--
-.changed2    { background-color: #FFFF00; border-style: dotted; border-width: 1px }
+.changed     { background-color: #FFFFFF }
+.changedA    { background-color: #FFFFFF }
+.changedB    { background-color: #FFFF00; border-style: dotted; border-width: 1px }
 -->
 </style>
 </head>
@@ -17,6 +19,9 @@
 
 <h1 align="center">Language Code Issues</h1>
 <p align="center">M. Davis, 2003.04.10</p>
+<p class="changedB" align="center"><i>&quot;A shprakh iz a diyalekt mit an armey
+un a flot&quot;<br>
+<font size="4">—</font> Max Weinreich (Joshua Fishman), 1945.</i></p>
 <p>The current situation with regards to language codes and locale codes is a a
 bit of a mess. We are looking at migrating ICU to use RFC 3066 instead of ISO
 639 alone, and find a number of problems. Our goal is to identify the language
@@ -26,7 +31,7 @@ correctly, without loss of data because of missing or mismatched language codes.
 The issues that we turned up, or were pointed out to us by others, are of
 interest not only for ICU but also to a broader audience.</p>
 <p>In the body of this document, we will refer to a number of different
-standards. Here are links to them:</p>
+standards or other resources. Here are links to them:</p>
 <ul>
   <li><a href="http://www.ietf.org/rfc/rfc3066.txt">RFC 3066</a> (language
     codes)
@@ -72,7 +77,17 @@ standards. Here are links to them:</p>
       <li><a href="http://www.worldlanguage.com/Languages/Azeri.htm">Azeri</a></li>
     </ul>
   </li>
+  <li>
+    <p class="changedB"><a href="http://oss.software.ibm.com/cvs/icu/~checkout~/locale/locale_data_markup.html">Locale
+    Data Markup Language</a>
+    <ul>
+      <li>
+        <p class="changedB">&nbsp;For comparisons across systems formatted as
+        HTML tables, see <a href="http://oss.software.ibm.com/cvs/icu/locale/all_diff_xml/">Comparisons</a>.</li>
+    </ul>
+  </li>
 </ul>
+<p align="center" class="changedB"><i>Most recent changes are highlighted.</i></p>
 <h2><a name="Missing_Languages">Missing Languages</a></h2>
 <p>The usual basis for a locale code is a combination of language code and
 region code, sometimes augmented with variants. The language code could either
@@ -91,19 +106,20 @@ important ones in practice.</p>
 <p>As far as we are concerned — <i>as a completely practical matter</i> —
 two languages are different if they require substantially different localized
 resources. Distinctions according to spoken form are important in some contexts,
-but the written form is <i>by far and away</i> the most important issue for data
-interchange. Unfortunately, this is not the principle used in ISO 639, which has
-the fairly unproductive notion that only spoken language matters (it is also not
-completely consistent about this, however). If the use of languages happens to
-correspond to region boundaries expressed as ISO 639 country codes, then we can
-use RFC 3066 to express the difference, but in many cases this is not true. For
-example, both simplified and traditional Chinese are used in Hong Kong S.A.R.;
-both Cyrillic and Latin are used in Serbia, Azerbaijan, and Uzbekistan; Indic
-languages are customarily written in different scripts, etc.</p>
+but the <a href="#Written_Language">written form</a> is <i>by far and away</i>
+the most important issue for data interchange. Unfortunately, this is not the
+principle used in ISO 639, which has the fairly unproductive notion that only
+spoken language matters (it is also not completely consistent about this,
+however). If the use of languages happens to correspond to region boundaries
+expressed as ISO 639 country codes, then we can use RFC 3066 to express the
+difference, but in many cases this is not true. For example, both simplified and
+traditional Chinese are used in Hong Kong S.A.R.; both Cyrillic and Latin are
+used in Serbia, Azerbaijan, and Uzbekistan; Indic languages are customarily
+written in different scripts, etc.</p>
 <p>ISO 15924 contains script codes that could be used, in some cases, to
 distinguish future language codes in these cases. Unfortunately, RFC 3066 does
 not permit the productive use of script codes for these cases; each example has
-to be separately registered, which can take quite a while. <span class="changed2">(There
+to be separately registered, which can take quite a while. <span class="changedA">(There
 is good reason for this: ISO 15924 was not ready in time for RFC 3066 to refer
 to it!)</span></p>
 <p>ISO 15924 does not yet help with simplified Chinese vs. traditional Chinese.
@@ -113,7 +129,7 @@ for Chinese (Hani) corresponding to simplified and traditional (such as <i>Hans<
 and <i>Hant</i>) if script codes were used to address the above problem. Thus we
 would end up with language codes like <i>zh-Hans</i> or <i>az-Latn</i>.</p>
 <blockquote>
-  <p class="changed2"><b>Note: </b>15924 uses a change in the last letter,
+  <p class="changedA"><b>Note: </b>15924 uses a change in the last letter,
   typically, to indicate variants. So <i>Hans</i> and <i>Hant</i> would be more
   likely choices than other possibilities like <i>Hsim</i> and <i>Htra.</i> ISO
   15924 also tends to use titlecase, but in RFC 3066 (and in practice) case
@@ -135,121 +151,125 @@ in the current registrations.</p>
   same format as the book.</p>
 </blockquote>
 <h3><a name="Best_Format">Best Format</a></h3>
-<p class="changed2">We strongly recommend codes of the form <i>uz-Latn-UZ</i> or
+<p class="changedA">We strongly recommend codes of the form <i>uz-Latn-UZ</i> or
 <i>zh-Hans-HK</i>, with the script in the middle.</p>
-<p class="changed2">The use of the language codes of the form <i>La-uz-UZ</i>
+<p class="changedA">The use of the language codes of the form <i>La-uz-UZ</i>
 cited above is not optimal. The bare &quot;La&quot; definitely violates RFC
 3066; it can't even be registered, since it uses 2 letters, and relies on case
 distinctions to separate scripts from countries, which is fragile. The
 four-letter form for the script would be consistent with RFC 3066, and would not
 be confused in a case-insensitive environment.</p>
-<p class="changed2">But even if the two-letter form is changed to four, the form
+<p class="changedA">But even if the two-letter form is changed to four, the form
 <i>Latn-uz-UZ</i> is not particularly good. At first glance, it might seem that
 script is a &quot;greater&quot; difference than language, and should be at the
 top level. But in practice, the differences between languages are greater than
-those between scripts. The ordering of script after base language is also better
+those between scripts<span class="changedB">, to human users. To learn how to
+read, <i>at least haltingly</i>, a known language in an unknown script, is a
+matter of a few days or weeks. To learn how to read, <i>at all</i>, an unknown
+language in a known script, is a matter of many months or years.</span></p>
+<p class="changedA">The ordering of script after base language is also better
 for resource inheritance chains used in systems like Java or ICU. In those
 chains, one strips off trailing subtags to find the resource parent. Any missing
 resource, such as string, is inherited from the parent. The resource chain for
 some samples is shown in (I).</p>
 <table border="1" cellspacing="0" cellpadding="2">
   <caption>
-    <p class="changed2"><b>I. Top Script</b></p>
+    <p class="changedA"><b>I. Top Script</b></p>
   </caption>
   <tr>
-    <td align="center" colspan="2" class="changed2">
-      <p class="changed2"><i>Latn</i></td>
-    <td align="center" colspan="2" class="changed2">
-      <p class="changed2"><i>Cryl</i></td>
+    <td align="center" colspan="2" class="changedA">
+      <p class="changedA"><i>Latn</i></td>
+    <td align="center" colspan="2" class="changedA">
+      <p class="changedA"><i>Cryl</i></td>
   </tr>
   <tr>
-    <td align="center" class="changed2">
-      <p class="changed2"><i>Latn-az</i></td>
-    <td align="center" class="changed2">
-      <p class="changed2"><i>Latn-uz</i></td>
-    <td align="center" class="changed2">
-      <p class="changed2"><i>Cryl-az</i></td>
-    <td align="center" class="changed2">
-      <p class="changed2"><i>Cryl-uz</i></td>
+    <td align="center" class="changedA">
+      <p class="changedA"><i>Latn-az</i></td>
+    <td align="center" class="changedA">
+      <p class="changedA"><i>Latn-uz</i></td>
+    <td align="center" class="changedA">
+      <p class="changedA"><i>Cryl-az</i></td>
+    <td align="center" class="changedA">
+      <p class="changedA"><i>Cryl-uz</i></td>
   </tr>
   <tr>
-    <td align="center" width="25%" class="changed2">
-      <p class="changed2"><i>Latn-az-AZ</i></td>
-    <td align="center" width="25%" class="changed2">
-      <p class="changed2"><i>Latn-uz-UZ</i></td>
-    <td align="center" width="25%" class="changed2">
-      <p class="changed2"><i>Cryl-az-AZ</i></td>
-    <td align="center" width="25%" class="changed2">
-      <p class="changed2"><i>Cryl-uz-UZ</i></td>
+    <td align="center" width="25%" class="changedA">
+      <p class="changedA"><i>Latn-az-AZ</i></td>
+    <td align="center" width="25%" class="changedA">
+      <p class="changedA"><i>Latn-uz-UZ</i></td>
+    <td align="center" width="25%" class="changedA">
+      <p class="changedA"><i>Cryl-az-AZ</i></td>
+    <td align="center" width="25%" class="changedA">
+      <p class="changedA"><i>Cryl-uz-UZ</i></td>
   </tr>
 </table>
-<p class="changed2">But an isolated <i>Cyrl</i> or <i>Latn</i> at the top is
+<p class="changedA">But an isolated <i>Cyrl</i> or <i>Latn</i> at the top is
 just not very productive. Inheritance with this type of structure doesn't work
 in practice, because no common resources would be inherited in common, at the
 top level, between <i>Latn-uz-UZ</i> and <i>Latn-az-AZ</i>. Missing strings
 would fall back to a completely different language; and in practice an Uzbek is
 far less likely to understand information from a different language than that in
 a different script.</p>
-<p class="changed2">The use of the form <i>uz-UZ-Latn</i> is also not optimal,
+<p class="changedA">The use of the form <i>uz-UZ-Latn</i> is also not optimal,
 as we see when we look at resource inheritance chains. Suppose we have resources
 for both Simplified and Traditional Chinese in Hong Kong, Simplified in China
 and Traditional in Taiwan:</p>
 <table border="1" cellspacing="0" cellpadding="2">
   <caption>
-    <p class="changed2"><b>II. Bottom Script</b></p>
+    <p class="changedA"><b>II. Bottom Script</b></p>
   </caption>
   <tr>
     <td align="center" colspan="4">
-      <p class="changed2"><i>zh</i></td>
+      <p class="changedA"><i>zh</i></td>
   </tr>
   <tr>
     <td align="center">
-      <p class="changed2"><i>zh-CN</i></td>
+      <p class="changedA"><i>zh-CN</i></td>
     <td align="center" colspan="2">
-      <p class="changed2"><i>zh-HK</i></td>
+      <p class="changedA"><i>zh-HK</i></td>
     <td align="center">
-      <p class="changed2"><i>zh-TW</i></td>
+      <p class="changedA"><i>zh-TW</i></td>
   </tr>
   <tr>
     <td align="center" width="25%">
-      <p class="changed2"><i>zh-CN-Hans</i></td>
+      <p class="changedA"><i>zh-CN-Hans</i></td>
     <td align="center" width="25%">
-      <p class="changed2"><i>zh-HK-Hans</i></td>
+      <p class="changedA"><i>zh-HK-Hans</i></td>
     <td align="center" width="25%">
-      <p class="changed2"><i>zh-HK-Hant</i></td>
+      <p class="changedA"><i>zh-HK-Hant</i></td>
     <td align="center" width="25%">
-      <p class="changed2"><i>zh-TW-Hant</i></td>
+      <p class="changedA"><i>zh-TW-Hant</i></td>
   </tr>
 </table>
-<p class="changed2">The key different is at the difference between rows 2 and 3.
+<p class="changedA">The key different is at the difference between rows 2 and 3.
 In (II) above, these can vary by script; in (III) below these only vary by
 region.</p>
 <table border="1" cellspacing="0" cellpadding="2">
   <caption>
-    <p class="changed2"><b>III. Middle Script</b></p>
+    <p class="changedA"><b>III. Middle Script</b></p>
   </caption>
   <tr>
     <td colspan="4" align="center">
-      <p class="changed2"><i>zh</i></td>
+      <p class="changedA"><i>zh</i></td>
   </tr>
   <tr>
     <td colspan="2" align="center">
-      <p class="changed2"><i>zh-Hans</i></td>
+      <p class="changedA"><i>zh-Hans</i></td>
     <td colspan="2" align="center">
-      <p class="changed2"><i>zh-Hant</i></td>
+      <p class="changedA"><i>zh-Hant</i></td>
   </tr>
   <tr>
     <td align="center" width="25%">
-      <p class="changed2"><i>zh-Hans-CN</i></td>
+      <p class="changedA"><i>zh-Hans-CN</i></td>
     <td align="center" width="25%">
-      <p class="changed2"><i>zh-Hans-HK</i></td>
+      <p class="changedA"><i>zh-Hans-HK</i></td>
     <td align="center" width="25%">
-      <p class="changed2"><i>zh-Hant-HK</i></td>
+      <p class="changedA"><i>zh-Hant-HK</i></td>
     <td align="center" width="25%">
-      <p class="changed2"><i>zh-Hant-TW</i></td>
+      <p class="changedA"><i>zh-Hant-TW</i></td>
   </tr>
 </table>
-<p class="changed2">The typical differences between regions tend to be rather
+<p class="changedA">The typical differences between regions tend to be rather
 small, thus allowing inheritance, whereas the differences between scripts are
 huge. So if a string is missing at level 3 in (III), at least it gets the right
 script when inheriting from the parent. And typically differences from the
@@ -263,7 +283,7 @@ countries sharing the same script variant.</p>
 3066 -- Language code assignments</a>. Interestingly, there have not yet been
 any 3066 assignments of the form &lt;639_code&gt;-&lt;four-letter-code&gt;, so
 there would not be any possibility of collisions (if we move quickly).</p>
-<p class="changed2">In a sense, on can think of the forms <i>uz-Latn-UZ</i> or <i>zh-Hans-HK</i>,
+<p class="changedA">In a sense, on can think of the forms <i>uz-Latn-UZ</i> or <i>zh-Hans-HK</i>,
 with the script in the middle, as being &quot;big-endian&quot;; supplying the
 most significant information first, and following on with progressive
 refinements. This is in line with the current practice in RFC 3066 of language
@@ -285,7 +305,23 @@ variants. Thus in practice we would need to register each code combined with
 whatever regions made sense, and end up with: <i>az-Latn, az-Latn-AZ, az-Cryl,
 az-Cryl-AZ,...</i> in addition to the current <i>az, az-AZ</i>. Thus all of the
 matching options would be available.</p>
-<h3 class="changed2"><a name="Plan_of_Action">Plan of Action</a></h3>
+<p class="changedB">It is important to point out that these are two very
+different uses of language tags: <i>matching</i> vs. <i>accessing</i>. For
+matching you typically want an &quot;unmarked&quot; case, thus zh matching any
+Chinese text, no matter how it is written, or zh-Hani matching any Chinese text
+written with CJK ideographs, whether they be Hant or Hans (or some other
+as-yet-undistinguished variant). Similarly, &quot;en&quot; exists, and in
+matching, would match any of en-US, en-Ca, etc. For this first case, <i>matching</i>,
+there is no notion of &quot;default&quot; text.
+<p class="changedB">For <i>accessing</i>, it is another matter. If I ask for
+text in &quot;en&quot;, I'm going to get one particular variant, because there
+is no alternative. That is the place where you end up having a default value.
+Presumably, if you really care what you get, you will ask a more detailed
+question, such as for text in &quot;en-US&quot;, or ask a series of alternatives
+with weights or a perference ordering, such as: {en-US, en-CA, en, fr-CH, fr}.
+(The fr-CH for sensible numbers, instead of the equivalent of <i>four-score and
+nineteen</i> for 99. &#9786;)</p>
+<h3 class="changedA"><a name="Plan_of_Action">Plan of Action</a></h3>
 <p>In any event, the important step is to get the missing written language codes
 registered. Ideally, there would simply be ISO 639 codes for the missing written
 languages, but failing that, the first steps would be:</p>
@@ -497,6 +533,46 @@ currency codes should always accompany any currency amounts; otherwise the data
 is ambiguous, and software is forced to use the user's locale to guess at the
 currency. But that is subject for a different document, <span class="changed"><a href="jit_localization.html">JIT
 Localization</a><span>.)</span></span></p>
+<h3 class="changedB"><a name="Written_Language">Written Language</a></h3>
+<p class="changedB">Our criteria for what makes a written language are purely
+pragmatic; <i>what would a copy-editor say? </i>If I gave him/er text like:</p>
+<ol>
+  <li type="A">
+    <p class="changedB">&quot;Theatre Center News: The date of the last version
+    of this document was 2003&#24180;3&#26376;20&#26085;. A copy can be obtained
+    for $50,0 or 1.234,57 &#1075;&#1088;&#1085;. We would like to acknowledge
+    contributions by the following authors (in alphabetical order): Alaa
+    Ghoneim, Behdad Esfahbod, Ahmed Talaat, Eric Mader, Asmus Freytag, Avery
+    Bishop, and Doug Felt.&quot;</p>
+  </li>
+</ol>
+<p class="changedB">S/he would say: Sorry, that is *far* from acceptable English
+for publication, do it again! So I would change it to either B or C below,
+depending on which orthographic variant of English was the target for the
+publication:</p>
+<ol type="A" start="2">
+  <li>
+    <p class="changedB">&quot;Theater Center News: The date of the last version
+    of this document was 3/20/2003. A copy can be obtained for $50.00 or
+    1,234.57 Ukrainian Hryvni. We would like to acknowledge contributions by the
+    following authors (in alphabetical order): Alaa Ghoneim, Ahmed Talaat, Asmus
+    Freytag, Avery Bishop, Behdad Esfahbod, Doug Felt, Eric Mader.&quot;</p>
+  <li>
+    <p class="changedB">&quot;Theatre Centre News: The date of the last version
+    of this document was 20/3/2003. A copy can be obtained for $50.00 or
+    1,234.57 Ukrainian Hryvni. We would like to acknowledge contributions by the
+    following authors (in alphabetical order): Alaa Ghoneim, Ahmed Talaat, Asmus
+    Freytag, Avery Bishop, Behdad Esfahbod, Doug Felt, Eric Mader.&quot;</p>
+</ol>
+<p class="changedB">Clearly there are many acceptable variations on this text.
+For example, s/he might still quibble with the use of first vs. last name
+sorting in the list, but clearly the first list was <i>not</i> acceptable
+English alphabetical order. And if in quoting a name, like &quot;Theatre Centre
+News&quot;, you may leave it in the source orthography even if it differs from
+the publication target orthography. And so on.<br>
+<br>
+However, just as clearly, there limits on what is acceptable English, and 2003&#24180;3&#26376;20&#26085;,
+for example, is not.</p>
 
 </body>
 

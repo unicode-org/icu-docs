@@ -35,14 +35,18 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
 <div class="body">
   <h2 align="center"><font color="#FF0000">Draft</font> Unicode Technical Report #36</h2>
   <h1>Unicode Security Considerations</h1>
-  <table border="1" cellpadding="2" width="100%" style="border-collapse: collapse" cellspacing="0">
+  <table border="1" cellpadding="2" width="90%" style="border-collapse: collapse" cellspacing="0">
+    <tr>
+      <td valign="top">Revision</td>
+      <td valign="top">3<font color="#FF0000"> (draft)</font></td>
+    </tr>
     <tr>
       <td valign="top">Authors</td>
       <td valign="top">Mark Davis (<a href="mailto:mark.davis@us.ibm.com">mark.davis@us.ibm.com</a>)</td>
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top" class="old_changed">2005-02-22</td>
+      <td valign="top" class="old_changed">2005-04-13</td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
@@ -58,10 +62,6 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td valign="top">Latest Version</td>
       <td valign="top"><a href="http://www.unicode.org/reports/tr36/">
       http://www.unicode.org/reports/tr36/</a></td>
-    </tr>
-    <tr>
-      <td valign="top">Revision</td>
-      <td valign="top">3</td>
     </tr>
   </table>
   <p class="reviewnote"><b>Note to Reviewers:</b> Based on feedback, the title was shortened to 
@@ -125,10 +125,10 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <p>In many ways, the use of Unicode makes programs much more robust and secure. When systems used 
   a hodge-podge of different charsets for representing characters, it was possible to take advantage 
   of differences between those charsets, or in the way in which programs converted to and from them.</p>
-  <p>However, because Unicode contains such a large number of characters, and because it 
-  incorporates the varied writing systems of the world, incorrect usage can expose programs or 
-  systems to possible security attacks. This document describes some of the security considerations 
-  that programmers, system analysts, standards developers, and users should take into account.</p>
+  <p>Because Unicode contains such a large number of characters, and because it incorporates the 
+  varied writing systems of the world, incorrect usage can expose programs or systems to possible 
+  security attacks. This document describes some of the security considerations that programmers, 
+  system analysts, standards developers, and users should take into account.</p>
   <p>We anticipate that this document will grow over time, adding additional sections as needed. 
   Initially, there are two areas that will be discussed: canonical representation and visual 
   spoofing. For more information, see also the Unicode
@@ -242,7 +242,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   sufficiently different. For example, foo·com (using the hyphenation point instead of the period) 
   should be distinguishable from foo.com by the positioning of the dot (except in faulty fonts).</span></p>
   <p>To a certain extent, the new forms of visual spoofing available with Unicode are a matter of 
-  degree and not kind. However, because of the very large number of Unicode characters (over 94,000 
+  degree and not kind. However, because of the very large number of Unicode characters (over 96,000 
   in the current version), the number of opportunities for visual spoofing is significantly larger 
   than with a restricted character set such as ASCII.</p>
   <p><span>For examples of visually confusable characters, see [<a href="#confusables">confusables</a>].</span></p>

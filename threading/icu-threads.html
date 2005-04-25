@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1">
+  <meta name="GENERATOR" content="Visual Page 2.0 for Windows">
+  <title>ICU4C Thread Safety Guidelines</title>
+  <meta name="author" content="Andy Heninger">
+</head>
+<body style="background-color: white; color: rgb(0, 0, 0);"
+ link="#000099" vlink="#990099" alink="#000099">
+<h1>ICU4C Thread Safety Guidelines<br>
+</h1>
+Here are a set of suggested coding guidelines for thread safety within
+ICU.&nbsp; The memory architecture of some multi-processor systems are
+not compatible with the double-checked lazy data initialization that we
+have been using.&nbsp; Here are some alternative approaches.<br>
+<br>
+This applies to the internal implementation of ICU.&nbsp; No change to
+the threading model presented to code using ICU is implied.<br>
+<br>
+Draft 0.03<br>
+4/23/03<br>
+Andy Heninger<br>
+<hr style="width: 100%; height: 2px;"><br>
+<br>
+<h2>The Problem with Double-Checked Lazy&nbsp; Initialization:
+Processor Memory Models, Weak Ordering of Memory Operations<br>
+</h2>
+ICU has historically used double-checked  lazy initialization of&nbsp;
+constant objects.&nbsp; The code typically looks something like this:<br>
+<br>
+<pre>   UType  *gObject = NULL;<br><br>   UType *getObject() {<br>      if (gObject == NULL) {<br>          UType  *tempObj  = new UType;<br>          umtx_lock();<br>          if (gObject == NULL) {<br>              gObject = tempObj;<br>          } else {<br>              delete tempObj;<br>          }<br>          umtx_unlock();<br>       }<br>       return gObject;<br>   }<br></pre>
+<br>
+This code is broken on a multi-processor system with weak memory
+ordering.&nbsp; On such a system, writes to memory made by a thread
+executing on one CPU may, on a second thread on a second CPU, appear to
+occur out-of-order.&nbsp;&nbsp; Thread one may store a value into
+variable A, then later write to variable B.&nbsp; Thread two may see the
+value of B change <span style="font-style: italic;">before </span>the
+value of A.<br>
+<br>
+The problem with the double checked lazy initialization code occurs
+when a thread sees a non-null value in the global object pointer at the
+first check, but does not yet see a fully initialized object.&nbsp; A
+second thread initialized the object, then initialized the pointer, but
+to the first thread, the pointer initialization appeared to occur before
+the object initialization.<br>
+<br>
+It's interesting that the double-checked initialization pattern has
+been widely used for years, but has only recently been identified as a
+potential problem.&nbsp; The risk exists only on some processor
+families, and is transient in time.&nbsp; If an application survives
+its start up and initialization without failure, it becomes safe, and
+will remain so no matter how long it runs.&nbsp; Most of the published
+discussion centers on Java and the Java Virtual Machine memory
+architecture, the design of which increases the likelyhood of trouble.<br>
+<br>
+<br>
+<h2>Processor Memory Models</h2>
+<img src="mem-model.png" title="" alt=""
+ style="width: 694px; height: 367px;"><br>
+In this example, we have three threads running on three separate
+processors, all running in the same address space.&nbsp; Because of
+processor cache memory, each thread has a slightly different view of the
+contents of the processes address space.&nbsp; The model described here
+may not correspond exactly to any particular type of processor, but it
+is close enough to be useful in understanding the problem.<br>
+<br>
+When a thread stores into "memory", there can be an arbitrary delay
+before the change propagates to the global shared memory, and the
+sequence in which the changes propagate up may be jumbled in time.&nbsp;
+Then, before the changes can be seen by another processor, they must
+propagate back down into that processors local memory, which again&nbsp;
+may involve an arbitrary delay and shuffling of the ordering.<br>
+<br>
+The combination of delays and reorderings makes it completely unsafe
+for a thread to poll a global memory location, waiting or testing for a
+result from another thread.<br>
+<br>
+<span style="font-weight: bold;">Mutexes </span>bring a degree of
+sanity to this situation.&nbsp; In addition to its usual function,
+locking a mutex will (logically) force all pending changes to propagate
+from the global memory state down to the processor acquiring the
+lock.&nbsp; This ensures that a thread acquiring the&nbsp; lock for a
+shared data structure has an up-to-date view of that structure.<br>
+<br>
+Unlocking a mutex forces the reverse memory operation - all pending
+changes in the processors local cache will be (logically) propagated up
+to the global shared memory, ensuring that the next thread to acquire
+the mutex will have an up-to-date view of the modified data structure(s).<br>
+<br>
+Most modern processors also provide some sort form&nbsp; memory barrier
+operations that define boundaries across which memory operations can
+not be reordered.&nbsp; Unfortunately there is no portable API for
+these operations, other than Mutexes.<br>
+<br>
+<br>
+<h2>Recommendations for ICU <br>
+</h2>
+<h3>Lazy Initialization</h3>
+For shared constant data or objects that are lazily created on first
+use, we should replace the double-checked init with a mutex-protected
+initialization.&nbsp; Strictly speaking, only the pointer test and
+assignment needs to be protected, not the object construction, but the
+code is simpler with the whole sequence protected,&nbsp; and, since it
+is one-time-only initialization, mutex contention is not a big concern.<br>
+<ul>
+  <li>Create any data that might be needed by an ICU service in the
+open() function for that service.&nbsp; Use a mutex when testing the
+pointer, which will ensure that an object that was recently constructed
+by another thread on another CPU will be fully visible.<br>
+  </li>
+</ul>
+<pre style="margin-left: 40px;">      UType  *gObject = NULL;   // global variable<br><br>      // Include this code in the open() function for the service<br>      umtx_lock();<br>      if (gObject == NULL) {<br>          gObject  = new UType;<br>       }<br>      umtx_unlock();<br><br><br></pre>
+<ul>
+  <li>Use of the data by functions (other than the open or constructor)
+no longer need check for initialization.&nbsp; The data will be there.<br>
+  </li>
+</ul>
+<pre style="margin-left: 40px;">   UType *getObject() {<br>       return gObject;<br>   }<br><br></pre>
+<ul>
+  <li>Data that is used only in uncommon situations, and is either big
+or time-consuming to construct,&nbsp; can still be lazily created on
+first use.&nbsp; The trade-off is that a mutex lock/unlock will be
+needed each time the data is accessed (and possibly created) .</li>
+</ul>
+<pre style="margin-left: 40px;">   UType  *gObject = NULL;<br><br>   UType *getObject() {<br>       umtx_lock();<br>       if (gObject == NULL) {<br>           gObject = new UType;<br>       }<br>       umtx_unlock();<br>       return gObject;<br>   }<br></pre>
+<h4>Mutable Global Data</h4>
+No change is needed in the handling of mutable global data in
+ICU.&nbsp; Such data, the table of loaded converters, for example, must
+already be protected by a mutex, both for reading and modification.<br>
+<br>
+<h4>Mutable per-Instance Data</h4>
+Processors with weak memory ordering do not introduce any additional
+issues for mutable per-instance data.<br>
+<br>
+Operations that are logically const, but that update some hidden data
+behind the scenes,&nbsp; must protect that data with a mutex if they are
+to be thread safe.&nbsp; <br>
+<br>
+<h4>Data Required by ICU functions that do not use Service Objects</h4>
+ICU services without service objects include Character Properties,
+Normalization, Time Zones, and a few more.&nbsp;&nbsp; No Create or Open
+type of operation is required before using these services,&nbsp;
+leaving no convenient place to put the mutex-protected data
+initialization.&nbsp; Some of these functions, character properties for
+example, are extremely performance sensitive, meaning that the overhead
+of&nbsp; a mutex-protected data check on each operation would not be
+acceptable.<br>
+<br>
+An explicit ICU initialization function will probably be required to
+safely load the data for these services.&nbsp; The function will be
+required in multi-threaded applications, and will need to be called
+before additional threads that use ICU are started.&nbsp; <br>
+<br>
+The lazy data loading code within ICU will remain in place; existing
+single threaded applications will not be affected and can continue to
+work without explicit ICU initialization.<br>
+<br>
+<span style="font-style: italic;">Note:&nbsp; investigate this problem
+further.&nbsp; If there is a safe, portable way to avoid the explicit
+init, we should use it.&nbsp; <br>
+<br>
+Retaining the lazy initialization is also problematic.&nbsp; The odds
+of a failure showing up in a threaded application that omits the init
+are extremely low, meaning that testing is unlikely to reveal the
+potential problem.&nbsp; Making the initialization mandatory would
+guarantee that it wasn't inadvertantly omitted, but still can't
+guarantee that it was called before threads were started.<br>
+</span> <br>
+<h4><span style="font-style: italic;">Volatile </span>C/C++ Keyword
+and Compiler Optimizations<br>
+</h4>
+Use of&nbsp; <span style="font-style: italic;">volatile </span>is not
+required for any of the shared data in ICU, which is a good thing
+because not all of our compilers support it.<br>
+<br>
+Volatile is needed in situations where a compiler might choose to keep
+a variable in a register (within the body of a loop, for example), thus
+preventing changes to the variable's underlying memory location that are
+made by another thread or hardware from becoming visible.&nbsp; <br>
+<br>
+There are, however, non-thread related restrictions on when a compiler
+can keep values in registers, and these restrictions cover all the
+requirements of ICU for keeping potentially shared values in memory.<br>
+<br>
+Compilers can never keep a variable's value in a register across a
+function call if that variable is in any way accessible outside of the
+current function.&nbsp; This includes all global variables, and anything
+else whose address has escaped the local context in any way, including
+all data members of the "this" object.&nbsp;&nbsp; The issue is that the
+called function may change any such&nbsp; variable, and the local
+function must see the change.&nbsp; No threading is involved.&nbsp; All
+compilers understand this situation, and handle it
+correctly.&nbsp;&nbsp; <br>
+<br>
+Any ICU data that will be shared by threads is, almost by definition,
+globally addressable.&nbsp; It will be either a true global variable, or
+a data member of an ICU service object whose address has been passed
+around.&nbsp; No such data will be kept in registers across function
+calls, and mutex lock and unlock are, from the compilers point of view,
+just function calls.&nbsp; We are safe without the use of volatile.<br>
+<br>
+</body>
+</html>

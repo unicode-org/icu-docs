@@ -38,7 +38,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <table border="1" cellpadding="2" width="90%" style="border-collapse: collapse" cellspacing="0">
     <tr>
       <td valign="top">Revision</td>
-      <td valign="top">3<font color="#FF0000"> (working draft 3 $Revision: 1.10 $)</font></td>
+      <td valign="top">3<font color="#FF0000"> (working draft 3 $Revision: 1.11 $)</font></td>
     </tr>
     <tr>
       <td valign="top">Authors</td>
@@ -46,7 +46,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top" class="old_changed">$Date: 2005/04/29 20:31:44 $</td>
+      <td valign="top" class="old_changed">$Date: 2005/04/29 21:05:00 $</td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
@@ -91,8 +91,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   Standard see [<a href="#Unicode">Unicode</a>]. For a list of current Unicode Technical Reports see 
   [<a href="#Reports">Reports</a>]. For more information about versions of the Unicode Standard, see 
   [<a href="#Versions">Versions</a>].</i></p>
-  <p class="reviewnote"><b>Note to Reviewers:</b> Based on feedback, the title was shortened to 
-  &quot;Unicode Security Considerations&quot;.</p>
+  <p class="reviewnote">Based on feedback, the title was shortened to &quot;Unicode Security 
+  Considerations&quot;.</p>
   <h3><i>Contents</i></h3>
   <ul class="toc">
     <li>1. <a href="#Introduction">Introduction</a><ul class="toc">
@@ -181,10 +181,10 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <p><span>Each section presents background information on the kinds of problems that can occur, 
   then lists specific recommendations for reducing the risk of such problems.</span></p>
   <blockquote>
-    <p class="reviewnote"><b>Note to Reviewers:</b> Some of the examples below use Unicode 
-    characters which some browsers will not show, or may not show in a way that illustrates the 
-    problem. For more information about improving the display, see [<a href="#Display">Display</a>]. 
-    In the final version, we&#39;ll prepare GIFs for the characters where necessary.</p>
+    <p class="reviewnote">Some of the examples below use Unicode characters which some browsers will 
+    not show, or may not show in a way that illustrates the problem. For more information about 
+    improving the display, see [<a href="#Display">Display</a>]. In the final version, we&#39;ll prepare 
+    GIFs for the characters where necessary.</p>
   </blockquote>
   <h2><a name="visual_spoofing"></a>2. Visual Security Issues</h2>
   <p>Visual<span> spoofs depend on the use of <i>visually confusable</i> strings: two different 
@@ -668,19 +668,21 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <h4><span class="changedspan"><span style="background-color: #FFFF00">2.9
   <a name="Security_Levels_and_Alerts">Security Levels and Alerts</a></span></span></h4>
   <p><span class="changedspan"><span>The Security Levels 1-5 are defined below for use in 
-  implementations. The contents of </span><a href="#Identifier_Characters">Identifier Characters</a>
-  <span>is described in Appendix C. </span></span>In determining script,<span> <i>Common</i> and <i>
-  Inherited</i> script characters are ignored. <span class="changedSpan">A breakdown of characters 
-  by script is given in [<a href="#idn-chars">idn-chars</a>].</span></span></p>
+  implementations. These place restrictions on the recommended </span>Identifier Characters <span>as 
+  specified in </span><a href="#Identifier_Characters">Appendix C</a><span>. The Special-Purpose 
+  Characters are also specified in </span><a href="#Identifier_Characters">Appendix C</a><span>. The 
+  determination of Script is according to the Unicode Standard [<a href="#UAX24">UAX24</a>]. </span>
+  </span>In determining script,<span> <i>Common</i> and <i>Inherited</i> script characters are 
+  ignored. <span class="changedSpan">A visual breakdown of characters by script is given in [<a href="#idn-chars">idn-chars</a>].</span></span></p>
   <ol>
     <li><b>ASCII-Only</b><ul>
-      <li>Restrict identifiers to the intersection of ASCII and the Identifier Characters</li>
+      <li>All characters in each identifier must be ASCII</li>
     </ul>
     </li>
-    <li><b><span>Minimal (default -- short term)</span></b><ul>
-      <li>A<span>ny single script, or <i>Han + Hiragana + Katakana</i>, or <i>Han + Bopomofo</i>, or
-      <i>Han + Hangul</i>, </span></li>
-      <li><span>but exclude special-purpose characters (see [<a href="#special">special</a>])</span></li>
+    <li><b><span>Minimal</span></b><ul>
+      <li>All characters in each identifier must be from a <span>single script, or from <i>Han + 
+      Hiragana + Katakana</i>, or from <i>Han + Bopomofo</i>, or <i>Han + Hangul</i>, </span></li>
+      <li>No characters in the identifier can be<span> Special-Purpose Characters</span></li>
     </ul>
     </li>
     <li><b><span>Moderate = </span></b><span>Minimal + </span>
@@ -695,18 +697,17 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </ul>
     </li>
     <li><b><span>Unrestricted</span></b><ul>
-      <li>A<span>ny valid identifiers, except those starting with combining marks, or using visually 
-      confusable syntax characters</span></li>
+      <li>A<span>ny valid identifiers</span></li>
     </ul>
     </li>
   </ol>
   <p><span>An &quot;appropriate alert&quot; should be generated if a domain name fails to satisfy the chosen 
-  security level. The form of such alerts could be minimal, such as special coloring or icons 
-  (perhaps with a tool-tip for more information), or more obvious, such as an alert dialog 
-  describing the issue and requiring user confirmation before continuing. The strength of the alert 
-  can be scaled according to the level of the potential problem. User-agents can also remember when 
-  the user has accepted an alert, for say Ωmega.com, and permit future access without bothering the 
-  user again.</span></p>
+  security level. <span class="changedspan">Depending on the circumstances and the level difference, 
+  t</span>he form of such alerts could be minimal, such as special coloring or icons (perhaps with a 
+  tool-tip for more information), or more obvious, such as an alert dialog describing the issue and 
+  requiring user confirmation before continuing. User-agents <span class="changedspan">should</span> 
+  remember when the user has accepted an alert, for say Ωmega.com, and permit future access without 
+  bothering the user again.</span></p>
   <p class="reviewnote">A possible future extension <span>to Level 2 is to exclude any combining 
   character sequences outside of <code>NamedSequences.txt</code></span></p>
   <h3><span>2.10 <a name="Visual_Spoofing_Recommendations">Recommendations</a></span></h3>
@@ -830,7 +831,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </li>
   </ol>
   <hr width="50%">
-  <p class="reviewnote"><b>Note to Reviewers:</b> <b>To Do:</b></p>
+  <p class="reviewnote"><b>To Do:</b></p>
   <ul>
     <li>
     <p class="reviewnote"><span>Give more background as to why normalization fixes certain problems, 
@@ -902,7 +903,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   implementations from interpreting non-shortest forms for
   <a href="http://www.unicode.org/glossary/#BMP_character">BMP characters</a>, and clarified some of 
   the conformance clauses.</p>
-  <p class="reviewnote"><b>Note to Reviewers:</b> <b>To Do:</b></p>
+  <p class="reviewnote"><b>To Do:</b></p>
   <p class="reviewnote">Add information about other possible exploits in this area:</p>
   <ul>
     <li>
@@ -951,14 +952,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <a href="confusables.txt"><span>confusables.txt</span></a><span><br>
       The format and usage of the file are described in the file header.</span></td>
     </tr>
-    <tr>
-      <td class="noborder" valign="top" width="1"><span>[<a name="special">special</a>]</span></td>
-      <td class="noborder" valign="top"><span><b>Special-Purpose Characters: </b>
-      <a href="special_purpose.txt">special_purpose.txt</a><br>
-      Characters that are not letters in common modern use, and may be disallowed at certain 
-      security levels.</span></td>
-    </tr>
   </table>
+  <p>&nbsp;</p>
   <hr width="50%">
   <h2><span class="changedSpan">Appendix B. <a name="Related_Material">Related Material</a></span></h2>
   <p><span class="changedspan">The following points to background information that may be useful.</span></p>
@@ -1000,7 +995,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <p class="old_changed"><span class="changedspan"><span style="background-color: #FFFF00">The 
   characters recommended for general use as identifiers include those character </span><span>having 
   the </span>XID_Continue property as defined in the Unicode Character Database (see [<a href="#DCore">DCore</a>]), 
-  plus the characters listed below, which are required for expressing words in some languages.</span></p>
+  plus the characters listed in Additional Word Characters below, which are required for expressing 
+  words in some languages. The Special-Purpose Characters should be excluded at certain Security 
+  Levels.</span></p>
   <p class="old_changed"><span class="changedspan">The list of allowable characters may be reduced 
   or expanded according to the requirements of the specific domain. For example, programming 
   language identifiers typically add some characters like &#39;$&#39;, and remove others like &#39;-&#39; (because 
@@ -1023,7 +1020,115 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   2019&nbsp; ; word-chars # Pf (’)&nbsp; RIGHT SINGLE QUOTATION MARK<br>
   2027&nbsp; ; word-chars # Po (‧)&nbsp; HYPHENATION POINT<br>
   30A0&nbsp; ; word-chars # Pd (゠)&nbsp; KATAKANA-HIRAGANA DOUBLE HYPHEN</span></p>
-  <p class="reviewnote">This list is still draft!</p>
+  <h3><span class="changedspan"><span style="background-color: #FFFF00">Special-Purpose Characters</span></span></h3>
+  <p><span class="changedspan">All characters with the General Category Nl (Letter-Number), plus the 
+  following list</span></p>
+  <p><span class="changedspan">0138&nbsp; ; Ll # (ĸ)&nbsp; LATIN SMALL LETTER KRA<br>
+  0180&nbsp; ; Ll # (ƀ)&nbsp; LATIN SMALL LETTER B WITH STROKE<br>
+  018D&nbsp; ; Ll # (ƍ)&nbsp; LATIN SMALL LETTER TURNED DELTA<br>
+  019B&nbsp; ; Ll # (ƛ)&nbsp; LATIN SMALL LETTER LAMBDA WITH STROKE<br>
+  01AA&nbsp; ; Ll # (ƪ)&nbsp; LATIN LETTER REVERSED ESH LOOP<br>
+  01AB&nbsp; ; Ll # (ƫ)&nbsp; LATIN SMALL LETTER T WITH PALATAL HOOK<br>
+  01BA&nbsp; ; Ll # (ƺ)&nbsp; LATIN SMALL LETTER EZH WITH TAIL<br>
+  01BE&nbsp; ; Ll # (ƾ)&nbsp; LATIN LETTER INVERTED GLOTTAL STOP WITH STROKE<br>
+  0250&nbsp; ; Ll # (ɐ)&nbsp; LATIN SMALL LETTER TURNED A<br>
+  0251&nbsp; ; Ll # (ɑ)&nbsp; LATIN SMALL LETTER ALPHA<br>
+  0252&nbsp; ; Ll # (ɒ)&nbsp; LATIN SMALL LETTER TURNED ALPHA<br>
+  0255&nbsp; ; Ll # (ɕ)&nbsp; LATIN SMALL LETTER C WITH CURL<br>
+  0258&nbsp; ; Ll # (ɘ)&nbsp; LATIN SMALL LETTER REVERSED E<br>
+  025A&nbsp; ; Ll # (ɚ)&nbsp; LATIN SMALL LETTER SCHWA WITH HOOK<br>
+  025C&nbsp; ; Ll # (ɜ)&nbsp; LATIN SMALL LETTER REVERSED OPEN E<br>
+  025D&nbsp; ; Ll # (ɝ)&nbsp; LATIN SMALL LETTER REVERSED OPEN E WITH HOOK<br>
+  025E&nbsp; ; Ll # (ɞ)&nbsp; LATIN SMALL LETTER CLOSED REVERSED OPEN E<br>
+  025F&nbsp; ; Ll # (ɟ)&nbsp; LATIN SMALL LETTER DOTLESS J WITH STROKE<br>
+  0261&nbsp; ; Ll # (ɡ)&nbsp; LATIN SMALL LETTER SCRIPT G<br>
+  0262&nbsp; ; Ll # (ɢ)&nbsp; LATIN LETTER SMALL CAPITAL G<br>
+  0264&nbsp; ; Ll # (ɤ)&nbsp; LATIN SMALL LETTER RAMS HORN<br>
+  0265&nbsp; ; Ll # (ɥ)&nbsp; LATIN SMALL LETTER TURNED H<br>
+  0266&nbsp; ; Ll # (ɦ)&nbsp; LATIN SMALL LETTER H WITH HOOK<br>
+  0267&nbsp; ; Ll # (ɧ)&nbsp; LATIN SMALL LETTER HENG WITH HOOK<br>
+  026A&nbsp; ; Ll # (ɪ)&nbsp; LATIN LETTER SMALL CAPITAL I<br>
+  026B&nbsp; ; Ll # (ɫ)&nbsp; LATIN SMALL LETTER L WITH MIDDLE TILDE<br>
+  026C&nbsp; ; Ll # (ɬ)&nbsp; LATIN SMALL LETTER L WITH BELT<br>
+  026D&nbsp; ; Ll # (ɭ)&nbsp; LATIN SMALL LETTER L WITH RETROFLEX HOOK<br>
+  026E&nbsp; ; Ll # (ɮ)&nbsp; LATIN SMALL LETTER LEZH<br>
+  0270&nbsp; ; Ll # (ɰ)&nbsp; LATIN SMALL LETTER TURNED M WITH LONG LEG<br>
+  0271&nbsp; ; Ll # (ɱ)&nbsp; LATIN SMALL LETTER M WITH HOOK<br>
+  0273&nbsp; ; Ll # (ɳ)&nbsp; LATIN SMALL LETTER N WITH RETROFLEX HOOK<br>
+  0274&nbsp; ; Ll # (ɴ)&nbsp; LATIN LETTER SMALL CAPITAL N<br>
+  0276&nbsp; ; Ll # (ɶ)&nbsp; LATIN LETTER SMALL CAPITAL OE<br>
+  0277&nbsp; ; Ll # (ɷ)&nbsp; LATIN SMALL LETTER CLOSED OMEGA<br>
+  0278&nbsp; ; Ll # (ɸ)&nbsp; LATIN SMALL LETTER PHI<br>
+  0279&nbsp; ; Ll # (ɹ)&nbsp; LATIN SMALL LETTER TURNED R<br>
+  027A&nbsp; ; Ll # (ɺ)&nbsp; LATIN SMALL LETTER TURNED R WITH LONG LEG<br>
+  027B&nbsp; ; Ll # (ɻ)&nbsp; LATIN SMALL LETTER TURNED R WITH HOOK<br>
+  027C&nbsp; ; Ll # (ɼ)&nbsp; LATIN SMALL LETTER R WITH LONG LEG<br>
+  027D&nbsp; ; Ll # (ɽ)&nbsp; LATIN SMALL LETTER R WITH TAIL<br>
+  027E&nbsp; ; Ll # (ɾ)&nbsp; LATIN SMALL LETTER R WITH FISHHOOK<br>
+  027F&nbsp; ; Ll # (ɿ)&nbsp; LATIN SMALL LETTER REVERSED R WITH FISHHOOK<br>
+  0281&nbsp; ; Ll # (ʁ)&nbsp; LATIN LETTER SMALL CAPITAL INVERTED R<br>
+  0282&nbsp; ; Ll # (ʂ)&nbsp; LATIN SMALL LETTER S WITH HOOK<br>
+  0284&nbsp; ; Ll # (ʄ)&nbsp; LATIN SMALL LETTER DOTLESS J WITH STROKE AND HOOK<br>
+  0285&nbsp; ; Ll # (ʅ)&nbsp; LATIN SMALL LETTER SQUAT REVERSED ESH<br>
+  0286&nbsp; ; Ll # (ʆ)&nbsp; LATIN SMALL LETTER ESH WITH CURL<br>
+  0287&nbsp; ; Ll # (ʇ)&nbsp; LATIN SMALL LETTER TURNED T<br>
+  0289&nbsp; ; Ll # (ʉ)&nbsp; LATIN SMALL LETTER U BAR<br>
+  028C&nbsp; ; Ll # (ʌ)&nbsp; LATIN SMALL LETTER TURNED V<br>
+  028D&nbsp; ; Ll # (ʍ)&nbsp; LATIN SMALL LETTER TURNED W<br>
+  028E&nbsp; ; Ll # (ʎ)&nbsp; LATIN SMALL LETTER TURNED Y<br>
+  028F&nbsp; ; Ll # (ʏ)&nbsp; LATIN LETTER SMALL CAPITAL Y<br>
+  0290&nbsp; ; Ll # (ʐ)&nbsp; LATIN SMALL LETTER Z WITH RETROFLEX HOOK<br>
+  0291&nbsp; ; Ll # (ʑ)&nbsp; LATIN SMALL LETTER Z WITH CURL<br>
+  0293&nbsp; ; Ll # (ʓ)&nbsp; LATIN SMALL LETTER EZH WITH CURL<br>
+  0295&nbsp; ; Ll # (ʕ)&nbsp; LATIN LETTER PHARYNGEAL VOICED FRICATIVE<br>
+  0296&nbsp; ; Ll # (ʖ)&nbsp; LATIN LETTER INVERTED GLOTTAL STOP<br>
+  0297&nbsp; ; Ll # (ʗ)&nbsp; LATIN LETTER STRETCHED C<br>
+  0298&nbsp; ; Ll # (ʘ)&nbsp; LATIN LETTER BILABIAL CLICK<br>
+  0299&nbsp; ; Ll # (ʙ)&nbsp; LATIN LETTER SMALL CAPITAL B<br>
+  029A&nbsp; ; Ll # (ʚ)&nbsp; LATIN SMALL LETTER CLOSED OPEN E<br>
+  029B&nbsp; ; Ll # (ʛ)&nbsp; LATIN LETTER SMALL CAPITAL G WITH HOOK<br>
+  029C&nbsp; ; Ll # (ʜ)&nbsp; LATIN LETTER SMALL CAPITAL H<br>
+  029D&nbsp; ; Ll # (ʝ)&nbsp; LATIN SMALL LETTER J WITH CROSSED-TAIL<br>
+  029E&nbsp; ; Ll # (ʞ)&nbsp; LATIN SMALL LETTER TURNED K<br>
+  029F&nbsp; ; Ll # (ʟ)&nbsp; LATIN LETTER SMALL CAPITAL L<br>
+  02A0&nbsp; ; Ll # (ʠ)&nbsp; LATIN SMALL LETTER Q WITH HOOK<br>
+  02A1&nbsp; ; Ll # (ʡ)&nbsp; LATIN LETTER GLOTTAL STOP WITH STROKE<br>
+  02A2&nbsp; ; Ll # (ʢ)&nbsp; LATIN LETTER REVERSED GLOTTAL STOP WITH STROKE<br>
+  02A3&nbsp; ; Ll # (ʣ)&nbsp; LATIN SMALL LETTER DZ DIGRAPH<br>
+  02A4&nbsp; ; Ll # (ʤ)&nbsp; LATIN SMALL LETTER DEZH DIGRAPH<br>
+  02A5&nbsp; ; Ll # (ʥ)&nbsp; LATIN SMALL LETTER DZ DIGRAPH WITH CURL<br>
+  02A6&nbsp; ; Ll # (ʦ)&nbsp; LATIN SMALL LETTER TS DIGRAPH<br>
+  02A7&nbsp; ; Ll # (ʧ)&nbsp; LATIN SMALL LETTER TESH DIGRAPH<br>
+  02A8&nbsp; ; Ll # (ʨ)&nbsp; LATIN SMALL LETTER TC DIGRAPH WITH CURL<br>
+  02A9&nbsp; ; Ll # (ʩ)&nbsp; LATIN SMALL LETTER FENG DIGRAPH<br>
+  02AA&nbsp; ; Ll # (ʪ)&nbsp; LATIN SMALL LETTER LS DIGRAPH<br>
+  02AB&nbsp; ; Ll # (ʫ)&nbsp; LATIN SMALL LETTER LZ DIGRAPH<br>
+  02AC&nbsp; ; Ll # (ʬ)&nbsp; LATIN LETTER BILABIAL PERCUSSIVE<br>
+  02AD&nbsp; ; Ll # (ʭ)&nbsp; LATIN LETTER BIDENTAL PERCUSSIVE<br>
+  03D7&nbsp; ; Ll # (ϗ)&nbsp; GREEK KAI SYMBOL<br>
+  03F3&nbsp; ; Ll # (ϳ)&nbsp; GREEK LETTER YOT<br>
+  <br>
+  # Total code points: 84<br>
+  <br>
+  0559&nbsp; ; Lm # (ՙ)&nbsp; ARMENIAN MODIFIER LETTER LEFT HALF RING<br>
+  <br>
+  # Total code points: 1<br>
+  <br>
+  01BB&nbsp; ; Lo # (ƻ)&nbsp; LATIN LETTER TWO WITH STROKE<br>
+  01C0&nbsp; ; Lo # (ǀ)&nbsp; LATIN LETTER DENTAL CLICK<br>
+  01C1&nbsp; ; Lo # (ǁ)&nbsp; LATIN LETTER LATERAL CLICK<br>
+  01C2&nbsp; ; Lo # (ǂ)&nbsp; LATIN LETTER ALVEOLAR CLICK<br>
+  01C3&nbsp; ; Lo # (ǃ)&nbsp; LATIN LETTER RETROFLEX CLICK<br>
+  <br>
+  # Total code points: 5<br>
+  <br>
+  0483&nbsp; ; Mn # (҃)&nbsp; COMBINING CYRILLIC TITLO<br>
+  0484&nbsp; ; Mn # (҄)&nbsp; COMBINING CYRILLIC PALATALIZATION<br>
+  0485&nbsp; ; Mn # (҅)&nbsp; COMBINING CYRILLIC DASIA PNEUMATA<br>
+  0486&nbsp; ; Mn # (҆)&nbsp; COMBINING CYRILLIC PSILI PNEUMATA<br>
+&nbsp;</span></p>
+  <p class="reviewnote">These lists are still draft! Once finalized, they should become regular 
+  properties.</p>
   <h2 class="old_changed"><a name="Acknowledgements">Acknowledgements</a></h2>
   <p class="old_changed">Steven Loomis and other people on the ICU team were very helpful in 
   developing the original proposal for this technical report. Thanks also to the following people 
@@ -1139,6 +1244,11 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td class="noborder" valign="top">Unicode Character Database.<br>
       <a href="http://www.unicode.org/ucd">http://www.unicode.org/ucd<br>
       </a><i>For an overview of the Unicode Character Database and a list of its associated files</i></td>
+    </tr>
+    <tr>
+      <td class="noborder" vAlign="top">[<a name="UAX24">UAX24</a>]</td>
+      <td class="noborder" vAlign="top">UAX #24, Script Names<br>
+      <a href="http://unicode.org/reports/tr24/">http://unicode.org/reports/tr24/</a> </td>
     </tr>
     <tr>
       <td class="noborder" vAlign="top">[<a name="UAX31">UAX31</a>]</td>

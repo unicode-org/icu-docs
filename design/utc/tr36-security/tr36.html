@@ -38,7 +38,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <table border="1" cellpadding="2" width="90%" style="border-collapse: collapse" cellspacing="0">
     <tr>
       <td valign="top">Revision</td>
-      <td valign="top">3<font color="#FF0000"> (working draft $Revision: 1.13 $)</font></td>
+      <td valign="top">3<font color="#FF0000"> (working draft $Revision: 1.14 $)</font></td>
     </tr>
     <tr>
       <td valign="top">Authors</td>
@@ -46,7 +46,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top" class="old_changed">$Date: 2005/04/30 00:54:59 $</td>
+      <td valign="top" class="old_changed">$Date: 2005/04/30 01:20:35 $</td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
@@ -765,8 +765,10 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     always map characters to lowercase, where characters are generally more distinctive. (Although 
     StringPrep itself is currently limited to Unicode 3.2, the same methodology can be applied by 
     implementations that need to support more modern versions of Unicode.)</span></li>
-    <li><span>Disallow the use of nonspacing marks at the start of an identifier, since those will 
-    often be clipped in display.</span></li>
+    <li><span>Disallow the use of <span class="changedspan">Non-Starter Characters</span> at the 
+    start of an identifier, since those will often be clipped in display. <span class="changedspan">
+    See </span></span><span class="changedspan"><a href="#Identifier_Characters">Appendix C</a> for 
+    a list of these characters.</span></li>
     <li><span>Assess the font support of the OS/platform according to draft UTR #32: <i>Assessing 
     Unicode Support (to be issued soon, as a draft)</i>. See also the W3C [<a href="#CharMod">CharMod</a>]. 
     If it is inadequate, work with the OS/platform vendor to address those problems, or implement 
@@ -1029,7 +1031,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   language identifiers typically add some characters like &#39;$&#39;, and remove others like &#39;-&#39; (because 
   of the use as <i>minus</i>), while IDNA removes &#39;_&#39; (among others). For more information, see <i>
   UAX #31, Identifier and Pattern Syntax</i> [<a href="#UAX31">UAX31</a>].</span></p>
-  <h3><span class="changedspan"><span style="background-color: #FFFF00">Additional Word Characters</span></span></h3>
+  <h3><span class="changedspan"><span style="background-color: #FFFF00">C.1. Additional Word 
+  Characters</span></span></h3>
   <p><span class="changedspan">0027&nbsp; ; word-chars # Po (&#39;)&nbsp; APOSTROPHE<br>
   002D&nbsp; ; word-chars # Pd (-)&nbsp; HYPHEN-MINUS<br>
   002E&nbsp; ; word-chars # Po (.)&nbsp; FULL STOP<br>
@@ -1042,11 +1045,18 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   058A&nbsp; ; word-chars # Pd (֊)&nbsp; ARMENIAN HYPHEN<br>
   05F3&nbsp; ; word-chars # Po (׳)&nbsp; HEBREW PUNCTUATION GERESH<br>
   05F4&nbsp; ; word-chars # Po (״)&nbsp; HEBREW PUNCTUATION GERSHAYIM<br>
+  0F85&nbsp; ; word-chars # .. (྅) TIBETAN MARK PALUTA<br>
   2010&nbsp; ; word-chars # Pd (‐)&nbsp; HYPHEN<br>
   2019&nbsp; ; word-chars # Pf (’)&nbsp; RIGHT SINGLE QUOTATION MARK<br>
   2027&nbsp; ; word-chars # Po (‧)&nbsp; HYPHENATION POINT<br>
-  30A0&nbsp; ; word-chars # Pd (゠)&nbsp; KATAKANA-HIRAGANA DOUBLE HYPHEN</span></p>
-  <h3><span class="changedspan"><span style="background-color: #FFFF00">Special-Purpose Characters</span></span></h3>
+  3003&nbsp; ; word-chars # .. (〃) DITTO MARK<br>
+  30A0&nbsp; ; word-chars # Pd (゠)&nbsp; KATAKANA-HIRAGANA DOUBLE HYPHEN<br>
+  30FB&nbsp; ; word-chars # .. (・) KATAKANA MIDDLE DOT</span></p>
+  <h3><span class="changedspan"><span style="background-color: #FFFF00">C.2. Non-Starter Characters</span></span></h3>
+  <p><span class="changedspan">These are all characters of General Category Mn or Me (Nonspacing or 
+  Enclosing Mark).</span></p>
+  <h3><span class="changedspan"><span style="background-color: #FFFF00">C.3. Special-Purpose 
+  Characters</span></span></h3>
   <p class="old_changed"><span class="changedspan">The Special-Purpose Characters are used in the 
   definition of Security Levels. They include all characters with the General Category Nl 
   (Letter-Number), plus the following list:</span></p>
@@ -1166,164 +1176,161 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <table cellSpacing="0" cellPadding="2" border="1">
     <tr>
       <th class="script" width="33%"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/latin.gif" width="24" height="24"> Latin</span></th>
+      <img src="images/latin.gif" alt="X" width="24" height="24"> Latin</span></th>
       <th class="script" width="33%"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/tibetan.gif" width="24" height="24"> Tibetan</span></th>
+      <img src="images/tibetan.gif" alt="X" width="24" height="24"> Tibetan</span></th>
       <th class="script" width="33%"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/hanunoo.gif" width="24" height="24"> Hanunoo</span></th>
+      <img src="images/hanunoo.gif" alt="X" width="24" height="24"> Hanunoo</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/greek.gif" width="24" height="24"> Greek</span></th>
+      <img src="images/greek.gif" alt="X" width="24" height="24"> Greek</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/myanmar.gif" width="24" height="24"> Myanmar</span></th>
+      <img src="images/myanmar.gif" alt="X" width="24" height="24"> Myanmar</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/buhid.gif" width="24" height="24"> Buhid</span></th>
+      <img src="images/buhid.gif" alt="X" width="24" height="24"> Buhid</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/cyrillic.gif" width="24" height="24"> Cyrillic</span></th>
+      <img src="images/cyrillic.gif" alt="X" width="24" height="24"> Cyrillic</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/georgian.gif" width="24" height="24"> Georgian</span></th>
+      <img src="images/georgian.gif" alt="X" width="24" height="24"> Georgian</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/tagbanwa.gif" width="24" height="24"> Tagbanwa</span></th>
+      <img src="images/tagbanwa.gif" alt="X" width="24" height="24"> Tagbanwa</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/armenian.gif" width="24" height="24"> Armenian</span></th>
+      <img src="images/armenian.gif" alt="X" width="24" height="24"> Armenian</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/hangulsyllables.gif" width="24" height="24"> Hangul</span></th>
+      <img src="images/hangulsyllables.gif" alt="X" width="24" height="24"> Hangul</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/limbu.gif" width="24" height="24"> Limbu</span></th>
+      <img src="images/limbu.gif" alt="X" width="24" height="24"> Limbu</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/hebrew.gif" width="24" height="24"> Hebrew</span></th>
+      <img src="images/hebrew.gif" alt="X" width="24" height="24"> Hebrew</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/ethiopic.gif" width="24" height="24"> Ethiopic</span></th>
+      <img src="images/ethiopic.gif" alt="X" width="24" height="24"> Ethiopic</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/taile.gif" width="24" height="24"> Tai Le</span></th>
+      <img src="images/taile.gif" alt="X" width="24" height="24"> Tai Le</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/arabic.gif" width="24" height="24"> Arabic</span></th>
+      <img src="images/arabic.gif" alt="X" width="24" height="24"> Arabic</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/cherokee.gif" width="24" height="24"> Cherokee</span></th>
+      <img src="images/cherokee.gif" alt="X" width="24" height="24"> Cherokee</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/linearbsyllabary.gif" width="24" height="24"> Linear 
-      B</span></th>
+      <img src="images/linearbsyllabary.gif" alt="X" width="24" height="24"> Linear B</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/syriac.gif" width="24" height="24"> Syriac</span></th>
+      <img src="images/syriac.gif" alt="X" width="24" height="24"> Syriac</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/canadiansyllabics.gif" width="24" height="24"> 
-      Canadian Aboriginal</span></th>
+      <img src="images/canadiansyllabics.gif" alt="X" width="24" height="24"> Canadian Aboriginal</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/ugaritic.gif" width="24" height="24"> Ugaritic</span></th>
+      <img src="images/ugaritic.gif" alt="X" width="24" height="24"> Ugaritic</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/thaana.gif" width="24" height="24"> Thaana</span></th>
+      <img src="images/thaana.gif" alt="X" width="24" height="24"> Thaana</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/ogham.gif" width="24" height="24"> Ogham</span></th>
+      <img src="images/ogham.gif" alt="X" width="24" height="24"> Ogham</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/shavian.gif" width="24" height="24"> Shavian</span></th>
+      <img src="images/shavian.gif" alt="X" width="24" height="24"> Shavian</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/devanagari.gif" width="24" height="24"> Devanagari</span></th>
+      <img src="images/devanagari.gif" alt="X" width="24" height="24"> Devanagari</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/runic.gif" width="24" height="24"> Runic</span></th>
+      <img src="images/runic.gif" alt="X" width="24" height="24"> Runic</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/osmanya.gif" width="24" height="24"> Osmanya</span></th>
+      <img src="images/osmanya.gif" alt="X" width="24" height="24"> Osmanya</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/bengali.gif" width="24" height="24"> Bengali</span></th>
+      <img src="images/bengali.gif" alt="X" width="24" height="24"> Bengali</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/khmer.gif" width="24" height="24"> Khmer</span></th>
+      <img src="images/khmer.gif" alt="X" width="24" height="24"> Khmer</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/cypriot.gif" width="24" height="24"> Cypriot</span></th>
+      <img src="images/cypriot.gif" alt="X" width="24" height="24"> Cypriot</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/gurmukhi.gif" width="24" height="24"> Gurmukhi</span></th>
+      <img src="images/gurmukhi.gif" alt="X" width="24" height="24"> Gurmukhi</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/mongolian.gif" width="24" height="24"> Mongolian</span></th>
+      <img src="images/mongolian.gif" alt="X" width="24" height="24"> Mongolian</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/braillesymbols.gif" width="24" height="24"> Braille</span></th>
+      <img src="images/braillesymbols.gif" alt="X" width="24" height="24"> Braille</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/gujarati.gif" width="24" height="24"> Gujarati</span></th>
+      <img src="images/gujarati.gif" alt="X" width="24" height="24"> Gujarati</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/hiragana.gif" width="24" height="24"> Hiragana</span></th>
+      <img src="images/hiragana.gif" alt="X" width="24" height="24"> Hiragana</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/buginese.gif" width="24" height="24"> Buginese</span></th>
+      <img src="images/buginese.gif" alt="X" width="24" height="24"> Buginese</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/oriya.gif" width="24" height="24"> Oriya</span></th>
+      <img src="images/oriya.gif" alt="X" width="24" height="24"> Oriya</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/katakana.gif" width="24" height="24"> Katakana</span></th>
+      <img src="images/katakana.gif" alt="X" width="24" height="24"> Katakana</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/coptic.gif" width="24" height="24"> Coptic</span></th>
+      <img src="images/coptic.gif" alt="X" width="24" height="24"> Coptic</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/tamil.gif" width="24" height="24"> Tamil</span></th>
+      <img src="images/tamil.gif" alt="X" width="24" height="24"> Tamil</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/bopomofo.gif" width="24" height="24"> Bopomofo</span></th>
+      <img src="images/bopomofo.gif" alt="X" width="24" height="24"> Bopomofo</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/newtailu.gif" width="24" height="24"> New Tai Lue</span></th>
+      <img src="images/newtailu.gif" alt="X" width="24" height="24"> New Tai Lue</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/telugu.gif" width="24" height="24"> Telugu</span></th>
+      <img src="images/telugu.gif" alt="X" width="24" height="24"> Telugu</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/kangxiradicals.gif" width="24" height="24"> Han</span></th>
+      <img src="images/kangxiradicals.gif" alt="X" width="24" height="24"> Han</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/glagolitic.gif" width="24" height="24"> Glagolitic</span></th>
+      <img src="images/glagolitic.gif" alt="X" width="24" height="24"> Glagolitic</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/kannada.gif" width="24" height="24"> Kannada</span></th>
+      <img src="images/kannada.gif" alt="X" width="24" height="24"> Kannada</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/yi.gif" width="24" height="24"> Yi</span></th>
+      <img src="images/yi.gif" alt="X" width="24" height="24"> Yi</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/tifinagh.gif" width="24" height="24"> Tifinagh</span></th>
+      <img src="images/tifinagh.gif" alt="X" width="24" height="24"> Tifinagh</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/malayalam.gif" width="24" height="24"> Malayalam</span></th>
+      <img src="images/malayalam.gif" alt="X" width="24" height="24"> Malayalam</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/olditalic.gif" width="24" height="24"> Old Italic</span></th>
+      <img src="images/olditalic.gif" alt="X" width="24" height="24"> Old Italic</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/silotinagri.gif" width="24" height="24"> Syloti Nagri</span></th>
+      <img src="images/silotinagri.gif" alt="X" width="24" height="24"> Syloti Nagri</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/sinhala.gif" width="24" height="24"> Sinhala</span></th>
+      <img src="images/sinhala.gif" alt="X" width="24" height="24"> Sinhala</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/gothic.gif" width="24" height="24"> Gothic</span></th>
+      <img src="images/gothic.gif" alt="X" width="24" height="24"> Gothic</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/oldpersiancuneiform.gif" width="24" height="24"> Old 
-      Persian</span></th>
+      <img src="images/oldpersiancuneiform.gif" alt="X" width="24" height="24"> Old Persian</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/thai.gif" width="24" height="24"> Thai</span></th>
+      <img src="images/thai.gif" alt="X" width="24" height="24"> Thai</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/deseret.gif" width="24" height="24"> Deseret</span></th>
+      <img src="images/deseret.gif" alt="X" width="24" height="24"> Deseret</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/kharoshthi.gif" width="24" height="24"> Kharoshthi</span></th>
+      <img src="images/kharoshthi.gif" alt="X" width="24" height="24"> Kharoshthi</span></th>
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/lao.gif" width="24" height="24"> Lao</span></th>
+      <img src="images/lao.gif" alt="X" width="24" height="24"> Lao</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/tagalog.gif" width="24" height="24"> Tagalog</span></th>
+      <img src="images/tagalog.gif" alt="X" width="24" height="24"> Tagalog</span></th>
       <th class="script">&nbsp;</th>
     </tr>
     <tr>
@@ -1331,10 +1338,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
     <tr>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/common.gif" width="24" height="24"> Common</span></th>
+      <img src="images/common.gif" alt="X" width="24" height="24"> Common</span></th>
       <th class="script"><span class="changedspan">
-      <img src="../../../../../DATA/GEN/images/combiningdiacritics.gif" width="24" height="24"> 
-      Inherited</span></th>
+      <img src="images/combiningdiacritics.gif" alt="X" width="24" height="24"> Inherited</span></th>
       <th class="script">&nbsp;</th>
     </tr>
   </table>

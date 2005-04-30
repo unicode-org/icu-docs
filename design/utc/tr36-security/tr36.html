@@ -38,7 +38,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <table border="1" cellpadding="2" width="90%" style="border-collapse: collapse" cellspacing="0">
     <tr>
       <td valign="top">Revision</td>
-      <td valign="top">3<font color="#FF0000"> (working draft 3 $Revision: 1.11 $)</font></td>
+      <td valign="top">3<font color="#FF0000"> (working draft $Revision: 1.12 $)</font></td>
     </tr>
     <tr>
       <td valign="top">Authors</td>
@@ -46,7 +46,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top" class="old_changed">$Date: 2005/04/29 21:05:00 $</td>
+      <td valign="top" class="old_changed">$Date: 2005/04/30 00:27:59 $</td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
@@ -71,8 +71,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   programs or systems to possible security attacks. This document describes some of the security 
   considerations that programmers, system analysts, standards developers, and users should take into 
   account, </span>and provides specific recommendations to reduce the risk of problems.</i></p>
-  <p><span class="changedspan"><i>New text is marked with this style. This draft has rearranged a 
-  number of pieces of text -- that rearrangement is not marked.</i></span></p>
+  <p class="reviewnote"><span class="changedspan"><i>New text is marked with this style. This draft 
+  has rearranged a number of pieces of text -- that rearrangement is not marked.</i></span></p>
   <p class="reviewnote"><span class="changedspan"><span style="background-color: #FFFF00"><i>Review 
   notes appear with this style.</i></span></span></p>
   <h3><i>Status</i></h3>
@@ -113,8 +113,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <li>2.10 <a href="#Visual_Spoofing_Recommendations">Recommendations</a><ul class="toc">
         <li>2.10.4 <a href="#User_Recommendations">User Recommendations</a></li>
         <li>2.10.1 <a href="#Recommendations_General">General Programmer Recommendations</a></li>
-        <li>2.10.2 <a href="#Recommendations_User_Agents">Domain Names: User Agents</a></li>
-        <li>2.10.3 <a href="#Recommendations_Registries">Domain Names: Registries</a></li>
+        <li>2.10.2 <a href="#Recommendations_User_Agents">User Agent Recommendations</a></li>
+        <li>2.10.3 <a href="#Recommendations_Registries">Registry Recommendations</a></li>
       </ul>
       </li>
     </ul>
@@ -127,6 +127,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <li><span class="changedspan">Appendix A. </span><a href="#Data_Files">Data Files</a></li>
     <li><span class="changedspan">Appendix B. </span><a href="#Related_Material">Related Material</a></li>
     <li><span class="changedspan">Appendix C. <a href="#Identifier_Characters">Identifier Characters</a></span></li>
+    <li><span class="changedspan"><span style="background-color: #FFFF00">Appendix D.
+    <a href="#Missing_Character_Glyphs">Missing Character Glyphs</a></span></span></li>
     <li><a href="#Acknowledgements">Acknowledgements</a></li>
     <li><a href="#References">References</a></li>
     <li><a href="#Modifications">Modifications</a></li>
@@ -203,11 +205,12 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <span class="changedspan">Note that some people use the term <i>homographs</i> broadly, to also 
   encompass visually confusables.</span></span></p>
   <p><span>Note that characters are not visually confusable if the positioning of the glyph is 
-  sufficiently different. For example, foo·com (using the hyphenation point instead of the period) 
-  should be distinguishable from foo.com by the positioning of the dot (except in faulty fonts). For 
-  examples of visually confusable characters, see [<a href="#confusables">confusables</a>].</span></p>
+  sufficiently different. For example, foo</span><span title="U+00B7 MIDDLE DOT">·</span><span>com 
+  (using the hyphenation point instead of the period) should be distinguishable from foo.com by the 
+  positioning of the dot (except in faulty fonts). For examples of visually confusable characters, 
+  see [<a href="#confusables">confusables</a>].</span></p>
   <h3>2.1 <a name="international_domain_names"></a>International Domain Names</h3>
-  <p>Visual poofing is an especially important subject given the recent introduction of 
+  <p>Visual spoofing is an especially important subject given the recent introduction of 
   international domain names (IDN). There is a natural desire for people to see domain names in 
   their own languages and writing systems; English speakers can understand this if they consider 
   what it would be like if they always had to type web addresses with Russian characters! So IDN 
@@ -216,21 +219,27 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   security risks while still allowing for effective use of non-ASCII characters.</span></p>
   <p>International domain names are, of course, not the only cases where visual spoofing can occur. 
   For example, you might get a message asking you to allow the installation of software from &quot;IBM&quot;, 
-  authenticated with the proper Verisign certificate, but the &quot;M&quot; character happens to be the 
-  Russian (Cyrillic) character that looks precisely like the English &quot;M&quot;. <span><i>Any place where 
-  strings are used as identifiers is subject to this kind of spoofing.</i> For more information on 
-  identifers, see <a href="http://www.unicode.org/reports/tr31/">UAX #31: <i>Identifier and Pattern 
-  Syntax</i></a>.</span></p>
+  authenticated with the proper Verisign certificate, but the &quot;<span title="U+041C CYRILLIC CAPITAL LETTER EM">М</span>&quot; 
+  character happens to be the Russian (Cyrillic) character that looks precisely like the English 
+  &quot;M&quot;. <span><i>Any place where strings are used as identifiers is subject to this kind of spoofing.</i> 
+  For more information on identifiers, see <a href="http://www.unicode.org/reports/tr31/">UAX #31:
+  <i>Identifier and Pattern Syntax</i></a>.</span></p>
   <p>However, IDN provides a good starting point for a discussion of visual spoofing. Fortunately 
   the design of IDN prevents a huge number of spoofing attacks. All conformant users of IDN are 
-  required to process domain names to convert <i>
+  required to process domain names to convert <span class="changedspan">what are called </span><i>
   <a href="http://www.unicode.org/glossary/#compatibility_equivalent">compatibility-equivalent</a></i> 
-  characters into a unique form; this processing eliminates most of the possibilities for visual 
-  spoofing by mapping away a large number of visually confusable characters and sequences. For 
-  example, Unicode contains the &quot;<font SIZE="3">ä&quot; (a-umlaut) character, but also contains a 
-  free-standing umlaut (&quot;¨&quot;) which can be used in combination with any character, including an &quot;a&quot;. 
-  But the compatibility normalization will convert any sequence of &quot;a&quot; plus &quot;¨&quot; into the regular
-  </font>&quot;<font SIZE="3">ä&quot;. </font></p>
+  characters into a unique form<span class="changedspan"> using a process called compatibility 
+  normalization (NFKC) <font face="Lucida Sans Unicode">— for more information on this, see [<a href="#UAX15">UAX15</a>]</font></span>. 
+  This processing eliminates most of the possibilities for visual spoofing by mapping away a large 
+  number of visually confusable characters and sequences. For example, Unicode contains the &quot;<span title="U+00E4 LATIN SMALL LETTER A WITH DIAERESIS">ä</span><font SIZE="3">&quot; 
+  (a-umlaut) character, but also contains a free-standing umlaut (&quot;</font><span title="U+0308 COMBINING DIAERESIS">&nbsp; 
+  ̈</span><font SIZE="3">&quot;) which can be used in combination with any character, including an &quot;a&quot;. 
+  But the compatibility normalization will convert any sequence of &quot;a&quot; plus &quot;</font><span title="U+0308 COMBINING DIAERESIS">&nbsp; 
+  ̈</span><font SIZE="3">&quot; into the regular </font>&quot;<span title="U+00E4 LATIN SMALL LETTER A WITH DIAERESIS">ä</span><font SIZE="3">&quot;.
+  </font><span class="changedspan">It will also convert characters like the half-width Japanese <i>
+  katakana</i> character <span title="U+FF76 HALFWIDTH KATAKANA LETTER KA">ｶ</span><span title="U+30AB KATAKANA LETTER KA"> 
+  to the regular character カ, and single ligature characters like </span>
+  <span title="U+FB01 LATIN SMALL LIGATURE FI">&quot;ﬁ&quot; to the regular characters &quot;fi&quot;.</span></span></p>
   <p>Thus you can not spoof an <i>a-umlaut</i> with <i>a + umlaut</i>; it simply results in the same 
   domain name. See the example <i>Safe Domain Names </i>below. The String column shows the actual 
   characters; the UTF-16 shows the underlying encoding, while the IDNA column shows the IDNA format 
@@ -242,7 +251,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <th class="idn-head">String</th>
       <th class="idn-head">UTF-16</th>
       <th class="idn-head">IDN <span class="changedspan">Internal</span></th>
-      <th class="idn-head">Comments</th>
+      <th class="idn-head"><span class="changedspan">Comments</span></th>
     </tr>
     <tr>
       <th class="idn-head">1a</th>
@@ -250,14 +259,15 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td class="mono"><span class="special">0061 0308</span><span class="mono"> 0074 002E 0063 006F 
       006D</span></td>
       <td><span class="mono">xn--t-zfa.com</span></td>
-      <td class="idn-example">Uses the decomposed form, a + umlaut</td>
+      <td class="idn-example"><span class="changedspan">Uses the decomposed form, a + umlaut</span></td>
     </tr>
     <tr>
       <th class="idn-head">1b</th>
       <td class="idn-example">ät.com</td>
       <td class="mono"><span class="special">00E4</span><span class="mono"> 0074 002E 0063 006F 006D</span></td>
       <td class="mono"><span class="mono">xn--t-zfa.com</span></td>
-      <td class="idn-example">But it ends up being identical to the composed form, in IDNA</td>
+      <td class="idn-example"><span class="changedspan">But it ends up being identical to the 
+      composed form, in IDNA</span></td>
     </tr>
   </table>
   <blockquote>
@@ -331,7 +341,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <th class="idn-head">String</th>
       <th class="idn-head">UTF-16</th>
       <th class="idn-head">IDN <span class="changedspan">Internal</span></th>
-      <th class="idn-head">Comments</th>
+      <th class="idn-head"><span class="changedspan">Comments</span></th>
     </tr>
     <tr>
       <th class="idn-head">2a</th>
@@ -339,7 +349,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td><span class="mono">0074 </span><span class="special">03BF</span><span class="mono"> 0070 
       002E 0063 006F 006D</span></td>
       <td><span class="mono">xn--tp-jbc.com</span></td>
-      <td class="idn-example">Uses the decomposed form, a + umlaut</td>
+      <td class="idn-example"><span class="changedspan">Uses the decomposed form, a + umlaut</span></td>
     </tr>
     <tr>
       <th class="idn-head">2b</th>
@@ -347,7 +357,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td><span class="mono">0074 </span><span class="special">006F</span><span class="mono"> 0070 
       002E 0063 006F 006D</span></td>
       <td><span class="mono">top.com</span></td>
-      <td class="idn-example">But it ends up being identical to the composed form, in IDNA</td>
+      <td class="idn-example"><span class="changedspan">But it ends up being identical to the 
+      composed form, in IDNA</span></td>
     </tr>
   </table>
   <p>There are many legitimate uses of mixed scripts. For example, <span>the prevalence of Latin 
@@ -498,9 +509,6 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   should be &#39;stacked&#39; above the first, producing a distinct visual difference. But as this example 
   shows, common fonts will simply superimpose the second <i>umlaut</i>; and if the positioning is 
   close enough, the user will not see a difference between 8a and 8b.</p>
-  <p>In example 9, we have an even worse case. The <i>underdot</i> character in 9a is <i>actually</i> 
-  under the &#39;l&#39;, but in many fonts, it appears as under the &#39;e&#39;! It is thus visually confusable with 
-  9b (where the <i>underdot</i> is under the e) or the equivalent normalized form 9c.</p>
   <table style="BORDER-COLLAPSE: collapse" cellSpacing="0" cellPadding="4" border="1">
     <caption style="font-size: 14pt; font-weight: bold">Inadequate Rendering Support </caption>
     <tr>
@@ -515,7 +523,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td><span class="mono">ä<font face="Arial Unicode MS">̈</font>t.com</span></td>
       <td><span class="special">00E4 0308</span><span class="mono"> 0074 002E 0063 006F 006D</span></td>
       <td><span class="mono">xn--t-zfa85n.com</span></td>
-      <td>&nbsp;</td>
+      <td><span class="idn-example"><span style="background-color: #FFFF00">a-umlaut + umlaut</span></span></td>
     </tr>
     <tr>
       <th class="idn-head">8b</th>
@@ -533,7 +541,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td><span class="special">0065</span><span class="mono"> 006C </span><span class="special">
       0323</span><span class="mono"> 002E 0063 006F 006D</span></td>
       <td><span class="mono">xn--e-zom.com</span></td>
-      <td>&nbsp;</td>
+      <td><span class="idn-example"><span style="background-color: #FFFF00">Has a dot under the l; 
+      may appear under the e</span></span></td>
     </tr>
     <tr>
       <th class="idn-head">9b</th>
@@ -550,8 +559,10 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td>&nbsp;</td>
     </tr>
   </table>
-  <h3><span><br>
-  2.5 <a name="Syntax_Spoofing">Syntax Spoofing</a></span></h3>
+  <p>In example 9, we have an even worse case. The <i>underdot</i> character in 9a is <i>actually</i> 
+  under the &#39;l&#39;, but in many fonts, it appears as under the &#39;e&#39;! It is thus visually confusable with 
+  9b (where the <i>underdot</i> is under the e) or the equivalent normalized form 9c.</p>
+  <h3><span>2.5 <a name="Syntax_Spoofing">Syntax Spoofing</a></span></h3>
   <p><span>Spoofing syntax characters can be even worse than regular characters. For example, U+2044 
   &#39;<span title="U+2044 FRACTION SLASH">⁄&#39; <span style="font-variant: small-caps">FRACTION SLASH</span> 
   can look like &#39;/&#39; in many fonts (ideally the spacing and angle is sufficiently different as to be 
@@ -573,7 +584,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <p><span class="changedSpan">Of course, this approach can also work even without IDN, where the 
   user is fooled into thinking that the domain name is the first part of the URL, not where it 
   actually is. For example, in the following the real domain name, mydomain.com, is also obscured 
-  for the casual user.</span></p>
+  for the casual user, who may not realize that -- does not terminate the domain name.</span></p>
   <blockquote>
     <p><span class="changedSpan"><span>http://example.org</span>--long-and-obscure-list-of-characters.<span>mydomain.com</span></span></p>
   </blockquote>
@@ -585,7 +596,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     http://com.mydomain.org</span>--long-and-obscure-list-of-characters.<span>example</span></span></p>
   </blockquote>
   <p><span class="changedSpan"><span>But that would be an impossible change at this point: those 
-  horses have long since left the barn. However, one possible solution is to always visually 
+  horses have long since left the barn. However, a possible solution is to always visually 
   distinguish the second-level domain, for example:</span></span></p>
   <blockquote>
     <p><span class="changedSpan"><span>http://<b><font color="#0000FF">example</font></b>.org</span><br>
@@ -664,16 +675,13 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <p><span class="changedspan">Where both mapping and prohibition are used, the mapping should be 
   done before the prohibition, to ensure that characters don&#39;t &quot;sneak past&quot;. For example, the Greek 
   character TONOS <span title="U+0384 GREEK TONOS">(΄) ends up being prohibited, because it 
-  normalizes to <i>space + acute</i>, and <i>space</i> is prohibited.</span></span></p>
+  normalizes to <i>space + acute</i>, and <i>space</i> ends up being prohibited.</span></span></p>
   <h4><span class="changedspan"><span style="background-color: #FFFF00">2.9
   <a name="Security_Levels_and_Alerts">Security Levels and Alerts</a></span></span></h4>
   <p><span class="changedspan"><span>The Security Levels 1-5 are defined below for use in 
-  implementations. These place restrictions on the recommended </span>Identifier Characters <span>as 
-  specified in </span><a href="#Identifier_Characters">Appendix C</a><span>. The Special-Purpose 
-  Characters are also specified in </span><a href="#Identifier_Characters">Appendix C</a><span>. The 
-  determination of Script is according to the Unicode Standard [<a href="#UAX24">UAX24</a>]. </span>
-  </span>In determining script,<span> <i>Common</i> and <i>Inherited</i> script characters are 
-  ignored. <span class="changedSpan">A visual breakdown of characters by script is given in [<a href="#idn-chars">idn-chars</a>].</span></span></p>
+  implementations. These place restrictions on the use of identifiers according to the recommended
+  </span>Identifier Characters <span>as specified in </span><a href="#Identifier_Characters">
+  Appendix C</a><span>. The Special-Purpose Characters are also specified in that appendix.</span></span></p>
   <ol>
     <li><b>ASCII-Only</b><ul>
       <li>All characters in each identifier must be ASCII</li>
@@ -697,17 +705,30 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </ul>
     </li>
     <li><b><span>Unrestricted</span></b><ul>
-      <li>A<span>ny valid identifiers</span></li>
+      <li>A<span>ny valid identifiers, including Special-Purpose Characters.</span></li>
     </ul>
     </li>
   </ol>
+  <p><span class="changedspan"><span>The determination of Script is according to the Unicode 
+  Standard [<a href="#UAX24">UAX24</a>]. (</span></span><span><span class="changedSpan">A visual 
+  breakdown of characters by script is given in [<a href="#idn-chars">idn-chars</a>].) </span>
+  </span>In determining script,<span> <i>Common</i> and <i>Inherited</i> script characters are 
+  ignored<span class="changedspan">, except for characters outside of XID_Continue. For example, &quot;abc-def&quot; 
+  counts as a single script, and would be allowed at Security Level 2. That is, the script of &quot;-&quot; is 
+  ignored. </span></span><span class="changedspan">The string &quot;I<span title="U+2665 BLACK HEART SUIT">♥</span>NY&quot;, 
+  on the other hand, is first allowed at Security Level 4, since the heart character is outside of 
+  XID_Continue, and thus the string counts as containing two scripts: Latin and Common.</span></p>
   <p><span>An &quot;appropriate alert&quot; should be generated if a domain name fails to satisfy the chosen 
   security level. <span class="changedspan">Depending on the circumstances and the level difference, 
   t</span>he form of such alerts could be minimal, such as special coloring or icons (perhaps with a 
-  tool-tip for more information), or more obvious, such as an alert dialog describing the issue and 
-  requiring user confirmation before continuing. User-agents <span class="changedspan">should</span> 
-  remember when the user has accepted an alert, for say Ωmega.com, and permit future access without 
-  bothering the user again.</span></p>
+  tool-tip for more information); or more obvious, such as an alert dialog describing the issue and 
+  requiring user confirmation before continuing<span class="changedspan">; or even more stringent, 
+  such as disallowing the use of the identifier</span>. User-agents <span class="changedspan">should</span> 
+  remember when the user has accepted an alert, for say <i>Ωmega.com</i>, and permit future access 
+  without bothering the user again. <span class="changedspan">Where icons are used to indicate the 
+  presence of characters from scripts, the glyphs in </span></span><span class="changedspan">
+  <span style="background-color: #FFFF00">Appendix D. <a href="#Missing_Character_Glyphs">Missing 
+  Character Glyphs</a> can be used.</span></span></p>
   <p class="reviewnote">A possible future extension <span>to Level 2 is to exclude any combining 
   character sequences outside of <code>NamedSequences.txt</code></span></p>
   <h3><span>2.10 <a name="Visual_Spoofing_Recommendations">Recommendations</a></span></h3>
@@ -725,18 +746,18 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   equivalences, promoting adequate rendering support, and putting restrictions in place according to 
   script and restricting by confusable characters. While the ICANN guidelines say &quot;top-level domain 
   registries will ... associate each registered internationalized domain name with one language or 
-  set of languages&quot; [<a href="#ICANN">ICANN</a>], that is better interpreted as limiting to script 
-  rather than language.</span></p>
+  set of languages&quot; [<a href="#ICANN">ICANN</a>], that guidance is better interpreted as limiting to
+  <i>script</i> rather than <i>language</i>.</span></p>
   <p><span>Also see the security discussions in IRI [<a href="#RFC3987">RFC3987</a>], URI [<a href="#RFC3986">RFC3986</a>], 
   and StringPrep [<a href="#RFC3454">RFC3454</a>].</span></p>
   <h4><b><span>2.10.1 <a name="User_Recommendations">User Recommendations</a></span></b></h4>
   <ol type="A">
     <li><span class="changedspan">Use browsers that have put user-agent guidelines into place to 
     detect spoofing.</span></li>
-    <li>If registering domain names, verify<span> that the Registry follows appropriate guidelines 
-    for preventing spoofing. If the desired domain name has any whole-script confusables (such as 
-    &quot;scope&quot; in Latin and Cyrillic), register those as well<span class="changedspan">, if not 
-    automatically provided by the registry. Use the same IP address for both.</span></span></li>
+    <li>If registering domain names, verify<span> that the registry follows appropriate guidelines 
+    for preventing spoofing. If the desired domain name <span class="changedspan">can have</span> 
+    any whole-script confusables (such as &quot;scope&quot; in Latin and Cyrillic), register those as well<span class="changedspan">, 
+    if not automatically provided by the registry. Use the same IP address for both.</span></span></li>
   </ol>
   <h4><span>2.10.1 <a name="Recommendations_General">General Programmer Recommendations</a></span></h4>
   <ol type="A">
@@ -761,12 +782,17 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <li><span>Follow the Unicode guidelines for displaying missing glyphs using a 
       rounded-rectangle, as described in Section
       <a href="http://www.unicode.org/versions/Unicode4.0.0/ch05.pdf">5.3 <i>Unknown and Missing 
-      Characters</i></a> of [<a href="#Unicode">Unicode</a>].</span></li>
+      Characters</i></a> of [<a href="#Unicode">Unicode</a>].<span class="changedspan"> The 
+      recommended glyphs according to scripts are shown in </span></span><span class="changedspan">
+      <span style="background-color: #FFFF00">Appendix D. <a href="#Missing_Character_Glyphs">
+      Missing Character Glyphs</a>.</span></span></li>
     </ol>
     </li>
     <li><span>In all software that parses numbers, detect digits of mixed (or unexpected) scripts.</span></li>
   </ol>
-  <h4><span><b>2.10.2 <a name="Recommendations_User_Agents">Domain Names: User Agents</a></b></span></h4>
+  <h4><span><b>2.10.2 <a name="Recommendations_User_Agents">User Agent Recommendations</a></b></span></h4>
+  <p><span class="changedspan">The following are recommendations for user agents in dealing with 
+  domain names.</span></p>
   <ol type="A">
     <li><span>Follow the General Recommendations above.</span></li>
     <li><span>Always display the domain name:</span><ol>
@@ -810,13 +836,14 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </ol>
     </li>
   </ol>
-  <h4><span><b>2.10.3 <a name="Recommendations_Registries">Domain Names: Registries</a></b></span></h4>
-  <p>T<span>he term &quot;Registry&quot; is to be interpreted broadly. The .com operator can impose 
-  restrictions on the 2nd level domain label, but if someone registers <i>foo.com</i>, then it is up 
-  to them to decide what will be allowed at the 3rd level (for example, <i>bar.foo.com</i>). So for 
-  that purpose, the owner of <i>foo.com</i> is treated as the &quot;registry&quot; for the 3rd level (the <i>
-  bar</i>). The term &quot;Registrant&quot; is used to refer to someone applying to a registry for a domain 
-  name.</span></p>
+  <h4><span><b>2.10.3 <a name="Recommendations_Registries">Registry Recommendations</a></b></span></h4>
+  <p><span class="changedspan">The following are recommendations for registries in dealing with 
+  domain names. </span>T<span>he term &quot;Registry&quot; is to be interpreted broadly. The .com operator can 
+  impose restrictions on the 2nd level domain label, but if someone registers <i>foo.com</i>, then 
+  it is up to them to decide what will be allowed at the 3rd level (for example, <i>bar.foo.com</i>). 
+  So for that purpose, the owner of <i>foo.com</i> is treated as the &quot;registry&quot; for the 3rd level 
+  (the <i>bar</i>). The term &quot;Registrant&quot; is used to refer to someone applying to a registry for a 
+  domain name.</span></p>
   <ol type="A">
     <li><span>In the short term, use <span class="changedspan">Security Level </span>2 to restrict 
     new domain names.</span></li>
@@ -996,8 +1023,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   characters recommended for general use as identifiers include those character </span><span>having 
   the </span>XID_Continue property as defined in the Unicode Character Database (see [<a href="#DCore">DCore</a>]), 
   plus the characters listed in Additional Word Characters below, which are required for expressing 
-  words in some languages. The Special-Purpose Characters should be excluded at certain Security 
-  Levels.</span></p>
+  words in some languages.</span></p>
   <p class="old_changed"><span class="changedspan">The list of allowable characters may be reduced 
   or expanded according to the requirements of the specific domain. For example, programming 
   language identifiers typically add some characters like &#39;$&#39;, and remove others like &#39;-&#39; (because 
@@ -1021,8 +1047,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   2027&nbsp; ; word-chars # Po (‧)&nbsp; HYPHENATION POINT<br>
   30A0&nbsp; ; word-chars # Pd (゠)&nbsp; KATAKANA-HIRAGANA DOUBLE HYPHEN</span></p>
   <h3><span class="changedspan"><span style="background-color: #FFFF00">Special-Purpose Characters</span></span></h3>
-  <p><span class="changedspan">All characters with the General Category Nl (Letter-Number), plus the 
-  following list</span></p>
+  <p class="old_changed"><span class="changedspan">The Special-Purpose Characters are used in the 
+  definition of Security Levels. They include all characters with the General Category Nl 
+  (Letter-Number), plus the following list:</span></p>
   <p><span class="changedspan">0138&nbsp; ; Ll # (ĸ)&nbsp; LATIN SMALL LETTER KRA<br>
   0180&nbsp; ; Ll # (ƀ)&nbsp; LATIN SMALL LETTER B WITH STROKE<br>
   018D&nbsp; ; Ll # (ƍ)&nbsp; LATIN SMALL LETTER TURNED DELTA<br>
@@ -1129,6 +1156,189 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
 &nbsp;</span></p>
   <p class="reviewnote">These lists are still draft! Once finalized, they should become regular 
   properties.</p>
+  <p class="reviewnote">We should extend the Special Purpose Characters to include problematic 
+  characters even outside XID_Continue. This would be so that if an implementation extends the set 
+  of Identifier Characters, that it can distinguish between characters like<span title="U+2665 BLACK HEART SUIT">
+  <i>heart</i> (♥) which don&#39;t cause a problem for spoofing and those like <i>division slash</i> (</span><span title="U+2215 DIVISION SLASH">∕</span><span title="U+2665 BLACK HEART SUIT">) 
+  which do.</span></p>
+  <h2 class="old_changed"><span class="changedspan">Appendix D. <a name="Missing_Character_Glyphs">
+  Missing Character Glyphs</a></span></h2>
+  <table cellSpacing="0" cellPadding="2" border="1">
+    <tr>
+      <th class="script" width="33%"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/latin.gif" width="24" height="24"> Latin</span></th>
+      <th class="script" width="33%"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/tibetan.gif" width="24" height="24"> Tibetan</span></th>
+      <th class="script" width="33%"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/hanunoo.gif" width="24" height="24"> Hanunoo</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/greek.gif" width="24" height="24"> Greek</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/myanmar.gif" width="24" height="24"> Myanmar</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/buhid.gif" width="24" height="24"> Buhid</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/cyrillic.gif" width="24" height="24"> Cyrillic</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/georgian.gif" width="24" height="24"> Georgian</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/tagbanwa.gif" width="24" height="24"> Tagbanwa</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/armenian.gif" width="24" height="24"> Armenian</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/hangulsyllables.gif" width="24" height="24"> Hangul</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/limbu.gif" width="24" height="24"> Limbu</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/hebrew.gif" width="24" height="24"> Hebrew</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/ethiopic.gif" width="24" height="24"> Ethiopic</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/taile.gif" width="24" height="24"> Tai Le</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/arabic.gif" width="24" height="24"> Arabic</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/cherokee.gif" width="24" height="24"> Cherokee</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/linearbsyllabary.gif" width="24" height="24"> Linear 
+      B</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/syriac.gif" width="24" height="24"> Syriac</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/canadiansyllabics.gif" width="24" height="24"> 
+      Canadian Aboriginal</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/ugaritic.gif" width="24" height="24"> Ugaritic</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/thaana.gif" width="24" height="24"> Thaana</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/ogham.gif" width="24" height="24"> Ogham</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/shavian.gif" width="24" height="24"> Shavian</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/devanagari.gif" width="24" height="24"> Devanagari</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/runic.gif" width="24" height="24"> Runic</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/osmanya.gif" width="24" height="24"> Osmanya</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/bengali.gif" width="24" height="24"> Bengali</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/khmer.gif" width="24" height="24"> Khmer</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/cypriot.gif" width="24" height="24"> Cypriot</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/gurmukhi.gif" width="24" height="24"> Gurmukhi</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/mongolian.gif" width="24" height="24"> Mongolian</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/braillesymbols.gif" width="24" height="24"> Braille</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/gujarati.gif" width="24" height="24"> Gujarati</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/hiragana.gif" width="24" height="24"> Hiragana</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/buginese.gif" width="24" height="24"> Buginese</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/oriya.gif" width="24" height="24"> Oriya</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/katakana.gif" width="24" height="24"> Katakana</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/coptic.gif" width="24" height="24"> Coptic</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/tamil.gif" width="24" height="24"> Tamil</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/bopomofo.gif" width="24" height="24"> Bopomofo</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/newtailu.gif" width="24" height="24"> New Tai Lue</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/telugu.gif" width="24" height="24"> Telugu</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/kangxiradicals.gif" width="24" height="24"> Han</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/glagolitic.gif" width="24" height="24"> Glagolitic</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/kannada.gif" width="24" height="24"> Kannada</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/yi.gif" width="24" height="24"> Yi</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/tifinagh.gif" width="24" height="24"> Tifinagh</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/malayalam.gif" width="24" height="24"> Malayalam</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/olditalic.gif" width="24" height="24"> Old Italic</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/silotinagri.gif" width="24" height="24"> Syloti Nagri</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/sinhala.gif" width="24" height="24"> Sinhala</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/gothic.gif" width="24" height="24"> Gothic</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/oldpersiancuneiform.gif" width="24" height="24"> Old 
+      Persian</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/thai.gif" width="24" height="24"> Thai</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/deseret.gif" width="24" height="24"> Deseret</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/kharoshthi.gif" width="24" height="24"> Kharoshthi</span></th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/lao.gif" width="24" height="24"> Lao</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/tagalog.gif" width="24" height="24"> Tagalog</span></th>
+      <th class="script">&nbsp;</th>
+    </tr>
+    <tr>
+      <th class="script" colspan="3" bgcolor="#EEEEFF">&nbsp;</th>
+    </tr>
+    <tr>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/common.gif" width="24" height="24"> Common</span></th>
+      <th class="script"><span class="changedspan">
+      <img src="../../../../../DATA/GEN/images/combiningdiacritics.gif" width="24" height="24"> 
+      Inherited</span></th>
+      <th class="script">&nbsp;</th>
+    </tr>
+  </table>
+  <h2 class="old_changed">&nbsp;</h2>
   <h2 class="old_changed"><a name="Acknowledgements">Acknowledgements</a></h2>
   <p class="old_changed">Steven Loomis and other people on the ICU team were very helpful in 
   developing the original proposal for this technical report. Thanks also to the following people 
@@ -1244,6 +1454,12 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       <td class="noborder" valign="top">Unicode Character Database.<br>
       <a href="http://www.unicode.org/ucd">http://www.unicode.org/ucd<br>
       </a><i>For an overview of the Unicode Character Database and a list of its associated files</i></td>
+    </tr>
+    <tr>
+      <td class="noborder" vAlign="top" width="1">[<a name="UAX15">UAX15</a>]</td>
+      <td class="noborder" vAlign="top">
+      <p align="left">UAX #15: Unicode Normalization Forms<br>
+      <a href="http://www.unicode.org/reports/tr15/">http://www.unicode.org/reports/tr15/</a></td>
     </tr>
     <tr>
       <td class="noborder" vAlign="top">[<a name="UAX24">UAX24</a>]</td>

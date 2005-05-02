@@ -1,0 +1,110 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="keywords" content="Unicode Standard, Normalization, Corrigendum">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Corrigendum #2: Yod with Hiriq Normalization</title>
+<link rel="stylesheet" type="text/css" href="http://www.unicode.org/webscripts/standard_styles.css">
+</head>
+
+<body text="#330000">
+
+<form action="http://www.unicode.org/webscripts/POST">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td colspan="2">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="icon"><a href="http://www.unicode.org/">
+          <img border="0" src="http://www.unicode.org/webscripts/logo60s2.gif" align="middle" alt="[Unicode]" width="34" height="33"></a>&nbsp;&nbsp;<a class="bar" href="http://www.unicode.org/standard/standard.html">
+          <font size="3">The Standard</font></a></td>
+          <td class="bar"><a href="http://www.unicode.org" class="bar">Home</a> |
+          <a href="http://www.unicode.org/sitemap/" class="bar">Site Map</a> |
+          <a href="http://www.unicode.org/search" class="bar">Search </a></td>
+        </tr>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="gray">&nbsp;</td>
+    </tr>
+    <tr>
+      <td valign="top" width="25%" class="navCol">
+      <table class="navColTable" border="0" width="100%" cellspacing="4" cellpadding="0">
+        <tr>
+          <td class="navColTitle">Related Links</td>
+        </tr>
+        <tr>
+          <td valign="top" class="navColCell"><a href="http://www.unicode.org/glossary/index.html">
+          Glossary</a></td>
+        </tr>
+        <tr>
+          <td valign="top" class="navColCell"><a href="http://www.unicode.org/standard/versions/">
+          Versions of the Unicode Standard</a></td>
+        </tr>
+        <tr>
+          <td valign="top" class="navColCell">
+          <a href="http://www.unicode.org/standard/standard.html">The Standard</a></td>
+        </tr>
+        <tr>
+          <td valign="top" class="navColCell">
+          <a href="http://www.unicode.org/errata/UnicodeErrata.html">Updates and Errata</a></td>
+        </tr>
+      </table>
+      </td>
+      <!-- BEGIN CONTENTS -->
+      <td>
+      <h1 align="center">Corrigendum #5: Normalization Idempotency</h1>
+      <blockquote>
+        <p>Before Unicode 4.1.0, there was a problem in the language of the specification of
+        <a href="http://www.unicode.org/unicode/reports/tr15/">UAX #15: Unicode Normalization Forms</a> 
+        for forms NFC and NFKC. A textual fix for this problem is required to make normalization 
+        logically self-consistent. Programs that depend on such logical consistency could be subject 
+        to security problems until fixed, although as yet no realistic scenarios are known that 
+        would present such problems.</p>
+        <p>The problem text occurs in Definition <a href="http://www.unicode.org/reports/tr15/#D2">
+        D2</a>, which defines what it means for a character to be <i>blocked</i>. Before Unicode 
+        4.1.0, this text was as follows:</p>
+        <blockquote>
+          <p><b>D2. </b>In any character sequence beginning with a starter S, a character C is <i>
+          blocked</i> from S if and only if there is some character B between S and C, and either B 
+          is a starter or it has the same combining class as C.</p>
+        </blockquote>
+        <p>When this corrigendum is applied to a version of Unicode from Unicode 3.0.0 to Unicode 
+        4.0.1, the text for D2 is changed by adding two words, to the following:</p>
+        <blockquote>
+          <p><b>D2&#39;. </b>In any character sequence beginning with a starter S, a character C is <i>
+          blocked</i> from S if and only if there is some character B between S and C, and either B 
+          is a starter or it has the same <u>or higher</u> combining class as C.</p>
+        </blockquote>
+        <p>The change will not have an impact on real data found in practice (with the possible 
+        exception of test cases for the algorithm itself), because the affected sequences do not 
+        constitute well-formed text in any known language.</p>
+        <p>For more background information, see <a href="http://www.unicode.org/review/pr-29.html">
+        Public Review Issue #29, Normalization Issue</a>.</p>
+      </blockquote>
+      <hr width="50%">
+      <div align="center">
+        <center>
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td><a href="http://www.unicode.org/copyright.html">
+            <img src="http://www.unicode.org/img/hb_notice.gif" border="0" alt="Access to Copyright and terms of use" width="216" height="50"></a></td>
+          </tr>
+        </table>
+        <script language="Javascript" type="text/javascript" src="http://www.unicode.org/webscripts/lastModified.js">
+        </script>
+        </center>
+      </div>
+      </td>
+    </tr>
+  </table>
+</form>
+
+</body>
+
+</html>

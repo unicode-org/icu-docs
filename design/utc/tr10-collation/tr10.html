@@ -155,7 +155,7 @@
       <ul class="toc">
         <li>6.3.1&nbsp;<a href="#Contiguous_weight_ranges">Contiguous Weight Ranges</a></li>
         <li>6.3.2&nbsp;<a href="#Escape_hatch">Escape Hatch</a></li>
-        <li>6.3.3&nbsp;<a href="#Leveraging_Unicode_tables">Leveraging Unicode tables</a></li>
+        <li>6.3.3&nbsp;<a href="#Leveraging_Unicode_tables">Leveraging Unicode Tables</a></li>
         <li>6.3.4&nbsp;<a href="#Reducing_the_Repertoire">Reducing the Repertoire</a></li>
         <li>6.3.5&nbsp;<a href="#Memory_Table_Size">Memory Table Size</a></li>
       </ul>
@@ -275,7 +275,8 @@
   see it in the selection, and assume the string is missing - fooled by the fact that it has sorted 
   in a completely different location. In matching, the same can occur, which can cause significant 
   problems for software customers; and as with database selection, the user may not realize what he 
-  is missing. See <a href="#Other_Applications_of_Collation">1.5 Other Applications of Collation</a>.<br>
+  is missing. See <a href="#Other_Applications_of_Collation">Section 1.5, Other Applications of 
+  Collation</a>.<br>
   <br>
   With Unicode being deployed so widely, multilingual data becomes the rule, not the exception. 
   Furthermore, it is increasingly common to see users with many different sorting expectations 
@@ -361,8 +362,7 @@
   <h3>1.2 <a name="Canonical_Equivalence">Canonical Equivalence</a></h3>
   <p>There are a number of cases in Unicode where two sequences of characters are canonically 
   equivalent; they are essentially the same character but can be represented in different ways. For 
-  more information on what this means, see [<a href="http://www.unicode.org/reports/tr15/">UAX #15: 
-  Unicode Normalization Forms</a>].</p>
+  more information on what this means, see [<a href="#UAX15">UAX15</a>].</p>
   <p>For collation, sequences that are canonically equivalent sort the same. In the table below are 
   some examples. For example, the angstrom symbol was encoded for compatibility, and is canonically 
   equivalent to an A-ring. The latter is also equivalent to the decomposed sequence of A plus the 
@@ -786,7 +786,7 @@
   <blockquote>
     <p><b>Note: </b>The Default Unicode Collation Element Table does not explicitly list weights for 
     all assigned Unicode characters. However, the algorithm is well defined over <i>all</i> Unicode 
-    code points. See <a href="#Legal_Code_Points">Section 7.1.2, Legal code points</a>.</p>
+    code points. See <a href="#Legal_Code_Points">Section 7.1.2, Legal Code Points</a>.</p>
   </blockquote>
   <h4>1.9.2 <a name="Non-Goals">Non-Goals</a></h4>
   <p>The Default Unicode Collation Element Table explicitly does not provide for the following 
@@ -1120,11 +1120,11 @@
   characters are marked as being <i>backwards</i> at Level 2.</p>
   <h4>3.1.3 <a name="Rearrangement">Rearrangement</a></h4>
   <p>Certain characters are not coded in logical order, such as the Thai vowels เ through ไ and the 
-  Lao vowels ເ through ໄ (this list is indicated by the
-  <a href="http://www.unicode.org/Public/UNIDATA/PropList.html">Logical_Order_Exception</a> 
-  property). For collation, they are rearranged by swapping with the following character before 
-  further processing, because logically they belong afterwards. This is done by providing these 
-  sequences as contractions in the Collation Element Table.<br>
+  Lao vowels ເ through ໄ (this list is indicated by the Logical_Order_Exception property in the 
+  Unicode Character Database [<a href="#UCD">UCD</a>]). For collation, they are rearranged by 
+  swapping with the following character before further processing, because logically they belong 
+  afterwards. This is done by providing these sequences as contractions in the Collation Element 
+  Table.<br>
   </p>
   <h4>3.1.4 <a name="Default_Values">Default Values</a></h4>
   <p>Both in the Default Unicode Collation Element Table and in typical tailorings, most unaccented 
@@ -1153,8 +1153,7 @@
     <li>Otherwise set <code>position</code> to be the end of the characters mapped.</li>
     <li>Loop back to step 2.</li>
   </ol>
-  <p>For information on the use of collation graphemes, see
-  <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression Guidelines</a>.</p>
+  <p>For information on the use of collation graphemes, see [<a href="#UTS18">UTS18</a>].</p>
   <h4>3.1.6 <a name="Combining_Grapheme_Joiner">Combining Grapheme Joiner</a></h4>
   <p><span>The Unicode Collation Algorithm involves the normalization of Unicode text strings before 
   collation weighting. The U+034F COMBINING GRAPHEME JOINER (CGJ) is ordinarily ignored in collation 
@@ -1566,8 +1565,7 @@
   <h3><a name="Step_1"></a>4.1 Normalize</h3>
   <p><b>Step 1. </b>Produce a normalized form of each input string, applying <a href="#S1.1">S1.1</a>.</p>
   <p><b><a name="S1.1">S1.1</a> </b>Use the Unicode canonical algorithm to decompose characters 
-  according to the canonical mappings. That is, put the string into Normalization Form D (see
-  <a href="http://www.unicode.org/reports/tr15/">UTR #15: Unicode Normalization Forms</a>).</p>
+  according to the canonical mappings. That is, put the string into Normalization Form D (see [<a href="#UAX15">UAX15</a>]).</p>
   <ul>
     <li>Conformant implementations may skip this step <i>in certain circumstances: </i>see
     <a href="#Weight_Derivation">Section 7, Weight Derivation</a> for more information.</li>
@@ -2447,9 +2445,7 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   <h2><a name="Weight_Derivation"></a>7 Weight Derivation</h2>
   <p>This section describes the generation of the Unicode Default Unicode Collation Element Table, 
   and the assignment of weights to code points that are not explicitly mentioned in a Collation 
-  Element Table. This uses information from the Unicode Character Database on
-  <a href="http://www.unicode.org/Public/UNIDATA/UnicodeData.txt">UnicodeData.txt</a> (and 
-  documented in <a href="http://www.unicode.org/Public/UNIDATA/UCD.html">UCD.html</a>).</p>
+  Element Table. This uses information from the Unicode Character Database [<a href="#UCD">UCD</a>].</p>
   <h3>7.1 <a name="Derived_Collation_Elements">Derived Collation Elements</a></h3>
   <p>CJK Ideographs and Hangul Syllables are not explicitly mentioned in the default table. CJK 
   ideographs are mapped to collation elements that are derived from their Unicode code point value 
@@ -2464,10 +2460,10 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   related characters) be ignorable at a primary level.</p>
   <h4><a name="Illegal_Code_Points">7.1.1 Illegal Code Points</a></h4>
   <p>Certain code points are illegal in a data stream. These include noncharacters (code points with 
-  the Noncharacter_Code_Point property in the Unicode Character Database), unpaired surrogates (code 
-  points with the General_Category property Cs), and out-of-range values (&lt; 0 or &gt; 10FFFF). 
-  Implementations may also choose to treat these as error conditions and respond appropriately, such 
-  as by throwing an exception.</p>
+  the Noncharacter_Code_Point property in the Unicode Character Database [<a href="#UCD">UCD</a>]), 
+  unpaired surrogates (code points with the General_Category property Cs), and out-of-range values 
+  (&lt; 0 or &gt; 10FFFF). Implementations may also choose to treat these as error conditions and respond 
+  appropriately, such as by throwing an exception.</p>
   <p>If they are not treated as an error condition, they must be mapped to [.0000.0000.0000.], and 
   thus ignored.</p>
   <h4><a name="Legal_Code_Points">7.1.2 Legal Code Coints</a></h4>
@@ -2925,10 +2921,10 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   </blockquote>
   <h4>7.3.1 <a name="Tertiary_Weight_Table">Tertiary Weight Table</a></h4>
   <p>Characters are given tertiary weights according to the following table. The Decomposition Type 
-  is from the Unicode Character Database. The Condition is either based on the General Category or 
-  on a specific list of characters. The weights are from MIN = 2 to MAX = 1F<sub>16</sub>, excluding 
-  7, which is not used for historical reasons. The Samples show some minimal values that are 
-  distinguished by the different weights. All values are distinguished from MIN except for the 
+  is from the Unicode Character Database [<a href="#UCD">UCD</a>]. The Condition is either based on 
+  the General Category or on a specific list of characters. The weights are from MIN = 2 to MAX = 1F<sub>16</sub>, 
+  excluding 7, which is not used for historical reasons. The Samples show some minimal values that 
+  are distinguished by the different weights. All values are distinguished from MIN except for the 
   Katakana/Hiragana values.</p>
   <div align="center">
     <center>
@@ -3277,10 +3273,10 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   </p>
   <h2><a name="Searching"></a>8 Searching and Matching</h2>
   <p>The collation elements can also be used for matching string and for searching for strings, so 
-  that a proper native-language match is produced. For example, &quot;ß&quot; will properly match against 
-  &quot;ss&quot;. Users of search algorithms should be allowed to modify the comparison strength, thus 
-  excluding differences at less significant levels. This is especially useful for searching, but can 
-  also apply to comparison.</p>
+  that a proper native-language match is produced. For example, &quot;ß&quot; will properly match against &quot;ss&quot;. 
+  Users of search algorithms should be allowed to modify the comparison strength, thus excluding 
+  differences at less significant levels. This is especially useful for searching, but can also 
+  apply to comparison.</p>
   <p>Excluding differences at Level 3 has the effect of ignoring case and compatibility format 
   distinctions between letters when searching. Excluding differences at Level 2 has the effect of 
   ignoring accentual distinctions when searching.</p>
@@ -3291,8 +3287,8 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
     Danish.</font></li>
     <li><font size="3">Because of ignorables (at different levels), </font>there are different 
     possible positions where a string matches, depending on the attribute settings of the collation. 
-    For example, if hyphens are ignorable for a certain collation, then &quot;abc&quot; will match &quot;abc&quot;, 
-    &quot;abc-&quot;, &quot;-abc-&quot;, and so on.</li>
+    For example, if hyphens are ignorable for a certain collation, then &quot;abc&quot; will match &quot;abc&quot;, &quot;abc-&quot;, 
+    &quot;-abc-&quot;, and so on.</li>
     <li>Suppose that the collator has contractions, and that a contraction spans the boundary of the 
     match. Whether or not it is considered a match may depend on user settings, just as users are 
     given a &quot;Whole Words&quot; option in searching. So in a language where &quot;ch&quot; is a contraction, &quot;bac&quot; 
@@ -3302,8 +3298,7 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
     However, this may also depend on language and user customization.</font></li>
     <li><font size="3">The above two conditions can be considered part of a general condition: 
     &quot;Whole Characters Only&quot;; very similar to the common &quot;Whole Words Only&quot; checkbox that is included 
-    in most search dialog boxes.</font> (For more information on grapheme clusters, see
-    <a href="http://www.unicode.org/reports/tr18/">UTR #18: Unicode Regular Expression Guidelines</a>)</li>
+    in most search dialog boxes.</font> (For more information on grapheme clusters, see [<a href="#UTS18">UTS18</a>].</li>
     <li>If the matching does not check for <font size="3">&quot;Whole Grapheme Clusters Only&quot;</font>, 
     then some other complications may occur. For example, suppose that P is &quot;x<font size="3">^&quot;, and 
     Q is &quot;</font>x ^<font size="3">¸&quot;. Because the cedilla and circumflex can be written in 
@@ -3315,11 +3310,11 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   <p>The following are used to provide a clear definition of searching and matching that deal with 
   the above complications:</p>
   <p><b>DS1. </b>Define <i>S[start,end]</i> to be the substring of S that includes the character 
-  after the offset <i>start</i> up to the character before offset <i>end</i>. For example, if S is 
-  &quot;abcd&quot;, then S[1,3] is &quot;bc&quot;.</p>
+  after the offset <i>start</i> up to the character before offset <i>end</i>. For example, if S is &quot;abcd&quot;, 
+  then S[1,3] is &quot;bc&quot;.</p>
   <p><span><b>DS1a. </b>A boundary condition is a test imposed on an offset within a string. 
   Examples include <font size="3">Whole Grapheme Cluster Search and Whole Word Search, as defined in 
-  UAX #29. </font>See [<a href="http://www.unicode.org/reports/tr10/tr10-12.html#Breaks">Breaks</a>]).</span></p>
+  UAX #29. </font>See [<a href="#UAX29">UAX29</a>]).</span></p>
   <p><span>By using grapheme-complete conditions, contractions and combining sequences are not 
   interrupted. This also avoids the need to present visually discontiguous selections to the user 
   (except for BIDI text).</span></p>
@@ -3331,7 +3326,7 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   the condition B.</span></p>
   <p><span><b>DS2a.</b> A match <font size="3">is</font> <i>grapheme-complete</i> if B requires that 
   the offset be at a grapheme cluster boundary. Note that Whole Word Search as defined in UAX #29 is 
-  grapheme complete. See [<a href="http://www.unicode.org/reports/tr10/tr10-12.html#Breaks">Breaks</a>]).</span></p>
+  grapheme complete. See [<a href="#UAX29">UAX29</a>]).</span></p>
   <p><b>DS3. </b>There is a <i>canonical match</i> according to C for P within Q[<i>s,e</i>] if and 
   only if there is some Q&#39;, canonically equivalent to Q[<i>s,e</i>], and some <i>s&#39;</i> and <i>e&#39;</i> 
   such that P matches within Q[<i>s&#39;,e&#39;</i>].</p>
@@ -3414,12 +3409,11 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
   <p><b>DS6.</b> The <i>first forward match</i> for P in Q starting at <i>b</i> is the least offset
   <i>s</i> greater than or equal to <i>b</i> such that for some <i>e</i>, P matches within Q[s,e].</p>
   <p><b>DS7.</b> The <i>first backward match</i> for P in Q starting at <i>b</i> is the greatest 
-  offset <i>e</i> less than or equal to <i>b</i> such that for some <i>s</i>, P matches within 
-  Q[s,e].</p>
+  offset <i>e</i> less than or equal to <i>b</i> such that for some <i>s</i>, P matches within Q[s,e].</p>
   <p><span>In DS6 and DS7, matches can be minimal, medial, or maximal; the only requirement is that 
   the combination in use in DS6 and DS7 be specified. Of course, a possible match can also be 
   rejected on the basis of other conditions, such as being grapheme-complete or applying Whole Word 
-  Search, as described in [<a href="#Breaks">Breaks</a>]). </span></p>
+  Search, as described in [<a href="#UAX29">UAX29</a>]). </span></p>
   <h2><a name="Acknowledgements">Acknowledgements</a></h2>
   <p>Thanks to Bernard Desgraupes, Richard Gillam, Kent Karlsson, Åke Persson, Roozbeh Pournader, 
   Markus Scherer, Javier Sola, <span>Otto Stolz, </span>and Vladimir Weinstein for their feedback on 
@@ -3438,16 +3432,6 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
       http://www.unicode.org/Public/UCA/4.1.0/allkeys.txt</a><br>
       <i>Note:</i> ftp access is available, starting at:<br>
       <a href="ftp://www.unicode.org/Public/UCA/">ftp://www.unicode.org/Public/UCA/</a></td>
-    </tr>
-    <tr>
-      <td valign="top" width="1" class="noborder"><span>[<a name="Breaks">Breaks</a>]</span></td>
-      <td valign="top" class="noborder"><span><a href="http://www.unicode.org/reports/tr29/">UAX 
-      #29: Text Boundaries</a><br>
-      Latest Version:<br>
-      <a href="http://www.unicode.org/reports/tr29/">http://www.unicode.org/reports/tr29/</a><br>
-      4.1.0 version:<br>
-      <a href="http://www.unicode.org/reports/tr29/tr29-8.html">
-      http://www.unicode.org/reports/tr29/tr29-8.html</a> </span></td>
     </tr>
     <tr>
       <td width="1" class="noborder">[<a name="CanStd">CanStd</a>]</td>
@@ -3477,15 +3461,16 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
     </tr>
     <tr>
       <td width="1" class="noborder">[<a name="ICUCollator">ICUCollator</a>]</td>
-      <td class="noborder"><a href="http://oss.software.ibm.com/icu/userguide/Collate_Intro.html">
-      http://oss.software.ibm.com/icu/userguide/Collate_Intro.html</a></td>
+      <td class="noborder">ICU User Guide: Collation Introduction<br>
+      <a href="http://icu.sourceforge.net/userguide/Collate_Intro.html">
+      http://icu.sourceforge.net/userguide/Collate_Intro.html</a> </td>
     </tr>
     <tr>
       <td class="noborder" vAlign="top" width="1">[<a name="ISO14651">ISO14651</a>]</td>
       <td class="noborder" vAlign="top">International Organization for Standardization. <i>
       Information Technology--International String ordering and comparison--Method for comparing 
-      character strings and description of the common template tailorable ordering.&nbsp; </i>
-      (ISO/IEC 14651:2001). <i>For availability see <a href="http://www.iso.org">http://www.iso.org</a></i></td>
+      character strings and description of the common template tailorable ordering.&nbsp; </i>(ISO/IEC 
+      14651:2001). <i>For availability see <a href="http://www.iso.org">http://www.iso.org</a></i></td>
     </tr>
     <tr>
       <td width="1" class="noborder">[<a name="JavaCollator">JavaCollator</a>]</td>
@@ -3530,9 +3515,20 @@ boolean forwards;   // 0 for forwards, 1 for backwards (i)
       <a href="ftp://www.unicode.org/Public/UCA/">ftp://www.unicode.org/Public/UCA/</a></td>
     </tr>
     <tr>
+      <td width="1" class="noborder">[<a name="UAX15">UAX15</a>]</td>
+      <td class="noborder">UAX #15: Unicode Normalization Forms<br>
+      <a href="http://www.unicode.org/reports/tr15/">http://www.unicode.org/reports/tr15/</a> </td>
+    </tr>
+    <tr>
       <td width="1" class="noborder">[<a name="UAX29">UAX29</a>]</td>
       <td class="noborder">UAX #29: Text Boundaries<br>
       <a href="http://www.unicode.org/reports/tr29/">http://www.unicode.org/reports/tr29/</a> </td>
+    </tr>
+    <tr>
+      <td width="1" class="noborder">[<a name="UCD">UCD</a>]</td>
+      <td class="noborder">Unicode Character Database<br>
+      <a href="http://www.unicode.org/Public/UNIDATA/UCD.html">
+      http://www.unicode.org/Public/UNIDATA/UCD.html</a> </td>
     </tr>
     <tr>
       <td width="1" class="noborder">[<a name="Unicode">Unicode</a>]<span><br>

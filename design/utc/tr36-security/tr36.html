@@ -38,7 +38,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <table border="1" cellpadding="2" width="90%" style="border-collapse: collapse" cellspacing="0">
     <tr>
       <td valign="top">Revision</td>
-      <td valign="top">3<font color="#FF0000"> (working draft $Revision: 1.14 $)</font></td>
+      <td valign="top">3<font color="#FF0000"> (working draft $Revision: 1.15 $)</font></td>
     </tr>
     <tr>
       <td valign="top">Authors</td>
@@ -46,7 +46,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top" class="old_changed">$Date: 2005/04/30 01:20:35 $</td>
+      <td valign="top" class="old_changed">$Date: 2005/05/06 20:38:34 $</td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
@@ -152,11 +152,12 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   realize that it might be a spoof; the HTML email you get might be presenting the URL
   <a href="http://paypal.com/...">http://paypal.com/...</a> visually, but might be hiding the <i>
   real</i> URL. You realize that even what shows up in the status bar might be a lie, since clever 
-  Javascript can work around that. So you click on the link, and carefully examine your browser&#39;s 
-  address box to make sure that it is actually going to <a href="http://paypal.com/...">
-  http://paypal.com/...</a>; and according to what you see it is. <i>But actually it is going to a 
-  spoof site that has a fake &quot;paypal.com&quot;, using the Cyrillic letter that looks precisely like a 
-  &#39;p&#39;.</i> You use the site without suspecting, and your password ends up compromised.</span></p>
+  Javascript* or ActiveX can work around that. (And users may have these turned on unless they know 
+  to turn them off.) So you click on the link, and carefully examine your browser&#39;s address box to 
+  make sure that it is actually going to <a href="http://paypal.com/...">http://paypal.com/...</a>; 
+  and according to what you see it is. <i>But actually it is going to a spoof site that has a fake &quot;paypal.com&quot;, 
+  using the Cyrillic letter that looks precisely like a &#39;p&#39;.</i> You use the site without 
+  suspecting, and your password ends up compromised.</span></p>
   <p>This problem is not new to Unicode: it was possible to spoof even with ASCII characters alone. 
   For example, &quot;<font face="sans-serif">inteI.com</font>&quot; uses a capital I instead of an L. The 
   infamous example here is of course &quot;<font face="sans-serif">paypaI.com</font>&quot;:&nbsp; </p>
@@ -171,6 +172,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <a href="http://news.zdnet.co.uk/internet/security/0,39020375,2080344,00.htm">Beware the &#39;PaypaI&#39; 
     scam</a></span></p>
   </blockquote>
+  <p><span class="changedspan">While some browsers prevent this spoof by lowercasing domain names, 
+  but others don&#39;t.</span></p>
   <p>Thus to a certain extent, the new forms of visual spoofing available with Unicode are a matter 
   of degree and not kind. However, because of the very large number of Unicode characters (over 
   96,000 in the current version), the number of opportunities for visual spoofing is significantly 
@@ -309,7 +312,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <li><span>the user agent has more control over the display of characters, which is crucial to 
     spoofing</span></li>
     <li><span>there are legitimate cases of visually confusable characters that one may want to 
-    allow <i>after</i> alerting the user.</span></li>
+    allow <i>after</i> alerting the user<span class="changedspan">, such as whole-script confusables 
+    discussed below</span>.</span></li>
     <li><span>one cannot depend on all registries being equally responsive to security issues</span></li>
   </ul>
   <p><span>So efforts need to be made on the part of user-agents as an additional line of defense.</span></p>
@@ -325,7 +329,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   for existing data to be mapped to Unicode without loss. Moreover, the characters generally have 
   very different behavior: two visually confusable characters may be different in casing behavior, 
   in category (letter versus number), or in numeric value. After all, ASCII does not unify lowercase 
-  letter l and digit 1, even though those are visually confusable. Encoding the Cyrillic character б 
+  letter l and digit 1, even though those are visually confusable. <span class="changedspan">(Many 
+  fonts always distinguish them, but many do not.) </span>Encoding the Cyrillic character б 
   (corresponding to the letter &quot;b&quot;) by using the numeral 6, would clearly have been a mistake, even 
   though they are visually confusable.</span></p>
   <p><span>However, the existence of v</span>isually confusable characters across scripts<span>
@@ -822,19 +827,23 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <li><span class="changedspan">If the confusable dat<span>a is available ([<a href="#confusables">confusables</a>]):</span></span><ol>
       <li>R<span>aise the default level to Level 3<span class="changedspan">, and allow Latin with 
       any other script.</span></span></li>
-      <li><span class="changedSpan">If the domain name is a single script, but has a whole-script 
-      confusable, verify that both point to the same IP address. If not, alert the user.</span><ul>
-        <li><span>For example: &quot;ѕсоре.com&quot; (<i>Cyrillic)</i> would cause an alert if &quot;scope.com&quot; (<i>Latin</i>) 
+      <li><span class="changedSpan">If the domain name has a whole-script confusable, verify that 
+      both point to the same IP address. If not, alert the user. </span>
+      <ul>
+        <li><span>&quot;ѕсоре.com&quot; <i>(Cyrillic)</i> would cause an alert if &quot;scope.com&quot; <i>(Latin)</i> 
         had a different IP address.</span></li>
+        <li>&quot;paypal.com&quot; <i>(with Cyrillic a)</i> would cause an alert because &quot;paypal.com&quot; <i>
+        (Latin)</i> has a different IP address.</li>
       </ul>
       </li>
-      <li><span class="changedspan">For each domain name generate N new domain names, whereby each 
-      maximizes the number of characters of a given script using the confusable mappings.</span><ol>
-        <li><span class="changedspan">If any of the new domain names is single script, alert the 
-        user (this catches the paypal.com with Cyrillic <i>a</i>).</span></li>
-        <li><span class="changedspan">Otherwise (that is, all are mixed script), see if any have 
-        different IP addresses. If so, alert the user.</span></li>
-      </ol>
+      <li><span class="changedspan">Otherwise, generate 0..N new domain names, whereby each 
+      maximizes the number of characters of a given script using the confusable mappings. If any 
+      have different IP addresses, alert the user.</span><ul>
+        <li>&quot;<span>Ωmega</span>&quot; <i>(with Greek Omega)</i> would cause an alert if there was some 
+        other combination registered, say with a Cyrillic &#39;e&#39;.</li>
+        <li>Because the number of mixed-script inputs would be small, the average number of extra 
+        DNS lookups would be very small.</li>
+      </ul>
       </li>
     </ol>
     </li>
@@ -856,10 +865,14 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       registrant any whole-script confusable variant. Thus a registration of &quot;<span>ѕсоре.com</span>&quot; 
       (<i>Cyrillic</i>) would automatically also get a registration of &quot;scope.com&quot; (<i>Latin</i>).</span></li>
       <li>Otherwise d<span>isallow registration of a new domain name that only differs by confusable 
-      characters from one already registered.</span></li>
+      characters from one already registered<span class="changedspan"> by a different registrant</span>.</span></li>
     </ol>
     </li>
   </ol>
+  <p><span class="changedspan">Thus a registry could allow registration of <span>
+  <a href="http://caxap.ru/">http://caxap.ru/</a> in Latin (which is already registered), or the 
+  Cyrillic equivalent, or both <font face="Lucida Sans Unicode">— but for both, <i>only</i> with the 
+  same registrant!</font></span></span></p>
   <hr width="50%">
   <p class="reviewnote"><b>To Do:</b></p>
   <ol>
@@ -968,16 +981,17 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <tr>
       <td class="noborder" valign="top" width="1" nowrap="nowrap"><span>[<a name="idn-chars">idn-chars</a>]</span></td>
       <td class="noborder" valign="top"><span><b>IDN Characters: </b>Categorizes all the possible 
-      IDN chars</span>.<span class="changedspan"> The form</span><span><span class="changedspan">at 
-      of the plaintext version is described in the html file.</span><b><br>
+      IDN chars<span class="changedspan">, under the current definition of IDN</span></span><span class="changedspan">. 
+      The form</span><span><span class="changedspan">at of both files is described in the html file.</span><b><br>
       </b><a href="idn-chars.html">idn-chars.html</a><b><br>
       </b><span class="changedspan"><a href="idn-chars.txt">idn-chars.txt</a></span></span></td>
     </tr>
     <tr>
       <td class="noborder" valign="top" width="1"><span>[<a name="confusables">confusables</a>]</span></td>
-      <td class="noborder" valign="top"><b>Visually Confusable Characters: </b>
-      <a href="confusables.txt"><span>confusables.txt</span></a><span><br>
-      The format and usage of the file are described in the file header.</span></td>
+      <td class="noborder" valign="top"><b>Visually Confusable Characters:</b> Provides a mapping 
+      for visually confusables. <span>The format and usage of the file are described in the file 
+      header.</span><b><br>
+      </b><a href="confusables.txt"><span>confusables.txt</span></a></td>
     </tr>
   </table>
   <p>&nbsp;</p>
@@ -1349,9 +1363,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <p class="old_changed">Steven Loomis and other people on the ICU team were very helpful in 
   developing the original proposal for this technical report. Thanks also to the following people 
   for their feedback or contributions to this document <span>or earlier versions of it</span>: 
-  Martin Dürst, Paul Hoffman, <span>Eric Muller, Erik van der Poel, and especially Michel Suignard. 
-  This document also draws on examples or ideas suggested in email discussions from Alexander 
-  Savenkov, Erik van der Poel, and others.</span></p>
+  Martin Dürst, Paul Hoffman, <span>Gervase Markham, Eric Muller, and especially Erik van der Poel 
+  and Michel Suignard. This document also draws on examples or ideas suggested in email discussions 
+  from Alexander Savenkov, Erik van der Poel, and others.</span></p>
   <h2><a name="References">References</a></h2>
   <table cellspacing="0" cellpadding="4" border="0" class="noborder" style="border-collapse: collapse">
     <tr>

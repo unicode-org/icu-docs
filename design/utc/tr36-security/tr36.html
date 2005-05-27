@@ -38,7 +38,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <table border="1" cellpadding="2" width="90%" style="border-collapse: collapse" cellspacing="0">
     <tr>
       <td valign="top">Revision</td>
-      <td valign="top">3<font color="#FF0000"> (working draft $Revision: 1.16 $)</font></td>
+      <td valign="top">3<font color="#FF0000"> (working draft $Revision: 1.17 $)</font></td>
     </tr>
     <tr>
       <td valign="top">Authors</td>
@@ -46,7 +46,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </tr>
     <tr>
       <td valign="top">Date</td>
-      <td valign="top" class="old_changed">$Date: 2005/05/09 00:23:51 $</td>
+      <td valign="top" class="old_changed">$Date: 2005/05/27 17:45:51 $</td>
     </tr>
     <tr>
       <td valign="top">This Version</td>
@@ -71,8 +71,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   programs or systems to possible security attacks. This document describes some of the security 
   considerations that programmers, system analysts, standards developers, and users should take into 
   account, </span>and provides specific recommendations to reduce the risk of problems.</i></p>
-  <p class="reviewnote"><span class="changedspan"><i>New text is marked with this style. This draft 
-  has rearranged a number of pieces of text -- that rearrangement is not marked.</i></span></p>
+  <p><span class="changedspan"><i>New text is marked with this style. This draft has rearranged a 
+  number of pieces of text -- that rearrangement is not marked.</i></span></p>
   <p class="reviewnote"><span class="changedspan"><span style="background-color: #FFFF00"><i>Review 
   notes appear with this style.</i></span></span></p>
   <h3><i>Status</i></h3>
@@ -91,6 +91,8 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   Standard see [<a href="#Unicode">Unicode</a>]. For a list of current Unicode Technical Reports see 
   [<a href="#Reports">Reports</a>]. For more information about versions of the Unicode Standard, see 
   [<a href="#Versions">Versions</a>].</i></p>
+  <p><span class="changedspan"><i>The intent for this document to become a Unicode Technical 
+  Standard. However, because of the current needs for referenceable data, </i></span></p>
   <p class="reviewnote">Based on feedback, the title was shortened to &quot;Unicode Security 
   Considerations&quot;.</p>
   <h3><i>Contents</i></h3>
@@ -611,6 +613,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   the Unicode guidelines for displaying missing glyphs using a rounded-rectangle, as described in 
   Section <a href="http://www.unicode.org/versions/Unicode4.0.0/ch05.pdf">5.3 <i>Unknown and Missing 
   Characters</i></a> of [<a href="#Unicode">Unicode</a>].&nbsp; For examples of this, see also [<a href="#Charts">Charts</a>].</span></p>
+  <p><b>[Add example of IP address at start].</b></p>
   <h3><span>2.6 <a name="Numeric_Spoofs">Numeric Spoofs</a></span></h3>
   <p><span>Turning away from IDN for a moment, there is another area where visual spoofs can be 
   used. Many scripts have sets of decimal digits that are different in shape from the typical 
@@ -641,11 +644,13 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   lowercases to U+03C2 &quot;ς&quot; <i>small final sigma</i> if it is not. Because both σ and ς have a 
   case-insensitive match to Σ, and the case folding algorithm needs to map both of them together (so 
   that transitivity is maintained), only one of them appears in the case-folded form.</span></p>
-  <p><span class="changedspan">When the case-folded format of a string is to be displayed to the 
-  user, it should be processed so as to choose the proper form for the small sigma, depending on the 
-  context. That is provided in Table 3-13 of [<a href="#Unicode">Unicode</a>], where C = σ. For more 
-  information on case mapping and folding, see the following: Section
-  <a href="http://www.unicode.org/versions/Unicode4.0.0/ch03.pdf#G33992">3.13 Default Case 
+  <p><span class="changedspan">When the case-folded format of a Greek string is to be displayed to 
+  the user, it should be processed so as to choose the proper form for the small sigma, depending on 
+  the context. That is provided in Table 3-13 of [<a href="#Unicode">Unicode</a>], where C = σ.
+  </span></p>
+  <p class="reviewnote"><span class="changedspan">TBD</span></p>
+  <p><span class="changedspan">For more information on case mapping and folding, see the following: 
+  Section <a href="http://www.unicode.org/versions/Unicode4.0.0/ch03.pdf#G33992">3.13 Default Case 
   Operations</a> of [<a href="#Unicode">Unicode</a>], Section
   <a href="http://www.unicode.org/versions/Unicode4.0.0/ch04.pdf#G124722">4.2 Case Normative</a> of 
   [<a href="#Unicode">Unicode</a>], and Section
@@ -731,8 +736,10 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   presence of characters from scripts, the glyphs in </span></span><span class="changedspan">
   <span style="background-color: #FFFF00">Appendix D. <a href="#Missing_Character_Glyphs">Missing 
   Character Glyphs</a> can be used.</span></span></p>
-  <p class="reviewnote">A possible future extension <span>to Level 2 is to exclude any combining 
-  character sequences outside of <code>NamedSequences.txt</code></span></p>
+  <ol>
+    <li><span class="changedSpan"><b>Alert the user if the visual appearance of a link goes to a 
+    different location [if it looks like a link]</b></span></li>
+  </ol>
   <h3>2.10 <a name="Visual_Spoofing_Recommendations">Recommendations</a></h3>
   <p>The Unicode Consortium recommends a somewhat conservative approach at this point, because is 
   always easier to widen restrictions than narrow them. The Consortium is gathering data that would 
@@ -757,26 +764,32 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     <li><span class="changedspan">Use browsers that have put user-agent guidelines into place to 
     detect spoofing.</span></li>
     <li>If registering domain names, verify<span> that the registry follows appropriate guidelines 
-    for preventing spoofing. If the desired domain name <span class="changedspan">can have</span> 
-    any whole-script confusables (such as &quot;scope&quot; in Latin and Cyrillic), register those as well<span class="changedspan">, 
-    if not automatically provided by the registry. Use the same IP address for both.</span></span></li>
+    for preventing spoofing. <b>[point to the IDN list for policies by country].</b></span></li>
+    <li><span>If the desired domain name <span class="changedspan">can have</span> any whole-script 
+    confusables (such as &quot;scope&quot; in Latin and Cyrillic), register those as well<span class="changedspan">, 
+    if not automatically provided by the registry. <b>[program for whole-script confusables]</b></span></span></li>
   </ol>
-  <h4><span>2.10.1 <a name="Recommendations_General">General Programmer Recommendations</a></span></h4>
+  <h4><span>2.10.2 <a name="Recommendations_General">General Programmer Recommendations</a></span></h4>
   <ol type="A">
+    <li><span><b>[generalize to all text] </b>In all software that parses numbers, detect digits of 
+    mixed (or whole but unexpected) scripts and alert the user.</span></li>
     <li><span>In checking equivalence of identifiers, preprocess both strings by applying NFKC and 
     case folding. An example of this methodology is StringPrep [<a href="#RFC3454">RFC3454</a>]. 
     Display all such identifiers to users in their post-processed form. That will, for example, 
     always map characters to lowercase, where characters are generally more distinctive. (Although 
     StringPrep itself is currently limited to Unicode 3.2, the same methodology can be applied by 
     implementations that need to support more modern versions of Unicode.)</span></li>
-    <li><span>Disallow the use of <span class="changedspan">Non-Starter Characters</span> at the 
-    start of an identifier, since those will often be clipped in display. <span class="changedspan">
-    See </span></span><span class="changedspan"><a href="#Identifier_Characters">Appendix C</a> for 
-    a list of these characters.</span></li>
-    <li><span>Assess the font support of the OS/platform according to draft UTR #32: <i>Assessing 
-    Unicode Support (to be issued soon, as a draft)</i>. See also the W3C [<a href="#CharMod">CharMod</a>]. 
-    If it is inadequate, work with the OS/platform vendor to address those problems, or implement 
-    your own handling of problematic cases:</span><ol>
+    <li><span><b>[for programming language / protocol developers ]</b>Disallow the use of
+    <span class="changedspan">Non-Starter Characters</span> at the start of an identifier, since 
+    those will often be clipped in display. <span class="changedspan">See </span></span>
+    <span class="changedspan"><a href="#Identifier_Characters">Appendix C</a> for a list of these 
+    characters.</span></li>
+    <li><b><span class="changedspan">[when using fonts, use less-spoofable fonts]</span></b></li>
+    <li><span><b>[target at font developers / rendering system programmers] </b>Assess the font 
+    support of the OS/platform according to draft UTR #32: <i>Assessing Unicode Support (to be 
+    issued soon, as a draft)</i>. See also the W3C [<a href="#CharMod">CharMod</a>]. If it is 
+    inadequate, work with the OS/platform vendor to address those problems, or implement your own 
+    handling of problematic cases:</span><ol>
       <li><span>Verify that accents do not appear to apply to the wrong character.</span></li>
       <li><span>Follow <a href="http://www.unicode.org/notes/tn2/">UTN #2: <i>Rendering Combining 
       Marks</i></a> in providing layout of nonspacing marks that would otherwise collide. If this is 
@@ -792,23 +805,25 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       Missing Character Glyphs</a>.</span></span></li>
     </ol>
     </li>
-    <li><span>In all software that parses numbers, detect digits of mixed (or unexpected) scripts.</span></li>
   </ol>
-  <h4><span><b>2.10.2 <a name="Recommendations_User_Agents">User Agent Recommendations</a></b></span></h4>
+  <h4><span><b>2.10.3 <a name="Recommendations_User_Agents">User Agent Recommendations</a></b></span></h4>
+  <p><b>[make sure to define &quot;user agent&quot; broad]</b></p>
+  <p><b>[display characters with enough pixels: more pixels for South/SE Asian, CJK. Examples in 
+  Visual Display (CJK at low resolution). Watch for clipping, vertical/horizontal]</b></p>
   <p><span class="changedspan">The following are recommendations for user agents in dealing with 
   domain names.</span></p>
   <ol type="A">
     <li><span>Follow the General Recommendations above.</span></li>
     <li><span class="changedspan">Display</span><ol>
-      <li><span>Always display the domain name in </span>nameprepped form<span> [<a href="#RFC3491">RFC3491</a>]. 
-      That will, for example, always map characters to lowercase, where characters are generally 
-      more distinctive.<span class="changedspan"> See <a href="#Case_Folded_Format">
-      Case_Folded_Format</a> for more details.</span></span></li>
+      <li><span class="changedspan">Make it </span><span><span class="changedspan">easy for the user 
+      to see the</span> the domain name in </span>nameprepped form<span> [<a href="#RFC3491">RFC3491</a>].
+      <b>[for example, hover -- or just converting]. </b>That will, for example, always map 
+      characters to lowercase, where characters are generally more distinctive.<span class="changedspan"> 
+      See <a href="#Case_Folded_Format">Case_Folded_Format</a> for more details.</span></span></li>
       <li><span>Always display the domain name w</span>ith <span>fonts that shows as many 
-      distinctions as possible among the visually confusable characters. For example, serifed fonts 
-      are generally better than sans serif. Use a size that makes it easier to see the differences 
-      in characters. Disallow the use of font sizes that are so small as to cause even more 
-      characters to be visually confusable.</span></li>
+      distinctions as possible among the visually confusable characters. Use a size that makes it 
+      easier to see the differences in characters. Disallow the use of font sizes that are so small 
+      as to cause even more characters to be visually confusable.</span></li>
       <li><span class="changedspan"><span>Always display the domain name w</span></span><span class="changedSpan">ith 
       a visually highlighted domain name, to prevent syntax spoofs.</span></li>
     </ol>
@@ -820,7 +835,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
       Anything above that level should cause an appropriate alert. Set the default to Security Level 
       2. </span></span></li>
       <li><span class="changedspan">In preferences, allow the user to select among scripts that can 
-      be used without alerting.</span></li>
+      be used without alerting. The default could be based on the user&#39;s locale.</span></li>
     </ol>
     </li>
     <li><span class="changedspan">If the confusable dat<span>a is available ([<a href="#confusables">confusables</a>]):</span></span><ol>
@@ -847,7 +862,9 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     </ol>
     </li>
   </ol>
-  <h4><span><b>2.10.3 <a name="Recommendations_Registries">Registry Recommendations</a></b></span></h4>
+  <h4><span><b>2.10.4 <a name="Recommendations_Registries">Registry Recommendations</a></b></span></h4>
+  <p><b><span class="changedspan">[Michel, Van: distinguish registry owns the policy; from registrar 
+  accepts the names]</span></b></p>
   <p><span class="changedspan">The following are recommendations for registries in dealing with 
   domain names. </span>T<span>he term &quot;Registry&quot; is to be interpreted broadly. The .com operator can 
   impose restrictions on the 2nd level domain label, but if someone registers <i>foo.com</i>, then 
@@ -860,11 +877,10 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
     new domain names.</span></li>
     <li><span class="changedspan">If the confusable dat<span>a is available ([<a href="#confusables">confusables</a>]):</span></span><ol>
       <li>R<span>aise the allowable Security Level to Level 5</span></li>
-      <li><span class="changedSpan">Whenever a new domain name is registered, automatically give the 
-      registrant any whole-script confusable variant. Thus a registration of &quot;<span>ѕсоре.com</span>&quot; 
-      (<i>Cyrillic</i>) would automatically also get a registration of &quot;scope.com&quot; (<i>Latin</i>).</span></li>
-      <li>Otherwise d<span>isallow registration of a new domain name that only differs by confusable 
-      characters from one already registered<span class="changedspan"> by a different registrant</span>.</span></li>
+      <li>D<span>isallow registration of a new domain name that only differs by confusable 
+      characters from one already registered<span class="changedspan"> by a different registrant</span>.
+      </span><span class="changedSpan">Thus an existing registration of &quot;<span>ѕсоре.com</span>&quot; (<i>Cyrillic</i>) 
+      would block a registration of &quot;scope.com&quot; (<i>Latin</i>) by a different registrant.</span></li>
     </ol>
     </li>
   </ol>
@@ -997,6 +1013,7 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   <hr width="50%">
   <h2><span class="changedSpan">Appendix B. <a name="Related_Material">Related Material</a></span></h2>
   <p><span class="changedspan">The following points to background information that may be useful.</span></p>
+  <p><b><span class="changedspan">[Put in references section]</span></b></p>
   <h3><span class="changedSpan">Canonical Representation</span></h3>
   <ul>
     <li><span class="changedSpan">
@@ -1034,16 +1051,23 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   </ul>
   <h2 class="old_changed"><span class="changedspan">Appendix C. <a name="Identifier_Characters">
   Identifier Characters</a></span></h2>
+  <p class="old_changed"><span class="changedspan"><span style="background-color: #FFFF00"><b>
+  [summarize programming languages]</b></span></span></p>
+  <p class="old_changed"><span class="changedspan"><span style="background-color: #FFFF00"><b>
+  [introduce differences]</b></span></span></p>
   <p class="old_changed"><span class="changedspan"><span style="background-color: #FFFF00">The 
-  characters recommended for general use as identifiers include those character </span><span>having 
-  the </span>XID_Continue property as defined in the Unicode Character Database (see [<a href="#DCore">DCore</a>]), 
-  plus the characters listed in Additional Word Characters below, which are required for expressing 
-  words in some languages.</span></p>
+  characters recommended for general use as identifiers for the purpose of this document include 
+  those character </span><span>having the </span>XID_Continue property as defined in the Unicode 
+  Character Database (see [<a href="#DCore">DCore</a>]), plus the characters listed in Additional 
+  Word Characters below, which are required for expressing words in some languages.</span></p>
   <p class="old_changed"><span class="changedspan">The list of allowable characters may be reduced 
   or expanded according to the requirements of the specific domain. For example, programming 
   language identifiers typically add some characters like &#39;$&#39;, and remove others like &#39;-&#39; (because 
   of the use as <i>minus</i>), while IDNA removes &#39;_&#39; (among others). For more information, see <i>
   UAX #31, Identifier and Pattern Syntax</i> [<a href="#UAX31">UAX31</a>].</span></p>
+  <p class="old_changed"><b><span class="changedspan">[Remove Default Ignorables]</span></b></p>
+  <p class="old_changed"><span class="changedspan"><b>[Add examples of rationales. Emphasize out 
+  that environment may add / expand]</b></span></p>
   <h3><span class="changedspan"><span style="background-color: #FFFF00">C.1. Additional Word 
   Characters</span></span></h3>
   <p><span class="changedspan">0027&nbsp; ; word-chars # Po (&#39;)&nbsp; APOSTROPHE<br>
@@ -1061,10 +1085,10 @@ span.border {background-color: white; color: red; border-left: 1px solid  blue; 
   0F85&nbsp; ; word-chars # .. (྅) TIBETAN MARK PALUTA<br>
   2010&nbsp; ; word-chars # Pd (‐)&nbsp; HYPHEN<br>
   2019&nbsp; ; word-chars # Pf (’)&nbsp; RIGHT SINGLE QUOTATION MARK<br>
-  2027&nbsp; ; word-chars # Po (‧)&nbsp; HYPHENATION POINT<br>
-  3003&nbsp; ; word-chars # .. (〃) DITTO MARK<br>
   30A0&nbsp; ; word-chars # Pd (゠)&nbsp; KATAKANA-HIRAGANA DOUBLE HYPHEN<br>
   30FB&nbsp; ; word-chars # .. (・) KATAKANA MIDDLE DOT</span></p>
+  <p><span class="changedspan">2027&nbsp; ; word-chars # Po (‧)&nbsp; HYPHENATION POINT<br>
+  3003&nbsp; ; word-chars # .. (〃) DITTO MARK</span></p>
   <h3><span class="changedspan"><span style="background-color: #FFFF00">C.2. Non-Starter Characters</span></span></h3>
   <p><span class="changedspan">These are all characters of General Category Mn or Me (Nonspacing or 
   Enclosing Mark).</span></p>

@@ -7,7 +7,7 @@
  */
  
  /*
-  *   Copyright (C) 2004, International Business Machines
+  *   Copyright (C) 2004-2005, International Business Machines
   *   Corporation and others.  All Rights Reserved.
   *
   */
@@ -264,12 +264,18 @@ public class UGtoHtml {
              	// No action required.
             } else if (xmlTag.equals("text:bookmark")) {
              	String target = e.getAttribute("text:name");
+                if (target.indexOf(' ') != -1) {
+                    System.err.println("Error: bookmark contains space: " + target);
+                }
              	fHtml.append("<a name=\"" + target + "\"></a>");
             } else if (xmlTag.equals("text:bookmark-start")) {
                 // Note: OO bookmarks covering a range do not need to nest with evenly within
                 //      other stuff.  To avoid generating bad html, just anchor to the start position,
                 //      and ignore the bookmark-end tag.
              	String target = e.getAttribute("text:name");
+                if (target.indexOf(' ') != -1) {
+                    System.err.println("Error: bookmark contains space: " + target);
+                }
              	fHtml.append("<a name=\"" + target + "\"></a>");
             } else if (xmlTag.equals("text:bookmark-end")) {
                 // no action.

@@ -1,0 +1,416 @@
+<html>
+
+<head>
+<!-- Copyright (C) 2005, International Business Machines Corporation and others. All Rights Reserved. -->
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Lenient Date/Time/Number Parsing</title>
+<style>
+<!--
+body         { font-family: serif; background-color: #FFFFFF }
+table.MsoTableGrid
+	{border:1.0pt solid windowtext;
+	font-size:10.0pt;
+	font-family:"Times New Roman"}
+-->
+</style>
+</head>
+
+<body>
+
+<h1>Lenient Date/Time/Number Parsing</h1>
+<p>M. Davis, $Data$, $Revision: 1.1 $</p>
+<p>There is a certain amount of leniency built-in for numbers and dates, but not as much as we'd 
+like. For example, here is what happens with some patterns (locale=&quot;en&quot;).</p>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="50%"><b>pattern=&quot;yyyy-MM-dd&quot;</b></td>
+    <td width="50%"><b>numeric month</b></td>
+  </tr>
+  <tr>
+    <td width="50%">&quot;2004-01-01&quot;<br>
+    &quot;2004-1-1&quot;<br>
+    &quot;00002004-000001-00001&quot;<br>
+    &quot;&#65298;&#65296;&#65296;&#65300;-&#65297;-&#65297;&quot;<br>
+    &quot;&#1634;&#1632;&#1632;&#1636;-&#1633;-&#1633;&quot;<br>
+    &quot; 2004- 1- 1&quot;
+    <p>&quot; 2004 - 1 - 1&quot;<br>
+    &quot;2004/1/1&quot;<br>
+    &quot;2004-Jan-1&quot;<br>
+    &quot;2004- january-1&quot; , extra space</td>
+    <td width="50%">exact match<br>
+    missing zeros<br>
+    extra zeros<br>
+    wide characters<br>
+    arabic digits<br>
+    extra space before digits
+    <p><font color="#FF0000"><b>fails</b></font>: extra space before separators<br>
+    <font color="#FF0000"><b>fails</b></font>: different separator<br>
+    <font color="#FF0000"><b>fails</b></font>: abbreviated month<br>
+    <font color="#FF0000"><b>fails</b></font>: full month, lowercase</td>
+  </tr>
+  <tr>
+    <td width="50%"><b>pattern=&quot;yyyy-MMM-dd&quot;</b></td>
+    <td width="50%"><b>abbreviated month</b></td>
+  </tr>
+  <tr>
+    <td width="50%">&quot;2004-Jan-1&quot;<br>
+    &quot;2004- january-1&quot;
+    <p>&quot;2004-01-01&quot;</td>
+    <td width="50%">abbreviated month<br>
+    full month, lowercase, extra space
+    <p><font color="#FF0000"><b>fails</b></font>: numeric</td>
+  </tr>
+</table>
+<p>The following is a proposal for how to change date parsing to be much more flexible for users.</p>
+<h2>API</h2>
+<p>Introduce a new getter/setter for loose matching, with three values:</p>
+<ul>
+  <li>strict</li>
+  <li>moderate</li>
+  <li>loose</li>
+</ul>
+<p>Note that we already have a set/getLenient flag, but that controls something very different. It 
+sets the calendar leniency value, which allows for overflow in field values. Example: Jan 10, 25:63 
+=&gt; Jan 11, 2:03. So we have to have different names to preserve these orthogonal settings.</p>
+<h2>Parsing</h2>
+<h3>Strict:</h3>
+<p>This is the current function.</p>
+<h3>Moderate:</h3>
+<p>With this setting, parsing &quot;d/MMM/yyyy&quot; will parse 10Sep2005, 10-Septe- 2005, 10.9.05, etc.</p>
+<p>Here is the logical process for parsing. Preprocess the pattern, and produce an ordered list of 
+field types. This maps together fields of different widths, string vs numeric, 12vs24 hour, etc. 
+This is similar to what happens in
+<a href="http://unicode.org/cldr/data/docs/design/formatting/flexible_datetime.html">
+http://unicode.org/cldr/data/docs/design/formatting/flexible_datetime.html</a>. So from &quot;dd/MM/yyyy 
+g&quot; and &quot;d MMM yy ggg&quot;, we get the same list, logically &lt;d, M, y, g&gt;. Call this the skeleton.</p>
+<p>For each field, instantiate a DateFieldMatcher. Each one is responsible for:</p>
+<ul>
+  <li>skipping initial ignorable characters</li>
+  <li>matching numerics</li>
+  <li>picking a matching string</li>
+  <li>stopping when it finishes a field.</li>
+  <li>returning a TZID or numeric value.</li>
+</ul>
+<p>It will return an error if it can't match a numeric, and the string match is ambiguous or 
+incomplete. Examples of matching months, starting at the beginning of the string. ('|' marks the 
+stopping point).</p>
+<ul>
+  <li>&quot;/10|/&quot; succeeds, returning 10. The initial &quot;/&quot; is ignored.</li>
+  <li>&quot;/Ja|,&quot; succeeds, returning 0 (ICU/Java use 0-based month numbers)</li>
+  <li>&quot;/J|,&quot; fails, since J could be part of January or June or July. </li>
+  <li>&quot;/Ja|x&quot;, fails since it is in the middle of a word.</li>
+</ul>
+<p>So the overall parse walks through the skeleton list, instantiates a DateFieldMatcher for each 
+successive field, and trying it out. If it fails, the parse fails at that point. If all of them 
+succeed, the value and parse position are returned.</p>
+<blockquote>
+  <p><b>Note:</b> When the parse fails, we return different kinds of errors. Not enough fields, or 
+  ambiguity<i> in the last field </i>will return the error PARTIAL_MATCH. That allows for keyboard 
+  input to validate as the user types.</p>
+</blockquote>
+<p>The ignorable characters are based on Unicode properties: Whitespace + GC=Punctuation (may expand 
+this set: comments?). The parsing for strings should only skip these characters if they are not part 
+of a following string. That is, for string matching, try matching at the first position. If that 
+fails, skip one character if it is part of the ignorable set. Try again at the new position.</p>
+<p>The string matching uses a case-insensitive, canonically equivalent matching. We need to add new 
+API for this in ICU. We currently allow this kind of comparison, but only with whole strings. The 
+pseudo API is something like:</p>
+<blockquote>
+  <p>status = compare(string1, start1, string2, start2, &amp;outputLimit1, &amp;outputLimit2);</p>
+</blockquote>
+<p>That is, start comparing the strings at positions start1 and start2 respectively. At the first 
+difference, stop and return those values. Thus comparing &quot;-|ab<font face="Times New Roman">ç</font>de&quot; 
+with &quot;xyz|abc<font face="Times New Roman">¸</font>dx&quot; will give us &quot;-ab<font face="Times New Roman">ç</font>d|e&quot; 
+with &quot;xyzabc<font face="Times New Roman">¸</font>d|x&quot;. This routine will not guarantee that the 
+result is on grapheme cluster boundaries: it is up to the client to make a further test if desired, 
+since that may be language-specific.</p>
+<blockquote>
+  <p><b>Issue: </b>should we instead use Collation, adding equivalent API to that? That would allow 
+  for language-specific identities.</p>
+</blockquote>
+<p>Internally, for each locale we will cache a list of strings for parsing, associated with each 
+string field. The cache will sort the strings for fast comparison. (Later we might do something 
+fancier.) The contents will be populated from the locale, thus the month list will contain both 
+full, abbreviated, and narrow format strings. for example, here is German for months.</p>
+<blockquote>
+  <table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: medium none">
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Apr</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>3</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">April</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>3</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Aug</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>7</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">August</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>7</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Dez</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>11</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Dezember</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>11</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Feb</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>1</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Februar</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>1</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Jan</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>0</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Januar</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>0</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Jul</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>6</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Juli</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>6</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Jun</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>5</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Juni</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>5</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Mai</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>4</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Mai</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>4</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">März</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>2</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Mrz</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>2</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Nov</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>10</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">November</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>10</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Okt</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>9</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Oktober</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>9</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Sep</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>8</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">September</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>8</b></td>
+    </tr>
+  </table>
+</blockquote>
+<p>We can delete any strings that are initial substrings of others, thus resulting in the following 
+example for German.</p>
+<blockquote>
+  <table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: medium none">
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">April</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>3</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">August</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>7</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Dezember</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>11</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Februar</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>1</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Januar</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>0</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Juli</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>6</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Juni</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>5</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Mai</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>4</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">März</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>2</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" bgcolor="#FFFF00">
+      <p class="MsoNormal"><font color="#0000FF"><b>Mrz</b></font></td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in" bgcolor="#FFFF00">
+      <p class="MsoNormal"><font color="#0000FF"><b>2</b></font></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">November</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>10</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">Oktober</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>9</b></td>
+    </tr>
+    <tr>
+      <td width="91" valign="top" style="width: 68.15pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal">September</td>
+      <td width="38" valign="top" style="width: .4in; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0in; padding-bottom: 0in">
+      <p class="MsoNormal"><b>8</b></td>
+    </tr>
+  </table>
+</blockquote>
+<p>We will add the stand-alone forms, but <i>only</i> if (a) they are unique and (b) they don't 
+conflict with the above list.</p>
+<blockquote>
+  <p><b>Issue: </b>should we also remove initial/trailing ignorable punctuation?</p>
+</blockquote>
+<h3>Loose:</h3>
+<p>With a loose match, String fields can be rearranged in the string. Thus with &quot;d/MMM/yyyy&quot; it will 
+parse everything from the moderate match does, plus &quot;Sep10, 2005&quot;, &quot;10,2005Sept&quot;, etc.</p>
+<p>So how do we do this? First we try a moderate parse. If that succeeds, we are done. If it doesn't 
+then we extract the string fields from the skeleton into an unordered set. For example, from &lt;d, M, 
+y, g&gt; we get {M, g}. We retry the parse, but at each point, if we fail, then we try each of the 
+DateFieldMatchers for the unordered set. If we succeed, then we remove it from the set and the list. 
+If we still fail, and the field in the ordered list was a string field, then we remove it from the 
+list. We only succeed if all the fields are consumed.</p>
+<h2>Multiple Patterns</h2>
+<p>This design does require that numeric fields occur in the order they are found in. Thus even 
+though a human would know that 10/31 must be October 31, if the skeleton was &lt;d, M&gt; we will fail to 
+match. This is by design. The problem is that if we are too lenient, people get into trouble. 
+Someone types in 10/31 and gets October 31, then on the next page types in 10/9 and gets September 
+10 (and doesn't notice the error).</p>
+<p>The usage pattern is if a client wants to match more loosely than the above, then s/he will use 
+multiple patterns. To help with that, we might add API to&nbsp;
+<a href="http://unicode.org/cldr/data/docs/design/formatting/flexible_datetime.html">
+http://unicode.org/cldr/data/docs/design/formatting/flexible_datetime.html</a> that returns a set of 
+patterns, ones that loosely match an input pattern.</p>
+<h2>Other Issues</h2>
+<p>The design does work with strings that may have punctuation/whitespace in them. This happens in 
+some locales with months, eras, and timezones (perhaps others).</p>
+<p><b>Issue: </b>should we always try strict first? If we do that, we could return the level that a 
+match was found at.</p>
+<p><b>Issue: </b>should we have a &quot;distance&quot; parameter for people to use to pick the best fitting 
+pattern?</p>
+<p><b>Issue:</b> should we also allow for RBNF with dates? Then people could do Dec 10th, 1994. RBNF 
+has spellout cardinals (twenty-one), ordinals (twenty-first), and numeric ordinals (21st). If we do 
+that, we probably want a pattern character, eg X, that says that the following (or preceeding?) 
+numeric field could use RBNF. The length could indicate which kind of RBNF.</p>
+<h2>Numbers</h2>
+<p>Lenient parsing for numbers would be somewhat different. The currency can be in different order, 
+and there is a range of possible values for the thousands separator, decimal separator, and 
+positive/negative pre/postfixes. However, for this we probably need locale data (CLDR) support, 
+because the allowable characters overlap. What would be useful would be UnicodeSets for each of 
+these values that would be acceptable on input. We could then use those in a lenient parse, and just 
+have some simple code for checking alternate positions of the currency.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,336 @@
+<html>
+
+<head>
+<!-- Copyright 2005, IBM -->
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Recommended changes to UAX</title>
+<style>
+<!--
+.right       { text-align: Right }
+.center      { text-align: Center }
+.charlist    { font-size: 90%; font-family: monospace }
+-->
+</style>
+</head>
+
+<body>
+
+<h2 align="right">Lxxx</h2>
+<table border="1" cellpadding="4" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber1">
+  <tr>
+    <td>Re:</td>
+    <td>Recommended changes to UAX #29, #14</td>
+  </tr>
+  <tr>
+    <td>From:</td>
+    <td>Mark Davis, Andy Heninger</td>
+  </tr>
+  <tr>
+    <td>Date:</td>
+    <td>2005-09-27</td>
+  </tr>
+</table>
+<p>UAX #14 and #29 describe rules for detecting boundaries between text segments. As with all 
+Unicode algorithms, implementations just need to get the same results; they don't have to follow the 
+architecture. And for efficiency, most implementations use different mechanisms.</p>
+<p>In CLDR, we recently introduced structure for tailoring boundaries. In so doing, we followed the 
+rule structure of those UAXs as much as possible. One good advantage of that is that we now have 
+monkey tests that can compare an implementation against an implementation that follows the rules 
+precisely. That allows implementations to avoid gratuitous deviations.</p>
+<p>However, we found a few problems in the rules themselves. This document proposes some changes in 
+response.</p>
+<h2>Background</h2>
+<p>In particular, the rules &quot;treat X as Y&quot; turn out to be difficult to exactly interpret precisely, 
+and exposed a few edge cases. Take the following rules from Word boundaries:</p>
+<table cellSpacing="0" cellPadding="4" border="0">
+  <tr>
+    <td align="right" colSpan="4">
+    <p align="left"><i>Treat a grapheme cluster as if it were a single character: the first 
+    character of the cluster. Do not break within it.</i></td>
+  </tr>
+  <tr>
+    <td>
+    <p class="right" align="right">GC</td>
+    <td align="right">
+    <p class="center">&#8594;</td>
+    <td align="right">FC</td>
+    <td class="right">(3)</td>
+  </tr>
+  <tr>
+    <td colSpan="4">
+    <p align="left"><i>Ignore <span class="old_changed">trailing</span> Format characters. That is, 
+    ignore Format characters in all subsequent rules (except the last rule).</i></td>
+  </tr>
+  <tr>
+    <td class="right">X Format*</td>
+    <td class="center">&#8594;</td>
+    <td>X</td>
+    <td class="right">(4)</td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="4" border="2" align="right" width="40%" style="border-collapse: collapse; margin: 1em">
+  <tr>
+    <td vAlign="top" colspan="2"><i>To remind people, Format and Extend characters are:</i></td>
+  </tr>
+  <tr>
+    <td vAlign="top"><b><a name="Format">Format</a></b></td>
+    <td>General_Category = Format (Cf) minus Joiner, Non-Joiner</td>
+  </tr>
+  <tr>
+    <td vAlign="top"><a name="Format"><b>Extend</b></a></td>
+    <td>Me + Mn + Joiner, Non-Joiner, plus a few exceptional Mc characters:<pre>09BE BENGALI VOWEL SIGN AA
+09D7 BENGALI AU LENGTH MARK
+...</pre>
+    </td>
+  </tr>
+</table>
+<p>Grapheme clusters do 3 things. They keep (a) CRLF together; they keep (b) Hangul syllables 
+together; and keep (c) non-spacing sequences together with their bases (more exactly, Extend 
+characters with their bases). </p>
+<p>If the rules for the boundary conditions would otherwise keep Hangul syllables together (as is 
+the case for our Word, Line, and Sentence breaks, then (3) is equivalent to </p>
+<p>3a) CR × LF</p>
+<p>3b) X Extend* -&gt; X. </p>
+<h2>1 Separating Grapheme Cluster Rule into two</h2>
+<p>Line break already separates these out (and modifies its version of 3b). After looking at the 
+interactions of these with other rules, we think that is the better approach in #29 also. It tends 
+to expose some edge cases so that we can make the resolution clearer, as we will see below.</p>
+<h2>2 Adding × $Extend</h2>
+<p>Section 6.2 explains how the rule <i>X Extend* -&gt; X</i> is to be interpreted (<a href="http://www.unicode.org/reports/tr29/#Grapheme_Cluster_and_Format_Rules">http://www.unicode.org/reports/tr29/#Grapheme_Cluster_and_Format_Rules</a>). 
+That is, in every subsequent rule, change each instance of X (where X is <i>any</i> type except the 
+last after the break) into X Extend*. Thus:</p>
+<p align="center"><span class="example2">X Y × Z W</span></p>
+<p align="center"><span class="example2">becomes &nbsp;</span></p>
+<p align="center"><span class="example2">X <u>Extend*</u> Y <u>Extend*</u> × Z <u>Extend*</u> W&nbsp;</span></p>
+<p>It need to also mention that it logically also includes the rule:</p>
+<p>× $Extend</p>
+<p>That is, that you don't allow breaking within such sequences (in rules after the 'treat as' 
+rule). So this section of the text needs to be enhanced.</p>
+<h2>3 Ignoring Format &amp; Extend consistently</h2>
+<p>In Word Break, we would then have the following rules:</p>
+<blockquote>
+  <p>3a) CR × LF<br>
+  3b) X Extend* -&gt; X<br>
+  4) X Format* -&gt; X.</p>
+</blockquote>
+<p>In an implementation according to section 6.2, rules 3b and 4 turn into the following rules, <i>
+and</i> turns each X in subsequent rules into (X Extend* Format*). </p>
+<blockquote>
+  <p>3b*) × $Extend<br>
+  4*) × $Format</p>
+</blockquote>
+<p>However, that means that extend and format characters are not completely ignorable. If you insert 
+a format character <i>between</i> a character and an Extend character, it introduces a break into a 
+word that had none, or if you insert an Extend character <i>after</i> a Format character, it also 
+introduces a break into a word that had none. This seems counter-intuitive. Our recommendation is to 
+combine these two rules into a new 4':</p>
+<blockquote>
+  <p>4') X (Extend | Format)* -&gt; X</p>
+</blockquote>
+<p>which essentially ignores both Extend and Format characters in words, wherever they occur. While 
+this change is not necessary in Sentence break (since the default action is to keep characters 
+together rather than break them apart), for parallelism we should make the change there too (it 
+doesn't hurt anything).</p>
+<h2>4 Properly Breaking after Sep</h2>
+<p>Sentence break has the following rules:</p>
+<blockquote>
+  <table cellSpacing="0" cellPadding="4" border="0">
+    <tr>
+      <td colSpan="4">
+      <p align="left"><i>Break after paragraph separators.</i></td>
+    </tr>
+    <tr>
+      <td class="right" align="right">Sep</td>
+      <td class="center">÷</td>
+      <td>&nbsp;</td>
+      <td class="right">(3)</td>
+    </tr>
+    <tr>
+      <td align="right" colSpan="4">
+      <p align="left"><i>Treat a grapheme cluster as if it were a single character: the first 
+      character of the cluster. Do not break within it.</i></td>
+    </tr>
+    <tr>
+      <td>
+      <p class="right" align="right">GC</td>
+      <td align="right">
+      <p class="center">&#8594;</td>
+      <td align="right">FC</td>
+      <td class="right">(4)</td>
+    </tr>
+    <tr>
+      <td colSpan="4">
+      <p align="left"><i>Ignore <span class="old_changed">trailing</span> Format characters. That 
+      is, ignore Format characters in all subsequent rules.</i></td>
+    </tr>
+    <tr>
+      <td class="right">X Format*</td>
+      <td class="center">&#8594;</td>
+      <td>X</td>
+      <td class="right">(5)</td>
+    </tr>
+  </table>
+</blockquote>
+<p>Now that we have broken down what GC-&gt;FC means, it is clear that this is an error, since it would 
+break between CR and LF (both being members of Sep). Since we have separated out the CRLF rule 
+above, now fixing this becomes easy:</p>
+<blockquote>
+  <p>3a) CR × LF<br>
+  3b') Sep ÷<br>
+  4') X (Extend | Format)* -&gt; X</p>
+</blockquote>
+<h2>5 Fixing flaw in termination</h2>
+<p>Sentence break currently has the following rules. These are to capture the rule that you break 
+after (but not within) the expression (( STerm | ATerm ) Close* Sp* Sep?), that is: a terminator, 
+followed by optionally any number of close punctuation characters, followed optionally by any number 
+of space characters, followed optionally by a paragraph separator character.</p>
+<blockquote>
+  <table cellSpacing="0" cellPadding="4" border="0">
+    <tr>
+      <td colSpan="4">
+      <p align="left"><i>Break after sentence terminators, but include closing punctuation, trailing 
+      spaces, and (optionally) a paragraph separator.</i></td>
+    </tr>
+    <tr>
+      <td class="right">( STerm | ATerm ) Close*</td>
+      <td class="center">×</td>
+      <td>( Close | Sp | Sep )</td>
+      <td class="right">(9)</td>
+    </tr>
+    <tr>
+      <td class="right">( STerm | ATerm ) Close* Sp</td>
+      <td class="center">×</td>
+      <td>( Sp | Sep )</td>
+      <td class="right">(10)</td>
+    </tr>
+    <tr>
+      <td class="right">( STerm | ATerm ) Close* Sp*</td>
+      <td class="center">÷</td>
+      <td>&nbsp;</td>
+      <td class="right">(11)</td>
+    </tr>
+  </table>
+</blockquote>
+<p>Since the goal is to allow any number of Space characters, rule 10 needs a fix:</p>
+<blockquote>
+  <p>10)&nbsp; ( STerm | ATerm ) Close* Sp<u><b>*</b></u> × ( Sp | Sep )</p>
+</blockquote>
+<p>And rule 11 needs to allow for Sep in the final case, so rule 11 needs to be:</p>
+<blockquote>
+  <p>11) ( STerm | ATerm ) Close* Sp* <u><b>Sep?</b></u> ÷</p>
+</blockquote>
+<h2>6 User Character</h2>
+<p>The editorial committee recommends changing 'user character' to 'user-perceived character' in 
+analogy / contrast to 'user-defined character'. This requires edits to UAX#29 and perhaps other 
+places.</p>
+<h2>7 Linebreak Defaults</h2>
+<p>Linebreak has:</p>
+<blockquote>
+  <p><i>LB 1&nbsp; Assign a line breaking class to each code point of the input. Resolve
+  <a class="charclass" href="http://www.unicode.org/reports/tr14/#AI">AI</a>,
+  <a class="charclass" href="http://www.unicode.org/reports/tr14/#CB">CB</a>,
+  <a class="charclass" href="http://www.unicode.org/reports/tr14/#SA">SA</a>,
+  <a class="charclass" href="http://www.unicode.org/reports/tr14/#SG">SG</a>, and
+  <a class="charclass" href="http://www.unicode.org/reports/tr14/#XX">XX</a> into other line 
+  breaking classes depending on criteria outside the scope of this algorithm.</i></p>
+</blockquote>
+<p>This is fine and good, but if the implementation doesn't handle these specially, they need to 
+have defaults; they must be resolved to something for the rest of the algorithm to work, since all 
+but CB don't have rules associated with them. Right now, you have to go rooting around in the text 
+to figure that out, and people may make mistakes in doing so. So add to this rule something like the 
+following text:</p>
+<blockquote>
+  <p><i>In the absence of such resolution, the classes AI, SA, SG, and XX have the value AL.</i></p>
+</blockquote>
+<h2>8 Linebreak Numbers</h2>
+<p>Currently, we have the following rule:</p>
+<blockquote>
+  <p>In general, lines should not be broken inside numbers of the form described by the following 
+  regular expression:</p>
+  <p align="center">&nbsp;<a class="charclass" href="#PR">PR</a> ? ( <a class="charclass" href="#OP">OP</a> 
+  | <a class="charclass" href="#HY">HY</a> ) ? <a class="charclass" href="#NU">NU</a> (<a class="charclass" href="#NU">NU</a> 
+  | <a class="charclass" href="#SY">SY</a> | <a class="charclass" href="#IS">IS</a>) *
+  <a class="charclass" href="#CL">CL</a> ?&nbsp; <a class="charclass" href="#PO">PO</a> ?</p>
+  <p><i>Examples:&nbsp; </i>$(12.35)&nbsp;&nbsp;&nbsp; 2,1234&nbsp;&nbsp;&nbsp; (12)¢&nbsp;&nbsp;&nbsp; 
+  12.54¢</p>
+  <p>The default line breaking algorithm approximates this with the following rule, together with
+  <a class="charclass" href="#PR">PR</a> × <a class="charclass" href="#AL">AL</a> and
+  <a class="charclass" href="#PR">PR</a> × <a class="charclass" href="#ID">ID</a>, which handle 
+  numeric prefix puncutation.&nbsp; Note that some cases are already handled above, like ‘9,’, ‘[9’. 
+  For a tailoring that supports the regular expression directly, see Section 8.2,
+  <a href="#Examples"><i>Examples of Customization</i></a>.</p>
+  <p><i>LB 18&nbsp; Do not break between the following pairs of classes.</i></p>
+</blockquote>
+<p align="center">CL × PO</p>
+<p align="center">HY × NU</p>
+<p align="center">IS × NU</p>
+<p align="center">NU × NU</p>
+<p align="center">NU × PO</p>
+<p align="center"><u>PR × AL</u></p>
+<p align="center">PR × HY</p>
+<p align="center"><u>PR × ID</u></p>
+<p align="center">PR × NU</p>
+<p align="center">PR × OP</p>
+<p align="center">SY × NU</p>
+<p><i>This makes it actually a bit clumsy to customize, since </i><a class="charclass" href="#PR">PR</a> 
+× <a class="charclass" href="#AL">AL</a> and <a class="charclass" href="#PR">PR</a> ×
+<a class="charclass" href="#ID">ID</a> are mixed in, even though they don't have anything to do with 
+the numbers. Recommend removing those from rule 18, and moving them into a new rule 17b:</p>
+<blockquote>
+  <p><b><i>17b. Do not break prefix signs (such as currency) from letters</i></b></p>
+</blockquote>
+<p align="center"><a class="charclass" href="#PR">PR</a> × <a class="charclass" href="#AL">AL</a></p>
+<p align="center"><a class="charclass" href="#PR">PR</a> × <a class="charclass" href="#ID">ID</a></p>
+<p align="left">In the Customization Example 6, include precisely the syntax that 18 is replaced by.</p>
+<blockquote>
+  <p align="left"><i><b>18* Do not break numbers</b></i></p>
+</blockquote>
+<div align="center">
+  <center>
+  <table cellSpacing="0" cellPadding="4" border="0" style="border-collapse: collapse" bordercolor="#111111">
+    <tr>
+      <td class="right">PR</td>
+      <td class="center">×</td>
+      <td align="left">
+      <p align="left">( OP | HY )? NU</td>
+    </tr>
+    <tr>
+      <td class="right">( OP | HY )</td>
+      <td class="center">×</td>
+      <td align="left">
+      <p align="left">NU</td>
+    </tr>
+    <tr>
+      <td class="right">NU</td>
+      <td class="center">×</td>
+      <td align="left">
+      <p align="left">(NU | SY | IS)</td>
+    </tr>
+    <tr>
+      <td class="right">NU (NU | SY | IS)*</td>
+      <td class="center">×</td>
+      <td align="left">
+      <p align="left">(NU | SY | IS)</td>
+    </tr>
+    <tr>
+      <td class="right">NU (NU | SY | IS)* CL?</td>
+      <td class="center">×</td>
+      <td align="left">
+      <p align="left">PO</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<h2>8 Rule Numbers</h2>
+<p>To maintain rule numbers over versions, we have introduced notation like 18b, 18c,... In CLDR, it 
+turned out to be easier to use decimal notation to refer to rules. The main advantage is that it 
+allows for arbitrary insertion between existing numbers. Thus, if we had 18.1 and 18.2 (instead of 
+18b and 18c), then we could later introduce 18.15, whereas we currently have no mechanism for 
+inserting a new rule between 18b and 18c. We might think about that for the text as well.</p>
+
+</body>
+
+</html>

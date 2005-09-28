@@ -100,15 +100,24 @@ interactions of these with other rules, we think that is the better approach in 
 to expose some edge cases so that we can make the resolution clearer, as we will see below.</p>
 <h2>2 Adding × $Extend</h2>
 <p>Section 6.2 explains how the rule <i>X Extend* -&gt; X</i> is to be interpreted (<a href="http://www.unicode.org/reports/tr29/#Grapheme_Cluster_and_Format_Rules">http://www.unicode.org/reports/tr29/#Grapheme_Cluster_and_Format_Rules</a>). 
-That is, in every subsequent rule, change each instance of X (where X is <i>any</i> type except the 
-last after the break) into X Extend*. Thus:</p>
+That is, this rule means that in every subsequent rule, change each instance of X (where X is <i>any</i> 
+type except the last after the break) into X Extend*. Thus:</p>
 <p align="center"><span class="example2">X Y × Z W</span></p>
 <p align="center"><span class="example2">becomes &nbsp;</span></p>
 <p align="center"><span class="example2">X <u>Extend*</u> Y <u>Extend*</u> × Z <u>Extend*</u> W&nbsp;</span></p>
-<p>It need to also mention that it logically also includes the rule:</p>
-<p>× $Extend</p>
-<p>That is, that you don't allow breaking within such sequences (in rules after the 'treat as' 
-rule). So this section of the text needs to be enhanced.</p>
+<p>This section needs some revisions for clarity, and to specifically mention the following points.</p>
+<p>a. An expression like &quot;¬(OLetter | Upper | Lower | Sep)&quot; needs to be treated as a whole -- 
+negation is limited to expressions that denote a set of characters -- thus it turns into &quot;¬(OLetter 
+| Upper | Lower | Sep) <span class="example2"><u>Extend*</u></span>&quot;, <i><b>not</b></i> &quot;¬(OLetter
+<span class="example2"><u>Extend*</u></span> | Upper<span class="example2"><u> Extend*</u></span> | 
+Lower<span class="example2"><u> Extend*</u></span> | Sep<span class="example2"><u> Extend*</u></span>) 
+&quot;</p>
+<p>b. The 'treat as' rule also means that the following is required:</p>
+<blockquote>
+  <p>× $Extend</p>
+</blockquote>
+<p>That is, that you don't allow breaking <i>within</i> such sequences (in rules after the 'treat 
+as' rule). </p>
 <h2>3 Ignoring Format &amp; Extend consistently</h2>
 <p>In Word Break, we would then have the following rules:</p>
 <blockquote>
@@ -182,13 +191,16 @@ above, now fixing this becomes easy:</p>
   3b') Sep ÷<br>
   4') X (Extend | Format)* -&gt; X</p>
 </blockquote>
-<h2>5 Fixing flaw in termination</h2>
-<p>Sentence break currently has the following rules. These are to capture the rule that you break 
-after (but not within) the expression (( STerm | ATerm ) Close* Sp* Sep?), that is: a terminator, 
-followed by optionally any number of close punctuation characters, followed optionally by any number 
-of space characters, followed optionally by a paragraph separator character.</p>
+<h2>5 Fixing terminations</h2>
+<p>Sentence break has the following rules. </p>
 <blockquote>
   <table cellSpacing="0" cellPadding="4" border="0">
+    <tr>
+      <td class="right">ATerm Close* Sp*</td>
+      <td class="center">×</td>
+      <td>( ¬(OLetter | Upper | Lower | Sep) )* Lower</td>
+      <td class="right">(8)</td>
+    </tr>
     <tr>
       <td colSpan="4">
       <p align="left"><i>Break after sentence terminators, but include closing punctuation, trailing 
@@ -214,13 +226,19 @@ of space characters, followed optionally by a paragraph separator character.</p>
     </tr>
   </table>
 </blockquote>
-<p>Since the goal is to allow any number of Space characters, rule 10 needs a fix:</p>
+<p>Rule #8 is part of a set dealing with ambiguous sentence terminators (like &quot;.&quot;). There are cases 
+where sequences of STerm or ATerm occur at the end of a sentence, so to cover that we should 
+introduce the following.</p>
+<blockquote>
+  <p>8b) (STerm | ATerm) Close* Sp* × (STerm | ATerm)</p>
+</blockquote>
+<p>Rules 9-11 are to capture the rule that you break after (but not within) the expression (( STerm 
+| ATerm ) Close* Sp* Sep?), that is: a terminator, followed by optionally any number of close 
+punctuation characters, followed optionally by any number of space characters, followed optionally 
+by a paragraph separator character. Since the goal is to allow any number of Space characters, rule 
+10 needs a minor fix:</p>
 <blockquote>
   <p>10)&nbsp; ( STerm | ATerm ) Close* Sp<u><b>*</b></u> × ( Sp | Sep )</p>
-</blockquote>
-<p>And rule 11 needs to allow for Sep in the final case, so rule 11 needs to be:</p>
-<blockquote>
-  <p>11) ( STerm | ATerm ) Close* Sp* <u><b>Sep?</b></u> ÷</p>
 </blockquote>
 <h2>6 User Character</h2>
 <p>The editorial committee recommends changing 'user character' to 'user-perceived character' in 

@@ -30,7 +30,7 @@
   </tr>
   <tr>
     <td>Date:</td>
-    <td>2005-09-27</td>
+    <td>$Date: 2005/10/01 17:26:11 $</td>
   </tr>
 </table>
 <p>UAX #14 and #29 describe rules for detecting boundaries between text segments. As with all 
@@ -261,9 +261,12 @@ but CB don't have rules associated with them. Right now, you have to go rooting 
 to figure that out, and people may make mistakes in doing so. So add to this rule something like the 
 following text:</p>
 <blockquote>
-  <p><i>In the absence of such resolution, the classes AI, SA, SG, and XX have the value AL.</i></p>
+  <p><i>In the absence of such criteria, by default the classes AI, SA, SG, and XX are resolved to 
+  AL.</i></p>
 </blockquote>
 <h2>8 Linebreak Numbers</h2>
+<p>The following is formally editorial, since it does not change the results of the algorithm. 
+However, it makes it much clearer, and easier to see how the customization would work.</p>
 <p>Currently, we have the following rule:</p>
 <blockquote>
   <p>In general, lines should not be broken inside numbers of the form described by the following 
@@ -293,10 +296,10 @@ following text:</p>
 <p align="center">PR × NU</p>
 <p align="center">PR × OP</p>
 <p align="center">SY × NU</p>
-<p><i>This makes it actually a bit clumsy to customize, since </i><a class="charclass" href="#PR">PR</a> 
-× <a class="charclass" href="#AL">AL</a> and <a class="charclass" href="#PR">PR</a> ×
-<a class="charclass" href="#ID">ID</a> are mixed in, even though they don't have anything to do with 
-the numbers. Recommend removing those from rule 18, and moving them into a new rule 17b:</p>
+<p>This makes it actually a bit clumsy to customize, since <a class="charclass" href="#PR">PR</a> ×
+<a class="charclass" href="#AL">AL</a> and <a class="charclass" href="#PR">PR</a> ×
+<a class="charclass" href="#ID">ID</a> are mixed in, even though they don't have anything really do 
+with the numbers. Recommend removing those from rule 18, and moving them into a new rule 17b:</p>
 <blockquote>
   <p><b><i>17b. Do not break prefix signs (such as currency) from letters</i></b></p>
 </blockquote>
@@ -343,11 +346,16 @@ the numbers. Recommend removing those from rule 18, and moving them into a new r
   </center>
 </div>
 <h2>8 Rule Numbers</h2>
-<p>To maintain rule numbers over versions, we have introduced notation like 18b, 18c,... In CLDR, it 
-turned out to be easier to use decimal notation to refer to rules. The main advantage is that it 
-allows for arbitrary insertion between existing numbers. Thus, if we had 18.1 and 18.2 (instead of 
-18b and 18c), then we could later introduce 18.15, whereas we currently have no mechanism for 
-inserting a new rule between 18b and 18c. We might think about that for the text as well.</p>
+<p>To maintain rule numbers over versions, we have introduced notation like 18b, 18c,... The goal is 
+to maintain stability for rules, so that references can be made to, say, Rule 17 of UAX #14, without 
+having to cite the exact version, because the reference wants to be general, not tied to a specific 
+reference. If we simply renumbered each time we introduced a rule, that would make such references 
+difficult and clumsy.</p>
+<p>However, when we put this into CLDR, it turned out to be easier to use decimal notation to refer 
+to rules. The main advantage is that it allows for arbitrary insertion between existing numbers. 
+Thus, if we had 18.1 and 18.2 (instead of 18b and 18c), then we could later introduce 18.15, whereas 
+we currently have no mechanism for inserting a new rule between 18b and 18c. We might think about 
+that for the text as well.</p>
 
 </body>
 

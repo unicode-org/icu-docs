@@ -1,0 +1,331 @@
+<html>
+
+<head>
+<!-- Copyright 2005, IBM -->
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Line Break Issues</title>
+</head>
+
+<body>
+
+<p>Andy came across the following page:</p>
+<blockquote>
+  <p><a href="http://www.cs.tut.fi/~jkorpela/html/nobr.html">
+  http://www.cs.tut.fi/%7Ejkorpela/html/nobr.html</a> </p>
+</blockquote>
+<p>It seems to me that the author has a point for a number of issues to do with Line Break. I looked 
+at linebreak, and I think some of the items do need changes. Here is my take on what should be done. 
+I wanted to pass them by you before submitting a document.</p>
+<b><font FACE="Helv" SIZE="2">
+<h2>1. Don't allow &quot;-case&quot; to break after the hyphen, leaving a lone hyphen at the end of a line</h2>
+</font><font FACE="Helv">
+<p>Add a rule:</p>
+</font></b><font FACE="Helv">
+<blockquote>
+  <p>15b Break after a hyphen, but only if it is in a word.</p>
+  <blockquote>
+    <p>(AL | NU) (HY | BA) ÷ (AL | NU)<br>
+    (HY | BA) ×</p>
+  </blockquote>
+</blockquote>
+<p>However, BA is an odd class, containing spaces and tabs, but also&nbsp; hyphen characters. The 
+spaces really shouldn't enter into this behavior, so we should split the class into:</p>
+<p><i>BS spacy stuff</i></p>
+<p><i>BA hypheny stuff</i></p>
+<p>The only resulting change is that 15 line 1 changes from × BA</p>
+<blockquote>
+  <blockquote>
+    <p>× (BS | BA) </p>
+  </blockquote>
+</blockquote>
+</font><font FACE="Helv" SIZE="2"><b>
+<h2>2. Opening and closing shouldn't break from alphanums</h2>
+</b></font><font FACE="Helv">
+<p>Example: person(s)<br>
+Example: »wie hier« </p>
+<p>So add a rule</p>
+<blockquote>
+  <p>8a Don't break between alphanumerics and opening or closing punctuation </p>
+  <blockquote>
+    <p>(AL | NU) × OP<br>
+    CL × (AL | NU)</p>
+  </blockquote>
+</blockquote>
+</font><font FACE="Helv" SIZE="2"><b>
+<h2>3. The characters ° and % shouldn't break from following alphanumerics</h2>
+</b></font><font FACE="Helv">
+<p>Example: °C <br>
+Example: %E0 (used in URLs)</p>
+<blockquote>
+  <p><i>Note that IE doesn't allow the second break. Are there other customizations that IE makes 
+  that we should look at?</i></p>
+</blockquote>
+<p>This is part of a broader problem that the UTC asked me to look at. The problem is that right now 
+the PR and PO stuff really has to be overridden per language. These two classes are disjoint, and 
+only one of them can have currency symbols and other numeric stuff in them. I have the choice of not 
+breaking &quot;$123&quot; or not breaking &quot;123$&quot;; of not breaking &quot;-12&quot; or not breaking &quot;12-&quot; (with real minus 
+sign). This is really unexpected behavior for users, who would expect <i><b>none</b></i> of these to 
+ever break.</p>
+<p>The purpose for separating PR and PO is only because of ideographs, which wouldn't use spaces. So 
+I suggest having the main numeric &quot;keep together&quot; rules just use both in either position. That is, 
+change:</p>
+<blockquote>
+  <p><font FACE="Tms Rmn">&nbsp;</font><font FACE="Tms Rmn" COLOR="#0000ff"><u>PR</u></font><font FACE="Tms Rmn"> 
+  ? ( </font><font FACE="Tms Rmn" COLOR="#0000ff"><u>OP</u></font><font FACE="Tms Rmn"> | </font>
+  <font FACE="Tms Rmn" COLOR="#0000ff"><u>HY</u></font><font FACE="Tms Rmn"> ) ? </font>
+  <font FACE="Tms Rmn" COLOR="#0000ff"><u>NU</u></font><font FACE="Tms Rmn"> (</font><font FACE="Tms Rmn" COLOR="#0000ff"><u>NU</u></font><font FACE="Tms Rmn"> 
+  | </font><font FACE="Tms Rmn" COLOR="#0000ff"><u>SY</u></font><font FACE="Tms Rmn"> | </font>
+  <font FACE="Tms Rmn" COLOR="#0000ff"><u>IS</u></font><font FACE="Tms Rmn">) * </font>
+  <font FACE="Tms Rmn" COLOR="#0000ff"><u>CL</u></font><font FACE="Tms Rmn"> ?&nbsp; </font>
+  <font FACE="Tms Rmn" COLOR="#0000ff"><u>PO</u></font><font FACE="Tms Rmn"> ? </font></p>
+</blockquote>
+</font><font face="Tms Rmn">
+<p>to</p>
+<blockquote>
+  <p>(<font FACE="Tms Rmn" COLOR="#0000ff"><u>PO</u></font><font FACE="Helv"> | </font>
+  <font FACE="Tms Rmn" COLOR="#0000ff"><u>PR)</u></font> ? ( <font FACE="Tms Rmn" COLOR="#0000ff">
+  <u>OP</u></font> | <font FACE="Tms Rmn" COLOR="#0000ff"><u>HY</u></font> ) ?
+  <font FACE="Tms Rmn" COLOR="#0000ff"><u>NU</u></font> (<font FACE="Tms Rmn" COLOR="#0000ff"><u>NU</u></font> 
+  | <font FACE="Tms Rmn" COLOR="#0000ff"><u>SY</u></font> | <font FACE="Tms Rmn" COLOR="#0000ff"><u>
+  IS</u></font>) * <font FACE="Tms Rmn" COLOR="#0000ff"><u>CL</u></font> ?&nbsp; &nbsp;(<font FACE="Tms Rmn" COLOR="#0000ff"><u>PO</u></font><font FACE="Helv"> 
+  | </font><font FACE="Tms Rmn" COLOR="#0000ff"><u>PR)</u></font> ? </p>
+</blockquote>
+</font><font FACE="Helv">
+<p>and change</p>
+</font><font FACE="Tms Rmn">
+<blockquote>
+  <p>CL × PO <br>
+  NU × PO <br>
+  PR × OP <br>
+  PR × NU <br>
+  PR × HY <br>
+  PR × AL </p>
+</blockquote>
+<p>To</p>
+<blockquote>
+  <p>(CL | NU) × (PO | PR)<br>
+  (PO | PR) × (OP | NU | HY | AL)</p>
+</blockquote>
+</font><font FACE="Helv" SIZE="2">
+<h2>4. URLs</h2>
+</font>
+<p>Mr. Korpela complains about URLs not breaking well in browsers. Except for the %xx problem 
+referenced above, I think we are in fairly good shape. Here are the breaks in a sample URL (| marks 
+the break opportunities).</p>
+<pre>http://|www.cs.tut.fi/|%|7Ejkorpela/|html/|nobr.html?|abcd=high&amp;hijk=low#anchor|</pre>
+<p>So the issue here is just that the browsers aren't following the UAX, so long URLs aren't 
+wrapping.</p>
+<h2>5. Conformance</h2>
+<p>I looked at conformance in detail, and here are what I think the problems are:</p>
+<p>A. The spec says in its conformance section:</p>
+<dir>
+  <font FACE="Tms Rmn">
+  <p>All line breaking classes are informative, except for the line breaking classes marked with a * 
+  in </font><font FACE="Tms Rmn" COLOR="#0000ff"><u>Table 1</u></font><font FACE="Tms Rmn"> <i>Line 
+  Breaking Properties</i>. The interpretation of characters with normative line breaking classes by 
+  all conforming implementations must be consistent with the specification of the normative 
+  property. </p>
+  <p>Conformant implementations must not tailor characters with normative line breaking classes to 
+  any of the informative line breaking classes, but may tailor characters with informative line 
+  breaking classes to one of the normative line breaking classes. </p>
+  <p>Higher-level protocols may further restrict, override, or extend the line breaking classes of 
+  certain characters in some contexts. </p>
+</dir>
+</font>
+<p>But the conformance clauses themselves <i>do not limit</i> the overrideability of values.</p>
+<p>B. The following is listed as normative, and thus not overrideable (
+<a href="http://www.unicode.org/reports/tr14/#Definitions">
+http://www.unicode.org/reports/tr14/#Definitions</a>&nbsp; ).</p>
+<blockquote>
+  <p><a name="Table1">Table 1</a>: Line Breaking Classes (* = normative)&nbsp; </p>
+  <p><a class="charclass" href="http://www.unicode.org/reports/tr14/#BK">BK *&nbsp;&nbsp;&nbsp; </a>
+  <i>Mandatory Break&nbsp;&nbsp;&nbsp; </i>NL, PS</p>
+  <p>...</p>
+  <p>SG * Surrogates</p>
+  <p>...</p>
+  <p>CB * Contingent Break Opportunity&nbsp;&nbsp;&nbsp; Inline Objects</p>
+</blockquote>
+<font FACE="Tms Rmn">
+<p>But then LB1 specifically says:</p>
+<blockquote>
+  <p><i>LB 1&nbsp; Assign a line breaking class to each code point of the input. Resolve
+  <a class="charclass" href="http://www.unicode.org/reports/tr14/#AI">AI</a>,
+  <a class="charclass" href="http://www.unicode.org/reports/tr14/#CB">CB</a>,
+  <a class="charclass" href="http://www.unicode.org/reports/tr14/#SA">SA</a>,
+  <a class="charclass" href="http://www.unicode.org/reports/tr14/#SG">SG</a>, and
+  <a class="charclass" href="http://www.unicode.org/reports/tr14/#XX">XX</a> into other line 
+  breaking classes depending on criteria outside the scope of this algorithm.</i></p>
+</blockquote>
+</font>
+<p>And BK includes the following, which explicitly allows choice:</p>
+<font FACE="Tms Rmn">
+<blockquote>
+  <p>“NEW LINE FUNCTION (NLF)”</p>
+  <p>New line functions provide additional explicit breaks. They are not individual characters, but 
+  are expressed as sequences of the control characters NEL, LF, and CR. What particular sequence(s) 
+  form a NLF depends on the implementation and other circumstances as described in [<a href="http://www.unicode.org/reports/tr14/#Unicode">Unicode</a>] 
+  Section 5.8, <i>Newline Guidelines.</i></p>
+</blockquote>
+</font>
+<p>C. Moreover, clearly I have to be able to override non-normative stuff by splitting classes or 
+adding classes. What does it really mean to say that a property value is normative? Does that mean 
+that in its interactions with everything other value, normative and informative, must be described 
+in the rules? Or only with other normative values? For example:</p>
+<blockquote>
+  <p>Rule 8 says: <b>× CL</b></p>
+  <p>Rule 12 says: <b>SP ÷</b></p>
+</blockquote>
+<p>What does SP being normative mean in these cases? What happens if I tailor CL to contain a 
+character that it didn't before, or exclude a character it didn't have? That would change how SP 
+breaks? The problem is any mixture of the &quot;normative&quot; and <i>specific</i> &quot;informative&quot; values is a 
+real problem. The rules with only normative values are ok. But because the rules are done in order, 
+any rule with an informative value followed by another rule with a normative value is a problem 
+(subject to allowable rearrangement).</p>
+<blockquote>
+  <p>(&quot;Allowable rearrangement&quot;? What the heck is he talking about? It is that if I have any list of 
+  rules that have the same break status (× or ÷), their order doesn't matter. So we could reorder 
+  all the normative rules to be ahead of informative rules <b><i>if</i></b> they have the same break 
+  status. But Rule 8 and 12 don't.)</p>
+</blockquote>
+<p>Moreover, all word processors allow people to override breaks; not breaking within stuff that has 
+spaces, breaking within what would otherwise be words. We have to reflect this.</p>
+<p>Using normative/informative <i>values</i> just doesn't work. I only see two real possibilities:</p>
+<ol>
+  <li>Allow arbitrary tailoring: dump the text that tries to make a distinction between normative 
+  and informative, and say that all the properties are overrideable normative properties.</li>
+  <li>If we want to rescue some limitations, say that the <b><i>rules</i></b> 3a, 3b, 3c, 4, 5 are 
+  normative: any conformant linebreak implementation has to break or not break at the places 
+  specified by these rules with untailored property values. Otherwise implementations are free to 
+  break/not-break where they want. </li>
+</ol>
+<blockquote>
+  <p><i>LB 3a&nbsp; Always break after hard line breaks (but never between CR and LF).</i></p>
+  <p align="center">BK !</p>
+  <p><i>LB 3b&nbsp; Treat CR followed by LF, as well as CR, LF and NL as hard line breaks.</i></p>
+  <p align="center">CR × LF</p>
+  <p align="center">CR !</p>
+  <p align="center">LF !</p>
+  <p align="center">NL !</p>
+  <p><i>LB 3c&nbsp; Do not break before hard line breaks.</i></p>
+  <p align="center">× ( BK | CR | LF | NL )</p>
+  <p><i>LB 4&nbsp; Do not break before spaces or zero-width space.</i></p>
+  <p align="center">× SP</p>
+  <p align="center">× ZW</p>
+  <p><i>LB 5&nbsp; Break after zero-width space.</i></p>
+  <p align="center">ZW ÷</p>
+</blockquote>
+<p>The one other step we would have to take would be to disallow tailoring of BK as listed in the 
+text. Either that, or break out the BK rules above so that they can be non-normative.</p>
+<p>Why pick these rules? Because they don't involve any informative values, and do represent some 
+sort of 'hard' conditions.</p>
+<blockquote>
+  <p><b>Side note: </b>the phrase &quot;Where X is any line break class except SP, BK, CR, LF, NL or ZW.&quot; 
+  should be moved up and made italic. It is really part of rule 7b, but the formatting makes it look 
+  like it is not.</p>
+</blockquote>
+<hr>
+<p>For comparison, here is a generated version of the rules, with &quot;normative&quot; on each line where a 
+normative property value; and bolding the lines so they stand out (These are in CLDR format, so 
+there are some differences in formatting and rules, although the results are the same as the UAX.)</p>
+<p><i>&lt;!-- LB 3a Always break after hard line breaks (but never between CR and LF). --&gt;<br>
+</i><b>&lt;rule id=&quot;3.1&quot; normative=&quot;true&quot;&gt; $BK ÷ &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 3b Treat CR followed by LF, as well as CR, LF and NL as hard line breaks. --&gt;<br>
+</i><b>&lt;rule id=&quot;3.21&quot; normative=&quot;true&quot;&gt; $CR × $LF &lt;/rule&gt;<br>
+&lt;rule id=&quot;3.22&quot; normative=&quot;true&quot;&gt; $CR ÷ &lt;/rule&gt;<br>
+&lt;rule id=&quot;3.23&quot; normative=&quot;true&quot;&gt; $LF ÷ &lt;/rule&gt;<br>
+&lt;rule id=&quot;3.24&quot; normative=&quot;true&quot;&gt; $NL ÷ &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 3c Do not break before hard line breaks. --&gt;<br>
+</i><b>&lt;rule id=&quot;3.3&quot; normative=&quot;true&quot;&gt; × ( $BK | $CR | $LF | $NL ) &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 4 Do not break before spaces or zero-width space. --&gt;<br>
+</i><b>&lt;rule id=&quot;4.01&quot; normative=&quot;true&quot;&gt; × $SP &lt;/rule&gt;<br>
+&lt;rule id=&quot;4.02&quot; normative=&quot;true&quot;&gt; × $ZW &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 5 Break after zero-width space. --&gt;<br>
+</i><b>&lt;rule id=&quot;5&quot; normative=&quot;true&quot;&gt; $ZW ÷ &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 7b Do not break a combining character sequence; treat it as if it has the LB class of 
+the base character in all of the following rules.&nbsp; (Where X is any line break class except SP, 
+BK, CR, LF, NL or ZW.)--&gt;<br>
+</i><b>&lt;rule id=&quot;7.2&quot; normative=&quot;true&quot;&gt; × $CM &lt;/rule&gt;<br>
+</b>&lt;!-- WARNING: this is done by modifying the variable values for all but SP.... That is, $AL is 
+really ($AI $CM*)! --&gt;<b><br>
+</b><i>&lt;!-- LB 8 Do not break before ‘]’ or ‘!’ or ‘;’ or ‘/’, even after spaces. --&gt;<br>
+</i>&lt;rule id=&quot;8.01&quot;&gt; × $CL &lt;/rule&gt;<br>
+&lt;rule id=&quot;8.02&quot;&gt; × $EX &lt;/rule&gt;<br>
+&lt;rule id=&quot;8.03&quot;&gt; × $IS &lt;/rule&gt;<br>
+&lt;rule id=&quot;8.04&quot;&gt; × $SY &lt;/rule&gt;<br>
+<i>&lt;!-- LB 9 Do not break after ‘[’, even after spaces. --&gt;<br>
+</i><b>&lt;rule id=&quot;9&quot; normative=&quot;true&quot;&gt; $OP $SP* × &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 10 Do not break within ‘&quot;[’, even with intervening spaces. --&gt;<br>
+</i><b>&lt;rule id=&quot;10&quot; normative=&quot;true&quot;&gt; $QU $SP* × $OP &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 11 Do not break within ‘]h’, even with intervening spaces. --&gt;<br>
+</i><b>&lt;rule id=&quot;11&quot; normative=&quot;true&quot;&gt; $CL $SP* × $NS &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 11a Do not break within ‘——’, even with intervening spaces. --&gt;<br>
+</i><b>&lt;rule id=&quot;11.1&quot; normative=&quot;true&quot;&gt; $B2 $SP* × $B2 &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 11b Do not break before or after WORD JOINER and related characters. --&gt;<br>
+</i><b>&lt;rule id=&quot;11.21&quot; normative=&quot;true&quot;&gt; × $WJ &lt;/rule&gt;<br>
+&lt;rule id=&quot;11.22&quot; normative=&quot;true&quot;&gt; $WJ × &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 12 Break after spaces. --&gt;<br>
+</i><b>&lt;rule id=&quot;12&quot; normative=&quot;true&quot;&gt; $SP ÷ &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 13 Do not break before or after NBSP and related characters. --&gt;<br>
+</i><b>&lt;rule id=&quot;13.01&quot; normative=&quot;true&quot;&gt; × $GL &lt;/rule&gt;<br>
+&lt;rule id=&quot;13.02&quot; normative=&quot;true&quot;&gt; $GL × &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 14 Do not break before or after ‘&quot;’. --&gt;<br>
+</i>&lt;rule id=&quot;14.01&quot;&gt; × $QU &lt;/rule&gt;<br>
+&lt;rule id=&quot;14.02&quot;&gt; $QU × &lt;/rule&gt;<br>
+<i>&lt;!-- LB 14a Break before and after unresolved CB. --&gt;<br>
+</i><b>&lt;rule id=&quot;14.12&quot; normative=&quot;true&quot;&gt; ÷ $CB &lt;/rule&gt;<br>
+&lt;rule id=&quot;14.13&quot; normative=&quot;true&quot;&gt; $CB ÷ &lt;/rule&gt;<br>
+</b><i>&lt;!-- LB 15 Do not break before hyphen-minus, other hyphens, fixed-width spaces, small kana 
+and other non-starters, or after acute accents. --&gt;<br>
+</i>&lt;rule id=&quot;15.01&quot;&gt; × $BA &lt;/rule&gt;<br>
+&lt;rule id=&quot;15.02&quot;&gt; × $HY &lt;/rule&gt;<br>
+&lt;rule id=&quot;15.03&quot;&gt; × $NS &lt;/rule&gt;<br>
+&lt;rule id=&quot;15.04&quot;&gt; $BB × &lt;/rule&gt;<br>
+<i>&lt;!-- LB 16 Do not break between two ellipses, or between letters or numbers and ellipsis. --&gt;<br>
+</i>&lt;rule id=&quot;16.01&quot;&gt; $AL × $IN &lt;/rule&gt;<br>
+&lt;rule id=&quot;16.02&quot;&gt; $ID × $IN &lt;/rule&gt;<br>
+&lt;rule id=&quot;16.03&quot;&gt; $IN × $IN &lt;/rule&gt;<br>
+&lt;rule id=&quot;16.04&quot;&gt; $NU × $IN &lt;/rule&gt;<br>
+<i>&lt;!-- LB 17 Do not break within ‘a9’, ‘3a’, or ‘H%’. --&gt;<br>
+</i>&lt;rule id=&quot;17.01&quot;&gt; $ID × $PO &lt;/rule&gt;<br>
+&lt;rule id=&quot;17.02&quot;&gt; $AL × $NU &lt;/rule&gt;<br>
+&lt;rule id=&quot;17.03&quot;&gt; $NU × $AL &lt;/rule&gt;<br>
+<i>&lt;!-- LB 18 Do not break between the following pairs of classes. --&gt;<br>
+&lt;!-- Using customization 7!! --&gt;<br>
+&lt;!-- LB 18-alternative: $PR? ( $OP | $HY )? $NU ($NU | $SY | $IS)* $CL? $PO? --&gt;<br>
+&lt;!-- Insert × every place it could go. However, make sure that at least one thing is concrete, 
+otherwise would cause $NU to not break before or after --&gt;<br>
+</i>&lt;rule id=&quot;18.111&quot;&gt; $PR × ( $OP | $HY )? $NU &lt;/rule&gt;<br>
+&lt;rule id=&quot;18.112&quot;&gt; ( $OP | $HY ) × $NU &lt;/rule&gt;<br>
+&lt;rule id=&quot;18.113&quot;&gt; $NU × ($NU | $SY | $IS) &lt;/rule&gt;<br>
+&lt;rule id=&quot;18.114&quot;&gt; $NU ($NU | $SY | $IS)* × ($NU | $SY | $IS) &lt;/rule&gt;<br>
+&lt;rule id=&quot;18.115&quot;&gt; $NU ($NU | $SY | $IS)* $CL? × $PO &lt;/rule&gt;<br>
+<i>&lt;!-- 18.11) $CL × $PO --&gt;<br>
+&lt;!-- 18.12) $HY × $NU --&gt;<br>
+&lt;!-- 18.13) $IS × $NU --&gt;<br>
+&lt;!-- 18.13) $NU × $NU --&gt;<br>
+&lt;!-- 18.14) $NU × $PO --&gt;<br>
+</i>&lt;rule id=&quot;18.15&quot;&gt; $PR × $AL &lt;/rule&gt;<br>
+<i>&lt;!-- 18.16) $PR × $HY --&gt;<br>
+</i>&lt;rule id=&quot;18.17&quot;&gt; $PR × $ID &lt;/rule&gt;<br>
+<i>&lt;!-- 18.18) $PR × $NU --&gt;<br>
+&lt;!-- 18.19) $PR × $OP --&gt;<br>
+&lt;!-- 18.195) $SY × $NU --&gt;<br>
+&lt;!-- LB 18b Do not break a Korean syllable. --&gt;<br>
+</i>&lt;rule id=&quot;18.21&quot;&gt; $JL × $JL | $JV | $H2 | $H3 &lt;/rule&gt;<br>
+&lt;rule id=&quot;18.22&quot;&gt; $JV | $H2 × $JV | $JT &lt;/rule&gt;<br>
+&lt;rule id=&quot;18.23&quot;&gt; $JT | $H3 × $JT &lt;/rule&gt;<br>
+<i>&lt;!-- LB 18c Treat a Korean Syllable Block the same as ID. --&gt;<br>
+</i>&lt;rule id=&quot;18.31&quot;&gt; $JL | $JV | $JT | $H2 | $H3 × $IN &lt;/rule&gt;<br>
+&lt;rule id=&quot;18.32&quot;&gt; $JL | $JV | $JT | $H2 | $H3 × $PO &lt;/rule&gt;<br>
+&lt;rule id=&quot;18.33&quot;&gt; $PR × $JL | $JV | $JT | $H2 | $H3 &lt;/rule&gt;<br>
+<i>&lt;!-- LB 19 Do not break between alphabetics (&quot;at&quot;). --&gt;<br>
+</i>&lt;rule id=&quot;19&quot;&gt; $AL × $AL &lt;/rule&gt;<br>
+<i>&lt;!-- LB 19b Do not break between numeric punctuation and alphabetics (&quot;e.g.&quot;). --&gt;<br>
+</i>&lt;rule id=&quot;19.1&quot;&gt; $IS × $AL &lt;/rule&gt;</p>
+
+</body>
+
+</html>

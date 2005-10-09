@@ -10,11 +10,13 @@
 <style>
 <!--
 body         { font-family: Arial Unicode MS, Code2000; font-size:125% }
+table.header      { border-top:3px solid black;  }
 span.box         { border: 1px solid #0000FF }
 span.highlight { font-weight: bold; background-color: #DDD}
 .sample        { ; padding:0.25em; border:1px solid #000000; font-size:150%; background-color:#99FF99 }
 ul.marked {list-style-image: url('http://macchiato.com/images/radioactive.png'); list-style-type: circle}
 li {margin-top:0; margin-bottom:0.5em}
+table {order-collapse: collapse}
 -->
 </style>
 </head>
@@ -22,12 +24,12 @@ li {margin-top:0; margin-bottom:0.5em}
 <body>
 
 <h1 align="center">Globalization Gotchas</h1>
-<p align="center">$Date: 2005/10/09 19:06:42 $, MED</p>
+<p align="center">$Date: 2005/10/09 19:28:25 $, MED</p>
 <p>I&#39;m preparing a presentation for the next Unicode conference in March, and have been thinking 
-about doing one on the pitfalls that people stumble into when using Unicode in practice.</p>
+about doing one on the pitfalls that people stumble into when using Unicode in globalizing software.</p>
 <p>I have the following draft list, and would like to collect others. If you have any suggestions 
-for additions or improvements, I would appreciate them!</p>
-<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%" id="AutoNumber6">
+for additions or improvements, I would appreciate them.</p>
+<table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber6" style="border-collapse: collapse">
   <tr>
     <td>
     <h2>General</h2>
@@ -66,7 +68,7 @@ for additions or improvements, I would appreciate them!</p>
   ►&nbsp;<a href="http://unicode.org/standard/stability_policy.html">http://unicode.org/standard/stability_policy.html</a>
   </li>
 </ul>
-<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%" id="AutoNumber2">
+<table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber2">
   <tr>
     <td>
     <h2>Character Conversion</h2>
@@ -88,9 +90,9 @@ for additions or improvements, I would appreciate them!</p>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://www.w3.org/TR/japanese-xml/">http://www.w3.org/TR/japanese-xml/</a><br>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://icu.sourceforge.net/charts/charset/">http://icu.sourceforge.net/charts/charset/</a></li>
   <li>When converting, <i>never</i> simply omit characters that cannot be converted; at least 
-  substitute SUB or � to reduce security problems.</li>
+  substitute SUB or to reduce security problems.</li>
 </ul>
-<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%" id="AutoNumber7">
+<table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber7">
   <tr>
     <td>
     <h2>User Input</h2>
@@ -107,7 +109,7 @@ for additions or improvements, I would appreciate them!</p>
   element starting with those characters), allow arbitrary input. This is often easiest with visible 
   field.</li>
 </ul>
-<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%" id="AutoNumber1">
+<table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber1">
   <tr>
     <td>
     <h2>Text Analysis</h2>
@@ -140,8 +142,8 @@ for additions or improvements, I would appreciate them!</p>
 <ul class="marked">
   <li>When designing syntax, don&#39;t use characters outside of Pattern_Syntax for syntax characters; 
   don&#39;t use characters outside of Pattern_Whitespace for whitespace characters. </li>
-  <li>Use XID_Start and XID_Continue as a basis for identifiers. Profiles may expand or narrow from 
-  there.</li>
+  <li>For user-visible identifiers, use XID_Start and XID_Continue as a basis. Profiles may expand 
+  or narrow from there.</li>
   <li>Watch out for security attacks: using visual similarity to slip bogus text (e.g. counterfeit 
   URL’s) past human eyes (spoofing): writing “paypal.com” with a Cyrillic “a” to <i>phish</i> for 
   users’ account information.<br>
@@ -174,7 +176,7 @@ for additions or improvements, I would appreciate them!</p>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://unicode.org/notes/tn9/">http://unicode.org/notes/tn9/</a>
   </li>
 </ul>
-<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%" id="AutoNumber5">
+<table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber5">
   <tr>
     <td>
     <h2>Text Transformations</h2>
@@ -261,7 +263,7 @@ for additions or improvements, I would appreciate them!</p>
   ►&nbsp;<a href="http://www.unicode.org/draft/reports/tr35/tr35.html">http://www.unicode.org/draft/reports/tr35/tr35.html</a> 
   [Ed note: fix when final]</li>
 </ul>
-<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%">
+<table class="header" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
     <td>
     <h2>Rendering </h2>
@@ -293,7 +295,7 @@ for additions or improvements, I would appreciate them!</p>
   ►&nbsp;<a href="http://unicode.org/reports/tr14/">http://unicode.org/reports/tr14/</a> <br>
 &nbsp;</li>
 </ul>
-<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%" id="AutoNumber4">
+<table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber4">
   <tr>
     <td>
     <h2>Globalization</h2>
@@ -307,7 +309,10 @@ for additions or improvements, I would appreciate them!</p>
   <li>Don&#39;t put any translatable strings into your code; make sure those are separated into a 
   resource file.</li>
   <li>Store and transmit <i>neutral-format</i> data wherever possible. Convert that data to the 
-  user&#39;s preferred formats as &quot;close&quot; to the user as possible.</li>
+  user&#39;s preferred formats as &quot;close&quot; to the user as possible. Eg, use Windows Filetime for binary 
+  times.<br>
+  ►&nbsp;<a href="http://icu.sourceforge.net/userguide/universalTimeScale.html">http://icu.sourceforge.net/userguide/universalTimeScale.html</a>
+  </li>
   <li>Don&#39;t confuse User-Interface language (menus, dialog, help-system,...) with Data language 
   (body text, spreadsheet cells). Globalized programs need to handle, as data, more languages than 
   they have localized UI for.</li>
@@ -322,34 +327,36 @@ for additions or improvements, I would appreciate them!</p>
 <h3>Identification</h3>
 <ul class="marked">
   <li>Use RFC 3066 (or its <a href="http://www.inter-locale.com/ID/draft-ietf-ltru-registry-10.html">
-  successor</a>) for language identification, not ISO 639 alone.<br>
+  successor</a>) for language IDs, not ISO 639 alone.<br>
   ►&nbsp;<a href="ftp://ftp.isi.edu/in-notes/rfc3066.txt">ftp://ftp.isi.edu/in-notes/rfc3066.txt</a></li>
   <li>Locale IDs are extensions of language IDs, they are not the same. Use CLDR for locale IDs.<br>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://unicode.org/cldr/">http://unicode.org/cldr/</a></li>
-  <li>If you heuristically compute territory, timezone, currency, etc. make sure the user can 
-  override that and pick an explicit value.</li>
-  <li>Always use an explicit currency code (ISO 4217). Don&#39;t assume the currency is the same as the 
-  display locale: <font face="monospace">&lt;RUR, 1.23457×10³&gt;</font> ↔ 1&nbsp;234,57р. in Russian, but Rub 
-  1,234.57 in English.</li>
-  <li>Never assume the timezone ID is implied by the user&#39;s locale. For the best timezone 
+  <li>If you heuristically compute territory IDs, timezone IDs, currency IDs, etc. make sure the 
+  user can override that and pick an explicit value.</li>
+  <li>Always use an explicit currency ID (ISO 4217). Don&#39;t assume the currency is the same as the 
+  display locale: <font face="monospace">&lt;RUR, 1.23457×10³&gt;</font> ↔ <i>1&nbsp;234,57р.</i> in Russian, 
+  but <i>Rub 1,234.57</i> in English.</li>
+  <li>Don&#39;t assume the timezone ID is implied by the user&#39;s locale. For the best timezone 
   information, use the TZ database; use CLDR for timezone names.<br>
   ►&nbsp;<a href="http://www.twinsun.com/tz/tz-link.htm">http://www.twinsun.com/tz/tz-link.htm</a></li>
-  <li>Computations with mixed timezones or missing timezones are tricky.<br>
+  <li>Computations with mixed timezones or missing timezones are tricky (XML Schema is missing real 
+  timezones: you&#39;ll have to roll your own datatype).<br>
   ►&nbsp;<a href="http://w3.org/International/core/2005/09/timezone.html">http://w3.org/International/core/2005/09/timezone.html</a>
   </li>
   <li>Be prepared for instabilities in currencies, territories, and timezones. Unfortunately, you 
-  also need to worry about instabilities in the IDs also: ISO reused CS for two different 
-  territories.</li>
+  also need to worry about instabilities in the IDs also: eg, ISO reused CS for two different 
+  territories.<br>
+  ►&nbsp;<a href="http://www.unicode.org/consortium/positions.html">http://www.unicode.org/consortium/positions.html</a>
+  </li>
 </ul>
 <h3>Java</h3>
 <ul class="marked">
   <li>In MessageFormat, watch for words like <i>can&#39;t</i>, since ASCII &#39; has syntactic meaning. Use 
   a real apostrophe (U+2019) where possible: <i>can’t</i>.</li>
   <li>In Date and Calendar, the months are (bizarrely) numbered from 0; February is month number 1.</li>
+  <li>Java globalization support is pretty outdated: use ICU to supplement it.</li>
 </ul>
 </li>
-<ul class="marked">
-</ul>
 
 </body>
 

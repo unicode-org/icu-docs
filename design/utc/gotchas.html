@@ -24,22 +24,22 @@ table {order-collapse: collapse}
 <body>
 
 <h1 align="center">Globalization Gotchas</h1>
-<p align="center">$Date: 2005/10/11 20:05:37 $, MED</p>
+<p align="center">$Date: 2005/10/11 21:14:09 $, MED<br>
+<a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/utc/gotchas.html">
+Working Draft</a></p>
 <p>I&#39;m preparing a presentation for the next Unicode conference in March, and have been thinking 
 about doing one on the pitfalls that people stumble into when using Unicode in globalizing software.</p>
 <p>I have the following draft list, and would like to collect others. If you have any suggestions 
-for additions or improvements, I would appreciate them.</p>
+for additions or improvements, I would appreciate them. (Don&#39;t worry about formatting, though).</p>
 <table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber6" style="border-collapse: collapse">
   <tr>
     <td>
-    <h2>General</h2>
+    <h2>Unicode</h2>
     </td>
     <td width="1%" nowrap>&nbsp;</td>
   </tr>
 </table>
 <ul class="marked">
-  <li>Unicode != Globalization. Unicode provides the basis for software globalization, but there&#39;s 
-  more work to be done...</li>
   <li>Unicode encodes characters, not glyphs: U+0067 → <font face="Arial Narrow">g</font>
   <font face="Baskerville">g</font> <i><font face="Times New Roman">g </font></i>
   <font face="Binner Gothic">g</font> <font face="Brush Script">g</font> <b><i>g </i></b>
@@ -269,6 +269,7 @@ for additions or improvements, I would appreciate them.</p>
   <li>Transliteration (Ελληνικά ↔ Ellēniká) is not the same as Translation (Ελληνικά ↔ Greek)<br>
   ►&nbsp;<a href="http://www.unicode.org/draft/reports/tr35/tr35.html">http://www.unicode.org/draft/reports/tr35/tr35.html</a> 
   [Ed note: fix when final]</li>
+  <li>Translation may vary by language: Путин → Putin (English), Poutine (French)</li>
 </ul>
 <table class="header" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
@@ -317,6 +318,8 @@ for additions or improvements, I would appreciate them.</p>
   </tr>
 </table>
 <ul class="marked">
+  <li>Unicode ≠ Globalization. Unicode provides the <i>basis</i> for software globalization, but 
+  there&#39;s more work to be done...</li>
   <li>Don&#39;t simply concatenate strings to make messages: the order of components different by 
   language. Use Java MessageFormat or equivalent.</li>
   <li>Don&#39;t put any translatable strings into your code; make sure those are separated into a 
@@ -328,6 +331,8 @@ for additions or improvements, I would appreciate them.</p>
   times.<br>
   ►&nbsp;<a href="http://icu.sourceforge.net/userguide/universalTimeScale.html">http://icu.sourceforge.net/userguide/universalTimeScale.html</a>
   </li>
+  <li>Tag all data explicitly. Trying to algorithmically determine character encoding and language 
+  isn&#39;t easy, and can never be exact.</li>
   <li>Don&#39;t confuse User-Interface language (menus, dialog, help-system,...) with Data language 
   (body text, spreadsheet cells). Globalized programs need to handle, as data, more languages than 
   they have localized UI for.</li>
@@ -369,6 +374,8 @@ for additions or improvements, I would appreciate them.</p>
   <li>In MessageFormat, watch for words like <i>can&#39;t</i>, since ASCII &#39; has syntactic meaning. Use 
   a real apostrophe (U+2019) where possible: <i>can’t</i>.</li>
   <li>In Date and Calendar, the months are (bizarrely) numbered from 0; February is month number 1.</li>
+  <li>Java serialized text isn&#39;t UTF-8, though it&#39;s close. U+0000 and surrogates are encoded 
+  differently. </li>
   <li>Java globalization support is pretty outdated: use ICU to supplement it.</li>
 </ul>
 </li>

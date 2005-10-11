@@ -23,13 +23,13 @@
   </tr>
   <tr>
     <td>Date:</td>
-    <td>$Date: 2005/10/11 00:38:30 $</td>
+    <td>$Date: 2005/10/11 00:40:19 $</td>
   </tr>
 </table>
 <p>Andy came across the following page: <a href="http://www.cs.tut.fi/~jkorpela/html/nobr.html">
 http://www.cs.tut.fi/%7Ejkorpela/html/nobr.html</a> </p>
 <p>It seems to me that the author has a point for a number of issues to do with Line Break. I looked 
-at linebreak, and I think some of the items do need changes. Here is my proposal:</p>
+in detail at the issues, and have the following proposal:</p>
 <b><font FACE="Helv" SIZE="2">
 <h2>1. Don't allow &quot;-case&quot; to break after the hyphen, leaving a lone hyphen at the end of a line</h2>
 </font><font FACE="Helv">
@@ -42,8 +42,8 @@ at linebreak, and I think some of the items do need changes. Here is my proposal
     (HY | BA) ×</p>
   </blockquote>
 </blockquote>
-<p>However, BA is an odd class, containing spaces and tabs, but also&nbsp; hyphen characters. The 
-spaces really shouldn't enter into this behavior, so we should split the class into:</p>
+<p>However, BA is an odd class, containing spaces and tabs, but also hyphen characters. The spaces 
+really shouldn't enter into this behavior, so we should split the class into:</p>
 <p><i>BS spacy stuff</i></p>
 <p><i>BA hypheny stuff</i></p>
 <p>The only resulting change is that 15 line 1 changes from × BA</p>

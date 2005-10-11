@@ -24,7 +24,7 @@ table {order-collapse: collapse}
 <body>
 
 <h1 align="center">Globalization Gotchas</h1>
-<p align="center">$Date: 2005/10/09 19:28:25 $, MED</p>
+<p align="center">$Date: 2005/10/11 20:05:37 $, MED</p>
 <p>I&#39;m preparing a presentation for the next Unicode conference in March, and have been thinking 
 about doing one on the pitfalls that people stumble into when using Unicode in globalizing software.</p>
 <p>I have the following draft list, and would like to collect others. If you have any suggestions 
@@ -38,6 +38,8 @@ for additions or improvements, I would appreciate them.</p>
   </tr>
 </table>
 <ul class="marked">
+  <li>Unicode != Globalization. Unicode provides the basis for software globalization, but there&#39;s 
+  more work to be done...</li>
   <li>Unicode encodes characters, not glyphs: U+0067 → <font face="Arial Narrow">g</font>
   <font face="Baskerville">g</font> <i><font face="Times New Roman">g </font></i>
   <font face="Binner Gothic">g</font> <font face="Brush Script">g</font> <b><i>g </i></b>
@@ -51,20 +53,21 @@ for additions or improvements, I would appreciate them.</p>
   code points, bytes, or user-perceived characters (grapheme clusters). </li>
   <li>Some APIs/protocols will count lengths in code points, and others in bytes. Make sure you 
   don&#39;t mix them up.</li>
-  <li>Names may be misleading: U+034F COMBINING GRAPHEME JOINER doesn&#39;t join graphemes.<br>
-  <a href="http://www.unicode.org/faq/">http://www.unicode.org/faq/</a>&nbsp; </li>
+  <li>Character and block names may be misleading: U+034F COMBINING GRAPHEME JOINER doesn&#39;t join 
+  graphemes.<br>
+  ►&nbsp;<a href="http://www.unicode.org/faq/">http://www.unicode.org/faq/</a></li>
   <li>Never use unassigned code points; those will be used in future versions of Unicode. If you 
   need your own characters, use private use or non-characters; there are plenty!</li>
   <li>Be prepared to handle (at least not corrupt!) any incoming code points from U+0000 to 
   U+10FFFF: if your system is running a back-level version of Unicode, you may receive transmitted 
   unassigned code points from later versions.</li>
-  <li>Watch for &quot;UCS-2&quot; implementations. They use UTF-16 text, but doesn&#39;t support characters over 
+  <li>Watch for &quot;UCS-2&quot; implementations. They use UTF-16 text, but don&#39;t support characters over 
   U+10000; they also may accidentally cause isolated surrogates.</li>
   <li>Don&#39;t limit API parameters to a single character (and definitely not to a single code unit!). 
   What users think of as a single character (e.g. ẍ, ch) may be a <i>sequence</i> in Unicode.</li>
   <li>Use U+2060 <i>word joiner</i> instead of U+FFFE for everything<i> but</i> the BOM function.</li>
   <li>Use the latest version of Unicode: as well as necessary characters, there are many 
-  corrections, and many more processes are guaranteed to be stable.<br>
+  corrections, and more processes are guaranteed to be stable.<br>
   ►&nbsp;<a href="http://unicode.org/standard/stability_policy.html">http://unicode.org/standard/stability_policy.html</a>
   </li>
 </ul>
@@ -80,7 +83,9 @@ for additions or improvements, I would appreciate them.</p>
 </table>
 <ul class="marked">
   <li>Length in bytes may not be N * length in characters </li>
-  <li>One character in charset X may not be one character in Unicode</li>
+  <li>One character in charset X may not be one character in Unicode; the ordering may also be 
+  different.</li>
+  <li>UTF-8, UTF-16, and UTF-32 are <i>all</i> Unicode.</li>
   <li>Always use &quot;shortest form&quot; UTF-8 to reduce security attacks</li>
   <li>Not all text is correctly tagged with its charset, so character detection may be necessary. 
   But remember, it&#39;s always a guess.</li>
@@ -133,7 +138,9 @@ for additions or improvements, I would appreciate them.</p>
   regex</li>
   <li>Some General Category properties aren&#39;t what you think: use White_Space (not Zs), Alphabetic 
   (not L), Lowercase (not Ll),...</li>
-  <li>Generally use Script instead of Block: not all Greek characters are in the Greek block.</li>
+  <li>Generally use Script instead of Block: not all Greek characters are in the Greek block. Many 
+  characters (punctuation, symbols, accents) used to write a language are shared (Script=Common or 
+  Inherited).</li>
   <li>Characters may change property values between versions of Unicode (except for specific ones).<br>
   ►&nbsp;<a href="http://unicode.org/standard/stability_policy.html">http://unicode.org/standard/stability_policy.html</a>
   </li>
@@ -156,7 +163,7 @@ for additions or improvements, I would appreciate them.</p>
   </li>
   <li>Only use binary order internally; no users expect A &lt; Z &lt; a &lt; z &lt; Ç &lt; ä. Apply normalization 
   to get a unique form, so C◌̧ = Ç.</li>
-  <li>UCA Order is a far better base than binary: a &lt; ä &lt; A &lt; Ç = C◌̧ &lt; z &lt; Z<br>
+  <li>UCA Order is a far better base than binary: a &lt; A &lt; ä &lt; Ç = C◌̧ &lt; z &lt; Z<br>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://unicode.org/reports/tr10/">http://unicode.org/reports/tr10/</a>
   </li>
   <li>Ordering depends on context and language:
@@ -164,7 +171,7 @@ for additions or improvements, I would appreciate them.</p>
     <li>china &lt; China &lt; china<span class="box">s</span> &lt; danish</li>
     <li>ae &lt; <span class="box">æ</span> &lt; af </li>
     <li>z &lt; <span class="box">æ</span> <i>(Danish) </i></li>
-    <li>c &lt; d &lt; ... k &lt; <span class="box">ch</span> &lt; l <i>(Slovak)</i><br>
+    <li>c &lt; d &lt; ... h &lt; <span class="box">ch</span> &lt; i <i>(Slovak)</i><br>
     ►&nbsp;<a href="http://www.unicode.org/reports/tr10/#Common_Misperceptions">http://www.unicode.org/reports/tr10/#Common_Misperceptions</a>
     </li>
   </ul>
@@ -274,13 +281,17 @@ for additions or improvements, I would appreciate them.</p>
   </tr>
 </table>
 <ul class="marked">
-  <li>Single glyph may result from multiple characters: <font face="Times New Roman">f + i
-  <font SIZE="3">→</font> ﬁ </font></li>
-  <li>Multiple glyphs may result from single character: <font SIZE="3">க + <span class="highlight">ொ</span>
-  </font><font SIZE="3" face="Times New Roman">→ </font>கொ</li>
-  <li>Don&#39;t assume that contiguous text = contiguous display: a b <span class="box">c ‎א</span> ‎ב 
-  ‎ג <font SIZE="3" face="Times New Roman">→</font><font SIZE="3"> ab<span class="highlight">cא</span>בג</li>
-  </font></li>
+  <li>Rendering is context-dependent: going character-by-character gives the wrong results.<ul class="marked">
+    <li>A single glyph may result from multiple characters: <font face="Times New Roman">f + i
+    <font SIZE="3">→</font> ﬁ</font>; ‎ل‎ + ‎١‎ → ‎لا‎</li>
+    <li>Multiple glyphs may result from a single character: <font SIZE="3">க +
+    <span class="highlight">ொ</span> </font><font SIZE="3" face="Times New Roman">→ </font>கொ</li>
+    <li>The memory storage order (logical order) may not be the same as the visual order. Don&#39;t 
+    assume that contiguous text = contiguous display: a b <span class="box">c ‎א</span> ‎ב ‎ג
+    <font SIZE="3" face="Times New Roman">→</font><font SIZE="3"> ab<span class="highlight">cא</span>בג</li>
+    </font></li>
+  </ul>
+  </li>
   <li>Good rendering systems will handle customary type-in order for text plus canonical order. 
   Excellent ones will do any canonically-equivalent order, but those are rare.</li>
   <li>There may be differences in the customary glyphs for different languages; specify the font or 
@@ -306,8 +317,12 @@ for additions or improvements, I would appreciate them.</p>
   </tr>
 </table>
 <ul class="marked">
+  <li>Don&#39;t simply concatenate strings to make messages: the order of components different by 
+  language. Use Java MessageFormat or equivalent.</li>
   <li>Don&#39;t put any translatable strings into your code; make sure those are separated into a 
   resource file.</li>
+  <li>Don&#39;t assume everyone can read the Latin alphabet. Don&#39;t assume icons and symbols mean the 
+  same around the world.</li>
   <li>Store and transmit <i>neutral-format</i> data wherever possible. Convert that data to the 
   user&#39;s preferred formats as &quot;close&quot; to the user as possible. Eg, use Windows Filetime for binary 
   times.<br>

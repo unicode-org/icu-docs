@@ -24,7 +24,7 @@ table {order-collapse: collapse}
 <body>
 
 <h1 align="center">Globalization Gotchas</h1>
-<p align="center">$Date: 2005/10/12 16:12:58 $, MED<br>
+<p align="center">$Date: 2005/10/12 16:15:42 $, MED<br>
 <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/utc/gotchas.html">
 Working Draft</a></p>
 <p>I&#39;m preparing a presentation for the next Unicode conference in March, and have been thinking 
@@ -385,6 +385,9 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   <li>Java serialized text isn&#39;t UTF-8, though it&#39;s close. U+0000 and surrogates are encoded 
   differently. </li>
   <li>Java globalization support is pretty outdated: use ICU to supplement it.</li>
+  <li>Java ResourceBundle (J2SE), Java Standard Tag Library (JSTL), Java Server Face (JSF), Apache 
+  HTTP server, etc. all provide some locale determination mechanism and facility; but they all 
+  differ in details.</li>
 </ul>
 </li>
 

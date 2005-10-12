@@ -24,7 +24,7 @@ table {order-collapse: collapse}
 <body>
 
 <h1 align="center">Globalization Gotchas</h1>
-<p align="center">$Date: 2005/10/11 21:14:09 $, MED<br>
+<p align="center">$Date: 2005/10/12 16:12:58 $, MED<br>
 <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/utc/gotchas.html">
 Working Draft</a></p>
 <p>I&#39;m preparing a presentation for the next Unicode conference in March, and have been thinking 
@@ -125,9 +125,12 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
 </table>
 <h3>Segmentation</h3>
 <ul class="marked">
-  <li>Combining characters always follow their base:&nbsp; ẍ is&nbsp; x + <font SIZE="3">◌̈</font>,
-  <i class="moz-txt-slash">not<span class="moz-txt-tag"> </span></i>&nbsp;<font SIZE="3">◌</font>̈ + x
-  </li>
+  <li>Combining characters always follow their base:
+  <img border="0" src="gotchas-images/gotcha5.gif" width="12" height="18"> is
+  <img border="0" src="gotchas-images/gotcha2.gif" width="12" height="18"> +
+  <img border="0" src="gotchas-images/gotcha3.gif" width="12" height="18">, not
+  <img border="0" src="gotchas-images/gotcha3.gif" width="12" height="18"> +
+  <img border="0" src="gotchas-images/gotcha2.gif" width="12" height="18">.</li>
   <li>Words are not just sequences of letters.<br>
   ►&nbsp;<a href="http://www.unicode.org/reports/tr29/">http://www.unicode.org/reports/tr29/</a>&nbsp;&nbsp;&nbsp;
   </li>
@@ -298,9 +301,14 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   <li>There may be differences in the customary glyphs for different languages; specify the font or 
   the language where they have to be distinguished.</li>
   <li>Never render a missing glyph as &quot;?&quot;: it can cause security problems.</li>
-  <li>Combining characters normally stack outwards:&nbsp; x<font SIZE="3">̈̄</font> is&nbsp; x +
-  <font SIZE="3">◌̈ </font>+ <font SIZE="3">◌̄, </font><i class="moz-txt-slash">not<span class="moz-txt-tag">
-  </span></i>&nbsp;x + <font SIZE="3">◌̄</font> + <font SIZE="3">◌̈.</font> Don&#39;t simply overlay 
+  <li>Combining characters normally stack outwards:
+  <img border="0" src="gotchas-images/gotcha1.gif" width="12" height="18"> is
+  <img border="0" src="gotchas-images/gotcha2.gif" width="12" height="18"> +
+  <img border="0" src="gotchas-images/gotcha3.gif" width="12" height="18"> +
+  <img border="0" src="gotchas-images/gotcha4.gif" width="12" height="18">, not&nbsp;
+  <img border="0" src="gotchas-images/gotcha2.gif" width="12" height="18"> +
+  <img border="0" src="gotchas-images/gotcha4.gif" width="12" height="18"> +
+  <img border="0" src="gotchas-images/gotcha3.gif" width="12" height="18">. Don&#39;t simply overlay 
   diacritics: it can cause security problems.<br>
   ►&nbsp;<a href="http://www.unicode.org/notes/tn2/">http://www.unicode.org/notes/tn2/</a> </li>
   <li>Linebreak is not just breaking at spaces<br>

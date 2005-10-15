@@ -12,6 +12,123 @@
 <body>
 
 <h1>ICU Data Loading, Packaging, Installation, Update, Customization</h1>
+
+<p>Summary of discussions 2005-aug..sep</p>
+<ul>
+  <li>Meta data should cover the properties of IDs and items, including hidden
+    items, available&nbsp; IDs that don't have files/items, and dependencies.</li>
+  <li>&quot;Normal&quot; items/IDs should not need to be listed manually. That
+    is, the meta data input files that are created manually should not need
+    entries for stored items that correspond to available IDs.</li>
+  <li>Any meta data that is reasonably discoverable by build-time tools should
+    be discovered by them. In particular, dependencies between items that can be
+    discovered by looking into them.</li>
+  <li>This is to keep explicit meta data at a minimum, to make it easy, and to
+    keep it from getting out of sync with actual relationships.</li>
+  <li>Not listing &quot;normal&quot; items means that explicit meta data in many
+    cases can be empty.</li>
+</ul>
+<hr>
+
+<p>Design meeting 2005-oct-12 (Markus Scherer, George Rhoten, Raghuram
+Viswanadha, Steven R Loomis, Vladimir Weinstein)</p>
+
+<p>Development so far: The icupkg tool can now automatically discover
+dependencies between .cnv conversion tables (from delta-only to base tables) and
+between .res resource bundles (from aliases).</p>
+
+<p>The dependencies between a resource bundle and its parent (according to its
+locale fallback) will be handled by the following:</p>
+<ul>
+  <li>The .res file format will get a new flag for whether a .res file
+    participates in locale fallback. Most do, except for ones like
+    transliterator bundles, zoneinfo.res, and similar.</li>
+  <li>The genrb tool will accept new syntax only for the top-level item, like <code>be:table(nofallback)
+    {...}</code>.</li>
+  <li>The ICU runtime libraries will treat a <code>nofallback</code> bundle as
+    if <code>ures_openDirect()</code> had been called to open it. <code>ures_openDirect()</code>
+    will still behave slightly better for such files, because if the bundle is
+    missing altogether, it does not attempt to open a root bundle, unlike <code>ures_open()</code>.
+    If the flag is missing completely, it is treated as using fallbacks.</li>
+  <li>The icupkg and similar tools will assume a dependency on the parent bundle
+    if the flag exists and is set to <code>nofallback</code>.</li>
+</ul>
+
+<p>Alternatively, we could have a single per-tree flag in the meta data for
+whether all bundles participate in locale fallback. However, this would mean
+that users would be forced to use data trees (which we think are rarely used and
+poorly understood) to avoid mixing locale bundles and non-locale bundles on top
+level.</p>
+
+<p>Consider moving locale bundles to a locales/ data tree (or non-locale bundles
+to a misc/ tree) for better separation between data items of different types and
+usage.</p>
+
+<p>icupkg needs to support tree names in .res aliases: <code>/ICUDATA-coll/...</code></p>
+
+<p>With the above, icupkg will handle the majority of item dependencies. We
+decided that for now we will not handle other dependencies via meta data. For
+issues and details for future work on this see <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4877">Jitterbug
+4877</a> RFE: ICU data packaging meta data: support explicit item dependencies on package level</p>
+
+<p>Decisions for meta data work for ICU 3.6:</p>
+<ul>
+  <li>Use the converter alias table data formats (text &amp; binary) for meta
+    data.</li>
+  <li>Use hidden tags (tags that won't be listed by the conversion API as
+    available &quot;standards&quot;) for <i>implicit</i> items
+    (&quot;normal&quot; items/IDs that were added by icupkg rather than included
+    in the explicit meta data), <i>nofile</i> IDs (IDs that are listed as
+    available but don't have items/files), and <i>hidden</i> items (items/files
+    that are loadable but not listed as available IDs). Use the existing syntax
+    for aliases.</li>
+  <li>Use some text file syntax to indicate whether name comparison is
+    precise/binary (like strcmp(), for meta data for locale IDs) vs. loose (for
+    case/space/dash-insensitive converter aliases). Store an enum value for this
+    in the binary form.</li>
+  <li>Store the number of hidden tags in the binary file if implicit/nofile/hidden
+    tags are used. (Currently, there are two hidden tags hardcoded.)</li>
+  <li>Use the old data format version (in the binary) unless the new features
+    are used.</li>
+  <li>New runtime code for available IDs skipping hidden items and providing a
+    sorted list.</li>
+  <li>May need to add filtering for available IDs.</li>
+  <li>icupkg adds implicit items to manual/explicit meta data. It probably needs
+    to first remove them when opening the meta data, then do all of the
+    requested item updates (add/remove), then re-add implicit items that are in
+    the resulting package.</li>
+  <li>Use meta data aliases instead of .res bundles with just %%ALIAS entries.</li>
+  <li>Explicit meta data is compiled for ICU4C into a binary file, and used and
+    updated by icupkg. The result (not the manual/explicit input) contains the
+    complete list of available and loadable items for runtime use.</li>
+  <li>icupkg needs to be able to output dependency data for possible UI
+    configurator/packaging tools.</li>
+</ul>
+
+<p>ICU4J:</p>
+<ul>
+  <li>Create a code (a tool?) for handling manual/explicit meta data in its text
+    form and adding implicit items for runtime use.</li>
+  <li>Create a pure Java version of icupkg. There, require &quot;b&quot; type
+    data instead of using swapper code.</li>
+  <li>Be able to use ICU4C's icupkg tool, with text output of the meta data
+    files.</li>
+  <li>Create Java code for writing .res files, for XLIFF2ICUConverter and
+    LDML2ICUConverter so that the genrb tool from ICU4C need not be used as
+    well. Don't include a .txt bundle syntax parser, just write the binary data
+    from the XLIFF/LDML tools' internal data structures.</li>
+</ul>
+
+<p>Examples for meta data usage:</p>
+<ul>
+  <li>iw-&gt;he, currently a %%ALIAS-only bundle, becomes just an alias in meta
+    data</li>
+  <li>ja__TRADITIONAL listed as {hidden}</li>
+  <li>fr listed implicitly</li>
+  <li>coll/nl, currently empty to just document it as available (with standard
+    UCA collation), listed as {nofile}</li>
+</ul>
+<hr>
 <p align="right">Markus Scherer, 20050824..26</p>
 <h2>Problem</h2>
 <p>Several ways to build/load/ship ICU and ICU-application data.</p>

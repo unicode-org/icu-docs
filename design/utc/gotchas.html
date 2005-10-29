@@ -24,13 +24,15 @@ table {order-collapse: collapse}
 <body>
 
 <h1 align="center">Globalization Gotchas</h1>
-<p align="center">$Date: 2005/10/12 16:15:42 $, MED<br>
+<p align="center">$Date: 2005/10/29 22:42:38 $, MED<br>
 <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/utc/gotchas.html">
 Working Draft</a></p>
 <p>I&#39;m preparing a presentation for the next Unicode conference in March, and have been thinking 
 about doing one on the pitfalls that people stumble into when using Unicode in globalizing software.</p>
 <p>I have the following draft list, and would like to collect others. If you have any suggestions 
-for additions or improvements, I would appreciate them. (Don&#39;t worry about formatting, though).</p>
+for additions or improvements, I would appreciate them. (At this point I&#39;m not worried about 
+grammar, spelling, etc. And these are only bullet items; they would have some patter along with 
+them.)</p>
 <table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber6" style="border-collapse: collapse">
   <tr>
     <td>
@@ -39,7 +41,7 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
     <td width="1%" nowrap>&nbsp;</td>
   </tr>
 </table>
-<ul class="marked">
+<ol class="marked">
   <li>Unicode encodes characters, not glyphs: U+0067 → <font face="Arial Narrow">g</font>
   <font face="Baskerville">g</font> <i><font face="Times New Roman">g </font></i>
   <font face="Binner Gothic">g</font> <font face="Brush Script">g</font> <b><i>g </i></b>
@@ -49,10 +51,10 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   <li>Unicode does not encode characters by language: French, German, English <b><i>j</i></b> have 
   the same code point even though all have different pronunciations; Chinese 大 (<i>da</i>) has the 
   same code point as Japanese 大 (<i>dai</i>). </li>
-  <li>The word <i>character</i> means different things to different people: say whether you mean 
-  code points, bytes, or user-perceived characters (grapheme clusters). </li>
-  <li>Some APIs/protocols will count lengths in code points, and others in bytes. Make sure you 
-  don&#39;t mix them up.</li>
+  <li>The word <i>character</i> means different things to different people: glyphs, code points, 
+  bytes, code units, or user-perceived characters (grapheme clusters). Say which one you mean.</li>
+  <li>Some APIs/protocols will count lengths in code points, and others in bytes (or other code 
+  units). Make sure you don&#39;t mix them up.</li>
   <li>Character and block names may be misleading: U+034F COMBINING GRAPHEME JOINER doesn&#39;t join 
   graphemes.<br>
   ►&nbsp;<a href="http://www.unicode.org/faq/">http://www.unicode.org/faq/</a></li>
@@ -65,12 +67,14 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   U+10000; they also may accidentally cause isolated surrogates.</li>
   <li>Don&#39;t limit API parameters to a single character (and definitely not to a single code unit!). 
   What users think of as a single character (e.g. ẍ, ch) may be a <i>sequence</i> in Unicode.</li>
-  <li>Use U+2060 <i>word joiner</i> instead of U+FFFE for everything<i> but</i> the BOM function.</li>
+  <li>Use U+2060 <i>word joiner</i> instead of U+FEFF for everything<i> but</i> the BOM function.</li>
   <li>Use the latest version of Unicode: as well as necessary characters, there are many 
   corrections, and more processes are guaranteed to be stable.<br>
   ►&nbsp;<a href="http://unicode.org/standard/stability_policy.html">http://unicode.org/standard/stability_policy.html</a>
   </li>
-</ul>
+  <li>Avoid using private-use (PUA) characters. If you simply must use them, minimize the 
+  opportunity for collision by picking an unusual range.</li>
+</ol>
 <table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber2">
   <tr>
     <td>
@@ -81,22 +85,24 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
     <span class="box">78</span> <span class="box">74</span>&nbsp; </td>
   </tr>
 </table>
-<ul class="marked">
+<ol class="marked">
   <li>Length in bytes may not be N * length in characters </li>
   <li>One character in charset X may not be one character in Unicode; the ordering may also be 
   different.</li>
   <li>UTF-8, UTF-16, and UTF-32 are <i>all</i> Unicode.</li>
-  <li>Always use &quot;shortest form&quot; UTF-8 to reduce security attacks</li>
-  <li>Not all text is correctly tagged with its charset, so character detection may be necessary. 
-  But remember, it&#39;s always a guess.</li>
+  <li>Always use &quot;shortest form&quot; UTF-8. (1) It&#39;s the Law. (2) It reduces security attacks.</li>
+  <li>If a protocol allows a choice of charsets, <i>always </i>tag with the correct one. Not all 
+  text is correctly tagged with its charset, so character detection may sometimes be necessary. But 
+  remember, it&#39;s always a guess.</li>
   <li>IANA / MIME charset names are ill-defined: vendors often convert same charset different ways. 
   Shift-JIS 0x5C → U+005C <i><b>or</b></i> U+00A5: different, unrelated characters with unrelated 
   glyphs.<br>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://www.w3.org/TR/japanese-xml/">http://www.w3.org/TR/japanese-xml/</a><br>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://icu.sourceforge.net/charts/charset/">http://icu.sourceforge.net/charts/charset/</a></li>
   <li>When converting, <i>never</i> simply omit characters that cannot be converted; at least 
-  substitute SUB or to reduce security problems.</li>
-</ul>
+  substitute U+FFFD (when converting to Unicode) or 0x1A (when converting to bytes) to reduce 
+  security problems.</li>
+</ol>
 <table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber7">
   <tr>
     <td>
@@ -107,13 +113,15 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
     → text&nbsp; </font></td>
   </tr>
 </table>
-<ul class="marked">
-  <li>If you do your own text editor, use the OS APIs to handle IMEs (Input Method Engines) for 
+<ol class="marked">
+  <li>If you develop your own text editor, use the OS APIs to handle IMEs (Input Method Engines) for 
   Chinese, Japanese, Korean,...</li>
   <li>If you are using &quot;type-ahead&quot; to get to a position in a list (eg typing &quot;Jo&quot; gets to the first 
   element starting with those characters), allow arbitrary input. This is often easiest with visible 
-  field.</li>
-</ul>
+  fields.</li>
+  <li>If your password field can contain characters that require an IME, a screen pop-up box may 
+  reveal the password to onlookers.</li>
+</ol>
 <table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber1">
   <tr>
     <td>
@@ -124,7 +132,7 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   </tr>
 </table>
 <h3>Segmentation</h3>
-<ul class="marked">
+<ol class="marked">
   <li>Combining characters always follow their base:
   <img border="0" src="gotchas-images/gotcha5.gif" width="12" height="18"> is
   <img border="0" src="gotchas-images/gotcha2.gif" width="12" height="18"> +
@@ -134,11 +142,10 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   <li>Words are not just sequences of letters.<br>
   ►&nbsp;<a href="http://www.unicode.org/reports/tr29/">http://www.unicode.org/reports/tr29/</a>&nbsp;&nbsp;&nbsp;
   </li>
-</ul>
+</ol>
 <h3>Properties </h3>
-<ul class="marked">
-  <li>Use properties such as Alphabetic, not hard-coded lists: isAlphabetic(), /p{Alphabetic} in 
-  regex</li>
+<p>Use properties such as Alphabetic, not hard-coded lists: isAlphabetic(), \p{Alphabetic} in regex</p>
+<ol class="marked">
   <li>Some General Category properties aren&#39;t what you think: use White_Space (not Zs), Alphabetic 
   (not L), Lowercase (not Ll),...</li>
   <li>Generally use Script instead of Block: not all Greek characters are in the Greek block. Many 
@@ -147,9 +154,9 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   <li>Characters may change property values between versions of Unicode (except for specific ones).<br>
   ►&nbsp;<a href="http://unicode.org/standard/stability_policy.html">http://unicode.org/standard/stability_policy.html</a>
   </li>
-</ul>
+</ol>
 <h3>Identifiers </h3>
-<ul class="marked">
+<ol class="marked">
   <li>When designing syntax, don&#39;t use characters outside of Pattern_Syntax for syntax characters; 
   don&#39;t use characters outside of Pattern_Whitespace for whitespace characters. </li>
   <li>For user-visible identifiers, use XID_Start and XID_Continue as a basis. Profiles may expand 
@@ -158,15 +165,16 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   URL’s) past human eyes (spoofing): writing “paypal.com” with a Cyrillic “a” to <i>phish</i> for 
   users’ account information.<br>
   ►&nbsp;<a href="http://unicode.org/reports/tr36/">http://unicode.org/reports/tr36/</a> </li>
-</ul>
+</ol>
 <h3>Comparison (Collation): Searching, Sorting, Matching </h3>
-<ul class="marked">
-  <li>There are <i><b>two</b></i> binary orders: codepoint/UTF-8/UTF-32 and UTF16 order, where 
+<ol class="marked">
+  <li>There are <i><b>two</b></i> binary orders: code point/UTF-8/UTF-32 and UTF16 order, where 
   U+10000 <b>&lt;</b> U+E000 (since U+10000 = <span class="box">D800</span> <span class="box">DC00</span>)
   </li>
   <li>Only use binary order internally; no users expect A &lt; Z &lt; a &lt; z &lt; Ç &lt; ä. Apply normalization 
   to get a unique form, so C◌̧ = Ç.</li>
-  <li>UCA Order is a far better base than binary: a &lt; A &lt; ä &lt; Ç = C◌̧ &lt; z &lt; Z<br>
+  <li>UCA Order is a far better base than binary to meet user-expectations: a &lt; A &lt; ä &lt; Ç = C◌̧ &lt; z 
+  &lt; Z<br>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://unicode.org/reports/tr10/">http://unicode.org/reports/tr10/</a>
   </li>
   <li>Ordering depends on context and language:
@@ -185,7 +193,10 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   <li>Don&#39;t mix up &quot;stable&quot; and &quot;deterministic&quot; sorting; they are very different.<br>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://unicode.org/notes/tn9/">http://unicode.org/notes/tn9/</a>
   </li>
-</ul>
+  <li>Protocols must precisely define the comparison operations: LDAP doesn&#39;t specify the comparison 
+  operation, so lookup may fail (or falsely succeed!) because of that. Aside from getting the wrong 
+  results, this opens up opportunity for security attacks.</li>
+</ol>
 <table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber5">
   <tr>
     <td>
@@ -196,7 +207,7 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   </tr>
 </table>
 <h3>Normalization </h3>
-<ul class="marked">
+<ol class="marked">
   <li>The ordering of accents in a normalization form may not be the typical type-in order. </li>
   <li>Normalization is context independent; don&#39;t assume NFC(x + y) = NFC(x) + NFC(y) </li>
   <li>
@@ -204,7 +215,7 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
     <tr>
       <th>Form</th>
       <th>UTF</th>
-      <th>Exp.</th>
+      <th>Factor</th>
       <th colspan="2">Sample</th>
     </tr>
     <tr>
@@ -248,14 +259,14 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
       <td align="right">18X</td>
     </tr>
   </table>
-  <p>People assume that NFC always composes, but characters may <i>expand</i> in NFC. Here are the 
-  current maximal expansion factors:<br>
+  <p>People assume that NFC always composes, but some characters <i>decompose</i> in NFC. Here are 
+  the current maximal expansion factors for each form:<br>
   </li>
   <li>Trivia: In Unicode 4.0 there are exactly 3 characters that are different in all 4 
   normalization forms: ϓ, ϔ, ẛ</li>
-</ul>
+</ol>
 <h3>Case Conversion </h3>
-<ul class="marked">
+<ol class="marked">
   <li>As well as Lower and upper case, there is also title case: ǳ ↔ Ǳ ↔ <span class="highlight">ǲ</span>
   </li>
   <li>Strings may expand: Flu<span class="highlight">ß</span> → FLU<span class="highlight">SS</span> 
@@ -265,15 +276,18 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   <li>Casing may be language-dependent: <span class="highlight">i</span>stanbul ↔
   <span class="highlight">İ</span>STANBUL. But don&#39;t use language-dependent casing for 
   language-independent structures, like file-system B-Trees.</li>
-  <li>Up to Unicode 5.0, case folding was not stable.</li>
-</ul>
+  <li>Up to Unicode 5.0 (not yet released), case folding was not stable. (Two versions of Unicode 
+  could have different results from toCaseFold(S), even though all the characters in S are in both 
+  versions.)</li>
+</ol>
 <h3>Transliteration</h3>
-<ul class="marked">
+<ol class="marked">
   <li>Transliteration (Ελληνικά ↔ Ellēniká) is not the same as Translation (Ελληνικά ↔ Greek)<br>
-  ►&nbsp;<a href="http://www.unicode.org/draft/reports/tr35/tr35.html">http://www.unicode.org/draft/reports/tr35/tr35.html</a> 
-  [Ed note: fix when final]</li>
-  <li>Translation may vary by language: Путин → Putin (English), Poutine (French)</li>
-</ul>
+  ►&nbsp;<a href="http://www.unicode.org/draft/reports/tr35/tr35.html">http://www.unicode.org/draft/reports/tr35/tr35.html</a></li>
+  <li>Transliteration may vary by language: Путин ↔ Putin, Poutine, ...<br>
+  Горбачёв ↔ Gorbachev, Gorbacev, Gorbatchev, Gorbačëv, Gorbachov, Gorbatsov, Gorbatschow, ...</li>
+  <li>Transcription is a <i>lossy</i> transliteration: Ελληνικά → Ellinika → Ελλινικα</li>
+</ol>
 <table class="header" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
     <td>
@@ -284,17 +298,66 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
     <font face="Webdings">i</font></td>
   </tr>
 </table>
-<ul class="marked">
-  <li>Rendering is context-dependent: going character-by-character gives the wrong results.<ul class="marked">
-    <li>A single glyph may result from multiple characters: <font face="Times New Roman">f + i
-    <font SIZE="3">→</font> ﬁ</font>; ‎ل‎ + ‎١‎ → ‎لا‎</li>
-    <li>Multiple glyphs may result from a single character: <font SIZE="3">க +
-    <span class="highlight">ொ</span> </font><font SIZE="3" face="Times New Roman">→ </font>கொ</li>
+<ol class="marked">
+  <li>Rendering is context-dependent, <i>and</i> dependent on the font: going character-by-character 
+  gives the wrong results.<ol class="marked">
+    <li>Glyphs may change shape depending on their surroundings:<table border="0" cellpadding="4" cellspacing="0" style="border-collapse: collapse">
+      <tr>
+        <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">ﮦ</font></td>
+        <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">ﮦ</font></td>
+        <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">ﮦ</font></td>
+        <td><font face="Times New Roman" size="5">→</font></td>
+        <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">ههه</font></td>
+      </tr>
+    </table>
+    </li>
+    <li dir="ltr">A single glyph may result from multiple characters:
+    <table border="0" cellpadding="4" cellspacing="0" style="border-collapse: collapse">
+      <tr>
+        <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">f</font></td>
+        <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">i</font></td>
+        <td><font face="Times New Roman" size="5">→</font></td>
+        <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">ﬁ</font></td>
+        <td><font face="Times New Roman" size="5">&nbsp;&nbsp;&nbsp;&nbsp; </font></td>
+        <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">ل</font></td>
+        <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">١</font></td>
+        <td><font face="Times New Roman" size="5">→</font></td>
+        <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">‎لا</font></td>
+      </tr>
+    </table>
+    </li>
+    <li>Multiple glyphs may result from a single character:<table border="0" cellpadding="4" cellspacing="0" style="border-collapse: collapse">
+      <tr>
+        <td style="border: 1px solid #0000FF"><font size="5">க</font></td>
+        <td style="border: 1px solid #0000FF"><font size="5">ொ</font></td>
+        <td><font SIZE="5">→</font></td>
+        <td style="border: 1px solid #0000FF"><font size="5">கொ</font></td>
+      </tr>
+    </table>
+    </li>
     <li>The memory storage order (logical order) may not be the same as the visual order. Don&#39;t 
-    assume that contiguous text = contiguous display: a b <span class="box">c ‎א</span> ‎ב ‎ג
-    <font SIZE="3" face="Times New Roman">→</font><font SIZE="3"> ab<span class="highlight">cא</span>בג</li>
-    </font></li>
-  </ul>
+    assume that contiguous text = contiguous display:<table border="0" cellpadding="4" cellspacing="0" style="border-collapse: collapse">
+      <tr>
+        <td style="border: 1px solid #0000FF"><font size="5">a</font></td>
+        <td style="border: 1px solid #0000FF"><font size="5">b</font></td>
+        <td style="border: 1px solid #0000FF" bgcolor="#000000"><font color="#FFFFFF" size="5">c</font></td>
+        <td style="border: 1px solid #0000FF" bgcolor="#000000"><font color="#FFFFFF" size="5">א</font></td>
+        <td style="border: 1px solid #0000FF"><font size="5">ב</font></td>
+        <td style="border: 1px solid #0000FF"><font size="5">ג</font></td>
+        <td><font size="5">→</font></td>
+        <td style="border-left: 1px solid #0000FF; border-top: 1px solid #0000FF; border-bottom: 1px solid #0000FF">
+        <font size="5">a</font></td>
+        <td style="border-top: 1px solid #0000FF; border-bottom: 1px solid #0000FF"><font size="5">b</font></td>
+        <td style="border-top: 1px solid #0000FF; border-bottom: 1px solid #0000FF" bgcolor="#000000">
+        <font color="#FFFFFF" size="5">c</font></td>
+        <td style="border-top: 1px solid #0000FF; border-bottom: 1px solid #0000FF"><font size="5">ג</font></td>
+        <td style="border-top: 1px solid #0000FF; border-bottom: 1px solid #0000FF"><font size="5">ב</font></td>
+        <td style="border-right: 1px solid #0000FF; border-top: 1px solid #0000FF; border-bottom: 1px solid #0000FF" bgcolor="#000000">
+        <font color="#FFFFFF" size="5">א</font></td>
+      </tr>
+    </table>
+    </li>
+  </ol>
   </li>
   <li>Good rendering systems will handle customary type-in order for text plus canonical order. 
   Excellent ones will do any canonically-equivalent order, but those are rare.</li>
@@ -314,21 +377,21 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   <li>Linebreak is not just breaking at spaces<br>
   ►&nbsp;<a href="http://unicode.org/reports/tr14/">http://unicode.org/reports/tr14/</a> <br>
 &nbsp;</li>
-</ul>
+</ol>
 <table class="header" border="0" cellpadding="0" cellspacing="0" width="100%" id="AutoNumber4">
   <tr>
     <td>
     <h2>Globalization</h2>
     </td>
     <td align="right" valign="top" nowrap width="1%">
-    <p class="sample"><span style="font-size: 18.0pt; font-family: Arial; color: black">1 234,00£</span> 
-    ↔ <font face="Monospace" style="font-size: 75%">&lt;GBP, 0.10011010010×2<sup>12</sup>&gt;</font></td>
+    <p class="sample">in de_DE: <span style="font-size: 18.0pt; font-family: Arial; color: black">
+    1.234,00£</span> ↔ <font face="Monospace" style="font-size: 75%">&lt;GBP, 0.10011010010×2<sup>12</sup>&gt;</font></td>
   </tr>
 </table>
-<ul class="marked">
+<ol class="marked">
   <li>Unicode ≠ Globalization. Unicode provides the <i>basis</i> for software globalization, but 
   there&#39;s more work to be done...</li>
-  <li>Don&#39;t simply concatenate strings to make messages: the order of components different by 
+  <li>Don&#39;t simply concatenate strings to make messages: the order of components differs by 
   language. Use Java MessageFormat or equivalent.</li>
   <li>Don&#39;t put any translatable strings into your code; make sure those are separated into a 
   resource file.</li>
@@ -344,26 +407,32 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   <li>Don&#39;t confuse User-Interface language (menus, dialog, help-system,...) with Data language 
   (body text, spreadsheet cells). Globalized programs need to handle, as data, more languages than 
   they have localized UI for.</li>
-  <li>Formatting and parsing of dates, times, numbers, currencies, ... are locale-dependent. Use 
-  globalization APIs that use appropriate data.<br>
+  <li>Formatting and parsing of dates, times, numbers, currencies, ... are locale-dependent; even 
+  calendar systems may vary. Use globalization APIs that use appropriate data.<br>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://unicode.org/cldr/">http://unicode.org/cldr/</a></li>
   <li>Where OS facilities are not adequate or cross-platform solutions are needed, use ICU 
   (International Components for Unicode) for C, C++, and Java. People have built wrappers for other 
   languages, too.<br>
   ►&nbsp;<a href="http://ibm.com/software/globalization/icu/">http://ibm.com/software/globalization/icu/</a></li>
-</ul>
+  <li>Locale data typically uses &quot;fallback&quot;: if the data isn&#39;t found in en_US, look in en. Beware of 
+  discrepancies between how this is done in different systems: Java ResourceBundle (J2SE), Java 
+  Standard Tag Library (JSTL), Java Server Face (JSF), Apache HTTP,...</li>
+  <li>English is a relatively compact language; others may require more characters (eg in database 
+  fields) and more screen real estate (in UIs). Allocate space flexibly.</li>
+</ol>
 <h3>Identification</h3>
-<ul class="marked">
+<ol class="marked">
   <li>Use RFC 3066 (or its <a href="http://www.inter-locale.com/ID/draft-ietf-ltru-registry-10.html">
   successor</a>) for language IDs, not ISO 639 alone.<br>
   ►&nbsp;<a href="ftp://ftp.isi.edu/in-notes/rfc3066.txt">ftp://ftp.isi.edu/in-notes/rfc3066.txt</a></li>
   <li>Locale IDs are extensions of language IDs, they are not the same. Use CLDR for locale IDs.<br>
   ►&nbsp;<a class="moz-txt-link-freetext" href="http://unicode.org/cldr/">http://unicode.org/cldr/</a></li>
-  <li>If you heuristically compute territory IDs, timezone IDs, currency IDs, etc. make sure the 
-  user can override that and pick an explicit value.</li>
+  <li>If you heuristically compute territory IDs, timezone IDs, currency IDs, etc. (eg from browser 
+  settings) make sure the user can override that and pick an explicit value.</li>
   <li>Always use an explicit currency ID (ISO 4217). Don&#39;t assume the currency is the same as the 
   display locale: <font face="monospace">&lt;RUR, 1.23457×10³&gt;</font> ↔ <i>1&nbsp;234,57р.</i> in Russian, 
   but <i>Rub 1,234.57</i> in English.</li>
+  <li>Don&#39;t assume that a country always has the same currency.</li>
   <li>Don&#39;t assume the timezone ID is implied by the user&#39;s locale. For the best timezone 
   information, use the TZ database; use CLDR for timezone names.<br>
   ►&nbsp;<a href="http://www.twinsun.com/tz/tz-link.htm">http://www.twinsun.com/tz/tz-link.htm</a></li>
@@ -376,19 +445,28 @@ for additions or improvements, I would appreciate them. (Don&#39;t worry about f
   territories.<br>
   ►&nbsp;<a href="http://www.unicode.org/consortium/positions.html">http://www.unicode.org/consortium/positions.html</a>
   </li>
-</ul>
+</ol>
 <h3>Java</h3>
-<ul class="marked">
+<ol class="marked">
   <li>In MessageFormat, watch for words like <i>can&#39;t</i>, since ASCII &#39; has syntactic meaning. Use 
   a real apostrophe (U+2019) where possible: <i>can’t</i>.</li>
-  <li>In Date and Calendar, the months are (bizarrely) numbered from 0; February is month number 1.</li>
-  <li>Java serialized text isn&#39;t UTF-8, though it&#39;s close. U+0000 and surrogates are encoded 
-  differently. </li>
+  <li>In Date and Calendar, the months are numbered from 0 (February is month number 1!). However, 
+  weeks and days are numbered from 1.</li>
+  <li>Java serialized text isn&#39;t UTF-8, though it&#39;s close. U+0000 and supplementary code points are 
+  encoded differently. </li>
   <li>Java globalization support is pretty outdated: use ICU to supplement it.</li>
   <li>Java ResourceBundle (J2SE), Java Standard Tag Library (JSTL), Java Server Face (JSF), Apache 
   HTTP server, etc. all provide some locale determination mechanism and facility; but they all 
   differ in details.</li>
-</ul>
+</ol>
+<h3>JavaScript</h3>
+<ol>
+  <li>Always encode characters above U+007F with escapes (\uxxxx).<ul>
+    <li>There is an HTML mechanism to specify the charset of the Javascript source, but it is not 
+    widely implemented. The JDK tool native2ascii can be used to convert the files to use escapes</li>
+  </ul>
+  </li>
+</ol>
 </li>
 
 </body>

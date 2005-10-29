@@ -24,7 +24,7 @@ table {order-collapse: collapse}
 <body>
 
 <h1 align="center">Globalization Gotchas</h1>
-<p align="center">$Date: 2005/10/29 22:42:38 $, MED<br>
+<p align="center">$Date: 2005/10/29 22:53:17 $, MED<br>
 <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/utc/gotchas.html">
 Working Draft</a></p>
 <p>I&#39;m preparing a presentation for the next Unicode conference in March, and have been thinking 
@@ -311,7 +311,7 @@ them.)</p>
       </tr>
     </table>
     </li>
-    <li dir="ltr">A single glyph may result from multiple characters:
+    <li>A single glyph may result from multiple characters:
     <table border="0" cellpadding="4" cellspacing="0" style="border-collapse: collapse">
       <tr>
         <td style="border: 1px solid #0000FF"><font face="Times New Roman" size="5">f</font></td>
@@ -329,9 +329,13 @@ them.)</p>
     <li>Multiple glyphs may result from a single character:<table border="0" cellpadding="4" cellspacing="0" style="border-collapse: collapse">
       <tr>
         <td style="border: 1px solid #0000FF"><font size="5">க</font></td>
-        <td style="border: 1px solid #0000FF"><font size="5">ொ</font></td>
+        <td style="border: 1px solid #0000FF" bgcolor="#000000"><font size="5" color="#FFFFFF">ொ</font></td>
         <td><font SIZE="5">→</font></td>
-        <td style="border: 1px solid #0000FF"><font size="5">கொ</font></td>
+        <td style="border-left: 1px solid #0000FF; border-top: 1px solid #0000FF; border-bottom: 1px solid #0000FF" bgcolor="#000000">
+        <font size="5" color="#FFFFFF">ெ</font></td>
+        <td style="border-top: 1px solid #0000FF; border-bottom: 1px solid #0000FF"><font size="5">க</font></td>
+        <td style="border-right: 1px solid #0000FF; border-top: 1px solid #0000FF; border-bottom: 1px solid #0000FF" bgcolor="#000000">
+        <font size="5" color="#FFFFFF">ா</font></td>
       </tr>
     </table>
     </li>

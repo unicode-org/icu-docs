@@ -1,0 +1,48 @@
+ICU development team meeting
+Time: 10am-11am PDT, 1pm-2pm EDT, 19:00-20:00 CET
+Date: 2001-OCT-3
+
+Attendees:
+    Markus Scherer(IBM)
+    Helena Shih Chapman (IBM)
+    Andy Heninger (IBM)
+    Vladimir Weinstien (IBM)
+    George Rhoten (IBM)
+    Ram Viswanadha (IBM)
+    Yves Arouyo (RealNames)
+    Tex Texin (Progress Software)
+
+Minutes taker: Ram Viswanadha
+
+Agenda Items:
+
+- Markus: Renaming Vs Namespaces for ICU versioning
+  + Markus: Gave a brief overview of the current renaming and Namespace approach.
+  + Helena: Gave an update on the progress of prototype which wraps ICU classes
+    in ICU_$(VERSION) namespace
+  + Yves: getMemory internal method is being renamed. 
+  + Helena: All the internal C functions should be prefixed with uprv_. 
+    Problem acknowledged and will be fixed.
+  + Yves: There is a huge chance for conflicts even for C functions. It may cause problems.
+  + Yves: It should be possible to automatically generate a list of funtions that are 
+    internal and donot have uprv_ prefix. Another script to automatically rename these functions.
+  + Vladimir: Pleae summarise the idea in an email.
+  + Yves: Timeframe for prototype.
+  + Helena: Very soon
+
+- Yves: Need a way to plug in older Unicode data into ICU.
+  + Yves: What would be the best way to plug in the old version of Unicode data into ICU.
+  + Markus: New properties trie format is being designed with support for iswhitespace etc., 
+    would address the concern. After 2.0 timeframe. The basic idea is use 1 trie structure 
+    to plugin properties dynamically.
+  + Yves: Can Unicode 2.1 data files be used.
+  + Markus: Some services like Normalization may have problem functioning correctly with old data, since 
+    the properties have changed considerably and should be looked into.
+  + Helena: Tex, are you supporting Unicode 2.1 in your produdcts
+  + Tex: we are supporting 2.1. There has been no real demand for later versions of Unicode
+  + Tex: GB18030: Is China enfocing the encoding or conversion support.
+  + Helena: China is not enforcing to the extent that products have to removed from the shelf. More importantly
+    the locale naming issues have forced removal of productsd off the shelf.
+
+
+

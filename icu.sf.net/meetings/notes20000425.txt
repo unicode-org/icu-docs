@@ -1,0 +1,139 @@
+ICU development team meeting 
+USA Toll Free Number: 888-790-7707
+Intl Toll Number: +1-415-228-4877
+Passcode: 21418
+Date:   April 25, 2000, Tuesday 
+Time:   9am PDT - 10am PDT
+Place:  IBM Java Technology Center 
+        10275 North DeAnza Blvd. 
+        Cupertino, CA 95014, USA. 
+Host:   IBM
+
+======================================= 
+Attendees:
+  David Craig (NCR) 
+  Helena Shih (IBM) 
+  Mark Davis (IBM)
+  Markus Scherer (IBM)
+  Roger Mariner (IBM)
+  Steven Loomis (IBM)
+  Vladimir Weinstein (IBM) 
+
+Hosted by : 
+Helena Shih
+
+#Agenda:
+
+- Additional agenda items
+    - The new API for telling ICU what data to use, http://oss.software.ibm.com/icu/archives/icu/icu.0004/msg00125.html.
+- Action items from previous meetings
+- ICU 1.4.1.1 release announcement
+- ICU 1.5.d01 release planning: (the end of May, early June) :
+The following list include all the items that will be in the 1.5.d01 release plan:
+    1. Finish Bidi API implementation
+    2. Clean up callback API for converter
+    3. Add 3/4 byte encoding support,e.g. euc-jp
+    4. Complete charmap generation program on various platforms
+    5. Define locale data XML format spec
+    6. Provide integrated tools for data generation
+    7. Support IANA/MIME names (Yves?)
+    8. Complete RB/Collation data integration
+    9. Finish ICU User's Guide
+    10. NP-RAS port changes
+Based on the above work items, we are proposing the following milestones for this release:
+5/22 Implementation Complete : additional bug fixes and unit testing between now and code freeze.
+5/26 Code Freeze (including unit tests) : final check in for the code to be included in the release, bi-daily build and FVT testing 
+begins between now and FVT exit.
+6/2 FVT Exit (1,2, 3, 4, 7, 8 and 9 items as well as UTF-16 compatibility, etc.) : Functional testing before the release, daily 
+build process between now and final release date.
+6/7 Final Release Date
+
+- Proposal discussions
+   We unanimously agree to accept the proposal provided more description on how the long-term and interim release 
+implementation will affect the client of udata interface.  The API addition will be included in 1.4.1.2 release.  Steven L. will send 
+out more description on the proposal shortly.
+
+- Future meeting schedule
+
+The next meeting date and time will be May 9th 2000, 9am PDT/12pm EDT.
+
+# Action item list:
+
+ Action item status: 
+[r] : removed
+[-] : completed
+[ ] : open
+
+[-] T20000208-03 [Brendan] Send out the requirements with regards
+                          to Collation versioning to icu mailing list and
+                          IBM will revise the current versioning proposal
+                          to satisfy the combined requirement.
+    Due date: 2000-apr-25
+    -> Brendan sent out email regarding the discussion to be taken place this week, 4/25.
+
+[ ] T20000321-01 [David]  Submit ICU port changes for NCR NP-RAS platform.
+    -> pending on Steve Watt's feedback on various compiler options.
+    Due date: 2000-may-9
+
+[ ] T20000321-04 [Roger]  Complete the Conversion chapter of
+                          the ICU user's guide.
+    Due date: 2000-apr-28
+
+[ ] T20000321-05 [Brendan] Review the Conversion and Transliterator chapters
+                          of ICU user's guide.
+    -> Feedback was submitted through email, 2nd review cycle is required after the update.
+    Due date: 2000-may-15
+
+[ ] T20000321-06 [Yves]   Review the Conversion chapter of ICU user's guide.
+                          Create draft of the build/installation instructions of
+                          the Introduction chapter of the user's guide.
+    Due date: 2000-may-9
+
+[ ] T20000411-02 [Steve W.]  Collect the makefile flags for different platforms
+    Due date: 2000-may-9
+
+[ ] T20000411-03 [Markus/Steven/Yves] Document how to drop/add/delete
+                          resources (data files) like converters,
+                          locales, and collation tables
+    Due date: 2000-june-9
+
+[ ] T20000229-03 [IBM & Yves] Improve readme and related documents
+                          + Cross-link javadoc texts, C <-> C++ etc.
+                          + update readme & docs/*
+                          + move coding guidelines to separate doc (only
+                            link to oss server page? remove irrelevant items)
+    Due date: 2000-apr-30
+    2000-apr-11: include a list of files that need to be installed
+
+[ ] T20000229-04 [David]  David Craig will continue to work on the DateFormat
+                          performance and report in the next meeting.
+    Due date: 2000-may-15
+
+[ ] T20000229-05 [David]  Review the Format User's guide chapters
+    Due date: 2000-apr-30
+
+[ ] T20000229-06 [Tex & Steve] Review the Collation and ResourceBundle
+                          User's guide chapters
+    Due date: 2000-apr-30
+    2000-apr-11: there are still broken links in the user's guide on the web
+
+
+[ ] T20000321-03 [IBM]    Find information on the freeware that can print
+                          the html pages in a directory.
+    Due date: September 1, 2000
+    2000-apr-11: we need to investigate how to produce
+                 one single HTML file or a PDF document
+
+[ ] T20000125-01 [Jesper]    Implement the global new/delete operator to
+                          use uprv_malloc and uprv_free functions.
+    Due date: August 31, 2000
+
+[ ] T20000411-01 [IBM]    Investigate stylebook output in UTF-8
+    Due date: August 31, 2000
+
+Action items from this meeting:
+
+[ ] T20000425-01 [Steven L.]   Send out more description on the udata_setCommonData() proposal.
+    Due date: April 30, 2000
+
+

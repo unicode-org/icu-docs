@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ICU Functionalities Comparison Chart</title>
+<link rel="stylesheet" href="../../icu.css" type="text/css" />
+</head>
+<body>
+<!--#include virtual="../../ssi/header.html" -->
+<h2>Functionalities Comparison Chart</h2>
+<hr />
+<p>This table lists down the differences between the functions provided by ICU,
+ICU4J and JDK.</p>
+<p>In the case where ICU and JDK supports the same functionality, ICU has a
+more updated implementation that is Unicode conformant.</p>
+<p>Legend<br />
+<font class="yes">Public in the current release</font><br />
+<font class="no">Not public or not available in the current release</font></p>
+<table border="1">
+<tr>
+<th align="left"><font size="+1">Functions</font></th>
+<th align="left"><font size="+1">ICU4C 3.2</font></th>
+<th align="left"><font size="+1">ICU4J 3.2</font></th>
+<th align="left"><font size="+1">JDK 1.4</font></th>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b>Character</b></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="tab"><a href="/userguide/properties.html">Properties</a></p>
+</td>
+<td colspan="3"><a href="character.html">comparison details</a></td>
+</tr>
+<tr>
+<td>
+<p class="tab"><a href="/userguide/unicodeSet.html">UnicodeSet</a></p>
+</td>
+<td><font class="yes">common/unicode/uniset.h</font></td>
+<td><font class="yes">com.ibm.icu.text.UnicodeSet</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b><a href="/userguide/strings.html">Strings</a></b></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="tab">UTF16 manipulation</p>
+</td>
+<td rowspan="3"><font class="yes">common/unicode/ustring.h,
+common/unicode/unistr.h, common/unicode/utf.h and
+common/unicode/utf16.h</font></td>
+<td rowspan="3"><font class="yes">com.ibm.icu.text.UTF16</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Code point order comparison</p>
+</td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Code unit order comparison</p>
+</td>
+<td><font class="yes">java.lang.String</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Unicode Character Iterator</p>
+</td>
+<td><font class="yes">common/unicode/chariter.h and
+common/unicode/uiter.h</font></td>
+<td><font class="yes">com.ibm.icu.text.UCharacterIterator</font></td>
+<td><font class="no">partial support, no supplementary support in
+java.text.CharacterIterator</font></td>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b><a href="/userguide/codepageConverters.html">Converter</a></b></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="tab"><a href="/userguide/conversion-data.html">Conversion
+Data</a></p>
+</td>
+<td><a href="/charts/charset/">mapping tables</a>, default build: <a href=
+"http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/source/data/mappings/convrtrs.txt">
+convrtrs.txt</a></td>
+<td><font class="no">use Java or <a href=
+"/apiref/icu4jni/">ICU4JNI</a></font></td>
+<td><a href=
+"http://java.sun.com/j2se/1.4/docs/guide/intl/encoding.doc.html">encoding.doc</a></td>
+</tr>
+<tr>
+<td>
+<p class="tab"><a href="/userguide/compression.html">Unicode
+Compression</a></p>
+</td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="doubletab"><a href=
+"http://www.unicode.org/unicode/reports/tr6/">SCSU</a></p>
+</td>
+<td><font class="yes">common/unicode/ucnv.h</font></td>
+<td><font class="yes">com.ibm.icu.text.SCSU</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab"><a href="http://www.unicode.org/notes/tn6/">BOCU-1</a></p>
+</td>
+<td><font class="yes">common/unicode/ucnv.h</font></td>
+<td><font class="no">not available</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b><a href="/userguide/locale.html">Locale</a></b></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="tab">Locale data</p>
+</td>
+<td><a href=
+"http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/source/data/locales/"><font class=
+"yes">locale data</font></a></td>
+<td><font class="yes">supports the same locale data as in ICU4C. <a href=
+"http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu4j/src/com/ibm/icu/impl/data/icudata.jar">
+locale data</a></font></td>
+<td><a href=
+"http://java.sun.com/j2se/1.4/docs/guide/intl/locale.doc.html"><font class=
+"yes">locale data</font></a></td>
+</tr>
+<tr>
+<td><b><a href="/userguide/ResourceManagement.html">Resource
+Management</b></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">String and string array storage and retrieval</p>
+</td>
+<td><font class="yes">common/unicode/ures.h</font></td>
+<td><font class="yes">com.ibm.icu.util.UResourceBundle</font></td>
+<td><font class="yes">java.util.ResourceBundle</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Binary storage and retrieval</p>
+</td>
+<td><font class="yes">common/unicode/ures.h</font></td>
+<td><font class="yes">com.ibm.icu.util.UResourceBundle</font></td>
+<td><font class="no">none that are locale sensitive</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Object and object array storage and retrieval</p>
+</td>
+<td><font class="no">not available</font></td>
+<td><font class="no">use Java</font></td>
+<td><font class="yes">java.util.ResourceBundle</font></td>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b><a href="/userguide/dateTime.html">Date/Time Services</a></b></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="tab">Calendar</p>
+</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Extensible calendar base class</p>
+</td>
+<td><font class="yes">i18n/unicode/calendar.h</font></td>
+<td><font class="yes">com.ibm.icu.util.Calender</font></td>
+<td><font class="yes">java.util.Calendar</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Gregorian</p>
+</td>
+<td><font class="yes">i18n/unicode/gregocal.h</font></td>
+<td><font class="yes">com.ibm.icu.util.GregorianCalender</font></td>
+<td><font class="yes">java.util.GregorianCalendar</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Hebrew</p>
+</td>
+<td><font class="yes">i18n/unicode/calendar.h<br />
+(use locale "@calendar=hebrew")</font></td>
+<td><font class="yes">com.ibm.icu.util.HebrewCalendar</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Hijri/Islamic</p>
+</td>
+<td><font class="yes">i18n/unicode/calendar.h<br />
+(use locale "@calendar=islamic")</font></td>
+<td><font class="yes">com.ibm.icu.util.IslamicCalendar</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Japanese Gengou</p>
+</td>
+<td><font class="yes">i18n/unicode/calendar.h<br />
+(use locale "@calendar=japanese")</font></td>
+<td><font class="yes">com.ibm.icu.util.JapaneseCalendar</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Chinese</p>
+</td>
+<td><font class="no">not available</font></td>
+<td><font class="yes">com.ibm.icu.util.ChineseCalender</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Thai Buddhist</p>
+</td>
+<td><font class="yes">i18n/unicode/calendar.h<br />
+(use locale "@calendar=buddhist")</font></td>
+<td><font class="yes">com.ibm.icu.util.BuddhistCalendar</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">TimeZone</p>
+</td>
+<td><font class="yes">i18n/unicode/timezone.h</font></td>
+<td><font class="yes">com.ibm.icu.util.TimeZone</font></td>
+<td><font class="yes">java.util.TimeZone</font></td>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b><a href="/userguide/formatParse.html">Format &amp; Parse</a></b></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="tab">Extensible Formattable base class: wrapper for conversion
+between the primitive numeric types (double, long, etc.) as well as Date and
+String objects.</p>
+</td>
+<td><font class="yes">i18n/unicode/fmtable.h</font></td>
+<td><font class="no">not available</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Extensible format base class</p>
+</td>
+<td><font class="yes">i18n/unicode/format.h</font></td>
+<td><font class="no">use Java</font></td>
+<td><font class="yes">java.text.Format</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Date / time</p>
+</td>
+<td><font class="yes">i18n/unicode/datefmt.h</font></td>
+<td><font class="yes">com.ibm.icu.text.DateFormat</font></td>
+<td><font class="yes">java.text.DateFormat</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Decimals numbers</p>
+</td>
+<td><font class="yes">i18n/unicode/decimfmt.h</font></td>
+<td><font class="yes">com.ibm.icu.text.DecimalFormat</font></td>
+<td><font class="yes">java.text.DecimalFormat</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Message</p>
+</td>
+<td><font class="yes">i18n/unicode/msgfmt.h</font></td>
+<td><font class="no">use Java</font></td>
+<td><font class="yes">java.text.MessageFormat</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Extensible number spell-out base class</p>
+</td>
+<td><font class="yes">i18n/unicode/numfmt.h</font></td>
+<td><font class="yes">com.ibm.icu.text.NumberFormat</font></td>
+<td><font class="yes">java.text.NumberFormat</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Rule-based number spell-out</p>
+</td>
+<td><font class="yes">i18n/unicode/rbnf.h</font></td>
+<td><font class="yes">com.ibm.icu.text.RuleBasedNumberFormat</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Choice</p>
+</td>
+<td><font class="yes">i18n/unicode/choicfmt.h</font></td>
+<td><font class="no">use Java</font></td>
+<td><font class="no">java.text.ChoiceFormat</font></td>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b><a href="/userguide/Transformations.html">Transformations</a></b></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="tab"><a href="/userguide/caseMappings.html">Case Mappings</a></p>
+</td>
+<td><font class="yes">common/unicode/uchar.h, common/unicode/ustring.h,
+common/unicode/unistr.h</font></td>
+<td><font class="yes">com.ibm.icu.lang.UCharacter</font></td>
+<td><font class="no">partial support, no supplementary support in
+java.lang.Character.</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab"><a href="/userguide/bidi.html">BiDi Algorithm</a></p>
+</td>
+<td><font class="yes">common/unicode/ubidi.h</font></td>
+<td><font class="no">not available</font></td>
+<td><font class="no">internal</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab"><a href="/userguide/normalization.html">Normalization</a></p>
+</td>
+<td rowspan="8"><font class="yes">common/unicode/unorm.h,
+common/unicode/normlzr.h</font></td>
+<td rowspan="8"><font class="yes">com.ibm.icu.text.Normalizer</font></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Decomposition</p>
+</td>
+<td><font class="no">internal</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Composition</p>
+</td>
+<td><font class="no">internal</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">Canonical string comparisons</p>
+</td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">String concatenation<br />
+Note: result string is normalized.</p>
+</td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab">FC_NFKC closure set retrieval</p>
+</td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab"><a href=
+"http://www.unicode.org/unicode/reports/tr15/#Annex8">Quick check</a></p>
+</td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="doubletab"><a href=
+"http://www.unicode.org/notes/tn5/#FCD">FCD</a></p>
+</td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab"><a href="/userguide/Transformations.html">General/script
+transformation</a></p>
+</td>
+<td colspan="3"><a href="transforms.html">comparison details</a></td>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b><a href="/userguide/layoutEngine.html">Layout Engine</a></b></td>
+<td><font class="yes">common/unicode/loengine.h</font></td>
+<td><font class="no">not available</font></td>
+<td><font class="no">internal</font></td>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b><a href="/userguide/Collate_Intro.html">Collation</a></b></td>
+<td colspan="3"><a href="collation.html">comparison details</a></td>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b><a href="/userguide/regexp.html">Regular Expressions</a></b></td>
+<td><font class="yes">i18n/unicode/regex.h</font></td>
+<td><font class="no">use Java</font></td>
+<td><font class="yes">java.util.regex</font></td>
+</tr>
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td><b><a href="/userguide/boundaryAnalysis.html">Boundary
+Analysis</a></b></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p class="tab">Dictionary-based break iterators</p>
+</td>
+<td><font class="yes">common/unicode/dbbi.h</font></td>
+<td><font class="yes">com.ibm.icu.text.DictionaryBasedBreakIterator</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Line boundaries</p>
+</td>
+<td><font class="yes">common/unicode/brkiter.h</font></td>
+<td><font class="yes">com.ibm.icu.text.BreakIterator</font></td>
+<td><font class="yes">java.text.BreakIterator</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Sentence boundaries</p>
+</td>
+<td><font class="yes">common/unicode/brkiter.h</font></td>
+<td><font class="yes">com.ibm.icu.text.BreakIterator</font></td>
+<td><font class="yes">java.text.BreakIterator</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Word boundries</p>
+</td>
+<td><font class="yes">common/unicode/brkiter.h</font></td>
+<td><font class="yes">com.ibm.icu.text.BreakIterator</font></td>
+<td><font class="yes">java.text.BreakIterator</font></td>
+</tr>
+<tr>
+<td>
+<p class="tab">Rule-based break iterators</p>
+</td>
+<td><font class="yes">common/unicode/rbbi.h</font></td>
+<td><font class="yes">com.ibm.icu.text.RuleBasedBreakIterator</font></td>
+<td><font class="no">not available</font></td>
+</tr>
+</table>
+<!--#include virtual="../../ssi/footer.html" -->
+</body>
+</html>

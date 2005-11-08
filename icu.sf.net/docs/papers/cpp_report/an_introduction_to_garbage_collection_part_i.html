@@ -1,0 +1,525 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>An Introduction to Garbage Collection, Part I</title>
+</head>
+
+<body>
+<font FACE="Arial" SIZE="5">
+
+<p>An Introduction to Garbage Collection </font><br>
+<font FACE="Arial" SIZE="4">Part I&#151;The Real Costs of C++ Memory Management </font><br>
+<font SIZE="4"><i>by Richard Gillam<br>
+Advisory Software Engineer<br>
+IBM Center for Java Technology-Silicon Valley</p>
+</i></font>
+
+<p>A couple of months ago, I discussed in the <i>Java Liaison</i> column the debate over
+whether Java can be considered a &quot;serious programming language&quot; when it relies
+on an object-file format that must be interpreted at runtime, and when it uses a garbage
+collector to manage memory. I tried to make the case that these two properties aren&#146;t
+necessarily the evil things they&#146;re often thought to be in the C++ community.</p>
+
+<p>I spent a lot of that time talking about interpreted byte code and comparatively little
+talking about garbage collection, promising I&#146;d follow up with a feature article
+later on that explored the issue in more depth. This is that article.</p>
+
+<p>A year ago, when I went to the C++ World conference, I was struck by the amount, and
+frequently the vehemence, of the anti-Java rhetoric put out by many of the speakers. I
+guess this is what happens when you threaten the way someone&#146;s always done things.
+This is fine, but there also seemed to be a disturbing amount of misinformation floating
+around. I actually heard one speaker claim that programs that used garbage collection
+would be <i>three times slower</i> than the same programs without it.</p>
+
+<p>Now, there are numerous reasons why a program in Java might be three times slower than
+the same thing in C++, and there are a lot of organizations throughout the industry
+(including my own group and many others in other parts of IBM) that are working madly away
+fixing them. In fact, I think it&#146;s fair to say that the performance of most Java
+implementations has improved significantly since I attended C++ World a year ago, and will
+improve even more in the next year to eighteen months.</p>
+
+<p>But even in the early implementations of Java where it was fair to accuse Java of being
+three times slower than C++, it was patently ridiculous to blame all, or even most, of
+this differential on garbage collection. It was only one contributor. To further make the
+leap that garbage collection, by its very nature, <i>must always</i> impose a 300%
+execution-time penalty on programs and languages that use it is beyond ridiculous. This
+simply isn&#146;t true.</p>
+
+<p>For a long time, I&#146;ve seen garbage collection as this mysterious area of computer
+programming where something magical happens under the covers that prevents the programmer
+from having to worry about memory leaks and other bugaboos. Some time ago, I decided to do
+some research on the topic and try to relieve some of the mystery and find out just what
+happens inside a garbage collector. This turned out to be a fascinating exercise, and I
+learned a lot and had some of my preconceptions about memory management exploded along the
+way.</p>
+
+<p>I suspect that there are a lot of programmers out there who know as little about
+garbage collection as I did when I started my research. What I&#146;d like to do here is
+present an introduction to garbage collection, presenting the subject in enough detail to
+give you a good idea of what the various tradeoffs and advantages between various
+techniques are and a good idea of what goes on under the hood in a typical garbage
+collector. My purpose here is not to sell either Java or garbage collection, but simply to
+inject some reality into the debate.</p>
+
+<p>This subject is large enough that it&#146;s really impossible to do a good job of
+covering it in a single article. This month, we&#146;ll take a long look under the hood of
+a typical manual memory management subsystem and at how reference counting can be used to
+help manage memory automatically. Next month, we&#146;ll dive headfirst into the ins and
+outs of the various tracing methods of automatic memory management and how their various
+tradeoffs are usually balanced.</p>
+
+<h3>The three basic kinds of memory allocation</h3>
+
+<p>Let&#146;s start at the beginning: Probably the single most valuable computing resource
+that an application makes use of is memory. Even in today&#146;s world of multi-megabyte
+RAM configurations and virtual memory, memory is still a scarce and precious resource
+whose use must be carefully controlled. When a program is launched, the operating system
+parcels out to it some amount of memory for its use. The application is then responsible
+for using this memory to do its job. A program will quickly use up this memory unless it
+takes care to recycle blocks of memory when the data they contain is no longer needed by
+the program&#151;that is, a program must take advantage of the fact that very few objects
+persist from program launch until program termination and re-use the same locations in
+memory for many different objects whose lifetimes don&#146;t overlap.</p>
+
+<p>In C++, there are basically three methods of allocating memory to store things. The
+simplest of these is <i>static allocation,</i> which is used for storing global variables
+and variables declared static (both local static variables and static class members).
+These variables have to persist for the entire run of a program&#151;there is no point
+where they &quot;go out of scope.&quot; In static storage, a certain range of memory is
+set aside for the storage of static variables, and this memory can never be used for
+anything else for the duration of the program&#146;s execution. Each variable name is
+associated with a memory address somewhere in this space. There is no runtime cost
+associated with static storage, but static space is permanently allocated and thus not
+available for anything else.</p>
+
+<p>Then there&#146;s <i>stack allocation,</i> which is used for storing function
+parameters and non-static local variables. Depending on the processor or OS architecture,
+either the hardware or the application program maintains a stack, which is used for
+storing these things. When a function is invoked, it reserves enough space on the stack
+for its parameters and local variables. This space is reclaimed when the function
+terminates. Stack space is really cheap in runtime performance: allocating a
+function&#146;s local variables (its <i>stack frame</i>) is simply a matter of adding or
+subtracting an appropriate value from the current address of the top of the stack (the <i>stack
+pointer</i>). Reclaiming a function&#146;s stack frame when the function terminates is
+equally cheap: you restore the stack pointer to its original value.</p>
+
+<p>The OS or the application has to set aside a fixed amount of space for the stack. Even
+though the stack can grow or shrink, potentially allowing the space to be used for some
+other purpose when the stack doesn&#146;t need it, this isn&#146;t done, because then
+you&#146;d have to be careful to move things out of the way when the stack expanded, which
+is an unreasonable cost. But if the stack exceeds the amount of memory set aside for it (<i>stack
+overflow</i>), you&#146;re just stuck and the program terminates. In a virtual-memory
+system, typically a really huge amount of address space is set aside for the stack, which
+reduces the likelihood of stack overflow. But if a program has many simultaneous threads
+of execution, this can cause its own problems. Just the same, since any individual stack
+frame only persists for as long as a particular invocation of a function is in effect,
+stack storage is pretty efficient. You typically don&#146;t have to worry about stack
+overflow except in rare cases of really long call chains, really deep recursion, or a
+function trying to allocate many unreasonably big objects (say, a bunch of
+10,000-character strings) on the stack. (Typically, most programmers see a stack overflow
+only when they have infinite recursion, which of course is a bug in the first place.)</p>
+
+<p>Finally, there&#146;s <i>heap</i> <i>allocation</i>. The <i>heap</i> is all of the
+memory allocated to a program that isn&#146;t being used to store the stack, the static
+variables, or executable code. Typically, this is most of the program&#146;s address
+space. As a rule, C++ doesn&#146;t automatically allocate anything on the heap. To put
+something on the heap, you ask the memory manager for a block of memory of a given size.
+The memory manager will then satisfy this request with memory from the heap. You ask for a
+block of memory with <code>malloc()</code> in C or with the <code>new</code> operator in
+C++. In other words, the heap is the pool of memory that&#146;s available to satisfy calls
+to <code>malloc()</code>. (Actually, the runtime also puts things into the program&#146;s
+address space, so some proportion of &quot;the heap&quot; actually <i>isn&#146;t</i>
+available to satisfy calls to <code>malloc()).</p>
+</code>
+
+<p>You use the heap (the <code>new</code> operator) to store objects that you want to
+persist longer than a single function call but shorter than the whole program&#146;s
+duration, and to store larger objects and more complex data structures.</p>
+
+<p>Unlike stack storage, heap storage isn&#146;t automatically reclaimed; you have to do
+that by hand. If you forget, the heap will eventually fill up, leading to crashes or to
+severely compromised functionality. You allow storage to be reclaimed (and thus reused to
+satisfy a subsequent <code>new</code>) by calling <code>free()</code> in C or using the <code>delete</code>
+operator (which usually calls <code>free()</code>) in C++. If you religiously delete
+objects when you&#146;re done with them, heap storage can be pretty efficient, but of
+course, this can be difficult, as it isn&#146;t always obvious when you&#146;re <i>really
+done</i> with something.</p>
+
+<p>Heap allocation is considerably slower than stack allocation, both because of the extra
+bookkeeping the memory manager must do, and often because of the extra bookkeeping the <i>programmer</i>
+must do.</p>
+
+<h3><code>new</code> and <code>delete</code></h3>
+
+<p>It&#146;d be really nice, of course, if you didn&#146;t have to worry about reclaiming
+memory. You could just do <code>new</code> to your heart&#146;s content and not have to
+worry about anything. And <code>new</code> could be made quite fast, since it
+wouldn&#146;t have to worry about reclaiming the memory later.</p>
+
+<p>Of course, you can&#146;t really work this way. Even in today&#146;s world of 64 or 128
+Mb RAM configurations and multi-gigabyte disk drives, you&#146;ll eventually start to run
+low on memory. Computer programs use a lot of memory on a temporary basis&#151;if none of
+that ever went away, you&#146;d find yourself exhausting even these vast reserves of
+storage space surprisingly quickly. And you&#146;d be running into serious performance
+problems long before you actually ran out of memory.</p>
+
+<p>So you have to do <code>delete</code>. Let&#146;s take a look at what actually goes on
+when you use <code>new</code> and <code>delete.</code> The basic idea is that the memory
+management subsystem (in this case, the implementations of <code>malloc</code> and <code>free</code>)
+has to maintain some kind of list of what memory is available and what memory is in use by
+the application. It also has to have some way of identifying the locations of the various
+blocks of memory that the application has allocated so it knows what memory has been made
+available by a <code>delete</code>.</p>
+
+<p>This second job is handled by appending extra bytes to the beginning of every block of
+memory returned by <code>new</code>. These extra bytes are called a <i>block header,</i>
+and they carry information about the block. In our example, let&#146;s assume that the
+only thing about the block that we need to keep track of is its size. On most modern
+processors, things work faster if they&#146;re stored on long-word boundaries, so
+let&#146;s say the block header is four bytes long. You&#146;d practically never run into
+a memory block that actually needs four bytes to store its size, but you want the actual
+value to be long-word aligned (a three-byte block header would cause real havoc on most
+32-bit machines), so we&#146;ll use four bytes.</p>
+
+<p>Now if every block is tagged with a length, you can fairly easily walk across all the
+allocated blocks. You&#146;d have the base address of the heap stored in static space
+somewhere; that gives you the address of the first block. Then you can calculate the
+address of each succeeding block from the address and size of the block before it. This
+gives you a way to walk all the blocks in the heap.</p>
+
+<p>The next thing we need to deal with is which blocks are free and which are in use. One
+way of doing this is to maintain a linked list of free blocks (the <i>free list</i>). A
+pointer to the first one (and thus to the whole free list) would also be stored in static
+space somewhere. The first four bytes of the block (after the block header) would contain
+a pointer to the next free block, and so on until the last free block, which would have a
+null pointer. Remember that the block of memory is not in use by the program, so it&#146;s
+okay to write the free-list link over whatever data might have been there. (You don&#146;t
+want to write over the block header because the size of the block is very important.) And
+if we always allocate things in multiples of four bytes (again, for performance reasons on
+32-bit processors), you know you&#146;ve always got enough space in the block for this
+pointer. The smallest block that could be allocated would be four bytes. </p>
+
+<p>So now you have a pointer to a linked list of free blocks. When you call <code>new</code>,
+it searches the free list for a block that is large enough to satisfy the request for
+memory. If a block is too big, it satisfies the request by dividing it into two
+blocks&#151;it takes away from the block the amount of memory requested by the program,
+and leaves the remainder on the free list. In the process, four bytes of the block are
+lost to become the new block&#146;s block header. When you do a <code>delete</code>, the <code>delete</code>
+operator simply adds the block to the free list, making it available for reuse by a
+subsequent <code>new</code>.</p>
+
+<p>There are many ways that the free list can be maintained, all of which have different
+performance tradeoffs. Probably the simplest way to maintain the free list is in order of
+last deletion. When you delete an object, it simply gets tacked onto the front of the free
+list. This makes deletion quite fast, but can really slow down allocation. When you
+allocate a block, you simply walk the free list until you find a block whose size is
+greater than or equal to the block size the application wants. You have no clues as to how
+far you&#146;ll have to walk to find such a block. If the first block you find is too big,
+you go ahead and divide it up, even if there&#146;s a smaller appropriate block one link
+further down the chain. And, of course, you might walk the whole free chain without
+finding a block of appropriate size, in which case you&#146;re stuck.</p>
+
+<p>One problem here is that you can divide big blocks to satisfy memory requests, but you
+don&#146;t have a good way to stitch two adjacent free blocks back together into one big
+free block. One way around this is to borrow a bit from the block header to indicate
+whether a block is free or in use. As we showed before, the length is all you need to find
+the address of the next block in the list, so if you can go straight to that block and ask
+it if it&#146;s free without having to look for it in the free list, the <code>delete</code>
+operator can coalesce a free block with the block that follows it in memory. The <code>delete</code>
+operator cannot, however, coalesce a free block with the block that <i>precedes</i> it in
+memory, because you have no way to move backward through the heap. However, the <code>new</code>
+operator can use the &quot;free&quot; bit to detect adjacent free blocks and coalesce
+them.</p>
+
+<p>It should be fairly obvious that all this work takes time. When you request a block of
+memory from the heap, the <code>new</code> operator has to walk the free list one block at
+a time until it finds a block that&#146;s big enough. If it detects adjacent free blocks
+along the way, it probably also must stop and coalesce them (which involves adjusting the
+header of the one lower in memory and walking the free list <i>again</i> to delete the one
+higher in memory from the free list), even if the combined block <i>still</i> isn&#146;t
+big enough to satisfy the request. You can defer this work until you <i>know</i> you have
+to coalesce two blocks together, but then you have to walk all the way to the end of the
+free list and then <i>start over again</i> looking for adjacent free blocks, which could
+be <i>very</i> time-consuming.</p>
+
+<p>The <code>delete</code> operator here has less work to do, but it still has work to do.
+Its basic job is to append the block being deleted to the end of the free list, but it
+should probably also check to see if the block that follows it in memory is also free and
+coalesce them if possible. Since deleting the block that&#146;s higher in memory from the
+free list requires another walk through the free list, this can be expensive too.</p>
+
+<p>You can make coalescing blocks together a lot easier by maintaining the free list in
+address order. This probably doesn&#146;t do much to <code>new</code>&#146;s performance
+(in fact, it may speed it up by making sure that everything that can be coalesced already
+is), but it takes more time at delete time. Now <code>delete</code>, rather than being
+able to slap the deleted block onto the end of the free list, has to walk the free list to
+find an appropriate place. But if the newly freed block is adjacent to a freed block on
+either side, combining them into a single block is a snap, and doesn&#146;t require
+walking the free list again.</p>
+
+<p>You can also minimize the dividing and coalescing that has to happen by maintaining the
+free list in size order. <code>new</code> still has to walk the whole free list, but
+it&#146;s guaranteed that the first appropriate free block it encounters will be the
+smallest free block that will satisfy the request.</p>
+
+<p>You can also balance some of these requirements against each other by using multiple
+free lists. You could, for example, maintain pools of objects of different sizes. An
+object would thus move from one free list to another when it gets divided in two or
+combined with another object. For any given allocation or deletion, however, you
+wouldn&#146;t have to waste time examining <i>every</i> potential node in the free list.
+You could also maintain two free lists of all the free blocks in two different orders:
+say, address order (to make coalescing fast) and size order (to minimize dividing of
+blocks). Another possibility is to defer deleting of nodes that have been absorbed through
+coalescing from the free list until later by maintaining a separate list of nodes that
+have to be deleted in this way. Yet another possibility is to include bidirectional
+pointers so that you could traverse the free list in either direction. The problem with
+all of these approaches is that they require more space for the free-list links,
+effectively raising the minimum block size and wasting more memory. They also may cost
+more in extra bookkeeping time than they save.</p>
+
+<p>You could also use an array instead of a linked list for the free list. Then you could
+binary-search the free list for appropriate blocks. The big problem here is that you
+couldn&#146;t use the free blocks themselves to store the free list, meaning you&#146;d
+have to set aside an extra area of memory just for the free list. And you&#146;d have to
+deal somehow with the possibility that that extra area of memory might not be big enough.</p>
+
+<p>In reality, most commercial memory managers are much more complicated than the simple
+examples we&#146;ve examined here, but they all must deal with the same basic sets of
+tradeoffs.</p>
+
+<h3>Problems of manual memory management</h3>
+
+<p>Obviously, however you organize the free list(s), <code>new</code> and <code>delete</code>
+are potentially expensive operations, and therefore C++ programmers are trained to
+minimize their calls to <code>new</code> and <code>delete</code> as much as possible. This
+tends to mean preferring stack-allocated objects over heap-allocated objects whenever
+possible (which is a good idea unless you do it so much you cause a stack overflow).</p>
+
+<p>It also means C++ programmers often resort to tricks to minimize creations and
+deletions. One such trick is to maintain a separate pool of objects of some
+frequently-used class. Once you&#146;ve created an object of that class, it stays around.
+Instead of deleting it, you add it to an internally-maintained free list and then re-use
+it the next time you need an object of that class (a variation on this keeps just one
+extra object of that class around, which is useful if you go through lots of complete <code>new</code>/<code>delete</code>
+cycles in succession with the same class). In effect, when you do this kind of thing,
+you&#146;re saying the C++ memory manager won&#146;t do your job well enough, and so
+you&#146;re going to write your own memory manager that is more suitable for your
+purposes. You&#146;re probably right, but you also wind up doing a lot of extra work And
+you leave yourself open to errors in your memory-management code, which probably
+hasn&#146;t been tested as thoroughly as the C++ memory manager.</p>
+
+<p>In addition to the performance problem, there are other problems with normal C++ memory
+management. When the free space is interspersed with blocks of memory that are in use, you
+have <i>fragmentation. </i>Fragmentation can lead to situations where there&#146;s enough
+free memory to satisfy a request for memory, but no single free block is big enough,
+causing a program to run out of memory before it strictly has to (and degrading the
+performance of the memory manager before that). This kind of memory-management system can
+also lead to <i>poor locality of reference.</i> Locality of reference has to do with the
+relative positions in memory of objects that refer to each other. If objects that point to
+each other are close to each other in memory, that&#146;s good locality of reference, and
+if objects that point to each other are widely separated in memory, that&#146;s bad
+locality of reference. In a flat memory model, locality of reference doesn&#146;t matter.
+But with a virtual-memory operating system, or a cached processor architecture, bad
+locality of reference leads to more page faults and cache misses, with a potentially huge
+impact on performance.</p>
+
+<p>In addition to all of these problems, manual memory management is prone to programmer
+error. You can get into trouble by deleting an object too soon (dangling pointers, which
+can lead to all manner of ugly problems), deleting an object twice (double deletion, which
+can lead to cycles in the free list, with obvious consequences), or not deleting an object
+at all (memory leaks, which can degrade your program&#146;s performance and lead to
+crashes and/or badly compromised functionality when memory gets low). Avoiding these
+problems in a program of any complexity can be quite ugly, and is easy to get wrong. C++
+programmers spend an inordinate amount of time debugging memory-related problems (which
+are often notoriously hard to track down), and practically every commercially-available
+software product written in C++ has memory leaks. Furthermore, C++ programs often have to
+do quite a bit of bookkeeping to avoid these memory bugs, meaning the runtime and
+memory-usage cost of manual memory management is actually usually bigger than just that
+incurred by the memory manager itself.</p>
+
+<p>Sure, memory management is hard. But does it have to be <i>this</i> hard? This is where
+garbage collection comes in.</p>
+
+<h3>Reference counting</h3>
+
+<p>Obviously, many people have had this thought. It&#146;d be really nice if we could just
+new up objects as we needed to and leave it to &quot;the system,&quot; somehow, to know
+when to release them. This would save the program from extra bookkeeping hassles and from
+the errors that can happen when you get memory management wrong. In other words, it&#146;d
+be really nice if we had some form of <i>automatic</i> memory management.</p>
+
+<p>The simplest and most obvious form of automatic memory management is a technique known
+as <i>reference counting.</i> In fact, many, if not most, C++ programmers have used
+reference counting at one time or another when it wasn&#146;t feasible to do manual memory
+management any other way. This is very frequently the &quot;extra bookkeeping&quot;
+programmers have to do in order to get memory management right. So if instead of the
+programmer doing reference counting, the <i>system</i> did it, the programmer would be
+freed of this burden and also wouldn&#146;t have to worry about deleting objects.</p>
+
+<p>The basic idea behind reference counting is this: each object contains a count of how
+many other objects point to it. This is called (surprise, surprise) a <i>reference count.</i>
+Whenever a pointer is set to point to the object, the reference count goes up by one, and
+whenever a pointer that points to the object gets set to point to something else, or goes
+away altogether, the reference count goes down by one. When the object&#146;s reference
+count reaches zero, you know nothing in the program can access the object, and therefore
+the program&#146;s done with the object and it&#146;s safe to delete it.</p>
+
+<p>Very simple and easy to implement. Works great for a lot of applications. But this
+technique has a number of problems. The first problem is the extra overhead for
+maintaining the reference count. We&#146;ve done nothing to reduce the cost of newing and
+deleting objects, and to it we&#146;ve added the additional cost of maintaining the
+reference count. Now every time you assign to a pointer, instead of just simply copying
+the pointer value, you also have to adjust two objects&#146; reference counts, and
+possibly delete one or more objects. If either object is paged out of memory, you have to
+bring it in from disk, which will increase the cost more (of course, you&#146;d always
+have to page the object in from disk when you actually access the object, but you
+generally don&#146;t do that nearly as often as you manipulate pointers to it). This is a
+pretty serious extra cost. The nice thing about manual memory management is that although
+you have to implement reference counting on your own, you only have to pay the price for
+it when you absolutely need it.</p>
+
+<p>Then we have the problem of where to store the reference count. The obvious answer is
+in the block header. In the simplest implementation, this would balloon the block header
+to eight bytes. Twice the overhead required by simple manual memory management.</p>
+
+<p>There are ways of reducing this overhead. We can keep the size of the block header at
+four bytes by reducing the number of bytes we use for the block size. Two bytes would
+cover most rationally-sized blocks, leaving us with two bytes for the reference count. But
+that limits us to 64 Kb blocks, which might be kind of small. Instead, we might opt for a
+three-byte size, leaving us with a byte for the reference count.</p>
+
+<p>A one-byte reference count imposes a maximum of 255 references to an object, which
+ought to be plenty. But what happens if you exceed this limit? In that case, you&#146;re
+stuck. You have nowhere to store the count of additional references, so you can never
+reduce the reference count as references to the object go away. This object now can never
+be deleted.</p>
+
+<p>Of course, you can get around this by combining reference counting with one of the more
+sophisticated memory-management techniques we&#146;ll talk about next month. In fact, this
+works pretty well.</p>
+
+<p>There&#146;s even a refinement that can be made: Most objects only have a reference
+count of one. So you can cover most of your cases with a one-<i>bit</i> reference count.
+The bit would mean either &quot;one&quot; or &quot;many.&quot; When a reference to an
+object whose reference count was &quot;one&quot; went away, the object could be
+immediately deleted. Once the reference count went to &quot;many,&quot; the object would
+have to be handled with tracing garbage collection. The beauty of this is that it reduces
+the number of objects that have to be handled by generalized garbage collection, and
+it&#146;s easy to find space for the one-bit &quot;reference count.&quot; In fact, in
+one-bit implementations, the bit is usually in the pointers themselves, not in the block
+header. It also greatly reduces the amount of overhead that is required to maintain the
+reference count. Because the &quot;reference count&quot; is stored in the individual
+pointers rather than the block header, you don&#146;t have to page in the actual object if
+it&#146;s paged out, and adjusting the reference count when you&#146;re adding a reference
+to an object involves simply setting a single bit. (You don&#146;t even have to look at
+that bit first, because it doesn&#146;t really matter whether the object was already
+shared or not.)</p>
+
+<h3>Lumpy deletion</h3>
+
+<p>There&#146;s another limitation of reference counting, and this problem is generally
+shared by manual memory management as well. One complaint you hear often about garbage
+collection is that the garbage collector can run at unpredictable times and that the whole
+program grinds to a halt while the garbage collector is running. This not only wastes
+time, but it does so in a particularly obtrusive way. With both manual memory management
+and reference counting, the argument goes, you have complete control over when memory
+management happens, it generally takes less time, and what time it does take is amortized
+over the whole run of the program, not done in separate passes that halt all the action.</p>
+
+<p>This is the common wisdom about garbage collection, and like most &quot;common
+wisdom,&quot; it contains a certain amount of truth, but it&#146;s not nearly as black and
+white as all that. Modern garbage collectors can do a pretty good job of spreading their
+cost more evenly across a program&#146;s execution time, and reference counting and manual
+memory management don&#146;t spread things out anywhere near as evenly as most people
+think. Programmers tend to think they&#146;re in complete control of when memory
+management happens and that its cost is spread out evenly across the program. Neither of
+these things is generally true (although both could be if you were willing to put in the
+extra effort). Instead, people are comfortable with manual memory management because it
+involves a lot less mystery. You&#146;re not ceding a lot of control to this mysterious
+black box that you didn&#146;t write and trusting it to handle your memory problems for
+you; instead, all the work is right there where you can see it. Unfortunately, one
+generally pays a heavy price for this lack of mystery, if not in runtime efficiency, then
+definitely in ease of design, coding, and maintenance.</p>
+
+<p>In normal C++ memory management, every object has an owner, which is the object or
+function that is responsible for deleting it. That object&#146;s destructor includes a <code>delete</code>
+for every object that it owns. The cost of the <code>delete</code> (which is not trivial,
+as we saw above, because of the challenge of maintaining the free list in a particular
+order and of coalescing free blocks together) would be smoothly amortized across the run
+of the program if <code>new</code>s and <code>delete</code>s were randomly distributed.
+But they rarely are. Instead, you tend to have clusters of related objects. A single
+object may have several objects that it owns, which means all those objects go down at the
+same time as the owning object does. If they, in turn, own more objects, the problem
+snowballs. Collections are particularly bad this way: typically there&#146;s one owning
+reference to the whole collection and when that goes away, so do all the objects in the
+collection. So a single <code>delete</code> (or a single smart pointer going out of scope)
+could result in a massive number of <code>delete</code>s and destructor calls, if the
+collection is large. Distribution of <code>new</code>s and <code>delete</code>s is rarely
+smooth; it&#146;s &quot;lumpy.&quot; And most programmers don&#146;t do anything to smooth
+out the &quot;lumpiness&quot;; they just get rid of things as soon as they know
+they&#146;re done with them. So unless you&#146;re taking extra action to smooth out these
+lumps, you really are exerting very little control over when you pay the price of memory
+management. It happens when it happens, and the cost is not trivial.</p>
+
+<p>This problem affects both manual memory management and most reference-counting schemes.
+It&#146;s possible, even reasonable, to design a reference-counting scheme that eases this
+problem, but it&#146;s more complicated.</p>
+
+<h3>Cycles</h3>
+
+<p>Finally, there&#146;s the big Achilles&#146; heel of reference counting: cycles.
+Typical reference counting schemes can&#146;t handle cycles in the reference chain&#151;
+that is, self-referential data structures. These can come up disturbingly often. If you
+have circularly linked lists, bidirectional linked lists, or back pointers (for example,
+items in a collection that refer back to the collection itself), you have cycles. If you
+have a vector of <code>foo</code>, and <code>foo</code> contains a pointer back to the
+vector that contains it, then a vector of ten <code>foo</code>s has a reference count of
+10 before any outside references are taken into account. Even when the last outside
+reference to the vector goes away, meaning the vector and all the <code>foo</code>s can go
+away, the vector still has a reference count of 10 (and all the <code>foo</code>s still
+have reference counts of at least 1).</p>
+
+<p>In a typical C++ program whose author has implemented reference counting by hand, this
+kind of thing can be avoided: the programmer, who understands the semantics of the objects
+in the program, can bless only certain pointers as ones that affect the reference count
+(for example, by letting them be instances of some smart-pointer class); the others are
+all aliases and can go away without a problem (for example, they&#146;re just raw C++
+pointers). On the other hand, with a generalized reference-counting mechanism built into a
+language&#146;s runtime, this generally isn&#146;t possible&#151;the memory manager
+doesn&#146;t know anything about the semantics of the pointers or objects it&#146;s
+manipulating, so it has no way to distinguish between pointers that should affect the
+reference count and ones that should not.</p>
+
+<p>The language could, of course, be designed to require the programmer to <i>tell</i> it
+which pointers are which&#151;for example, through the use of a special keyword&#151;but
+this complicates the language syntax and leaves languages that otherwise could manage
+memory completely automatically open to the same kinds of memory bugs that languages like
+C++ with manual memory management are susceptible to. In practice, this is rarely, if
+ever, done.</p>
+
+<p>Another approach is to combine reference counting with some other form of automatic
+memory management. Reference counting thus gets rid of what it can, and a garbage
+collector runs occasionally to clean up the cyclical structures. This gets us back around
+to the one-bit scheme discussed earlier, and requires that we delve into the bowels of
+tracing garbage collection.</p>
+
+<h3>Stay tuned&#133;</h3>
+
+<p>And this is where I&#146;m going to leave things for now. I&#146;ve probably already
+babbled on well past my word-count target. We&#146;ve now covered the preliminaries, the
+information which it&#146;s important to know when looking at tracing garbage collection.
+What I&#146;ve tried to do here is take an in-depth look at the actual costs of regular
+C++ memory management, and at reference counting, the simplest way to ease the
+programmer&#146;s bookkeeping burden and make things more automatic. As you can see, these
+techniques are far from free; we&#146;re just conditioned to accept these costs. This is
+important to keep in mind as we look at more sophisticated memory management schemes:
+Their costs should be compared to the actual costs of doing things the way we&#146;ve
+always done them, not to zero.</p>
+
+<p><a href="an_introduction_to_garbage_collection_part_ii.html">Next month</a>, we&#146;ll jump into tracing garbage collection
+with both feet and see how it actually works and what it actually costs. That&#146;s where
+things really start to get interesting. Hope to see you back here then.</p>
+</body>
+</html>

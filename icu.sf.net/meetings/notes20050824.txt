@@ -1,0 +1,107 @@
+ICU Core Meeting
+Date: August 24, 2005 @ 10:00am PT
+
+Attendees:
+Vladimir Weinstein
+George Rhoten (scribe)
+Ram Viswanadha
+Markus Scherer
+Andy Heninger
+Eric Mader
+Steven Loomis
+Tex Texin
+Deborah Goldsmith
+Mark Davis
+Doug Felt
+
+Agenda:
+ - ICU 3.4 post mortem
+ - ICU 3.6 status
+ - Status update on codepage recognition update
+ - 64-bit lengths in ICU
+
+Vladimir: We are asking for feedback for ICU 3.4
+
+Deborah: Updating ICU is usually fairly easy now, except for the cvs import command.
+	cvs import issues are unrelated to ICU.
+
+Vladimir: Was the gcc 4 compiler bug fixed?
+
+Deborah: gcc bug was fixed in gcc 4.0.1 train
+	gcc 3.3 is the workaround to get around this problem.
+
+Eric: Using an older gcc compiler for Fedora Core 4 fixes the problem too.
+
+Tex: We switched to 3.4 from 3.2, and there were no major issues.
+	Also the Unicode version of PHP is getting a little more public. It's on php.net.
+	There is some talk about whether this will be a minor update to PHP 5 or in PHP 6.
+
+Vladimir: ICU 3.6 status.
+	We are planning the 3.6 items. The feature list isn't final yet.
+
+Mark: List will be stated on the icu-core list.
+	Good news. Eclipse will be using ICU4J.
+
+Tex: The charset detection is going okay.
+	Badi will have it implemented later this week.
+	Testing will happen next week.
+
+Andy: I owe an updated charset detection API later today.
+
+Vladimir: Deborah wanted to talk about 64-bit lengths in ICU.
+
+Deborah: We were wondering why size_t wasn't used?
+
+Markus: UText will use int64_t.
+	We aren't changing it for backwards compatibility.
+	We did have a UTextOffset, but it was used inconsistenly. So we removed it.
+
+Deborah: It would be nice if there was a compiler time option to use size_t and ptrdiff_t.
+
+Eric: This is difficult to implement this change, since it's difficult to test and it would
+	require a lot of changes.
+
+Markus: UText is new API, and it's draft. So it's okay to change it to use int64_t.
+	We prefer not to introduce new compiler options, since it increases build difficulties.
+	If you look at the bool type, it's a variable type, and causes C++ name mangling problems.
+	We have no pressure to implement 64-bit sizes.
+
+Mark: We can use UText to get the 64-bit type in the door.
+
+Deborah: I think the UText approach will be a good thing to do.
+	The 64-bit requirement is a general directive for Apple.
+	We are thinking about break iteration, string search, collation and regex.
+
+Vladimir: There was a Thai work breaking proposal. Can Deborah summarize?
+
+Deborah: I haven't read it completely.
+	I do know that many of the issues are implemented in Mac OS X.
+	I agree with a lot of the issues with the existing ICU implementation.
+	I don't agree with dynamic programming, since it's not good for performance.
+	Abstract dictionary would be good.
+
+Andy/Mark/Deborah: Technical discussion about Thai break iteration goes on...
+
+
+Deborah: It looks like charset detection is moving along nicely.
+
+Andy: Ken asked about the data used for the charset detection.
+	We can't redistribute the data.
+
+Mark/Eric: Unfortunately I don't think there is that much data that is in the public domain.
+
+Mark: What if we started a public corpus to hold this kind of data?
+
+Vladimir: That could a CLDR topic.
+
+Deborah: So it looks like there isn't any demand from IBM for flexible date/time formatting.
+
+Mark: Correct, but it doesn't seem like a lot of work.
+
+Tex: MySQL doesn't have good Unicode support. Is there any resources for this kind of testing.
+
+Mark: There is test data for this in IBM, but it's not public.
+	Tex should talk to IBM as a customer or partner to see if they can get access to it.
+
+
+meeting ends at 11:05 PT

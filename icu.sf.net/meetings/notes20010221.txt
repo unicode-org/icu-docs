@@ -1,0 +1,39 @@
+ICU development team meeting
+Time: 10am-11am PST, 1pm-2pm EST
+Date: 2001-feb-21
+
+Attendees:
+    Mark Davis (IBM)
+    George Rhoten (IBM)
+    Markus Scherer (IBM)
+    Jim Snyder-Grant (Lotus)
+    Syn Wee Quek (IBM)
+    Tex Texin (Progress)
+    Raghuram Viswanadha (IBM)
+    Vladimir Weinstein (IBM)
+
+Minutes taker: Markus Scherer
+
+Agenda items:
+
+- ICU ported to MacOS?
+  Jim: Lotus working on building a .dat file on the Mac; there is a discussion about this on the mailing list.
+    Lotus Notes is shipped for the Mac.
+    What does it take to add a reference platform?
+    This is an exploratory question.
+  George: So far only occasional, personal porting efforts.
+  Mark: Need to talk with our manager.
+  Markus: Distinguish between porting to the Mac and making the Mac a
+    reference platform (more frequent tests by the core team).
+  Mark: There was a Mac port before the data loading was implemented; that is probably the biggest item.
+    We need to note on the Web site that we welcome porting changes.
+
+- 1.8 API freeze
+
+  Jim: safeClone() forgotten in C++ BreakIterator, will add today. There is already a C++ Collator::safeClone().
+    The C++ UnicodeConverter::safeClone() will be added as part of a C/C++ synchronization after 1.8.
+  Markus: What more API changes are necessary for collation?
+  Syn Wee: There was NULLORDER for the collation element iterator; there is now a new NO_MORE_CES.
+  Vladimir: This is an internal constant.
+  George: The UCA table is built only for little-endian machines right now. (Windows & Intel-Linux)
+    This will have to be fixed, by checking in the builder or both versions of the file.

@@ -1,0 +1,225 @@
+
+ICU development team meeting
+Call-In: 1-888-790-7707
+Date:   2000-May-23, Tuesday
+Time:   9am PDT - 10am PDT
+Place:  IBM Java Technology Center
+        10275 North DeAnza Blvd.
+        Cupertino, CA 95014, USA.
+Host:   IBM
+
+=======================================
+
+Attendees:
+  David Craig (NCR)
+  Steve Watt (Progress)
+  Jim Snyder-Grant (Lotus)
+  Brendan Murray (Lotus)
+  Markus Scherer (IBM)
+  Steven Loomis (IBM)
+  Vladimir Weinstein (IBM)
+  Helena Shih (IBM)
+
+Minutes Taker:
+  Helena Shih
+
+Agenda:
+
+- Roll call
+
+    See attendee list above.
+
+- Additional agenda items
+
+    - UTF-16 update
+    - IANA name structure (postponed)
+    - Legal issues regarding IBM's public source-code license
+- Action items from previous meetings
+- ICU 1.5 release features:
+    - Finish Bidi API implementation
+    - Define charmap locale data XML format spec
+    - Define locale data XML format spec
+    - Provide integrated tools for data generation
+    - Complete RB/Collation data integration
+    - Provide basic collation versioning.
+    - Add basic UTF-16 support.
+    - Finish ICU User's Guide first draft.
+    - Jitterbug spring cleaning phase 1.
+
+Markus: Move the "conversion callback API" into 1.6 release schedule.
+
+- ICU 1.6 release planning:
+    - Finish converter callback API proposal.
+    - Add 3/4 byte encoding support, e.g. euc-jp.
+    - Integrate MP-RAS port changes.
+    - Finish IANA/MIME name conversion support.
+    - Complete upgrading to Unicode 3.0, Normailzation.
+    - DateFormat API clean-up, UDate vs. UCalendar.
+    - Complete transliterator rule syntax update.
+    - Shaping and unshaping with Transliterator.
+    - Locale setting for algorithmic converter biasing.
+    - Clean up collation ResourceBundle code and make sure the memory
+map files work on the same endian platforms.
+    - NumberFormat support for Indian locales; multiple grouping
+separator.
+    - Number shaping algorithm.
+    - Jitterbug spring cleaning phase 2.
+    - Finish ICU User's Guide final version.
+    - Collation enhancements.
+
+Brendan: Add the "Collation enhancements" to handle the following items,
+
+    - Differences between system collator and other collation sequences.
+  Having the ability to select variant collator based on the same
+locale.  For example, The Korean sort sequence in ICU is different from
+Lotus, e.g. Hanja.
+    - Performance improvements to the 2-1 or 1-2 mapping sequences.
+    - Collation versioning advanced implementation.
+
+Helena: The milestones for 1.6 is tenatively set to the following,
+
+6/24 API freeze for 1.6
+6/29 API freeze snapshot deliverable for internal clients.
+7/14 Implementation Complete for 1.6
+7/21 Code Freeze for 1.6
+7/25 FVT Exit for 1.6
+7/31 Final Release Date for 1.6
+
+- Technical discussion
+     1. Locale biasing conversion interface.
+         We all agreed the interface is acceptable.  The code changes
+will be checked in today.
+     2. icudata.dll export location.
+        Agreement was reached to export data DLLs to the bin/ directory
+on Windows.  However, the ICU_DATA environment variable can overwrite
+that behavior.  Also, one can still set the data directory
+programatically through API.
+     3. UTF-16 update.
+        All agreed that the UnicodeString usage in the single character
+interface in the Format APIs is acceptable.  This item will be part of
+the 1.5 release.  The single character APIs will be marked as
+deprecated.
+
+     4. IANA names structure.
+         This discussion will be postponed until next meeting when Yves
+and Mark can attend.
+
+- Other agenda items
+    NCR's lawyer is concerned with the 2nd paragraph of the general
+section in IBM's public source-code license.  David and Helena will
+update the team with feedback from lawyers on both sides when that's
+available.
+
+-- Future meeting schedule
+
+The next ICU meeting will be held on 6/13, Tuesday 9AM PDT.  Call-in
+information will be provided the day before if not earlier.
+
+Action Item Review:
+Action item status:
+[r] : removed
+[-] : completed
+[ ] : open
+
+--- Items that are due by the next meeting ---
+[-] T20000523-01 [Loomis] Check in 64-bit platform port changes for
+compiler options.
+    Due date: 2000-May-25
+
+[ ] T20000523-02 [David and Helena] Legal issues update from lawyers.
+    Due date: 2000-June-13 if not earlier.
+
+[ ] T20000229-03 [IBM & Yves] Improve readme and related documents
+                          + Cross-link javadoc texts, C <-> C++ etc.
+                          + update readme & docs/*
+                          + move coding guidelines to separate doc (only
+
+                            link to oss server page? remove irrelevant
+                            items)
+    Due date: 2000-apr-30
+
+    2000-apr-11: include a list of files that need to be installed
+
+[ ] T20000321-01 [David]  Submit ICU port changes for NCR MP-RAS
+platform.
+    Due date: 2000-may-09
+
+    2000-apr-25: pending on Steve Watt's feedback on various compiler
+options.
+    2000-may-09: Tex/Steve: changes for a very similar platform are
+checked
+                 in and should cover much of this platform
+
+[ ] T20000321-04 [Roger]  Complete the Conversion chapter of
+                          the ICU user's guide.
+    Due date: 2000-may-09
+
+    2000-may-09: The chapter iss not ready yet.
+
+[ ] T20000321-06 [Yves]   Review the Conversion chapter of ICU user's
+                          guide.
+                          Create draft of the build/installation
+                          instructions of
+                          the Introduction chapter of the user's guide.
+    Due date: 2000-may-09
+
+    2000-may-09: The chapter is not ready yet.
+
+[ ] T20000411-02 [Steve W.]  Collect the makefile flags for different
+                          platforms
+    Due date: 2000-may-09
+
+    2000-may-09: Done for UnixWare.
+
+[ ] T20000229-05 [David]  Review the Format User's guide chapters
+    Due date: 2000-may-09
+
+[ ] T20000229-06 [Tex & Steve] Review the Collation and ResourceBundle
+                          User's guide chapters
+    Due date: 2000-may-09
+
+    2000-apr-11: there are still broken links in the user's guide on the
+
+                 web
+    2000-may-09: The links are fixed.
+
+[ ] T20000321-05 [Brendan] Review the Conversion and Transliterator
+                          chapters
+                          of ICU user's guide.
+    Due date: 2000-may-15
+
+    2000-apr-25: Feedback was submitted through email, 2nd review cycle
+                 is required after the update.
+    2000-may-09: in 2nd review cycle now
+
+[ ] T20000229-04 [David]  David Craig will continue to work on the
+                          DateFormat
+                          performance and report in the next meeting.
+    Due date: 2000-may-15
+
+--- Items that are due after the next meeting ---
+
+[ ] T20000411-03 [Markus/Steven/Yves] Document how to drop/add/delete
+                          resources (data files) like converters,
+                          locales, and collation tables
+    Due date: 2000-june-9
+
+[ ] T20000125-01 [Jesper] Implement the global new/delete operator to
+                          use uprv_malloc and uprv_free functions.
+    Due date: August 31, 2000
+
+[ ] T20000411-01 [IBM]    Investigate stylebook output in UTF-8
+    Due date: August 31, 2000
+
+[ ] T20000321-03 [IBM]    Find information on the freeware that can
+print
+                          the html pages in a directory.
+    Due date: September 1, 2000
+
+    2000-apr-11: we need to investigate how to produce
+                 one single HTML file or a PDF document
+
+
+
+
+

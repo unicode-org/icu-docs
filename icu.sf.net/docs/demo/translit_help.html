@@ -1,0 +1,178 @@
+﻿<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <title>ICU Transform Demo Help</title>
+  <link rel="stylesheet" type="text/css" href="../../icu.css">
+  <style type="text/css">
+.pad    { padding-right: 20px }
+  </style>
+</head>
+
+<body>
+<p><!--#include virtual="../../ssi/header.html" --> 
+<h1>Transform Demo Help</h1>
+
+<P>Transforms provide a general-purpose package for processing Unicode text. They are a powerful and flexible mechanism for handling a variety of different tasks, including:</P><UL>
+<LI>Uppercase, Lowercase, Titlecase, Full/Halfwidth conversions</LI>
+<LI>Normalization</LI>
+<LI>Hex and Character Name conversions</LI>
+<LI>Script to Script conversion</LI></UL>
+
+<p>Here are some examples of transforms:</p>
+
+<table border="0" cellpadding="2" cellspacing="2">
+  <tr style="text-align: center; background-color: #9999CC; font-weight: bold">
+    <td>Input</td>
+    <td>Transform</td>
+    <td>Output</td>
+  </tr>
+  <tr style="background-color: #CCCCFF">
+    <td><p class="pad">キャンパス</p></td>
+    <td><p class="pad">Katakana-Latin</p></td>
+    <td><p class="pad">kyanpasu</p></td>
+  </tr>
+  <tr style="background-color: #CCCCFF">
+    <td><p class="pad">Αλφαβητικός Κατάλογος</p></td>
+    <td><p class="pad">Greek-Latin</p></td>
+    <td><p class="pad">Alphabêtikós Katálogos</p></td>
+  </tr>
+  <tr style="background-color: #CCCCFF">
+    <td><p class="pad">биологическом</p></td>
+    <td><p class="pad">Cyrillic-Latin</p></td>
+    <td><p class="pad">biologichyeskom</p></td>
+  </tr>
+</table>
+
+<p>For more information about transforms, 
+please see the <a href="http://icu.sourceforge.net/userguide/Transform.html">Transforms</a> section of the
+<a href="http://icu.sourceforge.net/userguide/">ICU User Guide</a>.</p>
+
+<h2>How To Use This Demo</h2>
+
+<!--
+<p><img src="translit_help_img.jpg" width="615" height="222"
+alt="translitdemoimg.jpg (22757 bytes)" border="1"></p>
+-->
+
+<ol>
+<li>Enter some text into the <strong>Input</strong> text area.</li>
+<li>Choose a transform using the <strong>Source 1/Target 1/Variant 1</strong>
+controls, or enter a transform name in the <strong>Compound 1</strong> text area.</li>
+<li>Press the <strong>Transform</strong> button and view the result in the
+<strong>Output 1</strong> text area.</li>
+<li><em>Optionally,</em> choose a second transform using the second set of controls to
+apply another transform to the <strong>Output 1</strong> text. View the
+result in the <strong>Output 2</strong> text area.</li>
+</ol>
+
+<p>This demo transforms text entered into the <strong>Input</strong>
+text area and displays it in <strong>Output 1</strong>, as specified by the controls 
+labeled <strong>Source 1</strong>,
+<strong>Target 1</strong>, and
+<strong>Variant 1</strong>.
+If <strong>Source 1</strong> is set to <strong>"(Compound)"</strong>, then the transform is
+specified by the contents of <strong>Compound 1</strong>.</p>
+
+<p>In a similar fashion, the contents of <strong>Output 1</strong>
+are again transformed to produce the contents of <strong>Output 2</strong>,
+according to the second set of control inputs,
+labeled <strong>Source 2</strong>,
+<strong>Target 2</strong>,
+<strong>Variant 2</strong>, and <strong>Compound 2</strong>.
+
+<p>In the <strong>Source 2</strong> menu another option is available: <strong>"(Inverse)"</strong>. Selecting this option 
+causes the second transform step (<strong>Output 1</strong> to <strong>Output 2</strong>) to use the inverse 
+of the first transform step (<strong>Input</strong> to <strong>Output 1</strong>).</p>
+
+<h3>Specifying a Transform</h3>
+
+<p>Each set of controls contains a pop-up menu of 
+standard ICU system transforms. Alternatively the special pop-up option <strong>"(Compound)"</strong> 
+may be selected and a string may be typed into the <strong>Compound</strong> text field under the pop-up. The compound 
+field can be used to create compound transforms or to use filters. Compound 
+transforms comprise multiple transforms separated by semicolons, such as 
+&quot;Hangul-Latin; Latin-Greek&quot;. This will first transform the text from Hangul 
+to Latin characters, then take the result and convert it to Greek.</p>
+
+<p>Filters cause the transforms to only apply to specified characters. For example, 
+&quot;[a-m]Latin-Greek&quot; will convert only the lowercase letters a through m; 
+&quot;[^ -~]Unicode-Hex&quot; will hexify characters except for ASCII. Here are example 
+filters:</p>
+
+<table border="0">
+  <tr style="text-align: center; background-color: #9999CC; font-weight: bold">
+    <td>Filter Pattern</td>
+    <td>Description</td>
+  </tr>
+  <tr style="background-color: #CCCCFF">
+    <td>[axzw]</td>
+    <td>The characters a, x, z, w</td>
+  </tr>
+  <tr style="background-color: #CCCCFF">
+    <td>[x-z]</td>
+    <td>The characters x, y, z</td>
+  </tr>
+  <tr style="background-color: #CCCCFF">
+    <td>[:Lowercase Letter:]</td>
+    <td>Lowercase letters</td>
+  </tr>
+  <tr style="background-color: #CCCCFF">
+    <td>[[:Uppercase Letter:][a-m]]</td>
+    <td>Uppercase letters plus a-m</td>
+  </tr>
+  <tr style="background-color: #CCCCFF">
+    <td><p class="pad">[[:Uppercase Letter:]-[A-M]]</p></td>
+    <td><p class="pad">Uppercase letters minus A-M</p></td>
+  </tr>
+</table>
+
+<p>For more information see <a
+href="http://icu.sourceforge.net/apiref/icu4c/classUnicodeSet.html#_details"
+>http://icu.sourceforge.net/apiref/icu4c/classUnicodeSet.html#_details</a>
+under &quot;Pattern Syntax&quot;.</p>
+
+<p>For more information on properties (such as "Uppercase Letter") see the
+<a href="http://icu.sourceforge.net/userguide/properties.html">Properties</a>
+section of the
+<a href="http://icu.sourceforge.net/userguide/">ICU User Guide</a>.
+Note that properties may be abbreviated.
+For example, "Uppercase Letter" may be abbreviated as "Lu".  Abbreviations
+are given in the Unicode files
+<a href="http://www.unicode.org/Public/UNIDATA/PropertyAliases.txt">PropertyAliases.txt</a> and
+<a href="http://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt">PropertyValueAliases.txt</a>.</p>
+
+<h2>Walkthrough</h2>
+
+<p>Select a sample from the <strong>Insert Samples</strong> menu. 
+You'll see some sample text in different scripts in the <strong>Input</strong> area. Now 
+press the <strong>Transform</strong> button. You'll see the same text, transformed, in the <strong>Output 1</strong> area, as a result of the first
+transform (the specific transform depends on which sample is selected).  In the <strong>Output 2</strong> 
+area, you'll see the text transformed again as a result of the second transform.</p>
+
+<h2>Samples</h2>
+
+<p>The samples links point to sample text in various 
+scripts on the Unicode website. This text can be pasted into the Input area to see the 
+effect of various transforms on actual text in different scripts.</p>
+
+<h2>Display Problems</h2>
+
+<p>The demo displays characters using UTF-8. Your 
+browser must be configured properly to see UTF-8 characters. If you have any difficulties, 
+please refer to the <a href="http://www.unicode.org/help/display_problems.html">display 
+problems page on the Unicode website</a>.</p>
+
+<h3>Supported Browsers</h3>
+
+<p>This demo has only been tested on Internet 
+Explorer.</p>
+
+<h2>Feedback</h2>
+
+<p>If you encounter any problems,
+  please <a href="http://icu.sourceforge.net/bugs.html">file a bug</a> 
+  in the ICU bug database. For general questions or comments please send 
+  email to one of <a href="http://icu.sourceforge.net/contacts.html">our mailing lists</a>.</p>
+<p><!--#include virtual="../../ssi/footer.html" --> 
+</body>
+</html>

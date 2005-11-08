@@ -1,0 +1,93 @@
+ICU development team meeting
+Date:   January 25, 2000, Tuesday
+Time:   9am PST - 10am PST
+Place:  IBM Java Technology Center
+        10275 North DeAnza Blvd.
+        Cupertino, CA 95014, USA.
+Host:   IBM
+
+=======================================
+Attendees:
+  David Craig (NCR)
+  Mark Davis (IBM)
+  Gary Roberts (NCR)
+  Markus Scherer (IBM)
+  Helena Shih (IBM)
+  Tex Texin (Progress)
+  Bob Verbrugge (Compuware)
+  Steve Watt (Progress)
+  Vladimir Weinstein (IBM)
+
+Minutes Takers:
+  Helena Shih
+
+- Agenda for today's meeting
+- Action items from today's meeting
+- Next meeting schedule
+
+Today's Agenda:
+     - New members from Lotus
+         Brendan and Eric may not have gotten the meeting notice early
+enough to participate this time.  We will inform them ahead of time for
+the next meeting.
+     - Action item review from the previous meetings
+         Action item status:
+          [r] : removed
+          [-] : completed
+          [ ] : open
+          [r] T19991108-02 [Laura]          Finalize the name issue with
+IBM
+marketing.
+         ->  We decided to vote by acceptance on the names, 4 options
+were presented.  In the parenthesis, the number of votes for that name
+selection is recorded.
+              International Classes for Unicode (0)
+              International Components for Unicode (4)
+              International Collections for Unicode (3)
+              International Code for Unicode (1)
+          We decide that ICU should stand for International Components
+for Unicode.
+        [ ] T19991123-01 [Helena]         Go over the current APIs and
+mark
+        draft and stable.
+        ->  4 of the components are marked as draft currently,
+             1. Conversion function routines that converts from Unicode.
+
+             2. Some of the ResourceBundle APIs.
+             3. BreakIterator/RuleBasedBreakIterator interface.
+             4. Transliterator interface.
+             Everyone agrees that the remaining of the ICU components
+should be marked as stable.
+        [ ] T19991123-03 [PMC members]    ICU testing issues.
+        ->  Progress Software: reorganization going on within the
+company.  However, Tex and Steve will still be able to provide feedback
+on porting and testing.
+              NCR: No funding is allocated for this side effort.  David
+and Gary will review the APIs and let us know if they were able to wrap
+the existing functionality with ICU.
+              Compuware: Bob will write the implementation for global
+new/delete operators for our C++ code to use the internal private C
+memory allocation functions.  He will report to us the results after he
+is done with that.  We will revisit the necessity of runtime OS
+abstraction interface in the next meeting.
+        [ ] T20000111-01 [Steve L.] The mailing list archive for Jan. is
+not
+visible.
+
+    Markus also briefly described the UTF-16 proposal for C.  All
+comments need to be given to Markus by the end of Thursday. (1/27)
+
+#Action Items from This Meeting#
+
+[ ] T20000125-01 [Bob]         Implement the global new/delete operator
+to use uprv_malloc and uprv_free functions.
+[ ] T20000125-02 [Markus]   Resend the UTF16 proposal for C.  Comments
+are due by the end of Thursday. (1/27)
+
+#Next Meeting Schedule#
+
+The next ICU meeting will be held on 2/08/2000 from 9AM-10AM PST,
+12PM-1PM
+EST.  The call-in number and pass code will be provided at least 24 hour
+
+prior to the meeting.

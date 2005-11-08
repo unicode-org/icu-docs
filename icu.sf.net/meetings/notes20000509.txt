@@ -1,0 +1,267 @@
+ICU development team meeting 
+Call-In: 1-888-790-7707, 1-415-228-4574
+Date:   2000-May-09, Tuesday 
+Time:   9am PDT - 10am PDT
+Place:  IBM Java Technology Center 
+        10275 North DeAnza Blvd. 
+        Cupertino, CA 95014, USA. 
+Host:   IBM
+
+======================================= 
+
+Attendees:
+  Jim Snyder-Grant (Lotus)
+  Mark Davis (IBM)
+  Markus Scherer (IBM)
+  Tex Texin (Progress)
+  Steve Watt (Progress)
+  Steven Loomis (IBM)
+  Vladimir Weinstein (IBM) 
+
+Minutes Taker:
+  Markus Scherer
+
+Agenda:
+
+- Roll call
+
+    See attendee list above.
+
+- Additional agenda items
+
+- Action items from previous meetings
+
+    See action item list below;
+    comments from today are marked with today's date.
+
+- ICU 1.4.1.2 is ready to be released!
+
+    This is an update to 1.4.0 and 1.4.1.1 for DB/2 which is starting to use
+    the XML parser with ICU underneath.
+    Some of the issues were correct default encoding names and default
+    locales, as well as finding and loading ICU data, which prompted
+    a modification of udata and, in the current code for 1.5, a rewrite.
+
+- ICU 1.5 release milestones: (GA 6/7/2000)
+
+    Currently scheduled items to be finished for the 1.5 development release:
+
+    - Finish Bidi API implementation
+    - Clean up callback API for converter
+    - Add 3/4 byte encoding support,e.g. euc-jp
+    - Complete charmap generation program on various platforms
+    - Define locale data XML format spec
+    - Provide integrated tools for data generation
+    - Support IANA/MIME names (Yves?)
+    - Complete RB/Collation data integration
+    - Integrate MP-RAS port changes.
+    - Complete upgrading to Unicode 3.0, Normailzation.
+    - Provide basic collation versioning.
+    - Complete transliterator rule syntax update.
+    - Add basic UTF-16 support.
+    - Timezone and formatter clean-up, especially Year-Week-Day handling.
+    - Finish ICU User's Guide
+
+    Release schedule:
+
+    5/22 Implementation Complete
+    5/26 Code Freeze (including unit tests)
+    6/02 Test Exit
+         (Items 1, 2, 3, 5, 8 and 9 as well as UTF-16 compatibility, etc.)
+    6/7 Final Release Date
+
+- Time for the agenda items that were added in the meeting
+
+  + Jim sent an email this morning about opening a converter with a locale
+    as parameter.
+
+    Discussion:
+    * Lotus needs to specify the locale at open time for the algorithmic
+      LMBCS converter; this is also useful for ISO-2022-JP etc.
+    * Steven pointed out that this would be useful for the other
+      variants of ucnv_open() but that that means to add several such
+      functions.
+    * There should be a clone() function for converters so that one does not
+      need to know the UConverter structure and memcpy it.
+    * The original idea for the locale parameter in the internal open()
+      functions was to use it for ISO-2022. The parameter was to be extracted
+      from the canonical name in convrtrs.txt.
+    * We discussed having a number of parameters as part of the converter
+      name, which could then also be in the canonical name in convrtrs.txt.
+      We need to design a syntax for this.
+      Based on this, we do not need new ucnv_open() variants.
+
+  + Codepage mapping table mailing list
+
+    * Mark has started an email list hosted by unicode.org for discussing
+      codepage mapping tables and related issues.
+    * Several ICU members are signed up already or asked Mark in the meeting
+      to sign them up.
+    * We (Helena/Mark) have written a program for Win32 that uses the
+      platform conversion APIs to write mapping tables that precisely
+      reflect the platform mappings.
+
+    *** Action for all! ***
+    * We need others to port this to other platforms and to generate
+      more such mapping tables.
+
+  + Collation versioning
+
+    * Agreement that the version number must be increased at least when
+      the collation keys would change compared to the previous version.
+    * A simple implementation for the upcoming release could just always
+      return "1" or similar, until the collation actually does change.
+    * We should generate a hash code during the compilation of the rules
+      into a binary collation structure. This hash code needs to cover
+      all rules.
+
+  + Reimplementation of udata for 1.5
+
+    * Due to continued problems in the DB/2 environment that had originally
+      triggered the udata mechanism, the implementation was redone.
+      Now there is no compile-time configuration between DLL loading and
+      memory-mapping any more. Instead, both variants are always active.
+      The build options only control the type of data file that is built.
+    * Common data files are first attempted to be loaded from a DLL,
+      then mapped as a single file. Extension is done only with single-data
+      memory-mapped files, not single-data DLLs.
+      DLLs may contain either a single entry point with the same structure
+      as the flat, mappable common file, or per-data entry points as before.
+      In the latter case, we are now also building a Table of Contents
+      that differs from the one in the flat file: it needs to use pointers
+      instead of offsets.
+    * udata_setCommonData() is available and detects either type of ToC.
+      It also auto-detects if the data is prepended by a double dummy
+      as generated in the .c files from genccode for alignment control.
+      The 1.4.1.2 implementation relies on the mapped-file ToC.
+
+    *** Action for all! ***
+    * Building the ICU data DLL is much faster if it is done via the flat
+      common file by directly transforming that flat file into a .o (.obj)
+      file and linking it. This is done by gencmn now for Win32.
+      Some platforms use the ELF format and have a libelf.sl or similar
+      that allows to write such files.
+      Anyone who is interested in fast builds of data DLLs on non-Win32
+      platforms needs to write code for the transformation of
+      static const, read-only data into a .o file and add that code
+      to gencmn.
+
+- Future meeting schedule
+
+    Next meeting: 2000-may-23 9:00 PDT
+
+- Action items from this meeting
+
+    See action item list below.
+
+
+Action item status: 
+[r] : removed
+[-] : completed
+[ ] : open
+
+Mark suggested to order the items by due date. This is done here.
+Items that are past due are still in the list with their old due date.
+
+--- Items that are due by the next meeting ---
+
+[-] T20000208-03 [Brendan] Send out the requirements with regards
+                          to Collation versioning to icu mailing list and
+                          IBM will revise the current versioning proposal
+                          to satisfy the combined requirement.
+    Due date: 2000-apr-25
+
+    2000-apr-25: Brendan sent out email regarding the discussion to be
+                 taken place this week.
+    2000-may-09: general agreement, and more discussion today
+                 about a simple implementation in time for 1.6
+
+[ ] T20000229-03 [IBM & Yves] Improve readme and related documents
+                          + Cross-link javadoc texts, C <-> C++ etc.
+                          + update readme & docs/*
+                          + move coding guidelines to separate doc (only
+                            link to oss server page? remove irrelevant
+                            items)
+    Due date: 2000-apr-30
+
+    2000-apr-11: include a list of files that need to be installed
+
+[-] T20000425-01 [Steven L.] Send out more description on the
+                          udata_setCommonData() proposal.
+    Due date: April 30, 2000
+
+    2000-may-09: Implemented in 1.4.1.2 and in current code for 1.5.
+
+[ ] T20000321-01 [David]  Submit ICU port changes for NCR NP-RAS platform.
+    Due date: 2000-may-09
+
+    2000-apr-25: pending on Steve Watt's feedback on various compiler options.
+    2000-may-09: Tex/Steve: changes for a very similar platform are checked
+                 in and should cover much of this platform
+
+[ ] T20000321-04 [Roger]  Complete the Conversion chapter of
+                          the ICU user's guide.
+    Due date: 2000-may-09
+
+    2000-may-09: The chapter iss not ready yet.
+
+[ ] T20000321-06 [Yves]   Review the Conversion chapter of ICU user's
+                          guide.
+                          Create draft of the build/installation
+                          instructions of
+                          the Introduction chapter of the user's guide.
+    Due date: 2000-may-09
+
+    2000-may-09: The chapter is not ready yet.
+
+[ ] T20000411-02 [Steve W.]  Collect the makefile flags for different
+                          platforms
+    Due date: 2000-may-09
+
+    2000-may-09: Done for UnixWare.
+
+[ ] T20000229-05 [David]  Review the Format User's guide chapters
+    Due date: 2000-may-09
+
+[ ] T20000229-06 [Tex & Steve] Review the Collation and ResourceBundle
+                          User's guide chapters
+    Due date: 2000-may-09
+
+    2000-apr-11: there are still broken links in the user's guide on the
+                 web
+    2000-may-09: The links are fixed.
+
+[ ] T20000321-05 [Brendan] Review the Conversion and Transliterator
+                          chapters
+                          of ICU user's guide.
+    Due date: 2000-may-15
+
+    2000-apr-25: Feedback was submitted through email, 2nd review cycle
+                 is required after the update.
+    2000-may-09: in 2nd review cycle now
+
+[ ] T20000229-04 [David]  David Craig will continue to work on the
+                          DateFormat
+                          performance and report in the next meeting.
+    Due date: 2000-may-15
+
+--- Items that are due after the next meeting ---
+
+[ ] T20000411-03 [Markus/Steven/Yves] Document how to drop/add/delete
+                          resources (data files) like converters,
+                          locales, and collation tables
+    Due date: 2000-june-9
+
+[ ] T20000125-01 [Jesper] Implement the global new/delete operator to
+                          use uprv_malloc and uprv_free functions.
+    Due date: August 31, 2000
+
+[ ] T20000411-01 [IBM]    Investigate stylebook output in UTF-8
+    Due date: August 31, 2000
+
+[ ] T20000321-03 [IBM]    Find information on the freeware that can print
+                          the html pages in a directory.
+    Due date: September 1, 2000
+
+    2000-apr-11: we need to investigate how to produce
+                 one single HTML file or a PDF document

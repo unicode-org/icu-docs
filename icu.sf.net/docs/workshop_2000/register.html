@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Registration page for ICU workshop</TITLE>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type>
+<link rel=stylesheet href="../../icu.css">
+</HEAD>
+<BODY bgColor=#ffffff>
+  <!--#include virtual="../../ssi/header.html" -->
+      <P class=header1>International Components for Unicode</P>
+      <P class=header2>Developer's Workshop</P>
+      <HR>
+<SCRIPT LANGUAGE="JavaScript">
+     <!-- hide from non-compliant browsers
+     
+     function isEmpty(str) {
+        return (str == null || str == "");
+     }
+     
+     function initArray(size) {
+        this.length = size;
+
+        for(i = 1; i <= size; i++) {
+           this[i] = null;
+        }
+
+        return this;
+     }
+
+
+     function Validate(theForm) {
+     	if(isEmpty(theForm.name.value)) {
+     		alert("You must include your name!");
+     		return false;
+     	}
+     	if(isEmpty(theForm.affiliation.value)) {
+     		alert("You must include your affiliation!");
+     		return false;
+     	}
+     	if(isEmpty(theForm.address.value)) {
+     		alert("You must include your address!");
+     		return false;
+     	}
+     	if(isEmpty(theForm.city.value)) {
+     		alert("You must include your city!");
+     		return false;
+     	}
+     	if(isEmpty(theForm.zip.value)) {
+     		alert("You must include your zip code!");
+     		return false;
+     	}
+     	if(isEmpty(theForm.email.value)) {
+     		alert("You must include your e-mail address!");
+     		return false;
+     	}
+     	
+     	
+        iEmail   = isEmpty(theForm.email.value) ? 1 : 0;
+
+        // Low-level verification of email address
+        //
+        if(theForm.email.value.indexOf("@") == -1) {
+           alert("\nEmail addresses are usually of the form:" +
+                 "\n\nsomebody@someplace\n\n" +
+                 "your's doesn't seem to be valid!");
+
+           return false;
+        }
+        alert("NOTE: Please be sure to only click the submit button once.  Your submission will be reviewed and a notification will be sent to you in a week or two.  Thank you.");
+        return true;
+     }
+     // end hide -->
+     </SCRIPT>
+
+<h1>Registration for the ICU workshop</h1>
+<p>Please complete the registration form and return the form below, by mail, fax 
+  or e-mail, or submitting online by clicking on the "submit" button, to: </p>
+<blockquote> 
+
+                First ICU Developer's Workshop <br>
+                c/o Cassandra Tull <br>
+                10275 North DeAnza Blvd Cupertino, <br>
+                CA 95014 <br>
+                USA <br>
+                Tel: +1-408-777-5802 <br>
+                Fax: +1-408-777-5890 <br>
+                
+  <p>E-mail: <a href="mailto:icu@jtcsv.com?subject=ICU%20workshop%20registration&body=NAME:%20%0D%0ATITLE/POSITION:%20%0D%0aAFFILIATION:%20%0D%0aADDRESS:%20%0D%0aCITY:%20%0D%0aPROV/STATE:%20%0D%0aPOSTAL/ZIP%20CODE:%20%0D%0aCOUNTRY:%20%0D%0aTELEPHONE:%20%0D%0aFAX:%20%0D%0aE-MAIL:%20%0D%0a">icu@jtcsv.com 
+    </a></p>
+</blockquote>
+<hr>
+<h3>GENERAL INFORMATION: </h3>
+<blockquote> 
+     <p>Beginner's level workshop meeting is held on Monday, September 11.<br>
+     Workshop meeting on Tuesday, September 12, focuses on more<br>
+     advanced discussion topics of the ICU technologies.<br>
+     Registration includes two days of Workshops/Discussions and<br>
+     hands-on development work.</p>
+
+     <p>The workshop registration is FREE!!  Seating is limited on a<br>
+     first-come-first-serve basis.  The workshop committee<br>
+     reserves the rights to cancel or reschedule the workshop meetings.</p>
+</blockquote>
+<hr>
+              
+
+<form method="post" action="mailto:icu@jtcsv.com" enctype="text/plain"  name="formular" ONSUBMIT="return Validate(this)">
+<input type="hidden" name="subject" value="ICU workshop registration">
+
+  <table width="100%" border="0" height="270">
+    <tr> 
+      <td width="16%">Name<font color="#FF3333">*</font>:</td>
+      <td colspan="3"> 
+        <input type="text" name="name" size="70">
+      </td>
+    </tr>
+    <tr> 
+      <td width="16%">Title/Position:</td>
+      <td colspan="3"> 
+        <input type="text" name="title" size="70">
+      </td>
+    </tr>
+    <tr> 
+      <td width="16%">Affiliation<font color="#FF3333">*</font>:</td>
+      <td colspan="3"> 
+        <input type="text" name="affiliation" size="70">
+      </td>
+    </tr>
+    <tr> 
+      <td width="16%">Address<font color="#FF3333">*</font>:</td>
+      <td colspan="3"> 
+        <input type="text" name="address" size="70">
+      </td>
+    </tr>
+    <tr> 
+      <td width="16%">City<font color="#ff3333">*</font>:</td>
+      <td width="31%"> 
+        <input type="text" name="city" size="30">
+      </td>
+      <td width="21%">Prov/State:</td>
+      <td width="32%"> 
+        <input type="text" name="state" size="2">
+      </td>
+    </tr>
+    <tr> 
+      <td width="16%">Postal/Zip Code<font color="#FF3333">*</font>:</td>
+      <td width="31%"> 
+        <input type="text" name="zip" size="5">
+      </td>
+      <td width="21%">Country:</td>
+      <td width="32%"> 
+        <input type="text" name="country" size="20">
+      </td>
+    </tr>
+    <tr> 
+      <td width="16%">Telephone:</td>
+      <td width="31%"> 
+        <input type="text" name="phone" size="15">
+      </td>
+      <td width="21%">Fax</td>
+      <td width="32%"> 
+        <input type="text" name="fax" size="15">
+      </td>
+    </tr>
+    <tr> 
+      <td width="16%">E-Mail<font color="#FF3333">*</font>:</td>
+      <td colspan="3"> 
+        <input type="text" name="email" size="35">
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="4"><font color="#FF3333">*</font> : required information</td>
+    </tr>
+    <tr> 
+      <td width="16%">&nbsp; </td>
+      <td> 
+        <input type="submit" value="Send registration information">
+      </td>
+      <td> 
+        <input type="reset" name="Submit2" value="Reset">
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr><b>
+        NOTE: Please be sure to only click the submit button once.  Your submis\
+sion will be reviewed and a notification will be sent to you in a week or two. \
+ Thank you.</b>
+ </tr>
+  </table>
+</form>
+  <!--#include virtual="../../ssi/footer.html" -->
+</BODY></HTML>

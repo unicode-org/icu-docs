@@ -1,0 +1,116 @@
+Meeting minutes 2000-01-11
+
+Topic:     ICU Development Team Meeting
+Date:      2000-01-11
+Time:      9:00AM - 10:00AM PST
+Place:     IBM Corp.
+Host:      Markus Scherer (schererm@us.ibm.com), IBM Corp.
+
+
+Attendees:
+  Bob Verbrugge (Compuware)                bobv@nl.compuware.com
+  David Craig (NCR)                        david.craig@ncr.com
+  Jesper Larsen (Compuware)                Jesper_Larsen@nl.compuware.com
+  Helena Shih (IBM)                        hshih@us.ibm.com
+  Markus Scherer (IBM)                     schererm@us.ibm.com
+  Steve Watt (Progress)                    swatt@progress.com
+  Steven Loomis (IBM)                      srl@monkey.sbay.org
+  Tex Texin (Progress)                     texin@progress.com
+  Vladimir Weinstein (IBM)                 vweinste@us.ibm.com
+
+Minutes Taker:
+  Markus Scherer
+
+Current PMC members are:
+
+    Mark Davis    [alternate: TBD]
+    Hideki Hiura  [alternate: TBD]
+    Helena Shih   [alternate: Markus Scherer]
+    Tex Texin     [alternate: Steve Watt]
+    Bob Verbrugge [alternate: Jesper Larsen]
+    Laura Werner  [alternate: TBD]
+
+#Agenda for today's meeting#
+
+- Action item review from the previous meetings
+- Release Schedule
+- Changes to Stable API
+- Action items from this meeting
+- Future meeting schedule
+
+#Action item review from the previous meetings#
+      [r] : removed
+      [-] : completed
+      [ ] : open
+
+Completed (remove from this list before inviting for the next meeting):
+
+[r] T19990830-02 [Tom and Alan]   Contact each other regarding transliteration framework issues.
+    ->  transliteration implementation well under way
+[-] T19991025-06 [All]            All the ICU development team members should subscribe to the ICU mailing lists.
+    ->  everyone should be on by now,
+        or have been reminded today
+[-] T19991025-07 [All]            Send prioritization comments to Helena.
+    ->  see http://oss.software.ibm.com/developerworks/opensource/icu/project/develop/tasks.html
+[-] T19991221-01 [Helena]         Resend Bob's proposal for OS abstraction layer.
+    ->  done; Bob will check if he has time to work on this
+[r] T19991108-04 [PMC members]    Find an alternate for each member of the PMC.
+    ->  taken offline
+[-] T19991108-06 [All]            Examine the API change process and submit change suggestions to Helena.
+    ->  the initial process is accepted;
+        it will be continually reviewed as we go along
+[r] T19991209-01 [Helena]         Go over the current APIs and figure out which ones needs to enabled for UTF-8 processing.
+    ->  UTF-16 support for now,
+        UTF-8 (& UTF-32) discussion will be restarted after that
+
+Pending:
+
+[ ] T19991108-02 [Laura]          Finalize the name issue with IBM marketing.
+    ->  Discussed keeping the abbreviation "ICU" because
+        it is a known and established name, and a change would
+        cause a lot of work on code, documentation, and the web server pages.
+        The long name could be dropped, or changed to, e.g.,
+        "International Classes for Unicode";
+        only "Classes" was debated - suggestions were
+        "Code", "Collection", and others.
+        Legally, all unique names are taken.
+        The more generic names do not seem to improve much on the current one
+        after a change as discussed before.
+        The similarity with "Intensive Care Unit" was no concern today.
+[ ] T19991123-01 [Helena]         Go over the current APIs and mark draft and stable.
+    ->  Bob et al. to review the list.
+[ ] T19991123-03 [PMC members]    ICU testing issues.
+    ->  especially Progress: collation testing etc.?
+
+#Release Schedule#
+
+Next release: 2000jan, driven by IBM XML team.
+Then: 2000jun/jul, including work currently in progress.
+After that, how do we decide on a release schedule?
+Discussion about what we call
+- releases that we formally support
+  -> "reference release", "fcs release"
+- releases that contain new features but are not fully tested
+  and supported
+  -> "enhancement release", "sdk release", "preview release"
+
+#Changes to Stable API#
+
+How do we prevent APIs that are marked @stable from being changed
+by a contributor?
+->We don't have the means to really prevent it, since our process
+is review-after-change.
+Suggestion: mark @stable APIs with a special color in doxygen docs.
+
+#Action Items from This Meeting#
+
+[ ] T20000111-01 [IBM]            Fix the mail archive for emails in 2000
+[ ] T20000111-02 [IBM]            Provide a Web page with links to email threads for proposals in our archive
+[ ] T20000111-03 [Helena]         Resend API assessment list to Bob
+[ ] T20000111-04 [IBM]            Mark @stable APIs with a special color in doxygen docs
+
+#Next Meeting Schedule#
+
+The next ICU meeting will be held on 2000-jan-25 from 9AM-10AM PST, 12PM-1PM EST, 18:00-19:00 CET.
+The call-in number and pass code will be provided at least 24 hours prior to the meeting.
+

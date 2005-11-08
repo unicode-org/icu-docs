@@ -1,0 +1,220 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>Java Liaison Column 7/98</title>
+</head>
+
+<body>
+
+<p><font size="2">&quot;Java Liaison&quot; column<br>
+July/August 1998<br>
+Richard Gillam</font></p>
+
+<p><font size="6">Liaison: <i>n.</i> Communication for Establishing and Maintaining
+Cooperation</font></p>
+
+<p>In 1991, with great fanfare, IBM and Apple Computer announced the formation of a new
+joint venture, Taligent. Taligent&#146;s mission was to develop the next great
+personal-computer operating system. It was to utilize all of the latest techniques of
+software design and development, which, among other things, meant it was to be fully
+object-oriented. This, of course, meant it was to be developed in C++, the object-oriented
+programming language of choice. Many of Apple and IBM&#146;s best and brightest
+object-oriented programmers went to Taligent, and many in the industry (at least many
+Apple-watchers) had high hopes.</p>
+
+<p>Over the next couple of years, Taligent engineers worked furiously on the Taligent
+operating system and its accompanying development tools, and Taligent played a significant
+role in advancing the state of the art in C++ technology.</p>
+
+<p>By 1995, it had become clear that the world didn&#146;t need another operating system,
+Apple Computer pulled out of the joint venture, and Taligent has since been completely
+absorbed into IBM. Taligent&#146;s former engineers are based in two IBM development labs,
+and are still highly respected object-oriented developers. But one important thing has
+changed: to a person, all of them are doing Java development&#151;even the die-hard C++
+fanatics&#151;either full-time or part-time.</p>
+
+<p>I offer this little anecdote by way of answering the question, &quot;Why are you
+publishing a column about Java in a magazine about C++?&quot; The fact is, however you
+feel about Java as a programming language, an operating environment, or a way of life, at
+some point and in some way, as a C++ programmer, you&#146;ll have to deal with it. The
+point of this column is not to sell you on Java or to convince you to switch programming
+languages, but merely to try to dispel some of the myths and half-truths surrounding the
+language and to call out the similarities and differences between it and C++. I hope to
+illustrate both the ways in which Java is better and the ways in which C++ is better.</p>
+
+<p>I&#146;m going to try to stick to technical issues rather than business or political
+issues, and I should make it clear that although I work for IBM, in no way should anything
+I say here be construed as speaking for anyone other than myself.</p>
+
+<h3>The Big Picture</h3>
+
+<p>Java was designed to appeal to the C++ programmer. Its syntax was designed to look and
+feel as much like C++ as possible, but at the same time, the language designers made a
+real effort to simplify the language and, in the process, fix some of the things that many
+programmers hate about C++ and to make it easier for novices to learn.</p>
+
+<p>Let&#146;s take a superficial look at some of these similarities and differences.
+Here&#146;s a simple C++ function that performs a bubble sort on an array of integers: </p>
+
+<pre>void bubbleSort(int[] array, int length) {
+    bool didSwap = true;
+    int ceiling = length &#150; 1;
+
+    while (didSwap &amp;&amp; ceiling &gt; 0) {
+        didSwap = false;
+        for (int i = 0; i &lt; ceiling; i++)
+            if (array[i] &gt; array[i + 1]) {
+                int temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+                didSwap = true;
+            }
+        --ceiling;
+    }
+}</pre>
+
+<p>In Java, this code looks virtually identical: </p>
+
+<pre>public void bubbleSort(int[] array) {
+    boolean didSwap = true;
+    int ceiling = array.length &#150; 1;
+    while (didSwap &amp;&amp; ceiling &gt; 0) {
+        didSwap = false;
+        for (int i = 0; i &lt; ceiling; i++)
+            if (array[i] &gt; array[i + 1]) {
+                int temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+                didSwap = true;
+            }
+        --ceiling;
+    }
+}</pre>
+
+<p>This is the kind of thing the designers of Java were going for&#151;code that looks and
+feels as much like C or C++ as possible without inheriting its faults. All of the same
+control structures and operators are there in Java that you&#146;re used to in C++. There
+are only three syntactic differences between these examples: <tt>public</tt>, which
+we&#146;ll examine in more depth later, <tt>boolean</tt> instead of <tt>bool</tt>, and <tt>array.length</tt>.
+The first two are fairly inconsequential, but the last is significant: in Java, array
+notation is not just a different way of writing pointer arithmetic: arrays are treated as
+real objects, and they carry their lengths with them. So the Java function doesn&#146;t
+have to rely on the caller to tell it how long the array is, and it doesn't have to trust
+that the caller told the truth: in Java, the function <i>knows</i> how big the array is,
+because the array carries its length with it.</p>
+
+<p>Of course, if you want a generalized bubble-sort routine that will work on any type,
+you can use templates in C++. Java doesn&#146;t have templates, so generalizing the
+bubble-sort routine is somewhat more complicated, although it can still be done.</p>
+
+<p>The above example hides some of the more important differences between Java and C++,
+however. To take a quick look at some of the differences, we&#146;ll consider a whole
+program: everyone&#146;s favorite, the &quot;Hello, world&quot; program. In C++, it
+generally looks something like this: </p>
+
+<pre>#include &lt;iostream.h&gt;
+
+void main() {
+    cout &lt;&lt; &quot;Hello, world!\n&quot;;
+}</pre>
+
+<p>In Java, this example looks quite a bit different: </p>
+
+<pre>public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println(&quot;Hello, world!&quot;);
+    }
+}</pre>
+
+<p>We&#146;ll take a much more in-depth look at all of these differences in future
+columns, but for now, we&#146;ll highlight a few of them: 
+
+<ul>
+  <li>Java doesn&#146;t have <tt>#include</tt>.</li>
+  <li>Everything (including the <tt>main()</tt> function) is a member of a class in Java.</li>
+  <li>Access specifiers (such as <tt>public</tt>) are part of the declarator syntax in Java,
+    and are stated specifically for each individual class member. Classes also have access
+    specifiers.</li>
+  <li>The <tt>main()</tt> function in Java always takes the argument list, unlike in C++,
+    where it can be omitted. As we saw above, the length of the argument list doesn&#146;t
+    have to be specified separately because the length is a property of the array that can be
+    queried.</li>
+  <li>Character strings in Java are full-fledged objects, not merely pointers to memory that
+    happen to have certain semantics.</li>
+  <li>Calling a static member of a different class has a different syntax in Java than it does
+    in C++ (&quot;<tt>System.out.println()</tt>&quot; in C++ would probably look more like
+    &quot;<tt>System::out-&gt;println()</tt>&quot;).</li>
+  <li>Java doesn&#146;t have operator overloading.</li>
+  <li>The C++ and Java I/O systems are completely different.</li>
+</ul>
+
+<h3>See the C?</h3>
+
+<p>As you can see, despite their superficial similarities, C++ and Java are very different
+languages that evince very different philosophies and objectives. C++ grew out of C, which
+was designed from the ground up as a systems programming language. As a systems
+programming language, it was designed to allow the programmer to get as close to the
+hardware as possible without writing assembly code. As a result, C became known for its
+ability to produce small, fast, tight executable code, although it did this at the expense
+of portability. Because C was so low-level, however, there was very little that either the
+core language or its standard libraries did for you, making many programming tasks
+somewhat more complicated. And its syntax could either be concise and expressive or dense
+and impenetrable depending on who was doing the coding.</p>
+
+<p>C++ originated as an attempt to ease some of the shortcomings of C and add new
+features, including support for object-oriented programming. Over time, new features have
+been added to both the core language and the standard libraries at a prodigious rate,
+leading to a language that is very powerful, but also very complex. C++ is <i>not</i> a
+language for beginning programmers. Some of C++&#146;s complexity and awkwardness lies in
+its origins in C. Since one of C++&#146;s original design goals was backward compatibility
+with C (i.e., valid C code was also supposed to be valid C++ code), it has maintained its
+low-level systems-programming orientation. As new features were added, small, fast code
+continued to be a priority, still often at the expense of portability, clarity, or
+simplicity.</p>
+
+<p>Despite the superficial similarities, Java originated out of an almost diametrically
+opposed set of priorities. Originally designed for TV set-top boxes and other embedded
+systems, simplicity and portability ruled the day at the expense of performance (if not
+small code size). As Sun realized Java&#146;s value as an Internet programming language,
+portability became the primary goal, and such things as the ability to dynamically load
+different parts of a running program from different remote sites became more important. As
+Java was seen as the language to create little one-task mini-applications
+(&quot;applets&quot;) that could be embedded in Web sites, it also acquired a different
+set of requirements for the things it should provide in its standard libraries. And as Sun
+has come to see Java as possibly the only viable threat to total Microsoft/Windows world
+domination, so have the requirements on the language and its standard libraries expanded
+to include virtually everything known to man.</p>
+
+<p>So what we&#146;ve gotten is a language that looks kind of like C++, but which is
+oriented toward portability, distributed applications, and dynamic binding, and which is
+accompanied by a rapidly-growing runtime that is virtually an OS unto itself (and, of
+course, there&#146;s JavaOS, which <i>is</i> an OS unto itself). Microsoft likes to
+portray Java as &quot;just another programming language,&quot; while Sun likes to portray
+Java as something just short of the Second Coming for the computer industry. In some ways,
+both are true and both are false. Java can be used quite fruitfully as &quot;just another
+programming language,&quot; but is really more than that. And the rise of the Internet and
+Java as its lingua franca do promise to wreak dramatic changes in the way both programmers
+and civilians interact with computers, but that promise is a long way from full fruition,
+and there are a lot of obstacles in the way.</p>
+
+<p>So to some degree, comparing Java to C++ is kind of like comparing apples to oranges.
+But comparing apples and oranges is not necessarily a pointless exercise: after all, one
+is better to bake into pies and the other makes a better juice to drink with breakfast.
+It&#146;s all in what you&#146;re trying to do. Over the coming months, we&#146;ll take a
+look at both languages and their standard libraries and try to figure out what
+they&#146;re good for. We&#146;ll start our journey next time with a look at both
+languages&#146; overall structures and object models. We&#146;ll follow that with a closer
+look at Java&#146;s nature as an interpreted, garbage-collected language and what that <i>really</i>
+means. After that, we&#146;ll delve into various smaller facets of the languages, such as
+exception handling, collections, memory management, file I/O, multithreading support,
+distributed-computing support, internationalization, GUI support, and so on, examining the
+strengths and weaknesses of each language.</p>
+
+<p>Hope to see you here.</p>
+
+<p align="center"><small>Copyright ©1998 SIGS Publications, Inc.&nbsp; Used by
+Permission.</small></p>
+</body>
+</html>

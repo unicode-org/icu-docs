@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+<title>Unicode FAQ on GB 18030</title>
+</head>
+<body>
+    <h1>Unicode FAQ on GB 18030</h1>
+
+    <h2>What is GB 18030?</h2>
+    <p>GB 18030 is a new Chinese codepage standard that extends GB 2312-1980 and GBK
+        (which itself is an extension of GB 2312-1980).</p>
+
+    <h2>What is new in GB 18030?</h2>
+    <p>It is a multi-byte encoding using 1-byte, 2-byte, and 4-byte codes.
+        The 1-byte and 2-byte codes have the same assignments as in GBK, which itself is a superset of GB 2312-1980.<br>
+        There are about 1.6 million valid byte sequences.<br>
+        It is not possible to determine if a byte sequence is either 2 or 4 bytes long by just
+        examining the lead byte &mdash; the second byte must be examined as well.</p>
+
+    <h2>Why is GB 18030 important?</h2>
+    <p>The Chinese Government has mandated that all applications released on or after
+        2001-Sep-01 must support GB 18030.</p>
+
+    <h2>How does GB 18030 relate to Unicode?</h2>
+    <p>The specification refers directly to a mapping of GB 18030 codes to and from
+    ISO 10646/Unicode
+        to define most character assignments. Some characters that used to be mapped for GBK to the PUA (Private Use Area)
+        for Unicode 2.1 are now assigned in Unicode 3.0, and their mappings from GB 18030 use only the
+        Unicode 3.0 code points.</p>
+
+    <p>In addition, GB 18030 defines roundtrip mappings for all 1.1 million Unicode code points
+        including unassigned and non-character ones, but excluding single surrogates.
+        This makes GB 18030 functionally very similar to a UTF.</p>
+
+    <h2>If I use Unicode internally, how can I support GB 18030?</h2>
+
+    <p>China has confirmed in discussions with major IT companies that it is
+    sufficient to be able to</p>
+
+    <ul>
+      <li>Input and output text in GB 18030 encoding, and</li>
+      <li>Process the full character repertoire of GB 18030</li>
+    </ul>
+
+    <p>According to current understanding, this means that processes can use ISO
+    10646/Unicode internally if they also provide conversion between GB 18030
+    and ISO 10646/Unicode. This is possible because of the definition of GB
+    18030 with a mapping table to ISO 10646/Unicode.</p>
+
+    <h2>Where can I get a Unicode mapping table for GB 18030?</h2>
+    <p>A Unicode mapping table for GB 18030 in <a href="http://www.unicode.org/unicode/reports/tr22/">XML format</a>
+        is available from the <a href="http://oss.software.ibm.com/icu/charset/">ICU website</a> (.xml and .zip).</p>
+
+    <h2>What about User-Defined Areas in GB 18030?</h2>
+
+    <p>Both GB 18030 and ISO 10646 define sets of &quot;user&quot; codes. The
+    User-Defined Areas in GB 18030 do not correspond 1:1 to Private-Use Areas in
+    Unicode.</p>
+
+    <p>Some assigned characters are mapped from 2-byte parts of GBK and GB
+    18030 to the Private-Use Area in the BMP (U+E000..U+F8FF). A small portion
+    of these mappings have changed between GBK and GB 18030, and GB 18030 maps
+    them instead to Unicode characters that were introduced in Unicode 3.0.</p>
+
+    <p>The User-Defined Areas in the 2-byte parts of GBK and GB 18030 are
+    mapped to other parts of the Private-Use Area in the BMP. Note that <em>all</em> single-byte
+    and 2-byte codes have defined mappings &mdash; they must be mapped according to
+    the standard table.</p>
+
+    <p>Similarly, GB 18030 maps all remaining Unicode Private-Use code points to
+    four-byte GB 18030 codes.</p>
+
+    <p>GB 18030 also provides a User-Defined Area with 25200 four-byte codes,
+    without specified mappings. Normally, they need to be treated as unassigned
+    codes.</p>
+
+    <p>There are some 460000 four-byte codes that are reserved for future use
+    and must be treated as unassigned codes at this point.</p>
+
+    <h2>Is working with the Unicode Private-Use Area a problem?</h2>
+
+    <p>As noted above, all Private-Use code points are mapped to GB 18030 codes.
+    This means that they can be exchanged via GB 18030. In addition to the usual
+    agreement about Private-Use characters between processes exchanging them,
+    one must take the GB 18030 assignments into account when exchanging text in
+    GB 18030.</p>
+
+    <p>GB 18030 assigns characters to some of the codes corresponding to
+    Private-Use BMP code points. All other such codes are either User-Defined in
+    GB 18030 or not specified other than through the mapping correspondence.</p>
+
+    <h2>Where can I get more information on GB 18030?</h2>
+    <p>An article with more details and with implementation suggestions is available on the
+        <a href="http://oss.software.ibm.com/icu/docs/papers/gb18030.html">oss.software.ibm.com/icu/</a> site.</p>
+
+</body>
+</html>

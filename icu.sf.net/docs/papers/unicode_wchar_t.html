@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>What size wchar_t do I need for Unicode?</TITLE>
+<META NAME="KEYWORDS" CONTENT="Unicode, internationalization, globalization, translation, NLS, Unicode papers, Unicode information, Unicode whitepapers, IBM">
+<META NAME="ABSTRACT" CONTENT="The Unicode zone on the developerWorks Web site is your developer resource for building applications for a worldwide audience.">
+<META NAME="DESCRIPTION" CONTENT="The Unicode zone on the developerWorks Web site is your developer resource for building applications for a worldwide audience.">
+</HEAD>
+<BODY>
+
+	<h1>What size wchar_t do I need for Unicode?</h1>
+	<p>C strings and C data types for Unicode, dual types for both models</p>
+	
+	<p>Markus Scherer
+        <br>Software Engineer, IBM Unicode Technology Group
+	<br>March 2000</p>
+
+	<p>Originally published on <a href="http://www.ibm.com/developerWorks/unicode/">http://www.ibm.com/developerWorks/unicode/</a></p>
+
+<P><em><code>wchar_t</code> is compiler-dependent and therefore not very portable. Using it for Unicode binds a program to the character model of a compiler. Instead, it is often better to define and use dedicated data types.</em></P>
+
+<P><code>wchar_t</code> is defined for the C standard library, where <code>char</code> and <code>wchar_t</code> form a dual-type system. In the original design, <code>char</code> is the base type for character strings, while <code>wchar_t</code> is large enough to hold any single code point in one integer value. This is necessary because a char type can represent only 256 different values (with typical modern C compilers), but large character sets have thousands of characters. (For the differences between "character" and "code point," see <a HREF="#resources">Resources</a>.)</P>
+
+<P>This design assumes byte-based encodings (a <code>char</code> holds a byte value). Large character sets are stored in <code>char</code>-based strings in a <it>multibyte</it> encoding, which means a single code point may occupy multiple bytes (<code>char</code>s). Common encodings use up to four bytes for each code point. (For an overview of code pages, see <a HREF="#resources">Resources</a>.)</P>
+
+<P>For example, assume that the current encoding is Shift-JIS (for Japanese), and that <code>wchar_t</code> is defined to be an unsigned 16-bit type:</P>
+
+    <pre>
+    typedef unsigned short wchar_t; /* 16 bits */
+
+    char string[4]={ 0x61, 0x81, 0x61, 0 };
+    wchar_t wide[3]={ 0x0061, 0x8161, 0 };</pre>
+
+<P>The "string" array contains three characters: A lowercase "a", represented by a single byte 0x61; a Japanese character, represented by two bytes 0x81 and 0x61; and a terminating
+NUL, represented by a 0-byte value. The value 0x61 actually occurs both as a single-byte value and as the second byte in a multibyte representation.</P>
+
+<P>The "wide" array contains the same three characters, but each one is represented by a single 16-bit value.</P>
+
+<P>The C standard does not specify the exact type for <code>wchar_t</code>. It is compiler dependent and may be 8, 16, or 32 bits wide (on modern machines), signed or unsigned. The choice depends on what encodings are expected to be processed on a particular platform. The standard also does not specify the representation of a multibyte code point with a <code>wchar_t</code> value: it is encoding- and library-dependent (except that a single-byte code point must have the same integer value in char and <code>wchar_t</code> types).</P>
+
+<P>Unicode was designed from the ground up, and it is not byte based. It specifies a code point range from 0 to
+0x10ffff, so that a data type for single Unicode characters needs to be at least 21 bits wide. The closest C data type is a 32-bit integer. Such a type for a single code point has a similar function as <code>wchar_t</code> in the C standard, except that <code>wchar_t</code> is not guaranteed to be large enough for Unicode code points.</P>
+
+<P>For strings, Unicode libraries and applications often do not use a 32-bit base type because 11 bits in each value would never be used. They typically define an 8- or 16-bit type for this purpose, depending on platform considerations.</P>
+
+<P>This results in the same kind of dual-type architecture for Unicode as for legacy encodings. The difference is that traditionally, the string base type was fixed (byte, char), and the single-character type depended on the platform. With Unicode, the single-character type is fixed by design (it needs to hold values up to
+0x10ffff), while the string base type depends on the platform. In both cases, characters in strings typically use a variable number of "code units," or base type values.</P>
+
+<P>For example, here are common type definitions for Unicode:</P>
+
+    <pre>
+    typedef unsigned short UChar; /* 16 bits */
+    typedef unsigned long UChar32; /* 32 bits */
+
+    UChar string[4]={ 0x0061, 0xdbd0, 0xdf21, 0 };
+    UChar32 codePoints[3]={ 0x00000061, 0x00104321, 0 };</pre>
+
+<P>Again, both arrays contain three characters (code points): A lowercase "a"; a code point near the top of the Unicode range, represented by two UChar values in the "string" array; and a terminating
+NUL.</P>
+
+<P>The Unicode standard defines three encoding forms, UTF-8, UTF-16, and UTF-32, for storing Unicode in strings with base types that are 8, 16, or 32 bits wide, respectively. UTF-16 is the preferred form because it is easy to handle, and most characters fit into single 16-bit code units. UTF-32 has the advantage of being a fixed-width encoding form, but it uses a lot more memory. UTF-8 is designed for systems that need byte-based strings; it is the most complicated Unicode encoding form. It uses less memory than UTF-16 for Western European languages, but almost the same amount for Greek, Cyrillic, and Middle-Eastern languages, and more for all East Asian languages. (For more details on encoding forms, see <a HREF="#resources">Resources</a>.)</P>
+
+<P>On some platforms, the definition of <code>wchar_t</code> is suitable for either the Unicode string base type (code unit, UChar) or the Unicode single code point type (UChar32). This can make it easier to use string- or character-based system APIs or standard library functions.</P>
+
+<P>See the <a HREF="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/source/common/unicode/utf.h">example of actual definitions of C types for Unicode</a>, using <code>wchar_t</code> if possible.
+
+<h2><a name="resources"></a>Resources</h2>
+	<UL>
+	   <LI>For a discussion of characters, code points, and code units, see "<a HREF="http://www.unicode.org/unicode/reports/tr17/">Unicode Technical Report #17 - Character Encoding Model</a>"</LI>
+	
+	   <LI>To learn more about code pages, see "<a HREF="http://www-106.ibm.com/developerworks/library/codepages.html">A brief introduction to code pages and Unicode</a>," <i>developerWorks</i>, by Markus Scherer</LI>
+	   
+	   <LI>For details on encoding forms, see "<a HREF="http://www-106.ibm.com/developerworks/library/utfencodingforms/index.html">Forms of Unicode</a>," <i>developerWorks</i></LI>
+	</UL>
+
+</body>
+</html>

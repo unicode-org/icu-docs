@@ -1,0 +1,606 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>An Introduction to Garbage Collection, Part II</title>
+</head>
+
+<body>
+<font FACE="Arial" SIZE="5">
+
+<p>An Introduction to Garbage Collection </font><font FACE="Arial" SIZE="4">Part II&#151;A
+Look Under the Hood<br>
+</font><font SIZE="4"><i>by Richard Gillam<br>
+Advisory Software Engineer<br>
+IBM Center for Java Technology-Silicon Valley</p>
+</i></font>
+
+<p><a href="an_introduction_to_garbage_collection_part_i.html">Last month</a>, I talked about how there seem to be a lot of
+misconceptions about garbage collection floating around in the C++ community, part of what
+seems to be a big backlash against the Java fad (or &quot;Java revolution,&quot; if you
+want to be more positive about it). I promised I&#146;d take a look at what really goes on
+inside a garbage collector and try to dispel some of the mystery involved and inject some
+reality into the debate.</p>
+
+<p>Then I spent all my time talking about how regular C++ memory management works, looked
+at some of the common programmer tricks, and examined reference counting as an avenue for
+automatic memory management. We needed that background to really look objectively at
+garbage collection. Now that we have it, I can make good on my original promises.</p>
+
+<p>The term &quot;garbage collection&quot; is usually used to refer collectively to all
+techniques for automatic memory management, and therefore, reference counting can be
+thought of as a form of garbage collection. In fact, many implementations (especially
+early ones) of so-called &quot;garbage-collected languages&quot; such as Lisp and
+Smalltalk actually used reference counting as the basis of their memory-management
+subsystems.</p>
+
+<p>As we saw last time, the biggest problem with reference counting is its inability to
+handle self-referential data structures. If you want to handle cyclical structures
+correctly, you can&#146;t rely on just twiddling a reference count every time an object
+picks up or drops a reference to another object. Instead, you have to effectively generate
+the reference counts on the fly at a given moment in time and then use that to decide
+which objects to delete. (For reference counting schemes that use small reference counts
+that peg the count at a maximum value, such as one-byte or one-bit schemes, this is
+exactly what you have to do to handle cycles and un-stick the reference counts.)</p>
+
+<p>The basic approach is to start from every object that is statically accessible
+(it&#146;s on the stack or in static space, in C++ terms) and follow all of their
+references, then follow all of <i>their</i> references, and so on. The objects which are
+statically accessible are called the <i>root set. </i>Every object you can get to by
+following pointers from somewhere in the root set is <i>live.</i> Those that you
+can&#146;t get to from the root set can&#146;t be accessed from the running program;
+they&#146;re <i>garbage.</i> This general approach, following every reference from the
+root set until you&#146;ve seen every live object is called <i>tracing garbage collection</i>
+(because you&#146;re &quot;tracing&quot; all the possible reference paths). The collective
+term &quot;garbage collection&quot; is also often used to refer just to tracing
+techniques, rather than to all automatic memory-management techniques.</p>
+
+<p>There are two primary categories of tracing garbage collection, with dozens of
+variations and hybrids.</p>
+
+<h3>Mark-sweep garbage collection </h3>
+
+<p>The oldest and simplest for of tracing collection is <i>mark-sweep garbage collection.</i>
+The basic approach is quite simple: assume each object on the heap has a &quot;mark&quot;
+bit in its block header. Walk the whole heap and clear every object&#146;s mark bit. Then,
+go back and set the mark bit in every object that&#146;s referred to from the root set.
+Then recursively walk the whole reference tree. For every object you&#146;re just marked
+that refers to other objects, mark every object the object refers to that isn&#146;t
+already marked and then repeat the process again with each of the objects the object
+you&#146;re working on refers to. Eventually, each chain of recursion will hit an object
+that contains no references to other objects at all, or contains only references to
+objects that have already been marked, and will terminate. At the end of this pass, only
+the objects that are reachable from the root set will be marked. You can now walk the heap
+again from beginning to end and delete any objects that aren&#146;t marked (this is the
+&quot;sweep&quot; part).</p>
+
+<p>In practice, the first pass, where you clear all the mark bits, can &quot;execute&quot;
+in zero time. This is because at the end of a garbage-collection pass, everything that has
+its mark bit set a certain way is garbage and is deleted. The objects that are left will
+all have their mark bits set the same way, so you can consider yourself to have
+&quot;cleared&quot; their mark bits just by switching your definition of which value means
+&quot;marked&quot; and which means &quot;not marked.&quot; So mark-sweep garbage
+collection takes two passes.</p>
+
+<p>This is pretty nice. It&#146;s simple and obvious, it&#146;ll do the job with no
+intervention from the user, and it handles cycles in the reference graph correctly.
+However, mark-sweep garbage collection is still generally based on the traditional
+new/delete implementations I described above and will inherit their limitations, such as
+fragmentation and locality of reference problems (actually, the sweep pass can be
+optimized so that it&#146;s quite a bit faster than just doing a lot of deletes on the
+garbage objects would normally be). In addition, the recursion takes up more memory, even
+through you generally don&#146;t do a garbage-collection pass until you&#146;re starting
+to run out of memory. And, of course, the program grinds to a halt while garbage
+collection happens, which can take a while if there are a lot of objects on the heap,
+especially if a lot of them turn to garbage.</p>
+
+<p>Despite these limitations, there are a lot of pretty successful runtimes based on
+mark-sweep garbage collection. It also works nicely as an adjunct to other forms of memory
+management, especially one-bit reference counting, lends itself well to incremental
+implementations, and is the best algorithm to use for certain types of memory-management
+situations.</p>
+
+<h3>Copying garbage collection</h3>
+
+<p>The other classical garbage collection algorithm is called <i>copying garbage
+collection.</i> It&#146;s a little bit more complicated.</p>
+
+<p>Start by imagining that instead of one heap, you have two. In other words, the
+available heap space is partitioned into two segments of equal size. At any given time,
+one of these is active&#151;as far as the program is concerned, it&#146;s &quot;the
+heap.&quot; When you run a garbage-collection pass, you follow links from the root set,
+just like in mark-sweep collection. However, for each new live object you hit, instead of
+just setting a mark bit, you copy it into the other heap and adjust the pointer referring
+to it so that it points to the copied object in its new location. At the end of a garbage
+collection pass, all the live objects have been copied into the inactive heap, which is
+now considered the active heap. The other heap, which is now inactive, contains only
+garbage and can be overwritten with impunity during the next garbage collection pass.</p>
+
+<p>Of course, all the pointers have to be adjusted properly. This can be accomplished
+quite simply: when each object is copied into the new heap, a <i>forwarding address</i> is
+left where the object used to be (remember that each block is guaranteed to be big enough
+to hold the forwarding address), and its block header is overwritten with a sentinel value
+that says the block has already been copied. After the block has been copied, every new
+object you find that refers to it will be pointing to the forwarding address. You just
+stamp the forwarding address over the old address and you&#146;re done. When you copy a
+forwarding address, you know that object has already been seen by the garbage collector,
+so you don&#146;t need to follow the link.</p>
+
+<p>Copying garbage collection is cool. Here&#146;s why: objects are allocated from one end
+of the heap to the other, and a whole sub-heap is reclaimed at once. This means that the
+only state the memory manager has to maintain is a pointer to where the next object to be
+allocated will be. Newing up an object is cheap: all you have to do is increment the
+next-object pointer by an appropriate amount. This is just about as cheap as stack
+allocation. You also know immediately when the sub-heap is full. Deleting an object
+effectively costs nothing: an entire sub-heap is declared to be free memory at the end of
+a garbage-collection pass. In other words, instead of paying to create and delete an
+object, you pay to <i>keep it around.</i> Objects that come and go quickly cost
+practically nothing. (Well, because they cause the collector to fire more often, they
+don&#146;t really come for free, but it can be made to be pretty close.)</p>
+
+<p>Copying collection also means you have no problems with fragmentation: after any
+garbage-collection pass, all the live objects are packed down at one end of the currently
+active heap. Copying collection can also give you much better locality of reference.
+Because objects are allocated at sequential addresses, objects allocated at the same time
+are guaranteed to occupy a contiguous range of memory. With conventional memory-management
+techniques, you can&#146;t guarantee this because of potential fragmentation. Furthermore,
+because a garbage collection pass copies objects that refer to each other sequentially,
+you will wind up with objects that <i>weren&#146;t</i> allocated at the same time, but
+which point to each other, near each other in memory after a garbage collection pass.</p>
+
+<p>So newing and deleting objects is really cheap: effectively, heap allocation with
+copying garbage collection is as cheap as stack allocation, meaning we can actually get
+rid of stack allocation altogether. C++ programmers tend not to think this way: we&#146;re
+trained to see heap allocation as expensive and therefore something to be avoided when
+possible. With a copying collector, this isn&#146;t true. Newing up an object costs you no
+more than allocating it on the stack would. And on top of this, you don&#146;t have to
+worry about fragmentation and you get greatly improved locality of reference.</p>
+
+<p>Of course, copying collection has some serious drawbacks, too. The first is the most
+obvious: at any given time, only half of the memory in the program&#146;s address space is
+actually available to store program data. This can be a <i>huge</i> drawback, both because
+it means you have less space to store stuff, and because it means the collector has to run
+more frequently. Also, instead of paying to create and delete objects, you pay to keep
+them around. Thus, the bigger the objects are, or the longer they stay around, the more
+you pay. Copying garbage collection works best when the ratio of live blocks to garbage
+blocks at any given time (the program&#146;s <i>residency</i>) is relatively low. The more
+blocks persist across collection passes, the worse copying collection&#146;s performance
+becomes. In fact, copying collection&#146;s performance degrades exponentially as
+residency increases; mark-sweep collection&#146;s performance degrades linearly with
+residency. So there&#146;s a point where mark-sweep does a better job.</p>
+
+<h3>Hybrid approaches</h3>
+
+<p>One way to deal with the problem is through a hybrid approach. We know that there are
+going to be a lot of objects that are created during program initialization and which
+persist for the entire duration of the program (in C++, there are pointers declared <code>const</code>;
+in Java, they&#146;re object references declared <code>final</code>). The compiler knows
+which objects these are and can shunt them to a separate area of memory that isn&#146;t
+subject to garbage collection (basically, an extension of C++ static space). You can also
+reduce the impact of large objects by moving them off into a special memory space of their
+own. The so-called &quot;large object space&quot; would be managed separately by
+mark-sweep garbage collection. These two techniques can go a long way toward reducing the
+residency of the spaces controlled by copying collection. Using these techniques increases
+complexity, and further reduces the space available for normal objects, but we can improve
+on the amount of memory available, and the other changes don&#146;t have a big impact on
+performance and can be transparent to the programmer.</p>
+
+<h3>Mark-compact garbage collection</h3>
+
+<p>The biggest problem with copying garbage collection is the fact that at any given time,
+half of the available memory is designated as garbage and unavailable for newly-allocated
+objects. One approach to solving this problem is a hybrid of mark-sweep and copying
+collection know as <i>mark-compact garbage collection.</i> The idea here is that instead
+of copying each live object to a new heap on every garbage-collection pass, you compact
+all the live objects down to one end of the heap. In mark-compact collection, you make
+three passes. On the first pass, you do the same thing you&#146;d do in mark-sweep
+collection, except that you also keep track of where each object will be located after the
+collection pass and write a forwarding address into the object&#146;s block header when
+you mark it. (Yes, this means adding extra space to every object&#146;s block header.) On
+the second pass, you go through every live object and update all of its pointers to other
+objects based on the forwarding addresses in the block headers (if you know an object
+contains no pointers to other objects, you can skip it, so there&#146;s usually a way for
+the collector to detect this easily). Finally, on the third pass, you move each live
+object to its new location. At the end of the pass, all the live objects are gathered at
+one end of the heap and the rest of the heap is available for new objects.</p>
+
+<p>Obviously, this approach will tend to be slower then both mark-sweep and copying
+collection, but, as with copying collection, newing and deleting objects is very cheap and
+keeping them around is expensive, and it can be designed to give good locality of
+reference (although not as good as pure copying collection). The compacting step&#146;s
+performance can be improved by trying to avoid moving most live objects and copying only
+some of them into the holes left by garbage objects (this is called &quot;two-finger
+compaction&quot;). This has some drawbacks, however: it will tend to waste memory due to
+fragmentation, it tends to damage locality of reference, and it places a greater burden on
+the pointer-updating pass.</p>
+
+<p>One common arrangement is a garbage collector that uses straight copying collection
+most of the time and switches automatically to compacting collection when the heap&#146;s
+residency grows too large to maintain two heaps. Again, this increases complexity (and can
+hurt collection performance), but all of the extra complexity can be hidden from the
+programmer.</p>
+
+<h3>Generational garbage collection</h3>
+
+<p>Another approach that has gained a lot of favor recently for improving the performance
+of the traditional techniques is something called <i>generational garbage collection.</p>
+</i>
+
+<p>To understand how generational collection works, imagine that the heap is divided into <i>three</i>
+partitions instead of two. Two are the same size; the third need not be&#151;it can be
+bigger or smaller. We&#146;ll call this third partition the <i>ephemeral</i> partition,
+and we&#146;ll call the other two the <i>persistent</i> partitions. All objects start out
+in the ephemeral partition. When the ephemeral partition is collected, all the objects in
+it that are still live are copied into one of the persistent partitions. With every
+garbage collection pass, every object in the ephemeral partition is either copied out, or
+is garbage. The two persistent partitions work the same way they do in normal copying
+collection. Notice that this technique increases the amount of memory available for new
+objects&#151; only half of the persistent space, not half of the whole heap, is now
+off-limits.</p>
+
+<p>Of course, we increase the frequency of garbage-collection passes, which can hurt us.
+But we can take advantage of a common property of programs: objects tend to die young. As
+a general rule of thumb, an object will either die when the function that created it
+terminates, or it&#146;ll stick around for a while. Generally, the longer the object
+sticks around, the longer we can expect it to continue to stick around.</p>
+
+<p>So we can take advantage of these facts by collecting the ephemeral partition more
+often then we collect the persistent partition. And since the ephemeral partition will
+tend to have a much lower residency (live-objects-to-garbage ratio) than the persistent
+partitions, a garbage collection pass that just covers it can be much quicker (remember
+that we only pay when an object survives a collection).</p>
+
+<p>This is the principle behind generational garbage collection. Each time an object
+survives a collection, it is promoted to a higher <i>generation.</i> Older generations are
+collected less often than younger generations, since we assume most of the garbage is in
+the younger generations.</p>
+
+<p>Now there&#146;s a problem here. Let&#146;s go back to our simple example where we have
+only two generations, the ephemeral and persistent generations. You create an object, and
+it sits around for a while, long enough to survive a collection and get promoted into the
+persistent generation. Now you call a setter method on it, passing that method a
+newly-created object. You&#146;ve now fixed things so that an object in the persistent
+generation points to an object in the ephemeral generation. This is an example of an <i>inter-generational
+reference.</i> Inter-generational references are the bane of generational garbage
+collection. This is because what you really want to do is treat each generation as a
+completely independent heap. Otherwise, you have to trace through every object on the heap
+with every garbage collection pass, which means the only time you save is the actual
+copying time, a small fraction of the time you can save if you don&#146;t have to trace
+through the objects in other generations.</p>
+
+<p>It&#146;s probably reasonable to declare that when you collect any generation, you also
+have to collect all the younger generations. This takes care of half the problem: you no
+longer have to worry about younger-to-older references. But older-to-younger references,
+such as in our example above, are still a problem.</p>
+
+<p>There are a number of ways to deal with inter-generational references, but they all
+impose a cost on pointer assignment. The basic idea is that any reference from an older
+generation to a younger one is treated as part of the younger generation&#146;s root set,
+or that an older-to-younger pointer automatically causes the object in the younger
+generation to be promoted. One way to accomplish this is for each generation (except the
+oldest) to maintain a list of objects in older generations that point into it, and to
+consider these to be part of the generation&#146;s root set the next time you collect it.
+Another way, which will occasionally cause objects to persist longer than they need to, is
+to have each object&#146;s block header contain a flag that says &quot;promote me no
+matter what.&quot; (This approach saves memory, but also means you&#146;d have to make an
+extra pass through the generation to make sure you catch all the &quot;promote me&quot;
+objects that weren&#146;t also referred to from inside the generation.)</p>
+
+<p>In either case, though, you have to catch the inter-generational reference when
+it&#146;s first set up. The easiest way to do this is for every pointer assignment to do a
+quick check to see whether the new value points into a younger generation. If it does,
+then you add the object being changed to the younger generation&#146;s root set.
+Performing this check all the time hurts, however. It can roughly double the amount of
+time taken by the change over the time required for a simple pointer assignment. But this
+extra time can be made up for by the increased overall performance of generational
+collection.</p>
+
+<p>If the compiler knows about the collection algorithm, it can also get rid of many
+common cases by detecting inter-generational assignments at compile time. This won&#146;t
+always work, of course, but if you know, for example, that the ephemeral generation always
+gets collected when a function returns (i.e., it serves as the &quot;stack&quot;), then
+you can detect cases where a new object is automatically assigned to something other than
+a local variable and automatically new up the new object in the same generation as the
+object that is going to point to it. This can cut down a lot on the amount we have to
+check for inter-generational references.</p>
+
+<p>Even with this drawback, we can thus improve on many of our performance and memory
+usage problems by using a generational algorithm. A typical implementation might include
+an ephemeral genreration, one or more generations where objects are aged, and a final,
+&quot;eldest,&quot; generation where objects end up if they persist long enough. You can
+cut out wasted memory by making the eldest generation use mark-sweep or mark-compact
+collection all the time.</p>
+
+<h3>Incremental garbage collection</h3>
+
+<p>One problem all of these approaches share is the fact that the garbage collector
+can&#146;t run continuously in a separate thread while the rest of the program is doing
+its thing, and you can&#146;t stop the collection in the middle (at least not without
+having to start over from scratch the next time). Generational collection can minimize the
+time wasted for any given collection pass, but you still have to stop and collect (and you
+still have to collect the whole heap from time to time).</p>
+
+<p>There are modifications for both of the classical techniques that allow them to work in
+a multithreaded environment. The sweep pass of mark-sweep collection can happen while the
+program is doing useful work. The mark pass can also be stopped and restarted, but only at
+a cost. If you change any object that&#146;s already been marked, you have to catch that
+change and add the object back into the list of objects that have to be traced. This again
+can add to the cost of pointer assignment, but here, if you have cooperative hardware, you
+can get the hardware to help you. You&#146;d just mark each object that&#146;s been marked
+as protected memory and then trap the protection violation that occurs when the object in
+question is written to.</p>
+
+<p>Copying collection is harder. The same techniques used for mark-sweep collection can
+work, but they cost more. An alternative is to break available memory into <i>three</i>
+partitions, one of which is garbage, one of which is where new objects go, and the third
+of which contains stale references. This works with no extra cost on pointer assignments,
+but wastes <i>lots</i> of memory.</p>
+
+<h3>Low-level issues</h3>
+
+<p>So far, I&#146;ve glossed over some of the low-level issues. Let&#146;s take a few
+minutes to examine them now.</p>
+<b>
+
+<p>Root set. </b>One is that the root set can potentially be large. In a garbage-collected
+language like Dylan, however, this isn&#146;t necessarily true. Instead of having separate
+stack and static areas, blocks of local and global variables can be allocated on the heap
+just like user-created objects. The root set, then, is just a couple of registers pointing
+to the local and global variables (which may themselves be linked lists of variable blocks
+[&quot;stack frames&quot;]). This technique can probably be used in Java as well.</p>
+<b>
+
+<p>What&#146;s a pointer?</b> Another issue we&#146;ve glossed over so far is the question
+of how the garbage collector can tell the difference between a pointer and some other kind
+of data. There are two ways of doing this: In some languages, such as Dylan, any type of
+object can be stored in any variable (variables can be &quot;specialized,&quot; which
+allows compile-time type checking too, but support for untyped variables must be there).
+In this case, every variable is the same size, so you know where all the variables are,
+restricting your problem to distinguishing between pointers and immediate values. The
+language must use some kind of encoding to enable the garbage collector to distinguish an
+immediate value from a pointer simply by looking at the value itself. For example, you can
+take advantage of the fact that all objects (in most memory models) are allocated at
+long-word boundaries. If a pointer variable is a regular machine pointer, that means (on
+most architectures), that the two least significant bits of all pointers must be 0. So if
+either of those bits is 1, you know you&#146;re dealing with an immediate value. This can
+slow arithmetic down a bit, and means integer variables have one bit less of precision,
+but these drawbacks can often be optimized out at compile time.</p>
+
+<p>Java doesn&#146;t have this problem because Java doesn&#146;t have untyped variables,
+and unlike Dylan, there&#146;s a hard-and-fast difference between an &quot;object&quot;
+and a &quot;primitive type.&quot; Only primitive types are stored as immediate values. All
+objects, even small ones like Integer, are stored as pointers. So if the compiler knows
+the language is garbage collected, it can supply extra information that is available at
+run time (probably in a class definition somewhere) that the garbage collector can use to
+determine which variables in an object are pointers that need to be followed.</p>
+
+<p>C++ poses an additional problem. Because the language doesn&#146;t require garbage
+collection, a garbage collector in a C++ program is usually a bolted-on third-party
+library. This means the compiler (most of the time) can&#146;t supply extra information
+that&#146;s available to the garbage collector at runtime. Garbage collectors for C++,
+therefore, usually use a technique called <i>conservative garbage collection.</i> The
+basic idea behind conservative collection is to make as few assumptions as possible about
+the data you&#146;re looking at. If there&#146;s any doubt whatsoever about whether a
+particular value is a pointer or something else, assume it&#146;s a pointer.</p>
+
+<p>This, of course, imposes some restrictions on what the programmer can do. If a pointer
+is &quot;disguised&quot; in some way, the collector can&#146;t see it. You also can&#146;t
+calculate addresses of objects from the addresses of other objects or &quot;poke&quot;
+arbitrarily into memory. Generally, these aren&#146;t good ideas in any case, but you have
+to be aware of them.</p>
+
+<p>More importantly, there are significant restrictions on how the collector can operate.
+If you try to follow something that isn&#146;t really a pointer, you may generate a
+machine exception, so you have to be sure to catch machine exceptions. Copying collection,
+or other schemes that move blocks around in memory, generally isn&#146;t feasible because
+you can never know for sure that the thing you&#146;re looking at is really a pointer that
+can be changed (and which points to something that can be moved). Mark-sweep collection
+also has to be implemented differently because you can&#146;t rely on the presence of a
+block header (you don&#146;t know for sure you&#146;ve followed a real pointer). If you
+hook into <code>malloc()</code> and <code>free()</code> and replace them with your own
+allocation schemes, you can control some of these problems by ensuring that memory is
+allocated only from well-defined zones and by putting some kind of sentinel value in your
+block headers so that the collector can tell for sure (or at least with more certainty)
+what&#146;s a pointer and what isn&#146;t. And of course, the whole process goes slower
+because you follow more dead ends and have to perform more checks. Even so, there have
+been tests that show a good conservative collector can perform <i>better than </i>manual
+memory management for most C++ programs [find citation].</p>
+<b>
+
+<p>Memory used by the collection process.</b> Another issue we&#146;ve glossed over is the
+fact that the garbage collector itself requires memory to do its job. A simple collection
+implementation would use recursion to follow all the pointers. This basically means the
+collector is using the machine stack for its temporary scratch space, raising the danger
+of stack overflow.</p>
+
+<p>Of course, on many architectures, you can use memory protection to detect stack
+overflow before anything is messed up, but you&#146;d need some kind of backup plan for
+handling stack overflow. Another option is for the garbage collector itself to squirrel
+away some memory it can use to do its job. Again, though, if you run into a situation
+where there are more live blocks than you planned for when you allocated the scratch
+space, you&#146;re in trouble. You could also have the collector use regular heap space
+itself, but since the collector is usually supposed to run in low-memory conditions, this
+doesn&#146;t seem like a good idea.</p>
+
+<p>There are a number of schemes for keeping track of which blocks need to be checked <i>in
+place,</i> or through the use of an extra scratch variable in each block&#146;s block
+header. This eases the memory problem, but at a considerable cost in performance. In any
+event, most garbage collectors don&#146;t use regular machine-stack space, or use it only
+in combination with some kind of more-robust backup scheme. </p>
+
+<h3>Finalization</h3>
+
+<p>In C++, when an object is destroyed and its memory reclaimed, its destructor is called.
+The main use of destructors is to delete subordinate objects and reclaim their memory, and
+of course, if you&#146;re using garbage collection, this isn&#146;t necessary. But often
+other things are done in an object&#146;s destructor: operating-system data structures are
+reclaimed, files are closed, counts or other internal statistics are adjusted, and so on.
+In a garbage-collected language, these types of features are enabled through the use of
+something called <i>finalization.</i> Basically, you can specify a method that is to be
+called before the garbage collector deletes an object. In Java, you do this by defining a
+method called <code>finalize()</code> for the object.</p>
+
+<p>Finalization can&#146;t really be implemented without some cooperation from the garbage
+collector. The basic idea is that every live object in the runtime that has finalization
+enabled is stored in a list that is maintained by the memory manager. We&#146;ll call it
+the &quot;finalization enabled&quot; list. At the beginning of a garbage-collection pass,
+the objects in this list are moved to a second list, the &quot;to be finalized&quot; list.
+As each object is encountered during garbage collection, it&#146;s moved back to the
+&quot;finalization enabled&quot; list. At the end of the pass, anything still in the
+&quot;to be finalized&quot; list is garbage. Naturally, the finalization lists are not
+considered part of the root set by the garbage collector, so the actual process of garbage
+collection is not affected.</p>
+
+<p>Once you&#146;ve finished a collection pass, you have a list of objects that need to be
+finalized. One by one, each object&#146;s finalization method is called, after which the
+object can be treated as garbage. The only catch here is that the object&#146;s
+finalization method can &quot;resurrect&quot; it: it could fix things so the object is
+once again reachable from the root set. A simple way to handle this problem is to declare
+resurrecting an object illegal. But this is generally impractical. A better way to avoid
+this is to have a &quot;finalization method called&quot; flag in the object&#146;s block
+header. This flag is automatically cleared when the object is encountered during a
+collection pass, and set by the memory manager after the finalization method has been
+called. If, during the pass that calls the finalization method, an object&#146;s
+finalization method hasn&#146;t been called, the finalization method is called, the flag
+is set, and the object is returned to the &quot;finalization enabled&quot; list. If the
+flag is set, on the other hand, the object can be removed from the finalization lists and
+reclaimed safely.</p>
+
+<p>The two finalization lists&#151; the &quot;finalization enabled&quot; and &quot;to be
+finalized&quot; lists&#151; can be conceptual rather than real. With a mark-sweep
+collector, you can just call the finalization methods on the sweep pass. You don&#146;t
+need to keep track separately of which objects have finalization enabled at all. With
+copying collection, you can get by with just the &quot;finalization enabled&quot; list.
+Just go through it and call the finalization method for any object that hasn&#146;t been
+copied into the new heap zone (i.e., that hasn&#146;t been replaced by a forwarding
+address in its old location). The problem here is that you either have to go back and
+account for resurrection by copying the other objects into the new heap in a separate
+pass, or you have to run another garbage-collection pass right away.</p>
+
+<p>Of course, one problem with finalization is that you have no guarantees of when the
+garbage collector is going to run or when the finalization methods are going to be called,
+meaning it&#146;s possible that there could be a fairly long lapse between when
+you&#146;re actually done with an object and when its finalization method is called. If
+the finalization method is supposed to release a monitor lock, for example, this is a
+problem. There are a couple of solutions to this.</p>
+
+<h3>Controlling garbage collection</h3>
+
+<p>Many programmers complain about the lack of control they have over the performance
+characteristics of garbage collection. What if the garbage collector decides to run right
+in the middle of a time-critical operation? It&#146;s worth pointing out again that with
+manual memory management, you generally have little control over when exactly you&#146;re
+going to pay the price to delete objects either, unless you specifically take measures to
+avoid this.</p>
+
+<p>Typically, garbage-collected languages do provide ways of controlling the garbage
+collection. Almost all languages using garbage collection provide a way for you to force a
+collection pass, or force finalization methods to be called. In Java, you can do this with
+<code>System.gc()</code>. If you&#146;re holding onto system resources that are released
+in finalization methods, this is one way of avoiding holding onto them longer than
+necessary. It&#146;s also a way to allowing you to take time for a collection when
+it&#146;s convenient, rather than just waiting for memory to get low or the collector to
+otherwise decide on its own that it&#146;s time to do a collection.</p>
+
+<p>Conversely, there&#146;s usually a way to suspend garbage collection for a time during
+operations that really can&#146;t be interrupted. You have to be careful with this
+feature, of course, since if you run out of memory, you&#146;re stuck, but it&#146;s
+generally there if you absolutely need it. Java, inexplicably, doesn&#146;t currently
+provide you with a way to do this, although other languages do.</p>
+
+<h3>What garbage collection doesn&#146;t do for you</h3>
+
+<p>Garbage collection isn&#146;t a panacea. First of all, it doesn&#146;t necessarily
+eliminate all memory-management bugs&#151;it just renders them more benign. If the
+collector is working right, you generally don&#146;t have to worry about memory leaks, and
+you don&#146;t have to worry about deleting objects twice or accessing raw memory through
+old pointers. But you do have to worry about who should see changes to a given object.
+Sometimes you need objects or functions to all have their own copies of a particular
+object, and sometimes you need objects or functions to all point to the same object. Doing
+either wrong leads to erroneous results that can be challenging to track down, but at
+least the application won&#146;t crash on you. There are also many times when you have to
+explicitly let go of an object by setting the variable pointing to it to NULL. This is
+particularly a problem with global variables. Failing to do this in a timely manner could
+cause you to hang onto system resources too long, or simply to use more memory than is
+really necessary (a more benign form of memory leak). Garbage collection doesn&#146;t mean
+you don&#146;t have to think about memory management issues; it just makes them easier to
+handle.</p>
+
+<p>More importantly, garbage collection helps you only to manage memory, not to manage any
+of the other resources the system provides to you. In C++, an object can release
+everything it uses in its destructor, not just subordinate data structures. In a
+garbage-collected language, you could theoretically do the same thing with finalization,
+but since you typically don&#146;t have any control over when collection occurs,
+you&#146;ll likely hold onto resources longer than is strictly necessary. For some
+resources, this is fine, but for most, it&#146;s a serious problem.</p>
+
+<p>In C++, it&#146;s a common idiom to wrap all system resources in objects that take
+ownership in a constructor and release ownership in the destructor. When a function uses
+one of these resources, it allocates the appropriate wrapper object on the stack, and the
+resource is automatically released when the wrapper object goes out of scope. This idiom
+doesn&#146;t work with garbage collection.</p>
+
+<p>Languages such as Dylan deal with the same problem using a different idiom. Instead of
+wrapping a system resource in a stack-allocated object, you use the language&#146;s macro
+facility to acquire and release the resource. Instead of</p>
+
+<pre>{
+    CFile theFile(filename);
+    // do stuff with theFile...
+}
+// file is closed when theFile goes out of scope</pre>
+
+<p>in C++, in Dylan, you&#146;d do something like this:</p>
+
+<pre>with-open-file(filename, the-file)
+    // do stuff with the-file
+end with-open-file;</pre>
+
+<p>The <code>with-open-file</code> macro would take care of wrapping the statement body
+(the stuff between &quot;<code>with-open-file</code>&quot; and &quot;<code>end</code>&quot;)
+with the appropriate code to open and close the file. If that code is too complicated to
+compile inline, you can just have the macro call appropriate methods.</p>
+
+<p>Of course, if you&#146;re actually acquiring and releasing system resources in the
+contructor and destructor of a <i>persistent</i> object in C++, you either have to use
+finalization in Java or recast your algorithms to allow more timely acquisition and
+release of the resources in question. This may mean the macro trick can&#146;t be used and
+you have to make all the appropriate calls yourself.</p>
+
+<p>And unfortunately, you <i>always</i> have to make the calls manually in Java, because
+Java doesn&#146;t have a macro language or any similar feature to make handling of
+non-memory resources easier. In my opinion, this is an annoying drawback of Java, but
+sometimes you have to give up something to get something.</p>
+
+<h3>Conclusion</h3>
+
+<p>Well, it&#146;s been a long journey, but I hope I&#146;ve succeeded in my mission here,
+to help explain how garbage collection really works and what kinds of tradeoffs are really
+involved in using a garbage-collected language such as Java versus a language such as C++
+that uses manual memory management. My aim here is not to campaign for garbage collection
+(or for Java), but simply to inject a little more reality into the C++-Java debate. I hope
+this has helped.</p>
+
+<p>I&#146;d also like to point out that my aim here was not to provide a completely
+exhaustive treatment of the subject area, which is easily large enough to fill several
+books (see below). My aim was simply to provide a fairly detailed overview of the subject
+with some possible solutions to some of the problems. I have to confess here that I&#146;m
+no expert in this stuff myself&#151;I&#146;m simply a curious programmer who did a little
+research. I had two primary sources for this article: <i>Garbage Collection: Algorithms
+for Automatic Dynamic Memory Management</i> by Richard Jones and Rafael Lins (John Wiley
+and sons, 1996) is the definitive textbook on automatic memory management and is a
+must-read for anyone implementing a garbage collector or interested in the subject. The
+Harlequin memory management page (<code>http://www.harlequin.com/mm/reference/</code>) is
+a Web site with basic descriptions of various memory management algorithms and a very
+extensive bibliography of papers on different aspects of both manual and automatic memory
+management. It&#146;s also got a pointer to Richard Jones&#146;s Web site, which has an
+even <i>bigger</i> bibliography (probably the most exhaustive one on this subject). Both
+are also well worth checking out.</p>
+
+<p>If you find this article to be well-written and technically accurate, the lion&#146;s
+share of the credit should go to these two sources. If you find errors, they&#146;re mine.
+And as always, I&#146;m interested in continuing my own education on this subject, so if
+you find errors or areas that are incomplete, please write me.</p>
+</body>
+</html>

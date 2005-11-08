@@ -1,0 +1,56 @@
+PMC Meeting Minutes
+===================
+2004-03-03
+
+Attendees (all IBM unless noted)
+=======================
+Doug Felt
+Vladimir Weinstein
+Steven Loomis
+Mark Davis
+Alan Liu
+Ram Viswanadha
+Andy Heninger
+Eric Mader
+Deborah Goldsmith (Apple)
+Craig Cummings (Oracle)
+
+Agenda
+======
+- Doug's opinion/input on what, if any, work remains to support missing JSR-204 APIs in ICU
+- Disabling usage of C++ APIs in binary distributions (jb 3598 tied with jb 3405)
+
+Minutes
+======
+- Disabling usage of C++ APIs in binary distributions (jb 3598 tied with jb 3405): 
+
+Steven: Can this be handled at link time by not exporting C++ Symbols
+Deborah: Would like to control which symbols are exported for developers for guarantee binary compatibility
+Steven: Could have 2 directories one with public headers and one with private headers
+Deborah: Some sort of #define for hiding draft APIs and C++ APIs, so individual app developers can decide if they need binary compatibility or not
+Vladimir: We might be able to get it in 3.0
+Consensus: 
+#define for hiding draft APIs
+#define for hiding C++ APIs
+
+- Doug's opinion/input on what, if any, work remains to support missing JSR-204 APIs in ICU
+Doug: Gave a overview of the APIs that Oracle proposed which did not make it to JSR-204
+
+- CLDR
+Mark: A version of CLDR should be released for 3.0
+Meeting scheduled for Tuesday (9th of march) 8:00am PDT
+
+- BreakIterator tailoring
+Deborah: The default rules not acceptable for Japaneese coustomers
+Mark: A locale variant in ja locale should be enough
+Andy: Conceptually straight forward to pull the rules out of the locale resource bundles but not sure how much work is involved
+Mark: Locale is the mechanism to decide which rules to invoke
+Mark: Language detection needed in ICU. Mozilla has language detection ... may be leveraged.
+
+Action Items
+=========
++ Doug and Craig to develop a minimal set of APIs that should be included in ICU4J and send it out for review
++ Craig to contact Simon Law for figuring out how Oracle should participate in CLDR
+
+
+

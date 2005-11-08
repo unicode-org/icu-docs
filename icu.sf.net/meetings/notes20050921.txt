@@ -1,0 +1,55 @@
+ICU Core Meeting
+Date: Sept 21, 2005 @ 10:00am PT
+
+Attendees:
+George Rhoten
+Andy Heninger
+Ram V
+Markus Scherer
+Vladimir Weinstein
+Doug Felt
+Eric Mader
+Steven Loomis
+Deborah Goldsmith
+Mark Davis (scribe)
+
+- Thai break iterator discussion
+discussion not finished
+
+- Petrifiable class discussion
+Initial discussion of name of clone(). More to come.
+
+- Code page recognition C port - touch base
+Should return pointer to array owned by CharsetMatcher
+
+- BIDI
+discussion not finished
+
+- strategies for implementing "Sideways aliases" CLDR bug 698. (
+http://dev.icu-project.org/cgi-bin/locale-bugs/discuss?id=698 )
+
+Possibilities: per locale, and per list. Agreed in general that it should be per list.
+
+Implementation: need implementation for CLDR tools, ICU4C, ICU4J to be in sync.
+
+General agreement to dd to certain cases (long lists: languages, scripts, regions, currencies, timezones) an element like:
+
+<fallback target="nn_NO sv">
+
+The list would be an explicit "parent" list, as opposed to the normal truncation.
+
+Two alternatives discussed:
+
+A. Ignore all inheritance, all aliases, and all fallbacks in each listed locale. Require that Root be the last locale listed; thus the list would have to be:
+
+<fallback target="nn_NO sv">
+
+B. Same as A, but do normal inheritance from the last locale. Thus aliases, fallbacks, and inheritance would work in that one.
+
+- draft -- agreed to the following:
+
+Shorter draft period. Make the typical draft period 1 release instead of two. Thus normally in the first release an API would be draft, but in the second it would be stable. We would phase this in over 2 releases, since it involves considerable extra work that we'd not planned for in the next ICU release.
+
+Stability on demand. People can work with us before our beta date to establish that a particular API must be stable on first release. If so, then we will work to make that API stable in the first release.
+
+Avoiding @deprecated. In ICU4J, rather than use deprecated, we will produce 2 versions of the source and jar, one with @deprecated added for all @draft API, and one without. Developers can use the one they want.

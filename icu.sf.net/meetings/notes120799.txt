@@ -1,0 +1,100 @@
+Topic:     ICU Development Team Meeting
+Date:      12/07/1999
+Time:      9:00AM - 10:00AM
+Place:     IBM Corp.
+Host:        Helena Shih(hshih@us.ibm.com)
+             IBM Corp.
+
+Attendees:
+  David Craig (NCR)                        david.craig@ncr.com
+  Alan Liu (IBM)                           alan@finwhale.com
+  Markus Scherer (IBM)                     schererm@us.ibm.com
+  Helena Shih (IBM)                        hshih@us.ibm.com
+  Tex Texin (Progress)                     texin@progress.com  
+  Bob Verbrugge (Compuware)                bobv@nl.compuware.com
+  Steve Watt (Progress)                    swatt@progress.com
+  Vladimir Weinstein (IBM)                 vweinste@us.ibm.com
+  Laura Werner (IBM)                       lwerner@us.ibm.com
+
+Minutes Takers:
+  Helena Shih
+
+- Agenda for today's meeting
+- Action items from today's meeting
+- Next meeting schedule
+
+#Agenda for today's meeting#
+
+     - Action item review from the previous meetings
+     - 16th Unicode Conference abstract
+     - Proposal votings
+     - Future meeting schedule
+     - Action items from this meeting
+
+Recap of the action items from previous Meetings:
+
+Current PMC members are,
+
+    Mark Davis
+    Hideki Hiura
+    Helena Shih [alternate: Markus Scherer]
+    Tex Texin [alternate: Steve Watt]
+    Bob Verbrugge [alternate: Jesper Larsen (Jesper_Larsen@nl.compuware.com)]
+    Laura Werner
+
+Action item status:
+      [r] : removed
+      [-] : completed
+      [ ] : open
+
+[ ] T08301999-02 [Tom and Alan] :    Contact each other regarding
+transliteration framework issues.
+[ ] T10251999-06 [All] :             All the ICU development team members
+should subscribe to the ICU mailing lists.
+[ ] T10251999-07 [All] :             Send prioritization comments to
+Helena.
+[ ] T11081999-02 [Laura]          Finalize the name issue with IBM
+marketing.
+[ ] T11081999-04 [PMC members]    Find an alternate for each member of the
+PMC.
+[ ] T11081999-06 [All]            Examine the API change process and submit
+change suggestions to Helena.
+[ ] T11231999-01 [Helena]         Go over the current APIs and mark draft and stable.
+[-] T11231999-02 [Mark]           Send out the java article regarding Collator. (Durable APIs?)
+[ ] T11231999-03 [PMC members]    ICU testing issues.
+[ ] T11231999-04 [Steve Loomis]   Look into Win32 build issues.
+
+2. Feature Request Prioritization
+a. UTF-8 (jitterbug 102) and UTF16 Support (jitterbug 176).  Proposed by David and Tex.
+
+b. C and C++ dependency (jitterbug 177)  Proposed by Bob.
+
+c. Rename errorName() to u_ErrorName() and move the implementation to C.  (jitterbug 175) Proposed by Markus.
+
+3. 16th Unicode Conference 
+
+Tex is still waiting on Mark Lesher to participate.  Helena will contact Qt and glibc representative.
+
+4. Proposal voting
+
+a. jitterbug 142: 3 options are presented for resolving this,
+
+    i. Same behavior as in JDK, always hardcode "he" to "iw" at locale construction tiem.
+    ii. Provide an aliasing mechanism in ResourceBundle.  The look up mechanism will always use "iw" as the alias of "he" if it's specified so in the resource bundle.
+    iii. Only provide support for the new ISO code, e.g. "he".
+
+Voting result: we will adopt option ii.
+
+Mark (absentee): i.  Tex: ii. Laura: don't care.  Helena: ii.  Bob: ii.
+Alan: ii.  David: ii. Markus: ii.  Vladimir: ii.  
+
+#Action Items from This Meeting#
+
+[ ] T12091999-01 [Helena]         Go over the current APIs and figure out which ones needs to enabled for UTF-8 processing.
+[-] T12091999-02 [Helena]         File UTF-8 EBCDIC feature request to jitterbug system.  (jitterbug 178)
+
+#Next Meeting Schedule#
+
+The next ICU meeting will be held on 12/21/1999 from 9AM-10AM PST, 12PM-1PM
+EST.  The call-in number and pass code will be provided at least 24 hour
+prior to the meeting.

@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>20040317icumeeting</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css"><!--
+      body { background-color: #ffffff }
+    --></style>
+  </head>
+  <body>
+  <center><b>Topic</b></center>
+
+    <ol type="1">
+      <li class="row0">10:02am 3/17/2004 - ICU meeting.  Action items with @@</li>
+      <li class="row1">Attendees
+      <ol type="a">
+        <li class="row0">IBM
+        <ol type="I">
+          <li class="row1">George, Markus, Doug, Ram , Alan, Vladimir, Steven (scribe), Andy</li>
+        </ol>
+        </li>
+        <li class="row0">AOL
+        <ol type="I">
+          <li class="row1">Frank Tang</li>
+        </ol>
+        </li>
+        <li class="row0">Apple
+        <ol type="I">
+          <li class="row1">Peter Edberg, Deborah Goldsmith</li>
+        </ol>
+        </li>
+        <li class="row0">Oracle
+        <ol type="I">
+          <li class="row1">Craig Cummings</li>
+        </ol>
+        </li>
+      </ol>
+      </li>
+      <li class="row0">Ram- suppressing draft APIs
+      <ol type="a">
+        <li class="row1">… [<b>reformat this</b>]
+ * will try to get a compilation error for C APIS only
+ * will have a switch to #ifdef out all C++ apis
+ * #define U_DRAFT (not U_CAPI), substitute with static - to cause a compilation error
+ * won&#39;t work for Apple - need control over access to the draft APIs on a per-client basis
+  * but - user will be able to set (based on #defines) whether this is in effect or not.
+ * we are also trying to handle enums and #defines - which we think we can get around by #defining them to &#39;garbage&#39; or something not defined in the library.
+  
+ * U_DRAFT will either be regular export declaration or static.  Will be a header like urename.h
+</li>
+        <li class="row0"> U_DRAFT will either be regular export declaration or static.  Will be a header like urename.h
+        <ol type="I">
+          <li class="row1">will have a compilation error</li>
+        </ol>
+        </li>
+        <li class="row0">Q: [apple] will some compilers complain?
+        <ol type="I">
+          <li class="row1">ram will investigate to make sure we won&#39;t have any trouble on other platforms</li>
+          <li class="row0">we looked at other approaches with undefined prototypes, but that would just produce a warning, and a fallback behavior that would result in the API being redefined to an undefined symbol (link error) - i.e.  ures_open  #defined to ures_open_DRAFT</li>
+          <li class="row1">We do not want to put #ifdefs around each function,
+Also, U_DRAFT provides documentation right there</li>
+        </ol>
+        </li>
+        <li class="row0">C++
+        <ol type="I">
+          <li class="row1">Disabling can be accomplished by not publishing the header files.  (hdrtest has the list)</li>
+          <li class="row0">We don&#39;t have a good idea how to suppress individual methods (in C++) which are draft, </li>
+          <li class="row1">Q:[apple] How to produce the list of C++ files? 
+          <ol type="I">
+            <li class="row0">we could have a make target which removes the C++ files</li>
+            <li class="row1">test/hdrtest/cxxfiles,txt   contains a list of files..  with a # comment. This could work for apple.   Apple would like it if dead C++ files were purged from cxxfiles.txt.  Deborah already filed a bug on a better mechanism.</li>
+          </ol>
+          </li>
+        </ol>
+        </li>
+      </ol>
+      </li>
+      <li class="row0">String Handling - Deborah requested different string handling in our APIs
+      <ol type="a">
+        <li class="row1">Description - Deborah
+        <ol type="I">
+          <li class="row0">Apple String handling
+          <ol type="I">
+            <li class="row1">uses ASCII internally sometimes for efficiency</li>
+            <li class="row0">linear array is inefficient - Apple uses trees to avoid moving (say) 1g of text around if an editor is doing an insert</li>
+          </ol>
+          </li>
+          <li class="row1">Problems
+          <ol type="I">
+            <li class="row0">some APIs, such as regex, require linear array to work</li>
+            <li class="row1">some APIs support abstraction such as character iterator and replaceable, but they are char at a time.  Concerned about slowness using string search, etc. Concerned that two function calls per character could be a problem</li>
+          </ol>
+          </li>
+          <li class="row0">Request
+          <ol type="I">
+            <li class="row1">Make an abstraaction for text access universal, esp across regex</li>
+            <li class="row0">Add a chunky character access, where you can get a chunk.</li>
+            <li class="row1">Critical areas where there must not be a non-inline function call per character.</li>
+          </ol>
+          </li>
+        </ol>
+        </li>
+        <li class="row0">ICU Issues [Markus]
+        <ol type="I">
+          <li class="row1">besides API, would have to rewrite internals such as search engine, for how the internals work.</li>
+          <li class="row0">Q: would an API like incremental conversion work? A: No, Regex requires random access.</li>
+          <li class="row1">Shouldn&#39;t be a unique situation to Apple. Would be nice to have   regex be able to handle UTF8, say.</li>
+        </ol>
+        </li>
+        <li class="row0">could hack something up for regex
+        <ol type="I">
+          <li class="row1">Could have an iterator with two functions - a char, and a chunk</li>
+          <li class="row0">would need to do some mapping between internal char and the original char (say for utf8)</li>
+          <li class="row1">Apple doesn&#39;t attempt to make this work for DBCS or MBCS.</li>
+        </ol>
+        </li>
+        <li class="row0">Would it make sense to make an API that works well for Apple on the interface they want and see how well it works using Replacable?
+        <ol type="I">
+          <li class="row1">Apple: Regex has no comparison (to an existing Unicode regex) currently, but string search is going to be a problem.</li>
+          <li class="row0">Apple Should be able to update character iterator&#39;s API, so that there is a simple Asearch and replace of the caller, to use the chunked API</li>
+        </ol>
+        </li>
+        <li class="row1">Q: We thought that Apple was concerned with C++ apis, is this now a C++ requirement?
+        <ol type="I">
+          <li class="row0">we already have a wrapper for C regex, which calls C++ - concerned about how that implementation does character access.</li>
+        </ol>
+        </li>
+        <li class="row1">could
+        <ol type="I">
+          <li class="row0">... add function pointers to ucharacteriterator which would do fastnext() and fastprev() which would by default call the slow per-char function.   Can accomplish this by setting the bufffer size to 0 so that the per-char function is always called.   This would give us the opportunity to migrate the implementations where it makes sense.. (some services could be migrated to use the new functions.)     </li>
+          <li class="row1">fastnext [inline] would just call through to next() currently.</li>
+          <li class="row0">Frank: is there an issue of needing to access more than 16 bits of a character?  Should the API return 32 bit? 
+          <ol type="I">
+            <li class="row1">A:  no, services detect this situation and fetch the trail surrogate already. UCharIterator is purposely simple.</li>
+          </ol>
+          </li>
+          <li class="row0">@@ Deborah will write up a proposal. Will include the option of client-managed buffering.
+          <ol type="I">
+            <li class="row1">Andy: Regex needs Two new functions . regex is all random access due to backtracking.
+            <ol type="I">
+              <li class="row0">utf32 at index, </li>
+              <li class="row1"> and return a buffer of utf16s  given an index. </li>
+            </ol>
+            </li>
+          </ol>
+          </li>
+          <li class="row0">Also, may be different needs between string search and regex, since string search already uses iterators (collationelementiterator - due to collation complexity.)</li>
+        </ol>
+        </li>
+        <li class="row1">IBM: Scheduling issue for 3.0 on regex. Very slim chance that it would make it. No room for new features, unless we have some help.</li>
+      </ol>
+      </li>
+      <li class="row0">Character properties access speed
+      <ol type="a">
+        <li class="row1">Problem [Apple]
+        <ol type="I">
+          <li class="row0">the way properties lookup is done is too slow</li>
+          <li class="row1">Apple Did some testing</li>
+          <li class="row0">Two forms of lookup
+          <ol type="I">
+            <li class="row1">internal form uses internal property data if already loaded -  Bidi, canonical ordering, and internal-element class (modified GC)</li>
+            <li class="row0">Internal was 2-3x faster than ICU</li>
+          </ol>
+          </li>
+          <li class="row1">Apple uses separate 2-stage lookups per property - 7/9 - a lot of hits for the first 128 char range.</li>
+          <li class="row0">ICU uses a single trie  - people already complain about the size of the property.</li>
+          <li class="row1">Perhaps less-frequent data could be moved to a separate trie? </li>
+          <li class="row0">Also, Longer runs of characters with separate tries per property - don&#39;t need 2ndary and tertiary tables - 5k-8k per property.</li>
+          <li class="row1">Markus optimized the trie -
+          <ol type="I">
+            <li class="row0">which is how we have the 11/5  shift.   </li>
+            <li class="row1">also, we have another indirection - a 16 bit index into a 32 bit (?) word .  Would it be faster and smaller if the 32bit were split into two chunks?</li>
+          </ol>
+          </li>
+          <li class="row0">@@ ICU - Could have an API that gives access to most of the 32 bit word in one call - general property, mirrored,  and others.    Deborah to file jitterbug.
+          <ol type="I">
+            <li class="row1">Some of the bits go to other internal tries - those bits could be set to zero.</li>
+          </ol>
+          </li>
+          <li class="row0">Apple&#39;s critical:   GC, CC, and Bidi category. 
+          <ol type="I">
+            <li class="row1">Could get GC and Bidi - CC is in a different trie.</li>
+            <li class="row0">Q: Which properties are being used by ICU users in general? A: it&#39;s hard enough for ICU to know which companies are using ICU, much less properties!  </li>
+            <li class="row1">Q: is this for rendering?  A: yes, the rendering is the most critical, have to get several properties (bidi, etc).
+            <ol type="I">
+              <li class="row0">Could do a version as a test, which calls ICU for rendering, to the engineers and have them try it.</li>
+            </ol>
+            </li>
+            <li class="row1">Q: There&#39;s a function call that checks if data is already loaded (a static variable).. could find out how much overhead that adds.</li>
+            <li class="row0">Apple has a lot of internal functions.. wants to migrate to ICU for these as long as (a) features and (b) performance is acceptable for adoption.</li>
+            <li class="row1">Q: What happens with the Apple 9/7 shift, with supplementary characters?  A: supplements are handled as exceptions.    Apple has other functions which look up a full UTF32 char, with a ?/?/5 bit shift. </li>
+            <li class="row0">Suggestion - Apple could cache the lookups from the existing ICU api, into a new data structure.
+            <ol type="I">
+              <li class="row1">Don&#39;t have to update the data file, but has fast access.</li>
+              <li class="row0">ICU has lots of constraints on size.  Have to work carefully if we would try to increase the data size.</li>
+              <li class="row1">Footprint is an issue for Apple also - paging etc.</li>
+            </ol>
+            </li>
+          </ol>
+          </li>
+        </ol>
+        </li>
+      </ol>
+      </li>
+      <li class="row0">BreakIterator - George
+      <ol type="a">
+        <li class="row1">Introduction
+        <ol type="I">
+          <li class="row0">Also relevant to future structure of resource bundles (trees)</li>
+          <li class="row1">For 3.0 , will split off collation, rbnf, transliterator data</li>
+          <li class="row0">Q Apple: will this affect locality? I.e. will the data for a given locale be separated, will be on different pages for memory mapping.    A: We could sort by locale so that all the pages of say  &#39;fr.res&#39; and &#39;collation/fr.res&#39; are near each other.</li>
+        </ol>
+        </li>
+      </ol>
+      </li>
+    </ol>
+  </body>
+</html>

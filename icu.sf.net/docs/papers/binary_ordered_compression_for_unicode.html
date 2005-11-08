@@ -1,0 +1,752 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<title>Binary-Ordered Compression for Unicode</title>
+</head>
+
+<body>
+
+<h1 align="center">BOCU</h1>
+<h2 align="center">Binary-Ordered Compression for Unicode</h2>
+<h1 align="center"><font color="#FF0000"><i>Draft 2001-05-30</i></font></h1>
+<p align="center">Mark Davis and Markus Scherer</p>
+<blockquote>
+  <blockquote>
+    <p align="center"><i>Il faut avoir beaucoup étudié pour savoir peu. </i>— Montesquieu<br>  
+    (extrait de <i>Pensées diverses</i>)</p>  
+  </blockquote>
+</blockquote>
+<h2 align="left"><a name="Contents">Contents</a></h2>
+<ol>
+  <li>
+    <p align="left"><a href="#Introduction">Introduction</a></li>
+  <li>
+    <p align="left"><a href="#Structure">Structure</a></li>
+  <li>
+    <p align="left"><a href="#Base_Adjustments">Base Adjustments</a></li>
+  <li>
+    <p align="left"><a href="#Binary_Order">Binary_Order</a></li>
+  <li>
+    <p align="left"><a href="#Variants">Variants</a></li>
+  <li>
+    <p align="left"><a href="#Test_Results">Test Results</a></li>
+  <li>
+    <p align="left"><a href="#Sample_Code">Sample Code</a></li>
+</ol>
+<h2 align="left"><a name="Introduction">Introduction</a></h2>
+<p align="left">BOCU is a general compression format for Unicode. It has a number of very useful characteristics compared to either UTF-8 or to <a 
+href="http://www.unicode.org/unicode/reports/tr6/">SCSU</a>.<br>
+The principal form of BOCU, used in most cases, is <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/conversion/bocu1/bocu1.html">BOCU-1</a>.</p>
+<p align="left"><i>Compared to UTF-8</i></p>
+<ol>
+  <li>For Latin, takes approximately the same storage</li>
+  <li>For other small alphabets, takes much less storage, somewhat over 1 byte per character</li>
+  <li>For large alphabets (CJK, Hangul), takes about 2/3 the storage, somewhat over 2 bytes per character</li>
+</ol>
+<p align="left"><i>Compared to SCSU</i></p>
+<ol>
+  <li>The binary sort order of BOCU is the same as Unicode code points. SCSU has essentially random binary order
+  <li>The code for compression/decompression is <i>much</i> simpler</li>
+  <li>Unlike SCSU, where the same code points can be compressed into many different byte sequences, BOCU is determinate: a given sequence of code points always 
+    results in the same sequence of bytes
+    <ul>
+      <li>Note that identical <i>sub</i>sequences within two different code point sequences may be represented by different sequences of bytes</li>
+    </ul>
+</ol>
+<p align="left">In addition, variants of BOCU allow for environments where the byte values are restricted. For example:</p>
+<ul>
+  <li><a href="http://www.ibm.com/software/globalization/icu/chartsdemostools.jsp">ICU</a> uses a variant of BOCU for a final (code point) level in collation. In this environment, only the 
+    bytes 03..FF are allowed. (ICU also has a number of other modifications to BOCU specific to the collation environment, and calls it BOCSU.)
+  <li>A variant of BOCU can be used in very restricted environments, such as bar-codes (47 allowable “byte” values) or domain names (37 allowable byte  
+    values).</li>
+  <li><a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/conversion/bocu1/bocu1.html">BOCU-1</a> 
+    is MIME-friendly (directly usable in emails) because of its limited use of 
+    control code byte values.</li>
+</ul>
+<h2 align="left"><a name="Structure">Structure</a></h2>
+<p align="left">The basic structure of BOCU is simple. In compressing a sequence of code points, you subtract the last code point from the current code point, 
+producing a signed delta value that can range from <code>-10FFFF</code> to <code>10FFFF</code>. The delta is then encoded in a series of bytes. Small 
+differences are encoded in a small number of bytes; larger differences are encoded in a successively larger number of bytes.</p>
+<p align="left">So far, this is by no means new. Differencing is an old technique, and has been used many times before (for example, see &quot;Ultracode: A 
+Barcode Symbology Encoding Unicode 2.0&quot; at <a href="http://www.unicode.org/iuc/iuc10/program.html">http://www.unicode.org/iuc/iuc10/program.html</a>).</p>
+<p align="left">The first enhancement on top of this basic differencing technique is to choose the lead (first) byte of each sequences so that the binary order 
+is correct. This is done by clustering the single byte differences around 128, then moving outwards, the double-byte differences, then triple bytes. The 
+following table shows sample values for how this could be done.</p>
+<p align="left">The Lead Bytes are the values of the first byte of the sequence used to represent the delta. The Number of Leads indicates how many values there 
+are. The Byte Count indicates the total number of bytes in the sequence, including the lead byte and any trailing byte (for the single-byte forms there are no 
+trail bytes). The values are for illustration; they are not the actual values used in BOCU.</p>
+<div align="center">
+  <table cellspacing="0" cellpadding="2" border="1">
+    <tbody>
+      <tr>
+        <th>Deltas</th>
+        <th>Lead Bytes</th>
+        <th>No. of Leads</th>
+        <th>Byte Count</th>
+      </tr>
+      <tr style="HEIGHT: 13.2pt" height="18">
+        <td align="center"><code>2F3F..10FFFF</code></td>
+        <td align="center"><code>EF..FF</code></td>
+        <td align="right">17</td>
+        <td align="right">3</td>
+      </tr>
+      <tr style="HEIGHT: 13.2pt" height="18">
+        <td align="center" x:num><code>40..2F3F</code></td>
+        <td align="center" x:num><code>C0..ED</code></td>
+        <td align="right" x:num>47</td>
+        <td style="HEIGHT: 13.2pt" align="right" height="18" x:num x:fmla="=A3+1">2</td>
+      </tr>
+      <tr>
+        <td align="center" x:num><code>0..3F</code></td>
+        <td align="center" x:num><code>80..BF</code></td>
+        <td align="right" x:num>64</td>
+        <td style="HEIGHT: 13.2pt" align="right" height="18" x:num>1</td>
+      </tr>
+      <tr style="HEIGHT: 13.2pt" height="18">
+        <td align="center" x:num><code>-40..0</code></td>
+        <td align="center" x:num><code>40..7F</code></td>
+        <td align="right" x:num>64</td>
+        <td style="HEIGHT: 13.2pt" align="right" height="18" x:num>1</td>
+      </tr>
+      <tr style="HEIGHT: 13.2pt" height="18">
+        <td align="center" x:num><code>-2F40..-41</code></td>
+        <td align="center" x:num><code>11..3F</code></td>
+        <td align="right" x:num>47</td>
+        <td style="HEIGHT: 13.2pt" align="right" height="18" x:num x:fmla="=A3+1">2</td>
+      </tr>
+      <tr style="HEIGHT: 13.2pt" height="18">
+        <td align="center" x:num><code>-10FFFF..-2F41</code></td>
+        <td align="center" x:num><code>00..10</code></td>
+        <td align="right" x:num>17</td>
+        <td style="HEIGHT: 13.2pt" align="right" height="18" x:num x:fmla="=A4+1">3</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>The values need to be chosen so that small alphabets fit in the single-byte range, while the double-byte range covers at least the 20,902 CJK Ideograph 
+values. The sequences must, as we said before, cover the range of values from <code>-10FFFF</code> to <code>10FFFF</code>. Note that this is different from 
+UTF-8, for example, which only needs to cover half that range.</p>
+<h2><a name="Base_Adjustments">Base Adjustments</a></h2>
+<p>However, this needs a further enhancement. We form our delta by looking at the last code point, which we will call the&nbsp; <i>base </i>value. Look at the   
+single-byte values in the above table, for example. They range from 0 to 63 (3F<sub>16</sub>) on the positive side, and from -1 to -64 (40<sub>16</sub>) on the   
+negative side. While most small alphabets fit within a range of 128 values, there may be more than 64 code points between the top and the bottom. So when the   
+distance between the base code point and the new one exceeds the difference value that can be stored in a single byte, we would end up using two bytes.</p>  
+<p>Since the vast majority of small alphabets are aligned on 128-byte boundaries, the solution here is to adjust the base to always be in the middle of each 
+128-byte range. This is done with:</p>
+<pre>  baseCp = (baseCp &amp; ~0x7F) + 0x40;</pre>
+<p>With this, values from <code>xxxx00</code> to <code>xxxx7F</code> become <code>xxxx40</code>, values from <code>xxxx80</code> to <code>xxxxFF</code> become <code>xxxxC0</code>. 
+When we then get the difference from the base code point, any values within the 128 range are reachable with a single byte.</p>
+<p>The same logic can apply to the two-byte case. In particular, we would like to be able to have sequences of CJK characters only take two bytes each. We can 
+do this by having special range checks. For examples, see the sample code below.</p>
+<p>The second enhancement is to use more than just the last code point in computing the base value. Many non-Latin alphabets use spaces between words. As long 
+as the text stays in that alphabet, the characters are encoded in a single byte. However, every time a space is hit, it forces a &quot;long jump&quot; down to 
+pick up 0020, then another &quot;long jump&quot; back up to the alphabet. BOCU saves half of this cost by looking back at more than just the last code point. 
+Instead, the last three code points are used. If the adjusted values of any two of them are the same, then that value is used. Otherwise, the adjusted value of 
+the last code point is used. As it turns out, this is simple to implement:</p>
+<pre>  int last = simpleAdjust(lastCp);
+  int result = wasSame ? prelast : last;
+  wasSame = prelast == last;
+  prelast = last;
+  return result;</pre>
+<p>Once these adjustments are made, we can use a modified distribution of lead bytes. This provides for 128 single-byte sequences, and over 31 thousand 
+double-byte sequences.</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="0" cellpadding="2">
+    <col width="72" style="mso-width-source:userset;mso-width-alt:2633;width:54pt">
+    <col width="69" span="8" style="mso-width-source:userset;mso-width-alt:2523;
+ width:52pt">
+    <tr>
+      <th class="xl24" style="height:12.75pt">No. Leads</th>
+      <td class="xl24" align="right" x:num>1</td>
+      <td class="xl24" align="right" x:num>1</td>
+      <td class="xl24" align="right" x:num>62</td>
+      <td class="xl24" align="right" x:num>64</td>
+      <td class="xl24" align="right" x:num>64</td>
+      <td class="xl24" align="right" x:num>62</td>
+      <td class="xl24" align="right" x:num>1</td>
+      <td class="xl24" align="right" x:num>1</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <th class="xl24" style="height:12.75pt;width:54pt">Length</th>
+      <td class="xl24" align="right" style="width:52pt" x:num>4</td>
+      <td class="xl24" align="right" style="width:52pt" x:num>3</td>
+      <td class="xl24" align="right" style="width:52pt" x:num>2</td>
+      <td class="xl24" align="right" style="width:52pt" x:num>1</td>
+      <td class="xl24" align="right" style="width:52pt" x:num>1</td>
+      <td class="xl24" align="right" style="width:52pt" x:num>2</td>
+      <td class="xl24" align="right" style="width:52pt" x:num>3</td>
+      <td class="xl24" align="right" style="width:52pt" x:num>4</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <th class="xl24" style="height:12.75pt"><b>Deltas Handled</b></th>
+      <td class="xl24" align="right" x:num="16777216">16,777,216</td>
+      <td class="xl24" align="right" x:num="65536">65,536</td>
+      <td class="xl24" align="right" x:num="15872">15,872</td>
+      <td class="xl24" align="right" x:num>64</td>
+      <td class="xl24" align="right" x:num>64</td>
+      <td class="xl24" align="right" x:num="15872">15,872</td>
+      <td class="xl24" align="right" x:num="65536">65,536</td>
+      <td class="xl24" align="right" x:num="16777216">16,777,216</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<h2><a name="Binary_Order">Binary Order</a></h2>
+<p>Even with all of these manipulations, any resulting byte sequences still has the same binary order as the original code point sequence did. Let's see how 
+this works. Suppose we have two code point sequences C and D which are identical up to and including code point number <i>n</i>, and differ at code point <i>n+1</i>. 
+Since the sequence C[0]..C[n] equals the sequence D[0]..D[n], the byte sequences generated from these will be the same.</p>
+<p>So now look at the code points C[n+1] and D[n+1]. Since C[n] = D[n], <code>baseCp</code> will also be the same for both sequences. This is true even if we 
+adjust <code>baseCp</code> as above: as long as it is completely determined by the sequence of preceeding code points C[0]..C[n] (which equals D[0]..D[n]), we 
+can choose whatever value we want.. Subtracting the <code>baseCp</code> value will get us two delta values <i>x</i> and <i>y</i>. And <i>x</i> &gt; <i>y</i> if 
+and only if C[n+1] &gt; D[n+1].</p>
+<p>From <i>x</i> and <i>y </i>we will generate two byte sequences <i>bx</i> and <i>by</i>. By the way in which we assign values described above, if <i>bx</i> 
+and <i>by</i> have <i>different</i> lead bytes, then those bytes are in the correct binary order and will correctly determine the order of the sequence. If <i>bx</i> 
+and <i>by</i> have the <i>same</i> lead byte, then they must have the same number of bytes. In that case, one of the trailing bytes will differ, and determine 
+the correct order.</p>
+<h2><a name="Variants">Variants</a></h2>
+<p>BOCU can be extended to cover two other interesting cases:</p>
+<ol>
+  <li>Restricted byte values</li>
+  <li>Self-synchronization (non-overlap)</li>
+</ol>
+<h3>Restricted byte values</h3>
+<p>There are situations where the actual byte values used may be restricted, as mentioned above. To adapt BOCU to those cases, we may need to modify the number 
+of lead bytes to still get good ranges for values. For example, if we were working with a very limited repertoire of 37 allowable bytes, we might use the 
+following table:</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="0" cellpadding="2">
+    <col width="72" style="mso-width-source:userset;mso-width-alt:2633;width:54pt">
+    <col width="67" style="mso-width-source:userset;mso-width-alt:2450;width:50pt">
+    <col width="64" style="width:48pt">
+    <col width="46" style="mso-width-source:userset;mso-width-alt:1682;width:35pt">
+    <col width="64" span="7" style="width:48pt">
+    <tr>
+      <td height="17" style="height:12.75pt"><b>No. Leads</b></td>
+      <td class="xl24" align="right" x:num>1</td>
+      <td class="xl24" align="right" x:num>0</td>
+      <td class="xl24" align="right" x:num>8</td>
+      <td class="xl24" align="right" x:num>2</td>
+      <td class="xl24" align="right" x:num>7</td>
+      <td class="xl24" align="right" x:num>8</td>
+      <td class="xl24" align="right" x:num>2</td>
+      <td class="xl24" align="right" x:num>8</td>
+      <td class="xl24" align="right" x:num>0</td>
+      <td class="xl24" align="right" x:num>1</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" width="72" style="height:12.75pt;width:54pt"><b>Length</b></td>
+      <td align="right" width="67" style="width:50pt" x:num>5</td>
+      <td align="right" width="64" style="width:48pt" x:num>4</td>
+      <td align="right" width="46" style="width:35pt" x:num>3</td>
+      <td align="right" width="64" style="width:48pt" x:num>2</td>
+      <td align="right" width="64" style="width:48pt" x:num>1</td>
+      <td align="right" width="64" style="width:48pt" x:num>1</td>
+      <td align="right" width="64" style="width:48pt" x:num>2</td>
+      <td align="right" width="64" style="width:48pt" x:num>3</td>
+      <td align="right" width="64" style="width:48pt" x:num>4</td>
+      <td align="right" width="64" style="width:48pt" x:num>5</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt"><b>Deltas Handled</b></td>
+      <td class="xl24" align="right" x:num="1874161">1,874,161</td>
+      <td class="xl24" align="right" x:num>0</td>
+      <td class="xl24" align="right" x:num="10952">10,952</td>
+      <td class="xl24" align="right" x:num>74</td>
+      <td class="xl24" align="right" x:num>7</td>
+      <td class="xl24" align="right" x:num>8</td>
+      <td class="xl24" align="right" x:num>74</td>
+      <td class="xl24" align="right" x:num="10952">10,952</td>
+      <td class="xl24" align="right" x:num>0</td>
+      <td class="xl24" align="right" x:num="1874161">1,874,161</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p>As before, we try to make sure that the CJK and small alphabets are covered. This is done by allocating 148 two-byte values for small alphabets, allocating <font
+class="font5" size="3">21,904 three-byte values for CJK coverage. We distribute the rest so that we have most of the BMP covered in four bytes, with the five 
+bytes form ensuring that the entire codepoint range is covered. The remainder is in single bytes, to pick up as many small-delta cases as we can.</font></p>
+<p><font class="font5" size="3">When computing the actual bytes, t</font>he simplest case is where the usable byte values are in a contiguous range. For 
+example, in ICU collation the byte values 03..FF are usable (00, 01, and 02 cannot be used). In that case, we find the number of allowable values (<code>count = 
+253</code>) and an offset to the first value (<code>offset = 3</code>).</p>
+<p>To compute the trailing bytes, we use successive divisions and modulos, going from the last byte to the first byte:</p>
+<pre>  output[m] = delta % trailCount + trailOffset;
+  delta /= trailCount;</pre>
+<p>After all the trailing bytes are output, the remaining delta is used in computing the lead byte.</p>
+<p>If the allowable bytes are discontiguous, then instead of using an offset, we use an array, such as:</p>
+<pre>  output[m] = map[delta % trailCount];
+  delta /= trailCount;</pre>
+<p>The map function (or the offset) is used to get the proper byte values. For more details on this, see the code sample below.</p>
+<h3>Self-synchronization</h3>
+<p>Both UTF-8 and UTF-16 have the very important property of self-synchronization; also called non-overlap. What this means is that the lead bytes (16-bit units 
+in the case of UTF-16) do not overlap in value with the trail bytes. This allows a number of important characteristics:</p>
+<ol>
+  <li>you can randomly access within strings, since you can always easily determine code point boundaries</li>
+  <li>if a byte is damaged (changed, omitted, or inserted) in transmission, it only affects the adjacent code points; the rest of the string is untouched.</li>
+  <li>you can never get a &quot;false positive&quot; when searching. E.g. when you search for one UTF-8 string within another, you will never find a match 
+    except at code point boundaries.</li>
+</ol>
+<p>BOCU can be modified to also have characteristics (1) and (2), if desired. While this is not generally a design goal for compression, there may be 
+environments where this is necessary. The downside is that the compression is not nearly as good.</p>
+<p>Self-synchronization can be done by allocating certain byte values to leads and the rest to trails. In the general case, this means having different <code>leadMap</code> 
+and <code>trailMap</code> arrays, and redistributing the lead bytes and number of trail bytes to get the correct coverage. For an example of an extreme case, 
+suppose that we take the limited repertoire of 37 allowable byte values. We could allocate 22 values to trail bytes, and 15 values to lead bytes.</p>
+<h2><a name="Test_Results">Test Results</a></h2>
+<p>The following describes test results when comparing BOCU against UTF-8 and UTF-16. The sample files are taken from <a
+href="http://www.unicode.org/unicode/standard/WhatIsUnicode.html">http://www.unicode.org/unicode/standard/WhatIsUnicode.html</a> (for the plain files) and <a
+href="http://www.unhchr.ch/udhr/navigate/alpha.htm">http://www.unhchr.ch/udhr/navigate/alpha.htm</a> (for the files marked with &quot;HR&quot;). The columns for 
+BOCU, UTF-16 and UTF-8 contain the respective number of bytes of storage for each form for that file. The column heading B:16 is the size of BOCU compared to 
+UTF-16, and B:8 is the size compared to UTF-8.</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="0" cellpadding="2">
+    <col width="115" style="mso-width-source:userset;mso-width-alt:4205;width:86pt">
+    <col width="56" span="3" style="mso-width-source:userset;mso-width-alt:2048;
+ width:42pt">
+    <col width="56" span="2" style="mso-width-source:userset;mso-width-alt:2048;
+ width:42pt">
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <th height="17" width="115" style="height:12.75pt;width:86pt">File</th>
+      <th class="xl25" width="56" style="width:42pt">BOCU</th>
+      <th class="xl25" width="56" style="width:42pt">UTF-16</th>
+      <th class="xl25" width="56" style="width:42pt">UTF-8</th>
+      <th width="56" style="width:42pt">B:16</th>
+      <th width="56" style="width:42pt">B:8</th>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">german.txt</td>
+      <td class="xl25" align="right" x:num="3472">3,472</td>
+      <td class="xl25" align="right" x:num="6846">6,846</td>
+      <td class="xl25" align="right" x:num="3474">3,474</td>
+      <td class="xl24" align="right" x:num="00.51">51%</td>
+      <td class="xl24" align="right" x:num="1">100%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">germanHR.txt</td>
+      <td class="xl25" align="right" x:num="12339">12,339</td>
+      <td class="xl25" align="right" x:num="24298">24,298</td>
+      <td class="xl25" align="right" x:num="12328">12,328</td>
+      <td class="xl24" align="right" x:num="00.51">51%</td>
+      <td class="xl24" align="right" x:num="1">100%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">french.txt</td>
+      <td class="xl25" align="right" x:num="3493">3,493</td>
+      <td class="xl25" align="right" x:num="6830">6,830</td>
+      <td class="xl25" align="right" x:num="3491">3,491</td>
+      <td class="xl24" align="right" x:num="00.51">51%</td>
+      <td class="xl24" align="right" x:num="1">100%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">frenchHR.txt</td>
+      <td class="xl25" align="right" x:num="12521">12,521</td>
+      <td class="xl25" align="right" x:num="24258">24,258</td>
+      <td class="xl25" align="right" x:num="12495">12,495</td>
+      <td class="xl24" align="right" x:num="00.52">52%</td>
+      <td class="xl24" align="right" x:num="1">100%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">greek.txt</td>
+      <td class="xl25" align="right" x:num="4246">4,246</td>
+      <td class="xl25" align="right" x:num="7148">7,148</td>
+      <td class="xl25" align="right" x:num="6317">6,317</td>
+      <td class="xl24" align="right" x:num="00.59">59%</td>
+      <td class="xl24" align="right" x:num="00.67">67%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">greekHR.txt</td>
+      <td class="xl25" align="right" x:num="15232">15,232</td>
+      <td class="xl25" align="right" x:num="25164">25,164</td>
+      <td class="xl25" align="right" x:num="22832">22,832</td>
+      <td class="xl24" align="right" x:num="00.61">61%</td>
+      <td class="xl24" align="right" x:num="00.67">67%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">hindi.txt</td>
+      <td class="xl25" align="right" x:num="3725">3,725</td>
+      <td class="xl25" align="right" x:num="5986">5,986</td>
+      <td class="xl25" align="right" x:num="7706">7,706</td>
+      <td class="xl24" align="right" x:num="00.62">62%</td>
+      <td class="xl24" align="right" x:num="00.48">48%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">japanese.txt</td>
+      <td class="xl25" align="right" x:num="2510">2,510</td>
+      <td class="xl25" align="right" x:num="3168">3,168</td>
+      <td class="xl25" align="right" x:num="4403">4,403</td>
+      <td class="xl24" align="right" x:num="00.79">79%</td>
+      <td class="xl24" align="right" x:num="00.57">57%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">japaneseHR.txt</td>
+      <td class="xl25" align="right" x:num="8640">8,640</td>
+      <td class="xl25" align="right" x:num="9456">9,456</td>
+      <td class="xl25" align="right" x:num="12971">12,971</td>
+      <td class="xl24" align="right" x:num="00.91">91%</td>
+      <td class="xl24" align="right" x:num="00.67">67%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">chinese.txt</td>
+      <td class="xl25" align="right" x:num="1978">1,978</td>
+      <td class="xl25" align="right" x:num="2112">2,112</td>
+      <td class="xl25" align="right" x:num="2549">2,549</td>
+      <td class="xl24" align="right" x:num="00.94">94%</td>
+      <td class="xl24" align="right" x:num="00.78">78%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">chineseHR.txt</td>
+      <td class="xl25" align="right" x:num="6569">6,569</td>
+      <td class="xl25" align="right" x:num="6324">6,324</td>
+      <td class="xl25" align="right" x:num="8809">8,809</td>
+      <td class="xl24" align="right" x:num="1.04">104%</td>
+      <td class="xl24" align="right" x:num="0.75">75%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">korean.txt</td>
+      <td class="xl25" align="right" x:num="3490">3,490</td>
+      <td class="xl25" align="right" x:num="3174">3,174</td>
+      <td class="xl25" align="right" x:num="3662">3,662</td>
+      <td class="xl24" align="right" x:num="1.1">110%</td>
+      <td class="xl24" align="right" x:num="00.95">95%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">koreanHR.txt</td>
+      <td class="xl25" align="right" x:num="11195">11,195</td>
+      <td class="xl25" align="right" x:num="10066">10,066</td>
+      <td class="xl25" align="right" x:num="11721">11,721</td>
+      <td class="xl24" align="right" x:num="1.11">111%</td>
+      <td class="xl24" align="right" x:num="00.96">96%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">koreanJamoHR.txt</td>
+      <td class="xl25" align="right" x:num="13871">13,871</td>
+      <td class="xl25" align="right" x:num="20064">20,064</td>
+      <td class="xl25" align="right" x:num="26454">26,454</td>
+      <td class="xl24" align="right" x:num="00.69">69%</td>
+      <td class="xl24" align="right" x:num="00.52">52%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <th height="17" style="height:12.75pt">Total:</th>
+      <th class="xl25" align="right" x:num="103281">103,281</th>
+      <th class="xl25" align="right" x:num="154894">154,894</th>
+      <th class="xl25" align="right" x:num="139212">139,212</th>
+      <th class="xl24" align="right" x:num="00.67">67%</th>
+      <th class="xl24" align="right" x:num="00.74">74%</th>
+    </tr>
+  </table>
+  </center>
+</div>
+<p>Overall, for these samples, BOCU takes about one-third less storage than UTF-16, and about one-quarter less storage than UTF-8.</p>
+<blockquote>
+  <p>Note that in the case of Korean, BOCU is not quite as good as UTF-16. This is because Korean uses a large character set, plus spaces. The spaces require 3 
+  bytes in those circumstances, which detracts from the compression. This does not happen with Japanese or Chinese. For comparison, the koreanHR.txt file is 
+  also given in Jamo form (with the Hangul Syllables decomposed). That would get much better compression, except that the layout of the encoding of the Jamo 
+  make the alphabet too large to really benefit.</p>
+</blockquote>
+<p>For comparison, here is the variant BOCU using only 37 allowable bytes. The storage costs are roughly the same as UTF-16 for small alphabets, and somewhat 
+more than UTF-8 for large alphabets. Not too bad, given only 37 allowable byte values.</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="0" cellpadding="2">
+    <col width="115" style="mso-width-source:userset;mso-width-alt:4205;width:86pt">
+    <col width="51" span="3" style="mso-width-source:userset;mso-width-alt:1865;
+ width:38pt">
+    <col width="51" span="2" style="mso-width-source:userset;mso-width-alt:1865;
+ width:38pt">
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <th height="17" width="115" style="height:12.75pt;width:86pt">File</th>
+      <th class="xl23" width="51" style="width:38pt">BOCU</th>
+      <th class="xl23" width="51" style="width:38pt">UTF-16</th>
+      <th class="xl23" width="51" style="width:38pt">UTF-8</th>
+      <th width="51" style="width:38pt">B:16</th>
+      <th width="51" style="width:38pt">B:8</th>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">german.txt</td>
+      <td class="xl23" align="right" x:num="6793">6,793</td>
+      <td class="xl23" align="right" x:num="6846">6,846</td>
+      <td class="xl23" align="right" x:num="3474">3,474</td>
+      <td class="xl22" align="right" x:num="00.99">99%</td>
+      <td class="xl22" align="right" x:num="1.96">196%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">germanHR.txt</td>
+      <td class="xl23" align="right" x:num="24206">24,206</td>
+      <td class="xl23" align="right" x:num="24298">24,298</td>
+      <td class="xl23" align="right" x:num="12328">12,328</td>
+      <td class="xl22" align="right" x:num="1">100%</td>
+      <td class="xl22" align="right" x:num="1.96">196%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">french.txt</td>
+      <td class="xl23" align="right" x:num="6855">6,855</td>
+      <td class="xl23" align="right" x:num="6830">6,830</td>
+      <td class="xl23" align="right" x:num="3491">3,491</td>
+      <td class="xl22" align="right" x:num="1">100%</td>
+      <td class="xl22" align="right" x:num="1.96">196%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">frenchHR.txt</td>
+      <td class="xl23" align="right" x:num="24588">24,588</td>
+      <td class="xl23" align="right" x:num="24258">24,258</td>
+      <td class="xl23" align="right" x:num="12495">12,495</td>
+      <td class="xl22" align="right" x:num="1.01">101%</td>
+      <td class="xl22" align="right" x:num="1.97">197%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">greek.txt</td>
+      <td class="xl23" align="right" x:num="7195">7,195</td>
+      <td class="xl23" align="right" x:num="7148">7,148</td>
+      <td class="xl23" align="right" x:num="6317">6,317</td>
+      <td class="xl22" align="right" x:num="1.01">101%</td>
+      <td class="xl22" align="right" x:num="1.14">114%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">greekHR.txt</td>
+      <td class="xl23" align="right" x:num="25832">25,832</td>
+      <td class="xl23" align="right" x:num="25164">25,164</td>
+      <td class="xl23" align="right" x:num="22832">22,832</td>
+      <td class="xl22" align="right" x:num="1.03">103%</td>
+      <td class="xl22" align="right" x:num="1.13">113%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">hindi.txt</td>
+      <td class="xl23" align="right" x:num="6304">6,304</td>
+      <td class="xl23" align="right" x:num="5986">5,986</td>
+      <td class="xl23" align="right" x:num="7706">7,706</td>
+      <td class="xl22" align="right" x:num="1.05">105%</td>
+      <td class="xl22" align="right" x:num="00.82">82%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">japanese.txt</td>
+      <td class="xl23" align="right" x:num="4383">4,383</td>
+      <td class="xl23" align="right" x:num="3168">3,168</td>
+      <td class="xl23" align="right" x:num="4403">4,403</td>
+      <td class="xl22" align="right" x:num="1.38">138%</td>
+      <td class="xl22" align="right" x:num="1">100%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">japaneseHR.txt</td>
+      <td class="xl23" align="right" x:num="15172">15,172</td>
+      <td class="xl23" align="right" x:num="9456">9,456</td>
+      <td class="xl23" align="right" x:num="12971">12,971</td>
+      <td class="xl22" align="right" x:num="1.6">160%</td>
+      <td class="xl22" align="right" x:num="1.17">117%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">chinese.txt</td>
+      <td class="xl23" align="right" x:num="3374">3,374</td>
+      <td class="xl23" align="right" x:num="2112">2,112</td>
+      <td class="xl23" align="right" x:num="2549">2,549</td>
+      <td class="xl22" align="right" x:num="1.6">160%</td>
+      <td class="xl22" align="right" x:num="1.32">132%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">chineseHR.txt</td>
+      <td class="xl23" align="right" x:num="10889">10,889</td>
+      <td class="xl23" align="right" x:num="6324">6,324</td>
+      <td class="xl23" align="right" x:num="8809">8,809</td>
+      <td class="xl22" align="right" x:num="1.72">172%</td>
+      <td class="xl22" align="right" x:num="1.24">124%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">korean.txt</td>
+      <td class="xl23" align="right" x:num="5531">5,531</td>
+      <td class="xl23" align="right" x:num="3174">3,174</td>
+      <td class="xl23" align="right" x:num="3662">3,662</td>
+      <td class="xl22" align="right" x:num="1.74">174%</td>
+      <td class="xl22" align="right" x:num="1.51">151%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">koreanHR.txt</td>
+      <td class="xl23" align="right" x:num="17809">17,809</td>
+      <td class="xl23" align="right" x:num="10066">10,066</td>
+      <td class="xl23" align="right" x:num="11721">11,721</td>
+      <td class="xl22" align="right" x:num="1.77">177%</td>
+      <td class="xl22" align="right" x:num="1.52">152%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <td height="17" style="height:12.75pt">koreanJamoHR.txt</td>
+      <td class="xl23" align="right" x:num="23903">23,903</td>
+      <td class="xl23" align="right" x:num="20064">20,064</td>
+      <td class="xl23" align="right" x:num="26454">26,454</td>
+      <td class="xl22" align="right" x:num="1.19">119%</td>
+      <td class="xl22" align="right" x:num="00.9">90%</td>
+    </tr>
+    <tr height="17" valign="bottom" style="height:12.75pt">
+      <th height="17" style="height:12.75pt">Total:</th>
+      <th class="xl23" align="right" x:num="182834">182,834</th>
+      <th class="xl23" align="right" x:num="154894">154,894</th>
+      <th class="xl23" align="right" x:num="139212">139,212</th>
+      <th class="xl22" align="right" x:num="1.18">118%</th>
+      <th class="xl22" align="right" x:num="1.31">131%</th>
+    </tr>
+  </table>
+  </center>
+</div>
+<h2><a name="Sample_Code">Sample Code</a></h2>
+<p>The following are extracts from sample code of the encoding and decoding. This code is for illustrative purposes only, and is not optimized. The arrays used 
+in the computation are provided elsewhere.</p>
+<pre>     /**
+     * Convert a Java string (UTF-16) to BOCU compressed format.
+     * @return number of bytes actually written.
+     */
+     
+    // Note: the following code is designed for simplicity
+    // it can be recoded for speed.
+    
+    public int toBOCU (char[] input, int iStart, int iEnd, byte[] output, int oStart, int oEnd) {
+        
+        int oldCodePoint = 0;
+        int iPosition;
+        int cp;
+        int oPosition = oStart;
+        adjuster.reset();
+        
+        for (iPosition = iStart; iPosition &lt; iEnd; iPosition += UTF32.count16(cp)) {
+            
+            // get code point, and adjust
+            
+            cp = UTF32.char32At(input, iPosition, iEnd);
+            int delta = cp - adjuster.adjust(oldCodePoint);
+            oldCodePoint = cp;
+            
+            // now encode delta
+            
+            for (int i = 0; ; ++i) {
+                
+                // find the proper range
+                
+                if (delta &lt; boundary[i]) { // always terminates
+                    
+                    // set up to store values from the end backwards
+                    
+                    delta += offset[i];  // important: delta is now positive!
+                    int bCount = count[i];
+                    oPosition += bCount;
+                    if (oPosition &gt; oEnd) {
+                        throw new IllegalArgumentException(&quot;Output buffer too short!&quot;);
+                    }
+                    int backup = oPosition;
+                    
+                    // store trailing bytes (bCount - 1 bytes)
+                    
+                    while (--bCount &gt; 0) {
+                        output[--backup] = toTrailBOCU[delta % radix];
+                        delta /= radix;
+                    }
+                    
+                    // store lead byte
+                    
+                    output[--backup] = toLeadBOCU[delta];
+                    break;
+                }
+            }
+        }
+        return oPosition;
+    }
+    
+// =============================================================
+
+    /**
+     * Converts from BOCU format back into a Java (UTF-16) character string.
+     * @return number of characters (UTF-16 code units) actually written.
+     */
+    public int fromBOCU(byte[] input, int iStart, int iEnd, char[] output, int oStart, int oEnd) {
+        
+        // Note: bytes are masked with FF, since Java doesn't have unsigned byte
+        
+        int oldCodePoint = 0;
+        int iPosition;
+        int oPosition = oStart;
+        int normByte;
+        adjuster.reset();
+        
+        for (iPosition = iStart; iPosition &lt; iEnd;) {
+            
+            // get first byte, tells us count and the initial part of cp
+            // as an optimization, 3 arrays could be combined to 2.
+            
+            int delta = fromLeadBOCU[input[iPosition++] &amp; 0xFF];
+            if (delta == Short.MIN_VALUE) {
+                throw new IllegalArgumentException(&quot;Invalid Lead Byte: &quot; + Utility.hex(delta));
+            }
+            int group = groupFromValue[delta];
+            int bCount = count[group];
+            
+            // get rest of the parts of the delta
+            
+            while (--bCount &gt; 0) {
+                delta *= radix;
+                if (iPosition &gt;= iEnd) {
+                    throw new IllegalArgumentException(&quot;Byte sequence cut off!&quot;);
+                }
+                normByte = fromTrailBOCU[input[iPosition++] &amp; 0xFF];
+                if (normByte == Short.MIN_VALUE) {
+                    throw new IllegalArgumentException(&quot;Invalid Trail Byte: &quot; + Utility.hex(normByte));
+                }
+                delta += normByte;
+            }
+            
+            // fix by offset, then
+            // adjust, since we just have a delta at this point
+            
+            delta -= offset[group];
+            int cp = adjuster.adjust(oldCodePoint) + delta;
+            oldCodePoint = cp;
+            
+            if (cp &lt; 0 || cp &gt; 0x10FFFF) {
+                throw new IllegalArgumentException(&quot;Illegal code point: &quot; + Utility.hex(cp));
+            }
+            
+            // Store cp in UTF-16 array
+            
+            oPosition = UTF32.setChar32At(output, oPosition, oEnd, cp);
+        }
+        return oPosition;
+    }
+    
+// =============================================================
+
+    // used in the adjuster
+
+        int simpleAdjust(int cp) {
+            
+            if (style == HALF_BLOCK) return (cp &amp; ~0x7F) + 0x40;
+            
+            // for large sets (CJK), align multibyte range of over 21K
+            
+            if (cp &gt;= 0x4E00 &amp;&amp; cp &lt;= 0x9FA5) {     // CJK
+                return alignTo(cp, 0x3000, cjkLowSpan, cjkHighSpan);
+            }
+            
+            if (cp &gt;= 0xAC00 &amp;&amp; cp &lt;= 0xD7AF) {     // Hangul
+                return alignTo(cp, 0xAC00, cjkLowSpan, cjkHighSpan);
+            }
+            
+            // handle badly aligned blocks
+            
+            int offset = 0;
+            if (cp &gt; 0x3040 &amp;&amp; cp &lt;= 0x30A0) offset = 0x40; // Hiragana
+            else if (cp &gt; 0x30A0 &amp;&amp; cp &lt;= 0x30FF) offset = 0x20; // Katakana
+            else if (cp &gt; 0xFF60 &amp;&amp; cp &lt;= 0xFF9F) offset = 0x60; // HW Katakana
+            
+            // align to start of half-byte + offset
+            
+            return alignTo(cp, (cp &amp; ~0x7F) + offset, alphabetLowSpan, alphabetHighSpan);
+        }
+
+       /**
+        * Utility used to align a code point
+        */
+
+        private int alignTo(int cp, int start, int lowSpan, int highSpan) {
+            int factor = lowSpan + highSpan;
+            return ((cp - start) / factor) * factor + start + lowSpan;
+        }</pre>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+PMC Meeting Minutes
+===================
+2003-06-23
+
+Attendees (All IBM unless noted)
+=========
+Tex Texin [Xencraft]
+Mark Davis
+Markus Scherer
+George Rhoten
+Syn Wee Quek
+Eric Mader
+Vladimir Weinstein
+Ram Viswanadha
+Steve Atkin
+Andy Heninger
+Robert Buck [Mathworks]
+
+Agenda
+======
+- ICU 2.6 released! Comments?
+Markus:
+	Gave an overview of ICU 2.6. Comments?
+Steve:
+	+ ICU4J 2.6 Modularization worked great
+	+ In the Modularized build the meta information should be part of the manifest of the jar file
+Mark:
+	+ The componentization of ICU, there will be a facility to query the services
+	+ Some of the tasks are slated for 2.8
+Steven:
+	+ How do you incorporate this feature into JLog?
+Mark:
+	+ Discussion needed 
+Ram:
+	+ Bug already filed, will be easy with Ant 1.5
+George:
+	+ In Java we can use Reflection to figure out which components are available
+Mark:
+	+ In C it is a bit tricky. Discussion needed
+Mark:
+	+ Will send out the updated componentization document
+
+
+- Tex: Feedback on the User Guide collation chapter?
+
+Tex:
+	+ Will get to it in couple of weeks
+
+Vladimir:
+	+ Will send out the updated chapter
+
+Andy:
+	+ Why is the source of Userguide on local cvs?
+
+Markus:
+	+ The build system is a bit arcane
+
+Mark:
+	+ We should move the source to the public CVS
+
+
+- ICU 2.8 high-level plans
+
+Markus:
+	+ ICU 2.8 will be released at the end of the year
+	+ Unicode 4.0.1 update will be picked up
+	+ UCA 4.0 update will be picked up
+Mark:
+	+ UCA 4.0 and Unicode 4.0.1 will be available in September
+	+ Gave an overview of the changes
+
+Vladimir:
+	+ UCA 4.0 will not be synched with Unicode 4.0.1
+
+Mark:
+	+ Collation will not be affected by the changes 
+
+Markus:
+	+ Vladimir already proposed changes for Numeric sorting
+	+ StringPrep APIs are being added
+	+ LocaleML version 1.0 released
+Mark:
+	+ Gave an overview of LocaleML
+	+ Generate the currency data in LocaleML
+	+ All of ICU data will be available in LocaleML format
+Markus:
+	+ LocaleIDs	
+	+ Historical TimeZones
+	+ Multiple calendar support
+	+ Keyword IDs
+
+Mark:
+	+ Parmeter of Collation and keywords should be discussed
+	+ Steven will be updating the Collation demo 
+
+Tex: 
+	+ LocaleIDs and Scripts .. will these be picked up by Java?
+
+Mark:
+	+ ICU will be updated to to 3066
+	+ Interoperability with Windows
+Tex:
+	+ Let Java and other software enviroments should be informed about this direction
+	+ Integration and Interoperation should not be jeopardized
+Mark:
+	+ LocaleML is a step towards this direction
+
+Tex:
+	+ LocaleML is not being picked up and advancing rapidly
+	+ Viewing and usability
+
+Mark:
+	+ The ICU locale data can be looked at from the locale explorer
+
+Helena:
+	+ What are steps that need to taken, that are not being done?
+
+Tex:
+	+ need to give it some thought and generate some noise
+	++ will provide feedback
+
+Helena:
+	+ Put a link on LocaleML to locale explorer
+
+Tex:
+	+ would be nice if Google could point to the locale explorer and bring up the locale data
+
+George:
+	+ Indexing is a problem with the Sever folks
+	++ Will look into getting it indexed by Google
+
+Mark:
+	+ Does locale explorer have a link to the LocaleML data?
+
+George:
+	+ Locale explorer already has it
+
+Tex:
+	+ What versions of ICU are people using and what kind of comments?
+
+Markus:
+	+ People usually complain when something does not work
+
+Mark:
+	+ Most mails are about build issues
+
+Tex:
+	+ Solicit feedback and RFEs for the next release
+
+Mark:
+	++ Will have to be done for ICU 3.0
+
+
+- ustdio cleanup; especially printf/scanf formatting characters
+   (please see the proposal and discussion on the icu list)
+
+George:
+	+ Redesign and fix the bugs in ustdio and make it a supported library
+
+Robert:
+	+ int64 should be supported
+
+Long discussion about the support followed
+
+Decision:
+	%ld 	32 bits
+	%lld	64 bits
+
+
+

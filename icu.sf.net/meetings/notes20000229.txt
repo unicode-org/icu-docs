@@ -1,0 +1,114 @@
+ICU development team meeting 
+Call-In: 1-888-790-7707, 1-415-228-4574, Passcode 37412
+Date:   February 29, 2000, Tuesday 
+Time:   9am PST - 10am PST 
+Place:  IBM Java Technology Center 
+        10275 North DeAnza Blvd. 
+        Cupertino, CA 95014, USA. 
+Host:   IBM
+
+======================================= 
+
+Attendees:
+  David Craig (NCR) 
+  Mark Davis (IBM)
+  Steven Loomis (IBM)
+  Markus Scherer (IBM) 
+  Helena Shih (IBM) 
+  Tex Texin (Progress) 
+  Steve Watt (Progress) 
+  Vladimir Weinstein (IBM) 
+
+Minutes Taker:
+  Markus Scherer
+
+Agenda:
+
+- Roll call
+
+- Action items from previous meetings
+    Action item status: 
+          [r] : removed
+          [-] : completed
+          [ ] : open
+
+    [-] T19991123-03 [PMC members]    ICU testing issues. 
+        ->  Progress Software: Steve reported that he is having trouble
+                building ICU on Solaris, AIX and HP-UX11. Helena volunteered
+                to send out a build script IBM uses to build
+                ICU on various platforms. 
+              [-] Helena sent the runConfigureICU script, and it is also
+                  checked into cvs now. See T20000208-01.
+            NCR: David is working on some performance tests, the results
+                will be made available through this mailing list once they
+                are available.  David also mentioned that it's hard to learn
+                ICU because of the insufficient documentation for APIs.
+                IBM is working on a user's guide for ICU and the user's guide
+                will be uploaded on the oss server once it's available.
+              [ ] Creating two new action items for this, see below:
+                T20000208-04 & T20000229-02
+            Compuware: Bob can't attend this meeting and he will report
+                on Compuware progress next week. 
+              [r] Will be picked up again when Bob is back in the meetings.
+    [ ] T20000125-01 [Bob]     Implement the global new/delete operator to
+                               use uprv_malloc and uprv_free functions.
+        -> (Bob did not attend the meeting.)
+    [-] T20000208-01 [Helena] Send out a build script IBM uses to build
+                              ICU on various platforms. 
+        -> also checked into cvs
+    [-] T20000208-02 [Helena] Send the IBM build/test contact's email
+                              address to Steve Watt. 
+    [ ] T20000208-03 [Brendan & Tex] Send out the requirements with regards
+                              to Collation versioning to icu mailing list and
+                              IBM will revise the current versioning proposal
+                              to satisfy the combined requirement. 
+        -> Steven Watt sent requirements, awaiting Brendan & discussion.
+           Discussion: Consensus that in some form, (Locale+ID) must be unique.
+           The ID needs to reflect collation-changing modifications in both
+           algorithm=implementation (not locale-specific) and rules=data.
+           It should be possible to instantiate an older version of a Collator.
+           Discussion & design will continue.
+    [ ] T20000208-04 [David]  Send out the performance test results when it's available.
+        -> ICU message formatting is ca. 3x slower than Windows sprintf().
+           We discussed how far this is related to Unicode (test wsprintf()?),
+           dynamic memory allocation in UnicodeString (use Replaceable? improve
+           UnicodeString, see jitterbug 312), and other dynamic objects like
+           DigitList etc. More testing and work on UnicodeString is in progress.
+
+- ICU 1.4 is released!
+
+- David Craig: ICU performance for numeric formatting (see icu-core list 2000-feb-26)
+  ->  See above: T20000208-04
+
+- Additional agenda items:
+  + problems building ICU 1.4 on Windows NT
+    * (This seems to have been solved after the meeting: do not build with
+      Platform SDK headers and tools but with VC++ 6.)
+  + surrogate support with ucnv_getNextUChar() as proposed
+    * Discussed in the meeting, remained unopposed.
+
+- Action items from this meeting
+    [ ] T20000229-01 [Markus] Send proposals to the icu list for
+                              + basic UTF-16 support with C++
+                              + Converter callback API changes
+                              + 3/4-MBCS conversion
+                              + Mirrored properties APIs
+                              Note that there is a "Proposals" page to be
+                              added to the OSS server.
+    [ ] T20000229-02 [IBM]    Provide initial draft of User's Guide (icu-core)
+    [ ] T20000229-03 [IBM]    Improve readme and related documents
+                              + Cross-link javadoc texts, C <-> C++ etc.
+                              + update readme & docs/*
+                              + move coding guidelines to separate doc (only
+                                link to oss server page? remove irrelevant items)
+    [ ] T20000229-04 [David]  David Craig will continue to work on the DateFormat
+                              performance and report in the next meeting.
+    [ ] T20000229-05 [David]  Review the Format User's guide chapters
+    [ ] T20000229-06 [Tex & Steve] Review the Collation and ResourceBundle User's guide chapters
+
+- Future meeting schedule
+
+  ->  The next ICU meeting will be held
+      on 2000-Mar-21 from 9AM-10AM PST, 12PM-1PM EST.
+      The call-in number and pass code will be provided at least
+      24 hours prior to the meeting.

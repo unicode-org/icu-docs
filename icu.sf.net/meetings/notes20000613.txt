@@ -1,0 +1,223 @@
+
+ICU development team meeting
+Call-In: 1-888-790-7707
+Date:   2000-Jun-13, Tuesday
+Time:   9am PDT - 10am PDT
+Place:  IBM Java Technology Center
+        10275 North DeAnza Blvd.
+        Cupertino, CA 95014, USA.
+Host:   IBM
+
+=======================================
+
+Attendees:
+  David Craig (NCR)
+  Steve Watt (Progress)
+  Tex Texin (Progress)
+  Markus Scherer (IBM)
+  Steven Loomis (IBM)
+  Vladimir Weinstein (IBM)
+  Helena Shih (IBM)
+  Roger Mariner (IBM)
+  Ram Viswanadha (IBM)
+
+Minutes Taker:
+  Helena Shih
+
+Agenda:
+
+- Roll call
+
+    See attendee list above.
+
+- Additional agenda items
+
+    - Conversion alias matching. (Markus)
+    - IANA name structure (postponed)
+- Action items from previous meetings
+- ICU 1.5 release is available on the OSS server now.
+- ICU 1.6 release planning:
+     -Finish converter callback API proposal
+     -Add 3/4 byte encoding support, e.g. euc-jp
+     -Finish IANA/MIME name conversion support
+     -Complete upgrading to Unicode 3.0, Normailzation
+     -DateFormat API clean-up, UDate vs. UCalendar
+     -Complete transliterator rule syntax update
+     -Shaping and unshaping with Transliterator
+     -Locale setting for algorithmic converter biasing
+     -Clean up collation ResourceBundle code and make sure the memory map
+      files work on the same endian platforms
+     -NumberFormat support for Indian locales; multiple grouping separator
+     -Number shaping algorithm
+     -Collation enhancements
+     -Jitterbug spring cleaning phase 2
+     -Finish ICU User's Guide final version
+
+6/24 API freeze for 1.6
+6/29 API freeze snapshot deliverable for internal clients.
+7/14 Implementation Complete for 1.6
+7/21 Code Freeze for 1.6 
+7/25 FVT Exit for 1.6
+7/31 Final Release Date for 1.6
+
+- Documentation update.
+
+Roger mentioned that a draft version of the ICU user's guide will be available before the end of this month, June 2000.  David C. 
+pointed out the C++ examples are in much better shape than the C examples.  Once the user's guide draft is completed, a PDF format 
+version will also be available on the OSS server for public review.
+
+- Technical discussion
+     1. IANA name structure.
+         Since Yves was not able to attend the meeting, this will be postponed until the next meeting.
+     2. Tool package mechanism.
+        Steven briefly discussed what the packaging mechanism is for.  The consensus is to proceed with
+the proposal and integrate that into 1.6 release plan.
+     3. Alias matching mechnism.
+        All agreed that the proposal is valid, the following options were further discussed,
+        a. Match only alphanumerics and ignore anything else. 
+           Pros: easy to implement and maintain.
+           Cons: Can result very inconsistent name to be matched, e.g. "?U?T(F)-=8" can be matched with 
+           "UTF8".  (Helena)
+        b. Match with a pattern with special wildchar characters, namely '-', '_' (or maybe even ' ') and ':'.  
+           Pros: Specify with pattern is commonly used in ICU already.  This also avoids the ugly name 
+                 matching as in a.
+           Cons: Extra parsing code will be required.  Steve W. pointed out that the name without any
+                 wildchar can result names that are very hard to read, e.g. "ISO88591" and "ISO885915".  
+                 Helena mentioned that this already exists on HP when one types "locale charmap" under
+                 command line.  The names returned on HP can be completely striped of punctuations.
+           Yves (by email): Should make the wildchar match each other.  
+           Helena: Prefer having the wildchar of '-' and '_' (possibly ' ') to match each other.  But, ':'
+                   should not be matched with just any wildchar.
+        Markus will send out a revised proposal and solicit votes on it this week.
+     4. IANA names structure.
+         This discussion will be postponed until next meeting when Yves
+and Mark can attend.
+
+- Other agenda items
+    None
+
+-- Future meeting schedule
+
+The next ICU meeting will be held on 6/27, Tuesday 9AM PDT.  Call-in
+information will be provided the day before if not earlier.
+
+Action Item Review:
+Action item status:
+[r] : removed
+[-] : completed
+[ ] : open
+
+--- Items from this meeting ---
+
+[[ ] T20000613-01 [Vladimir] Publish the new ResourceBundle benchmark results.
+    Due date: 2000-August if not earlier.
+
+[ ] T20000613-02 [Helena and Brendan] Provide a proposal for Collation enchancement requirements.
+    Due date: 2000-June-20.
+
+[ ] T20000613-03 [Helena and Brendan] Provide a proposal for Collation enchancement requirements.
+    Due date: 2000-June-20.
+
+[ ] T20000523-04 [Markus] Send out a revised conversion alias matching proposal.
+    Due date: 2000-June-15 if not earlier.
+
+[ ] T20000523-05 [All] Complete API set in 1.6 release will be frozen.
+    Due date: 2000-June-29 if not earlier.
+
+[ ] T20000523-06 [Roger] Complete ICU User's Guide draft for public review.
+    Due date: 2000-June-23 if not earlier.
+
+[ ] T20000229-03 [IBM & Yves] Improve readme and related documents
+                          + Cross-link javadoc texts, C <-> C++ etc.
+                          + update readme & docs/*
+                          + move coding guidelines to separate doc (only
+
+                            link to oss server page? remove irrelevant
+                            items)
+    Due date: 2000-apr-30
+
+    2000-apr-11: include a list of files that need to be installed
+
+[ ] T20000321-01 [David]  Submit ICU port changes for NCR MP-RAS
+platform.
+    Due date: 2000-may-09
+
+    2000-apr-25: pending on Steve Watt's feedback on various compiler
+options.
+    2000-may-09: Tex/Steve: changes for a very similar platform are
+checked
+                 in and should cover much of this platform
+
+[ ] T20000321-04 [Roger]  Complete the Conversion chapter of
+                          the ICU user's guide.
+    Due date: 2000-may-09
+
+    2000-may-09: The chapter iss not ready yet.
+
+[ ] T20000321-06 [Yves]   Review the Conversion chapter of ICU user's
+                          guide.
+                          Create draft of the build/installation
+                          instructions of
+                          the Introduction chapter of the user's guide.
+    Due date: 2000-may-09
+
+    2000-may-09: The chapter is not ready yet.
+
+[ ] T20000411-02 [Steve W.]  Collect the makefile flags for different
+                          platforms
+    Due date: 2000-may-09
+
+    2000-may-09: Done for UnixWare.
+
+[ ] T20000229-05 [David]  Review the Format User's guide chapters
+    Due date: 2000-may-09
+
+[ ] T20000229-06 [Tex & Steve] Review the Collation and ResourceBundle
+                          User's guide chapters
+    Due date: 2000-may-09
+
+    2000-apr-11: there are still broken links in the user's guide on the
+
+                 web
+    2000-may-09: The links are fixed.
+
+[ ] T20000321-05 [Brendan] Review the Conversion and Transliterator
+                          chapters
+                          of ICU user's guide.
+    Due date: 2000-may-15
+
+    2000-apr-25: Feedback was submitted through email, 2nd review cycle
+                 is required after the update.
+    2000-may-09: in 2nd review cycle now
+
+[ ] T20000229-04 [David]  David Craig will continue to work on the
+                          DateFormat
+                          performance and report in the next meeting.
+    Due date: 2000-may-15
+
+--- Items that are due after the next meeting ---
+
+[ ] T20000411-03 [Markus/Steven/Yves] Document how to drop/add/delete
+                          resources (data files) like converters,
+                          locales, and collation tables
+    Due date: 2000-june-9
+
+[ ] T20000125-01 [Jesper] Implement the global new/delete operator to
+                          use uprv_malloc and uprv_free functions.
+    Due date: August 31, 2000
+
+[ ] T20000411-01 [IBM]    Investigate stylebook output in UTF-8
+    Due date: August 31, 2000
+
+[ ] T20000321-03 [IBM]    Find information on the freeware that can
+print
+                          the html pages in a directory.
+    Due date: September 1, 2000
+
+    2000-apr-11: we need to investigate how to produce
+                 one single HTML file or a PDF document
+
+
+
+
+

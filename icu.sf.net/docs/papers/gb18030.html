@@ -1,0 +1,376 @@
+<html>
+<head>
+<title>GB 18030: A mega-codepage</title>
+<meta name="ABSTRACT" content="This article briefly describes the important Chinese GB 18030-2000 standard and its implications for software for the Chinese market. GB 18030 presents adopters with some unusual challenges. They are explained here, along with suggestions for how to deal with them." />
+<meta name="DESCRIPTION" content="This article briefly describes the important Chinese GB 18030-2000 standard and its implications for software for the Chinese market. GB 18030 presents adopters with some unusual challenges. They are explained here, along with suggestions for how to deal with them." />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta content="GB-18030, codepage, translation, chinese standard, Chinese standard" name="KEYWORDS"></meta> </meta> </meta> </meta> </meta> </meta> </meta> </meta> </meta> </meta> </meta> </meta> 
+</head>
+<body bgcolor="#ffffff" marginheight="2" marginwidth="2" topmargin="2" leftmargin="2">
+<h1><span class="atitle">GB 18030: A mega-codepage </span></h1>
+<div align="left"><span class="atitle2"> Exploring the history and structure of 
+  the new Chinese Unicode standard </span> </div>
+<p> <a href="#author1">Markus Scherer</a> (<a href="mailto:markus.scherer@us.ibm.com">markus.scherer@us.ibm.com</a>)<br />
+  Software Engineer, IBM Unicode Technology Group, IBM<br />
+  February 2001</p>
+<p>Originally published on <a href="http://www-106.ibm.com/developerworks/unicode/library/u-china.html?dwzone=unicode">http://www-106.ibm.com/developerworks/unicode/library/u-china.html?dwzone=unicode</a></p>
+<blockquote> <i>This article briefly describes the important Chinese GB 18030-2000 
+  standard and its implications for software for the Chinese market. GB 18030 
+  presents adopters with some unusual challenges. They are explained here, along 
+  with suggestions for how to deal with them.</i></blockquote>
+<table width="160" border="1" cellspacing="1" cellpadding="1" bgcolor="#999999" bordercolor="#999999" align="right">
+  <tr bgcolor="#0033CC"> 
+    <td height="5" align="center"> 
+      <div align="center"><b><font color="#FFFFFF">Contents:</font></b></div>
+    </td>
+  </tr>
+  <tr bgcolor="#E3E3E3" bordercolor="#999999"> 
+    <td><a href="#h2">Introduction</a></td>
+  </tr>
+  <tr bgcolor="#E3E3E3" bordercolor="#999999"> 
+    <td height="41"><a href="#h3">A brief history of major GB codepages</a></td>
+  </tr>
+  <tr bgcolor="#E3E3E3" bordercolor="#999999"> 
+    <td><a href="#h4">Structure</a></td>
+  </tr>
+  <tr bgcolor="#E3E3E3" bordercolor="#999999"> 
+    <td><a href="#h5">Challenges for implementations of GB 18030</a></td>
+  </tr>
+  <tr bgcolor="#E3E3E3" bordercolor="#999999"> 
+    <td><a href="#h6">Suggestions for dealing with these challenges</a></td>
+  </tr>
+  <tr bgcolor="#E3E3E3" bordercolor="#999999"> 
+    <td height="80"><a href="#h7">Algorithm for mapping contiguously-enumerated 
+      mappings between GB 18030 and Unicode</a></td>
+  </tr>
+  <tr bgcolor="#E3E3E3" bordercolor="#999999"> 
+    <td><a href="#h8">Conclusion and outlook</a></td>
+  </tr>
+  <!--Standard links for every article--> 
+  <tr bgcolor="#E3E3E3" bordercolor="#999999"> 
+    <td><a href="#resources">Resources</a></td>
+  </tr>
+  <tr bgcolor="#E3E3E3" bordercolor="#999999"> 
+    <td><a href="#author1">About the author</a></td>
+  </tr>
+</table>
+<p><a name="h2"><span class="atitle2"><b>Introduction</b></span></a><br />
+  GB 18030-2000 is a new Chinese standard that specifies an extended codepage 
+  and a mapping table to Unicode. GB 18030 was first published on March 17, 2000. 
+  After feedback from the worldwide software industry, the codepage was changed, 
+  and a new mapping table was released on November 30, 2000. The text of the standard 
+  is expected to be republished in March of 2001.</p>
+<p>This codepage standard is important for the software industry because China 
+  has mandated that any software application that is released for the Chinese 
+  market after a certain date must support GB 18030. Initially, this date was 
+  specified as January 1, 2001. It has been changed to September 1, 2001.</p>
+<p> <a name="h3"><span class="atitle2"><b>A brief history of major GB codepages</b></span></a><br />
+  A common base codepage standard for Chinese is GB 2312-1980. It encodes more 
+  than 6,000 frequently-used Chinese ideographs.</p>
+<p>With the growing importance of Unicode and the parallel standard ISO 10646 
+  (which was adopted by China as GB 13000), an extension of GB 2312-1980 was created. 
+  This extension was called GBK and encoded all 20,902 unified ideographs that 
+  are assigned in Unicode 2.1. GBK is not a formal standard, but a widely-implemented 
+  specification.</p>
+<p>Unicode 3.0 added more than 6,000 ideographs, and the upcoming version 3.1 
+  will add about 42,000 on top of that.</p>
+<p>GB 18030 was created as an update of GBK for Unicode 3.0 with an extension 
+  that covers all of Unicode. It has the following general features: </p>
+<ul>
+  <li>GB 18030 character assignments are backwards compatible with the GB 2312-1980 
+    standard and the GBK specification.</li>
+  <li>The mapping table between GB 18030 and Unicode is backwards compatible with 
+    the one between GB 2312-1980 and Unicode, and with some exceptions (with the 
+    one between GBK and Unicode), most of the changes compared to the GBK mapping 
+    table are due to updates for Unicode 3.0.</li>
+  <li>GB 18030 specifies a mapping table that covers all Unicode code points. 
+    It is functionally similar to a UTF (Unicode Transformation Format) while 
+    maintaining compatibility of GB-encoded text with GBK and GB 2312-1980.</li>
+</ul>
+<p> <a name="h4"><span class="atitle2"><b>Structure</b></span></a><br />
+  GB 18030-2000 encodes characters in sequences of one, two, or four bytes. Valid 
+  byte sequences are as follows (byte values are hexadecimal): </p>
+<ul>
+  <li>Single-byte: 00-80 (*) </li>
+  <li>Two-byte: 81-fe | 40-7e, 80-fe </li>
+  <li>Four-byte: 81-fe | 30-39 | 81-fe | 30-39 </li>
+</ul>
+<p>(*) <b>Note:</b> At the time of this writing, it seems that the single byte 
+  0x80 should be treated as valid but unassigned, while the single byte 0xff should 
+  be treated as illegal.</p>
+<p>GB 18030 was created with GBK as a basis. The Unicode mapping table for GB 
+  18030 starts with the same mappings for single-byte and double-byte sequences 
+  as the Unicode mapping table for GBK, except for a few dozen characters. These 
+  characters were not assigned in Unicode 2.1 and were mapped in the GBK mapping 
+  table to Unicode Private-Use code points. GB 18030 maps them to the newly-assigned 
+  code points in Unicode 3.0 for the corresponding characters. This keeps the 
+  GBK byte sequences the same for these characters, but the Unicode mapping table 
+  yields different results for them.</p>
+<p>In addition, all Unicode code points that are not mapped by this updated GBK 
+  portion are mapped to four-byte sequences, which are new in GB 18030. They are 
+  simply enumerated beginning at the lowest such Unicode code point (U+0080) and 
+  at the lowest such four-byte sequence (GB+81308130). One such enumeration fills 
+  in the 40,000 or so Unicode BMP code points that were not covered by GBK (GB 
+  lead bytes 0x81..0x84). Another such enumeration covers the 1 million supplementary 
+  Unicode code points (GB lead bytes 0x90..0xe3).</p>
+<p>One of the biggest changes with the re-released mapping table from November, 
+  compared to the initial one, is that all of the 40,000 mappings to BMP code 
+  points were changed. This is mainly (but not only) due to starting the BMP enumeration 
+  at U+0080 instead of U+0081.</p>
+<p>The current Unicode mapping table in the XML format as described in Unicode 
+  Technical Report 22 is available on the ICU Web site (see Resources).</p>
+<p>The current Unicode mapping table contains only round-trip mappings. The original 
+  mapping table contained fallback mappings for the GBK characters that were updated 
+  according to Unicode 3.0: Their old GBK Private-Use code points were mapped 
+  unidirectionally to the GB codes, while the round-trip mappings were changed 
+  (compared to GBK) to be from the GB codes to the new (Unicode 3.0) code points. 
+  In the new mapping table, the fallback mappings are removed, and the Private-Use 
+  code points instead map to new four-byte sequences with round-trip mappings.</p>
+<p> <b>Note:</b> Like some GBK implementations, the original publication of GB 
+  18030-2000 assigned the Euro currency symbol to the single byte 0x80. The updated 
+  mapping table from November leaves 0x80 unassigned and instead maps 0xa2e3 U+20ac 
+  for the Euro symbol.</p>
+<p>GB 18030 has 1.6 million valid byte sequences, but there are only 1.1 million 
+  code points in Unicode, so there are about 500,000 byte sequences in GB 18030 
+  that are currently unassigned.</p>
+<p> <a name="h5"><span class="atitle2"><b>Challenges for implementations of GB 
+  18030</b></span></a><br />
+  GB 18030 has some unusual properties that present challenges for an implementation 
+  of a codepage converter as well as for in-process use: </p>
+<ul>
+  <li>It is huge: With the encoding structure as described above, there are more 
+    than 1.6 million valid byte sequences -- probably the largest codepage.</li>
+  <li>It is similar to a UTF: All 1.1 million Unicode code points U+0000-U+10ffff 
+    except for surrogates U+d800-U+dfff map to and from GB 18030 codes. This includes 
+    unassigned and "not-a-character" code points. </li>
+  <li>GB 18030 is defined as much with charts of assigned characters as with a 
+    mapping table to and from Unicode. </li>
+  <li>It is not possible for all codepage byte sequences to determine the length 
+    of the sequence from the first byte.</li>
+  <li>The four-byte sequences use trail byte values 0x30..0x39, while common, 
+    ASCII-based multi-byte encodings are using trail byte values of 0x40 and above. 
+    (0x30..0x39 are the ASCII code values for the decimal digits.) This means 
+    that there is an even larger overlap between single-byte values and trail-byte 
+    values, which makes random access in GB 18030 text even more difficult than 
+    in other multi-byte codepages. </li>
+</ul>
+<p> <a name="h6"><span class="atitle2"><b>Suggestions for dealing with these challenges</b></span></a><br />
+  An implementation of GB 18030 needs to be able to determine the length of a 
+  byte sequence by examining not only the lead byte, but at least the second byte 
+  of a multi-byte sequence as well. This could be hard-coded for GB 18030, or 
+  could be done in a more general way with a state machine that represents the 
+  entire validity structure of this codepage. Such a state machine could be purely 
+  data-driven and would be useful for all multi-byte encodings. It provides a 
+  general approach for checking that any byte sequence is valid in a given codepage.</p>
+<p>For full support of GB 18030, there are basically only two options because 
+  it is specified with a Unicode mapping table for all code points:</p>
+<ul>
+  <li>GB 18030 could be used directly as an in-process encoding. An application 
+    needs to be aware of the complex multi-byte structure that includes four-byte 
+    sequences. Almost all of the single-byte values are also valid for trail bytes. 
+  </li>
+  <li>It can be converted to and from Unicode without loss due to its Unicode-based 
+    specification. An application only needs a converter for this and can process 
+    text in Unicode. Converting GB 18030 into any non-Unicode encoding can result 
+    in losing some of the text.</li>
+</ul>
+<p>The number of valid byte sequences -- of Unicode code points covered and of 
+  mappings defined between them -- makes it impractical to directly use a normal, 
+  purely mapping-table-based codepage converter. With about 1.1 million mappings, 
+  a simple mapping table would be several megabytes in size. Most likely, some 
+  initial implementations will not support GB 18030 fully, but only some subset 
+  of it.</p>
+<p>A simple and effective way to handle the large number of defined mappings is 
+  to handle most of the four-byte sequences algorithmically. This is possible 
+  because the mappings between four-byte GB 18030 sequences and Unicode code points 
+  are a result of an enumeration process (see the Structure description above). 
+  Large portions of the mapping table contain entries that differ by exactly one 
+  position in both Unicode code points and byte sequences. It is possible to extract 
+  a small number of such contiguously-enumerated ranges mechanically (for details 
+  about how to do this, see <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/charset/source/gb18030/gb18030.html">this 
+  page</a>). The result is that only the remaining mappings need to be stored 
+  in an actual mapping table, while the ranges are mapped by special code in a 
+  converter.</p>
+<p>The XML mapping file mentioned above contains 13 such ranges to cover all but 
+  31,000 mappings. This number is not unusual for mapping tables between Unicode 
+  and East Asian codepages. A converter using such a mapping table would first 
+  use the explicit mappings; when a result is "unassigned", then it would need 
+  to find a range that contains the input, and map algorithmically if such a range 
+  exists or otherwise treat the input as unassigned. (Of course, illegal sequences 
+  must be handled, as usual, according to the application.)</p>
+<p>Handling the one range for the supplementary Unicode code points algorithmically 
+  eliminates all non-BMP Unicode code point mappings from the actual mapping table.</p>
+<p>In principle, it is possible to handle all mappings involving four-byte sequences 
+  algorithmically by extracting all of them as contiguous ranges. Some of these 
+  will only contain a single mapping. Doing this would slow down the conversion 
+  for four-byte sequences but would allow the remaining mapping table to contain 
+  only mappings between single-byte and double-byte GB 18030 sequences and Unicode 
+  BMP code points. The remaining mapping table would contain only about 24,000 
+  entries.</p>
+<p> <a name="h7"><span class="atitle2"><b>Algorithm for mapping contiguously-enumerated 
+  mappings between GB 18030 and Unicode</b></span></a><br />
+  The following is an example of an algorithm for mapping between GB 18030 and 
+  Unicode within a contiguously-enumerated range of the mapping specification. 
+  Code snippets are pseudo-code. It is possible to implement this algorithm in 
+  a general way, storing the range information alongside the mapping table. Currently, 
+  however, GB 18030 is the only codepage where this algorithm is really useful, 
+  if not necessary.</p>
+<p>Consider the following example for a range of enumerated mappings from the 
+  XML file (this range covers all supplementary Unicode code points):</p>
+<table border="1" cellspacing="0" cellpadding="5" width="100%" bgcolor="#CCCCCC">
+  <tr> 
+    <td> 
+      <pre><code>
+		
+	
+   &lt;range uFirst="10000" uLast="10FFFF"
+           bFirst="90 30 81 30" bLast="E3 32 9A 35"
+           bMin="81 30 81 30" bMax="FE 39 FE 39"/&gt;
+</code></pre>
+    </td>
+  </tr>
+</table>
+<p>Note that all byte and code point values in the XML file are hexadecimal.</p>
+<p>In order to handle GB 18030 four-byte sequences algorithmically, one needs 
+  to linearize them, i.e., generate a number for each four-byte sequence so that 
+  the difference between two such numbers is the same as the lexical difference 
+  between the byte sequences:</p>
+<table border="1" cellspacing="0" cellpadding="5" width="100%" bgcolor="#CCCCCC">
+  <tr> 
+    <td> 
+      <pre><code>
+		
+	
+   int linear(byte bytes[4]) {
+        return ((bytes[0]*10+bytes[1])*126+bytes[2])*10+bytes[3];
+    }
+
+</code></pre>
+    </td>
+  </tr>
+</table>
+<p>The factors 10 and 126 are the numbers of byte values in the byte positions 
+  according to bMin and bMax: 10 values 0x30..0x39 and 126 values 0x81..0xfe. 
+  The result of this function is an ordinal number that follows the lexical order 
+  of four-byte sequences.</p>
+<p>Given a linear value for a byte sequence, the byte sequence itself can be calculated:</p>
+<table border="1" cellspacing="0" cellpadding="5" width="100%" bgcolor="#CCCCCC">
+  <tr> 
+    <td> 
+      <pre><code>
+		
+	
+
+    byte[4] unLinear(int lin) {
+        byte result[4];
+        lin-=linear(0x81, 0x30, 0x81, 0x30); // zero-base the linear value
+        result[3]=0x30+lin%10;  lin/=10;
+        result[2]=0x81+lin%126; lin/=126;
+        result[1]=0x30+lin%10;  lin/=10;
+        result[0]=0x81+lin;
+        return result;
+    }
+</code></pre>
+    </td>
+  </tr>
+</table>
+<p>For each contiguously enumerated range, the following must be true: <code>uLast-uFirst 
+  == linear(bLast)-linear(bFirst)</code> </p>
+<p>Mapping from a GB 18030 four-byte sequence to a Unicode code point:</p>
+<table border="1" cellspacing="0" cellpadding="5" width="100%" bgcolor="#CCCCCC">
+  <tr> 
+    <td> 
+      <pre><code>
+		
+	
+    int mapToUnicode(byte bytes[4]) {
+        int lin=linear(bytes);
+        for each range {
+            if(linear(bFirst)&amp;lt;=lin&amp;lt=linear(bLast)) {
+                // range found
+                return uFirst+(lin-linear(bFirst));
+            }
+        }
+        // the byte sequence is not in any known range
+        return error;
+    }
+
+</code></pre>
+    </td>
+  </tr>
+</table>
+<p>Mapping from a Unicode code point to a GB 18030 four-byte sequence:</p>
+<table border="1" cellspacing="0" cellpadding="5" width="100%" bgcolor="#CCCCCC">
+  <tr> 
+    <td> 
+      <pre><code>
+		
+	
+    byte[4] mapFromUnicode(int u) {
+        for each range {
+            if(uFirst&amp;lt;=u&amp;lt;=uLast) {
+                // range found
+                return unLinear(linear(bFirst)+(u-uFirst));
+            }
+        }
+        // code point u is not in any known range
+        return error;
+    }
+
+</code></pre>
+    </td>
+  </tr>
+</table>
+<p>An example implementation of the techniques and algorithms discussed here can 
+  be found in <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/source/common/ucnvmbcs.c">ICU's 
+  ucnvmbcs.c</a>. (See the <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/license.html">license</a>.)</p>
+<p> <a name="h8"><span class="atitle2"><b>Conclusion and outlook</b></span></a><br />
+  This article has explained the history and the structure of the new Chinese 
+  codepage standard GB 18030-2000, which must be implemented in future applications 
+  that are marketed for China. Unusual features and challenges are discussed, 
+  and suggestions for solutions presented.</p>
+<p>With the release of a mapping table by the Chinese standards agency and the 
+  adoption of this mapping table by the software industry, there is a rare chance 
+  for a consistent industry-wide implementation of a codepage standard.</p>
+<p>The standard has been modified since its publication. A new mapping table was 
+  released in November of 2000, and the text of the standard is expected to be 
+  republished in March of 2001. The date after which newly-released software must 
+  support GB 18030 has been moved to September 1, 2001.</p>
+<p><a name="resources"><span class="atitle2"><b>Resources</b></span></a> 
+<ul>
+  <li>Special thanks for help with translating and understanding the GB 18030 
+    standard goes to <a href="mailto:dmeyer@adobe.com">Dirk Meyer</a> who published 
+    <a href="ftp://ftp.oreilly.com/pub/examples/nutshell/cjkv/pdf/GB18030_Summary.pdf">his 
+    findings about the standard</a> on the Web site that accompanies <a href="mailto:lunde@adobe.com">Ken 
+    Lunde</a>'s excellent book about <a href="http://www.oreilly.com/catalog/cjkvinfo/">CJKV 
+    Information Processing</a>.</li>
+  <li>The <a href="http://oss.software.ibm.com/icu/charset/">XML mapping table</a> 
+    for GB 18030-2000 with the data from November 30, 2000 is available on the 
+    <a href="http://oss.software.ibm.com/icu/">ICU</a> Web site.</li>
+  <li>The XML format is described in <a href="http://www.unicode.org/unicode/reports/tr22/">Unicode 
+    Technical Report 22</a>.</li>
+  <li>There is a more technical early <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/charset/source/gb18030/gb18030.html">description
+    of GB 18030</a> on the ICU Web site.</li>
+  <li> <a href="http://oss.software.ibm.com/icu/">ICU</a> implements GB 18030 
+    as a variant of its <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/source/common/ucnvmbcs.c">multi-byte 
+    codepage converter</a> (see the <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/license.html">license</a>).</li>
+  <li>See the <a href="http://www.unicode.org/">Unicode</a> Web site for details 
+    about the standard.</li>
+  <li>There are many articles about related topics on the <a href="http://www.ibm.com/developerworks/unicode/"> 
+    <i>developerWorks</i> Unicode special topic</a>.</li>
+  <li>See <a href="http://www-106.ibm.com/developerworks/library/codepages.html?dwzone=unicode">A 
+    brief explanation of codepages and Unicode</a> here on <i>developerWorks</i>.</li>
+</ul>
+      
+<hr>
+<p><a name="author1" /></a> <span class="atitle2"><b>About the author</b></span><br />
+</p>
+<p> Markus Scherer is a Software Engineer and Unicode expert and works in IBM's 
+  Unicode Technology Group in Cupertino, California. He is currently leading the 
+  development of the C/C++ library of the International Components for Unicode 
+  (ICU), an open source Unicode library. Before that, he worked on IBM projects 
+  for Wireless and Mobile Computing, including GUIs, Translation, and Internationalization, 
+  in his native Germany and in North Carolina. Markus can be reached at <a href="mailto:markus.scherer@us.ibm.com">markus.scherer@us.ibm.com</a></p>
+          <p>&nbsp;</p>
+</body>
+</html>

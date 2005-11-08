@@ -1,0 +1,83 @@
+PMC Meeting Minutes
+===================
+2003-Oct-01 - 10:10am PT
+
+Attendees
+=========
+Mark Davis           (IBM)
+Deborah Goldsmith    (Apple)
+Andy Heninger        (IBM)
+Steven R Loomis      (IBM) - notestaker
+Syn Wee Quek         (IBM)
+George Rhoten        (IBM) - notestaker
+Markus Scherer       (IBM)
+Raghuram Viswanadha  (IBM)
+Vladimir Weinstein   (IBM)
+Tex Texin            (XenCraft) @ 10:25a
+Doug Felt            (IBM) @ 10:30a
+
+Agenda
+======
+Meeting started at 10:10am
+ICU 2.6.1 is going well
+Apple will use a future version of ICU. Probably 2.8 or 3.0.
+
+The collation chapter wasn't reviewed. It needs to be reviewed.
+
+Apple is not concerned about library loading and unloading.
+
+Onto Apple topics:
+Apple is interested adding more date/time formats to ICU
+Mark says that OpenOffice has similar data, and we have no objection on adding it in the future.
+
+Plugging in language support:
+When it's safe to call u_cleanup, you can plug in new resource bundles.
+	This will cleanup any caches.
+	During logout, process reinitialization will also allow plugging in/changing language support.
+
+Break iteration:
+Mark states that service registration would be helpful for Apple break iteration.
+The service stuff isn't persistent. So you would have to reregister it on load time.
+On a similar note, the collation service registration API only works on the C++ API.
+It is unsure if the collation service C++ API affects the C API.
+
+Break iteration performance:
+There are some performance issues.
+Mark and Andy stated that ICU optimizes forward iteration. Backwards iteration is slow.
+	Mark requested that Deborah find out what APIs were being used.
+
+Thai break iteration:
+Some discussion involving Apple and ICU Thai break iteration occurred.
+ICU's Thai break iteration doesn't do full grammar analysis.
+Mark states that the Thai break iteration may go into the base iteration.
+	When certain characters are encountered.
+
+Mark states that most of this stuff is already planned except the extra format strings.
+
+Deborah states that iCal uses many formats (up to around 20).
+Mark states that Open Office has a similar model.
+
+Message formatting
+Mark states that some people are complaining about quoting in message format. e.g. ''
+Apple has no interest in seeing this quoting fixed.
+
+Mark will give Deborah a copy of the list of features that will be going into ICU.
+3.0 won't have a lot of features. It's mostly about bug fixing and performance.
+3.0 will be a limited release. It will be on a shorter time scale.
+3.0 might be released around May or April.
+Mark states that the ICU core team can help with the design,
+	and Apple can help with performance work and some implementation.
+Andy will be working on "multiple tag values" in break iteration.
+Mark would like to schedule another meeting with Apple about scheduling.
+
+Mark summarizes meeting so far.
+
+Deborah asked about proposing the script specific collation to the UTC.
+Mark says that it sounds like a good plan, but there is a concern about
+	synchronization with the collation ISO-14651 committee (JTC1/WG20).
+There is some talk about moving the collation out of the WG20 committee
+	and into the WG2 committee.
+Mark suggests waiting
+
+A Technical Discussion was had, about script code, locale ID and displayname. It is found here: 
+   http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/locale/20031001scriptcode.txt

@@ -1,0 +1,472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ICU4J FAQ</title>
+<link rel="stylesheet" href="icu.css" type="text/css" />
+</head>
+<body>
+<!-- Copyright (c) 2005 IBM Corp. All Rights Reserved -->
+<!--#include virtual="/ssi/header.html" -->
+<h2>ICU4J Technical FAQ</h2>
+<hr />
+<a name="top" id="top"></a>
+<p>This page contains frequently asked questions about the content provided
+with the International Components for Unicode as well as basics on
+internationalization. It is organized into the following sections:</p>
+<p><b>Common Java Questions</b></p>
+<p><b><a href="#Common_1">How do I read UTF-8 data in Java?</a></b><br />
+<b><a href="#Common_2">What version of the JDK is required for
+ICU4J?</a></b><br />
+<b><a href="#icuicu4jdiff">Comparison between ICU and JDK: What's the
+difference?</a></b><br /></p>
+<p><b>NumberFormat</b></p>
+<p><b><a href="#NumberFormat_1">Why do I need these classes?</a></b><br />
+<b><a href="#NumberFormat_2">What's the difference between ICU4J NumberFormat
+and the standard NumberFormat?</a></b><br />
+<b><a href="#NumberFormat_3">Are there any known limitations of ICU4J
+NumberFormat?</a></b><br /></p>
+<p><b>RuleBasedNumberFormat</b></p>
+<p><b><a href="#RuleBasedNumberFormat_1">Why don't you have rules for my native
+language?</a></b><br />
+<b><a href="#RuleBasedNumberFormat_2">Why don't negative numbers (or fractional
+numbers) show up correctly in my language?</a></b><br />
+<b><a href="#RuleBasedNumberFormat_3">You spelled the word for 20,000 wrong in
+my language! Don't you know any better?</a></b><br />
+<b><a href="#RuleBasedNumberFormat_4">Why don't the text areas scroll or allow
+me to edit them when I'm displaying Japanese?</a></b><br />
+<b><a href="#RuleBasedNumberFormat_5">The Hebrew words are all spelled
+backwards! What's wrong with you people?</a></b><br />
+<b><a href="#RuleBasedNumberFormat_6">How come I see rows of boxes (or question
+marks) instead of letters?</a></b><br />
+<b><a href="#RuleBasedNumberFormat_7">Why doesn't this program work right on my
+browser?</a></b><br /></p>
+<p><b>International Calendars</b></p>
+<p><b><a href="#Intl_Calendars_1">Why do I need these classes?</a></b><br />
+<b><a href="#Intl_Calendars_2">Which Japanese calendar do you
+support?</a></b><br />
+<b><a href="#Intl_Calendars_3">Do you <i>really</i> support the true lunar
+Islamic calendar?</a></b><br />
+<b><a href="#Intl_Calendars_4">Why don't you have resource data for my
+language?</a></b><br />
+<b><a href="#Intl_Calendars_5">Why don't you support the Chinese
+calendar?</a></b><br />
+<b><a href="#Intl_Calendars_6">Why don't Hebrew and Arabic text look right in
+the demo?</a></b><br /></p>
+<p><b>StringSearch</b></p>
+<p><b><a href="#StringSearch_1">Do I have to know anything about Collators to
+use StringSearch?</a></b><br />
+<b><a href="#StringSearch_2">What algorithm are you using to perform the
+search?</a></b><br /></p>
+<p><b>RuleBasedBreakIterator</b></p>
+<p><b><a href="#RBBI_1">Why did you bother to rewrite BreakIterator? Wasn't the
+old version working?</a></b><br />
+<b><a href="#RBBI_2">What do you mean, performance improvements? It seems WAY
+slower to me!</a></b><br />
+<b><a href="#RBBI_3">This still has all the same bugs that the old
+BreakIterator did! Why would I want to use this one instead?</a></b><br />
+<b><a href="#RBBI_4">Why is there no demo?</a></b><br />
+<b><a href="#RBBI_5">What's this DictionaryBasedBreakIterator
+thing?</a></b><br />
+<b><a href="#RBBI_6">Why do you have a Thai dictionary, but no resource data
+that actually lets me use it?</a></b><br />
+<b><a href="#RBBI_7">What's this BreakIteratorRules_en_US_TEST
+thing?</a></b><br />
+<b><a href="#RBBI_8">How can I create my own dictionary file?</a></b><br /></p>
+<hr />
+<p><b>Common Java Questions</b></p>
+<dl>
+<dt><a name="Common_1" id="Common_1"></a> <b>1.How do I read UTF-8 data in
+Java?</b></dt>
+<dd>Java supports UTF-8 the same way it does any other encoding. To read UTF-8
+data, use one of the following APIs. In the case of UTF-8, use <tt>"UTF-8"</tt>
+as the encoding name. Unfortunately, beyond a small fixed set (which includes
+UTF-8) JVMs from different vendors are free to support or not support whatever
+encodings they want. Furthermore, in JDK1.3.1 and prior, there is no public API
+to query the set of provided encodings.<br />
+<pre>
+// Given a String, return a byte array containing the text of the String
+// in the named encoding
+public byte[] getBytes(String enc) throws UnsupportedEncodingException
+
+// Construct a String given a byte array containing text in the named encoding
+public String(byte[] bytes, String enc) throws UnsupportedEncodingException
+
+// Construct an InputStreamReader that reads text from bytes in the named encoding
+InputStreamReader(InputStream in, String enc) throws UnsupportedEncodingException
+
+// Construct an OutputStreamWriter that writes text as bytes in the named encoding
+OutputStreamWriter(OutputStream out, String enc) throws UnsupportedEncodingException
+</pre>
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="Common_2" id="Common_2"></a> <b>2.What version of the JDK is
+required for ICU4J?</b></dt>
+<dd>
+<p>Parts of ICU4J depend on functionality that is only available in JDK 1.4 or
+later, although some components work under earlier JVMs. All components should
+be compiled using a Java2 compiler, as even components that run under earlier
+JVMs can require language features that are only present in Java2. Currently
+1.1.x, 1.2.x and 1.3.x JVMs are unsupported and untested, and you use the
+components on these JVMs at your own risk.</p>
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="icuicu4jdiff" id="icuicu4jdiff"></a> <b>3.Comparison between ICU
+and JDK: What's the difference?</b></dt>
+<dd>This is one of our most popular question. Please refer to
+<a href="/charts/comparison/">our comparison chart</a>.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+</dl>
+<hr />
+<p><b>NumberFormat</b></p>
+<dl>
+<dt><a name="NumberFormat_1" id="NumberFormat_1"></a> <b>1.Why do I need these
+classes?</b></dt>
+<dd>The NumberFormat classes in the standard JDK do a good job in most cases,
+but they have some limitations. If you require support for BigInteger or
+BigDecimal numbers, if you require exact values of parsed strings, or if you
+need any of the new features (scientific notation, padding, rounding), then you
+need ICU4J NumberFormat.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="NumberFormat_2" id="NumberFormat_2"></a><b>2.What's the difference
+between ICU4J NumberFormat and the standard NumberFormat?</b></dt>
+<dd>The ICU4J NumberFormat package contains modified versions of the standard
+JDK classes NumberFormat, DecimalFormat, DecimalFormatSymbols, and internal
+classes. The modified classes do everything the standard classes do, and then
+some.
+<ul>
+<li>ICU4J's NumberFormat formats and parses BigInteger and BigDecimal, in
+addition to double and long values.</li>
+<li>If a long overflows in JDK 1.2, it becomes a double. For instance, if you
+format something close to Long.MAX_VALUE with a percent format, it will be cast
+to a double, losing some precision. With ICU4J NumberFormat, it will
+overflow to a BigInteger, with no loss of information.</li>
+<li>Higher performance formatting of longs.</li>
+<li>During parsing, BigDecimal objects are returned instead of Double objects
+to represent non-integral values. Double objects are only returned to represent
+values which cannot be stored in a BigDecimal. These are NaN, Infinity,
+-Infinity, and -0. All other values are returned as Long, BigInteger, or
+BigDecimal values. Clients who previously checked for specific types (using
+"instanceof Double" and/or by casting to Double) should change their code and
+use the Number.doubleValue() method.</li>
+<li>Support for scientific notation.</li>
+<li>Support for rounding.</li>
+<li>Support for padding to a specified width.</li>
+<li>Various bug fixes incorporated into JDK 1.2, but not present in JDK 1.1.x
+yet.</li>
+</ul>
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="NumberFormat_3" id="NumberFormat_3"></a> <b>3. Are there any known
+limitations of ICU4J NumberFormat?</b></dt>
+<dd>
+<ul>
+<li>The rounding increment is limited to 18 digits (the number of digits fully
+representable in a long).</li>
+<li>All padding configurations cannot be represented in a pattern. In other
+words, it's possible to make API calls to set up a pattern with padding. Then,
+if a pattern is created for that format, it won't fully expressing the padding
+parameters. This is actually generally true of many attributes of many of the
+formatting classes.</li>
+<li>All rounding configurations cannot be represented in a pattern.</li>
+</ul>
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+</dl>
+<hr />
+<p><b>RuleBasedNumberFormat</b></p>
+<dl>
+<dt><a name="RuleBasedNumberFormat_1" id="RuleBasedNumberFormat_1"></a>
+<b>1.Why don't you have rules for my native language?</b></dt>
+<dd>Because this code isn't part of an official IBM product yet, it hasn't been
+through the whole IBM localization process. The rules you see here were
+intended to be a representative sampling we could use in designing the
+algorithm, and are not 100% complete or 100% accurate. We intend to have
+complete and accurate data for all locales supported by the JDK sometime in
+early to mid 1999, if not sooner. If you can provide us information we're
+missing, we'd be very grateful.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RuleBasedNumberFormat_2" id="RuleBasedNumberFormat_2"></a>
+<b>2.Why don't negative numbers (or fractional numbers) show up correctly in my
+language?</b></dt>
+<dd>See answer to question 1 above.<br />
+Our initial research failed to turn up information on formatting negative
+numbers or numbers with fractional parts for any languages other than English.
+If you can supply us with the missing information, we'd certainly appreciate
+it.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RuleBasedNumberFormat_3" id="RuleBasedNumberFormat_3"></a>
+<b>3.You spelled the word for 20,000 wrong in my language! Don't you know any
+better?</b></dt>
+<dd>No, we don't. See the answer to question 1. If you have corrections for us,
+please let us know.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RuleBasedNumberFormat_4" id="RuleBasedNumberFormat_4"></a>
+<b>4.Why don't the text areas scroll or allow me to edit them when I'm
+displaying Japanese?</b></dt>
+<dd>The text-display facilities in JDK 1.1 are not totally complete, and won't
+show non-Latin text properly on a U.S. English version of Windows. We hacked
+around this to permit display of non-Latin text on all systems, but we
+implemented only text display and not scrolling or editing. JDK 1.2 should
+overcome these limitations, and we'll issue a new version of this demo that
+takes advantage of that sometime after a final or near-final of JDK 1.2 ships.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RuleBasedNumberFormat_5" id="RuleBasedNumberFormat_5"></a>
+<b>5.The Hebrew words are all spelled backwards! What's wrong with you
+people?</b></dt>
+<dd>See the answer to question 5 above. The workaround for the display problems
+isn't sophisticated enough to do bi-directional reordering, and we don't
+currently bother to check which systems have native support for this. If you're
+running on a Hebrew-localized version of Windows, you can change the demo
+program to use the native text-editing capabilities fairly easily. Again, this
+problem should be fixed in JDK 1.2.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RuleBasedNumberFormat_6" id="RuleBasedNumberFormat_6"></a>
+<b>6.How come I see rows of boxes (or question marks) instead of
+letters?</b></dt>
+<dd>In order to see non-Latin text, you need to have an appropriate font
+installed, and your font.properties file has to be modified to recognize it.
+The simplest way to do this is to download and install the Bitstream Cyberbit
+font. You can follow <a href=
+"ftp://ftp.netscape.com/pub/communicator/extras/fonts/windows/" target="new">this
+link to download a copy</a> of the font and find instructions for modifying
+your font.properties file. Stock versions of JDK 1.2 (after the final version
+ships) should include the capability to display most non-Latin scripts right
+out of the box.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RuleBasedNumberFormat_7" id="RuleBasedNumberFormat_7"></a>
+<b>7.Why doesn't this program work right on my browser?</b></dt>
+<dd>We have yet to find a browser that will run this demo correctly. The demo
+program was tested on JDK 1.1.4 and later, on both theSymantec andSun JVMs.
+Neither Netscape nor MSIE had been updated to the most recent version of the
+JDK as this is being written. You can obtain a current version of the Java
+Development Kit directly from Sun. The actual RuleBasedNumberFormat framework
+should work with any JDK 1.1 version.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+</dl>
+<hr />
+<p><b>International Calendars</b></p>
+<dl>
+<dt><a name="Intl_Calendars_1" id="Intl_Calendars_1"></a> <b>1.Why do I need
+these classes?</b></dt>
+<dd>If your application displays or manipulates dates and times, and if you
+want your application to run in countries outside of North America and western
+Europe, you need to support the traditional calendar systems that are still in
+use in some parts of the world. These classes provide that support while
+conforming to the standard Java Calendar API, allowing you to code your
+application once and have it work with any international calendar.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="Intl_Calendars_2" id="Intl_Calendars_2"></a> <b>2.Which Japanese
+calendar do you support?</b></dt>
+<dd>Currently, our JapaneseCalendar is almost identical to the Gregorian
+calendar, except that it follows the traditional conventions for year and era
+names. In modern times, each emperor's reign is treated as an era, and years
+are numbered from the start of that era. Historically each emperor's reign
+would be divided up into several eras, or <i>gengou</i>. Currently, our era
+data extends back to <i>Haika</i>, which began in 645 AD. In all other respects
+(month and date, all of the time fields, etc.) the JapaneseCalendar class will
+give results that are identical to GregorianCalendar.
+<p>Lunar calendars similar to the Chinese calendar have also been used in Japan
+during various periods in history, but according to our sources they are not in
+common use today. If you see a real need for a Japanese lunar calendar, and
+especially if you know of any good references on how it differs from the
+Chinese calendar, please let us know by posting a note on the <a href=
+"/contacts.html">mailing list</a>.</p>
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="Intl_Calendars_3" id="Intl_Calendars_3"></a> <b>3.Do you
+<i>really</i> support the true lunar Islamic calendar?</b></dt>
+<dd>The Islamic calendar is strictly lunar, and a month begins at the moment
+when the crescent of the new moon is visible above the horizon at sunset. It is
+impossible to calculate this calendar in advance with 100% accuracy, since moon
+sightings are dependent on the location of the observer, the weather, the
+observer's eyesight, and so on. However, there are fairly commonly-accepted
+criteria (the angle between the sun and the moon, the moon's angle above the
+horizon, the position of the moon's bright limb, etc.) that let you predict the
+start of any given month with a very high degree of accuracy, except of course
+for the weather factor. We currently use a fairly crude approximation that is
+still relatively accurate, corresponding with the official Saudi calendar for
+all but one month in the last 40-odd years. This will be improved in future
+versions of the class.
+<p>What all this boils down to is that the IslamicCalendar class does a fairly
+good job of predicting the Islamic calendar, and it is good enough for most
+computational purposes. However, for religious purposes you should, of course,
+consult the appropriate mosque or other authority.</p>
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="Intl_Calendars_4" id="Intl_Calendars_4"></a> <b>4.Why don't you
+have resource data for my language?</b></dt>
+<dd>We've included all of the string resource data that we've managed to
+collect so far. The languages we currently provide are Arabic, Dutch, English,
+Finnish, French, Hebrew, Hungarian, Japanese, and Thai, though not all
+calendars are supported in each language. If you would like to contribute
+string translations for other languages, please post a note on the <a href=
+"/contacts.html">mailing list</a>
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="Intl_Calendars_5" id="Intl_Calendars_5"></a> <b>5.Why don't you
+support the Chinese calendar?</b></dt>
+<dd>The short answer is, "Because it's extremely complicated." The Chinese
+lunar obeys complex rules based upon calculations of solstices, new moons, and
+solar longitude, and is much more difficult to implement than the Islamic and
+Hebrew calendars. However, we're starting to work on a ChineseCalendar class
+and will add it to the International Calendars package when it is ready.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="Intl_Calendars_6" id="Intl_Calendars_6"></a> <b>6.Why don't Hebrew
+and Arabic text look right in the demo?</b></dt>
+<dd>The short answer is that you're probably running the demo under JDK 1.1
+rather than JDK 1.2. Most browsers currently (as of early 1999) do not yet
+support JDK 1.2. To see the demo in its full glory, install JDK 1.2 on your
+machine if you have not yet done so, download this package, and run the demo
+under 1.2. If you want the whole story, read on....
+<p>Arabic and Hebrew are both <i>right to left</i> languages. Each line of text
+starts at the right side of the page and flows to the left. When right to left
+text is mixed with a left to right language such as English, (e.g. an Arabic
+month name followed by the decimal year number) you ge <i>bi-directional</i>
+(or <i>bidi</i>) text, which has complicated rules for reordering characters
+based on their context. JDK 1.2 and later have good support for bi-directional
+text, thanks in part to work done by IBM. However, JDK 1.1.x does not support
+bidi text itself and simply passes text strings to the underlying OS. If you
+are running on an OS that supports bidi, such as the Arabic version of Windows,
+the text may look OK, but on other platforms it will probably be displayed
+backwards.</p>
+<p>In addition, Arabic text makes heavy use of ligatures. Most letters can be
+displayed in several different forms depending on their context, and most
+letters are joined to the adjoining letters with ligatures. JDK 1.2 supports
+this directly, while support in earlier versions is spotty and depends on the
+underlying platform OS.</p>
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+</dl>
+<hr />
+<p><b>StringSearch</b></p>
+<dl>
+<dt><a name="StringSearch_1" id="StringSearch_1"></a> <b>1.Do I have to know
+anything about Collators to use StringSearch?</b></dt>
+<dd>Since StringSearch uses a RuleBasedCollator to handle the
+language-sensitive aspects of searching, understanding how collation works
+certainly helps. But the only parts of the Collator API that you really need to
+know about are the collation strength values, PRIMARY, SECONDARY, and TERTIARY,
+that determine whether case and accents are ignored during a search.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="StringSearch_2" id="StringSearch_2"></a> <b>2.What algorithm are
+you using to perform the search?</b></dt>
+<dd>StringSearch uses a version of the Boyer-Moore search algorithm that has
+been modified for use with Unicode. Rather than using raw Unicode character
+values in its comparisons and shift tables, the algorithm uses collation
+elements that have been "hashed" down to a smaller range to make the tables a
+reasonable size. An article explaining this algorithm in a fair amount of
+detail is schedule for publication in the February, 1999 issue of <a href=
+"http://www.javareport.com/" target="new">Java Report.</a>
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+</dl>
+<hr />
+<p><b>RuleBasedBreakIterator</b></p>
+<dl>
+<dt><a name="RBBI_1" id="RBBI_1"></a> <b>1. Why did you bother to rewrite
+BreakIterator? Wasn't the old version working?</b></dt>
+<dd>It was working, but we were too constrained by the design. The break-data
+tables were hard-coded, and there was only one set of them. This meant you
+couldn't customize BreakIterator's behavior, nor could we accommodate languages
+with mutually-exclusive breaking rules (Japanese and Chinese, for example, have
+different word-breaking rules.) The hard-coded tables were also very
+complicated, difficult to maintain, and easy to mess up, leading to mysterious
+bugs. And in the original version, there was no way to subclass BreakIterator
+and get any implementation at all-- if you wanted different behavior, you had
+to rewrite the whole thing from scratch. We undertook this project to fix all
+these problems and give us a better platform for future development. In
+addition, we managed to get some significant performance improvements out of
+the new version.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RBBI_2" id="RBBI_2"></a> <b>2. What do you mean, performance
+improvements? It seems WAY slower to me!</b></dt>
+<dd>The one thing that's significantly slower is construction. This is because
+it actually builds the tables at runtime by parsing a textual description. In
+the old version, the tables were hard-coded, so no initialization was
+necessary. If this is causing you trouble, it's likely that you're creating and
+destroying BreakIterators too frequently. For example, if you're writing code
+to word-wrap a document in a text editor, and you create and destroy a new
+BreakIterator for every line you process, performance will be unbelievably
+slow. If you move the creation out of the inner loop and create a new
+BreakIterator only once per word-wrapping operation, or once per document,
+you'll find that your performance improves dramatically. If you still have
+problems after doing this, let us know-- there may be bugs we need to fix.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RBBI_3" id="RBBI_3"></a><b>3. This still has all the same bugs
+that the old BreakIterator did! Why would I want to use this one
+instead?</b></dt>
+<dd>Because now you can fix it. The resource data in this package was designed
+to mimic as closely as possible the behavior of the original BreakIterator
+class (as of JDK 1.2). We did this deliberately to minimize our variables when
+making sure the new iterator still passed all the old tests. We haven't updated
+it since to avoid the bookkeeping hassles of keeping track of which version
+includes which fixes. We're hoping to get this added to a future version of the
+JDK, at which time we'll fix all the outstanding bugs relating to breaking in
+the wrong places. In the meantime, you can customize the resource data to
+modify things to work the way you want them to.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RBBI_4" id="RBBI_4"></a><b>4. Why is there no demo?</b></dt>
+<dd>We haven't had time to write a good demo for this new functionality yet.
+We'll add one later.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RBBI_5" id="RBBI_5"></a> <b>5. What's this
+DictionaryBasedBreakIterator thing?</b></dt>
+<dd>This is a new feature that isn't in the JDK. DictionaryBasedBreakIterator
+is intended for use with languages that don't put spaces between words (such as
+Thai), or for languages that do put spaces between words, but often combine
+lots of words into long compound words (such as German). Instead of looking
+through the text for sequences of characters that signal the end of a word, it
+compares the text against a list of known words, using this to determine where
+the boundaries should go. The algorithm we use for this is fast, accurate, and
+error-tolerant.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RBBI_6" id="RBBI_6"></a> <b>6. Why do you have a Thai dictionary,
+but no resource data that actually lets me use it?</b></dt>
+<dd>We're not quite done doing the necessary research. We don't currently have
+good test cases we can use to verify it's working correctly with Thai, nor are
+we completely confident in our dictionary. If you can help us with this, we'd
+like to hear from you!
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RBBI_7" id="RBBI_7"></a> <b>7. What's this
+BreakIteratorRules_en_US_TEST thing?</b></dt>
+<dd>This is a resource file that, in conjunction with the "english.dict"
+dictionary, we used to test the dictionary-based break iterator. It allows you
+to locate word boundaries in English text that has had the spaces taken out.
+(The SimpleBITest program demonstrates this.) The dictionary isn't
+industrial-strength, however: we included enough words to make for a reasonable
+test, but it's by no means complete or anywhere near it.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+<dt><a name="RBBI_8" id="RBBI_8"></a> <b>8. How can I create my own dictionary
+file?</b></dt>
+<dd>Right now, you can't. We didn't include the tool we used to create
+dictionary files because it's very rough and extremely slow. There's also a
+strong likelihood that the format of the dictionary files will change in the
+future. If you really want to create your own dictionary file, contact us, and
+we'll see what we can do.
+<p><b><a href="#top">[Goto Top]</a></b></p>
+</dd>
+</dl>
+<!--#include virtual="/ssi/footer.html" -->
+</body>
+</html>

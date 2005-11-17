@@ -17,6 +17,8 @@ span.highlight { font-weight: bold; background-color: #DDD}
 ul.marked {list-style-image: url('http://macchiato.com/images/radioactive.png'); list-style-type: circle}
 li {margin-top:0; margin-bottom:0.5em}
 table {order-collapse: collapse}
+.idn-head { font-size: 12px; background-color: #C0C0C0 }
+.idn-example {font-size:12px; font-family:Arial Unicode MS, san-serif}
 -->
 </style>
 </head>
@@ -24,7 +26,7 @@ table {order-collapse: collapse}
 <body>
 
 <h1 align="center">Globalization Gotchas</h1>
-<p align="center">$Date: 2005/10/29 22:53:17 $, MED<br>
+<p align="center">$Date: 2005/11/17 17:55:59 $, MED<br>
 <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/utc/gotchas.html">
 Working Draft</a></p>
 <p>I&#39;m preparing a presentation for the next Unicode conference in March, and have been thinking 
@@ -210,57 +212,64 @@ them.)</p>
 <ol class="marked">
   <li>The ordering of accents in a normalization form may not be the typical type-in order. </li>
   <li>Normalization is context independent; don&#39;t assume NFC(x + y) = NFC(x) + NFC(y) </li>
-  <li>
-  <table cellspacing="0" cellpadding="3" style="border-collapse: collapse; margin: 1em; display: inline" border="1" align="right">
+  <li>People assume that NFC always composes, but some characters <i>decompose</i> in NFC.<br>
+  <span style="background-color: #FFFF00">Here are the current maximal expansion factors for each 
+  form (U4.1):</span><br>
+  <table style="display: inline; border-collapse: collapse; order-collapse: collapse; margin: 1em" cellSpacing="0" cellPadding="3" border="1">
     <tr>
-      <th>Form</th>
-      <th>UTF</th>
-      <th>Factor</th>
-      <th colspan="2">Sample</th>
+      <th class="idn-head"><span class="changedspan">Operation</span></th>
+      <th class="idn-head" style="text-align: center"><span class="changedspan">UTF</span></th>
+      <th class="idn-head" style="text-align: center"><span class="changedspan">Factor</span></th>
+      <th colSpan="2" class="idn-head" style="text-align: center"><span class="changedspan">Sample</span></th>
     </tr>
     <tr>
-      <td>NFC</td>
-      <td align="center">8</td>
-      <td align="right">3X</td>
-      <td align="center">𝅘𝅥𝅮</td>
-      <td align="right"><font face="monospace">U+1D160</font></td>
+      <td class="idn-example" rowspan="2"><b>NFC</b></td>
+      <td class="idn-example" align="center"><b>8</b></td>
+      <td class="idn-example" align="right"><b>3X</b></td>
+      <td align="middle" style="text-align: center; vertical-align: middle">
+      <span class="changedspan"><font size="5" face="Arial Unicode MS">𝅘𝅥𝅮</font></span></td>
+      <td align="right" style="text-align: right; vertical-align: middle"><span class="changedspan">
+      <font face="monospace">U+1D160</font></span></td>
     </tr>
     <tr>
-      <td>NFC</td>
-      <td align="center">16, 32</td>
-      <td align="right">3X</td>
-      <td align="center">שּׁ</td>
-      <td align="right"><font face="monospace">U+FB2C</font></td>
+      <td class="idn-example" align="center"><b>16, 32</b></td>
+      <td class="idn-example" align="right"><b>3X</b></td>
+      <td align="middle" style="text-align: center; vertical-align: middle">
+      <span class="changedspan"><font size="5" face="Arial Unicode MS">שּׁ</font></span></td>
+      <td align="right" style="text-align: right; vertical-align: middle"><span class="changedspan">
+      <font face="monospace">U+FB2C</font></span></td>
     </tr>
     <tr>
-      <td>NFD</td>
-      <td align="center">8</td>
-      <td align="right">3X</td>
-      <td align="center">ΐ</td>
-      <td align="right"><font face="monospace">U+0390</font></td>
+      <td class="idn-example" rowspan="2"><b>NFD</b></td>
+      <td class="idn-example" align="center"><b>8</b></td>
+      <td class="idn-example" align="right"><b>3X</b></td>
+      <td align="middle" style="text-align: center; vertical-align: middle">
+      <span class="changedspan"><font size="5" face="Arial Unicode MS">ΐ</font></span></td>
+      <td align="right" style="text-align: right; vertical-align: middle"><span class="changedspan">
+      <font face="monospace">U+0390</font></span></td>
     </tr>
     <tr>
-      <td>NFD</td>
-      <td align="center">16, 32</td>
-      <td align="right">4X</td>
-      <td align="center">ᾂ</td>
-      <td align="right"><font face="monospace">U+1F82</font></td>
+      <td class="idn-example" align="center"><b>16, 32</b></td>
+      <td class="idn-example" align="right"><b>4X</b></td>
+      <td align="middle" style="text-align: center; vertical-align: middle">
+      <span class="changedspan"><font size="5" face="Arial Unicode MS">ᾂ</font></span></td>
+      <td align="right" style="text-align: right; vertical-align: middle"><span class="changedspan">
+      <font face="monospace">U+1F82</font></span></td>
     </tr>
     <tr>
-      <td>NFKC/D</td>
-      <td align="center">8</td>
-      <td align="right">11X</td>
-      <td rowspan="2" align="center">ﷺ</td>
-      <td rowspan="2" align="right"><font face="monospace">U+FDFA</font></td>
+      <td class="idn-example" rowspan="2"><b>NFKC / NFKD</b></td>
+      <td class="idn-example" align="center"><b>8</b></td>
+      <td class="idn-example" align="right"><b>11X</b></td>
+      <td align="middle" rowSpan="2" style="text-align: center; vertical-align: middle">
+      <span class="changedspan"><font size="5" face="Arial Unicode MS">ﷺ</font></span></td>
+      <td align="right" rowSpan="2" style="text-align: right; vertical-align: middle">
+      <span class="changedspan"><font face="monospace">U+FDFA</font></span></td>
     </tr>
     <tr>
-      <td>NFKC/D</td>
-      <td align="center">16, 32</td>
-      <td align="right">18X</td>
+      <td class="idn-example" align="center"><b>16, 32</b></td>
+      <td class="idn-example" align="right"><b>18X</b></td>
     </tr>
   </table>
-  <p>People assume that NFC always composes, but some characters <i>decompose</i> in NFC. Here are 
-  the current maximal expansion factors for each form:<br>
   </li>
   <li>Trivia: In Unicode 4.0 there are exactly 3 characters that are different in all 4 
   normalization forms: ϓ, ϔ, ẛ</li>
@@ -269,16 +278,190 @@ them.)</p>
 <ol class="marked">
   <li>As well as Lower and upper case, there is also title case: ǳ ↔ Ǳ ↔ <span class="highlight">ǲ</span>
   </li>
-  <li>Strings may expand: Flu<span class="highlight">ß</span> → FLU<span class="highlight">SS</span> 
-  → flu<span class="highlight">ss</span> </li>
+  <li>Strings may expand: hei<span class="highlight">ß</span> → HEI<span class="highlight">SS</span> 
+  → hei<span class="highlight">ss</span>.<br>
+  <span style="background-color: #FFFF00">Here is a table of the </span>
+  <span style="background-color: #FFFF00">maximum</span><span style="background-color: #FFFF00"> 
+  possible expansions (U4.1):</span><br>
+  <table style="display: inline; border-collapse: collapse; order-collapse: collapse; margin: 1em" cellSpacing="0" cellPadding="3" border="1">
+    <tr>
+      <th class="idn-head"><span class="changedspan">Operation</span></th>
+      <th class="idn-head" style="text-align: center"><span class="changedspan">UTF</span></th>
+      <th class="idn-head" style="text-align: center"><span class="changedspan">Factor</span></th>
+      <th colSpan="2" class="idn-head" style="text-align: center"><span class="changedspan">Sample</span></th>
+    </tr>
+    <tr>
+      <th class="idn-example" rowspan="2">Lower</th>
+      <th class="idn-example" style="text-align: center">8</th>
+      <th class="idn-example" style="text-align: right">1.5X</th>
+      <td align="middle" style="text-align: center; vertical-align: middle">
+      <span class="changedspan"><font size="5" face="Arial Unicode MS">Ⱥ</font></span></td>
+      <td align="right" style="text-align: right; vertical-align: middle"><span class="changedspan">
+      <font face="monospace">U+023A</font></span></td>
+    </tr>
+    <tr>
+      <th class="idn-example" style="text-align: center">16, 32</th>
+      <th class="idn-example" style="text-align: right">1X</th>
+      <td align="middle" style="text-align: center; vertical-align: middle">
+      <span class="changedspan"><font size="5" face="Arial Unicode MS">A</font></span></td>
+      <td align="right" style="text-align: right; vertical-align: middle"><span class="changedspan">
+      <font face="monospace">U+0041</font></span></td>
+    </tr>
+    <tr>
+      <th class="idn-example">Upper / Title / Fold</th>
+      <th class="idn-example" style="text-align: center">8, 16, 32</th>
+      <td class="idn-example" align="right"><b>3X</b></td>
+      <td align="middle" style="text-align: center; vertical-align: middle">
+      <span class="changedspan"><font size="5" face="Arial Unicode MS">ΐ</font></span></td>
+      <td align="right" style="text-align: right; vertical-align: middle"><span class="changedspan">
+      <font face="monospace">U+0390</font></span></td>
+    </tr>
+  </table>
+  </li>
   <li>Casing is context-dependent: Ό<span class="highlight">Σ</span>Ο<span class="highlight">Σ</span> 
   → ό<span class="highlight">σ</span>ο<span class="highlight">ς</span> </li>
   <li>Casing may be language-dependent: <span class="highlight">i</span>stanbul ↔
-  <span class="highlight">İ</span>STANBUL. But don&#39;t use language-dependent casing for 
-  language-independent structures, like file-system B-Trees.</li>
+  <span class="highlight">İ</span>STANBUL.<br>
+  But don&#39;t use language-dependent casing for language-independent structures, like file-system 
+  B-Trees.</li>
   <li>Up to Unicode 5.0 (not yet released), case folding was not stable. (Two versions of Unicode 
   could have different results from toCaseFold(S), even though all the characters in S are in both 
   versions.)</li>
+  <li><span style="background-color: #FFFF00">There are three different types of </span><b>
+  <span style="background-color: #FFFF00">lowercase</span></b><span style="background-color: #FFFF00">:</li>
+  </span>
+  <ul>
+    <li><i><span style="background-color: #FFFF00">Lowercase</span></i><span style="background-color: #FFFF00">, 
+    the binary property: character is lowercase in </span><i>
+    <span style="background-color: #FFFF00">form</span></i><span style="background-color: #FFFF00">.</span></li>
+    <li><i><span style="background-color: #FFFF00">Lowercase_Letter</span></i><span style="background-color: #FFFF00">, 
+    the value of the </span><span style="background-color: #FFFF00">General_Category</span><span style="background-color: #FFFF00"> 
+    property. Also </span><i><span style="background-color: #FFFF00">form</span></i><span style="background-color: #FFFF00"> 
+    but limited (avoid using).</span></li>
+    <li><i><span style="background-color: #FFFF00">Functionally Lowercase.</span></i><span style="background-color: #FFFF00">
+    </span><font face="Courier New"><span style="background-color: #FFFF00">isCased(x) &amp; 
+    isLowercase(x)</span></font><span style="background-color: #FFFF00">. See Section 3.13 of TUS.</span></li>
+  </ul>
+  <table border="1" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber9">
+    <tr>
+      <td align="center" class="idn-head"><b><i>Lowercase </i></b></td>
+      <td align="center" class="idn-head"><b><i>Lowercase<br>
+      Letter</i></b></td>
+      <td align="center" class="idn-head"><b><i>Functionally<br>
+      Lowercase</i></b></td>
+      <td class="idn-head">
+      <p align="center"><b>Count<br>
+      (U4.1)</b></td>
+      <td class="idn-head"><b>Example</b></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="right">114</td>
+      <td><code>U+02E0 (</code><font face="Arial Unicode MS">ˠ</font><code>) MODIFIER LETTER SMALL 
+      GAMMA</code></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="center"><i>Y</i></td>
+      <td align="right">43</td>
+      <td><code>U+2170 </code>(<font face="Arial Unicode MS">ⅰ</font><code>) SMALL ROMAN NUMERAL ONE</code></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="right">705</td>
+      <td><code>U+00AA (</code><font face="Arial Unicode MS">ª</font><code>) FEMININE ORDINAL 
+      INDICATOR</code></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>Y</i></td>
+      <td align="right">903</td>
+      <td><code>U+0061 (</code><font face="Arial Unicode MS">a</font><code>) LATIN SMALL LETTER A</code></td>
+    </tr>
+  </table>
+  </li>
+  <li><span style="background-color: #FFFF00">Also three corresponding types of </span><b>
+  <span style="background-color: #FFFF00">uppercase</span></b><span style="background-color: #FFFF00">:</span><table border="1" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber11">
+    <tr>
+      <td align="center" class="idn-head"><b><i>Uppercase </i></b></td>
+      <td align="center" class="idn-head"><b><i>Uppercase<br>
+      Letter</i></b></td>
+      <td align="center" class="idn-head"><b><i>Functionally<br>
+      Uppercase</i></b></td>
+      <td class="idn-head">
+      <p align="center"><b>Count<br>
+      (U4.1)</b></td>
+      <td class="idn-head"><b>Example</b></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="right">0</td>
+      <td><i>n/a</i></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="center"><i>Y</i></td>
+      <td align="right">43</td>
+      <td><code>U+2160 (</code><font face="Arial Unicode MS">Ⅰ</font><code>) ROMAN NUMERAL ONE</code></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="right">476</td>
+      <td><code>U+212C (</code><font face="Arial Unicode MS">ℬ</font><code>) SCRIPT CAPITAL B</code></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>Y</i></td>
+      <td align="right">820</td>
+      <td><code>U+0041 (</code><font face="Arial Unicode MS">A</font><code>) LATIN CAPITAL LETTER A</code></td>
+    </tr>
+  </table>
+  </li>
+  <li><span style="background-color: #FFFF00">Uppercase and titlecase overlap:</li> </span>
+  <table border="1" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber10">
+    <tr>
+      <td align="center" class="idn-head"><b><i>Functionally<br>
+      Uppercase</i></b></td>
+      <td align="center" class="idn-head"><b><i>Functionally<br>
+      Titlecase</i></b></td>
+      <td class="idn-head">
+      <p align="center"><b>Count<br>
+      (U4.1)</b></td>
+      <td class="idn-head"><b>Examples</b></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="right">4</td>
+      <td><code>U+01F1 (</code><font face="Arial Unicode MS">Ǳ</font><code>) LATIN CAPITAL LETTER DZ</code></td>
+    </tr>
+    <tr>
+      <td align="center">N</td>
+      <td align="center"><i>Y</i></td>
+      <td align="right">31</td>
+      <td><code>U+01F2 (</code><font face="Arial Unicode MS">ǲ</font><code>) LATIN CAPITAL LETTER D 
+      WITH SMALL LETTER Z</code></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Y</i></td>
+      <td align="center"><i>Y</i></td>
+      <td align="right">858</td>
+      <td><code>U+0041 (</code><font face="Arial Unicode MS">A</font><code>) LATIN CAPITAL LETTER A</code></td>
+    </tr>
+  </table>
+  </li>
 </ol>
 <h3>Transliteration</h3>
 <ol class="marked">

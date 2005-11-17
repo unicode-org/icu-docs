@@ -26,7 +26,7 @@ table {order-collapse: collapse}
 <body>
 
 <h1 align="center">Globalization Gotchas</h1>
-<p align="center">$Date: 2005/11/17 17:55:59 $, MED<br>
+<p align="center">$Date: 2005/11/17 19:38:47 $, MED<br>
 <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/utc/gotchas.html">
 Working Draft</a></p>
 <p>I&#39;m preparing a presentation for the next Unicode conference in March, and have been thinking 
@@ -327,17 +327,16 @@ them.)</p>
   <li>Up to Unicode 5.0 (not yet released), case folding was not stable. (Two versions of Unicode 
   could have different results from toCaseFold(S), even though all the characters in S are in both 
   versions.)</li>
-  <li><span style="background-color: #FFFF00">There are three different types of </span><b>
+  <li><span style="background-color: #FFFF00">Don&#39;t use the </span>
+  <span style="background-color: #FFFF00"><i>Lowercase_Letter</i> (Ll) or <i>Uppercase_Letter</i> 
+  (Lt) of&nbsp; General_Category; these were constrained to be in a partition. Use the separate 
+  binary properties <i>Lowercase</i> and <i>Uppercase</i> instead.</span></li>
+  <li><span style="background-color: #FFFF00">There are two different types of </span><b>
   <span style="background-color: #FFFF00">lowercase</span></b><span style="background-color: #FFFF00">:</li>
   </span>
   <ul>
     <li><i><span style="background-color: #FFFF00">Lowercase</span></i><span style="background-color: #FFFF00">, 
-    the binary property: character is lowercase in </span><i>
-    <span style="background-color: #FFFF00">form</span></i><span style="background-color: #FFFF00">.</span></li>
-    <li><i><span style="background-color: #FFFF00">Lowercase_Letter</span></i><span style="background-color: #FFFF00">, 
-    the value of the </span><span style="background-color: #FFFF00">General_Category</span><span style="background-color: #FFFF00"> 
-    property. Also </span><i><span style="background-color: #FFFF00">form</span></i><span style="background-color: #FFFF00"> 
-    but limited (avoid using).</span></li>
+    the binary property. The character is lowercase in form, but not necessarily in function.</span></li>
     <li><i><span style="background-color: #FFFF00">Functionally Lowercase.</span></i><span style="background-color: #FFFF00">
     </span><font face="Courier New"><span style="background-color: #FFFF00">isCased(x) &amp; 
     isLowercase(x)</span></font><span style="background-color: #FFFF00">. See Section 3.13 of TUS.</span></li>
@@ -345,18 +344,18 @@ them.)</p>
   <table border="1" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber9">
     <tr>
       <td align="center" class="idn-head"><b><i>Lowercase </i></b></td>
-      <td align="center" class="idn-head"><b><i>Lowercase<br>
-      Letter</i></b></td>
       <td align="center" class="idn-head"><b><i>Functionally<br>
       Lowercase</i></b></td>
+      <td align="center" class="idn-head"><b><i>(Lowercase<br>
+      Letter, Ll)</i></b></td>
       <td class="idn-head">
       <p align="center"><b>Count<br>
       (U4.1)</b></td>
       <td class="idn-head"><b>Example</b></td>
     </tr>
     <tr>
-      <td align="center"><i>Y</i></td>
-      <td align="center"><i>N</i></td>
+      <td align="center" rowspan="4"><i>Y</i></td>
+      <td align="center" rowspan="2"><i>N</i></td>
       <td align="center"><i>N</i></td>
       <td align="right">114</td>
       <td><code>U+02E0 (</code><font face="Arial Unicode MS">ˠ</font><code>) MODIFIER LETTER SMALL 
@@ -364,22 +363,17 @@ them.)</p>
     </tr>
     <tr>
       <td align="center"><i>Y</i></td>
-      <td align="center"><i>N</i></td>
-      <td align="center"><i>Y</i></td>
-      <td align="right">43</td>
-      <td><code>U+2170 </code>(<font face="Arial Unicode MS">ⅰ</font><code>) SMALL ROMAN NUMERAL ONE</code></td>
-    </tr>
-    <tr>
-      <td align="center"><i>Y</i></td>
-      <td align="center"><i>Y</i></td>
-      <td align="center"><i>N</i></td>
       <td align="right">705</td>
       <td><code>U+00AA (</code><font face="Arial Unicode MS">ª</font><code>) FEMININE ORDINAL 
       INDICATOR</code></td>
     </tr>
     <tr>
-      <td align="center"><i>Y</i></td>
-      <td align="center"><i>Y</i></td>
+      <td align="center" rowspan="2"><i>Y</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="right">43</td>
+      <td><code>U+2170 </code>(<font face="Arial Unicode MS">ⅰ</font><code>) SMALL ROMAN NUMERAL ONE</code></td>
+    </tr>
+    <tr>
       <td align="center"><i>Y</i></td>
       <td align="right">903</td>
       <td><code>U+0061 (</code><font face="Arial Unicode MS">a</font><code>) LATIN SMALL LETTER A</code></td>
@@ -390,39 +384,34 @@ them.)</p>
   <span style="background-color: #FFFF00">uppercase</span></b><span style="background-color: #FFFF00">:</span><table border="1" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber11">
     <tr>
       <td align="center" class="idn-head"><b><i>Uppercase </i></b></td>
-      <td align="center" class="idn-head"><b><i>Uppercase<br>
-      Letter</i></b></td>
       <td align="center" class="idn-head"><b><i>Functionally<br>
       Uppercase</i></b></td>
+      <td align="center" class="idn-head"><b><i>(Uppercase<br>
+      Letter, Lu)</i></b></td>
       <td class="idn-head">
       <p align="center"><b>Count<br>
       (U4.1)</b></td>
       <td class="idn-head"><b>Example</b></td>
     </tr>
     <tr>
-      <td align="center"><i>Y</i></td>
-      <td align="center"><i>N</i></td>
+      <td align="center" rowspan="4"><i>Y</i></td>
+      <td align="center" rowspan="2"><i>N</i></td>
       <td align="center"><i>N</i></td>
       <td align="right">0</td>
       <td><i>n/a</i></td>
     </tr>
     <tr>
       <td align="center"><i>Y</i></td>
-      <td align="center"><i>N</i></td>
-      <td align="center"><i>Y</i></td>
-      <td align="right">43</td>
-      <td><code>U+2160 (</code><font face="Arial Unicode MS">Ⅰ</font><code>) ROMAN NUMERAL ONE</code></td>
-    </tr>
-    <tr>
-      <td align="center"><i>Y</i></td>
-      <td align="center"><i>Y</i></td>
-      <td align="center"><i>N</i></td>
       <td align="right">476</td>
       <td><code>U+212C (</code><font face="Arial Unicode MS">ℬ</font><code>) SCRIPT CAPITAL B</code></td>
     </tr>
     <tr>
-      <td align="center"><i>Y</i></td>
-      <td align="center"><i>Y</i></td>
+      <td align="center" rowspan="2"><i>Y</i></td>
+      <td align="center"><i>N</i></td>
+      <td align="right">43</td>
+      <td><code>U+2160 (</code><font face="Arial Unicode MS">Ⅰ</font><code>) ROMAN NUMERAL ONE</code></td>
+    </tr>
+    <tr>
       <td align="center"><i>Y</i></td>
       <td align="right">820</td>
       <td><code>U+0041 (</code><font face="Arial Unicode MS">A</font><code>) LATIN CAPITAL LETTER A</code></td>

@@ -1,0 +1,162 @@
+<html>
+
+<!-- Copyright 2005, IBM -->
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Casing FAQ</title>
+</head>
+
+<body>
+
+<p>Q. How many senses of &quot;lowercase&quot; does the Unicode Standard have?</p>
+<p>A. Three distinct senses:</p>
+<ul>
+  <li>The <i>Lowercase</i> property. This forms the broadest set of characters, and indicates that a 
+  character is lowercase in <i>form</i>.</li>
+  <li>The <i>Lowercase_Letter</i> value of the General_Category property. These are also based on 
+  form, but are restricted. The General_Category is a partition of Unicode. If a Lowercase character 
+  is not primarily used as a letter, then it won't be in this set.</li>
+  <li><i>Functionally Lowercase.</i> Characters may be lowercase in form, but if they have no case 
+  mappings and are never the result of a case mapping, then they are <i>functionally</i> caseless -- 
+  they act like uncased letters. (For more information, see <i>Section 3.13</i> in the Unicode 
+  Standard.) The functionally lowercase characters are those that are functionally cased and the 
+  result of the toLowercase operation.</li>
+</ul>
+<p>Q. What kind of numbers are we talking about here?</p>
+<p>A. The different kinds of lowercase characters break down as follows. The counts are as of 
+Unicode 4.1. Notice that <i>Lowercase</i> is a superset of the other two, but that the other two are 
+disjoint:</p>
+<table border="1" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber1">
+  <tr>
+    <td align="center"><b><i>Lowercase </i></b></td>
+    <td align="center"><b><i>Lowercase<br>
+    Letter</i></b></td>
+    <td align="center"><b><i>Functionally<br>
+    Lowercase</i></b></td>
+    <td><b>Count</b></td>
+    <td><b>Example</b></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>N</i></td>
+    <td align="center"><i>N</i></td>
+    <td align="right">114</td>
+    <td><code>U+02E0 (</code><font face="Arial Unicode MS">&#736;</font><code>) MODIFIER LETTER SMALL 
+    GAMMA</code></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>N</i></td>
+    <td align="center"><i>Y</i></td>
+    <td align="right">43</td>
+    <td><code>U+2170 </code>(<font face="Arial Unicode MS">&#8560;</font><code>) SMALL ROMAN NUMERAL ONE</code></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>N</i></td>
+    <td align="right">705</td>
+    <td><code>U+00AA (</code><font face="Arial Unicode MS">ª</font><code>) FEMININE ORDINAL 
+    INDICATOR</code></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>Y</i></td>
+    <td align="right">903</td>
+    <td><code>U+0061 (</code><font face="Arial Unicode MS">a</font><code>) LATIN SMALL LETTER A</code></td>
+  </tr>
+</table>
+<p>Q. That's annoying. Is uppercase just as odd?</p>
+<p>A. Sadly, a bit more so. Because of the existence of titlecase characters, there are really three 
+related categories, depending on whether a character is <i>Functionally Uppercase</i> but not <i>
+Functionally Titlecase</i>, <i>Functionally Titlecase</i> but not <i>Functionally Uppercase</i>, or 
+both:</p>
+<table border="1" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber1">
+  <tr>
+    <td align="center"><b><i>Functionally<br>
+    Uppercase</i></b></td>
+    <td align="center"><b><i>Functionally<br>
+    Titlecase</i></b></td>
+    <td><b>Count</b></td>
+    <td><b>Examples</b></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>N</i></td>
+    <td align="right">4</td>
+    <td><code>U+01F1 (</code><font face="Arial Unicode MS">&#497;</font><code>) LATIN CAPITAL LETTER DZ</code></td>
+  </tr>
+  <tr>
+    <td align="center">N</td>
+    <td align="center"><i>Y</i></td>
+    <td align="right">31</td>
+    <td><code>U+01F2 (</code><font face="Arial Unicode MS">&#498;</font><code>) LATIN CAPITAL LETTER D 
+    WITH SMALL LETTER Z</code></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>Y</i></td>
+    <td align="right">858</td>
+    <td><code>U+0041 (</code><font face="Arial Unicode MS">A</font><code>) LATIN CAPITAL LETTER A</code></td>
+  </tr>
+</table>
+<p>Q. Sigh. So what does that give me?</p>
+<p>A. Let's take the simplest case first. There is no <i>Titlecase</i> property, and the set of <i>
+Titlecase_Letter</i> characters is exactly the same as the above set of 31 <i>Functionally Titlecase</i> 
+characters.</p>
+<p>Q. How about Uppercase?</p>
+<p dir="ltr">A. Parallel to lowercase, there is an <i>Uppercase</i> property, and also the <i>
+Uppercase_Letter</i> value in the General_Category. However, these do not distinguish the characters 
+that are <i>Uppercase</i> but not <i>Titlecase</i>. So for comparison, we'll lump in the <i>
+Functionally Uppercase and Titlecase</i> into the <i>Functionally Uppercase</i> category. Uppercase 
+then looks very similar to lowercase: the main difference is that there are no characters with just 
+the <i>Uppercase</i> property. Notice that <i>Uppercase</i> is a superset of the other two, but that 
+the other two are disjoint.</p>
+<table border="1" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber1">
+  <tr>
+    <td align="center"><b><i>Uppercase </i></b></td>
+    <td align="center"><b><i>Uppercase<br>
+    Letter</i></b></td>
+    <td align="center"><b><i>Functionally<br>
+    Uppercase</i></b></td>
+    <td><b>Count</b></td>
+    <td><b>Example</b></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>N</i></td>
+    <td align="center"><i>N</i></td>
+    <td align="right">0</td>
+    <td><i>n/a</i></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>N</i></td>
+    <td align="center"><i>Y</i></td>
+    <td align="right">43</td>
+    <td><code>U+2160 (</code><font face="Arial Unicode MS">&#8544;</font><code>) ROMAN NUMERAL ONE</code></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>N</i></td>
+    <td align="right">476</td>
+    <td><code>U+212C (</code><font face="Arial Unicode MS">&#8492;</font><code>) SCRIPT CAPITAL B</code></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>Y</i></td>
+    <td align="center"><i>Y</i></td>
+    <td align="right">820</td>
+    <td><code>U+0041 (</code><font face="Arial Unicode MS">A</font><code>) LATIN CAPITAL LETTER A</code></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

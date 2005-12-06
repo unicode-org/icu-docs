@@ -136,6 +136,13 @@ value is derived by creating a Unicode Set with the value
 codepage's Unicode Set. More details about Unicode Normalization can be found
 in <a href="http://www.unicode.org/reports/tr15/">Unicode Standard Annex
 #15</a>.</dd>
+<dt><b><i>Contains BiDi characters?</i></b></dt>
+<dd>When this value is <code>TRUE</code>, then a conversion to or from this
+codepage can contain bidirectional characters. These are right to left
+characters, like Hebrew and Arabic characters. When displaying data from this
+codepage, you may need to apply the BiDi algorithm described in 
+<a href="http://www.unicode.org/reports/tr9/">Unicode Standard Annex
+#9</a>.</dd>
 <dt><b><i>List of Languages Representable By This Codepage</i></b></dt>
 <dd>This is a list of languages that are representable by this codepage. This
 data comes from <code>ucnv_getUnicodeSet()</code> and

@@ -1,88 +1,73 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>ICU Converter Explorer Help</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-  <link rel="stylesheet" href="../../icu.css" type="text/css">
+<title>ICU Converter Explorer Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+<link rel="stylesheet" href="../../icu.css" type="text/css" />
 </head>
-
 <body>
-  <!--#include virtual="../../ssi/header.html" -->
-
-  <h1>ICU Demos</h1>
-
-  <h2>ICU Converter Explorer Help</h2>
-  <hr>
-
-  <p>One of the advantages to Unicode is its consistent interpretation on
-  many computers systems (aka platforms). Unfortunately, the interpretation
-  of many legacy codepages from various platforms is not consistent. For
-  various reasons, many organizations and computer manufacturers have made
-  small incompatible changes to some codepage interpretations. This causes
-  portability problems when the codepage legacy data is transferred between
-  platforms.</p>
-
-  <p>This Converter Explorer will allow you to "explore" the aliases and
-  properties of each ICU converter. More details about ICU converters can be
-  found on our <a href="http://icu.sourceforge.net/charts/charset/">Charset
-  Repository</a> page, the ICU <a href=
-  "http://icu.sourceforge.net/apiref/icu4c/">API reference</a>, and the
-  <a href=
-  "http://icu.sourceforge.net/userguide/conversion.html">Conversion
-  section</a> of the ICU User's Guide. All data from this explorer comes
-  directly from ICU.</p>
-
-  <p>If you are wondering why some alias names or byte sequences are mapped
-  certain ways, you can always <a href=
-  "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/source/data/mappings/convrtrs.txt">
-  view the ICU alias table</a> directly. The alias table is not meant to be
-  easily read by newcomers to ICU, which is the main reason why the Converter
-  Explorer exists, but it does contain comments that some people may find
-  helpful. The alias table from CVS may contain information that is more
-  current than your copy of ICU or what is currently available in Converter
-  Explorer. The bottom of each Converter Explorer page always describes the
-  version of ICU it is using.</p>
-
-  <h3>Viewing the aliases and standards</h3>
-
-  <p><a href="http://www.iana.org/assignments/character-sets">IANA</a> is the
-  main source of converter aliases on the Internet. Since IANA does not
-  specify the Unicode mappings for every codepage and alias, and every
-  platform supports other aliases besides the IANA aliases, ICU provides a
-  way to target the codepage conversion based upon the standard or platform.
-  This allows you to use the right converter name and implementation based
-  upon which standard you are targeting.</p>
-
-  <p>You can change the view of aliases for each standard by selecting the
-  appropriate standard at the top of the page. This will allow you to the see
-  the subset of aliases that a standard or platform can recognize. For
-  example, if you select IANA and ALL and select the "View Results" button,
-  you will see all aliases recognized by IANA and ICU. You will notice that
-  the IANA set of aliases is a subset of all ICU aliases.</p>
-
-  <p>The column marked as "<i>Internal Converter Name</i>" is also known as a
-  canonical name. The canonical name is a unique ICU converter name, and it
-  is usually based upon the <a href=
-  "http://www.unicode.org/reports/tr22/">UTR #22</a> naming scheme. The
-  canonical name is always guaranteed to be the correct converter that you
-  need in a particular ICU release, but sometimes the mapping tables will get
-  updated between ICU releases and this converter may change at that time.
-  API functions like <code>ucnv_getCanonicalName()</code> and
-  <code>ucnv_getName()</code> will return this value. The
-  <code>ucnv_getStandardName()</code> function requires this name as an
-  argument.</p>
-
-  <p>The "<i>All Aliases</i>" column is not a real standard. It is just a
-  special way to see all of the aliases for a specific converter regardless
-  of which standards support the converter's alias names.</p>
-
-  <p>The "<i>Untagged Aliases</i>" column is also not a real standard. It is
-  a special way to see all of the aliases that are not associated with any
-  particular standard. An alias in this column can mean that it is a name of
-  an alternate mapping table with the same name under a different standard,
-  or this is a rarely used alias and its use is discouraged.</p>
-  <!--h2>Alias Conflict Resolution in ICU</h2>
+<!--#include virtual="../../ssi/header.html" -->
+<h1>ICU Demos</h1>
+<h2>ICU Converter Explorer Help</h2>
+<hr />
+<p>One of the advantages to Unicode is its consistent interpretation on many
+computers systems (aka platforms). Unfortunately, the interpretation of many
+legacy codepages from various platforms is not consistent. For various reasons,
+many organizations and computer manufacturers have made small incompatible
+changes to some codepage interpretations. This causes portability problems when
+the codepage legacy data is transferred between platforms.</p>
+<p>This Converter Explorer will allow you to "explore" the aliases and
+properties of each ICU converter. More details about ICU converters can be
+found on our <a href="http://icu.sourceforge.net/charts/charset/">Charset
+Repository</a> page, the ICU <a href=
+"http://icu.sourceforge.net/apiref/icu4c/">API reference</a>, and the <a href=
+"http://icu.sourceforge.net/userguide/conversion.html">Conversion section</a>
+of the ICU User's Guide. All data from this explorer comes directly from
+ICU.</p>
+<p>If you are wondering why some alias names or byte sequences are mapped
+certain ways, you can always <a href=
+"http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/source/data/mappings/convrtrs.txt">
+view the ICU alias table</a> directly. The alias table is not meant to be
+easily read by newcomers to ICU, which is the main reason why the Converter
+Explorer exists, but it does contain comments that some people may find
+helpful. The alias table from CVS may contain information that is more current
+than your copy of ICU or what is currently available in Converter Explorer. The
+bottom of each Converter Explorer page always describes the version of ICU it
+is using.</p>
+<h3>Viewing the aliases and standards</h3>
+<p><a href="http://www.iana.org/assignments/character-sets">IANA</a> is the
+main source of converter aliases on the Internet. Since IANA does not specify
+the Unicode mappings for every codepage and alias, and every platform supports
+other aliases besides the IANA aliases, ICU provides a way to target the
+codepage conversion based upon the standard or platform. This allows you to use
+the right converter name and implementation based upon which standard you are
+targeting.</p>
+<p>You can change the view of aliases for each standard by selecting the
+appropriate standard at the top of the page. This will allow you to the see the
+subset of aliases that a standard or platform can recognize. For example, if
+you select IANA and ALL and select the "View Results" button, you will see all
+aliases recognized by IANA and ICU. You will notice that the IANA set of
+aliases is a subset of all ICU aliases.</p>
+<p>The column marked as "<i>Internal Converter Name</i>" is also known as a
+canonical name. The canonical name is a unique ICU converter name, and it is
+usually based upon the <a href="http://www.unicode.org/reports/tr22/">UTR
+#22</a> naming scheme. The canonical name is always guaranteed to be the
+correct converter that you need in a particular ICU release, but sometimes the
+mapping tables will get updated between ICU releases and this converter may
+change at that time. API functions like <code>ucnv_getCanonicalName()</code>
+and <code>ucnv_getName()</code> will return this value. The
+<code>ucnv_getStandardName()</code> function requires this name as an
+argument.</p>
+<p>The "<i>All Aliases</i>" column is not a real standard. It is just a special
+way to see all of the aliases for a specific converter regardless of which
+standards support the converter's alias names.</p>
+<p>The "<i>Untagged Aliases</i>" column is also not a real standard. It is a
+special way to see all of the aliases that are not associated with any
+particular standard. An alias in this column can mean that it is a name of an
+alternate mapping table with the same name under a different standard, or this
+is a rarely used alias and its use is discouraged.</p>
+<!--h2>Alias Conflict Resolution in ICU</h2>
 
     <p>If an alias can be mapped to more than one standard on different
     converters, then this is considered an ambiguous alias. This can happen when
@@ -99,87 +84,73 @@
     standard's converter alias name. So if standards A, B and C are listed
     in that order in the alias table, then an alias tagged as being a part
     of standard A over any other alias.</p-->
-
-  <h3>Viewing the converter details</h3>
-
-  <p>Once you have selected a converter to view, you can get all of the
-  details about that converter. Here is a list of things that you will find
-  on that page:</p>
-
-  <dl>
-    <dt><b><i>Type of converter</i></b></dt>
-
-    <dd>The internal converter implementation used. The
-    <code>ucnv_getType()</code> API will return this value. See API reference
-    for details.</dd>
-
-    <dt><b><i>Minimum number of bytes</i></b></dt>
-
-    <dd>The minimum number of bytes required by this encoding.</dd>
-
-    <dt><b><i>Maximum number of bytes</i></b></dt>
-
-    <dd>The maximum number of bytes required by this encoding.</dd>
-
-    <dt><b><i>Substitution character</i></b></dt>
-
-    <dd>This is the byte sequence used when a converter encounters an
-    unmappable Unicode character.</dd>
-
-    <dt><b><i>Is ASCII [\x20-\x7E] compatible?</i></b></dt>
-
-    <dd>Is the byte range \x20 to \x7E compatible with ASCII? For example,
-    some codepages will the ASCII backslash \x5C to the Yen Symbol \u00A5.
-    Sometimes special shift bytes are required to display the ASCII range,
-    and ASCII does not know about codepage shifting or escape sequences. Some
-    codepages are EBCIDC based.<br>
-    <br>
-    Only the range [\x20-\x7E] is used for this comparison because some ISO
-    controls are rotated, and most people are interested in the graphical
-    interpretation of ASCII. More details on this subject can be found from
-    this <a href=
-    "http://icu.sourceforge.net/docs/papers/conversions_and_mappings_iuc19.ppt">
-    paper</a>.</dd>
-
-    <dt><b><i>Is ASCII [\x20-\x7E] irregular?</i></b></dt>
-
-    <dd>This is the value that <code>ucnv_isAmbiguous()</code> returns. This
-    usually implies that this is a non-ASCII compatible codepage and an ASCII
-    compatible codepage is available.</dd>
-
-    <dt><b><i>Contains ambiguous aliases?</i></b></dt>
-
-    <dd>This means that at least one of the aliases for this converter is
-    also on a different converter.</dd>
-
-    <dt><b><i>Converters with conflicting aliases</i></b></dt>
-
-    <dd>If there are any converters with conflicting aliases, this will have
-    the list of converters with their conflicting alias and standard. Care
-    should be taken when using any of the aliases on this list when a
-    standard is not specified on the ICU conversion API. This information can
-    usually be queried from <code>ucnv_getCanonicalName()</code> or
-    <code>ucnv_getStandardName()</code>.</dd>
-
-    <dt><b><i>Set of Unicode Characters Representable By This
-    Codepage</i></b></dt>
-
-    <dd>This is a list of Unicode characters that are representable by this
-    codepage. For example, if some text data is written as the bytes of this
-    codepage and converted to Unicode, this would be the possible set of
-    possible Unicode characters to which the text could be converted to. This
-    set can contain multi-codepoint characters. This data comes from
-    <code>ucnv_getUnicodeSet()</code>.</dd>
-
-    <dt><b><i>List of Languages Representable By This Codepage</i></b></dt>
-
-    <dd>This is a list of languages that are representable by this codepage.
-    This data comes from <code>ucnv_getUnicodeSet()</code> and
-    <code>ulocdata_getExemplarSet()</code>, and making sure that the returned
-    UnicodeSet for the language is a complete subset of the given codepage.
-    The list of languages comes from <code>uloc_getAvailable()</code>.</dd>
-  </dl>
-  <p><br></p>
-  <!--#include virtual="../../ssi/footer.html" -->
+<h3>Viewing the converter details</h3>
+<p>Once you have selected a converter to view, you can get all of the details
+about that converter. Here is a list of things that you will find on that
+page:</p>
+<dl>
+<dt><b><i>Type of converter</i></b></dt>
+<dd>The internal converter implementation used. The <code>ucnv_getType()</code>
+API will return this value. See API reference for details.</dd>
+<dt><b><i>Minimum number of bytes</i></b></dt>
+<dd>The minimum number of bytes required by this encoding.</dd>
+<dt><b><i>Maximum number of bytes</i></b></dt>
+<dd>The maximum number of bytes required by this encoding.</dd>
+<dt><b><i>Substitution character</i></b></dt>
+<dd>This is the byte sequence used when a converter encounters an unmappable
+Unicode character.</dd>
+<dt><b><i>Is ASCII [\x20-\x7E] compatible?</i></b></dt>
+<dd>Is the byte range \x20 to \x7E compatible with ASCII? For example, some
+codepages will the ASCII backslash \x5C to the Yen Symbol \u00A5. Sometimes
+special shift bytes are required to display the ASCII range, and ASCII does not
+know about codepage shifting or escape sequences. Some codepages are EBCDIC
+based.<br />
+<br />
+Only the range [\x20-\x7E] is used for this comparison because some ISO
+controls are rotated, and most people are interested in the graphical
+interpretation of ASCII. More details on this subject can be found from this
+<a href=
+"http://icu.sourceforge.net/docs/papers/conversions_and_mappings_iuc19.ppt">paper</a>.</dd>
+<dt><b><i>Is ASCII [\\u0020-\\u007E] ambiguous?</i></b></dt>
+<dd>This is the value that <code>ucnv_isAmbiguous()</code> returns. When this
+value is TRUE, it usually implies that this is a non-ASCII compatible codepage
+and an ASCII compatible codepage is available.</dd>
+<dt><b><i>Contains ambiguous aliases?</i></b></dt>
+<dd>This means that at least one of the aliases for this converter is also on a
+different converter.</dd>
+<dt><b><i>Converters with conflicting aliases</i></b></dt>
+<dd>If there are any converters with conflicting aliases, this will have the
+list of converters with their conflicting alias and standard. Care should be
+taken when using any of the aliases on this list when a standard is not
+specified on the ICU conversion API. This information can usually be queried
+from <code>ucnv_getCanonicalName()</code> or
+<code>ucnv_getStandardName()</code>.</dd>
+<dt><b><i>Always generates Unicode NFC?</i></b></dt>
+<dd>When this value is <code>TRUE</code>, then a conversion from this codepage
+to Unicode will always generate Unicode in Normalization Form Composed (NFC).
+When this value is <code>UNKNOWN</code>, then there may be a possibility that
+this converter will generate Unicode text that is not in NFC depending on the
+input, and applying an NFC transformation may change the original text. This
+value is derived by creating a Unicode Set with the value
+"[:NFC_Quick_Check=yes:]", and confirming that it is a full superset of the
+codepage's Unicode Set. More details about Unicode Normalization can be found
+in <a href="http://www.unicode.org/reports/tr15/">Unicode Standard Annex
+#15</a>.</dd>
+<dt><b><i>List of Languages Representable By This Codepage</i></b></dt>
+<dd>This is a list of languages that are representable by this codepage. This
+data comes from <code>ucnv_getUnicodeSet()</code> and
+<code>ulocdata_getExemplarSet()</code>, and making sure that the returned
+UnicodeSet for the language is a complete subset of the given codepage. The
+list of languages comes from <code>uloc_getAvailable()</code>.</dd>
+<dt><b><i>Set of Unicode Characters Representable By This Codepage</i></b></dt>
+<dd>This is a list of Unicode characters that are representable by this
+codepage. For example, if some text data is written as the bytes of this
+codepage and converted to Unicode, this would be the possible set of possible
+Unicode characters to which the text could be converted to. This set can
+contain multi-codepoint characters. This data comes from
+<code>ucnv_getUnicodeSet()</code>.</dd>
+</dl>
+<p><br /></p>
+<!--#include virtual="../../ssi/footer.html" -->
 </body>
 </html>

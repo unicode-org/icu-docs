@@ -1,0 +1,882 @@
+<html>
+<!-- Copyright (c) 2005 IBM Corp. All Rights Reserved -->
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<title>HOWTO: Setup Project in Eclipse for ICU4J </title>
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{
+	margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h2
+	{
+	margin-right:0in;
+	margin-left:0in;
+	font-size:18.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{
+	margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<div>
+
+<div>
+
+<div>
+
+<div>
+
+<div>
+
+<h1 align=center style='text-align:center'>HOWTO: Setup Project in Eclipse for
+ICU4J </h1>
+
+<h2 align=center style='text-align:center'><i><span style='color:red'>Draft-6</span></i></h2>
+
+<p align=center style='text-align:center'>Michael Peterson, 2005 - 11 - 21</p>
+
+<p align=center style='text-align:center'>&nbsp;</p>
+
+<p><b><span style='font-size:18.0pt'>Introduction</span></b></p>
+
+<p>This document describes how to use Eclipse to work with ICU4J. Eclipse is a
+free, open source, Integrated Development Environment (IDE) for Java development,
+available from <a href="http://www.eclipse.org/">eclipse.org</a>. </p>
+
+<p>The instructions in this document are specific to <b>Eclipse version 3.1.x</b>.
+To access the instructions for 2.0 look <a href="eclipse2x.html">here</a>.</p>
+
+<p>Please checkout the <a
+href="http://www.eclipse.org/eclipse/faq/eclipse-faq.html#users">"Getting
+started"</a> section of the Eclipse FAQ for additional information. </p>
+
+<p>If you're here from the Readme, you probably already have the files you need checked out.
+If that's the case, you'll probably be more interested in skipping the first half of this and
+start <a href="#verify">here</a>. </p>
+
+<p>The <a
+href="http://www.eclipse.org:exquisiteus:flinder1f7/newsportal/thread_frameset.php3?name=eclipse.tools">newsgroups</a>
+can be accessed through a web interface.  To ask questions you will need a newsreader and a login.  
+&nbsp; You will be asked for a username and password. The username is <span class=SpellE><span class=spelle>exquisitus</span></span>
+and the password is flinder1f7.</p>
+
+
+<p><b><span style='font-size:18.0pt'>Installation</span></b></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'>1.<span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Eclipse requires JDK/JRE 1.3.1 or later, installed as the default, in
+order to launch properly <span class=GramE><span class=grame>( </span></span><a
+href="http://www.eclipse.org/eclipse/faq/eclipse-faq.html#users_3">FAQ</a>).
+Download and install JDK/JRE if one is not already installed.</p>
+
+<p style='margin-left:.5in;text-indent:-.25in'>2.<span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><a href="http://www.eclipse.org/downloads/index.php">Download</a> a
+release of Eclipse SDK. Unzip the downloaded zip file to a reasonable location.</p>
+
+<p><b><span style='font-size:18.0pt'>Perspectives and Views</span></b></p>
+
+<p>Eclipse has the notion of perspectives and views. Broadly speaking a
+perspective is an interface with many views associated with it. In ICU4J you
+would mostly be working with &quot;Java&quot;, &quot;Debug&quot;, and &quot;Resource&quot; perspectives.</p>
+
+<p><img border=0 src=image031.jpg></p>
+
+<p>Note: In versions of Eclipse before 3.0, the &quot;Install &amp; Update&quot; perspective 
+was used to install new features like the C/C++ IDE or to update Eclipse itself. That feature
+has been moved to the Help menu </p>
+
+<p><img border=0 src=image032.jpg></p>
+
+<p><b><span style='font-size:16.0pt'>&nbsp;</span></b></p>
+
+<p><b><span style='font-size:16.0pt'>Configuring Eclipse</span></b></p>
+
+<p>Select Window &gt; Preferences to launch the preferences panel. &nbsp;An
+example snapshot of the panel appears below.</p>
+
+<p><img border=0 src=image033.jpg></p>
+
+<p>&nbsp;</p>
+
+<p style='margin-left:.5in;text-indent:-.25in'>1)<span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Select General then Workbench in the left frame. <span class=GramE>Un-check &quot;Perform
+build automatically on resource modification&quot; in the right frame.</span><br
+clear=all>
+</p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><img border=0 src=image034.jpg></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'>2)<span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>In the left frame, select General &gt;
+Editors. In &quot;Text Encoding&quot; section select &quot;Other&quot; and &quot;US-ASCII&quot; from the drop
+down menu.<br clear=all>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>3)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select General  &gt; Editors &gt; Text Editors  and click the Style tab.
+Tab size should be set to 4.<br clear=all>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>4)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select Java &gt; Installed <span class=SpellE><span
+class=spelle>JREs</span></span>.&nbsp; The default JRE will be present and
+checked.&nbsp; Enter any additional <span class=SpellE><span class=spelle>JREs</span></span>
+you wish to use.<br clear=all>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>5)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select Java &gt; Code Style &gt; Formatter.&nbsp; You can either
+create a new profile or modify one you have.  The important part is that you choose
+"Spaces Only", Indentation size of 4 and Tab Size of 4<br clear=all>
+<br clear=all>
+<img border=0 src=image066.jpg>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>6)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select Java &gt; Code Style &gt; Code Templates. Select &quot;<span class=SpellE><span
+class=spelle>Comments &gt; Files</span></span>&quot; in the right pane and click <span
+class=GramE><span class=grame>Edit</span></span>.<br clear=all>
+<br clear=all>
+<img border=0 src=image036.jpg><br
+clear=all>
+<br clear=all>
+Add the following lines in the space provided<span class=GramE>:</span><br
+clear=all>
+</span><span style='font-family:"Courier New";color:#3F7F5F;background:white'>/*</span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-autospace:none'><span
+style='font-family:"Courier New";color:#3F7F5F;background:white'>&nbsp;*******************************************************************************</span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-autospace:none'><span
+style='font-family:"Courier New";color:#3F7F5F;background:white'>&nbsp;*
+Copyright (C) 2002-2005, International Business Machines Corporation
+and&nbsp;&nbsp;&nbsp; *</span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-autospace:none'><span
+style='font-family:"Courier New";color:#3F7F5F;background:white'>&nbsp;* <span
+class=GramE><span class=grame><span style='font-family:"Courier New"'>others</span></span></span>.
+All Rights
+Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*</span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-autospace:none'><span
+style='font-family:"Courier New";color:#3F7F5F;background:white'>&nbsp;*******************************************************************************</span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-autospace:none'><span
+style='font-family:"Courier New";color:#3F7F5F;background:white'>&nbsp;*</span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-autospace:none'><span
+style='font-family:"Courier New";color:#3F7F5F;background:white'>&nbsp;* $$Source: /xsrl/Nsvn/icu/icuhtml/icu.sf.net/docs/eclipse_howto/Attic/eclipse3x.html,v ${package_name}/${file_name},v $$
+ </span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-autospace:none'><span
+style='font-family:"Courier New";color:#3F7F5F;background:white'>&nbsp;* $$Date: 2005/12/21 23:44:59 ${date} ${time} $$
+ </span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-autospace:none'><span
+style='font-family:"Courier New";color:#3F7F5F;background:white'>&nbsp;* $$Revision: 1.1 $$
+</span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-autospace:none'><span
+style='font-family:"Courier New";color:#3F7F5F;background:white'>&nbsp;*</span></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-autospace:none'><span
+style='font-family:"Courier New";color:#3F7F5F;background:white'>&nbsp;*******************************************************************************</span></p>
+
+<p style='margin-left:.5in'><span style='font-family:"Courier New";color:#3F7F5F;
+background:white'>*/</span></p>
+
+<p style='margin-left:.5in'><span style='color:black'>Select Java &gt; Code
+Style and check the 'Automatically add comments for new methods and types' checkbox. Now
+every time a new class is created copyright notices are automatically added.</span></p>
+
+<p style='margin-left:.5in'><img border=0 src=image035.jpg><br
+clear=all></p>
+
+<p style='margin-left:.5in'><span style='color:black'>An alternative method would be to
+check the checkbox for 'Generate Comments' each time you create a new class.</span></p>
+
+<p style='margin-left:.5in'><img border=0 src=image037.jpg><br
+clear=all></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>8)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select Team &gt; CVS </span></p>
+
+<p style='margin-left:1.25in;text-indent:-.5in'><span class=SpellE><span
+style='color:black'>i</span></span><span style='color:black'>)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>Check &quot;Prune empty directories&quot;.<br clear=all>
+</span></p>
+
+<p style='margin-left:1.25in;text-indent:-.5in'><span style='color:black'>ii)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>Check &quot;Delete unmanaged resources on replace&quot;.<br
+clear=all>
+</span></p>
+
+<p style='margin-left:1.25in;text-indent:-.5in'><span style='color:black'>iii)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>Set &quot;Default keyword substitution&quot; to &quot;ASCII
+with Keyword expansion (-<span class=SpellE><span class=spelle>kkv</span></span>)&quot;
+by selecting it form the drop down menu.</span></p>
+
+<p style='margin-left:1.25in;text-indent:-.5in'><img border=0 src=image038.jpg><br
+clear=all></p>
+
+<p style='margin-left:1.25in;text-indent:-.5in'><span class=GramE><span
+style='color:black'>iv)</span><span style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>Set</span></span><span style='color:black'>
+&quot;Compression Level&quot; to &quot;5&quot; by selecting it from the drop down menu.<br
+clear=all>
+</span></p>
+
+<p style='margin-left:1.25in;text-indent:-.5in'><img border=0 src=image039.jpg><br
+clear=all></p>
+
+<p><span style='color:black'>&nbsp;</span></p>
+
+<p><b><span style='font-size:18.0pt;color:black'>CVS </span></b></p>
+
+<p><span style='color:black'>To get to Repositories view, select Window &gt;
+Show View &gt; <span class=GramE><span class=grame>Other</span></span>, expand
+CVS folder and double click on CVS Repositories. </span></p>
+
+<p><span style='color:black'><img border=0 src=image040.jpg></span></p>
+
+<p><b><span style='font-size:14.0pt;color:black'>Set up CVS </span></b></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>1.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select Window &gt; Show View &gt; Other.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>2.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Expand the CVS folder and double click on &quot;CVS
+Repositories&quot;. </span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>3.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=grame><span style='color:black'>In</span></span><span style='color:black'>
+the palette that is <span class=SpellE>diplayed</span> (&quot;CVS Repositories&quot;
+view), right click &gt; select new &gt; Repository location. This will show a
+dialog box. Enter appropriate data as shown below and click finish. A new
+repository location will be created with the information entered.</span></p>
+
+<p style='margin-left:.25in;text-indent:.5in'><span style='color:black'><img
+border=0 src=image041.jpg></span></p>
+
+<p><b><span style='font-size:14.0pt;color:black'>Set up the SSH private key </span></b></p>
+
+If you are checking this out using the 'anonsrc' login, you will need the key
+set up in your preferences.  To do this:
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>1.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Get the key if you haven't already.  It's found <a href="ftp://ftp.software.ibm.com/software/globalization/icu/keys/cvskey.zip" target="_blank">here</a>.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>2.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Extract the cvskey.ppk file.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>2.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>In Eclipse, Window &gt; Preferences.  In the left panel of the window that pops up: 
+Team &gt; CVS &gt; SSH2.  In the right panel, General and then 'Add Private Key' browsing to where cvskey.ppk exists</span></p>
+
+<p style='margin-left:.25in;text-indent:.5in'><span style='color:black'><img
+border=0 src=image043.jpg></span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>Note:</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>You should only have one rsa private key loaded at a time.  You may
+have to rearrange what you have in the private key section to get this to work.  You may also
+have to restart Eclipse to have it recognize the changes.</span></p>
+
+<p><b><span style='font-size:18.0pt;color:black'>Creating project for ICU4J</span></b></p>
+
+<p><span style='color:black'>There are two ways to create a project in Eclipse
+for ICU4J, a new project can be created and pointed to an existing workspace on
+the disk or a fresh check out can be performed to set up the workspace.</span></p>
+
+<p><b><span style='font-size:14.0pt;color:black'>Existing Checkout</span></b></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>1.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select File &gt; New. In the New Project dialog box that
+pops up, select 'Other' and then &quot;Java Project&quot;. Click
+&quot;Next&quot;.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>2.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>In the dialog box that pops up, give the project a name, then switch 
+to 'Create project from existing source' and the location where the source of ICU4J
+currently resides, and click 'Next'. </span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>3.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Set up the &quot;<span class=SpellE><span class=spelle>src</span></span>&quot;
+directory as the source and &quot;classes&quot; directory as the output directories, and
+let the wizard guide you through the rest.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>4.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>In the &quot;Package Explorer&quot; view of Java
+perspective, select the newly generated project &gt; right click &gt; Team &gt;
+Share project. The wizard should guide you through specifying the repository
+location for updating the project.</span></p>
+
+<p><b><span style='font-size:14.0pt;color:black'>Clean
+Checkout&nbsp;&nbsp;&nbsp; </span></b></p>
+
+<p><span style='color:black'>From the CVS repositories view:</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>1.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Expand the repository location &gt; HEAD &gt; icu4j.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'><img
+border=0 src=image044.jpg></span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>2.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Right click on icu4j and select &quot;checkout as<span
+class=GramE><span class=grame>..&quot;</span></span>. Choose &quot;
+Check out as a project configured using the New Project Wizard&quot;.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>3.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+This brings up New Project dialog box. Choose &quot;HEAD&quot; and &quot;Finish&quot;.
+Select &quot;Java Project&quot; and &quot;Next&quot;.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'><img
+border=0 src=image045.jpg></span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>4.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+Give the project a name.  It will be a New Project.  Use default compiler compliance and 
+create separate input and output folder.  Then click on &quot;Configure default...&quot;</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'><img
+border=0 src=image046.jpg></span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>5.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+Choose &quot;Folders&quot;. Use &quot;src&quot; for a &quot;Source folder name&quot; and
+&quot;classes&quot; for an &quot;Output folder name&quot;.</span></p>
+
+<p style='margin-left:.5in'><i><span style='color:black'>Note: Do not select
+&quot;Checkout as project&quot; on the context menu. This will automatically&nbsp;perform
+checkout and creates a <b>generic</b> project in the default location which is
+in &lt;eclipse&gt;/workspace directory.</span></i></p>
+
+<p style='margin-left:.5in'><i><span style='color:black'>Note: On LINUX set the
+project location to ~/icu4j to get it to check everything out into the right
+directory. Go through the <a href="#verify">verification</a> process as
+explained below after the project is created.</span></i></p>
+
+<p><span style='color:black'>From the File menu:</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>1.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select File &gt; New & gt; Other. This brings up New Project dialog
+box. Select CVS &gt; Checkout Projects From CVS. Click
+&quot;Next&quot;.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>2.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Choose &quot;Use existing repository location&quot; and then choose
+the location you set up before.  Click &quot;Next&quot;.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>3.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>With the next dialog, either by
+typing &quot;icu4j&quot; in &quot;Use specified module&quot; or by browsing to it using the
+&quot;Use an existing module&quot;.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>4.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Right click on icu4j and select &quot;checkout as<span
+class=GramE><span class=grame>..&quot;</span></span>. Choose &quot;
+Check out as a project configured using the New Project Wizard&quot;.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>5.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+This brings up New Project dialog box. Choose &quot;HEAD&quot; and &quot;Finish&quot;.
+Select &quot;Java Project&quot; and &quot;Next&quot;.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'><img
+border=0 src=image045.jpg></span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>6.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+Give the project a name.  It will be a New Project.  Use default compiler compliance and 
+create separate input and output folder.  Then click on &quot;Configure default...&quot;</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'><img
+border=0 src=image046.jpg></span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>7.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+Choose &quot;Folders&quot;. Use &quot;src&quot; for a &quot;Source folder name&quot; and
+&quot;classes&quot; for an &quot;Output folder name&quot;.</span></p>
+
+<p><span style='color:black'>&nbsp;</span></p>
+
+<p><a name=verify><b><span style='font-size:14.0pt;color:black'>Verify</span></b></a><b><span
+style='font-size:14.0pt;color:black'> Project Properties</span></b></p>
+
+<p><span style='color:black'>Open Java Perspective. Select Window &gt; Show
+View &gt; Package Explorer. In the &quot;Package Explorer&quot; view, right click on the
+ICU4J project (folder<span class=grame>) and</span> select properties.</span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>1.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select &quot;CVS&quot; in the left pane and verify the settings.</span></p>
+
+<p style='text-indent:.5in'><span style='color:black'>&nbsp;&nbsp;&nbsp;&nbsp; <img
+border=0 src=image050.jpg></span></p>
+
+<p style='margin-left:.75in;text-indent:-.25in'><span style='color:black'>2.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select &quot;Java Build Path&quot; in the left pane </span></p>
+
+<p style='margin-left:135.0pt;text-indent:-.5in'><span class=SpellE><span
+style='color:black'>i</span></span><span style='color:black'>)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>Click on the &quot;Source&quot; tab and make sure the
+settings are as shown below.<br clear=all>
+<br clear=all>
+<img border=0 src=image047.jpg><br
+clear=all>
+</span></p>
+
+<p style='margin-left:135.0pt;text-indent:-.5in'><span style='color:black'>ii)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>Click on the &quot;Libraries&quot; tab and verify the
+jars are included as shown below. If any jar is not present, click on &quot;Add
+external jars&quot; to navigate to the directory containing the jar you would like
+to add and add it. &quot;<span class=SpellE><span class=spelle>tools.jar</span></span>&quot;
+is usually <span class=grame>in&nbsp;&lt;</span>JDK Path&gt;/lib. If you are on a Mac, &quot;tools.jar&quot;
+will not always be found.  It may be named &quot;classes.jar&quot;.<br clear=all>
+<br clear=all>
+<img border=0 src=image048.jpg><br
+clear=all>
+</span></p>
+
+<p><span style='color:black'>&nbsp;</span></p>
+
+<p><b><span style='font-size:16.0pt;color:black'>Building and Testing ICU4J</span></b></p>
+
+<p><span style='color:black'>Open Java perspective and &quot;Package Explorer&quot; view.
+Select &quot;<span class=SpellE><span class=spelle>build.xml</span></span>&quot; &gt;
+right click &gt; Run Ant. In the dialog box that pops up, check &quot;core&quot; and
+&quot;tests&quot; and click Finish. </span></p>
+
+<p style='margin-right:.5in'><b><span style='font-size:16.0pt;color:black'>&nbsp;</span></b><a
+name=note1><i><span style='color:black'>Note</span></i></a><i><span
+style='color:black'>: If JRE is used launch Eclipse then special steps are need
+to run <st1:place><st1:place><st1:place><st1:place>ANT.</st1:place></st1:place></st1:place></st1:place>
+Right click on <span class=SpellE><span class=spelle>build.xml</span></span>
+-&gt; Run <st1:place>Ant.</st1:place> In the dialog box that pops up, enter <br
+clear=all>
+&quot;-<span class=SpellE><span class=spelle>Dbuild.compiler</span></span>=<span
+class=SpellE><span class=spelle>org.eclipse.jdt.core.JDTCompilerAdapter</span></span>&quot;
+under Arguments and check out this <a
+href="http://www.eclipse.org/eclipse/faq/eclipse-faq.html#users_16">FAQ</a>.</span></i><span
+style='color:black'> <br>
+<i>OR </i><br>
+<i>Select Windows &gt; Preferences from the Eclipse Platform <span
+class=SpellE><span class=spelle>menubar</span></span> Select External Tools
+&gt; Ant from the Preferences' window menu Select the <span class=SpellE><span
+class=spelle>Classpath</span></span> folder Click on the Add Jar... button and
+add your PC's <span class=SpellE><span class=spelle>jdk</span></span> <span
+class=SpellE><span class=spelle>tools.jar</span></span> <(!example!>Apply
+changes .</i></span></p>
+
+<p class=MsoNormal><span style='color:black'><br>
+More information about ANT and Eclipse can be found at <a
+href="http://eclipsewiki.editme.com/ANTFaq"><span class=SpellE><span
+class=spelle>EclipseWiki</span></span></a>. If you're having trouble with the &quot;Assert&quot; statement
+see this: <a href="http://www.cis.upenn.edu/~matuszek/cit594-2004/Pages/eclipse-faq.html#assert"><span class=SpellE><span
+class=spelle>Assert</span></span></a></span></p>
+
+<p><span style='color:black'>To run the tests launch configuration for <span
+class=SpellE><span class=spelle>TestAll.java</span></span> should be created.</span></p>
+
+<p><b><span style='font-size:14.0pt;color:black'>Create Launch Configuration</span></b></p>
+
+<p><span style='color:black'>Launching a class in the debugger or just running
+it requires setting up of a &quot;Launch Configurations&quot;. To set up a launch
+configuration of a class select the dropdown next to the play button, also known as
+&quot;Run&quot; from the top toolbar and then select
+&quot;Run...&quot;.</p>
+
+<img border=0 src=image051.jpg>
+
+<p><span style='color:black'>or you can use the debug dropdown &quot;Run&quot; from the top toolbar and then select
+&quot;Debug...&quot;.</p>
+
+<img border=0 src=image052.jpg>
+
+<p><span style='color:black'>Or you could launch the configuration like shown in the figure below:</span></p>
+
+<p><span style='color:black' nowrap><img border=0 src=image053.jpg></span></p>
+
+<p><span style='color:black'>All the above methods launch the configuration
+panel as shown below.</span></p>
+
+<p><span style='color:black'>Select &quot;Java Application&quot; and click on &quot;New&quot;.</span></p>
+
+<p><span style='color:black'><img border=0 src=image056.jpg></span></p>
+
+<p><span style='color:black'>&nbsp;</span></p>
+
+<p><span style='color:black'>Enter the project, class name and other data for
+setting up the &quot;Launch configuration&quot;, click &quot;Apply&quot;, and then click &quot;Run&quot; or &quot;Debug&quot;.</span></p>
+
+<p><span style='color:black'><img border=0 src=image055.jpg>&nbsp;</span></p>
+
+<p><span style='color:black'>If the all the tests pass without any error, you have
+a good workspace of ICU4J.</span></p>
+
+<p><b><span style='font-size:14.0pt;color:black'>Debugging</span></b></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>1)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Create a launch configuration for the test class to be run.</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>2)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Open the class in the editor by double clicking on the
+class file in &quot;Package Explorer&quot; view.</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>3)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Set a break point as shown below or pressing &quot;<span
+class=SpellE><span class=spelle>Ctrl+Shift+B</span></span>&quot; when then cursor is
+placed on the line.<br clear=all>
+<br clear=all>
+<img border=0 src=image057.jpg><br
+clear=all>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>4)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Click the debug icon just below the top menu bar. This will
+launch the debugger and the &quot;Debug&quot; perspective.</span></p>
+
+<p><span style='color:black'>&nbsp;</span></p>
+
+<p><b><span style='font-size:16.0pt;color:black'>Using ICU4J repository from
+Eclipse</span></b></p>
+
+<p><span style='color:black'>Care should be taken while adding/ deleting/
+committing files to the ICU4J repository through CVS interface provided by
+Eclipse.</span></p>
+
+<p><b><span style='font-size:14.0pt;color:black'>Committing edited files </span></b></p>
+
+<p><span style='color:black'>To commit a file to the repository after editing
+follow the steps below:</span></p>
+
+<p style='margin-left:.75in;text-indent:-.5in'><span class=SpellE><span
+style='color:black'>i</span></span><span style='color:black'>)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>In the &quot;Package Explorer&quot; view of Java
+perspective, right click on the project and select Team-&gt; Update. This will
+update your workspace.<br clear=all>
+</span></p>
+
+<p style='margin-left:.75in;text-indent:-.5in'><span style='color:black'>ii)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>Run all the tests again and verify that all
+tests pass.<br clear=all>
+</span></p>
+
+<p style='margin-left:.75in;text-indent:-.5in'><span style='color:black'>iii)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>In the &quot;Package Explorer&quot; view of Java
+perspective, right click on the project and select Team-&gt; Synchronize with
+Repository. This view will show all Incoming Changes, Outgoing Changes, and
+also comes with an integrated diff tool. Double clicking on any file will
+launch the diff tool.<br clear=all>
+</span></p>
+
+<p style='margin-left:.75in;text-indent:-.5in'><span class=GramE><span
+style='color:black'>iv)</span><span style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>Once</span></span><span style='color:black'>
+the changes made are verified, right click on the file and select &quot;Commit&quot; from
+the context menu. Enter the message for commit in the following <span
+class=GramE><span class=grame>format :</span></span>&nbsp; &quot;jitterbug
+&nbsp;&lt;number&gt;: &lt;message&gt;&quot;.</span></p>
+
+<p><b><span style='font-size:14.0pt;color:black'>Adding new files </span></b></p>
+
+<p><span style='color:black'>Before checking in a<b> new</b> file into CVS
+please make sure you perform the following steps:</span></p>
+
+<p style='margin-left:.75in;text-indent:-.5in'><span class=SpellE><span
+class=spelle><span style='color:black'>i</span></span></span><span
+style='color:black'>)</span><span style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='color:black'>Verify that the file you are trying to add is
+of extension (*.java,*.txt) and content (Text, binary) known to Eclipse. Select
+Window -&gt; Preferences, in the screen that is launched expand Team tree in
+the left column and select &quot;File Content&quot;. Check if the extension is present
+and contents section identifies the contents correctly. </span></p>
+
+<p style='margin-left:.75in;text-indent:-.5in'><span style='color:black'>ii)</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;</span><span style='color:black'>ICU4J uses default <a
+href="http://ximbiot.com/cvs/manual/cvs-1.11.16/cvs_12.html">Keyword
+substitution</a>&nbsp;for files. Ensure that the default is turned on for the files
+you are adding into the repository. Right click on the file/directory select
+Team from the context menu then select &quot;Change ASCII/Binary Property&quot;. In the
+dialog box launched select &quot;ASCII with keyword substitution&quot; and from the
+dropdown menu select &quot;ASCII with keyword expansion <br clear=all>
+(--<span class=SpellE><span class=spelle>kkv</span></span>)&quot; and let the wizard
+guide you to finish.</span></p>
+
+<p><i><span style='color:black'>Note: Do not use <span class=SpellE><span
+class=spelle>WinCVS</span></span> and Eclipse CVS at the simultaneously. This
+can cause problems since Eclipse maintains a backup database of all changes
+that you have made. If you do use <span class=SpellE><span class=spelle>WinCVS</span></span>
+and Eclipse CVS &nbsp;you need to perform refresh ICU4J project by right
+clicking on the project in &quot;Package Explorer&quot; view of Java perspective and
+selecting &quot;Refresh&quot;. </span></i></p>
+
+<p><span style='color:black'>&nbsp;</span></p>
+
+<p style='margin-bottom:12.0pt'><b><span style='font-size:16.0pt;color:black'>Creating
+a Test Project that Depends on ICU4J</span></b></p>
+
+<p><span style='color:black'>To create a test project that depends on ICU4J,
+follow the steps given below:</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>1.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select<span class=grame>&nbsp;File</span> &gt; New &gt;
+Project.<br clear=all>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>2.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>In the dialog box that is launched select &quot;Java Project&quot; and click &quot;Next.&quot;
+<br clear=all>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>3.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Enter project name &quot;test&quot;<span class=grame>,</span>
+to be created then click &quot;Next&quot;.<br clear=all>
+<br clear=all>
+<img border=0 src=image058.jpg><br
+clear=all>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>4.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Make sure your Source tab looks as shown below.  If you've been following
+the steps above it should.  Then click &quot;Finish&quot;.<br clear=all>
+<br clear=all>
+<img border=0 src=image059.jpg><br
+clear=all>
+&nbsp;</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>5.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Verify the settings by right clicking on the project named
+&quot;test&quot; in &quot;Java&quot; perspective in &quot;Package Explorer&quot; view and selecting
+properties. <br clear=all>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>6.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select &quot;Java Build Path&quot; in the left pane <span
+class=grame>and click on the&nbsp;&quot;</span>Projects&quot; tab. <span class=GramE><span
+class=grame>Make</span></span> sure &quot;ICU4J&quot; is on the build path.  If not add it
+by choosing &quot;Add&quot;.<br clear=all>
+<br clear=all>
+<img border=0 src=image060.jpg><br
+clear=all>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>7.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Select &quot;Project References&quot; in the left pane and check the
+box to the left of folder named &quot;ICU4J&quot; and click ok.<br clear=all>
+<br clear=all>
+<img border=0 src=image061.jpg><br
+clear=all>
+</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>8.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>Add a new class to the project. Select the source folder in
+&quot;Package Explorer&quot; view &gt; right click &gt; New &gt; Class.</span></p>
+
+<p style='margin-left:.25in;text-indent:.25in'><span style='color:black'><img
+border=0 src=image062.jpg></span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>9.</span><span
+style='font-size:7.0pt;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:black'>In the dialog launched, enter data appropriately and click
+&quot;Finish&quot;.<br clear=all>
+<br clear=all>
+<img border=0 src=image063.jpg><br
+clear=all>
+&nbsp;&nbsp;</span></p>
+
+<p style='margin-left:.5in;text-indent:-.25in'><span style='color:black'>10.</span><span
+style='font-size:7.0pt;color:black'>&nbsp; </span><span style='color:black'>At
+this point a class named &quot;Test&quot; in package &quot;<span class=SpellE><span
+class=spelle>com.ibm.test</span></span>&quot; will be created with boiler plate
+code. Add the following code and try to compile and run it.<br clear=all>
+<br clear=all>
+</span><span class=SpellE><span class=grame><span style='font-family:Courier;
+color:#7F0055;background:white'>package&nbsp;</span></span><span class=spelle><span
+style='font-family:Courier;color:navy;background:white'>com.ibm.test</span></span></span><span
+style='font-family:Courier;color:navy;background:white'>;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-autospace:none'><span
+class=SpellE><span class=grame><span style='font-family:Courier;color:#7F0055;
+background:white'>import&nbsp;</span></span><span class=spelle><span
+style='font-family:Courier;color:navy;background:white'>com.ibm.icu.lang</span></span></span><span
+style='font-family:Courier;color:navy;background:white'>.*;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-autospace:none'><span
+style='font-family:Courier;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-autospace:none'><span
+class=SpellE><span class=GramE><span class=grame><span style='font-family:Courier;
+color:#7F0055;background:white'>public&nbsp;</span></span><span style='font-family:
+Courier;color:#7F0055;background:white'>class&nbsp;</span><span style='font-family:
+Courier;color:navy;background:white'>Test</span></span></span><span
+class=GramE><span style='font-family:Courier;color:navy;background:white'>{</span></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-autospace:none'><span
+style='font-family:Courier;color:black;background:white'>&nbsp;&nbsp;&nbsp; </span><span
+class=SpellE><span class=GramE><span class=grame><span style='font-family:Courier;
+color:#7F0055;background:white'>public&nbsp;</span></span><span style='font-family:
+Courier;color:#7F0055;background:white'>static&nbsp;void&nbsp;</span><span
+style='font-family:Courier;color:navy;background:white'>main</span></span></span><span
+class=GramE><span style='font-family:Courier;color:navy;background:white'>(</span></span><span
+style='font-family:Courier;color:navy;background:white'>String[]<span
+class=SpellE><span class=spelle><span style='font-family:Courier'>args</span></span></span>){</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-autospace:none'><span
+style='font-family:Courier;color:black;background:white'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=SpellE><span class=GramE><span class=grame><span
+style='font-family:Courier;color:navy;background:white'>System.out.println</span></span></span></span><span
+class=GramE><span class=grame><span style='font-family:Courier;color:navy;
+background:white'>(</span></span></span><span class=SpellE><span class=spelle><span
+style='font-family:Courier;color:navy;background:white'>UCharacter.isLegal</span></span></span><span
+style='font-family:Courier;color:navy;background:white'>(3));</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-autospace:none'><span
+style='font-family:Courier;color:black;background:white'>&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:Courier;color:navy;background:white'>}</span></p>
+
+<p style='margin-left:.5in'><span style='font-family:Courier;color:navy;
+background:white'>}</span></p>
+
+<p><b><span style='font-size:16.0pt;color:black'>&nbsp;</span></b></p>
+
+<p><b><span style='font-size:16.0pt;color:black'>Using Eclipse's default Java
+Builder w/ ICU4J</span></b></p>
+
+<p class=MsoNormal style='line-height:12.0pt;
+text-autospace:none'><span style='color:black'>With JDK 1.3.1 *or* JDK 1.4.1</span></p>
+
+<p class=MsoNormal style='line-height:12.0pt;
+text-autospace:none'><span style='color:black'>&nbsp;</span></p>
+
+<ol style='margin-top:0in' start=1 type=1>
+ <li class=MsoNormal style='color:black;line-height:12.0pt;text-autospace:none'>Right
+     click the project in the &quot;Java&quot; Perspective or the &quot;Resource&quot; Perspective,
+     and select &quot;Properties&quot; in the context menu.</li>
+ <li class=MsoNormal style='color:black;line-height:12.0pt;text-autospace:none'>Select
+     Builders in the left pane of the Property panel.</li>
+ <li class=MsoNormal style='color:black;line-height:12.0pt;text-autospace:none'>Click
+     the New... button on the right hand side</li>
+ <li class=MsoNormal style='color:black;line-height:12.0pt;text-autospace:none'>Select
+     Ant Build and then click the OK button</li>
+ <li class=MsoNormal style='color:black;line-height:12.0pt;text-autospace:none'>Change
+     the name to &quot;Ant _resources&quot;</li>
+ <li class=MsoNormal style='color:black;line-height:12.0pt;text-autospace:none'>Click
+     the Browse Workspace... button under the Buildfile box. </li>
+ <li class=MsoNormal style='color:black;line-height:12.0pt;text-autospace:none'>Select
+     the ICU4J project on the left hand side. <span class=SpellE><span
+     class=GramE>build.xml</span></span> will appear on the right hand side.
+     Select it and click &quot;OK&quot;.<br><img border=0 src=image064.jpg></li>
+ <li class=MsoNormal style='color:black;line-height:12.0pt;text-autospace:none'>Select
+     the Targets <span class=GramE>tab,</span> Click &quot;Set Targets&quot; next to
+     Auto Build.</li>
+ <li class=MsoNormal style='color:black;line-height:12.0pt;text-autospace:none'>Click
+     Add. In the dialog which appears, check &quot;resources&quot; and click OK.</li>
+ <li class=MsoNormal style='color:black;line-height:12.0pt;text-autospace:none'>Click
+     OK on the Properties for Ant _resources pane.<br><img border=0 src=image065.jpg></li>
+</ol>
+
+<p class=MsoNormal style='line-height:12.0pt;
+text-autospace:none'><span style='color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='line-height:12.0pt;
+text-autospace:none'><span style='color:black'>Now you should be able to use
+Eclipse's build commands to build your project.</span></p>
+
+<p class=MsoNormal style='line-height:12.0pt;
+text-autospace:none'><span style='color:black'>&nbsp;</span></p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -13,7 +13,6 @@
 
 #if !UCONFIG_NO_COLLATION
 
-#include <iostream>
 #include <tchar.h>
 #include <windows.h>
 
@@ -94,7 +93,7 @@ UCollationResult Win32Collator::compare(const UChar* source, int32_t sourceLengt
                                         UErrorCode &status) const
 {
     DWORD dwCmpFlags = fStrength > Collator::SECONDARY? 0 : NORM_IGNORECASE;
-    int32_t result = CompareString(fLCID, dwCmpFlags, source, sourceLength, target, targetLength);
+    int32_t result = CompareStringW(fLCID, dwCmpFlags, source, sourceLength, target, targetLength);
 
     return (UCollationResult) (result - 2);
 }
@@ -220,7 +219,7 @@ int32_t Win32Collator::getSortKey(const UnicodeString &source, uint8_t *result, 
 // TODO: We could avoid the tests of resultLength if we always copy from our buffer into result
 int32_t Win32Collator::getSortKey(const UChar *source, int32_t sourceLength, uint8_t *result, int32_t resultLength) const
 {
-    int32_t requiredLength = LCMapString(fLCID, LCMAP_SORTKEY, source, sourceLength, NULL, 0);
+    int32_t requiredLength = LCMapStringW(fLCID, LCMAP_SORTKEY, source, sourceLength, NULL, 0);
 
     if (result != NULL) {
         uint8_t *res   = result;
@@ -232,7 +231,7 @@ int32_t Win32Collator::getSortKey(const UChar *source, int32_t sourceLength, uin
         }
         
         // We don't need to keep the return value here because it will be requiredLength.
-        LCMapString(fLCID, LCMAP_SORTKEY, source, sourceLength, (LPTSTR) res, resLen);
+        LCMapStringW(fLCID, LCMAP_SORTKEY, source, sourceLength, (LPWSTR) res, resLen);
 
         if (requiredLength > resultLength) {
             for (int32_t i = 0; i < resultLength; i += 1) {

@@ -79,19 +79,19 @@ Format *Win32NumberFormat::clone(void) const
 
 UnicodeString& Win32NumberFormat::format(double number, UnicodeString& appendTo, FieldPosition& pos) const
 {
-    _stprintf(fNumber, _T("%f"), number);
+    swprintf(fNumber, L"%f", number);
     return format(fNumber, appendTo);
 }
 
 UnicodeString& Win32NumberFormat::format(int32_t number, UnicodeString& appendTo, FieldPosition& pos) const
 {
-    _stprintf(fNumber, _T("%I32d"), number);
+    swprintf(fNumber, L"%I32d", number);
     return format(fNumber, appendTo);
 }
 
 UnicodeString& Win32NumberFormat::format(int64_t number, UnicodeString& appendTo, FieldPosition& pos) const
 {
-    _stprintf(fNumber, _T("%I64d"), number);
+    swprintf(fNumber, L"%I64d", number);
     return format(fNumber, appendTo);
 }
 
@@ -110,12 +110,12 @@ void Win32NumberFormat::parse(const UnicodeString& text, Formattable& result, Pa
 UnicodeString &Win32NumberFormat::format(const UChar *number, UnicodeString &appendTo) const
 {
     if (fCurrency) {
-        GetCurrencyFormat(fLCID, 0, number, NULL, fBuffer, fBufLen);
+        GetCurrencyFormatW(fLCID, 0, number, NULL, fBuffer, fBufLen);
     } else {
-        GetNumberFormat(fLCID, 0, number, NULL, fBuffer, fBufLen);
+        GetNumberFormatW(fLCID, 0, number, NULL, fBuffer, fBufLen);
     }
 
-    appendTo.append(fBuffer, (int32_t) _tcslen(fBuffer));
+    appendTo.append(fBuffer, (int32_t) wcslen(fBuffer));
     return appendTo;
 }
 

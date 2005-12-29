@@ -206,7 +206,7 @@ UnicodeString &translate(UnicodeString &windowsPattern)
     return windowsPattern;
 }
 
-void convertDateTimeToICU(TCHAR winFormat[], int32_t winLen, UnicodeString &icuFormat)
+void convertDateTimeToICU(WCHAR winFormat[], int32_t winLen, UnicodeString &icuFormat)
 {
     UnicodeString patternChars = UNICODE_STRING_SIMPLE("dghHmMsty");
 
@@ -386,16 +386,16 @@ void showLocales()
 
     for(int i = 0; i < lcidCount; i += 1) {
         UErrorCode status = U_ZERO_ERROR;
-        TCHAR calendarType[3], longDateFormat[81], longTimeFormat[81], buffer[256];
+        WCHAR calendarType[3], longDateFormat[81], longTimeFormat[81], buffer[256];
 
-        GetLocaleInfo(lcidRecords[i].lcid, LOCALE_SLONGDATE,   longDateFormat, 81);
-        GetLocaleInfo(lcidRecords[i].lcid, LOCALE_STIMEFORMAT, longTimeFormat, 81);
-        GetLocaleInfo(lcidRecords[i].lcid, LOCALE_ICALENDARTYPE, calendarType, 3);
+        GetLocaleInfoW(lcidRecords[i].lcid, LOCALE_SLONGDATE,   longDateFormat, 81);
+        GetLocaleInfoW(lcidRecords[i].lcid, LOCALE_STIMEFORMAT, longTimeFormat, 81);
+        GetLocaleInfoW(lcidRecords[i].lcid, LOCALE_ICALENDARTYPE, calendarType, 3);
 
         char localeID[64];
         int32_t calType = 0;
 
-        _stscanf(calendarType, _T("%d"), &calType);
+        swscanf(calendarType, L"%d", &calType);
         sprintf(localeID, "%s%s", lcidRecords[i].localeID, getCalendarType(calType));
 
         UnicodeString uLongDateFormat, uLongTimeFormat, uBuffer, wBuffer, nBuffer;
@@ -403,21 +403,21 @@ void showLocales()
         char utf8LCID[32], utf8CalendarType[32], utf8WinLongDate[256], utf8WinLongTime[256], utf8WinFormatString[256],
             utf8ULongDate[256], utf8ULongTime[256], utf8UFormatString[256], utf8WFormatString[256];
 
-        convertDateTimeToICU(longDateFormat, (int32_t) _tcslen(longDateFormat), uLongDateFormat);
-        convertDateTimeToICU(longTimeFormat, (int32_t) _tcslen(longTimeFormat), uLongTimeFormat);
+        convertDateTimeToICU(longDateFormat, (int32_t) wcslen(longDateFormat), uLongDateFormat);
+        convertDateTimeToICU(longTimeFormat, (int32_t) wcslen(longTimeFormat), uLongTimeFormat);
 
         sprintf(utf8LCID, "%08x", lcidRecords[i].lcid);
-        toUTF8Chars(longDateFormat, (int32_t) _tcslen(longDateFormat), utf8WinLongDate, 256, &status);
-        toUTF8Chars(longTimeFormat, (int32_t) _tcslen(longTimeFormat), utf8WinLongTime, 256, &status);
-        toUTF8Chars(calendarType,   (int32_t) _tcslen(calendarType),   utf8CalendarType,  8, &status);
+        toUTF8Chars(longDateFormat, (int32_t) wcslen(longDateFormat), utf8WinLongDate, 256, &status);
+        toUTF8Chars(longTimeFormat, (int32_t) wcslen(longTimeFormat), utf8WinLongTime, 256, &status);
+        toUTF8Chars(calendarType,   (int32_t) wcslen(calendarType),   utf8CalendarType,  8, &status);
 
         toUTF8Chars(uLongDateFormat.getBuffer(), uLongDateFormat.length(), utf8ULongDate, 256, &status);
         toUTF8Chars(uLongTimeFormat.getBuffer(), uLongTimeFormat.length(), utf8ULongTime, 256, &status);
 
-        int len = GetDateFormat(lcidRecords[i].lcid, 0, &winNow, longDateFormat, buffer, 256);
+        int len = GetDateFormatW(lcidRecords[i].lcid, 0, &winNow, longDateFormat, buffer, 256);
 
         buffer[len-1] = 0x20;
-        GetTimeFormat(lcidRecords[i].lcid, 0, &winNow, longTimeFormat, &buffer[len], 256 - len);
+        GetTimeFormatW(lcidRecords[i].lcid, 0, &winNow, longTimeFormat, &buffer[len], 256 - len);
 
         UResourceBundle *bundle = ures_open(NULL, lcidRecords[i].localeID, &status);
 
@@ -437,11 +437,11 @@ void showLocales()
             sdf.format(icuNow, uBuffer);
         }
 
-        toUTF8Chars(buffer, (int32_t) _tcslen(buffer), utf8WinFormatString, 256, &status);
+        toUTF8Chars(buffer, (int32_t) wcslen(buffer), utf8WinFormatString, 256, &status);
         toUTF8Chars(uBuffer.getBuffer(), uBuffer.length(), utf8UFormatString, 256, &status);
 
         int bgcolor  = 0xFFFFFF;
-        int32_t blen = (int32_t) _tcslen(buffer);
+        int32_t blen = (int32_t) wcslen(buffer);
 
         if (unorm_compare(buffer, blen, uBuffer.getBuffer(), uBuffer.length(), U_FOLD_CASE_DEFAULT, &status) != 0) {
             if (unorm_compare(buffer, blen, uBuffer.getBuffer(), uBuffer.length(), U_COMPARE_IGNORE_CASE, &status) != 0) {
@@ -459,7 +459,7 @@ void showLocales()
             }
         }
 
-        Win32DateFormat *wdf = new Win32DateFormat(DateFormat::kShort, DateFormat::kShort, ulocale, status);
+        Win32DateFormat *wdf = new Win32DateFormat(DateFormat::kFull, DateFormat::kFull, ulocale, status);
 
         wdf->format(icuNow, wBuffer);
         toUTF8Chars(wBuffer.getBuffer(), wBuffer.length(), utf8WFormatString, 256, &status);
@@ -481,7 +481,7 @@ void showLocales()
     fclose(file);
 }
 
-BOOL CALLBACK EnumLocalesProc(LPTSTR lpLocaleString)
+BOOL CALLBACK EnumLocalesProc(LPWSTR lpLocaleString)
 {
     UErrorCode status = U_ZERO_ERROR;
 
@@ -497,7 +497,7 @@ BOOL CALLBACK EnumLocalesProc(LPTSTR lpLocaleString)
         lcidMax += 32;
     }
 
-    _stscanf(lpLocaleString, _T("%8x"), &lcidRecords[lcidCount].lcid);
+    swscanf(lpLocaleString, L"%8x", &lcidRecords[lcidCount].lcid);
 
     lcidRecords[lcidCount].localeID = uprv_convertToPosix(lcidRecords[lcidCount].lcid, &status);
 
@@ -512,7 +512,7 @@ int _tmain(int argc, _TCHAR* argv[])
     lcidCount = 0;
     lcidRecords = new LCIDRecord[lcidMax];
 
-    EnumSystemLocales(EnumLocalesProc, LCID_INSTALLED);
+    EnumSystemLocalesW(EnumLocalesProc, LCID_INSTALLED);
 
     showLocales();
 

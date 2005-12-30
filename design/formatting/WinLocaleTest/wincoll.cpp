@@ -11,6 +11,8 @@
 
 #include "unicode/utypes.h"
 
+#ifdef U_WINDOWS
+
 #if !UCONFIG_NO_COLLATION
 
 #include <tchar.h>
@@ -248,3 +250,5 @@ int32_t Win32Collator::getSortKey(const UChar *source, int32_t sourceLength, uin
 U_NAMESPACE_END
 
 #endif /* #if !UCONFIG_NO_COLLATION */
+
+#endif // #ifdef U_WINDOWS

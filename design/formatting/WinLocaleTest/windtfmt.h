@@ -14,6 +14,8 @@
 
 #include "unicode/utypes.h"
 
+#ifdef U_WINDOWS
+
 #if !UCONFIG_NO_FORMATTING
 
 #include <windows.h>
@@ -115,12 +117,12 @@ public:
     virtual UClassID getDynamicClassID(void) const;
 
 private:
+    void growBuffer(int newLength) const;
+
     void formatDate(const SYSTEMTIME *st, UnicodeString &appendTo) const;
     void formatTime(const SYSTEMTIME *st, UnicodeString &appendTo) const;
 
     void setTimeZoneInfo(const TimeZone &zone);
-
-    static int32_t fWinType;
 
     UnicodeString *fDateTimeMsg;
     UChar *fBuffer;
@@ -140,5 +142,7 @@ inline UnicodeString &Win32DateFormat::format(UDate date, UnicodeString& appendT
 U_NAMESPACE_END
 
 #endif /* #if !UCONFIG_NO_FORMATTING */
+
+#endif // #ifdef U_WINDOWS
 
 #endif // __WINDTFMT

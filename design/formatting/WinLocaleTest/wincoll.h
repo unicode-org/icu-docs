@@ -14,6 +14,8 @@
 
 #include "unicode/utypes.h"
 
+#ifdef U_WINDOWS
+
 #if !UCONFIG_NO_COLLATION
 
 #include <windows.h>
@@ -391,5 +393,7 @@ inline UCollationStrength Win32Collator::getUCollationStrength(Collator::ECollat
 U_NAMESPACE_END
 
 #endif /* #if !UCONFIG_NO_COLLATION */
+
+#endif // #ifdef U_WINDOWS
 
 #endif // __WINCOLL

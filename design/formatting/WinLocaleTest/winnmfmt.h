@@ -14,6 +14,8 @@
 
 #include "unicode/utypes.h"
 
+#ifdef U_WINDOWS
+
 #if !UCONFIG_NO_FORMATTING
 
 #include <windows.h>
@@ -123,9 +125,13 @@ public:
     virtual UClassID getDynamicClassID(void) const;
 
 private:
+    void growBuffer(int newLength) const;
+    int safe_swprintf(const wchar_t *format, ...) const;
+
     UnicodeString &format(const UChar *number, UnicodeString &appendTo) const;
 
     UChar *fNumber;
+    int32_t fNumLen;
     UChar *fBuffer;
     int32_t fBufLen;
     UBool fCurrency;
@@ -151,5 +157,7 @@ inline UnicodeString &Win32NumberFormat::format(int64_t number, UnicodeString &a
 U_NAMESPACE_END
 
 #endif /* #if !UCONFIG_NO_FORMATTING */
+
+#endif // #ifdef U_WINDOWS
 
 #endif // __WINNMFMT

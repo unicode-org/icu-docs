@@ -1,6 +1,6 @@
 /*
 ********************************************************************************
-*   Copyright (C) 2005, International Business Machines
+*   Copyright (C) 2005-2006, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 ********************************************************************************
 *
@@ -125,6 +125,12 @@ public:
     virtual UClassID getDynamicClassID(void) const;
 
 private:
+    union FormatInfo
+    {
+        NUMBERFMTW   number;
+        CURRENCYFMTW currency;
+    };
+
     void growBuffer(int newLength) const;
     int safe_swprintf(const wchar_t *format, ...) const;
 
@@ -136,6 +142,8 @@ private:
     int32_t fBufLen;
     UBool fCurrency;
     int32_t fLCID;
+    FormatInfo fFormatInfo;
+    NumberFormat *fNumberFormat;
 
 };
 

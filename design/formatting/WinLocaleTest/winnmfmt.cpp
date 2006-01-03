@@ -1,6 +1,6 @@
 /*
 ********************************************************************************
-*   Copyright (C) 2005, International Business Machines
+*   Copyright (C) 2005-2006, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 ********************************************************************************
 *
@@ -35,6 +35,76 @@ UOBJECT_DEFINE_RTTI_IMPLEMENTATION(Win32NumberFormat)
 
 #define INITIAL_BUFFER_SIZE 64
 
+UINT getGrouping(const char *grouping)
+{
+    UINT g = 0;
+
+    for (const char *s = grouping; *s != '\0'; s += 1) {
+        if (*s > '0' && *s < '9') {
+            g = g * 10 + (*s - '0');
+        }
+    }
+
+    return g;
+}
+
+void getNumberFormat(NUMBERFMTW *fmt, int32_t lcid)
+{
+    int STR_LEN = 100;
+    char buf[10];
+
+    GetLocaleInfoW(lcid, LOCALE_RETURN_NUMBER|LOCALE_IDIGITS, (LPWSTR) &fmt->NumDigits, STR_LEN);
+    GetLocaleInfoW(lcid, LOCALE_RETURN_NUMBER|LOCALE_ILZERO,  (LPWSTR) &fmt->LeadingZero, STR_LEN);
+
+    GetLocaleInfoA(lcid, LOCALE_SGROUPING, buf, 10);
+    fmt->Grouping = getGrouping(buf);
+
+    fmt->lpDecimalSep = new UChar[6];
+    GetLocaleInfoW(lcid, LOCALE_SDECIMAL,  fmt->lpDecimalSep,  6);
+
+    fmt->lpThousandSep = new UChar[6];
+    GetLocaleInfoW(lcid, LOCALE_STHOUSAND, fmt->lpThousandSep, 6);
+
+    GetLocaleInfoW(lcid, LOCALE_RETURN_NUMBER|LOCALE_INEGNUMBER, (LPWSTR) &fmt->NegativeOrder, STR_LEN);
+}
+
+void freeNumberFormat(NUMBERFMTW *fmt)
+{
+    delete[] fmt->lpThousandSep;
+    delete[] fmt->lpDecimalSep;
+}
+
+void getCurrencyFormat(CURRENCYFMTW *fmt, int32_t lcid)
+{
+    int STR_LEN = 100;
+    char buf[10];
+
+    GetLocaleInfoW(lcid, LOCALE_RETURN_NUMBER|LOCALE_IDIGITS, (LPWSTR) &fmt->NumDigits, STR_LEN);
+    GetLocaleInfoW(lcid, LOCALE_RETURN_NUMBER|LOCALE_ILZERO,  (LPWSTR) &fmt->LeadingZero, STR_LEN);
+
+    GetLocaleInfoA(lcid, LOCALE_SMONGROUPING, buf, 10);
+    fmt->Grouping = getGrouping(buf);
+
+    fmt->lpDecimalSep = new UChar[6];
+    GetLocaleInfoW(lcid, LOCALE_SMONDECIMALSEP,  fmt->lpDecimalSep,  6);
+
+    fmt->lpThousandSep = new UChar[6];
+    GetLocaleInfoW(lcid, LOCALE_SMONTHOUSANDSEP, fmt->lpThousandSep, 6);
+
+    GetLocaleInfoW(lcid, LOCALE_RETURN_NUMBER|LOCALE_INEGCURR,  (LPWSTR) &fmt->NegativeOrder, STR_LEN);
+    GetLocaleInfoW(lcid, LOCALE_RETURN_NUMBER|LOCALE_ICURRENCY, (LPWSTR) &fmt->PositiveOrder, STR_LEN);
+
+    fmt->lpCurrencySymbol = new UChar[8];
+    GetLocaleInfoW(lcid, LOCALE_SCURRENCY, (LPWSTR) fmt->lpCurrencySymbol, 8);
+}
+
+void freeCurrencyFormat(CURRENCYFMTW *fmt)
+{
+    delete[] fmt->lpCurrencySymbol;
+    delete[] fmt->lpThousandSep;
+    delete[] fmt->lpDecimalSep;
+}
+
 // TODO: keep locale too?
 Win32NumberFormat::Win32NumberFormat(const Locale &locale, UBool currency, UErrorCode &status)
   : NumberFormat(), fCurrency(currency)
@@ -47,6 +117,18 @@ Win32NumberFormat::Win32NumberFormat(const Locale &locale, UBool currency, UErro
 
         fBuffer = new UChar[INITIAL_BUFFER_SIZE];
         fBufLen = INITIAL_BUFFER_SIZE;
+
+        // TODO: is minimum fraction digits always the right thing to use?
+        // TODO: should (re)setting NumDigits be done by getXXXFormat()?
+        if (fCurrency) {
+            getCurrencyFormat(&fFormatInfo.currency, fLCID);
+            fNumberFormat = NumberFormat::createCurrencyInstance(locale, status);
+            fFormatInfo.currency.NumDigits = (UINT) fNumberFormat->getMinimumFractionDigits();
+        } else {
+            getNumberFormat(&fFormatInfo.number, fLCID);
+            fNumberFormat = NumberFormat::createInstance(locale, status);
+            fFormatInfo.number.NumDigits = (UINT) fNumberFormat->getMinimumFractionDigits();
+        }
     }
 }
 
@@ -58,6 +140,14 @@ Win32NumberFormat::Win32NumberFormat(const Win32NumberFormat &other)
 
 Win32NumberFormat::~Win32NumberFormat()
 {
+    delete fNumberFormat;
+
+    if (fCurrency) {
+        freeCurrencyFormat(&fFormatInfo.currency);
+    } else {
+        freeNumberFormat(&fFormatInfo.number);
+    }
+
     delete[] fBuffer;
     delete[] fNumber;
 }
@@ -107,12 +197,7 @@ UnicodeString& Win32NumberFormat::format(int64_t number, UnicodeString& appendTo
 // TODO: cache Locale and NumberFormat? Could keep locale passed to constructor...
 void Win32NumberFormat::parse(const UnicodeString& text, Formattable& result, ParsePosition& parsePosition) const
 {
-    UErrorCode status = U_ZERO_ERROR;
-    Locale loc(uprv_convertToPosix(fLCID, &status));
-    NumberFormat *nf = fCurrency? NumberFormat::createCurrencyInstance(loc, status) : NumberFormat::createInstance(loc, status);
-
-    nf->parse(text, result, parsePosition);
-    delete nf;
+    fNumberFormat->parse(text, result, parsePosition);
 }
 
 void Win32NumberFormat::growBuffer(int newLength) const
@@ -131,12 +216,12 @@ int Win32NumberFormat::safe_swprintf(const wchar_t *format, ...) const
 
     va_start(args, format);
     result = vswprintf(fNumber, fNumLen, format, args);
+    va_end(args);
 
     if (result < 0) {
         Win32NumberFormat *realThis = (Win32NumberFormat *) this;
         int newLength;
 
-        va_end(args);
         va_start(args, format);
         newLength = _vscwprintf(format, args);
         va_end(args);
@@ -147,9 +232,8 @@ int Win32NumberFormat::safe_swprintf(const wchar_t *format, ...) const
 
         va_start(args, format);
         result = vswprintf(fNumber, fNumLen, format, args);
+        va_end(args);
     }
-
-    va_end(args);
 
     return result;
 }
@@ -160,25 +244,25 @@ UnicodeString &Win32NumberFormat::format(const UChar *number, UnicodeString &app
     int result;
 
     if (fCurrency) {
-        result = GetCurrencyFormatW(fLCID, 0, number, NULL, fBuffer, fBufLen);
+        result = GetCurrencyFormatW(fLCID, 0, number, &fFormatInfo.currency, fBuffer, fBufLen);
 
         if (result == 0) {
             if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
-                int newLength = GetCurrencyFormatW(fLCID, 0, number, NULL, NULL, 0);
+                int newLength = GetCurrencyFormatW(fLCID, 0, number, &fFormatInfo.currency, NULL, 0);
 
                 growBuffer(newLength);
-                GetCurrencyFormatW(fLCID, 0, number,  NULL, fBuffer, fBufLen);
+                GetCurrencyFormatW(fLCID, 0, number,  &fFormatInfo.currency, fBuffer, fBufLen);
             }
         }
     } else {
-         result = GetNumberFormatW(fLCID, 0, number, NULL, fBuffer, fBufLen);
+        result = GetNumberFormatW(fLCID, 0, number, &fFormatInfo.number, fBuffer, fBufLen);
 
         if (result == 0) {
             if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
-                int newLength = GetNumberFormatW(fLCID, 0, number, NULL, NULL, 0);
+                int newLength = GetNumberFormatW(fLCID, 0, number, &fFormatInfo.number, NULL, 0);
 
                 growBuffer(newLength);
-                GetNumberFormatW(fLCID, 0, number, NULL, fBuffer, fBufLen);
+                GetNumberFormatW(fLCID, 0, number, &fFormatInfo.number, fBuffer, fBufLen);
             }
         }
     }

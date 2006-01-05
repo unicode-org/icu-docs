@@ -99,6 +99,30 @@ public:
     virtual void parse(const UnicodeString& text, Formattable& result, ParsePosition& parsePosition) const;
 
     /**
+     * Sets the maximum number of digits allowed in the fraction portion of a
+     * number. maximumFractionDigits must be >= minimumFractionDigits.  If the
+     * new value for maximumFractionDigits is less than the current value
+     * of minimumFractionDigits, then minimumFractionDigits will also be set to
+     * the new value.
+     * @param newValue    the new value to be set.
+     * @see getMaximumFractionDigits
+     * @draft ICU 3.6
+     */
+    virtual void setMaximumFractionDigits(int32_t newValue);
+
+    /**
+     * Sets the minimum number of digits allowed in the fraction portion of a
+     * number. minimumFractionDigits must be &lt;= maximumFractionDigits.   If the
+     * new value for minimumFractionDigits exceeds the current value
+     * of maximumFractionDigits, then maximumIntegerDigits will also be set to
+     * the new value
+     * @param newValue    the new value to be set.
+     * @see getMinimumFractionDigits
+     * @draft ICU 3.6
+     */
+    virtual void setMinimumFractionDigits(int32_t newValue);
+
+    /**
      * Return the class ID for this class. This is useful only for comparing to
      * a return value from getDynamicClassID(). For example:
      * <pre>
@@ -131,19 +155,12 @@ private:
         CURRENCYFMTW currency;
     };
 
-    void growBuffer(int newLength) const;
-    int safe_swprintf(const wchar_t *format, ...) const;
+    UnicodeString &format(int32_t numDigits, UnicodeString &appendTo, wchar_t *format, ...) const;
 
-    UnicodeString &format(const UChar *number, UnicodeString &appendTo) const;
-
-    UChar *fNumber;
-    int32_t fNumLen;
-    UChar *fBuffer;
-    int32_t fBufLen;
     UBool fCurrency;
     int32_t fLCID;
     FormatInfo fFormatInfo;
-    NumberFormat *fNumberFormat;
+    UBool fFractionDigitsSet;
 
 };
 

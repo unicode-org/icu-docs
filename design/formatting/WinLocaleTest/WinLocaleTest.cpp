@@ -469,6 +469,9 @@ void showLocales()
 
         wnf->format((int64_t) number, nBuffer);
 
+        wnf->setMinimumFractionDigits(0);
+        wnf->format((int64_t) number, nBuffer);
+
         printTableRow(file, utf8LCID, lcidRecords[i].localeID, utf8CalendarType, utf8WinLongDate, utf8WinLongTime, utf8WinFormatString,
             utf8ULongDate, utf8ULongTime, utf8UFormatString, utf8WFormatString, bgcolor);
 

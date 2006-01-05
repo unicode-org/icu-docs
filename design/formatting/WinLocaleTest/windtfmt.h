@@ -1,6 +1,6 @@
 /*
 ********************************************************************************
-*   Copyright (C) 2005, International Business Machines
+*   Copyright (C) 2005-2006, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 ********************************************************************************
 *
@@ -117,16 +117,12 @@ public:
     virtual UClassID getDynamicClassID(void) const;
 
 private:
-    void growBuffer(int newLength) const;
-
     void formatDate(const SYSTEMTIME *st, UnicodeString &appendTo) const;
     void formatTime(const SYSTEMTIME *st, UnicodeString &appendTo) const;
 
     void setTimeZoneInfo(const TimeZone &zone);
 
     UnicodeString *fDateTimeMsg;
-    UChar *fBuffer;
-    int32_t fBufLen;
     DateFormat::EStyle fTimeStyle;
     DateFormat::EStyle fDateStyle;
     const Locale *fLocale;

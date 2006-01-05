@@ -33,7 +33,7 @@ U_NAMESPACE_BEGIN
 
 UOBJECT_DEFINE_RTTI_IMPLEMENTATION(Win32NumberFormat)
 
-#define INITIAL_BUFFER_SIZE 64
+#define STACK_BUFFER_SIZE 32
 
 UINT getGrouping(const char *grouping)
 {
@@ -107,27 +107,15 @@ void freeCurrencyFormat(CURRENCYFMTW *fmt)
 
 // TODO: keep locale too?
 Win32NumberFormat::Win32NumberFormat(const Locale &locale, UBool currency, UErrorCode &status)
-  : NumberFormat(), fCurrency(currency)
+  : NumberFormat(), fCurrency(currency), fFractionDigitsSet(FALSE)
 {
     if (!U_FAILURE(status)) {
         fLCID = locale.getLCID();
 
-        fNumber = new UChar[INITIAL_BUFFER_SIZE];
-        fNumLen = INITIAL_BUFFER_SIZE;
-
-        fBuffer = new UChar[INITIAL_BUFFER_SIZE];
-        fBufLen = INITIAL_BUFFER_SIZE;
-
-        // TODO: is minimum fraction digits always the right thing to use?
-        // TODO: should (re)setting NumDigits be done by getXXXFormat()?
         if (fCurrency) {
             getCurrencyFormat(&fFormatInfo.currency, fLCID);
-            fNumberFormat = NumberFormat::createCurrencyInstance(locale, status);
-            fFormatInfo.currency.NumDigits = (UINT) fNumberFormat->getMinimumFractionDigits();
         } else {
             getNumberFormat(&fFormatInfo.number, fLCID);
-            fNumberFormat = NumberFormat::createInstance(locale, status);
-            fFormatInfo.number.NumDigits = (UINT) fNumberFormat->getMinimumFractionDigits();
         }
     }
 }
@@ -140,33 +128,21 @@ Win32NumberFormat::Win32NumberFormat(const Win32NumberFormat &other)
 
 Win32NumberFormat::~Win32NumberFormat()
 {
-    delete fNumberFormat;
-
     if (fCurrency) {
         freeCurrencyFormat(&fFormatInfo.currency);
     } else {
         freeNumberFormat(&fFormatInfo.number);
     }
-
-    delete[] fBuffer;
-    delete[] fNumber;
 }
 
 Win32NumberFormat &Win32NumberFormat::operator=(const Win32NumberFormat &other)
 {
     NumberFormat::operator=(other);
 
-    delete[] fBuffer;
-    delete[] fNumber;
-
-    this->fCurrency = other.fCurrency;
-    this->fLCID      = other.fLCID;
-
-    this->fNumber = new UChar[INITIAL_BUFFER_SIZE];
-    this->fNumLen = INITIAL_BUFFER_SIZE;
-
-    this->fBuffer = new UChar[INITIAL_BUFFER_SIZE];
-    this->fBufLen = INITIAL_BUFFER_SIZE;
+    this->fCurrency          = other.fCurrency;
+    this->fLCID              = other.fLCID;
+    this->fFormatInfo        = other.fFormatInfo;
+    this->fFractionDigitsSet = other.fFractionDigitsSet;
 
     return *this;
 }
@@ -178,96 +154,114 @@ Format *Win32NumberFormat::clone(void) const
 
 UnicodeString& Win32NumberFormat::format(double number, UnicodeString& appendTo, FieldPosition& pos) const
 {
-    safe_swprintf(L"%f", number);
-    return format(fNumber, appendTo);
+    return format(getMaximumFractionDigits(), appendTo, L"%f", number);
 }
 
 UnicodeString& Win32NumberFormat::format(int32_t number, UnicodeString& appendTo, FieldPosition& pos) const
 {
-    safe_swprintf(L"%I32d", number);
-    return format(fNumber, appendTo);
+    return format(getMinimumFractionDigits(), appendTo, L"%I32d", number);
 }
 
 UnicodeString& Win32NumberFormat::format(int64_t number, UnicodeString& appendTo, FieldPosition& pos) const
 {
-    safe_swprintf(L"%I64d", number);
-    return format(fNumber, appendTo);
+    return format(getMinimumFractionDigits(), appendTo, L"%I64d", number);
 }
 
 // TODO: cache Locale and NumberFormat? Could keep locale passed to constructor...
 void Win32NumberFormat::parse(const UnicodeString& text, Formattable& result, ParsePosition& parsePosition) const
 {
-    fNumberFormat->parse(text, result, parsePosition);
+    UErrorCode status = U_ZERO_ERROR;
+    Locale loc(uprv_convertToPosix(fLCID, &status));
+    NumberFormat *nf = fCurrency? NumberFormat::createCurrencyInstance(loc, status) : NumberFormat::createInstance(loc, status);
+
+    nf->parse(text, result, parsePosition);
+    delete nf;
+}
+void Win32NumberFormat::setMaximumFractionDigits(int32_t newValue)
+{
+    fFractionDigitsSet = TRUE;
+    NumberFormat::setMaximumFractionDigits(newValue);
 }
 
-void Win32NumberFormat::growBuffer(int newLength) const
+void Win32NumberFormat::setMinimumFractionDigits(int32_t newValue)
 {
-    Win32NumberFormat *realThis = (Win32NumberFormat *) this;
-
-    delete[] realThis->fBuffer;
-    realThis->fBuffer = new UChar[newLength];
-    realThis->fBufLen = newLength;
+    fFractionDigitsSet = TRUE;
+    NumberFormat::setMinimumFractionDigits(newValue);
 }
 
-int Win32NumberFormat::safe_swprintf(const wchar_t *format, ...) const
+UnicodeString &Win32NumberFormat::format(int32_t numDigits, UnicodeString &appendTo, wchar_t *fmt, ...) const
 {
+    wchar_t nStackBuffer[STACK_BUFFER_SIZE];
+    wchar_t *nBuffer = nStackBuffer;
     va_list args;
     int result;
 
-    va_start(args, format);
-    result = vswprintf(fNumber, fNumLen, format, args);
+    va_start(args, fmt);
+    result = vswprintf(nBuffer, STACK_BUFFER_SIZE, fmt, args);
     va_end(args);
 
     if (result < 0) {
-        Win32NumberFormat *realThis = (Win32NumberFormat *) this;
         int newLength;
 
-        va_start(args, format);
-        newLength = _vscwprintf(format, args);
+        va_start(args, fmt);
+        newLength = _vscwprintf(fmt, args);
         va_end(args);
 
-        delete[] realThis->fNumber;
-        realThis->fNumber = new UChar[newLength];
-        realThis->fNumLen = newLength;
+        nBuffer = new UChar[newLength];
 
-        va_start(args, format);
-        result = vswprintf(fNumber, fNumLen, format, args);
+        va_start(args, fmt);
+        result = vswprintf(nBuffer, newLength, fmt, args);
         va_end(args);
     }
 
-    return result;
-}
+    UChar stackBuffer[STACK_BUFFER_SIZE];
+    UChar *buffer = stackBuffer;
+    FormatInfo formatInfo;
 
-// TODO: Don't need number parameter since callers use fNumber...
-UnicodeString &Win32NumberFormat::format(const UChar *number, UnicodeString &appendTo) const
-{
-    int result;
+    formatInfo = fFormatInfo;
 
     if (fCurrency) {
-        result = GetCurrencyFormatW(fLCID, 0, number, &fFormatInfo.currency, fBuffer, fBufLen);
+        if (fFractionDigitsSet) {
+            formatInfo.currency.NumDigits = (UINT) numDigits;
+        }
+
+        result = GetCurrencyFormatW(fLCID, 0, nBuffer, &formatInfo.currency, buffer, STACK_BUFFER_SIZE);
 
         if (result == 0) {
             if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
-                int newLength = GetCurrencyFormatW(fLCID, 0, number, &fFormatInfo.currency, NULL, 0);
+                int newLength = GetCurrencyFormatW(fLCID, 0, nBuffer, &formatInfo.currency, NULL, 0);
 
-                growBuffer(newLength);
-                GetCurrencyFormatW(fLCID, 0, number,  &fFormatInfo.currency, fBuffer, fBufLen);
+                buffer = new UChar[newLength];
+                GetCurrencyFormatW(fLCID, 0, nBuffer,  &formatInfo.currency, buffer, newLength);
             }
         }
     } else {
-        result = GetNumberFormatW(fLCID, 0, number, &fFormatInfo.number, fBuffer, fBufLen);
+        if (fFractionDigitsSet) {
+            formatInfo.number.NumDigits = (UINT) numDigits;
+        }
+
+        result = GetNumberFormatW(fLCID, 0, nBuffer, &formatInfo.number, buffer, STACK_BUFFER_SIZE);
 
         if (result == 0) {
             if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
-                int newLength = GetNumberFormatW(fLCID, 0, number, &fFormatInfo.number, NULL, 0);
+                int newLength = GetNumberFormatW(fLCID, 0, nBuffer, &formatInfo.number, NULL, 0);
 
-                growBuffer(newLength);
-                GetNumberFormatW(fLCID, 0, number, &fFormatInfo.number, fBuffer, fBufLen);
+                buffer = new UChar[newLength];
+                GetNumberFormatW(fLCID, 0, nBuffer, &formatInfo.number, buffer, newLength);
             }
         }
     }
 
-    appendTo.append(fBuffer, (int32_t) wcslen(fBuffer));
+    appendTo.append(buffer, (int32_t) wcslen(buffer));
+
+    if (buffer != stackBuffer) {
+        delete[] buffer;
+    }
+
+    if (nBuffer != nStackBuffer) {
+        delete[] nBuffer;
+    }
+
     return appendTo;
 }
 

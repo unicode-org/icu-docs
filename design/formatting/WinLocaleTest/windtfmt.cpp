@@ -1,6 +1,6 @@
 /*
 ********************************************************************************
-*   Copyright (C) 2005, International Business Machines
+*   Copyright (C) 2005-2006, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 ********************************************************************************
 *
@@ -43,7 +43,7 @@ UOBJECT_DEFINE_RTTI_IMPLEMENTATION(Win32DateFormat)
 
 #define ARRAY_SIZE(array) (sizeof array / sizeof array[0])
 
-#define INITIAL_BUFFER_SIZE 64
+#define STACK_BUFFER_SIZE 64
 
 UnicodeString *getTimeDateFormat(const Calendar *cal, const Locale *locale, UErrorCode &status)
 {
@@ -85,9 +85,6 @@ Win32DateFormat::Win32DateFormat(DateFormat::EStyle timeStyle, DateFormat::EStyl
 {
     if (!U_FAILURE(status)) {
         fLCID = locale.getLCID();
-        fBuffer = new UChar[INITIAL_BUFFER_SIZE];
-        fBufLen = INITIAL_BUFFER_SIZE;
-
         adoptCalendar(Calendar::createInstance(locale, status));
     }
 }
@@ -100,7 +97,6 @@ Win32DateFormat::Win32DateFormat(const Win32DateFormat &other)
 
 Win32DateFormat::~Win32DateFormat()
 {
-    delete[] fBuffer;
     delete fCalendar;
     delete fDateTimeMsg;
 }
@@ -109,18 +105,14 @@ Win32DateFormat &Win32DateFormat::operator=(const Win32DateFormat &other)
 {
     DateFormat::operator=(other);
 
-    delete[] fBuffer;
     delete fCalendar;
 
     this->fDateTimeMsg = other.fDateTimeMsg;
-    this->fTimeStyle = other.fTimeStyle;
-    this->fDateStyle = other.fDateStyle;
-    this->fLCID      = other.fLCID;
-    this->fCalendar  = other.fCalendar->clone();
-    this->fZoneID    = other.fZoneID;
-
-    this->fBuffer = new UChar[INITIAL_BUFFER_SIZE];
-    this->fBufLen = INITIAL_BUFFER_SIZE;
+    this->fTimeStyle   = other.fTimeStyle;
+    this->fDateStyle   = other.fDateStyle;
+    this->fLCID        = other.fLCID;
+    this->fCalendar    = other.fCalendar->clone();
+    this->fZoneID      = other.fZoneID;
 
     return *this;
 }
@@ -223,33 +215,30 @@ void Win32DateFormat::setTimeZone(const TimeZone& zone)
     fCalendar->setTimeZone(zone);
 }
 
-void Win32DateFormat::growBuffer(int newLength) const
-{
-    Win32DateFormat *realThis = (Win32DateFormat *) this;
-
-    delete[] realThis->fBuffer;
-    realThis->fBuffer = new UChar[newLength];
-    realThis->fBufLen = newLength;
-}
-
 static DWORD dfFlags[] = {DATE_LONGDATE, DATE_LONGDATE, DATE_SHORTDATE, DATE_SHORTDATE};
 
 void Win32DateFormat::formatDate(const SYSTEMTIME *st, UnicodeString &appendTo) const
 {
     int result;
+    UChar stackBuffer[STACK_BUFFER_SIZE];
+    UChar *buffer = stackBuffer;
 
-    result = GetDateFormatW(fLCID, dfFlags[fDateStyle], st, NULL, fBuffer, fBufLen);
+    result = GetDateFormatW(fLCID, dfFlags[fDateStyle], st, NULL, buffer, STACK_BUFFER_SIZE);
 
     if (result == 0) {
         if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
             int newLength = GetDateFormatW(fLCID, dfFlags[fDateStyle], st, NULL, NULL, 0);
 
-            growBuffer(newLength);
-            GetDateFormatW(fLCID, dfFlags[fDateStyle], st, NULL, fBuffer, fBufLen);
+            buffer = new UChar[newLength];
+            GetDateFormatW(fLCID, dfFlags[fDateStyle], st, NULL, buffer, newLength);
         }
     }
 
-    appendTo.append(fBuffer, (int32_t) wcslen(fBuffer));
+    appendTo.append(buffer, (int32_t) wcslen(buffer));
+
+    if (buffer != stackBuffer) {
+        delete[] buffer;
+    }
 }
 
 static DWORD tfFlags[] = {0, 0, 0, TIME_NOSECONDS};
@@ -257,19 +246,25 @@ static DWORD tfFlags[] = {0, 0, 0, TIME_NOSECONDS};
 void Win32DateFormat::formatTime(const SYSTEMTIME *st, UnicodeString &appendTo) const
 {
     int result;
+    UChar stackBuffer[STACK_BUFFER_SIZE];
+    UChar *buffer = stackBuffer;
 
-    result = GetTimeFormatW(fLCID, tfFlags[fTimeStyle], st, NULL, fBuffer, fBufLen);
+    result = GetTimeFormatW(fLCID, tfFlags[fTimeStyle], st, NULL, buffer, STACK_BUFFER_SIZE);
 
     if (result == 0) {
         if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
             int newLength = GetTimeFormatW(fLCID, tfFlags[fTimeStyle], st, NULL, NULL, 0);
 
-            growBuffer(newLength);
-            GetDateFormatW(fLCID, tfFlags[fTimeStyle], st, NULL, fBuffer, fBufLen);
+            buffer = new UChar[newLength];
+            GetDateFormatW(fLCID, tfFlags[fTimeStyle], st, NULL, buffer, newLength);
         }
     }
 
-    appendTo.append(fBuffer, (int32_t) wcslen(fBuffer));
+    appendTo.append(buffer, (int32_t) wcslen(buffer));
+
+    if (buffer != stackBuffer) {
+        delete[] buffer;
+    }
 }
 
 void Win32DateFormat::setTimeZoneInfo(const TimeZone &zone)

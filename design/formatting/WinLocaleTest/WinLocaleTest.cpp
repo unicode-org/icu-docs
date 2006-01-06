@@ -514,6 +514,11 @@ int _tmain(int argc, _TCHAR* argv[])
     lcidMax = 64;
     lcidCount = 0;
     lcidRecords = new LCIDRecord[lcidMax];
+    UErrorCode status = U_ZERO_ERROR;
+    Locale locale("en_US@calendar=gregorian;compat=host;collation=phonebook");
+    char buffer[8];
+
+    int32_t count = locale.getKeywordValue("compat", buffer, 8, status);
 
     EnumSystemLocalesW(EnumLocalesProc, LCID_INSTALLED);
 

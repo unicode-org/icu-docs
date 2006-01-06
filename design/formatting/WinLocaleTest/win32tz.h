@@ -18,14 +18,14 @@
 
 #include <windows.h>
 
-#include "unicode/timezone.h"
-
 /**
  * \file 
  * \brief C++ API: Utilities for dealing w/ Windows time zones.
  */
 
 U_NAMESPACE_BEGIN
+
+class TimeZone;
 
 class Win32TimeZone
 {

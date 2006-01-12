@@ -459,18 +459,35 @@ void showLocales()
             }
         }
 
-        Win32DateFormat *wdf = new Win32DateFormat(DateFormat::kFull, DateFormat::kFull, ulocale, status);
+        const char *fullName = ulocale.getName();
+        char wname[128];
+
+        strcpy(wname, fullName);
+
+        if (strchr(fullName, '@') > 0) {
+            strcat(wname, ";");
+        } else {
+            strcat(wname, "@");
+        }
+
+        strcat(wname, "compat=host");
+
+        Locale wlocale(wname);
+        DateFormat *wdf = DateFormat::createDateTimeInstance(DateFormat::kFull, DateFormat::kFull, wlocale);
 
         wdf->format(icuNow, wBuffer);
         toUTF8Chars(wBuffer.getBuffer(), wBuffer.length(), utf8WFormatString, 256, &status);
 
         double number = 123456789.12;
-        Win32NumberFormat *wnf = new Win32NumberFormat(ulocale, FALSE, status);
+        NumberFormat *wnf = NumberFormat::createInstance(wlocale, status);
 
         wnf->format((int64_t) number, nBuffer);
 
         wnf->setMinimumFractionDigits(0);
         wnf->format((int64_t) number, nBuffer);
+
+        SimpleDateFormat sdf(uLongDateFormat + " " + uLongTimeFormat, wlocale, status);
+        sdf.format(icuNow, nBuffer);
 
         printTableRow(file, utf8LCID, lcidRecords[i].localeID, utf8CalendarType, utf8WinLongDate, utf8WinLongTime, utf8WinFormatString,
             utf8ULongDate, utf8ULongTime, utf8UFormatString, utf8WFormatString, bgcolor);
@@ -519,6 +536,11 @@ int _tmain(int argc, _TCHAR* argv[])
     char buffer[8];
 
     int32_t count = locale.getKeywordValue("compat", buffer, 8, status);
+
+    Locale dlocale("i-default@calendar=gregorian;compat=host;collation=phonebook");
+    
+    count = dlocale.getKeywordValue("compat", buffer, 8, status);
+    printf("%s\n", dlocale.getName());
 
     EnumSystemLocalesW(EnumLocalesProc, LCID_INSTALLED);
 

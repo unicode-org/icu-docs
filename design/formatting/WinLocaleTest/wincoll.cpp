@@ -1,6 +1,6 @@
 /*
 ********************************************************************************
-*   Copyright (C) 2005, International Business Machines
+*   Copyright (C) 2005-2006, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 ********************************************************************************
 *
@@ -15,9 +15,6 @@
 
 #if !UCONFIG_NO_COLLATION
 
-#include <tchar.h>
-#include <windows.h>
-
 #include "wincoll.h"
 
 #include "unicode/coll.h"
@@ -26,6 +23,14 @@
 
 // NOTE: a PRIVATE interface!
 #include "locmap.h"
+
+#   define WIN32_LEAN_AND_MEAN
+#   define VC_EXTRALEAN
+#   define NOUSER
+#   define NOSERVICE
+#   define NOIME
+#   define NOMCX
+#include <windows.h>
 
 U_NAMESPACE_BEGIN
 

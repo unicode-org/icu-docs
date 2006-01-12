@@ -225,6 +225,10 @@ UnicodeString &Win32NumberFormat::format(int32_t numDigits, UnicodeString &appen
             formatInfo.currency.NumDigits = (UINT) numDigits;
         }
 
+        if (!isGroupingUsed()) {
+            formatInfo.currency.Grouping = 0;
+        }
+
         result = GetCurrencyFormatW(fLCID, 0, nBuffer, &formatInfo.currency, buffer, STACK_BUFFER_SIZE);
 
         if (result == 0) {
@@ -238,6 +242,10 @@ UnicodeString &Win32NumberFormat::format(int32_t numDigits, UnicodeString &appen
     } else {
         if (fFractionDigitsSet) {
             formatInfo.number.NumDigits = (UINT) numDigits;
+        }
+
+        if (!isGroupingUsed()) {
+            formatInfo.number.Grouping = 0;
         }
 
         result = GetNumberFormatW(fLCID, 0, nBuffer, &formatInfo.number, buffer, STACK_BUFFER_SIZE);

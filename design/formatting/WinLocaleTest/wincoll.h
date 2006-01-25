@@ -1,6 +1,6 @@
 /*
 ********************************************************************************
-*   Copyright (C) 2005, International Business Machines
+*   Copyright (C) 2005-2006, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 ********************************************************************************
 *
@@ -17,8 +17,6 @@
 #ifdef U_WINDOWS
 
 #if !UCONFIG_NO_COLLATION
-
-#include <windows.h>
 
 #include "unicode/coll.h"
 #include "unicode/ustring.h"

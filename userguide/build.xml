@@ -1,0 +1,32 @@
+<!-- Copyright (c) 2006 IBM and others, all rights reserved -->
+<project name="userguide" default="all-to-html" basedir=".">
+	<target name="init">
+		<!-- nothing, yet -->
+	</target>
+
+	<target name="UGtoHtml" description="Build UGtoHtml tool">
+		<javac sourcepath="UGtoHtml/src"
+			srcdir="UGtoHtml/src"
+			destdir="UGtoHtml/src"
+			debug="on" deprecation="off" 
+			encoding="ascii">
+			<exclude name="**/CVS/**/*"/>
+			<include name="*.java"/>
+		</javac>
+	</target>
+
+	<target name="all-to-html" description="build all" depends="UGtoHtml">
+	        <java classname="UGtoHtml" fork="yes" failonerror="true">
+			<classpath>
+				<pathelement path="UGtoHtml/src"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="clean" depends="init" description="remove all build targets">
+        	<delete>
+			<fileset dir="UGtoHtml/src" includes="**/*.class" />
+		</delete>
+		<delete dir="html/" />
+	</target>
+</project>

@@ -7,7 +7,7 @@
  */
  
  /*
-  *   Copyright (C) 2004-2005, International Business Machines
+  *   Copyright (C) 2004-2006, International Business Machines
   *   Corporation and others.  All Rights Reserved.
   *
   */
@@ -64,7 +64,7 @@ public class UGtoHtml {
             // Parse the xml content from the OO file.
             //  Need to tell the parser where the Open Office DTD is located - 
             //  The doc will reference it with a relative path in the document.
-            String entityBaseURL = "file:///" + new File("OODTD").getAbsolutePath() + "/";
+            String entityBaseURL = pathToURL(new File("OODTD").getAbsolutePath() + "/");
             Document doc = builder.parse(is, entityBaseURL);
             Element root = doc.getDocumentElement();
             
@@ -689,7 +689,7 @@ public class UGtoHtml {
                 // Parse the xml content from the OO file.
                 //  Need to tell the parser where the Open Office DTD is located - 
                 //  The doc will reference it with a relative path in the document.
-                String entityBaseURL = "file:///" + new File("OODTD").getAbsolutePath() + "/";
+                String entityBaseURL = pathToURL(new File("OODTD").getAbsolutePath() + "/");
                 Document doc = builder.parse(is, entityBaseURL);
                 
                 // Get the ICU version number from the userguide master document.
@@ -722,7 +722,16 @@ public class UGtoHtml {
             }
             catch (Exception e) {
                 System.out.println("Exception: " + e);
+		e.printStackTrace();
             }
         }
+    }
+
+    // convert an absolute path to a file URL.
+    static final String pathToURL(String path) {
+        if (path.startsWith("/"))
+            return "file://" + path;
+        else
+            return "file:///" + path;
     }
 }

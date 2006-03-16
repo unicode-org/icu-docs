@@ -1,5 +1,5 @@
 <!-- Copyright (c) 2006 IBM and others, all rights reserved -->
-<project name="userguide" default="all-to-html" basedir=".">
+<project name="userguide" default="all" basedir=".">
 	<target name="init">
 		<!-- nothing, yet -->
 	</target>
@@ -15,7 +15,7 @@
 		</javac>
 	</target>
 
-	<target name="all-to-html" description="build all" depends="UGtoHtml">
+	<target name="all" description="build all" depends="UGtoHtml">
 	        <java classname="UGtoHtml" fork="yes" failonerror="true">
 			<classpath>
 				<pathelement path="UGtoHtml/src"/>
@@ -23,10 +23,16 @@
 		</java>
 	</target>
 
+	<target name="zip" description="build zipfile" depends="all">
+		<zip destfile="userguide.zip" basedir="."
+			includes="html/**/*" />
+	</target>
+
 	<target name="clean" depends="init" description="remove all build targets">
         	<delete>
 			<fileset dir="UGtoHtml/src" includes="**/*.class" />
 		</delete>
 		<delete dir="html/" />
+		<delete file="userguide.zip" />
 	</target>
 </project>

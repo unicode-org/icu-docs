@@ -1,0 +1,132 @@
+<html>
+<!-- Copyright (C) 2005-2006, International Business Machines Corporation and others. All Rights Reserved. -->
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>ICU Build Recommendations</title>
+</head>
+
+<body>
+
+<h1>ICU Build Recommendations</h1>
+<p align="right">Markus Scherer, 2005jul22</p>
+<p>To go into the ICU4C readme or into the User Guide.</p>
+<h2>Recommended Build Configuration</h2>
+<p>Most users of ICU should share a common, upgradable set of libraries, which
+is possible, and recommended if all of the following apply:</p>
+<ul>
+  <li>You are using only ICU C APIs, not C++ APIs.</li>
+  <li>You are using only APIs that are marked with @stable or @deprecated.</li>
+  <li>You want the latest versions of locale data, Unicode versions, etc.</li>
+  <li>You are shipping the complete, unmodified set of ICU binaries.</li>
+</ul>
+<p>Build ICU with the following command:</p>
+<blockquote>
+  <p><code>CFLAGS='-DICU_DATA_DIR=\&quot;/usr/share/icu/\&quot; -DICU_NO_USER_DATA_OVERRIDE=1'
+  CXXFLAGS='-DICU_DATA_DIR=\&quot;/usr/share/icu/\&quot; -DICU_NO_USER_DATA_OVERRIDE=1'
+  ./runConfigureICU Your_OS_Configuration --disable-renaming --disable-draft
+  --with-data-packaging=archive --prefix=/usr</code></p>
+</blockquote>
+<p>Comments:</p>
+<ul>
+  <li>The ICU_DATA_DIR hardcodes a u_getDataDirectory() path so that the .dat
+    package can be used without the caller having to know where ICU's data
+    lives.</li>
+  <li>The ICU_NO_USER_DATA_OVERRIDE switch turns off getenv(&quot;ICU_DATA&quot;)
+    so that a system-wide environment variable can't screw things up. (Maybe we
+    should get rid of the environment variable at this point...)</li>
+  <li>--disable-renaming removes the ICU version numbers from the library entry
+    points, so that an application can link against ICU and run with later
+    versions without relinking, as long as they use stable (or deprecated) APIs.
+    Automatic updates.</li>
+  <li>--disable-draft hides draft (unstable) APIs from applications so that the
+    previous point can be enforced.</li>
+  <li>--with-data-packaging=archive builds the ICU data into a .dat package,
+    which is much more flexible than building it into a DLL/shared library.</li>
+</ul>
+<h3>Additional Recommendations</h3>
+<ul>
+  <li>If your platform supports multiple configurations (e.g., both 32-bit and
+    64-bit code) in a single set of libraries, you should build such a single
+    set.</li>
+</ul>
+<h3>Platform-Specific Considerations</h3>
+<ul>
+  <li>MacOS X (Darwin): Build &quot;fat binaries&quot; with x86 and PowerPC
+    code. Instructions TBD. Are both code versions 32-bit, or do fat binaries
+    contain 3 or 4 code versions to include 64-bit code?</li>
+  <li>AIX PowerPC: Build &quot;dual object&quot; libraries with both 32-bit and
+    64-bit code. Instructions TBD. Is a dual object build possible only for
+    libraries, or also for executables like the ICU tools and test suites?</li>
+  <li>Windows: Instructions TBD. Support the recommended build configuration
+    only for cygwin builds?</li>
+  <li>Solaris Sparc: Set the compile flag for use of CPU registers (more
+    extensive save&amp;restore) as required for system-level libraries.
+    Instructions TBD. See support mailing list archive.</li>
+</ul>
+<p>TODO: Change defaults to build the recommended configuration? Provide
+binaries for more platforms, built with the recommended configuration?</p>
+<h3>Recommended Install Location</h3>
+<p>ICU libraries, built with the recommended configuration, should be installed
+into a shared location.</p>
+<table border="1" cellpadding="4" cellspacing="4">
+  <caption>ICU Shared Install Locations</caption>
+  <tr>
+    <th>Platform</th>
+    <th>Location</th>
+  </tr>
+  <tr>
+    <th>Unix-like</th>
+    <td>/usr/share/icu/</td>
+  </tr>
+  <tr>
+    <th>Windows</th>
+    <td>%ProgramFiles%\IBM\ICU\</td>
+  </tr>
+  <tr>
+    <th>i5/OS</th>
+    <td>TBD</td>
+  </tr>
+  <tr>
+    <th>z/OS</th>
+    <td>TBD</td>
+  </tr>
+  <tr>
+    <th>&nbsp;</th>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p>TODO: We may need to recommend two locations per platform, for example using
+subfolders. A platform may require that its own set of ICU libraries not be
+updated, while sharing them and also providing a second location for the latest
+shared ICU version. For example: /usr/share/icu/system/ vs. /usr/share/icu/latest/
+Additional version-specific locations (/usr/share/icu/3.2/) may or may not also
+make sense; version-specific installations may be best in an applications' own
+location.</p>
+<h3>Installation Binaries</h3>
+<p>The following binaries should be part of a complete installation:</p>
+<p>Libraries: icuuc, icuin, icuio, iculx, icule</p>
+<p>Tools executables: genrb, makeconv, genbrk, gencmn, genccode, pkgdata,
+icuswap</p>
+<p>TODO: What about Java tools like the XLIFF2ICUConverter?!</p>
+<h2>Application-Specific Build Configuration</h2>
+<p>You cannot use the recommended build configuration if any of the following
+applies:</p>
+<ul>
+  <li>You are using ICU C++ APIs. (C++ does not support binary compatibility.)</li>
+  <li>You are using APIs that are marked with @draft.</li>
+  <li>You require particular data versions and functional results, for example
+    from collation.</li>
+  <li>You are building partial ICU libraries, for example using the
+    configuration switches in uconfig.h, or modifying the library code in any
+    other way.</li>
+</ul>
+<p>In this case, you should build ICU with renaming enabled and install it into
+your application install location. You can add a library prefix or suffix for
+further distinction.</p>
+
+</body>
+
+</html>

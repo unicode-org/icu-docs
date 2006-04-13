@@ -1,0 +1,48 @@
+// Copyright (c) 2006 IBM
+ICU Tech Mtg 05 April 2006
+(no attendee list)
+
+ x utext
+todo: andy to look at documentation of provider responsibilities
+   issue with snapping indices to start of character
+   utf8 split across chunk boundaries.
+   two halves of surrogate pair have to be independently addressable
+todo: andy to formulate consistent set of rules, surrogates split across 1K chunks
+   mark suggests naming the two kinds of buffer differently
+   andy: is there an immediate need to support discontiguous utf8 strings?
+   andy: ported breakiterator to utext underneath, debugging
+     might like to provide 'hasPrev' and 'hasNext' to api.  ok?
+     todo for supplementary character support
+x supplementary chars in dictionary break code
+   andy: do current dictionaries not have supplementaries?
+   deb: explicitly a utf16 dictionary.  can support supplementaries, but represents as surrogate pairs
+     some places expect 1 codepoint == 1 code unit.
+   andy: since utext returns codepoints not code units, need some cruft at the moment for those
+     assumptions.  can we leave this as a todo?
+   deb: aren't and won't be dictionaries for 'SA' languages.
+   andy: will probably sit there as a todo, then
+   deb: make sure there's a jitterbug.  yes, we can defer.  
+todo: andy to file separate jitterbug on this
+todo: deb to think of a simple way to fix it
+ x time zone issues
+todo: steven to contact vladimir and synch up
+ x vladimir looking at porting time zone changes (for new tz database 2006c) and getting them integrated
+   mark suggests we divorce ourselves from the tz patch.  take current version plus the patch.  then
+   put tests into place to verify that we get the same results as any future version of the binary.
+   vladimir is looking at that.
+todo: mark to request vladimir look at yoshito's proposal
+x tex: working with php group on unicode support
+   every programming language looks like it should use icu, but at the same time they also have to
+   do the same kinds of things to adapt to icu.  we should write a set of api or wrappers or come up
+   with an approach for programming languages to adapt to icu.  help the outlying languages to pick it up.
+   george: d, parrot, perl, php, all have their own separate requirements (code page support, c/c++)
+     doesn't see commonality
+   mark: perhaps we should query the people involved and get their feedback?  might have suggestions for us.
+   tex: different levels here, not worrying about c/c++.  not saying icu is hard for them.  thinks there's
+     a commonality.
+   andy: if it was harder than it needed to be to use icu in php we'd like to know
+todo: tex to bring it up as a discussion topic at conference
+todo: andy to look through resumes and get back to george, he will 'checkbox' the cal poly site and see
+   who is still interested.  we should all scan the resumes and filter out folks who we really don't want
+   to contact.  then we find out who is interested in us, and phone screen them.  select best two/three to
+   interview.

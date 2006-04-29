@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ICU 2006 Summer of Code</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="robots" content="index,follow">
+        <link rel="stylesheet" href="/icu.css" type="text/css">
+    </head>
+    <body>
+        <!-- Copyright (c) 2006 IBM Corp. All Rights Reserved -->
+        <!--#include virtual="/ssi/header.html" -->
+        <h2>Summer of Code 2006</h2>
+        <hr>
+        <p>The ICU Project is pleased to be 
+            participating in <a href="http://code.google.com/summerofcode.html">Google's Summer 
+                of Code</a> for 2006. We've come up with some exciting project ideas, and 
+            we're looking forward to working with you on them.</p>
+        <h3>Projects</h3>
+        <p><STRONG>Create installable ICU4C packages:</STRONG> Currently, ICU4C is packaged 
+            for all Unix-style platforms in a .tgz file. This project is to create native 
+            installation packages for each platform. For example, rpm files for Linux, debs 
+            files for Debian, etc. You will create scripts that run on each platform to 
+            create these packages, and integrate these scripts into the ICU4C release 
+            process. For mor details, see Jitterbugs <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4968">
+                4968</a> &amp; <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4870">
+                4870</a>
+        for more information.
+        <p><STRONG>Port calendars from ICU4J to ICU4C:</STRONG> ICU4J has support for 
+            Chinese, Coptic and Ethiopic calendars. These calendars are not supported in 
+            ICU4C. This project is to port the code and tests for these calendars to ICU4C. 
+            You will also fix some known bugs in the ICU4C and ICU4J calendars. See 
+            Jitterbugs <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4081">4081</a>,
+            <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4571">4571</a> and <i>others</i>
+        for more information.
+        <p><STRONG>Korean calendar:</STRONG> This project is to implement and test the 
+            Korean calendar in both ICU4C and ICU4J. See Jitterbug <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=3268">
+                3268</a>
+        for more information.
+        <p><STRONG>Hindu calendar:</STRONG> This project is to implement and test the Hindu 
+            calendar in ICU4C and ICU4J. see Jitterbug <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4082">
+                4082</a>
+        for more information.
+        <p><STRONG>ICU4J data pruning tool:</STRONG> ICU4J provides a way to modularize by 
+            service, but not by locale. This project is to implement a tool that lets ICU4J 
+            clients remove unwanted locale data such as collation tables or 
+            locale-elemements data files. See Jitterbug <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=3992">
+                3992</a>
+        for more information.
+        <p><STRONG>Visual order code pages:</STRONG> Some codepages, such as ISO-8859-6 and 
+            ISO-8859-8, specify text in visual order rather than logical order. This 
+            project is to add support for these codepages to the uconv tool. This can be 
+            done using ICU's BiDi support. See Jitterbugs <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=5031">
+                5031</a> &amp; <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=2621">
+                2621</a>
+        for more information.
+        <p><STRONG>ICU Transliterators:</STRONG> Both ICU4C and ICU4J provide a 
+            tranliteration service that can be used to transform streams of text. This 
+            service is used, for example, to convert from Cyrillic text to Latin text, and 
+            to convert between Kana and romaji text. This project is to&nbsp;create an HTML 
+            entity transliterator for ICU4J and ICU4C, and to port the existing Thai 
+            transliterator and tests from ICU4J to ICU4C. See Jitterbugs <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=3670">
+                3670</a> &amp; <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4009">
+                4009</a>
+        for more information.
+        <p><STRONG>OpenType support:</STRONG> The ICU LayoutEngine provides support for 
+            processing complex scripts using OpenType. Currently there is support for 
+            Arabic, Hebrew, Khmer, Tibetan and Indic scripts. This project is to add 
+            OpenType support to the LayoutEngine for the Thai, Lao, Syriac and Thaana 
+            scripts. See Jitterbugs <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=2382">
+                2382</a>, <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=2386">2386</a>,
+            <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=2387">2387</a> and <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=2388">
+                2388</a>
+        for details.
+        <p><STRONG>Character encoding detection:</STRONG> Both ICU4C and ICU4J provide character encoding detection. This uses 
+        statistical data to examine an arbitrary stream of bytes and guess the 
+        encoding. Right now the statistical data is built into the code. This project 
+        to to change the code to read the data from an ICU resource bundle. This will 
+        include both changes to the encoding detection code, and to the tools that 
+        generate the statistical data.&nbsp;You will also add data&nbsp;for more more 
+        character encodings.&nbsp;You will work with both ICU4C and ICU4J.
+        <p><STRONG>LayoutEngine sample on MacOS X:</STRONG> There is a LayoutEngine sample application that runs on Windows and Linux. 
+        This project is to port this&nbsp;application&nbsp;to&nbsp;MacOS X.
+        <p><STRONG>LayoutEngine sample on Linux:</STRONG> The LayoutEngine sample application on Linux uses FreeType 1 and Gnome 1. 
+        This project is to convert this application to use FreeType 2 and Gnome 2.
+        <p><STRONG>Lenient date/time and number parsing:</STRONG> ICU's current 
+            implementation of date and number parsing can only correctly parse date/time or 
+            number strings that match the strings produced by ICU's date/time and number 
+            formatting code. This project is to enhance this parsing so that it can 
+            reconnize a wider variation of input. For example, in the US, the date parser 
+            will reject an input like "9 June" because the day and the months are not in 
+            the correct order. See Jitterbug <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=3579">
+                3579</a> (date/time) &amp; <a href="http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4942">
+                4942</a>
+        (number) for more information.
+        <p><STRONG> ICU4J resource bundle generation:</STRONG> Currently ICU4J resource bundles are generated&nbsp; by generating an ICU4C 
+        resource bundle and then converting it to ICU4J format. This project is to 
+        modify the resource bundle tool to generate ICU4J resource bundles directly.
+        <p><STRONG>ICU4J Demos:</STRONG> Currently all of the ICU4J demos are applications. 
+            This project is to develop JSP, servlet or other web based Java demo to show 
+            off ICU4J's capabilities. You will convert some of the existing demo 
+            applications and design and develop new ones.
+        </p>
+        <!--#include virtual="/ssi/footer.html" -->
+    </body>
+</html>

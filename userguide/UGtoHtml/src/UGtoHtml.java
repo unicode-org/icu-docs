@@ -405,7 +405,7 @@ public class UGtoHtml {
     int getIntAttribute(Element e, String attrName) {
         String att    = e.getAttribute(attrName);
         int    retVal = 0;
-        if (att != null) {
+        if (att != null && att.length() != 0) {
             retVal = Integer.parseInt(att);
         }
         return retVal;

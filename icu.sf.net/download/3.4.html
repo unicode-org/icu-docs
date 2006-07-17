@@ -1,0 +1,512 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>ICU 3.4 release</title>
+    <meta name="COPYRIGHT" content=
+    "Copyright (c) 2006 IBM Corporation and others. All Rights Reserved." />
+    <link rel="stylesheet" href="../icu.css" type="text/css" />
+  </head>
+
+  <body>
+    <!--#include virtual="../ssi/header.html" -->
+
+    <h2>Download ICU 3.4 release</h2>
+    <hr />
+
+    <h3>Description</h3>
+
+    <p>ICU 3.4 is a major ("reference") release with new features, new and
+    modified APIs.</p>
+
+    <p>Major changes in ICU 3.4 include the following:</p>
+
+    <ul>
+      <li>Updates to conform to <a href=
+      "http://www.unicode.org/versions/Unicode4.1.0/">Unicode 4.1</a>,
+      including new characters properties and values, text segmentation, plus
+      collation updated for <a href=
+      "http://www.unicode.org/reports/tr10/tr10-14.html">Unicode Technical
+      Standard #10 (UCA)</a> and regex updated for <a href=
+      "http://www.unicode.org/reports/tr18/tr18-11.html">Unicode Technical
+      Standard #18</a>.</li>
+
+      <li>
+        Updates to conform to the <a href=
+        "http://www.unicode.org/cldr/version/1.3.html">Common Locale Data
+        Repository (CLDR), Version 1.3</a> for the latest locale data. This
+        includes: 
+
+        <ul>
+          <li>New data to support localization of timezones, <a href=
+          "http://unstats.un.org/unsd/methods/m49/m49regin.htm">United Nations
+          M.49</a> regions (including continents and regions), mappings from
+          language to script and territory.</li>
+
+          <li>Consolidation of inherited data and improved resource aliasing
+          for smaller data footprint</li>
+
+          <li>Additional locales, and many other fixes and additions of locale
+          data.</li>
+        </ul>
+      </li>
+
+      <li>Charset detection (ICU4J only), with heuristics for detecting the
+      charset for unlabeled sequences of bytes.</li>
+
+      <li>High-performance text access (ICU4C only), permitting implementations
+      to more efficiently use ICU services with non-UTF-16 encodings and
+      discontiguous text sources (such as HTML). (Technology preview: services
+      limited to segmentation in 3.4.)</li>
+
+      <li>POSIX migration support: direct API support for all POSIX character
+      classes, implemented according to Unicode recommendations</li>
+
+      <li>
+        Componentization: 
+
+        <ul>
+          <li>Eliminated requirement for explicit library initialization</li>
+
+          <li>Reduced footprint for collation, for embedded platforms</li>
+
+          <li>Support for multi-process memory handling</li>
+
+          <li>Simplified build process for product teams</li>
+
+          <li>Better modularization</li>
+
+          <li>Easier incorporation as system-level APIs</li>
+
+          <li>More efficient data loading</li>
+
+          <li>Improved support for building ICU4C for Palm OS and other
+          embedded platforms.</li>
+        </ul>
+      </li>
+
+      <li>
+        Functionality and Usability: 
+
+        <ul>
+          <li>Accept-Language support (for web sites)</li>
+
+          <li>Improved date formatting (including timezones)</li>
+
+          <li>Improved apostrophe handling in MessageFormats</li>
+
+          <li>New APIs for listing available currencies, accessing CLDR
+          data</li>
+
+          <li>Conformance to Unicode <a href=
+          "http://www.unicode.org/reports/tr31/">Pattern_Whitespace</a> in
+          rules</li>
+
+          <li>Multi-pass transliteration rules in single source</li>
+
+          <li>In Layout, added kerning; Oriya, Khmer support; reordering of
+          Arabic and Hebrew marks</li>
+
+          <li>Alternate calendars supported in formatting</li>
+
+          <li>UTF-8 string toLower() and toUpper() functions</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3><a name="ICU4C">ICU4C Download</a></h3>
+
+    <h4>Release Date</h4>
+
+    <p>2006-Feb-28</p>
+
+    <h4>Source Code Download</h4>
+
+    <p>Other than via these .tar and .zip files, the code is also tagged in <a
+    href="http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a>
+    with release-3-4-1.</p>
+
+    <p>The ICU4C 3.4.1 source downloads contain a pre-built .dat package with
+    ICU's data rather than the data source files. This is to simplify the build
+    process for the majority of users and to reduce platform porting issues. If
+    you need the data source files for customization, then please download the
+    ICU source code from <a href=
+    "http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a>.</p>
+
+    <p><i><b>Note</b>: Due to a packaging error, these files were updated on
+    March 10, 2006. The original packages contained version information to show
+    up as 3.4.0 instead of 3.4.1. These packages correctly contain the version
+    as 3.4.1.</i></p>
+
+    <table summary="Available ICU4C source code packages to download" id=
+    "Table2">
+      <tr>
+        <th class="release-line">File</th>
+
+        <th class="release-line">Size</th>
+
+        <th class="release-line">Description</th>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.4.1/icu-3.4.1.zip">
+        icu-3.4.1.zip</a></td>
+
+        <td class="release-line">9.8MB</td>
+
+        <td class="release-line">ZIP file for Windows platforms</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.4.1/icu-3.4.1.tgz">
+        icu-3.4.1.tgz</a></td>
+
+        <td class="release-line">9.1MB</td>
+
+        <td class="release-line">gzipped tar archive for Unix and other
+        platforms</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.4/icu-3.4-docs.zip">
+        icu-3.4-docs.zip</a></td>
+
+        <td class="release-line">2.4MB</td>
+
+        <td class="release-line">ZIP file with the API documentation</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.4/icu-3.4-userguide.zip">
+        icu-3.4-userguide.zip</a></td>
+
+        <td class="release-line">507KB</td>
+
+        <td class="release-line">ZIP file with the User Guide
+        documentation</td>
+      </tr>
+    </table>
+
+    <h4>Binary Distribution Download</h4>
+
+    <p>Here are the binary distributions of the ICU libraries on our reference
+    platforms.</p>
+
+    <table summary="Available ICU4C binary executable packages to download" id=
+    "Table3">
+      <tr>
+        <th>File</th>
+
+        <th>Size</th>
+
+        <th>Platform</th>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.4.1/icu-3.4.1-AIX5.2-VA.tgz">
+        icu-3.4.1-AIX5.2-VA.tgz</a></td>
+
+        <td class="release-line">6.2MB</td>
+
+        <td class="release-line">AIX 5.2 (PowerPC 64-bit) VisualAge 6</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.4.1/icu-3.4.1-HPUX11i-aCC.tgz">
+        icu-3.4.1-HPUX11i-aCC.tgz</a></td>
+
+        <td class="release-line">6.0MB</td>
+
+        <td class="release-line">HP-UX 11i (B.11.11) (PA-RISC 64-bit) aCC
+        A.03.50</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.4.1/icu-3.4.1-RHEL3-gcc3.2.3.tgz">
+        icu-3.4.1-RHEL3-gcc3.2.3.tgz</a></td>
+
+        <td class="release-line">5.3MB</td>
+
+        <td class="release-line">Red Hat Enterprise Linux 3.0 (x86 32-bit) gcc
+        3.2.3</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.4.1/icu-3.4.1-Solaris-CC6.tgz">
+        icu-3.4.1-Solaris-CC6.tgz</a></td>
+
+        <td class="release-line">5.9MB</td>
+
+        <td class="release-line">Solaris 9 (Sparc 64-bit) Workshop 6.0</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.4.1/icu-3.4.1-Win32-msvc7.1.zip">
+        icu-3.4.1-Win32-msvc7.1.zip</a></td>
+
+        <td class="release-line">5.5MB</td>
+
+        <td class="release-line">Windows (win32 x86 32-bit) Visual Studio.Net
+        2003 (MSVC 7.1)</td>
+      </tr>
+    </table>
+
+    <h4>Maintenance Release Notes</h4>
+
+    <p>ICU4C 3.4.1 is a maintenance release of ICU4C 3.4. The primary features
+    of this release are:</p>
+
+    <ul>
+      <li>
+        Updated timezone data based on Olson 2006a. 
+
+        <ul>
+          <li>incorrect historical DST calculation (Jitterbug <a href=
+          "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=5015">5015</a>)</li>
+        </ul>
+      </li>
+
+      <li>Improved portability to Microsoft Visual Studio .NET 2005, z/OS,
+      Solaris 10 and several other platforms.</li>
+
+      <li>Improved default codepage and default locale detection.</li>
+
+      <li>A number of collation bug fixes.</li>
+    </ul>
+
+    <h4>Platform Installation Notes</h4>
+
+    <p>Please be sure to view the <a href=
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icu/readme.html?rev=release-3-4-1">
+    readme.html</a> that is included in ICU. Most installation questions can be
+    answered there. The z/OS (OS/390) <a href=
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/as_is/os390/unpax-icu.sh?rev=release-3-4-1">
+    unpax-icu.sh</a> script is required to unpackage the compressed tar file on
+    z/OS, and the i5/OS (OS/400) <a href=
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/as_is/os400/unpax-icu.sh?rev=release-3-4-1">
+    unpax-icu.sh</a> script is required to unpackage the compressed file on
+    i5/OS.</p>
+
+    <h4>Known Issues, Bugs and Patches</h4>
+
+    <p>For the list of known issues with ICU4C 3.4.1 please see the <a href=
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icu/readme.html?rev=release-3-4-1">
+    readme file</a></p>
+
+    <h4>Older 3.4 Releases</h4>
+
+    <p>Here are links to the older 3.4.<i>x</i>.</p>
+
+    <table summary="Summary of releases">
+      <tr>
+        <th class="release-line">Version</th>
+
+        <th class="release-line">Description</th>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.4/">3.4.0</a></td>
+
+        <td class="release-line">First release</td>
+      </tr>
+    </table>
+
+    <h3><a name="ICU4J">ICU4J Download</a></h3>
+
+    <h4>Downloads</h4>
+
+    <p>Other than via the jar files, the code is also tagged in <a href=
+    "http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a> with
+    release-3-4-4.</p>
+
+    <table summary="Available ICU4J packages to download">
+      <tr>
+        <th>File</th>
+
+        <th>Size</th>
+
+        <th>Description</th>
+      </tr>
+
+      <tr valign="top">
+        <td><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/3.4.4/icu4j_3_4_4.jar">
+        icu4j_3_4_4.jar</a></td>
+
+        <td>3.08M</td>
+
+        <td>Jar file containing the class files.</td>
+      </tr>
+
+      <tr valign="top">
+        <td><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/3.4.4/icu4jsrc_3_4_4.jar">
+        icu4jsrc_3_4_4.jar</a></td>
+
+        <td>9.24M</td>
+
+        <td>Jar file containing the source files.</td>
+      </tr>
+
+      <tr valign="top">
+        <td><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/3.4.4/icu4jdocs_3_4_4.jar">
+        icu4jdocs_3_4_4.jar</a></td>
+
+        <td>1.15M</td>
+
+        <td>Jar file containing the api documentation.</td>
+      </tr>
+    </table>
+
+    <h4>Maintenance Release Notes</h4>
+
+    <p>ICU4J 3.4.4 is a maintenance release of ICU4J 3.4. The primary features
+    of this release are:</p>
+
+    <ul>
+      <li>Fixes crashing bugs in the data (Jitterbug <a href=
+      "http://dev.icu-project.org/cgi-bin/icu-bugs/others?findid=5108">5108</a>).</li>
+    </ul>
+
+    <p>ICU4J 3.4.4 also contains changes made for ICU4J 3.4.2 &amp; 3.4.3:</p>
+
+    <ul>
+      <li>uses Olson 2006a time zone data</li>
+
+      <li>no longer tags @draft APIs with @deprecated by default</li>
+
+      <li>provides the option to build ICU4J core classes and tests on Java 1.3
+      (ICU4J 3.4.2 would run, but not build, on Java 1.3)</li>
+
+      <li>promotes MessageFormat APIs that parallel Java's to @stable</li>
+
+      <li>corrects mistakes in CLDR data that went out in 3.4.2</li>
+
+      <li>
+        Fixes bugs (highlights): 
+
+        <ul>
+          <li>DateFormat would use the wrong short month names in some locales
+          (Jitterbug <a href=
+          "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=5006">5006</a>)</li>
+
+          <li>StringTokenizer did not match Java's StringTokenizer behavior
+          when returning tokens for delimiters (Jitterbug <a href=
+          "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=5061">5061</a>)</li>
+
+          <li>SimpleDateFormat would sometimes throw an exception during
+          construction (Jitterbug <a href=
+          "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=5054">5054</a>)</li>
+
+          <li>incorrect historical DST calculation (Jitterbug <a href=
+          "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=5015">5015</a>)</li>
+        </ul>
+      </li>
+
+      <li>Remove dependency on sun.util.calendar.ZoneInfo (Jitterbug <a href=
+      "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4422">4422</a>).</li>
+
+      <li>Chinese calendar missing constructor call to
+      setTimeInMillis()(Jitterbug <a href=
+      "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4555">4555</a>).</li>
+
+      <li>Provide mechanism for loading Java resources with ULocale(Jitterbug
+      <a href=
+      "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4767">4767</a>).</li>
+
+      <li>Possible rounding bug for currency (Locale=de_CH)(Jitterbug <a href=
+      "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4863">4863</a>).</li>
+
+      <li>ChineseDateFormat.toLocalizedPattern() throws
+      java.lang.IllegalArgumentException. (Jitterbug <a href=
+      "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4904">4904</a>).</li>
+
+      <li>General release related changes.</li>
+    </ul>
+
+    <h4>Platform Installation Notes</h4>
+
+    <p>Please be sure to view the <a href=
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icu4j/readme.html?rev=release-3-4-4">
+    readme.html</a> that is included in ICU. Most installation questions can be
+    answered there.</p>
+
+    <h4>Known Bugs and Patches</h4>
+
+    <p>It is likely that the new get Locale API for services will change in the
+    next release.</p>
+
+    <h3><a name="ICU4JNI">ICU4JNI Download</a></h3>
+
+    <h4>Source Code Download</h4>
+
+    <p>Other than via these ZIP files, the code is also tagged in <a href=
+    "http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a> with
+    release-3-4.</p>
+
+    <h4>Known Issues, Bugs and Patches</h4>
+
+    <p>For the list of known issues with ICU4JNI 3.4 please see the <a href=
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icu4jni/readme.html?rev=release-3-4">
+    readme file</a></p>
+
+    <p>The <a href=
+    "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/icu4jni/3.4/icu4jni_3_4_patch-01.zip">
+    icu4jni_3_4_patch-01.zip</a> patch contains fixes for memory leaks in 3.4
+    (Jitterbug <a href=
+    "http://bugs.icu-project.org/cgi-bin/icu-bugs?findid=4762">4762</a>). The
+    instructions on applying this patch are located <a href="patch.html">the
+    ICU patch page</a>.</p>
+
+    <table summary="Available ICU4JNI packages to download">
+      <tr>
+        <th>File</th>
+
+        <th>Size</th>
+
+        <th>Description</th>
+      </tr>
+
+      <tr>
+        <td><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/icu4jni/3.4/icu4jni_3_4.zip">
+        icu4jni_3_4.zip</a></td>
+
+        <td>338KB</td>
+
+        <td>ZIP file containing ICU4JNI source files</td>
+      </tr>
+
+      <tr>
+        <td><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/icu4jni/3.4/icu4jnidocs_3_4.zip">
+        icu4jnidocs_3_4.zip</a> <a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/icu4jni/3.4/icu4jni_3_4.zip">
+        </a></td>
+
+        <td>126KB</td>
+
+        <td>
+          <p>ZIP file containing ICU4JNI documentation</p>
+        </td>
+      </tr>
+    </table>
+    <!--#include virtual="../ssi/footer.html" -->
+  </body>
+</html>
+

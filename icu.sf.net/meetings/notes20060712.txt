@@ -1,0 +1,78 @@
+ICU Core Meeting Minutes
+=========================
+Copyright (c) 2006 IBM and others
+
+Mark Davis           - Google
+Markus Schrer        - Google
+Deborah Goldsmit     - Apple
+George Rhoten        - IBM
+Andy Heninger        - IBM
+Steven Loomis        - IBM
+Eric Mader           - IBM
+Yoshito Umaoka       - IBM
+Ram Viswanadha       - IBM
+
+Agenda:
+1. Prototype of bug system
+2. Timezone fixes in ICU4C
+3. ICU4J version in Eclipse
+4. ICU4J 3.4.5 release
+5. Code page conversion binary format change
+6. Transliteration failures
+7. CLDR
+8. Action Items from the previous week's meeting
+
+1. Prototype of Trac bug system
+      Steven:
+	+ Presented the prototytpe of the new  bug system
+      AI: Deborah to send out a list of other projects using Trac
+
+2. Port of Generic TimeZone formatting code to ICU4C
+       Ram: 
+	+ gave a brief description of the problem
+
+       AI: Mark to contact Doug to and figure out if he has cycles to port the code
+       AI: Eric to work with Doug to fix the code
+
+3. ICU4J version in Eclipse
+        Ram:
+	+ The repository not tagged with appropriate release number
+        AI: Vladimir to contact Doug
+
+4. ICU4J 3.4.5 release 
+      Yoshito:
+	+ Performance fixes in DateFormat need by Eclipse
+	+ ICU 3.6 release date not suitable for release schedule of Eclipse
+	+ 2 problems in timezone parsing code: partial matching and non-NFC matching
+       Mark: 
+	+ Idea: dictionary based approach to find the longest match. The dictionary will contain all  strings NFC. Matching algorithm should use Normalizer.equals method for matching
+     
+      Yoshito:
+	+ Implemented a trie based look up for longest match
+
+5. Code page conversion binary format change	
+    Markus:
+	+ Presented an overview of the binary format change
+	+ The new change is incompatible with old format
+    Mark:
+	+ Option1: Shift to a new format
+	+ Option 2: provide a tool to convert the binary in old format to new format
+	+ Option 3: Keep the old code around
+	+ Hybrid: read the old format in memory and convert it to new format
+    Ram:
+	+ ICU4J should also be updated with the format change
+
+    AI: Markus to futz around with different options and report back to the group with recommendation.
+
+6. Transliteration failures:
+      AI: Ram and Mark to work together to fix the failures
+
+7. CLDR Status:
+       Ram: Ready to go out with the release
+       Eric:
+	+ what was the resolution on minus sign in Farsi
+       Mark:
+	+ we decided to go ahead with the data for now and revisit in the next release
+
+8. Action Items from the previous week's meeting
+       + all done

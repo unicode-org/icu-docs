@@ -1,0 +1,60 @@
+ICU Core Meeting Minutes
+=========================
+Copyright (c) 2006 IBM and others
+
+Mark Davis          - Google
+Markus Schrer       - Google
+Doug Felt           - Google
+Vladimir Weinstien  - Google
+Deborah Goldsmit    - Apple
+Andy Heninger       - IBM
+Steven Loomis       - IBM
+Eric Mader          - IBM
+John Emmons         - IBM
+Yoshito Umaoka      - IBM
+Ram Viswanadha      - IBM
+
+1. Review of action items
+    1. Doug to send out an email with a list of changes for 3.4.4.1 release
+    2. Mark to follow up with timezone list about public domain copyright of code
+    3. Eric to work with Doug for porting generic timezone formatting code to ICU4C
+    4. Ram to work with Mark to resolve the Transliterator failures in C
+    5. Everyone to review jitterbugs assigned to them 
+    6. Deborah to submit a jitterbug and fix U_EXPORT definition on MacOSX
+    7   Deborah to submit an RFE for making this option set by configure script
+    8. Mark to evaluate jitterbug 5186 in ICU4J
+    9. Steven to evaluate jitterbug 5186 in ICU4C
+   10.  Andy to check with lawyers about publishing code for collation probe program
+   11. Ram to add a column of due date to task list and sort ti by due date
+   12. Everyone to look at task list and sign up for tasks
+   13. Markus to futz around with different options for cnv binary file and report back to the group with recommendation.
+    
+2. CLDR Identifiers for new timezone data
+    Mark: We should propose to CLDR committee to publish a dot dot release with changes for timezone,i.e, only changes to supplemental data allowed.
+    Vladimir: Decouple data releases from spec releases
+    Ram: dot dot releases should not be restricted to supplemental data. There are reasons for having new data in dot dot releases,e.g., Serbia & Montenegro dis-unification.
+    Decided to continue this conversation in CLDR meeting
+
+3. Review of Big Red Switch document for ICU release
+    Markus: Add a column for due date
+    Markus: is this list the latest
+    Andy: combined BRS from WiKi and html file to create a master list
+4. Function export control on Mac OS X (or gcc in general, take your pick)
+    Deborah: Change U_EXPORT macro for MacOSX. GCC 4.0 for MaxOSX contains options to prevent symbols from being exported. ICU should take advantage of this option on OSX. By default GCC 4.0 even with new definition of U_EXPORT will export all symbols. Compiler options need to be set correctly to take advantage of this feature.
+    Markus: ICU already does this on Windows. Good idea to do the same on other platforms
+    Steven: turn on this swich for GCC 4.0 regardless of option
+    Deborah: not available on all platforms.
+    Decided tof fix this in3.6
+
+5. Jitterbug 5186 oddities
+    Deborah: assignment operator in DecimalFormat does not set all fields. Needs to be looked at by DecimalFormat experts
+    Mark & Steven to look at the code
+
+6. log10 issue
+    Steven: 
+        + uprv_log10() method is not used by any library function
+        + only used by tests
+        + Fails on MacOSX
+    Deborah: method makes unwarranted assumptions
+    Decided to remove the method from ICU library and make the tests call std library function.
+            

@@ -1,0 +1,974 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+    <head>
+        <title>Throwing the Big Red Switch: How to ship ICU</title>
+        <meta name="COPYRIGHT" content="Copyright (c) 2006 IBM Corporation and others. All Rights Reserved.">
+    </head>
+    <body leftmargin="0" topmargin="0" bgcolor="#ffffff" marginheight="0" marginwidth="0">
+        <h1 align="center">Throwing the Big Red Switch: How to ship ICU</h1>
+        <p>&nbsp;</p>
+        <table summary="This is how you release ICU." id="TABLE1" border="1">
+            <tr>
+                <th>
+                    Implementor</th>
+                <th noWrap colSpan="1" rowSpan="1">
+                    Due Date</th>
+                <th>
+                    <p align="center">Done?</p>
+                </th>
+                <th>
+                    Task</th>
+                <th>
+                    Description</th>
+            </tr>
+            <TR>
+                <TD>IBM</TD>
+                <TD>&nbsp;</TD>
+                <TD>&nbsp;</TD>
+                <TD><STRONG>Review IBM internal tasks</STRONG></TD>
+                <TD><a href="http://icu.sanjose.ibm.com/internal/checklist/release.html">http://icu.sanjose.ibm.com/internal/checklist/release.html</a></TD>
+            </TR>
+            <tr>
+                <td>Steven</td>
+                <td>2006-07-21</td>
+                <td>
+                    <p align="center">Yes</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update timezone (Olson) data</b>
+                    </div>
+                </td>
+                <td>Download the latest Olson timezone data from <a href="ftp://elsie.nci.nih.gov/pub/">
+                        ftp://elsie.nci.nih.gov/pub/</a> and process it with the Perl and C tools 
+                    in icu/source/tools/gentz.</td>
+            </tr>
+            <tr>
+                <td>Andy</td>
+                <td>2006-08-07</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <span style="FONT-WEIGHT: bold">Build Thai Dictionary, if needed.</span><br>
+                </td>
+                <td>If the source file for the Thai word break dictionary (<span style="FONT-WEIGHT: bold">icu4j/src/com/ibm/icu/dev/data/thai6.ucs</span>) 
+                    has changed since the last release, rebuild it according to the directions in
+                    <span style="FONT-WEIGHT: bold">icu4j/src/com/ibm/icu/dev/tool/rbbi</span>.<br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Markus (C)</p>
+                    <p>Ram (J)</p>
+                </td>
+                <td>2006-08-07</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>@draft etc. labels</b>
+                    </div>
+                </td>
+                <td>Update the API documentation (.h file) to have correct 
+                    @draft/@stable/@deprecated labels. Usually for ICU4C, this involves grepping 
+                    for these tags, and making sure that the function declaration matches the 
+                    documentation. On ICU4J, run com.ibm.icu.dev.tool.docs.CheckTags (see file for 
+                    instructions). This requires a Sun jdk with javadoc available. The tool will 
+                    need to change to reflect the release number to search for.</td>
+            </tr>
+            <tr>
+                <td>Yoshito</td>
+                <td>2006-09-07</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>ICU4J versus JDK API comparison</b>
+                    </div>
+                </td>
+                <td>Run the ICU4J versus JDK API comparison tool against the target JDK (anything 
+                    that will come out before our next release, basically) and make sure ICU4J 
+                    adequately covers the JDK API for the classes we replicate. Tool is in 
+                    com/ibm/icu/dev/tool/docs/ICUJDKCompare.</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>George (C)</p>
+                    <p>Ram (J)</p>
+                </td>
+                <td>2006-08-07(C), 2006-09-07(J)</td>
+                <td>
+                    <p align="center">Yes</p>
+                </td>
+                <td>
+                    <div align="left"><b>Update version number</b></div>
+                </td>
+                <td>The instructions for updating the version number are stored in <b>icu/source/common/unicode/uversion.h</b><br>
+                    Read and follow instructions in this file.<br>
+                </td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-07-21</td>
+                <td>
+                    <p align="center">Yes</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Regenerate configure</b>
+                    </div>
+                </td>
+                <td>Don't forget to re-run and check in the configure file along with configure.in!</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Send beta/DCUT announcement</b>
+                    </div>
+                </td>
+                <td>
+                    Send a beta/DCUT announcement to ICU-UNICODE, the Globalization forum database, 
+                    and the mailing lists icu, icu4c-support, icu4j-support, icu-announce, and 
+                    icu4j-announce (the announce lists only with bcc).
+                    <p>For ICU 2.2, this is the text of the internal DCUT announcement:</p>
+                    <blockquote>
+                        <p>To: IBM-UNICODE</p>
+                        <p>Subject: Beta of ICU 2.2 available now</p>
+                        <p>Dear friends and users of ICU,</p>
+                        <p>We have a DCUT level of the ICU reference release 2.2 available on our public 
+                            web sites, http://oss.software.ibm.com/icu/download/2.2/ and 
+                            http://oss.software.ibm.com/icu4j/download/</p>
+                        <p>If you plan or consider to use ICU 2.2, then please download and test it at your 
+                            earliest convenience.</p>
+                        <p>ICU 2.2 is slated to be adopted by MANY IBM products, so please help us ensure 
+                            the quality of this release. Please submit bugs, porting changes and fixes(!) 
+                            by Wednesday, July 31!</p>
+                        <p>For more details on the 2.2 schedule, please see 
+                            http://icu.sanjose.ibm.com/schedule.html</p>
+                        <p>Please use our bug reporting tool and support mailing lists, see 
+                            http://oss.software.ibm.com/icu/</p>
+                        <p>For IBM-internal, confidential and legal questions please see 
+                            http://icu.sanjose.ibm.com/legal/</p>
+                        <p>Major features of this reference release include:</p>
+                        <ul>
+                            <li>
+                            Unicode 3.2 support<li>
+                            ICU4J collation conforms to Unicode Collation Algorithm, full support of 
+                            supplementary characters, same results as ICU4C<li>
+                            ICU4J normalization fully supports supplementary characters<li>
+                            Support for CESU-8 and stricter UTF-8 (ICU4C)<li>
+                            Character set alias management support (ICU4C)<li>
+                            Flexible data loading mechanism (ICU4C)<li>
+                            Customizable ICU4C break iteration (ICU4C)<li>
+                                Provision for custom C++ memory management (ICU4C)</li>
+                        </ul>
+                        <p>Please see the release notes on the download pages and the readme for a complete 
+                            list of features and enhancements.</p>
+                        <p>Sincerely,</p>
+                        <p>markus</p>
+                    </blockquote>
+                    <p>For ICU 2.2, this is the text of the public beta announcement — sanitized for 
+                        the public:</p>
+                    <blockquote>
+                        <p>Subject: Beta of ICU 2.2 available now<br>
+                            <br>
+                            Dear friends and users of ICU,<br>
+                            <br>
+                            We have a "beta" of the ICU release 2.2 available on our public web sites, 
+                            http://oss.software.ibm.com/icu/download/2.2/ and 
+                            http://oss.software.ibm.com/icu4j/download/<br>
+                            If you plan or consider to use ICU 2.2, then please download and test it at 
+                            your earliest convenience.<br>
+                            <br>
+                            Please help us ensure the quality of this release. Please submit bugs, porting 
+                            changes and fixes(!) by Wednesday, July 31!<br>
+                            <br>
+                            Please use our bug reporting tool and support mailing lists, see 
+                            http://oss.software.ibm.com/icu/<br>
+                            <br>
+                            Major features of this reference release include:<br>
+                            - Unicode 3.2 support<br>
+                            - ICU4J collation conforms to Unicode Collation Algorithm,<br>
+                            &nbsp; full support of supplementary characters, same results as ICU4C<br>
+                            - ICU4J normalization fully supports supplementary characters<br>
+                            - Support for CESU-8 and stricter UTF-8 (ICU4C)<br>
+                            - Character set alias management support (ICU4C)<br>
+                            - Flexible data loading mechanism (ICU4C)<br>
+                            - Customizable ICU4C break iteration (ICU4C)<br>
+                            - Provision for custom C++ memory management (ICU4C)<br>
+                            <br>
+                            Please see the release notes on the download pages and the readme for a 
+                            complete list of features and enhancements.<br>
+                            <br>
+                            Sincerely,<br>
+                            markus</p>
+                    </blockquote>
+                    <p>&nbsp;</p>
+                </td>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>2006-08-07</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Source data file versions</b>
+                    </div>
+                </td>
+                <td>If any of the data files in /icu/source/data/ directory has changed, upgrade 
+                    the version number accordingly as well. If the contents of a resource bundle 
+                    has changed, then increase the version number (at least the minor version 
+                    field). Usually the CLDR generated data should have the correct number, but the 
+                    other files should be checked too.</td>
+            </tr>
+            <tr>
+                <td>Markus</td>
+                <td>2006-08-07</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Binary data file versions</b>
+                    </div>
+                </td>
+                <td>If the format of a binary data file has changed, upgrade the format version in 
+                    the UDataInfo header for that file — better, change the format version 
+                    immediately when the format is changed. The change must be made in both the 
+                    producer and consumer code.</td>
+            </tr>
+            <tr>
+                <td>Andy, Eric</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Scan for Copyright notices</b>
+                    </div>
+                </td>
+                <td>
+                    Check source and data files, especially newly contributed ones, to make sure 
+                    the proper copyright notice is in place. For example, <blockquote> <code>Copyright (c) 
+                            2001-2002, International Business Machines Corporation and others. All rights 
+                            reserved.</code> </blockquote>Scan the source code to include 
+                    third-party company names in copyright notices if necessary.
+                    <p>
+                        Make sure that you use <code>(c)</code>, not ©, because non-ASCII characters in 
+                        source code can break the build!<br>
+                        (See <a href="http://icu.sourceforge.net/copyright-scan.html">ICU's check-in policy</a>
+                        for more details.)</p>
+                </td>
+            </tr>
+            <tr>
+                <td>Yoshito</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Check for non-ascii characters in source files</b>
+                    </div>
+                </td>
+                <td>
+                    Run the tool NonAsciiFileDetector.java located in the local cvs 
+                    icu4j/buildtools.
+                    <br>
+                    <code>java NonAsciiFileDetector $JAVA_FILE_PATH</code><br>
+                    This tool will output the *.java files with non-ascii characters in it.
+                </td>
+            </tr>
+            <tr>
+                <td>Andy</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td><b>Verify proper memory allocation functions</b>
+                </td>
+                <td>
+                    <p>Verify the following for library code (common, i18n, layout, ustdio). The 
+                        requirement is for ICU's memory management to be customizable by changing 
+                        cmemory.h and the common base class.
+                    </p>
+                    <p>
+                    </p>
+                    <ul>
+                        <li>
+                        No raw malloc/free/realloc but their uprv_ versions.<li>
+                            All C++ classes must inherit the common base class UObject or UMemory
+                            <ul>
+                                <li>
+                                But not for mixin/interface classes (pure virtual, no data members, no 
+                                constructors) because that would break the single-inheritance model.<li>
+                                Also not for pure-static classes (used for name scoping) — declare but don't 
+                                implement a private default constructor to prevent instantiation.<li>
+                                    Simple struct-like C++ classes (and structs) that do not have constructors, 
+                                    destructors, and virtual methods, need not inherit the base class but must then 
+                                    be allocated with uprv_malloc.
+                                </li>
+                            </ul>
+                        <li>
+                        All simple types (UChar, int32_t, pointers(!), ...) must be allocated with 
+                        uprv_malloc and released with uprv_free.<li>
+                            For Testing that this is the case, on Linux
+                            <ul>
+                                <li>
+                                    run the Perl script ICUMemCheck.pl. Follow the instructions in the script. The 
+                                    script is in in the ICU4C sources at icu/tools/memcheck/ICUMemCheck.pl.
+                                </li>
+                            </ul>
+                        <li>
+                            For testing that this is the case, on Windows:
+                            <ul>
+                                <li>
+                                    Don't bother, as of Nov, 2004. Failures appear in many dozens of files from the 
+                                    mixin class destructors. Do the check on Linux. But, for reference, here are 
+                                    the old instructions.
+                                    <ul>
+                                        <li>
+                                            Make sure that in uobject.h UObject::new and delete are defined by default. 
+                                            Currently, this means to grep to see that <tt>U_OVERRIDE_CXX_ALLOCATION</tt>
+                                        is defined to 1 (in pwin32.h for Windows).<li>
+                                        Check the *.obj's for linkage to the global (non-UObject::) operators 
+                                        new/delete; see uobject.cpp for details.<li>
+                                        Global new must never be imported. Global delete will be imported and used by 
+                                        empty-virtual destructors in interface/mixin classes. However, they are not 
+                                        called because implementation classes always derive from UMemory. No other 
+                                        functions must use global delete.<li>
+                                            There are now (2002-dec-17) definitions in <tt>utypes.h</tt>
+                                        for global new/delete, with inline implementations that will always crash. 
+                                        These global new/delete operators are only defined for code inside the ICU4C 
+                                        libraries (but must be there for all of those). See Jitterbug 2581.<li>
+                                            If a global new/delete is used somewhere, then change the class inheritance 
+                                            and/or use uprv_malloc/free until no global new/delete are used in the 
+                                            libraries (and the tests still pass...). See the User Guide Coding Guidelines 
+                                            for details.&nbsp;</li></ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Run Purify, Bounds Checker... on the code</b>
+                    </div>
+                </td>
+                <td>Make sure we fixed all the memory leak problems that were discovered when 
+                    running this tool.</td>
+            </tr>
+            <tr>
+                <td>Steven</td>
+                <td>2006-08-07</td>
+                <td>
+                    <p align="center">Yes</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Try running tests without any ICU data</b>
+                    </div>
+                </td>
+                <td>ICU data should be removed, so that tests cannot access it. Both cintltst and 
+                    intltest should be run with -w option and they should not crash. Every crash 
+                    should be investigated and fixed.</td>
+            </tr>
+            <tr>
+                <td>Steven</td>
+                <td>2006-08-07</td>
+                <td>
+                    <p align="center">Yes</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Build and run testmap</b>
+                    </div>
+                </td>
+                <td>Build and run source/test/testmap project.</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>George (C)</p>
+                    <p>Ram (J)</p>
+                </td>
+                <td>2006-08-07 (C), 2006-09-07 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Check the API and code coverage numbers</b>
+                    </div>
+                </td>
+                <td>All releases go out to the public with 100% API test and at least 85% code 
+                    coverage.</td>
+            </tr>
+            <tr>
+                <td>George (nagger)</td>
+                <td>2006-08-07 (C), 2006-09-07 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Code review complete</b>
+                    </div>
+                </td>
+                <td>Nag all the reviewers to finish reviewing the code and file the bugs into the 
+                    appropriate folders.</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>George (C)</p>
+                    <p>Ram (J)</p>
+                </td>
+                <td>2006-08-21(C), 2006-09-21 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Create a working snapshot</b>
+                    </div>
+                </td>
+                <td>You need a working snapshot of the ICU build first. To do so, you need to check 
+                    out the most recent tree and build it on at least two of the reference 
+                    platforms, e.g. Win32 and AIX (to cover both endiannesses).</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>George (C)</p>
+                    <p>Ram (J)</p>
+                </td>
+                <td>2006-08-21 (C), 2006-09-21 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Tag the source code</b>
+                    </div>
+                </td>
+                <td>Once you have a working snapshot of the tree, you need to tag the tree as <code>release-majorVersion-minorVersion[-revisionNumber]-d01</code>.<br>
+                    The <code>d01</code> development suffix is incremented for subsequent 
+                    pre-release snapshots (to <code>d02</code>, <code>d03</code> etc.). The final 
+                    tag will not have the development suffix.</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>George (C)</p>
+                    <p>Ram (J)</p>
+                </td>
+                <td>2006-08-15 (C), 2006-09-15 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Start a daily build process</b>
+                    </div>
+                </td>
+                <td>
+                    What is a "daily build" process?<br>
+                    You need to submit an ICU build request on the internal IBM build server. Enter 
+                    the "tag" you have just created for the snapshot to be tested with. Submit the 
+                    build to be tested on <b>ALL</b> the reference platforms. The daily build 
+                    process needs to start at least a week and half before the final release date. 
+                    (Post a message to the mailing list to inform people of the daily build 
+                    starting date). The default build options are fine, but these other 
+                    configurations also need testing. See also <a href="http://icu.sanjose.ibm.com/internal/wiki?IcuBuilds">
+                        IcuBuilds</a> on the wiki.
+                    <ul>
+                        <li>
+                        Build both the debug and release configurations.<li>
+                        Build DLL, memory mappable and individual files format of the data files.<li>
+                        Make sure the tests are run with exhaustive mode turned on. This test takes a 
+                        while and should be done overnight.<li>
+                            Make sure that the libraries can be installed by requesting that the binaries 
+                            are built. These files are also needed by ICU4JNI.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Ram</td>
+                <td>2006-08-21(C), 2006-09-21 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Build API documentation</b>
+                    </div>
+                </td>
+                <td>Build the API documentation pages for the new release. Run Doxygen to create 
+                    the javadoc files.. create icu-<i>X.X.X</i>.zip and icu-<i>X.X.X</i>.tgz.</td>
+            </tr>
+            <tr>
+                <td>Markus</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Test #include "unicode/(each public ICU4C header)"</b>
+                    </div>
+                </td>
+                <td>
+                    (on Unixes) In the 'icu/source/test/hdrtst' directory, do 'make check'. This 
+                    will attempt to compile against each header file individually on C and C++, to 
+                    make sure there aren't any hidden include ordering problems. Output looks like 
+                    this, the zero indicates a successful test. If a C++ file fails to compile as a 
+                    C file, add it to the 'cxxfiles.txt' located in the hdrtest directory. Run this 
+                    test with all the uconfig.h variations (see below).
+                    <br>
+                    <pre>unicode/bidi.h        - 0  <i>(0 means no error)</i>
+unicode/chariter.h    - 0
+unicode/convert.h     - 0
+</pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Eric</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Test uconfig.h variations</b>
+                    </div>
+                </td>
+                <td>
+                    Test ICU completely, and run the header test (above) with:
+                    <ol>
+                        <li>
+                            <b>none</b>
+                        of the 'UCONFIG_NO_XXX' switches turned on (i.e., the normal case)<li>
+                            <b>all</b>
+                        of the 'UCONFIG_NO_XXX' switches turned on (set to 1)<li>
+                            For each switch, test once with <b>just</b> that one switch on.</li>
+                    </ol>
+                    (See icu/source/common/unicode/<b>uconfig.h</b> for more documentation.) There 
+                    is a script available which will automatically test ICU in this way on UNIXes, 
+                    it lives in: <tt>Local CVS: /icu4c/build/uconfigtest.sh</tt>. See docs at top 
+                    of script for information.
+                </td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-08-07</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update urename.h</b>
+                    </div>
+                </td>
+                <td>
+                    Update urename.h to catch all possible ICU4C library exports (especially on 
+                    non-Windows systems that tend to ignore export qualifiers). See 
+                    icu/source/tools/genren/ .
+                    <p>Diff the new one with the previous one; there are typically a few bad #defines 
+                        in there.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>Ram</td>
+                <td>2006-08-07</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td><strong>Update udraft.h, usystem.h, uintrnl.h, udeprctd.h and udraft.h</strong></td>
+                <td>Regenerate these files with icu/source/tools/gendraft/gendraft.pl, instructions 
+                    are at the bottom of this <a href="http://icu.sanjose.ibm.com/internal/wiki/wiki?Doxygen">
+                        page</a>.</td>
+            </tr>
+            <tr>
+                <td>Ram</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td><strong>Verify XLIFF conversion</strong></td>
+                <td>Instructions for verifying the XLIFF conversion tools.
+                    <p>
+                    </p>
+                    <ul>
+                        <li>
+                            Convert icu/source/test/testdata/ra.txt to XLIFF
+                        </li>
+                    </ul>
+                    <code>genrb -s icu/source/test/testdata -d icu/source/test/testdata/ -x -l en 
+                        ra.txt </code>
+                    <ul>
+                        <li>
+                        Verify that the ra.xlf produced is identical to the one in CVS HEAD (except for 
+                        generation date)<li>
+                            Convert icu/source/test/testdata/ra.xlf back to ICU format
+                        </li>
+                    </ul>
+                    <code>java -cp icu4j/classes 
+                        com.ibm.icu.dev.tool.localeconverter.XLIFF2ICUConverter -d . -t ra ra.xlf </code>
+                    <ul>
+                        <li>
+                        Verify that the ra.txt produced is identical to the one in CVS HEAD (except for 
+                        generation date)<li>
+                            Go through the steps given in <a class="xurl" href="http://icu.sourceforge.net/docs/papers/localize_with_XLIFF_and_ICU.pdf">
+                                http://icu.sourceforge.net/docs/papers/localize_with_XLIFF_and_ICU.pdf</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>2006-08-21</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Test sample and demo programs</b>
+                    </div>
+                </td>
+                <td>
+                    Build and run all of the sample and demo apps that are included with ICU, on 
+                    each of the reference platforms. A list of them is <a href="http://icu.sanjose.ibm.com/internal/checklist/icu-progs-list.html">
+                        is in the readme</a>. Also see the build system.
+                    <p>Another worthy test: Test suites and demos <em>from the previous release</em> should 
+                        also compile and run with the libraries of the current release, at least when 
+                        certain #defines are set (unless they test APIs that are deprecated and have 
+                        been removed since)!</p>
+                </td>
+            </tr>
+            <tr>
+                <td>Eric</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Test data portability</b>
+                    </div>
+                </td>
+                <td>
+                    Test if the data portability (under common endianness &amp; charset family) is 
+                    ok. Process as the following:
+                    <ol>
+                        <li>
+                        Build ICU4C on Win32.<li>
+                        Build ICU4C on (little-endian-) Linux and then delete icu/data/*.res*.icu*.cnv 
+                        libicudata.so (Not the libtest*.so!)<li>
+                        Copy the icudata.dat file into icu/data<li>
+                            Run all tests.</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Test on a Japanese or zh_SG system</b>
+                    </div>
+                </td>
+                <td>Please see ICU's reference platform list for more information, see the <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/readme.html#HowToBuildSupported">
+                        readme</a> and the <a href="http://icu.sourceforge.net/legal/index.html">DOU</a>.</td>
+            </tr>
+            <tr>
+                <td>Steven</td>
+                <td>2006-08-21</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Upgrade LocaleExplorer to the new version</b>
+                    </div>
+                </td>
+                <td>
+                    <p>Build the icuapps module following the README's. Update code and/or docs as 
+                        needed. "Reference" platforms for icuapps are: RedHat Linux and win32. On 
+                        Linux, icuapps is built against the "make install "'ed ICU. So, run ICU4C's 
+                        configure with --prefix=<i>/some/where</i> pointing to where ICU4C should be 
+                        installed, and also follow icuapps's README.</p>
+                    <p>Install the new locale explorer onto the public demo hosting site.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Yoshito (J)</p>
+                    <p>Ram (C)</p>
+                </td>
+                <td>2006-08-15 (C), 2006-09-15 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the ICU API Change Report</b>
+                    </div>
+                </td>
+                <td>
+                    <p>Run the ICU4J API comparison tools (build.xml targets gatherapi, apireport) to 
+                        generate new api and report files (build.xml strings will need to change). 
+                        Check in the API file. Rename the report file to ${root}/APIChangeReport.html 
+                        and replace the existing one and check it in. Make sure the readme.html file 
+                        links to it (no change should be required).</p>
+                    <p>For ICU4C please follow the instructions on <a href="http://icu.sanjose.ibm.com/internal/wiki/wiki?Doxygen">
+                            this</a> page.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>George (C)</p>
+                    <p>Ram (J)</p>
+                </td>
+                <td>2006-08-21 (C), 2006-09-21 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the Readme.html again</b>
+                    </div>
+                </td>
+                <td>...if there are any last second changes. Make sure to document especially items 
+                    that affect software that is currently compiled with the previous version of 
+                    ICU. Update build/installation instructions as necessary. <b>Note:</b>The ICU4J 
+                    readme needs file sizes for the modules.</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-08-21(C), 2006-09-21 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the web sites</b>
+                    </div>
+                </td>
+                <td>Make sure that, aside from download pages, homepages, news items, feature lists 
+                    and feature comparisons, etc. are updated. Upload the new API references. 
+                    Update the User Guide.</td>
+            </tr>
+            <tr>
+                <td>Andy</td>
+                <td>2006-09-01</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the User Guide</b>
+                    </div>
+                </td>
+                <td>Change the version number on the User Guide title page (in userguide.sxg). 
+                    Change the version number in the page footer (it's an OO "field"; double-click 
+                    it in OO to change). Update the table of contents. Export the pdf file from OO. 
+                    Regenerate the html, and create the downloadable html version of the userguide 
+                    by zipping up the html directory.</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-09-01 (C), 2006-10-02 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the internal <em>and</em> external web sites with release zip/tgz files 
+                            and announcement</b>
+                    </div>
+                </td>
+                <td>An enhancement release simply needs to have a list of what has been changed or 
+                    added recently. A reference release should have much more detailed 
+                    descriptions, especially of what API's have changed since the <b>last reference 
+                        release</b> and migration steps.</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-09-01 (C), 2006-10-02 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Announce the new release</b>
+                    </div>
+                </td>
+                <td>Post the update to the <b>icu-announce</b> list, the <b>icu-support</b> list, 
+                    the <b>icu-design</b> list, and the internal <b>IBM-UNICODE</b> list.<br>
+                    Put a News item on the internal and external homepages.</td>
+            </tr>
+            <tr>
+                <td>Steven</td>
+                <td>2006-09-01 (C), 2006-10-02 (J)</td>
+                <td>
+                    <p align="center">Yes</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the jitterbug release number list</b>
+                    </div>
+                </td>
+                <td>Update the jitterbug release number list in the jitterbug file <code>bug_tracking/reportform.html</code>
+                    on the oss server to include the new release number.</td>
+            </tr>
+            <tr>
+                <td>Steven</td>
+                <td>2006-09-01 (C), 2006-10-02 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the <u>freshmeat.net</u> entry.</b>
+                    </div>
+                </td>
+                <td>
+                    From Steven R. Loomis on 2001-jun-14:
+                    <hr>
+                    <ol>
+                        <li>
+                            <a href="http://www.freshmeat.net/">http://www.freshmeat.net/</a><li>
+                            Login under the correct account. The username is <b>strcpy</b>. It is 
+                            registered to <i>icuintl at us.ibm.com</i>.<li>
+                        I usually search for: icu unicode<li>
+                        Click on the project returned<li>
+                        Under the 'project' drop down, choose 'Add release'<li>
+                        We have (thankfully) only one branch of development- choose Default<li>
+                            Release info
+                            <ul>
+                                <li>
+                                release focus: Choose the one which best fits<li>
+                                Version<li>
+                                    Changes: be VERY brief, and include links if needed.<br>
+                                    Please read the other ICU4C/ICU4J updates to get an idea for how we are wording 
+                                    these. DO NOT use bulleted lists. DO use short 'sentences'. Remember they can 
+                                    go to the release list and/or bug DB for the full scoop!<br>
+                                Put the URL to the 'release notes' (i.e. 
+                                http://oss.software.ibm.com/icu/download/(version)/ ) in the changes list.<li>
+                                tar/gz, zip: Put the FULL URLs to the actual files, here<li>
+                                Changelog: Leave BLANK. This is for a single page of ALL release changes 
+                                (Actually: http://oss.software.ibm.com/icu/download/ fits this fairly well.)<li>
+                                License - leave at MIT/X<li>
+                                    mailing list: I set this to the main mailing list page. 
+                                    (http://oss.software.ibm.com/icu/archives/)</li>
+                            </ul>
+                        Click 'go on..'<li>
+                            PREVIEW.<br>
+                            Very important- Check:
+                            <ul>
+                                <li>
+                                SPELLING<li>
+                                links!!!!! Make sure they go where we want<li>
+                                    accuracy - version number is OK?</li>
+                            </ul>
+                        Remember that this is an important PR face for ICU4C and ICU4J.<li>
+                            Submit!</li>
+                    </ol>
+                    That's it. Submissions take some time (&lt;24 hrs) to go on. I guess they check 
+                    the accuracy as well- not sure here.<br>
+                    <br>
+                    Regards,<br>
+                    Steven
+                </td>
+            </tr>
+            <tr>
+                <td>Steven</td>
+                <td>2006-09-01 (C), 2006-10-02 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update any other such public forums.</b>
+                    </div>
+                </td>
+                <td>
+                    <a href="http://slashdot.org/">slashdot</a>, <a href="http://newsforge.com/">newsforge</a>,
+                    <a href="http://www.ibm.com/developerworks/unicode/">developerWorks unicode zone</a>,
+                    <a href="http://www.ibm.com/developerworks/opensource/">developerWorks open-source 
+                        zone</a>, <a href="http://www.ibm.com/developerworks/java/">developerWorks java 
+                        zone</a> (send email to dWnews &lt;at&gt; us.ibm.com)
+                    <p>
+                        <a href="http://sourceforge.net/projects/icu">ICU sourceforge News</a> - login 
+                        here, go to News, Admin, and submit a news item as an administrator.
+                    </p>
+                    <hr>
+                    <h4>LanguageTech Net News (tm)</h4>
+                    <p>"LanguageTech Net News" features the latest news for language technology and 
+                        multilingual computing. It is prepared from materials compiled and maintained 
+                        by the research editors at "<a href="http://www.multilingual.com/">MultiLingual 
+                            Computing &amp; Technology</a>" and the Language Technology Research 
+                        Center.</p>
+                    <p>Press releases and submissions are always welcomed and encouraged. Please send 
+                        e-mail to <a href="mailto:news@multilingual.com">news@multilingual.com</a>, 
+                        faxes to 208-263-6310 and postal mail to MultiLingual Computing, Inc., 319 
+                        North First Avenue, Sandpoint, ID 83864 USA, or call 208-263-8178.</p>
+                    <p>To view archived issues of "LanguageTech Net News" visit <a href="http://www.multilingual.com/">
+                            http://www.multilingual.com/</a>.</p>
+                    <p>To subscribe to "LanguageTech Net News" go to <a href="http://www.multilingual.com/multilingualpress/">
+                            http://www.multilingual.com/multilingualpress/</a> or send an e-mail to <a href="mailto:news-l-subscribe@multilingual.com">
+                            news-l-subscribe@multilingual.com</a>.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-09-15 (C), 2006-10-15 (J)</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Jitterbug post-release cleanup</b>
+                    </div>
+                </td>
+                <td>
+                    Sometime after the release move all items that went into this release from the 
+                    "fixed" folder to the "closed" folder.
+                    <p>Look for TODO comments in the source code and see what bugs need(!) to be filed.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>Vladimir</td>
+                <td>2006-09-07</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Online information update</b>
+                    </div>
+                </td>
+                <td>Collation charts need to be updated.</td>
+            </tr>
+        </table>
+        <p>&nbsp;</p>
+    </body>
+</html>

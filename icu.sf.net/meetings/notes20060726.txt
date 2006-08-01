@@ -1,0 +1,72 @@
+ICU Core Meeting Minutes
+=========================
+Copyright (c) 2006 IBM and others
+
+Mark Davis          - Google
+Doug Felt           - Google
+Markus Scherer      - Google
+Vladimir Weinstein  - Google
+Deborah Goldsmith   - Apple
+Andy Heninger       - IBM
+Steven Loomis       - IBM
+Eric Mader          - IBM
+John Emmons         - IBM
+Yoshito Umaoka      - IBM
+Ram Viswanadha      - IBM
+
+1. Review of action items
+    A001. Eric to work with Doug for porting generic timezone formatting code to ICU4C 
+            Due: Post 3.6
+    A002. Everyone to review jitterbugs assigned to them  
+            Status: OPEN
+    A003.  Deborah to submit an RFE for making this option set by configure script
+            Status: OPEN
+    A004. Mark to evaluate jitterbug 5186 in ICU4J
+            Status: OPEN
+    A005. Steven to evaluate jitterbug 5186 in ICU4C
+             Status: OPEN
+    A006. Andy to check with lawyers about publishing code for collation probe program
+            Status: OPEN
+    A007. Everyone to look at task list and sign up for tasks
+            Status: OPEN
+    A008. Markus to futz around with different options for cnv binary file and report back to the group with recommendation.
+            Status: OPEN Due: Post 3.6
+    A009. George to change symbols to display name
+    A010. Ram to filter out data while generating ICU data
+    A011. George to assign UEnumeration bug to Markus
+    A012. George to move tasklist to icudesign folder
+    A013. Ram to move internal tools to public repository
+    A014: Eric & Steven to work on binary files and report back
+    
+2. CLDR Bug# 1123
+    Mark: ICU should filter the errornous symbols out
+    George: CLDR data should be fixed
+    Decision: A009, A010
+    
+3. UEnumeration and UErrorCode status
+    George: What is the status of fixing all instances of UEnumeration?
+
+4. BRS tasklist sign up
+    Markus: Google spreadsheet could be used instead of html
+    Mark: Convert the html spreadsheet so that excel can read it
+    Markus: I can work on binary data test and header test
+    Doug & Mark: to work on Integrity tools and API Change Report for ICU4J
+    Ram: work on @draft tags for ICU4J
+    Vladimir: Sanity check release files
+    Eric: The binary data files are different on different platforms
+
+5. ICU4J 3.4.4.2 Release tag
+    Yoshito: 3.4.4.1 is used by Eclipse and should be tagged. 3.4.4.2 is not used by any product so should not be tagged.
+    Doug: agreed
+    Ram: agreed 
+
+6.Timezone API bug
+    Yoshito: setRawoffset returns NullPointerException for some timezone ids
+    Mark: For timezones created from Olson IDs the API should not allow setting of raw offset
+    Doug: The timezone spec in Javadocs specifies the behavior. We should adhere to the spec.
+    Decision - Investigate and fix based on resources required.
+
+7. Globalization Preferences
+    Yoshito: We should change the status of GlobalizationPreferences class to draft from internal
+    Doug: Agreed
+    Mark: Agreed

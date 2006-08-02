@@ -58,25 +58,38 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <p>Markus (C)</p>
-                    <p>Ram (J)</p>
-                </td>
+                <td>Markus</td>
                 <td>2006-08-07</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>@draft etc. labels</b>
+                        <b>ICU4C @draft etc. labels</b>
                     </div>
                 </td>
                 <td>Update the API documentation (.h file) to have correct 
                     @draft/@stable/@deprecated labels. Usually for ICU4C, this involves grepping 
                     for these tags, and making sure that the function declaration matches the 
-                    documentation. On ICU4J, run com.ibm.icu.dev.tool.docs.CheckTags (see file for 
-                    instructions). This requires a Sun jdk with javadoc available. The tool will 
-                    need to change to reflect the release number to search for.</td>
+                    documentation.</td>
+            </tr>
+            <tr>
+                <td>Ram</td>
+                <td>2006-08-07</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>ICU4J @draft etc. labels</b>
+                    </div>
+                </td>
+                <td>Update the API documentation to have correct
+                    @draft/@stable/@deprecated labels.
+                    On ICU4J, run com.ibm.icu.dev.tool.docs.CheckTags (see file for
+                    instructions). This requires a Sun jdk with javadoc available. The tool will
+                    need to change to reflect the release number to search for.
+                </td>
             </tr>
             <tr>
                 <td>Yoshito</td>
@@ -95,20 +108,30 @@
                     com/ibm/icu/dev/tool/docs/ICUJDKCompare.</td>
             </tr>
             <tr>
-                <td>
-                    <p>George (C)</p>
-                    <p>Ram (J)</p>
-                </td>
-                <td>2006-08-07(C), 2006-09-07(J)</td>
+                <td>George</td>
+                <td>2006-08-07</td>
                 <td>
                     <p align="center">Yes</p>
                 </td>
                 <td>
-                    <div align="left"><b>Update version number</b></div>
+                    <div align="left"><b>Update ICU4C version number</b></div>
                 </td>
                 <td>The instructions for updating the version number are stored in <b>icu/source/common/unicode/uversion.h</b><br>
                     Read and follow instructions in this file.<br>
                 </td>
+            </tr>
+            <tr>
+                <td>Ram</td>
+                <td>2006-09-07</td>
+                <td>
+                    <p align="center">Yes</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update ICU4J version number</b>
+                    </div>
+                </td>
+                <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>George</td>
@@ -175,7 +198,7 @@
                         <p>Sincerely,</p>
                         <p>markus</p>
                     </blockquote>
-                    <p>For ICU 2.2, this is the text of the public beta announcement — sanitized for 
+                    <p>For ICU 2.2, this is the text of the public beta announcement â€” sanitized for 
                         the public:</p>
                     <blockquote>
                         <p>Subject: Beta of ICU 2.2 available now<br>
@@ -243,7 +266,7 @@
                     </div>
                 </td>
                 <td>If the format of a binary data file has changed, upgrade the format version in 
-                    the UDataInfo header for that file — better, change the format version 
+                    the UDataInfo header for that file â€” better, change the format version 
                     immediately when the format is changed. The change must be made in both the 
                     producer and consumer code.</td>
             </tr>
@@ -265,7 +288,7 @@
                             reserved.</code> </blockquote>Scan the source code to include 
                     third-party company names in copyright notices if necessary.
                     <p>
-                        Make sure that you use <code>(c)</code>, not ©, because non-ASCII characters in 
+                        Make sure that you use <code>(c)</code>, not Â©, because non-ASCII characters in 
                         source code can break the build!<br>
                         (See <a href="http://icu.sourceforge.net/copyright-scan.html">ICU's check-in policy</a>
                         for more details.)</p>
@@ -313,7 +336,7 @@
                                 <li>
                                 But not for mixin/interface classes (pure virtual, no data members, no 
                                 constructors) because that would break the single-inheritance model.<li>
-                                Also not for pure-static classes (used for name scoping) — declare but don't 
+                                Also not for pure-static classes (used for name scoping) â€” declare but don't 
                                 implement a private default constructor to prevent instantiation.<li>
                                     Simple struct-like C++ classes (and structs) that do not have constructors, 
                                     destructors, and virtual methods, need not inherit the base class but must then 
@@ -405,48 +428,70 @@
                 <td>Build and run source/test/testmap project.</td>
             </tr>
             <tr>
-                <td>
-                    <p>George (C)</p>
-                    <p>Ram (J)</p>
-                </td>
-                <td>2006-08-07 (C), 2006-09-07 (J)</td>
+                <td>George</td>
+                <td>2006-08-07</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Check the API and code coverage numbers</b>
+                        <b>Check the ICU4C API and code coverage numbers</b>
                     </div>
                 </td>
-                <td>All releases go out to the public with 100% API test and at least 85% code 
+                <td>All releases go out to the public with 100% API test and at least 85% code
+                    coverage.</td>
+            </tr>
+            <tr>
+                <td>Ram</td>
+                <td>2006-09-07</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Check the ICU4J API and code coverage numbers</b>
+                    </div>
+                </td>
+                <td>All releases go out to the public with 100% API test and at least 85% code
                     coverage.</td>
             </tr>
             <tr>
                 <td>George (nagger)</td>
-                <td>2006-08-07 (C), 2006-09-07 (J)</td>
+                <td>2006-08-07</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Code review complete</b>
+                        <b>ICU4C code review complete</b>
                     </div>
                 </td>
                 <td>Nag all the reviewers to finish reviewing the code and file the bugs into the 
                     appropriate folders.</td>
             </tr>
             <tr>
-                <td>
-                    <p>George (C)</p>
-                    <p>Ram (J)</p>
-                </td>
-                <td>2006-08-21(C), 2006-09-21 (J)</td>
+                <td>George (nagger)</td>
+                <td>2006-09-07</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Create a working snapshot</b>
+                        <b>ICU4J code review complete</b>
+                    </div>
+                </td>
+                <td>Nag all the reviewers to finish reviewing the code and file the bugs into the
+                    appropriate folders.</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-08-21</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Create a working ICU4C snapshot</b>
                     </div>
                 </td>
                 <td>You need a working snapshot of the ICU build first. To do so, you need to check 
@@ -454,17 +499,30 @@
                     platforms, e.g. Win32 and AIX (to cover both endiannesses).</td>
             </tr>
             <tr>
-                <td>
-                    <p>George (C)</p>
-                    <p>Ram (J)</p>
-                </td>
-                <td>2006-08-21 (C), 2006-09-21 (J)</td>
+                <td>Ram</td>
+                <td>2006-09-21</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Tag the source code</b>
+                        <b>Create a working ICU4J snapshot</b>
+                    </div>
+                </td>
+                <td>You need a working snapshot of the ICU build first. To do so, you need to check
+                    out the most recent tree and build it on at least two of the reference
+                    platforms, e.g. Win32 and AIX (to cover both endiannesses).
+                </td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-08-21</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Tag the ICU4C source code</b>
                     </div>
                 </td>
                 <td>Once you have a working snapshot of the tree, you need to tag the tree as <code>release-majorVersion-minorVersion[-revisionNumber]-d01</code>.<br>
@@ -473,17 +531,30 @@
                     tag will not have the development suffix.</td>
             </tr>
             <tr>
-                <td>
-                    <p>George (C)</p>
-                    <p>Ram (J)</p>
-                </td>
-                <td>2006-08-15 (C), 2006-09-15 (J)</td>
+                <td>Ram</td>
+                <td>2006-09-21</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Start a daily build process</b>
+                        <b>Tag the ICU4J source code</b>
+                    </div>
+                </td>
+                <td>Once you have a working snapshot of the tree, you need to tag the tree as <code>release-majorVersion-minorVersion[-revisionNumber]-d01</code>.<br>
+                    The <code>d01</code> development suffix is incremented for subsequent 
+                    pre-release snapshots (to <code>d02</code>, <code>d03</code> etc.). The final 
+                    tag will not have the development suffix.</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-08-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Start a daily ICU4C build process</b>
                     </div>
                 </td>
                 <td>
@@ -509,17 +580,44 @@
             </tr>
             <tr>
                 <td>Ram</td>
-                <td>2006-08-21(C), 2006-09-21 (J)</td>
+                <td>2006-09-15</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Build API documentation</b>
+                        <b>Start a daily ICU4J build process</b>
+                    </div>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Ram</td>
+                <td>2006-08-21</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Build ICU4C API documentation</b>
                     </div>
                 </td>
                 <td>Build the API documentation pages for the new release. Run Doxygen to create 
-                    the javadoc files.. create icu-<i>X.X.X</i>.zip and icu-<i>X.X.X</i>.tgz.</td>
+                    the javadoc files. Create icu-<i>X.X.X</i>.zip and icu-<i>X.X.X</i>.tgz.</td>
+            </tr>
+            <tr>
+                <td>Ram</td>
+                <td>2006-09-21</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Build ICU4J API documentation</b>
+                    </div>
+                </td>
+                <td>Build the API documentation pages for the new release.
+                    Create icu-<i>X.X.X</i>.zip and icu-<i>X.X.X</i>.tgz.</td>
             </tr>
             <tr>
                 <td>Markus</td>
@@ -719,57 +817,91 @@ unicode/convert.h     - 0
                 </td>
             </tr>
             <tr>
-                <td>
-                    <p>Yoshito (J)</p>
-                    <p>Ram (C)</p>
-                </td>
-                <td>2006-08-15 (C), 2006-09-15 (J)</td>
+                <td>Ram</td>
+                <td>2006-08-15</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Update the ICU API Change Report</b>
+                        <b>Update the ICU4C API Change Report</b>
                     </div>
                 </td>
-                <td>
-                    <p>Run the ICU4J API comparison tools (build.xml targets gatherapi, apireport) to 
-                        generate new api and report files (build.xml strings will need to change). 
-                        Check in the API file. Rename the report file to ${root}/APIChangeReport.html 
-                        and replace the existing one and check it in. Make sure the readme.html file 
-                        links to it (no change should be required).</p>
-                    <p>For ICU4C please follow the instructions on <a href="http://icu.sanjose.ibm.com/internal/wiki/wiki?Doxygen">
-                            this</a> page.</p>
-                </td>
+                <td>For ICU4C please follow the instructions on <a href="http://icu.sanjose.ibm.com/internal/wiki/wiki?Doxygen">
+                    this</a> page.</td>
             </tr>
             <tr>
-                <td>
-                    <p>George (C)</p>
-                    <p>Ram (J)</p>
-                </td>
-                <td>2006-08-21 (C), 2006-09-21 (J)</td>
+                <td>Yoshito</td>
+                <td>2006-09-15</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Update the Readme.html again</b>
+                        <b>Update the ICU4J API Change Report</b>
+                    </div>
+                </td>
+                <td>Run the ICU4J API comparison tools (build.xml targets gatherapi, apireport) to
+                    generate new api and report files (build.xml strings will need to change).
+                    Check in the API file. Rename the report file to ${root}/APIChangeReport.html
+                    and replace the existing one and check it in. Make sure the readme.html file
+                    links to it (no change should be required).</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-08-21</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the ICU4C Readme.html again</b>
                     </div>
                 </td>
                 <td>...if there are any last second changes. Make sure to document especially items 
                     that affect software that is currently compiled with the previous version of 
-                    ICU. Update build/installation instructions as necessary. <b>Note:</b>The ICU4J 
-                    readme needs file sizes for the modules.</td>
+                    ICU. Update build/installation instructions as necessary.</td>
             </tr>
             <tr>
-                <td>George</td>
-                <td>2006-08-21(C), 2006-09-21 (J)</td>
+                <td>Ram</td>
+                <td>2006-09-21</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Update the web sites</b>
+                        <b>Update the ICU4J Readme.html again</b>
+                    </div>
+                </td>
+                <td>...if there are any last second changes. Make sure to document especially items
+                    that affect software that is currently compiled with the previous version of
+                    ICU. Update build/installation instructions as necessary. <b>Note:</b>The ICU4J
+                    readme needs file sizes for the modules.</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-08-21</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the web sites for ICU4C</b>
+                    </div>
+                </td>
+                <td>Make sure that, aside from download pages, homepages, news items, feature lists 
+                    and feature comparisons, etc. are updated. Upload the new API references. 
+                    Update the User Guide.</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-09-21</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the web sites for ICU4J</b>
                     </div>
                 </td>
                 <td>Make sure that, aside from download pages, homepages, news items, feature lists 
@@ -795,13 +927,13 @@ unicode/convert.h     - 0
             </tr>
             <tr>
                 <td>George</td>
-                <td>2006-09-01 (C), 2006-10-02 (J)</td>
+                <td>2006-09-01</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Update the internal <em>and</em> external web sites with release zip/tgz files 
+                        <b>ICU4C: Update the internal <em>and</em> external web sites with release zip/tgz files 
                             and announcement</b>
                     </div>
                 </td>
@@ -812,13 +944,45 @@ unicode/convert.h     - 0
             </tr>
             <tr>
                 <td>George</td>
-                <td>2006-09-01 (C), 2006-10-02 (J)</td>
+                <td>2006-10-02</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Announce the new release</b>
+                        <b>ICU4J: Update the internal <em>and</em> external web sites with release zip/tgz files
+                            and announcement</b>
+                    </div>
+                </td>
+                <td>An enhancement release simply needs to have a list of what has been changed or 
+                    added recently. A reference release should have much more detailed 
+                    descriptions, especially of what API's have changed since the <b>last reference 
+                        release</b> and migration steps.</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-09-01</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Announce the new ICU4C release</b>
+                    </div>
+                </td>
+                <td>Post the update to the <b>icu-announce</b> list, the <b>icu-support</b> list, 
+                    the <b>icu-design</b> list, and the internal <b>IBM-UNICODE</b> list.<br>
+                    Put a News item on the internal and external homepages.</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-10-02</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Announce the new ICU4J release</b>
                     </div>
                 </td>
                 <td>Post the update to the <b>icu-announce</b> list, the <b>icu-support</b> list, 
@@ -827,13 +991,13 @@ unicode/convert.h     - 0
             </tr>
             <tr>
                 <td>Steven</td>
-                <td>2006-09-01 (C), 2006-10-02 (J)</td>
+                <td>2006-09-01</td>
                 <td>
                     <p align="center">Yes</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Update the jitterbug release number list</b>
+                        <b>Update the jitterbug release number list for ICU4C</b>
                     </div>
                 </td>
                 <td>Update the jitterbug release number list in the jitterbug file <code>bug_tracking/reportform.html</code>
@@ -841,13 +1005,27 @@ unicode/convert.h     - 0
             </tr>
             <tr>
                 <td>Steven</td>
-                <td>2006-09-01 (C), 2006-10-02 (J)</td>
+                <td>2006-10-02</td>
+                <td>
+                    <p align="center">Yes</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update the jitterbug release number list for ICU4J</b>
+                    </div>
+                </td>
+                <td>Update the jitterbug release number list in the jitterbug file <code>bug_tracking/reportform.html</code>
+                    on the oss server to include the new release number.</td>
+            </tr>
+            <tr>
+                <td>Steven</td>
+                <td>2006-09-01</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Update the <u>freshmeat.net</u> entry.</b>
+                        <b>Update the <u>freshmeat.net</u> entry for ICU4C.</b>
                     </div>
                 </td>
                 <td>
@@ -901,13 +1079,26 @@ unicode/convert.h     - 0
             </tr>
             <tr>
                 <td>Steven</td>
-                <td>2006-09-01 (C), 2006-10-02 (J)</td>
+                <td>2006-10-02</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Update any other such public forums.</b>
+                        <b>Update the <u>freshmeat.net</u> entry for ICU4J.</b>
+                    </div>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Steven</td>
+                <td>2006-09-01</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Update any other such public forums for ICU4C.</b>
                     </div>
                 </td>
                 <td>
@@ -939,18 +1130,48 @@ unicode/convert.h     - 0
                 </td>
             </tr>
             <tr>
-                <td>George</td>
-                <td>2006-09-15 (C), 2006-10-15 (J)</td>
+                <td>Steven</td>
+                <td>2006-10-02</td>
                 <td>
                     <p align="center">&nbsp;</p>
                 </td>
                 <td>
                     <div align="left">
-                        <b>Jitterbug post-release cleanup</b>
+                        <b>Update any other such public forums for ICU4J.</b>
+                    </div>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-09-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Jitterbug post-release cleanup for ICU4C</b>
                     </div>
                 </td>
                 <td>
                     Sometime after the release move all items that went into this release from the 
+                    "fixed" folder to the "closed" folder.
+                    <p>Look for TODO comments in the source code and see what bugs need(!) to be filed.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>2006-10-15</td>
+                <td>
+                    <p align="center">&nbsp;</p>
+                </td>
+                <td>
+                    <div align="left">
+                        <b>Jitterbug post-release cleanup for ICU4J</b>
+                    </div>
+                </td>
+                <td>
+                    Sometime after the release move all items that went into this release from the
                     "fixed" folder to the "closed" folder.
                     <p>Look for TODO comments in the source code and see what bugs need(!) to be filed.</p>
                 </td>

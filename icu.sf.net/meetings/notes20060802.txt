@@ -1,0 +1,70 @@
+ICU Core Meeting Minutes
+=========================
+Copyright (c) 2006 IBM and others
+
+Doug Felt           - Google
+Markus Scherer      - Google
+Vladimir Weinstein  - Google
+Deborah Goldsmith   - Apple
+Andy Heninger       - IBM
+Steven Loomis       - IBM
+Eric Mader          - IBM
+John Emmons         - IBM
+Yoshito Umaoka      - IBM
+Ram Viswanadha      - IBM
+Michael Ow          - IBM
+
+1. Review of action items
+    A001. Eric to work with Doug for porting generic timezone formatting code to ICU4C 
+            Due: Post 3.6
+    A002. Everyone to review jitterbugs assigned to them  
+            Status: OPEN Due: 2006-08-04
+    A003.  Deborah to submit an RFE for making this option set by configure script
+            Status: OPEN
+    A004. Mark to evaluate jitterbug 5186 in ICU4J
+            Status: OPEN
+    A005. Deborah to fix jitterbug 5186 in ICU4C
+             Status: OPEN
+    A006. Andy to check with lawyers about publishing code for collation probe program
+            Status: OPEN
+    A007. Markus to futz around with different options for cnv binary file and report back to the group with recommendation.
+            Status: OPEN Due: Post 3.6
+    A008. George to change symbols to display name
+            Status: OPEN
+    A009. Ram to filter out data while generating ICU data
+            Status: OPEN
+    A010. Ram to move internal tools to public repository
+            Status: OPEN
+    A011: Eric & Steven to work on binary files and report back
+            Status: OPEN
+    A012: Steven to fix the build process for generating zoneinfo.txt
+    A013: Everyone to help test the new server once Steven sends out the instructions.
+    A014: Ram to include haw data in default build
+    
+2. Olson Data - JB# 4176
+    Deborah: Drop in the Olson data and ICU should pick it up automatically
+    Markus: tz code does not need to be patched. We decided to check in relavent pieces
+    Deborah: The make files are notset up right. They need to fixed. Add an option to the tool
+            to fetch tzdata from a specified location
+    Decision - A012
+
+3. Repository move to subversion
+    Steven - presented a status of the new repository
+    Decision - A013
+
+4. Reasons why users should move to Unicode 5.0
+    Markus : Case folding improved
+    Deborah : Properties stabilized
+    Markus: The Unicode editorial committee has more compelling reasons. Wait for Mark to give us an update.
+    
+5. CLDR draft data in ICU
+    John: ICU currently does not include data that is marked draft="provisional" in ICU. Should that be the policy?
+    Ram: ICU only includes data that is vetted in ICU by default. Tools let you pick and choose data to be included
+    George: locales that are required by Whitepaper are included by default
+    Ram: For all locales not all vetted data is included. Vetted data is judiciously pruned by default.
+    Deborah: Is there a process for ICU users to request certain locales to be included into the default build
+    George: There is no formal process. If a major ICU cucstomer requires certain locales to be included 
+            we could include it on a case by case basis. This is done to control the data library size.
+    Deborah: Can haw locale be included in ICU by default? Apple would like it to be
+    George: Since haw locale does not increase the size substantially we can include it
+    Decision - see A014

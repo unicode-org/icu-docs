@@ -327,11 +327,15 @@
 
     <h3><a name="ICU4J">ICU4J Download</a></h3>
 
+    <h4>Release Date</h4>
+
+    <p>2006-Sep-1</p>
+
     <h4>Downloads</h4>
 
     <p>Other than via the jar files, the code is also tagged in <a href=
     "http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a> with
-    release-3-4-4.</p>
+    release-3-4-5.</p>
 
     <table summary="Available ICU4J packages to download">
       <tr>
@@ -344,8 +348,8 @@
 
       <tr valign="top">
         <td><a href=
-        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/3.4.4/icu4j_3_4_4.jar">
-        icu4j_3_4_4.jar</a></td>
+        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/3.4.5/icu4j_3_4_5.jar">
+        icu4j_3_4_5.jar</a></td>
 
         <td>3.08M</td>
 
@@ -354,20 +358,20 @@
 
       <tr valign="top">
         <td><a href=
-        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/3.4.4/icu4jsrc_3_4_4.jar">
-        icu4jsrc_3_4_4.jar</a></td>
+        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/3.4.5/icu4jsrc_3_4_5.jar">
+        icu4jsrc_3_4_5.jar</a></td>
 
-        <td>9.24M</td>
+        <td>9.38M</td>
 
         <td>Jar file containing the source files.</td>
       </tr>
 
       <tr valign="top">
         <td><a href=
-        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/3.4.4/icu4jdocs_3_4_4.jar">
-        icu4jdocs_3_4_4.jar</a></td>
+        "ftp://ftp.software.ibm.com/software/globalization/icu/icu4j/3.4.5/icu4jdocs_3_4_5.jar">
+        icu4jdocs_3_4_5.jar</a></td>
 
-        <td>1.15M</td>
+        <td>1.16M</td>
 
         <td>Jar file containing the api documentation.</td>
       </tr>
@@ -375,18 +379,34 @@
 
     <h4>Maintenance Release Notes</h4>
 
-    <p>ICU4J 3.4.4 is a maintenance release of ICU4J 3.4. The primary features
+    <p>ICU4J 3.4.5 is a maintenance release of ICU4J 3.4. The primary features
     of this release are:</p>
+
+    <ul>
+      <li>Updated timezone data based on Olson 2006j.</li>
+      <li>Use IllegalStatusException instead of InternalError for ordinary run-time exception
+        (Jitterbug <a href="http://dev.icu-project.org/cgi-bin/icu-bugs/others?findid=5286">5286</a>).</li>
+      <li>Improved DateFormat format/parse performance
+        (Jitterbug <a href="http://dev.icu-project.org/cgi-bin/icu-bugs/others?findid=5203">5203</a>).</li>
+      <li>Bug fixes (not a complete list):
+        <ul>
+          <li>Runtime error in Collator.getInstance on JRE6 environment
+            (Jitterbug <a href="http://dev.icu-project.org/cgi-bin/icu-bugs/others?findid=5147">5147</a>).</li>
+          <li>TimeZone.getOffset may return wrong offset for time before the first offfset transition
+            (Jitterbug <a href="http://dev.icu-project.org/cgi-bin/icu-bugs/others?findid=5134">5134</a>).</li>
+          <li>Timezone string parsing problem in DateFormat.parse
+            (Jitterbug <a href="http://dev.icu-project.org/cgi-bin/icu-bugs/others?findid=5290">5290</a>).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>ICU4J 3.4.5 also contains changes made for former ICU4J 3.4 maintenance releases:</p>
 
     <ul>
       <li>Fixes crashing bugs in the data (Jitterbug <a href=
       "http://dev.icu-project.org/cgi-bin/icu-bugs/others?findid=5108">5108</a>).</li>
-    </ul>
 
-    <p>ICU4J 3.4.4 also contains changes made for ICU4J 3.4.2 &amp; 3.4.3:</p>
-
-    <ul>
-      <li>uses Olson 2006a time zone data</li>
+      <li>uses Olson 2006a time zone data (in 3.4.4, updated to 2006j in 3.4.5)</li>
 
       <li>no longer tags @draft APIs with @deprecated by default</li>
 
@@ -442,7 +462,7 @@
     <h4>Platform Installation Notes</h4>
 
     <p>Please be sure to view the <a href=
-    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icu4j/readme.html?rev=release-3-4-4">
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icu4j/readme.html?rev=release-3-4-5">
     readme.html</a> that is included in ICU. Most installation questions can be
     answered there.</p>
 

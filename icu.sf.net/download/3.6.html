@@ -26,62 +26,61 @@
     <p>Major changes in ICU 3.6 will include the following:</p>
 
     <ul>
-      <li><strong>Unicode</strong>: Uses and supports Unicode 5.0, which is the
+      <li><strong>Unicode</strong>: ICU uses and supports Unicode 5.0, which is the
       latest major release of Unicode. Unicode 5.0 will be used in many
-      operating systems, applications and companies. More information about
-      Unicode 5.0 can be found in the <a href=
+      operating systems and applications, and this version of ICU is important
+      maintain interoperability with these new operating systems and applications.
+      More information about Unicode 5.0 can be found in the <a href=
       "http://www.unicode.org/press/pr-ucd5.0.html">Unicode press
       release</a>.</li>
 
-      <li><strong>Locale Data</strong>: Uses and supports data from <a href=
+      <li><strong>Locale Data</strong>: ICU uses and supports data from <a href=
       "http://www.unicode.org/press/pr-cldr1.4.html">Common Locale Data
       Repository (CLDR) 1.4</a>, which includes many improvements in quality
-      and quantity of data.</li>
+      and quantity of data. There is 25% more CLDR locale data in ICU.</li>
 
       <li>
         <strong>ICU4C Specific Changes</strong> 
 
         <ul>
-          <li><strong>Charset Detection</strong>: A new charset detection API
-          has been added, which provides heuristics for detecting the charset
+          <li><strong>Charset Detection</strong>: A new charset detection framework
+          was added, which provides heuristics for detecting the charset
           for unlabeled sequences of bytes.</li>
 
           <li><strong>Layout</strong>: The font layout engine has support added
           for Tibetan, Sinhala and Old Hangul.</li>
 
-          <li><strong>BiDi</strong>: The BiDi algorithm has been enhanced to be
+          <li><strong>BiDi</strong>: The BiDi algorithm was enhanced to be
           more flexible and efficient</li>
 
           <li><strong>ICU Data Management</strong>: The new icupkg tool
           provides an easier way to manage ICU's data library. This tool allows
           you to add, update or remove data from ICU's data archive.</li>
 
-          <li><strong>Word Boundaries</strong>: Thai word break iteration has
-          been improved to give better results. Also dictionary based detection
+          <li><strong>Word Boundaries</strong>: The Thai word break iteration was
+          improved to be more accurate. Also dictionary based detection
           of Thai word boundaries is now active for all locales.</li>
 
           <li>
             <strong>UText</strong> 
 
             <ul>
-              <li>Now used by the BreakIterator for abstract text
-              processing.</li>
+              <li>The BreakIterator uses UText for abstract text processing.</li>
 
-              <li>Uses 64-bit indexing.</li>
+              <li>64-bit indexing is now used.</li>
 
-              <li>Allows read-only locking for security and robustness.</li>
+              <li>API for read-only locking for security and robustness was added.</li>
             </ul>
           </li>
 
           <li>
-            <strong>Timezones</strong> 
+            <strong>Time Zones</strong> 
 
             <ul>
-              <li>Better determination of default timezone detection on Unix
-              machines.</li>
+              <li>The default time zone is detected more accurately on Unix machines.</li>
 
-              <li>Better modularization of timezone data so that the data can
-              be easily built and updated.</li>
+              <li>The time zone data is modularized to allow easier building
+              and updating of the data.</li>
             </ul>
           </li>
 
@@ -101,7 +100,10 @@
               <li>The UTF-8 transformation functions and macros are
               faster.</li>
 
-              <li>The UText API has been improved for performance.</li>
+              <li>The UText API was improved for performance.</li>
+
+              <li>The collation open and close functions have a small
+              performance improvement.</li>
             </ul>
           </li>
         </ul>
@@ -116,10 +118,10 @@
           patterns to be generated that are valid for specific locales.</li>
 
           <li><strong>Globalization Preferences</strong>: A new flexible
-          container for locale data has been added.</li>
+          container for locale data was added.</li>
 
           <li><strong>Charset Conversion</strong>: A preview of the ICU4J
-          implementation of the <tt>java.nio.charset.Charset</tt> API has been
+          implementation of the <tt>java.nio.charset.Charset</tt> API was
           added.</li>
         </ul>
       </li>
@@ -175,6 +177,16 @@
         <td class="release-line">2.6MB</td>
 
         <td class="release-line">ZIP file with the API documentation</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu-3_6-userguide.zip">
+        icu-3_6-userguide.zip</a></td>
+
+        <td class="release-line">2.1MB</td>
+
+        <td class="release-line">ZIP file with the User Guide documentation</td>
       </tr>
     </table>
 

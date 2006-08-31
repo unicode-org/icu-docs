@@ -3,126 +3,276 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta name="generator" content="HTML Tidy, see www.w3.org" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>ICU 3.6 d02 release</title>
+    <title>ICU 3.6 Release</title>
     <meta name="COPYRIGHT" content=
-    "Copyright (c) 2006 IBM Corporation and others. All Rights Reserved.">
+    "Copyright (c) 2006 IBM Corporation and others. All Rights Reserved." />
     <link rel="stylesheet" href="../icu.css" type="text/css" />
   </head>
 
   <body>
     <!--#include virtual="../ssi/header.html" -->
 
-    <h2>Download ICU 3.6 d02 (beta) release</h2>
+    <h2>Download ICU 3.6 release</h2>
     <hr />
 
     <h3>Description</h3>
 
-    <p>This the d02 draft version of a major ("reference") release with new features
-    and new and modified APIs.</p>
+    <p>ICU is the premier library for software internationalization. ICU 3.6 is
+    a major release of ICU, with new features, new APIs, and many bug fixes in
+    data and code.</p>
 
     <p>Major changes in ICU 3.6 will include the following:</p>
 
     <ul>
-      <li>A new charset detection API has been added</li>
+      <li><strong>Unicode</strong>: Uses and supports Unicode 5.0, which is the
+      latest major release of Unicode. Unicode 5.0 will be used in many
+      operating systems, applications and companies. More information about
+      Unicode 5.0 can be found in the <a href=
+      "http://www.unicode.org/press/pr-ucd5.0.html">Unicode press
+      release</a>.</li>
 
-      <li>Support for Unicode 5.0, UCA 5.0 and CLDR 1.4 have been added</li>
+      <li><strong>Locale Data</strong>: Uses and supports data from <a href=
+      "http://www.unicode.org/press/pr-cldr1.4.html">Common Locale Data
+      Repository (CLDR) 1.4</a>, which includes many improvements in quality
+      and quantity of data.</li>
 
-      <li>Default timezone detection on Unix machines has been improved</li>
+      <li>
+        <strong>ICU4C Specific Changes</strong> 
 
-      <li>Dictionary based detection of Thai word boundaries is now active for
-      all locales</li>
+        <ul>
+          <li><strong>Charset Detection</strong>: A new charset detection API
+          has been added, which provides heuristics for detecting the charset
+          for unlabeled sequences of bytes.</li>
 
-      <li>New extensible framework for dictionary based word boundaries</li>
+          <li><strong>Layout</strong>: The font layout engine has support added
+          for Tibetan, Sinhala and Old Hangul.</li>
 
-      <li>The BreakIterator API now uses an abstract text interface called
-      UText</li>
+          <li><strong>BiDi</strong>: The BiDi algorithm has been enhanced to be
+          more flexible and efficient</li>
 
-      <li>UText abstract text interface enhanced for 64 bit indexing, read-only
-      locking, better performance</li>
+          <li><strong>ICU Data Management</strong>: The new icupkg tool
+          provides an easier way to manage ICU's data library. This tool allows
+          you to add, update or remove data from ICU's data archive.</li>
 
-      <li>Tibetan font layout support as been added</li>
+          <li><strong>Word Boundaries</strong>: Thai word break iteration has
+          been improved to give better results. Also dictionary based detection
+          of Thai word boundaries is now active for all locales.</li>
 
-      <li>The BiDi algorithm has been enhanced to be more flexible and
-      efficient</li>
-      
-      <li>The timezone data is now easy to update when ICU is downloaded from CVS</li>
+          <li>
+            <strong>UText</strong> 
 
-      <li>A new icupkg tool has been created for easier management of .dat data archives</li>
+            <ul>
+              <li>Now used by the BreakIterator for abstract text
+              processing.</li>
 
-      <li>Performance
-      <ul>
-      <li>The u_sprintf/u_sscanf performance from the icuio library has been improved for number formatting/parsing</li>
-      <li>Opening and closing a charset converter is significantly faster</li>
-      </ul></li>
+              <li>Uses 64-bit indexing.</li>
+
+              <li>Allows read-only locking for security and robustness.</li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>Timezones</strong> 
+
+            <ul>
+              <li>Better determination of default timezone detection on Unix
+              machines.</li>
+
+              <li>Better modularization of timezone data so that the data can
+              be easily built and updated.</li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>Performance</strong> 
+
+            <ul>
+              <li>The u_sprintf/u_sscanf performance from the icuio library has
+              been improved for number formatting/parsing.</li>
+
+              <li>Constructing a DateFormat is significantly faster for many
+              locales.</li>
+
+              <li>Opening and closing a charset converter is significantly
+              faster.</li>
+
+              <li>The UTF-8 transformation functions and macros are
+              faster.</li>
+
+              <li>The UText API has been improved for performance.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>ICU4J Specific Changes</strong> 
+
+        <ul>
+          <li><strong>Formatting</strong>: A new flexible date/time format
+          generator has been added. This allows multiple date and time format
+          patterns to be generated that are valid for specific locales.</li>
+
+          <li><strong>Globalization Preferences</strong>: A new flexible
+          container for locale data has been added.</li>
+
+          <li><strong>Charset Conversion</strong>: A preview of the ICU4J
+          implementation of the <tt>java.nio.charset.Charset</tt> API has been
+          added.</li>
+        </ul>
+      </li>
     </ul>
 
     <h3><a name="ICU4C">ICU4C Download</a></h3>
 
     <h4>Release Date</h4>
 
-    <p>2006-???-??</p>
+    <p>2006-Sep-01</p>
 
     <h4>Source Code Download</h4>
-<p>In addition to these .tar and .zip 
-files, the code is also tagged in <a
-href="http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a> with 
-release-3-6-d02.</p>
-<p>The ICU4C 3.6 d02 source downloads contains a pre-built .dat data archive with ICU's 
-data rather than the data source files. This is to simplify the build process 
-for the majority of users and to reduce platform porting issues. If you need the 
-data source files for customization, then please download the ICU source code 
-from <a 
-href="http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a>. 
-</p>
 
-    <table summary="Available files to download" border="0" id="Table1">
-        <tr>
-          <th class="release-line">File</th>
+    <p>In addition to these .tar and .zip files, the code is also tagged in <a
+    href="http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a>
+    with release-3-6.</p>
 
-          <th class="release-line">Size</th>
+    <table summary="Available files to download" border="0">
+      <tr>
+        <th class="release-line">File</th>
 
-          <th class="release-line">Description</th>
-        </tr>
+        <th class="release-line">Size</th>
 
-        <tr>
-          <td class="release-line"><a href=
-          "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu4c-3_6_d02-src.zip">
-          icu4c-3_6_d02-src.zip</a></td>
+        <th class="release-line">Description</th>
+      </tr>
 
-          <td class="release-line">10.6 MB</td>
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu4c-3_6-src.zip">
+        icu4c-3_6-src.zip</a></td>
 
-          <td class="release-line">ZIP file for Windows platforms</td>
-        </tr>
+        <td class="release-line">10.6 MB</td>
 
-        <tr>
-          <td class="release-line"><a href=
-          "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu4c-3_6_d02-src.tgz">
-          icu4c-3_6_d02-src.tgz</a></td>
+        <td class="release-line">ZIP file for Windows platforms</td>
+      </tr>
 
-          <td class="release-line">9.8 MB</td>
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu4c-3_6-src.tgz">
+        icu4c-3_6-src.tgz</a></td>
 
-          <td class="release-line">gzipped tar archive for Unix and other
-          platforms</td>
-        </tr>
+        <td class="release-line">9.8 MB</td>
+
+        <td class="release-line">gzipped tar archive for Unix and other
+        platforms</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu4c-3_6-docs.zip">
+        icu4c-3_6-docs.zip</a></td>
+
+        <td class="release-line">2.6MB</td>
+
+        <td class="release-line">ZIP file with the API documentation</td>
+      </tr>
     </table>
 
-<h4>Platform Installation Notes</h4>
-<p>Please be sure to view the <a
-href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icu/readme.html?rev=release-3-6-d02">readme.html</a> 
-that is included in ICU. Most installation questions can be answered there. The 
-z/OS (OS/390) <a
-href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/as_is/os390/unpax-icu.sh?rev=release-3-6-d02">unpax-icu.sh</a> 
-script is required to unpackage the compressed tar file on z/OS, and the i5/OS 
-(OS/400) <a
-href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/as_is/os400/unpax-icu.sh?rev=release-3-6-d02">unpax-icu.sh</a> 
-script is required to unpackage the compressed file on i5/OS.</p>
-<h4>Known Issues, Bugs and Patches</h4> 
-<p>For the list of known issues with ICU4C 3.6 please see the <a 
-href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icu/readme.html?rev=release-3-6-d02">readme 
-file</a>.</p>
+    <h4>Binary Distribution Download</h4>
+
+    <p>Here are the binary distributions of the ICU libraries on our reference
+    platforms.</p>
+
+    <table summary="Available ICU4C binary executable packages to download">
+      <tr>
+        <th>File</th>
+
+        <th>Size</th>
+
+        <th>Platform</th>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu4c-3_6-AIX5_2-VA6.tgz">
+        icu4c-3_6-AIX5_2-VA6.tgz</a></td>
+
+        <td class="release-line">7.2MB</td>
+
+        <td class="release-line">AIX 5.2 (PowerPC 64-bit) VisualAge 6</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu4c-3_6-HPUX11i-aCC.tgz">
+        icu4c-3_6-HPUX11i-aCC.tgz</a></td>
+
+        <td class="release-line">6.8MB</td>
+
+        <td class="release-line">HP-UX 11i (B.11.11) (PA-RISC 64-bit) aCC
+        A.03.50</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu4c-3_6-RHEL4_2-gcc3_4_5.tgz">
+        icu4c-3_6-RHEL4_2-gcc3_4_5.tgz</a></td>
+
+        <td class="release-line">6.0MB</td>
+
+        <td class="release-line">Red Hat Enterprise Linux 4.2 (x86 32-bit) gcc
+        3.4.5</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu4c-3_6-Solaris-CC8.tgz">
+        icu4c-3_6-Solaris-CC8.tgz</a></td>
+
+        <td class="release-line">6.9MB</td>
+
+        <td class="release-line">Solaris 9 (Sparc 64-bit) Forte 8.0</td>
+      </tr>
+
+      <tr>
+        <td class="release-line"><a href=
+        "ftp://ftp.software.ibm.com/software/globalization/icu/3.6/icu4c-3_6-Win32-msvc7_1.zip">
+        icu4c-3_6-Win32-msvc7_1.zip</a></td>
+
+        <td class="release-line">6.1MB</td>
+
+        <td class="release-line">Windows (win32 x86 32-bit) Visual Studio.Net
+        2003 (MSVC 7.1)</td>
+      </tr>
+    </table>
+
+    <h4>Platform Installation Notes</h4>
+
+    <p>Please be sure to view the <a href=
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icu/readme.html?rev=release-3-6">
+    readme.html</a> that is included in ICU. Most installation questions can be
+    answered there. The z/OS (OS/390) <a href=
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/as_is/os390/unpax-icu.sh?rev=release-3-6">
+    unpax-icu.sh</a> script is required to unpackage the compressed tar file on
+    z/OS, and the i5/OS (OS/400) <a href=
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/as_is/os400/unpax-icu.sh?rev=release-3-6">
+    unpax-icu.sh</a> script is required to unpackage the compressed file on
+    i5/OS.</p>
+
+    <p>The ICU4C 3.6 source downloads contains a pre-built .dat data archive
+    with ICU's data rather than the data source files. This is to simplify the
+    build process for the majority of users and to reduce platform porting
+    issues. If you need the data source files for customization, then please
+    download the ICU source code from <a href=
+    "http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a>. If
+    you need to remove data from ICU's data library, you can also consider
+    using the new icupkg tool to modify the data built into ICU.</p>
+
+    <h4>Known Issues, Bugs and Patches</h4>
+
+    <p>For the list of known issues with ICU4C 3.6 please see the <a href=
+    "http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icu/readme.html?rev=release-3-6">
+    readme file</a>.</p>
 
     <h3><a name="ICU4J">ICU4J Download</a></h3>
 
@@ -131,9 +281,9 @@ file</a>.</p>
 
     <h3><a name="ICU4JNI">ICU4JNI Download</a></h3>
 
-    <p>The ICU4JNI release has been postponed by a month. Please come back later
-    for this release.</p>
-        <!--#include virtual="../ssi/footer.html" -->
+    <p>The ICU4JNI release has been postponed by a month. Please come back
+    later for this release.</p>
+    <!--#include virtual="../ssi/footer.html" -->
   </body>
 </html>
 

@@ -118,18 +118,19 @@
         <ul>
           <li><strong>Globalization Preferences</strong>: A new flexible
           container for locale data was added.</li>
-
-          <li><strong>Formatting</strong>: A preview of the flexible date/time format
-          generator API was added. This allows multiple date and time format
+          
+          <li><strong>Formatting</strong>: A <strong>preview</strong> of flexible date/time format
+          generator has been added. This allows multiple date and time format
           patterns to be generated that are valid for specific locales.</li>
-
+          
+          <li><strong>Charset Conversion</strong>: A <strong>preview</strong> of the ICU4J
           <li><strong>Charset Conversion</strong>: A preview of the ICU4J
           implementation of the <tt>java.nio.charset.Charset</tt> API was
           added.</li>
         </ul>
       </li>
     </ul>
-
+    <font color="red"><i>Note: Do not use preview APIs in production code. They may change drastically in subsequent releases.</i></font>
     <h3><a name="ICU4C">ICU4C Download</a></h3>
 
     <h4>Release Date</h4>
@@ -293,13 +294,13 @@
 
     <h4>Release Date</h4>
 
-    <p>2006-Sep-08</p>
+    <p>2006-Sep-20</p>
 
     <h4>Downloads</h4>
 
     <p>In addition to these .jar, the code is also tagged in <a
     href="http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a>
-    with release-3-6-d01.</p>
+    with release-3-6-d02.</p>
 
     <table summary="Available files to download" border="0">
       <tr>
@@ -312,8 +313,8 @@
 
       <tr>
         <td class="release-line"><a href=
-        "http://prdownloads.sourceforge.net/icu/icu4j-3_6_d01.jar?download">
-        icu4j-3_6_d01.zip</a></td>
+        "http://prdownloads.sourceforge.net/icu/icu4j-3_6_d02.jar?download">
+        icu4j-3_6_d02.zip</a></td>
 
         <td class="release-line">6.3MB</td>
 
@@ -322,8 +323,8 @@
       
       <tr>
         <td class="release-line"><a href=
-        "http://prdownloads.sourceforge.net/icu/icu4j-3_6_d01-src.jar?download">
-        icu4j-3_6_d01-src.jar</a></td>
+        "http://prdownloads.sourceforge.net/icu/icu4j-3_6_d02-src.jar?download">
+        icu4j-3_6_d02-src.jar</a></td>
 
         <td class="release-line">12.87 MB</td>
 
@@ -332,8 +333,8 @@
 
       <tr>
         <td class="release-line"><a href=
-        "http://prdownloads.sourceforge.net/icu/icu4j-3_6_d01-docs.jar?download">
-        icu4j-3_6_d01-docs.jar</a></td>
+        "http://prdownloads.sourceforge.net/icu/icu4j-3_6_d02-docs.jar?download">
+        icu4j-3_6_d02-docs.jar</a></td>
 
         <td class="release-line">1.2 MB</td>
 
@@ -348,13 +349,44 @@
     that is included in ICU. Most installation questions can be answered there.</p>
 
     <h4>Known Issues, Bugs and Patches</h4>
-
-    <p>TestTimeZoneDisplayName tests fail due to mismatch in data.</p>
-
+        <ul>
+            <li>No data tests fail on IBM JDK 1.5.0</li>
+            <li>Mulithreaded test fails on IBM JDK 1.5.0 on AIX 5.2</li>
+        </ul
     <h3><a name="ICU4JNI">ICU4JNI Download</a></h3>
+    
+    <h4>Release Date</h4>
 
-    <p>The ICU4JNI release has been postponed by a month. Please come back
-    later for this release.</p>
+    <p>2006-Sep-20</p>
+
+    <h4>Downloads</h4>
+
+    <p>In addition to this .zip, the code is also tagged in <a
+    href="http://www.ibm.com/software/globalization/icu/repository.jsp">CVS</a>
+    with release-3-6-d01.</p>
+    <table summary="Available files to download" border="0">
+      <tr>
+        <th class="release-line">File</th>
+
+        <th class="release-line">Size</th>
+
+        <th class="release-line">Description</th>
+      </tr>
+      
+      <tr>
+        <td class="release-line"><a href=
+        "http://prdownloads.sourceforge.net/icu/icu4jni-3_6_d01-src.jar?download">
+        icu4jni-3_6_d01-src.jar</a></td>
+
+        <td class="release-line">10.53MB</td>
+
+        <td class="release-line">Jar file containing the sources.</td>
+      </tr>
+
+    </table>
+    <h4>Known Issues, Bugs and Patches</h4>
+    <p> None.</p>
+
     <!--#include virtual="../ssi/footer.html" -->
   </body>
 </html>

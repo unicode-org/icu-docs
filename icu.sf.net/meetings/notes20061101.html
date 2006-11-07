@@ -4,7 +4,7 @@
 
 <!-- Copyright (c) 2006 IBM and others -->
   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-  <title>ICU Core Minutes 10/25/2006</title>
+  <title>ICU Core Minutes 11/01/2006</title>
 
 
 </head>
@@ -40,7 +40,7 @@ Ram Viswanadha<br>
 
 Yoshito Umaoka<br>
 
-<br>
+Vladimir Weinstein<br>
 
 </div>
 
@@ -81,7 +81,7 @@ with Eclipse team and evaluate if the wrapper code needs to be updated</td>
 
       <td align="undefined" valign="undefined">31</td>
 
-      <td align="undefined" valign="undefined">11/01/06</td>
+      <td align="undefined" valign="undefined">11/08/06</td>
 
       <td align="undefined" valign="undefined">Mark,<br>
 
@@ -96,7 +96,7 @@ at UnicodeSet and CollectionUtilities,&nbsp; make a proposal</td>
 
       <td align="undefined" valign="undefined">32</td>
 
-      <td align="undefined" valign="undefined">11/01/06</td>
+      <td align="undefined" valign="undefined">11/08/06</td>
 
       <td align="undefined" valign="undefined">Steven</td>
 
@@ -133,44 +133,6 @@ updates and staging server setup&nbsp;<span style="font-style: italic; color: rg
 
     <tr>
 
-      <td>35</td>
-
-      <td>11/01/06</td>
-
-      <td>George</td>
-
-      <td>Send raw data to Doug and announce on the public
-mailing list after adding disclaimers and caveats to the summary page.</td>
-
-    </tr>
-
-    <tr>
-
-      <td>36</td>
-
-      <td>11/01/06</td>
-
-      <td>Doug, Eric, Ram, Mark, Yoshito</td>
-
-      <td>Comment on Eric's email about @internal APIs in ICU4J</td>
-
-    </tr>
-
-    <tr>
-
-      <td>37</td>
-
-      <td>11/01/06</td>
-
-      <td>Steven</td>
-
-      <td>Submit a bug in CLDR for modifying SurveyTool with
-respect to Relative Date Time Format data</td>
-
-    </tr>
-
-    <tr>
-
       <td align="undefined" valign="undefined">6</td>
 
       <td align="undefined" valign="undefined">12/1/06</td>
@@ -183,6 +145,44 @@ the group with recommendation.</td>
 
     </tr>
 
+    <tr>
+
+      <td>38</td>
+
+      <td>11/08/06</td>
+
+      <td>Eric</td>
+
+      <td>Send out the list of contentious items in the list of
+APIs marked @internal in ICU4J</td>
+
+    </tr>
+
+    <tr>
+
+      <td>39</td>
+
+      <td>11/08/06</td>
+
+      <td>Steven</td>
+
+      <td>Check if file properties can be set on the server</td>
+
+    </tr>
+
+    <tr>
+
+      <td>40</td>
+
+      <td>11/08/06</td>
+
+      <td>Vladimir</td>
+
+      <td>To check if the file properties be set via cvs2svn
+properties</td>
+
+    </tr>
+
   </tbody>
 </table>
 
@@ -190,60 +190,51 @@ the group with recommendation.</td>
 
 <br>
 
-<h2>ICU Suvey Results</h2>
+<h2>Translations of Hong Kong and Macao&nbsp;</h2>
 
-George gave an overview of summary of suvey results. Long discussion
-followed.<br>
+Mark: Google is ok with using icu-config.xml for filtering the
+translations. SurveyTool must be updated to expose the alt values via
+survey tool<br>
 
-Mark suggested adding caveats to public summary page about small sample
-size<br>
+Steven: This functionality is already available in SurveyTool.<br>
 
-Steven suggested that a survey window could pop up everytime a user
-tries to download ICU. Can be done for 3.8<br>
+Deborah: The shorter translation should be the shorter string.
+<h2>Subversion and Trac status</h2>
 
-Markus proposed a suvey design committee to design the survey offline.<br>
+Andy described the list of tasks that need to completed before
+transition to subversion and trac. Requested everyone to review the
+list and add task items if missing.<br>
 
-<br>
+Markus raised the issue file properties. Long discussion followed.<br>
 
-<h2>Collation Probe Tool</h2>
+Markus: should we activate CVS keyword expansion?<br>
 
-Andy enquired about the appropriate loacation to place the collation
-probe tool.<br>
+Consensus: No<br>
 
-Decision: &nbsp;tools top level module in ICU repository is the
-&nbsp;right location<br>
+Markus inquired about the time line for transition<br>
 
-<br>
+Steven: 15th of Nov as the phase 1 and 1st Dec as the transition date.<br>
 
-<h2>ICU4J APIs Marked @internal</h2>
+<h2>SupplementalData</h2>
 
-<span style="font-weight: bold;"></span>Doug and
-Eric requested a closure on the list of APIs that are marked @internal.
-See 36 above.<br>
+Deborah raised an issue that there is currently no API in ICU to access
+the data in supplementalData.txt.<br>
 
-Eric requested that @internal APIs in ICU4C should also be reviewed.
-This list can be obtained <a href="http://icu.sourceforge.net/apiref/icu4c/internal.html">here</a>.
-<br>
+Mark indicated that there is a bug for making sure that all data in
+CLDR is accessible in ICU. That bug should be scheduled for 3.8.<br>
 
-<br>
+<h2>Arabic Shaping</h2>
 
-<h2>Relative Date Time Formats</h2>
+Eric sent some questions and comments about Arabic Shaping code
+contribution sot ICU Core list and requests resolution.<br>
 
-Deborah indicated that Relative Date Time formats is an important
-feature for Apple and should be planned for 3.8.<br>
+<h2>UTC Meeting</h2>
 
-Data for implementing this feature is already available in English
-locale in CLDR.<br>
+Andy inquired if there were any items on the agenda that ICU should be
+concerned about<br>
 
-Mark opined that more research is needed to flesh out data in English
-locale. Vetters do not provide correct data for their languages unless
-a corresponding item is available in English.<br>
-
-Decision: Schedule JB 2895 for 3.8<br>
-
-&nbsp; <br>
-
-<br>
+Mark replied that the latest IDN draft and stable normalization are the
+topics that would effect ICU<br>
 
 </body>
 </html>

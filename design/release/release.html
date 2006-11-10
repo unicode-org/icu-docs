@@ -1,9 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
 <head>
-
-        
-        
   <title>Throwing the Big Red Switch: How to ship ICU</title>
   <meta name="COPYRIGHT" content="Copyright (c) 2006 IBM Corporation and others. All Rights Reserved.">
 </head>
@@ -23,23 +20,16 @@
             <tbody>
     <tr>
 
-                <th>
-                    Implementor</th>
+                <th>Implementor</th>
 
-                <th colspan="1" rowspan="1" nowrap="nowrap">
+                <th nowrap="nowrap">
                     Due Date</th>
 
-                <th>
-                    
-      <p align="center">Done?</p>
+                <th>Done?</th>
 
-                </th>
+                <th>Task</th>
 
-                <th>
-                    Task</th>
-
-                <th>
-                    Description</th>
+                <th>Description</th>
 
             </tr>
 
@@ -1361,17 +1351,11 @@ unicode/convert.h     - 0
                     
       <ol>
 
-                        <li>
-                        Build ICU4C on Win32.</li>
-        <li>
-                        Build ICU4C on (little-endian-) Linux and then delete icu/data/*.res*.icu*.cnv 
+                        <li>Build ICU4C on Win32.</li>
+        <li>Build ICU4C on (little-endian-) Linux and then delete icu/data/*.res*.icu*.cnv 
                         libicudata.so (Not the libtest*.so!)</li>
-        <li>
-                        Copy the icudata.dat file into icu/data</li>
-        <li>
-                            Run all tests.</li>
-
-                    
+        <li>Copy the icudata.dat file into icu/data</li>
+        <li>Run all tests.</li>
       </ol>
 
                 </td>
@@ -1391,15 +1375,22 @@ unicode/convert.h     - 0
                 </td>
 
                 <td>
-                    
-      <div align="left">
-                        <b>Test on a Japanese or zh_SG system</b>
-                    </div>
-
+                    <b>Run <a href="../../tools/release/c/environmentTest.sh">environmentTest.sh</a> on a Linux machine</b>
                 </td>
 
-                <td>Please see ICU's reference platform list for more information, see the <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/readme.html#HowToBuildSupported">
-                        readme</a> and the <a href="http://icu.sourceforge.net/legal/index.html">DOU</a>.</td>
+                <td>This test verifies that the ICU test suite will work
+regardless of a user's default locale and timezone. This test should be run
+on a fast machine with several CPU cores. This will take a long time to run.
+Here are the steps to run the test.
+<ol>
+    <li>cd tools/release/c/</li>
+    <li>./environmentTest.sh</li>
+    <li>Wait a while for the tests to finish. The logs will be written in
+each test directory. e.g. icu/source/test/intltest/intltest-*.txt.
+A message will be printed from each spawned test script when it finishes.</li>
+    <li>grep the logs for any test failures when the tests are done.</li>
+</ol>
+</td>
 
             </tr>
 

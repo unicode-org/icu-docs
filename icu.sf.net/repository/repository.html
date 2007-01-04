@@ -1,172 +1,211 @@
-<!DOCTYPE html PUBLIC "-//w3c//dtd xhtml 1.0 transitional//en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
-
-
-
-
-
-
-
-  <title>ICU Source Repository and Bug Database Access</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-
-
-
-
-  <link rel="stylesheet" href="/icu.css" type="text/css">
-  <link rel="stylesheet" href="repository.css" type="text/css">
-
-
+  <title>ICU Source Repository</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="COPYRIGHT" content=
+  "Copyright (c) 2006-2007 IBM Corporation and others. All Rights Reserved." />
+  <link rel="stylesheet" href="/icu.css" type="text/css" />
+<style type="text/css">
+/*<![CDATA[*/
+.note { font-style: italic; font-size: small; margin-left: 1em; }
+table.rtable caption { margin-left: 2px; margin-right: 2px; margin-top: 1em; padding: 3px; font-style: bold; background-color: #dee2ff; text-align: left; }
+table.rtable tr th { background-color: #dee2ff; text-align: left; }
+table.rtable tr td { background-color: #c0c0fd; padding: 3px; }
+/*]]>*/
+</style>
 </head>
 
-
 <body>
+  <!--#include virtual="/ssi/header.html" -->
 
+  <h2>Source Code Access</h2>
+  <hr />
 
+  <h3>Source Code Repository</h3>
 
-<!-- Copyright (c) 2006 IBM Corp. All Rights Reserved -->
-<!--#include virtual="/ssi/header.html" -->
-<h2>Source Code &amp; Bug Data Base Access</h2>
+  <table class="rtable">
+    <caption>
+      Top level view of the ICU repository
+    </caption>
 
+    <tr>
+      <th><a href=
+      "http://source.icu-project.org/repos/icu/">http://source.icu-project.org/repos/icu/</a></th>
 
+      <td>Simple top level view of the ICU repository for use with
+      subversion.</td>
+    </tr>
 
-<hr><br>
+    <tr>
+      <th><a href=
+      "http://bugs.icu-project.org/trac/browser">http://bugs.icu-project.org/trac/browser</a></th>
 
-<h2>Bug and Feature Request Database</h2>
-<p class="indented">Use this database to submit bug reports
-to the ICU project, or to search existing reports to find out whether a
-problem is already known.<br>
-<a href="http://bugs.icu-project.org/trac">http://bugs.icu-project.org/trac</a></p>
+      <td>Browse the repository with Trac to shows different revisions, compare
+      revisions, annotated source and links to ticket descriptions.</td>
+    </tr>
+  </table>
 
-<p class="indented">Excel Spreadsheet view of the Trac Tickets.<br>
-<i>Data Menu→Refresh Data</i> will refresh from the Trac database while in Excel.<br>
-<a href="traclist.xls">traclist.xls</a><br>
-</p>
+  <table class="rtable">
+    <caption>
+      Specific URLs to use in your subversion client. If you want a specific
+      version of ICU, you should use one of the <a href="#tags">tagged
+      releases</a>.
+    </caption>
 
-<h2>Source Code Repository</h2>
+    <tr>
+      <th><a href=
+      "http://source.icu-project.org/repos/icu/data/">http://source.icu-project.org/repos/icu/data/</a></th>
 
-<table class="rtable">
-	<tr>
-		<th><a href="http://source.icu-project.org/repos/icu/">http://source.icu-project.org/repos/icu/</a></th>
-		<td>Use this URL with your <a href="http://subversion.tigris.org">Subversion</a> client<br>
-			Also, can browse here directly for simple HTTP access.</td>
-	</tr>
-	<tr>
-		<th><a href="http://bugs.icu-project.org/trac/browser">http://bugs.icu-project.org/trac/browser</a></th>
-		<td>Browse the repository with Trac<br>
-			Shows different revisions, annotated source, links to bugs.</td>
-	</tr>
-	
-	<tr class="sep"><td colspan="2"></td></tr>
+      <td>Auxilliary data items- not needed for normal ICU builds</td>
+    </tr>
 
-	<tr>
-		<th><a href="http://source.icu-project.org/cgi-bin/icuwiki.pl?SvnTips">SvnTips</a></th>
-		<td> Subversion Tips from the ICU Wiki</td>
-	</tr>
+    <tr>
+      <th><a href=
+      "http://source.icu-project.org/repos/icu/icu4j/">http://source.icu-project.org/repos/icu/icu/</a></th>
 
-	<tr>
-		<th><a href="http://icu.sourceforge.net/docs/subversion_howto/index.html">subversion_howto</a></th>
+      <td><b>ICU for C/C++</b></td>
+    </tr>
 
-		<td> Subversion Client Configuration&nbsp;for Accessing ICU from Windows</td>
-	</tr>
+    <tr>
+      <th><a href=
+      "http://source.icu-project.org/repos/icu/icu4j/">http://source.icu-project.org/repos/icu/icu4j/</a></th>
 
-	<tr>
-		<th><a href="http://subversion.tigris.org">http://subversion.tigris.org</a></th>
-		<td>Subversion Main Web Site
-	</tr>
-</table>
+      <td><b>ICU for Java</b></td>
+    </tr>
 
-<br>
+    <tr>
+      <th><a href=
+      "http://source.icu-project.org/repos/icu/icu4j/">http://source.icu-project.org/repos/icu/icu4jni/</a></th>
 
-<a name="roadmap"><h3>Finding your way around the ICU Repository: a Roadmap</h3></a>
+      <td><b>ICU for Java Native Interface</b></td>
+    </tr>
 
-<p class="note">For clarity, the <u>http://source.icu-project.org/</u> has been omitted.</p>
+    <tr>
+      <th><a href=
+      "http://source.icu-project.org/repos/icu/icuapps/">http://source.icu-project.org/repos/icu/icuapps/</a></th>
 
-<table class="rtable">
-	<tr>
-		<th>
-			<a href="http://source.icu-project.org/repos/icu/data/">/repos/icu/data/</a>
-		</th>
-		<td>Auxilliary data items- not needed for normal ICU builds</td>
-	</tr>
+      <td>Samples and Demos</td>
+    </tr>
 
-	<tr>
-		<th>
-			<a href="http://source.icu-project.org/repos/icu/icu4j/">/repos/icu/icu/</a>
-		</th>
-		<td><b>ICU for C/C++</b></td>
-	</tr>
-	<tr>
-		<th>
-			<a href="http://source.icu-project.org/repos/icu/icu4j/">/repos/icu/icu4j/</a>
-		</th>
-		<td><b>ICU for Java</b></td>
-	</tr>
-	<tr>
-		<th>
-			<a href="http://source.icu-project.org/repos/icu/icu4j/">/repos/icu/icu4jni/</a>
-		</th>
-		<td><b>ICU(4C) for Java Native Interface</b></td>
-	</tr>
-	<tr>
-		<th>
-			<a href="http://source.icu-project.org/repos/icu/icuapps/">/repos/icu/icuapps/</a>
-		</th>
-		<td>Samples and Demos</td>
-	</tr>
-	<tr>
-		<th>
-			<a href="http://source.icu-project.org/repos/icu/icuhtml/">/repos/icu/icuhtml/</a>
-		</th>
-	<td>Used by the ICU development team for documentation work.<br>(Please use <a href="http://icu.sourceforge.net/docs/">Docs &amp; Papers</a> to access ICU documentation.)</td>
-	</tr>
-	<tr>
-		<th>
-			<a href="http://source.icu-project.org/repos/icu/tools/">/repos/icu/tools/</a>
-		</th>
-		<td>Other tools used by the ICU development team. Not required for building ICU.</td>
-	</tr>
+    <tr>
+      <th><a href=
+      "http://source.icu-project.org/repos/icu/icuhtml/">http://source.icu-project.org/repos/icu/icuhtml/</a></th>
 
+      <td>Used by the ICU development team for documentation work.<br />
+      (Please use <a href="http://icu.sourceforge.net/docs/">Docs &amp;
+      Papers</a> to access ICU documentation.)</td>
+    </tr>
 
-</table>
+    <tr>
+      <th><a href=
+      "http://source.icu-project.org/repos/icu/tools/">http://source.icu-project.org/repos/icu/tools/</a></th>
 
-<h4>Tags and Branches and Trunks</h4>
-<p class="note">Note: for details on how tags, branches, and trunks work, consult the <a href="http://subversion.tigris.org">Subversion</a> documentation.</p>
+      <td>Other tools used by the ICU development team. Not required for
+      building ICU.</td>
+    </tr>
+  </table>
 
-<p>Under each of the above URLs, such as <a href="http://source.icu-project.org/repos/icu/icu/">http://source.icu-project.org/repos/icu/icu/</a>, there are three directories:  branches, tags, and trunk. We will use as an example the ICU (for C) directory, but the same pattern applies to <a href="http://source.icu-project.org/repos/icu/icu4j/">http://source.icu-project.org/repos/icu/icu4j/</a>, etc.</p>
-<p class="note">For clarity, the <u>http://source.icu-project.org/</u> has been omitted.</p>
+  <h3>Subversion Client Information</h3>
 
-<table class="rtable">
-	<tr>
-		<th nowrap><a href="http://source.icu-project.org/repos/icu/icu/tags/">/repos/icu/icu/tags/</a></th>
-		<td>This directory contains a subdirectory for each “tagged” set of sources. For example, <b><a href="http://source.icu-project.org/repos/icu/icu/tags/release-3-6/">release-3-6</a></b> contains the tagged source for the final release 3.6, and <b><a href="http://source.icu-project.org/repos/icu/icu/tags/release-3-4-1/">release-3-4-1</a></b> contains release 3.4.1.   <b>Any tag containing other than “release” and numbers, is NOT a final release, and is not guaranteed to function or even compile.</b> For example, release-3-0-<b>d</b>02 is a developmental release.</td>
-	</tr>
-	<tr>
-		<th nowrap>example:<br><a href="http://source.icu-project.org/repos/icu/icu/tags/release-3-6/">/repos/icu/icu/tags/release-3-6/</a></th>
-		<td>Check out this directory to obtain the complete ICU4C release 3.6 code</td>
-	</tr>
-	<tr>
-		<th nowrap><a href="http://source.icu-project.org/repos/icu/icu/branches/">/repos/icu/icu/branches/</a></th>
-		<td>Branches are created by the ICU development team for temporary development work along an alternate code path. They may be created or deleted at any time. <b>Code from this directory is not guaranteed to function or even compile.</b></td>
-	</tr>
-	<tr>
-		<th nowrap><a href="http://source.icu-project.org/repos/icu/icu/trunk/">/repos/icu/icu/trunk/</a></th>
-		<td>The Trunk contains the latest code along the main line of development. <b>Code from this directory is not guaranteed to function or even compile.</b><br>Check out this directory to obtain the latest developmental code.</td>
-	</tr>
-</table>
+  <br />
 
-<hr>
-<p><i>A bit of history</i>: &nbsp;The ICU project&nbsp;moved to using a
-Subversion source code repository and a Trac bug database on Nov 30,
-2006. &nbsp;These replace our original CVS source code repository and
-Jitterbug bug data base. &nbsp;All history from the older systems has
-been migrated into the new, so there should normally be no need to
-refer back to Jitterbug or CVS.</p>
+  <table class="rtable">
+    <tr>
+      <th><a href=
+      "http://subversion.tigris.org/">http://subversion.tigris.org/</a></th>
 
+      <td>Subversion main web site. Subversion is used to access the ICU
+      repository.</td>
+    </tr>
 
-<!--#include virtual="/ssi/footer.html" -->
+    <tr>
+      <th><a href=
+      "http://source.icu-project.org/cgi-bin/icuwiki.pl?SvnTips">SvnTips</a></th>
+
+      <td>Subversion tips from the ICU Wiki for ICU developers (not
+      users).</td>
+    </tr>
+
+    <tr>
+      <th><a href=
+      "http://icu.sourceforge.net/docs/subversion_howto/index.html">subversion_howto</a></th>
+
+      <td>Subversion client configuration for developer access of ICU from
+      Windows.</td>
+    </tr>
+  </table>
+
+  <h3><a name="tags" id="tags">Tags, Branches and Trunks</a></h3>
+
+  <p class="note">Note: for details on how tags, branches, and trunks work,
+  consult the <a href="http://svnbook.red-bean.com/">Subversion
+  documentation</a>.</p>
+
+  <p>Under each of the above URLs, such as <a href=
+  "http://source.icu-project.org/repos/icu/icu/">http://source.icu-project.org/repos/icu/icu/</a>,
+  there are three directories: branches, tags, and trunk. We will use the ICU
+  (for C) directory as an example, but the same pattern applies to <a href=
+  "http://source.icu-project.org/repos/icu/icu4j/">http://source.icu-project.org/repos/icu/icu4j/</a>,
+  and other subdirectories. For clarity, the <u>http://source.icu-project.org/</u> has
+  been omitted.</p>
+
+  <table class="rtable">
+    <tr>
+      <th nowrap="nowrap"><a href=
+      "http://source.icu-project.org/repos/icu/icu/tags/">/repos/icu/icu/tags/</a></th>
+
+      <td>This directory contains a subdirectory for each "tagged" set of
+      sources. For example, <b><a href=
+      "http://source.icu-project.org/repos/icu/icu/tags/release-3-6/">release-3-6</a></b>
+      contains the tagged source for the final release 3.6, and <b><a href=
+      "http://source.icu-project.org/repos/icu/icu/tags/release-3-4-1/">release-3-4-1</a></b>
+      contains release 3.4.1. <b>Any tag containing other than "release" and
+      numbers, is NOT a final release, and is not guaranteed to function or
+      even compile.</b> For example, release-3-0-<b>d</b>02 is a developmental
+      release.</td>
+    </tr>
+
+    <tr>
+      <th nowrap="nowrap">example:<br />
+      <a href=
+      "http://source.icu-project.org/repos/icu/icu/tags/release-3-6/">/repos/icu/icu/tags/release-3-6/</a></th>
+
+      <td>Check out this directory to obtain the complete ICU4C release 3.6
+      code</td>
+    </tr>
+
+    <tr>
+      <th nowrap="nowrap"><a href=
+      "http://source.icu-project.org/repos/icu/icu/branches/">/repos/icu/icu/branches/</a></th>
+
+      <td>Branches are created by the ICU development team for temporary
+      development work along an alternate code path. They may be created or
+      deleted at any time. <b>Code from this directory is not guaranteed to
+      function or even compile.</b></td>
+    </tr>
+
+    <tr>
+      <th nowrap="nowrap"><a href=
+      "http://source.icu-project.org/repos/icu/icu/trunk/">/repos/icu/icu/trunk/</a></th>
+
+      <td>The Trunk contains the latest code along the main line of
+      development. <b>Code from this directory is not guaranteed to function or
+      even compile.</b><br />
+      Check out this directory to obtain the latest developmental code.</td>
+    </tr>
+  </table>
+
+  <h3>A Bit of History</h3>
+
+  <p>The ICU project moved to using a Subversion source code repository and a
+  Trac bug database on Nov 30, 2006. These replace our original CVS source code
+  repository and Jitterbug bug data base. All history from the older systems
+  has been migrated into the new, so there should normally be no need to refer
+  back to Jitterbug or CVS.</p>
+
+  <!--#include virtual="/ssi/footer.html" -->
 </body>
 </html>

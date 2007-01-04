@@ -3,6 +3,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <meta name="generator" content=
+  "HTML Tidy for Windows (vers 1st March 2004), see www.w3.org" />
+
   <title>ICU Source Repository</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="COPYRIGHT" content=
@@ -11,6 +14,7 @@
 <style type="text/css">
 /*<![CDATA[*/
 .note { font-style: italic; font-size: small; margin-left: 1em; }
+samp {margin-left: 1em; margin-right: 2em; border-style: groove; padding: 1em; display: block; background-color: #EEEEEE}
 table.rtable caption { margin-left: 2px; margin-right: 2px; padding: 3px; font-style: bold; background-color: #dee2ff; text-align: left; }
 table.rtable tr th { background-color: #dee2ff; text-align: left; }
 table.rtable tr td { background-color: #c0c0fd; padding: 3px; }
@@ -24,9 +28,8 @@ table.rtable tr td { background-color: #c0c0fd; padding: 3px; }
   <h2>Source Code Access</h2>
   <hr />
 
-  <h3>Source Code Repository</h3>
+  <h3>Source Code Repository</h3><br />
 
-  <br />
   <table class="rtable">
     <caption>
       Top level view of the ICU repository
@@ -47,8 +50,7 @@ table.rtable tr td { background-color: #c0c0fd; padding: 3px; }
       <td>Browse the repository with Trac to shows different revisions, compare
       revisions, annotated source and links to ticket descriptions.</td>
     </tr>
-  </table>
-  <br />
+  </table><br />
 
   <table class="rtable">
     <caption>
@@ -110,9 +112,7 @@ table.rtable tr td { background-color: #c0c0fd; padding: 3px; }
     </tr>
   </table>
 
-  <h3>Subversion Client Information</h3>
-
-  <br />
+  <h3>Subversion Client Information</h3><br />
 
   <table class="rtable">
     <tr>
@@ -151,8 +151,8 @@ table.rtable tr td { background-color: #c0c0fd; padding: 3px; }
   there are three directories: branches, tags, and trunk. We will use the ICU
   (for C) directory as an example, but the same pattern applies to <a href=
   "http://source.icu-project.org/repos/icu/icu4j/">http://source.icu-project.org/repos/icu/icu4j/</a>,
-  and other subdirectories. For clarity, the <u>http://source.icu-project.org/</u> has
-  been omitted.</p>
+  and other subdirectories. For clarity, the
+  <u>http://source.icu-project.org/</u> has been omitted.</p>
 
   <table class="rtable">
     <tr>
@@ -168,15 +168,6 @@ table.rtable tr td { background-color: #c0c0fd; padding: 3px; }
       numbers, is NOT a final release, and is not guaranteed to function or
       even compile.</b> For example, release-3-0-<b>d</b>02 is a developmental
       release.</td>
-    </tr>
-
-    <tr>
-      <th nowrap="nowrap">example:<br />
-      <a href=
-      "http://source.icu-project.org/repos/icu/icu/tags/release-3-6/">/repos/icu/icu/tags/release-3-6/</a></th>
-
-      <td>Check out this directory to obtain the complete ICU4C release 3.6
-      code</td>
     </tr>
 
     <tr>
@@ -200,6 +191,16 @@ table.rtable tr td { background-color: #c0c0fd; padding: 3px; }
     </tr>
   </table>
 
+  <h3><a name="example" id="example"></a>Example of Retrieving a Specific
+  Version of ICU</h3>
+
+  <p>The following is a command line example of retrieving a specific version
+  of ICU. In this case, ICU4C 3.6 and ICU4J 3.6 are being retrieved.</p>
+  <pre>
+<samp>svn export http://source.icu-project.org/repos/icu/icu/tags/release-3-6/ icu
+svn export http://source.icu-project.org/repos/icu/icu4j/tags/release-3-6/ icu4j</samp>
+</pre>
+
   <h3>A Bit of History</h3>
 
   <p>The ICU project moved to using a Subversion source code repository and a
@@ -207,7 +208,7 @@ table.rtable tr td { background-color: #c0c0fd; padding: 3px; }
   repository and Jitterbug bug data base. All history from the older systems
   has been migrated into the new, so there should normally be no need to refer
   back to Jitterbug or CVS.</p>
-
+  
   <!--#include virtual="/ssi/footer.html" -->
 </body>
 </html>

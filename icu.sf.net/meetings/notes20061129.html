@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<!-- Copyright (c) 2006 IBM and others -->
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>ICU Core Minutes 11/29/2006</title>
+
+
+</head>
+
+
+<body>
+
+<h1>ICU Core Meeting Notes</h1>
+
+Nov 29, 2006<br>
+
+<br>
+
+Attending:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Mark Davis<br>
+
+<div style="margin-left: 40px;">Doug Felt<br>
+
+Deborah Goldsmith<br>
+
+Andy Heninger<br>
+
+Eric Mader&nbsp;<br>
+
+Michael Ow <br>
+
+Markus Scherer<br>
+
+Yoshito Umaoka<br>
+
+Ram Viswanadha<br>
+
+</div>
+
+<h2>Action Items</h2>
+
+<br>
+
+<table style="text-align: left; width: 759px; height: 172px;" border="1" cellpadding="2" cellspacing="2">
+
+  <tbody>
+
+    <tr>
+
+      <td align="undefined" valign="undefined">Number</td>
+
+      <td align="undefined" valign="undefined">Due</td>
+
+      <td align="undefined" valign="undefined">Who</td>
+
+      <td align="undefined" valign="undefined">Description</td>
+
+    </tr>
+
+    <tr>
+
+      <td style="color: rgb(255, 0, 0);" align="undefined" valign="undefined">31</td>
+
+      <td style="color: rgb(255, 0, 0);" align="undefined" valign="undefined">11/22/06</td>
+
+      <td style="color: rgb(255, 0, 0);" align="undefined" valign="undefined">Mark,<br>
+
+Vladimir</td>
+
+      <td style="color: rgb(255, 0, 0);" align="undefined" valign="undefined">Look
+at UnicodeSet and CollectionUtilities,&nbsp; make a proposal</td>
+
+    </tr>
+
+    <tr>
+
+      <td style="color: rgb(255, 0, 0);" align="undefined" valign="undefined">6</td>
+
+      <td style="color: rgb(255, 0, 0);" align="undefined" valign="undefined">12/1/06</td>
+
+      <td style="color: rgb(255, 0, 0);" align="undefined" valign="undefined">Markus</td>
+
+      <td style="color: rgb(255, 0, 0);" align="undefined" valign="undefined">futz
+around with different options for cnv binary file and report back to
+the group with recommendation.</td>
+
+    </tr>
+
+    <tr>
+
+      <td>35</td>
+
+      <td>12/6/06</td>
+
+      <td>Andy</td>
+
+      <td>Update the SVN guide with instructions for SVN branch
+naming conventions</td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<br>
+
+<br>
+
+<h2>Subversion and Trac status</h2>
+
+Steven: All servers are pretty much ready to go<br>
+
+<br>
+
+Execution Plan:<br>
+
+<ol>
+
+  <li>Send a mail to icu-core list about CVS freeze</li>
+
+  <li>Freeze CVS by 5:00 PM 11/29/2006</li>
+
+  <li>Tag final CVS version</li>
+
+  <li>Roll out new version of repository through CVS2SVN</li>
+
+  <li>Send a not to all the lists about the change</li>
+
+  <li>Remove anonymous CVS access by the end of the year&nbsp;</li>
+
+</ol>
+
+<h2>Naming Scheme of SVN Branches</h2>
+
+Markus: We should utilize the feature branches of SVN extensively so
+that destabilizing changes can be checked into a branch.<br>
+
+Andy &amp; Steven: Commiters could have their own directories<br>
+
+Steven: Maybe use 2 branches one for features and the other for
+commiters.<br>
+
+<br>
+
+Decision<br>
+
+<ul>
+
+  <li>All commiters get a their own branches for playing around,
+e.g: &lt;repos&gt;/icu/branches/markus</li>
+
+</ul>
+
+<ul>
+
+  <li>Features and destabilizing changes should be committed on
+feature branches,
+e.g.:&nbsp;&lt;repos&gt;/icu/branches/&lt;ticket
+number&gt;</li>
+
+</ul>
+
+<h2>Ticket 5350</h2>
+
+Deborah: Rounding in number format and decimal formats is currently
+problematic. <br>
+
+Discription of the problem followed.<br>
+
+Deborah: ICU4J has been fixed by adding a slop. This is not a correct
+fix for the problem<br>
+
+Mark: Sounds&nbsp;like a &nbsp;vast majority of people need the
+rounding to happen in decimal space and have all the IEEE modes
+supported. So we can move away from using doubles and stick with only
+decimals.<br>
+
+Deborah: agree<br>
+
+Andy: Maybe we should use Big Decimal package to do the rounding<br>
+
+Mark: The increment should be applied in binary space and rounding
+should be done in decimal space<br>
+
+Deborah: Apple's numerics people suggested using BigDecimal too.<br>
+
+Mark: we could do that but there may be regression in performance. We
+should test the performance and make sure the hit is not large.<br>
+
+Deborah: That sounds like a plan for 3.8 what should we do for 3.6?<br>
+
+Mark: If slop works ok for the current application we could do that.<br>
+
+Deborah: That could work or we could change the DigitList class to do
+the right thing when half-up rounding is used<br>
+
+<br>
+
+Decision<br>
+
+<ul>
+
+  <li>Move all the rounding logic into decimal space probably
+using BigDecimal package</li>
+
+</ul>
+
+<br>
+
+<h2>Ticket 5416</h2>
+
+George:&nbsp;Currently all single threaded&nbsp;applications
+must link with pthreads library. This is annoying to our users. Ticket
+5416 suggests that we change how ICU and there by ICU's applications
+link with pthread.<br>
+
+Long discussion followed<br>
+
+<br>
+
+Decision<br>
+
+<ul>
+
+  <li>Leave the current default behavior as it is</li>
+
+  <li>Add a new configure option for enabling users to build ICU
+in this configuration if they choose.</li>
+
+</ul>
+
+</body>
+</html>

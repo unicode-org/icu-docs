@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<!-- Copyright 2006 International Business Machines  Corporation and others.  All Rights Reserved.  -->
+<!-- Copyright 2006-2007 International Business Machines  Corporation and others.  All Rights Reserved.  -->
 
 
   
@@ -313,12 +313,16 @@ Using any plain text editor, add the line<span style="font-family: monospace;"><
 <span style="font-family: monospace;">### built-in ssh scheme were not predefined, it could be defined</span><br style="font-family: monospace;">
 <span style="font-family: monospace;">### as:</span><br style="font-family: monospace;">
 <span style="font-family: monospace;"># ssh = $SVN_SSH ssh</span><br style="font-family: monospace;">
-<span style="font-family: monospace; font-weight: bold;">ssh = $SVN_SSH plink.exe</span><br style="font-family: monospace;">
+<span style="font-family: monospace; font-weight: bold;">ssh = $SVN_SSH C:/Program\ Files/PuTTY/plink.exe</span><br style="font-family: monospace;">
 <span style="font-family: monospace;">### If you wanted to define a new 'rsh' scheme, to be used with</span><br>
 </div>
 </div>
+<br>
 
+Add a path to plink.exe (presumably in your putty folder), using / or \\ for directory separators and a single \ an escape for a following character where necessary (such as before a space).
+<br>
 
+<br>
 
 <span style="font-family: monospace; font-weight: bold;"></span>Note: with this setup, when subversion asks for "source.icu-project.org",
 the request will go to plink.exe, which will look for a saved putty
@@ -329,14 +333,6 @@ accessed, but it keeps things less confusing if they are the same.<br>
 
 
 
-<br>
-
-
-
-Another note: it's supposed to be possible to specify the full path to the
-plink.exe in the configuration file, and avoid having to add the putty
-directory to the system's PATH environment variable, but it didn't work
-for me.<br>
 
 
 

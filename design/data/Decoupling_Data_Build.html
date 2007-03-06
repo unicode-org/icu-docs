@@ -1,0 +1,522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+  
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+
+
+  
+  
+  <title>Decoupling of Data Build</title>
+</head>
+
+
+<body>
+
+
+<h1 style="text-align: center;">Design for Decoupling&nbsp;Data Build from ICU4C</h1>
+
+
+<div style="text-align: center;">
+<dl>
+
+
+  <dd><big><span style="font-style: italic;">Raghram Viswandha</span><br>
+
+
+    <span style="font-style: italic; color: rgb(255, 0, 0);">Draft: 2006-03-02</span></big></dd>
+
+
+</dl>
+
+
+</div>
+
+
+<h2>Introduction</h2>
+The data for ICU4J is generated from ICU4. ICU4J currently lacks the
+tools necessary to build data required to function properly. Tight
+coupling of ICU4C and ICU4J has caused numerous release management
+problems. We have learnt from experience that such coupling is neither
+desirable nor required for smooth functioning of the projects. This
+document describes the design of new top level data project and tools
+which aims to separate out the data building for ICU4C and ICU4J. This
+decoupling will also enable future tooling to update installed data in
+a seamless fashion, e.g.: locale and timezone updater tools <br>
+
+
+<h2>Problem Statement</h2>
+
+
+&nbsp;The figure (i) below depicts the generation of data for ICU4J.&nbsp;<br>
+
+<br>
+
+
+<div style="text-align: center;"><img style="width: 427px; height: 207px;" alt="ICU Data in ICU4C" src="currentDataDesign.png"><br>
+
+
+</div>
+
+
+<div style="text-align: center;"><span style="font-style: italic;">figure (i)</span><br>
+
+
+<div style="text-align: left;"><br>
+
+Currently most tools, with the exception of LDML2ICUConverter are in
+ICU4C. If the data in ICU4J needs to be updated then the release manger
+run the tools in ICU4C and generates ICU4J data. Every time a new
+release of ICU4J needs to be issued, the release manager is required to
+go through the following steps:<br>
+
+<ol>
+
+  <li>Make sure that the data is in ICU4J is synchronized with identical version of ICU4C</li>
+
+  <li>Merge the code and data changes &nbsp;required for handling data from head to maintenance branch of ICU4C</li>
+
+  <li>Generate the data for ICU4J</li>
+
+  <li>Manually compare all binary files to ensure identical binaries for all files except for the ones that really need updating</li>
+
+  <li>Check in the changes and tag the ICU4J tree</li>
+
+</ol>
+
+The manual process described above is fragile and error prone. If any
+of the above steps are missed then it is impossible to recover if a
+problem is discovered after ICU4J is released.
+ 
+<h2>Design Constraints</h2>
+
+
+The new process should
+<ol>
+
+
+  <li>Decouple the data build from ICU4C</li>
+
+
+  <li>Cause minimal disruption for users of ICU4C an ICU4J</li>
+
+
+  <li>Make it as easy as possible for engineers of &nbsp;ICU4C and ICU4J to build and test.</li>
+
+
+  <li>Clearly define dependencies&nbsp;</li>
+
+
+  <li>Address any bootstrap problems that may occur.</li>
+
+
+</ol>
+
+
+<h2>Data Repository Design</h2>
+
+
+In a nutshell, the new repository and process can be depicted by
+figure(ii). The source data in ICU4C will be moved to a new
+top level tree in ICU repository. New tools will be created that will convert data to ICU4C and ICU4J format.<br>
+
+
+<div style="text-align: center;">&nbsp;<img style="width: 421px; height: 397px;" alt="ICU Data Repository" src="futureDataDesign.png"><br>
+
+
+</div>
+
+
+<div style="text-align: center;"><span style="font-style: italic;">figure (ii)</span><br style="font-style: italic;">
+
+
+<br>
+
+
+<div style="text-align: left;">
+
+<h2>Use Cases</h2>
+
+<ol>
+
+  <li>Developers of ICU4C: &nbsp;There should be minimal impact for
+developers of ICU4C. The only change is that the instead of source
+data, icudt&lt;version&gt;b.dat will be checked into the repository.
+The make files will take care of building the correct version of data
+dll/dat/files for the platform. The only complication this design
+introduces is that the designers of binary data generators must provide
+tests that will exercise the code</li>
+
+  
+  <ol>
+
+    <li>Normal build - No Impact</li>
+
+    <li>Debugging and active generation of data driven tests</li>
+
+    
+    <ul>
+
+      <li>Add test data file to &lt;icu&gt;/source/test/testdata directory, e.g:&nbsp;&lt;icu&gt;/source/test/testdata/foo.txt.</li>
+
+      <li>Test code will prefer files in &lt;icu&gt;/source/test/testdata to enable rapid testing and debugging.</li>
+
+      <li>Check in the new files and changes to existing test files to &lt;data&gt;/testdata directory.</li>
+
+    
+    </ul>
+
+    <li>Fixing of data driven tests</li>
+
+    
+    <ol>
+
+      <li>Fix the data in data project</li>
+      <li>Build data in data project. ICU4C build is configured with the correct option, this step can be skipped.</li>
+      <li>Build ICU.</li>
+      <li>Run the tests.</li>
+
+    
+    </ol>
+
+  
+  </ol>
+
+  <li>Developers of ICU4J: No impact</li>
+
+  
+  <ol>
+
+    <li>Normal build - No Impact</li>
+
+    <li>Debugging and active generation of data driven tests</li>
+
+    
+    <ul>
+
+      <li>Add test data file to &lt;icu&gt;/src/com/ibm/icu/dev/data
+directory, e.g:&nbsp;&lt;icu&gt;/src/com/ibm/icu/dev/data/foo.txt.&nbsp;</li>
+
+      <li>Test code will prefer files in &lt;icu&gt;/source/test/testdata to enable rapid testing and debugging.</li>
+
+      <li>Check in the new files and changes to existing test files to &lt;data&gt;/testdata directory.</li>
+
+    
+    </ul>
+
+    <li>Fixing of data driven tests</li>
+    <ol>
+      <li>Build data in data project. ICU4J build.properties is configured with the correct option, this step can be skipped.</li>
+      <li>Build ICU4J.</li>
+      <li>Run the tests.</li>
+    </ol>
+
+  
+  </ol>
+
+  <li>Release Managers:&nbsp;</li>
+
+  
+  <ol>
+
+    <li>Run the tools in data project to generate binary data files for the project you are interested in&nbsp;</li>
+
+    <li>Run the tests in the right project</li>
+
+    <li>Once all the tests pass tag the data repository, e.g.: data-for-icu4c-3-8, data-for-icu4j-3-8</li>
+
+  
+  </ol>
+
+  
+</ol>
+
+<h2>Gory Details</h2>
+
+<h3>Directory Structure</h3>
+
+
+&nbsp; data<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp; &nbsp;| ---- build.xml <span style="font-style: italic;">&nbsp;(replaces makedata.mak and Makefile.in in ICU4C)</span><br>
+
+
+&nbsp; &nbsp; &nbsp;| ---- icu-config.xml<br>
+
+
+&nbsp; &nbsp; &nbsp;| ---- readme.txt<br>
+
+
+&nbsp; &nbsp; &nbsp;| ---- cldr-icu-readme.txt<br>
+
+&nbsp; &nbsp; &nbsp;| ---- build.properties<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| ----&nbsp;brkitr<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- brkitr-fragment.xml<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- ...<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp; &nbsp;| ---- coll<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- coll-fragment.xml<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;...<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp;&nbsp; | ---- locales<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- locales-fragment.xml<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;...<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp; &nbsp;| ---- mappings<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- mappings-fragment.xml<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;...<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp;&nbsp; | ---- misc<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- misc-fragment.xml<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;...<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp;&nbsp; | ---- rbnf<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- rbnf-fragment.xml<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;...<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp;&nbsp; | ---- translit<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- translit-fragment.xml<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;...<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp;&nbsp; | ---- unidata<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- unidata-fragment.xml<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;...<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp;&nbsp; | ---- xml&nbsp;&nbsp; &nbsp;<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;...<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp; &nbsp;| ---- charset<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- charset-fragment.xml&nbsp;&nbsp; <br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;... <br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp; &nbsp;| ---- testdata<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- testdata-fragment.xml&nbsp;&nbsp; <br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;... <br>
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp; &nbsp;| ---- tzdata &nbsp; &nbsp;<br>
+
+&nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- tzdata-fragment.xml&nbsp;&nbsp; <br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ----&nbsp;...<br>
+
+
+&nbsp; &nbsp; &nbsp;|<br>
+
+
+&nbsp; &nbsp; &nbsp;|&nbsp;---- tools<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- c<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; | ---- tzcode<br>
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp;
+&nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
+----&nbsp;...<br>
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp;
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ---- java<br>
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; | ---- Table32Generator.java<br>
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp;
+&nbsp; &nbsp; &nbsp; | ----
+src/com/ibm/icu/dev/tool/LDML2ICUConverter.java<br>
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp;
+&nbsp; &nbsp; &nbsp; | ----
+src/com/ibm/icu/dev/tool/ant/CToolLauncher.java<br>
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp;
+&nbsp; &nbsp; &nbsp; | ----
+src/com/ibm/icu/dev/tool/ant/GMakeLauncher.java<br>
+&nbsp;&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp;
+&nbsp; &nbsp; &nbsp; | ---- src/com/ibm/icu/dev/tool/ant/...<br>
+
+
+<h3>Pre-requisites</h3>
+
+
+1. ICU4C Binaries 3.6 or higher - must contain all tools that are built using default operation<br>
+
+
+2. ICU4J Binaries 3.6 or higher - Generic ICU4J jar file<br>
+
+
+3. CLDR Tools Jar 1.4 or higher&nbsp; - CLDR Tools jar file<br>
+
+
+4. CLDR Data 1.4 or higher - cldrdata.zip that contains data<br>
+
+
+5. Ant 1.7.0 or higher<br>
+
+
+6. JDK 1.5.0 or higher<br>
+
+7. Cygwin&nbsp;(if running on Windows), Gmake, C &amp; C++ to build tzdata<br>
+<h3>Task Items</h3>
+<table style="text-align: left; width: 748px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 15px; text-align: center;">S.N</td>
+      <td style="text-align: center; width: 563px;">Task Definition</td>
+      <td style="text-align: center; width: 133px;">Estimated Time</td>
+    </tr>
+    <tr>
+      <td style="width: 15px; text-align: center;">1</td>
+      <td style="text-align: left; width: 563px;">Copy the tools and data sources to new repository</td>
+      <td style="text-align: center; width: 133px;">0.5 PW</td>
+    </tr>
+    <tr>
+      <td style="width: 15px; text-align: center;">2</td>
+      <td style="text-align: left; width: 563px;">Write Ant plug-in to launch the C executables</td>
+      <td style="text-align: center; width: 133px;">0.6 PW</td>
+    </tr>
+    <tr>
+      <td style="width: 15px; text-align: center;">3</td>
+      <td style="text-align: left; width: 563px;">Write Ant plug-in to launch GMake</td>
+      <td style="text-align: center; width: 133px;">0.4 PW</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">4</td>
+      <td style="width: 563px;">Modify dat file generation to allow txt and xml files and encode length information.</td>
+      <td style="text-align: center; width: 133px;">1 PW</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">5</td>
+      <td style="width: 563px;">Recreate makedata.mak functionality in build.xml </td>
+      <td style="text-align: center; width: 133px;">2&nbsp;PW</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">6</td>
+      <td style="width: 563px;">Recreate testdata.mak functionality in build.xml</td>
+      <td style="text-align: center; width: 133px;">1&nbsp;PW</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">7</td>
+      <td style="width: 563px;">Recreate gendtjar.pl functionality in build.xml</td>
+      <td style="text-align: center; width: 133px;">1&nbsp;PW</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">8</td>
+      <td>Port gentest code to Java </td>
+      <td style="text-align: center;">0.5 PW</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">9</td>
+      <td style="width: 563px;">Add Meta version file to jar and dat files</td>
+      <td style="text-align: center; width: 133px;">0.5 PW</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">10</td>
+      <td style="width: 563px;">Testing and Integration</td>
+      <td style="text-align: center; width: 133px;">2.5 PW</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</body>
+</html>

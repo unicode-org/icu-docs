@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<!-- Copyright (c) 2006 IBM and others -->
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>ICU Core Minutes 02/14/2007</title>
+
+
+</head>
+
+
+<body>
+
+<h1>ICU Core Meeting Notes</h1>
+
+Feb 14, 2007<br>
+
+<br>
+
+Attending:<br>
+
+<div style="margin-left: 40px;">Mark Davis<br>
+
+John Emmons<br>
+
+Deborah Goldsmith<br>
+
+Andy Heninger<br>
+
+Eric Mader&nbsp; <br>
+
+George Rhoten<br>
+
+Markus Scherer<br>
+
+Yoshito Umaoka<br>
+
+Ram Viswanadha<br>
+
+</div>
+
+<h2>Action Items</h2>
+
+<br>
+
+<table style="text-align: left; height: 172px; width: 638px;" border="1" cellpadding="2" cellspacing="2">
+
+  <tbody>
+
+    <tr>
+
+      <td style="width: 54px;" align="undefined" valign="undefined">Number</td>
+
+      <td style="width: 104px;" align="undefined" valign="undefined">Due</td>
+
+      <td style="width: 80px;" align="undefined" valign="undefined">Who</td>
+
+      <td style="width: 364px;" align="undefined" valign="undefined">Description</td>
+
+    </tr>
+
+    <tr>
+
+      <td style="width: 54px;">45</td>
+
+      <td style="width: 104px; text-align: left;">02/21/2007</td>
+
+      <td style="text-align: left; width: 80px;">Mark</td>
+
+      <td style="width: 364px;">Talk to Vladimir about RandomCollationTest failures</td>
+
+    </tr>
+
+    <tr>
+
+      <td style="width: 54px;">46</td>
+
+      <td style="width: 104px;">02/21/2007</td>
+
+      <td style="width: 80px;">Ram</td>
+
+      <td style="width: 364px;">Submit a bug for TestPropertyAcess and assign to Markus</td>
+
+    </tr>
+
+    <tr>
+      <td style="width: 54px;">46</td>
+      <td style="width: 104px;">02/21/2007</td>
+      <td style="width: 80px;">Ram</td>
+      <td style="width: 364px;">Submit a bug for Transliterator RoundTrip Test .</td>
+    </tr>
+
+
+
+  </tbody>
+</table>
+
+<br>
+
+<h2>Reorganize ICU Website </h2>
+
+Andy gave update on the status of ICU Website re-organization.<br>
+
+<h3>Issue</h3>
+
+<ol>
+
+  <li>Should URLs be published sans www?</li>
+
+  <li>Use relative links instead of absolute links?</li>
+
+</ol>
+
+<h3>Decision</h3>
+
+<ol>
+
+  <li>Yes. source, bugs &amp; demos should remain to be the
+primary names to demarcate their functions. We can point these to other
+servers later if needed.</li>
+
+  <li>Use relative links for intra-site links and use absolute
+links to point to icu.sf.net, etc.</li>
+
+</ol>
+
+<h2>Nickel Rounding</h2>
+
+<h3>Issue</h3>
+
+Nickel rounding is used in Switzerland in retail industry but not in
+banking. ICU needs APIs to deal with this situation<br>
+
+<br>
+
+<h3>Options</h3>
+
+<ol>
+
+  <li>Use a variant tag for representing nickel rounding</li>
+
+  <li>Use a variant locale</li>
+
+  <li>Add API to get different instance of the formatting object</li>
+
+  <li>Add API for setting the rounding instance</li>
+
+</ol>
+
+<h3>Decision</h3>
+
+<ol>
+
+  <li>For C add unum_openAltCurrencyInstance() method that takes
+an enum param denoting the type</li>
+
+  <li>For C++ add createCurrencyInstance() overload that takes an
+enum param denoting the type</li>
+
+  <li>For Java add getCurrencyInstance() overload that takes an
+enum param denoting the type</li>
+
+</ol>
+
+<h2>API Design Questions</h2>
+
+<h3>Issue</h3>
+
+Add methods to UnicodeSet that given a string and a length returns an
+indices that indicate which part is in the set and which part is not. <br>
+
+<ol>
+
+  <li>What should the name be?</li>
+
+  <li>Should we add 4 methods with true/false parameter or 8
+methods with true/false parameter&nbsp;?</li>
+
+  <li>Use Enums instead of boolean parameters</li>
+
+</ol>
+
+<h3>Decision</h3>
+
+<ol>
+
+  <li>Markus to send out a mail with possible names and we can
+decide on icu-core list</li>
+
+  <li>Add 4 functions</li>
+
+  <li>Use Enums instead of boolean parameters</li>
+
+</ol>
+
+<h2>ICU4J Test Failures</h2>
+
+<h3>Issue</h3>
+
+The recent change in version number of ICU4J triggered test failures
+that were time bombed earlier. We need to decide what should be done
+with these tests.<br>
+
+<br>
+<h3>
+Decision</h3>
+
+<ol>
+
+  <li>Move ExemplarSets for Transliterator RoundTrip tests to
+CLDR tests</li>
+
+  <li>Ram and Mark to work together on fixing the&nbsp;
+Transliterator RoundTrip tests</li>
+
+</ol>
+<h2>Proposal for ICU4J 3.6.1 Release</h2>
+Yoshito proposed a maintenance release of ICU4J which will contain the following fixes:<br>
+<ol>
+  <li>DateFormat performance fixes</li>
+  <li>Bug fix for UResourceBundle threading issue</li>
+  <li>Update the timezone data to 2007a</li>
+</ol>
+<h3>Decision</h3>
+Agreed to the proposal.
+</body>
+</html>

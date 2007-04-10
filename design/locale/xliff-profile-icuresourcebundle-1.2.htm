@@ -394,11 +394,11 @@
 
 
     
-<p>ICU Resource bundles share their structure with Java ListResourceBundle
-    format. Resource bundles are written in its source format.Currently
-    supported source format is a text file. The format is defined in <a href="../bnf_rb.txt">
-    formal definition file</a>. The general structure of the ICU Resource
-    Bundle file is defined <a href="http://icu.sourceforge.net/userguide/ResourceManagement.html">here</a>.</p>
+<p>ICU Resource bundles are specified in a text file. The format is defined in <a href="../bnf_rb.txt">
+    formal definition file</a>.
+These text files are converted into a binary resource files using the
+genrb tool. ICU reads these binary resource files at runtime. The
+general structure of the ICU Resource Bundle file is defined <a href="http://icu.sourceforge.net/userguide/ResourceManagement.html">here</a>.</p>
 
 
     
@@ -407,55 +407,25 @@
 
 
     
-<p>Resource Bundles are Java code and not XML. Therefore, XSL
+<p>ICU Resource Bundles are text or binary files and not XML. Therefore, XSL
     transformation standards cannot directly be utilized to convert the
     resource bundles into XLIFF. XSLT could be used to transform the translated
-    XLIFF back to the native Java, or to manipulate an intermediate XML or
+    XLIFF back to the native text format, or to manipulate an intermediate XML or
     initial XLIFF file in preparation for manual or automated Computer Aided
     Translation (CAT), but software best practices favour using the same
     technology for both extraction and recomposition.</p>
-
-
-    
-<p>The class <code>java.util.Properties</code> provides methods for
-    converting .properties files to XML format. <a href="../../../cd-xliff-profile-java-1.2-20060516/cd-xliff-profile-java-1.2-20060516.htm#listing_4">
-    Listing 3</a> shows the XML version of the .properties file from <a href="../../../cd-xliff-profile-java-1.2-20060516/cd-xliff-profile-java-1.2-20060516.htm#listing_2">
-    Listing 2</a>.</p>
-
-
-
-    
-<pre id="listing_3">&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br />&lt;!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd"&gt;<br />&lt;properties&gt;<br />&lt;comment&gt;Listing 2&lt;/comment&gt;<br />&lt;entry key="key4"&gt;Boxes are built in three sizes: small, medium and large.&lt;/entry&gt;<br />&lt;entry key="key3"&gt;Box ''{0}'' is blue.&lt;/entry&gt;<br />&lt;entry key="key2"&gt;Box 12 is {0,number} inches high.&lt;/entry&gt;<br />&lt;entry key="key1"&gt;Copyright &copy; 2006 FARO Inc. &lt;/entry&gt;<br />&lt;/properties&gt;</pre>
-
-
-
-
-
-    
-<p class="epigraph">Listing 3 - Java resources in XML format</p>
-
-
-    
-<p>XML files generated using class <code>Properties</code> can be converted
-    to XLIFF using XSL transformations or specialized XML filters. Processing
-    of Java resources stored in XML format is beyond the scope of this
-    document.</p>
-
-
-    
 <h4><a name="UsingFilters" id="UsingFilters"></a>2.4.1. Using Filters</h4>
 
 
     
-<p>It is necessary to extract the Java Resource Bundles- List and Property
-    - to XLIFF by developing a custom filter application. Such tools can be
+<p>It is necessary to extract the ICU Resource Bundles to XLIFF by developing a custom filter application. Such tools can be
     written using a variety of programming and scripting languages such as
     Perl, Python, C, C++, C#, Java, etc..</p>
 
 
     
 <p>This document makes no assumption on the type of language used to
-    process the Java <code>ResourceBundle</code> input documents. It also makes
+    process the ICU Resource Bundle input documents. It also makes
     no assumptions whether or not the tool creates a Skeleton file along with
     the XLIFF document generated, or if it creates one, how data are
     represented in the Skeleton.</p>
@@ -495,8 +465,7 @@
 
 
     
-<p>Characters that require a special representation in a
-    <code>ResourceBundle</code> should be parsed by the XLIFF filter and
+<p>Characters that require a special representation in<span style="font-family: Courier;"></span><code></code> an ICU Resource Bundle should be parsed by the XLIFF filter and
     represented appropriately in the XLIFF file. The following cases should be
     contemplated when designing a filter:</p>
 
@@ -505,30 +474,11 @@
 <ul>
 
       <li>Single quotes, double quotes, backslashes and other special
-      characters need to be prefixed with a '<code>\</code>' character in
-      <code>ListResourceBundle</code> classes. Filters should use unescaped
+      characters need to be prefixed with a '<code>\</code>' character in an ICU Resource Bundle text file. Filters should use unescaped
       versions of these characters in the XLIFF file.</li>
 
 
-      <li>Properties files are written using ISO 8859-1 character set. All
-      characters not supported by this character set are encoded using the
-      <code>\uXXXX</code> Java notation for Unicode. Filters should replace
-      encoded characters with their appropriate Unicode versions in the XLIFF
-      file.</li>
-
-
-      <li>Long strings can be concatenated using '<code>+</code>' operator in
-      <code>ListResourceBundle</code> classes (see the last entry in <a href="../../../cd-xliff-profile-java-1.2-20060516/cd-xliff-profile-java-1.2-20060516.htm#listing_1">
-      Listing 1</a>). Filters should automatically merge concatenated
-      strings.</li>
-
-
-      <li>A '<code>\</code>' character at the end of a line in a .properties
-      file indicates that the text to translate continues in the following line
-      (see the last entry in <a href="../../../cd-xliff-profile-java-1.2-20060516/cd-xliff-profile-java-1.2-20060516.htm#listing_2">
-      Listing 2</a>). Filters should automatically merge split lines.</li>
-
-    
+      <li>The ICU Resource Bundle text files can be written in&nbsp;<code class="code">UTF-8</code>,&nbsp;<code class="code">UTF-16</code> or in any other codepage supported by ICU. Filters should respect the source endoding and convert to&nbsp;<code class="code">UTF-8</code> when writing the XLIFF file.</li>
 </ul>
 
 
@@ -539,7 +489,7 @@
 
     
 <p>The flow of the extracted data in the XLIFF document should be in the
-    same order as the flow of data in the original <code>ResourceBundle</code>.
+    same order as the flow of data in the original text file.
     The extraction order should reflect the order of the data in the source
     document, and the author is responsible to group logical parts of the text
     together as much as possible.</p>
@@ -608,7 +558,7 @@
 
       
 <p>It is fully possible to apply this guide to XLIFF files extracted from
-      other formats. However, that usage not recommended since other formats
+      other formats. However, that usage is not recommended since other formats
       may have constructs that have no equivalent construct in the ICU
       format.</p>
 
@@ -632,8 +582,7 @@
           
 <h3 class="title"><a name="s.general_considerations.languages" id="s.general_considerations.languages"></a>3.2. Source and Target
           Languages</h3>
-In ICU resources files, just as in Java
-          ListResourceBundles, the source language is appended to the file
+In ICU resources files the source language is appended to the file
           name. As an alternative, the filter tools can provide an option for
           specifing the source language of the file. ICU uses [<a href="xliff-profile-icuresourcebundle-1.2.htm#refRFC4646"><span class="abbrev">RFC 4646</span></a>] for naming its files and resource. ICU
           resource format does not provide a way to store a target language in
@@ -1189,10 +1138,9 @@ would be mapped to:   <br />
           elements?</li>
 
 
-          <li>Should I remove the references to Java ListResourceBundle?</li>
+          
 
-
-          <li>include directive needs work.</li>
+          <li>include directive needs work. Can we use &lt;bin-unit&gt; for "@translate no"?</li>
 
         
 </ol>

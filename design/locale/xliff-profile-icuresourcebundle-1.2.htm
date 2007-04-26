@@ -3,17 +3,45 @@
 <head>
 
 
+
+
+
+
+  
+  
+  
+  
   
   
   <meta name="generator" content="HTML Tidy for Windows (vers 1st March 2004), see www.w3.org" />
 
 
+
+
+
+
+  
+  
+  
+  
   
   
   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
 
 
 
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -22,11 +50,27 @@
   <link rel="stylesheet" href="tr.css" type="text/css" />
 
 
+
+
+
+
+  
+  
+  
+  
   
   
   <meta name="generator" content="DocBook XSL Stylesheets V1.68.1" />
 
 
+
+
+
+
+  
+  
+  
+  
   
   
   <meta name="description" content="This document defines a guide for mapping the GNU Gettext PO (Portable Object) file format to XLIFF (XML Localisation Interchange File Format)." />
@@ -34,6 +78,10 @@
 
 
 <body style="background-color: white; color: black;" alink="#0000ff" link="#0000ff" vlink="#840084">
+
+
+
+
 
 
   
@@ -47,7 +95,15 @@
         Guide for ICU Resource Bundles</h1>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -55,52 +111,96 @@
 <dl>
 
 
+
+
+
+
         <dd>
           
+    
+    
+    
+    
     
     <div class="abstract">
             
     
+    
+    
+    
+    
+    <h2><a name="id2495218" id="id2495218"></a>
+                
+        
+        
+        Abstract</h2>
+
+
+    
+    
     <dl>
 
 
-              <dt><a name="id2495218" id="id2495218"></a></dt>
 
 
-
-              <dd>
-                
-        
-        <h2>Abstract</h2>
-
-
-              </dd>
 
 
             
     
+    
+    
+    
+    
     </dl>
+
+
+
+
 
 
           </div>
 
 
 
+
+
+
+
           
+    
+    
+    
+    
     
     <p>This document defines a guide for mapping the International
           Components of Unicode Resource Bundle file format to XLIFF (XML
           Localisation Interchange File Format).</p>
 
 
+
+
+
+
         </dd>
+
+
+
+
 
 
       
 </dl>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -110,21 +210,45 @@
 <dl>
 
 
+
+
+
+
         <dt><a name="Status" id="Status"></a></dt>
+
+
+
+
 
 
 
         <dd>
           
     
+    
+    
+    
+    
     <h2>Status</h2>
+
+
+
+
 
 
         </dd>
 
 
+
+
+
+
       
 </dl>
+
+
+
+
 
 
 
@@ -132,29 +256,61 @@
 <dl>
 
 
+
+
+
+
         <dt><a name="Notice" id="Notice"></a></dt>
+
+
+
+
 
 
 
         <dd>
           
     
+    
+    
+    
+    
     <h2>Notices</h2>
 
 
+
+
+
+
         </dd>
+
+
+
+
 
 
       
 </dl>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
     
 <hr />
   </div>
+
+
+
+
 
 
 
@@ -165,8 +321,16 @@
 
 
 
+
+
+
+
     
 <dl>
+
+
+
+
 
 
       <dt><span class="section"><a href="#s.introduction">1.
@@ -174,10 +338,22 @@
 
 
 
+
+
+
+
       <dd>
         
     
+    
+    
+    
+    
     <dl>
+
+
+
+
 
 
           <dt><span class="section"><a href="#s.introduction.purpose">1.1.
@@ -185,16 +361,36 @@
 
 
 
+
+
+
+
           <dt><span class="section"><a href="#Intro_Flavors">1.2. Transitional
           and Strict</a></span></dt>
 
 
+
+
+
+
         
+    
+    
+    
+    
     
     </dl>
 
 
+
+
+
+
       </dd>
+
+
+
+
 
 
 
@@ -203,19 +399,39 @@
 
 
 
+
+
+
+
       <dt><span class="section"><a href="#s.general_considerations">3. General
       Considerations</a></span></dt>
+
+
+
+
 
 
 
       <dd>
         
     
+    
+    
+    
+    
     <dl>
+
+
+
+
 
 
           <dt><span class="section"><a href="#s.general_considerations.languages">3.1. Source and Target
           Languages</a></span></dt>
+
+
+
+
 
 
 
@@ -224,16 +440,36 @@
 
 
 
+
+
+
+
           <dt><span class="section"><a href="#s.general_considerations.charsetconv">3.3. Character Set
           Conversion</a></span></dt>
 
 
+
+
+
+
         
+    
+    
+    
+    
     
     </dl>
 
 
+
+
+
+
       </dd>
+
+
+
+
 
 
 
@@ -242,19 +478,39 @@
 
 
 
+
+
+
+
       <dt><span class="section"><a href="#s.detailed_mapping">5. Detailed
       Mapping</a></span></dt>
+
+
+
+
 
 
 
       <dd>
         
     
+    
+    
+    
+    
     <dl>
+
+
+
+
 
 
           <dt><span class="section"><a href="#s.detailed_mapping.tlc">5.1. Top
           Level Comments</a></span></dt>
+
+
+
+
 
 
 
@@ -263,8 +519,16 @@
 
 
 
+
+
+
+
           <dd><a href="#s.detailed_mapping.strings.msg_format">5.2.1.
           Preserving Message Replaceables in Value</a></dd>
+
+
+
+
 
 
 
@@ -273,7 +537,15 @@
 
 
 
+
+
+
+
           <dt><a href="#s.detailed_mapping.tu.autocomment"></a><a href="#s.detailed_mapping.binarydata">5.4. Binary Data</a></dt>
+
+
+
+
 
 
 
@@ -282,8 +554,16 @@
 
 
 
+
+
+
+
           <dt><span class="section"><a href="#s.detailed_mapping.arrays">5.6.
           Arrays</a></span></dt>
+
+
+
+
 
 
 
@@ -291,16 +571,36 @@
 
 
 
+
+
+
+
           <dt><a href="#s.detailed_mapping.intvector">5.8. Integer
           Vectors</a></dt>
 
 
+
+
+
+
         
+    
+    
+    
+    
     
     </dl>
 
 
+
+
+
+
       </dd>
+
+
+
+
 
 
 
@@ -309,12 +609,24 @@
 
 
 
+
+
+
+
       <dd><a href="#s.detailed_mapping.include">5.10. Include
       Directive</a></dd>
 
 
+
+
+
+
     
 </dl>
+
+
+
+
 
 
 
@@ -323,12 +635,24 @@
 
 
 
+
+
+
+
     
 <dl>
 
 
+
+
+
+
       <dt><span class="appendix"><a href="#id2506698">A.
       Contributions</a></span></dt>
+
+
+
+
 
 
 
@@ -337,14 +661,30 @@
 
 
 
+
+
+
+
       <dt><span class="bibliography"><a href="#bibl">References</a></span></dt>
+
+
+
+
 
 
     
 </dl>
 
 
+
+
+
+
   </div>
+
+
+
+
 
 
   
@@ -360,10 +700,22 @@
 <h2 class="title" style="clear: both;"><a name="s.introduction" id="s.introduction"></a>1.&nbsp;Introduction</h2>
 
 
+
+
+
+
       </div>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -385,6 +737,10 @@
 
 
 
+
+
+
+
     
 <div class="section">
       
@@ -395,10 +751,22 @@
 <h3 class="title"><a name="s.introduction.purpose" id="s.introduction.purpose"></a>1.1.&nbsp;Purpose</h3>
 
 
+
+
+
+
         </div>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -411,13 +779,25 @@
       tools.</p>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
     
 <h3><a name="Intro_Flavors" id="Intro_Flavors"></a>1.2 Transitional and
     Strict</h3>
+
+
+
+
 
 
 
@@ -432,6 +812,10 @@
 
 
 
+
+
+
+
     
 <p>As newer versions of XLIFF are approved, sometimes changes are made that
     render some elements, attributes or constructs in older versions obsolete.
@@ -441,12 +825,24 @@
 
 
 
+
+
+
+
     
 <ul>
 
 
+
+
+
+
       <li id="transitional">
         
+    
+    
+    
+    
     
     <p><strong>Transitional</strong> - Applications that produce older
         versions of XLIFF may still use deprecated items. Use this variant to
@@ -455,18 +851,38 @@
 
 
 
+
+
+
+
         
+    
+    
+    
+    
     
     <p><code>xsi:schemaLocation='urn:oasis:names:tc:xliff:document:1.2
         xliff-core-1.2-transitional.xsd'</code></p>
+
+
+
+
 
 
       </li>
 
 
 
+
+
+
+
       <li id="strict">
         
+    
+    
+    
+    
     
     <p><strong>Strict</strong> - All deprecated elements and attributes are
         not allowed. Obsolete items from previous versions of XLIFF are
@@ -475,20 +891,44 @@
 
 
 
+
+
+
+
         
+    
+    
+    
+    
     
     <p><code>xsi:schemaLocation='urn:oasis:names:tc:xliff:document:1.2
         xliff-core-1.2-strict.xsd'</code></p>
 
 
+
+
+
+
       </li>
+
+
+
+
 
 
     
 </ul>
 
 
+
+
+
+
   </div>
+
+
+
+
 
 
 
@@ -503,10 +943,22 @@
         format</h2>
 
 
+
+
+
+
       </div>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -517,11 +969,124 @@ These text files are converted into binary resource files using the
 genrb tool. ICU reads these binary resource files at runtime. The
 general structure of the ICU Resource Bundle file is defined <a href="http://icu.sourceforge.net/userguide/ResourceManagement.html">here</a>.</p>
 
+<p>An ICU Resource Bundle is a collection of resources. There are two
+main types of ICU resources: simple and complex. Simple resources each
+contain a single piece of data. There are five kinds of simple
+resources:</p>
+
+<ul>
+
+  <li>string - a Unicode encoded text string.</li>
+
+  <li>integer - a 32 bit integer value.</li>
+
+  <li>integer vector - an indexed collection of 32 bit integer values.</li>
+
+  <li>binary - binary information such as images and other processed data.</li>
+
+  <li>alias - an indirect pointer to a resource in another bundle.</li>
+
+</ul>
+
+<p>Complex resources contain other simple and complex resources. There are two types of complex resources:</p>
+
+<ul>
+
+  <li>table - a collection of named resources.</li>
+
+  <li>array - an indexed collection of unnamed resources.</li>
+
+</ul>
+
+Table and array resources may contain any mixture of resources,
+including other table and array resources. An ICU Resource Bundle
+consists of a top-level table resource containing all the resources in
+the bundle.<br />
+<br />
+ICU Resource bundles are specified in a text file. A resource is
+specified by a name followed by a type and then the resource data
+enclosed in curly brackets ("{" and "}"). &nbsp;The following table
+shows how to specify each resource type:<br />
+<br />
+<table style="text-align: left; width: 600px; height: 228px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <th>Resource Type</th>
+      <th>Type Name</th>
+      <th>Resource Data</th>
+    </tr>
+    <tr>
+      <td>string</td>
+      <td>:string</td>
+      <td>a quoted text string</td>
+    </tr>
+    <tr>
+      <td>integer</td>
+      <td>:integer or :int</td>
+      <td>a string of decimal digits</td>
+    </tr>
+    <tr>
+      <td>integer vector</td>
+      <td>:intvector</td>
+      <td>a comma separated list of digits</td>
+    </tr>
+    <tr>
+      <td>binary</td>
+      <td>:binary or :bin</td>
+      <td>a string of hexadecimal digits</td>
+    </tr>
+    <tr>
+      <td>alias</td>
+      <td>:alias</td>
+      <td>a path as a quoted string</td>
+    </tr>
+    <tr>
+      <td>table</td>
+      <td>:table</td>
+      <td>one or more named resources</td>
+    </tr>
+    <tr>
+      <td>array</td>
+      <td>:array</td>
+      <td>one or more unnamed resources separated by commas</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+Notes:<br />
+<ul>
+  <li>Notice that all type names start with a colon (":")</li>
+  <li>The name of the top level table must be a locale name</li>
+  <li>In some cases the type name, the quotes around strings and curly
+brackets around resource data can be omitted. For clarity, we'll always show fully
+specified resources.</li>
+</ul>
+The text file can also contain C++ style comments. That is, comments
+that start with "//" and extend to the end of the line, and multi-line
+comments that start with "/*" and end with "*/". There can also by
+"doc" comments that start with "/**" and end with "*/". These comments
+apply to the following resource and may contain two special tokens. The
+token "@translate" followed by "yes" or "no" instructs the translator
+whether or not the resource should be translated. The token "@note"
+begins a special not to the translator that extends to the end of the
+line.<br />
+<br />
+Here is a sample ICU resource bundle containing the English resources for a fictitious Hello World application:<br />
+<br />
+<pre>/*<br /> * The resources for a fictitious Hello World application. The application<br /> * displays a single window with a logo and the hello message.<br /> */<br />en :table {<br />    /**<br />     * @note This is the message that the application displays to the user.<br />     */<br />    hello :string {"Hello, world!"}<br /><br />    /**<br />     * The height of the application window.<br />     *<br />     * @note Make sure this is tall enough to display the translated message.<br />     */<br />    window_height :integer {200}<br /><br />    /**<br />     * The width of the application window.<br />     *<br />     * @note Make sure this is wide enough to display the translated message.<br />     */<br />    window_width :integer {600}<br /><br />    /**<br />     * The application version number<br />     */<br />    version :intvector {<br />        /**<br />         * The major version number.<br />         *<br />         * @note The major version number.<br />         * @translate no<br />         */<br />        1,<br /><br />        /**<br />         * The minor version number.<br />         *<br />         * @translate no<br />         */<br />        2,<br /><br />        /**<br />         * The patch level.<br />         *<br />         * @translate no<br />         */<br />        3}<br /><br />    /**<br />     * The MD5 checksum of the application.<br />     *<br />     * @translate no<br />     */<br />    md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}<br /><br />    /**<br />     * The logo to be displayed in the application window.<br />     *<br />     * @translate no<br />     */<br />    logo :import {"logo.gif"}<br /><br />    /*<br />     * The Authors. Just use the name from the root bundle.<br />     */<br />    authors :alias {"root/authors"}<br /><br />    /*<br />     * The translators.<br />     */<br />    translators :array {<br />        :string {"John E. English"},<br />        :string {"Alan Smithee"},<br />        :string {"Allen Smythee"}<br />    }<br /><br /><br />    /**<br />     * The application menus.<br />     *<br />     * @note Keep the menus and the menu items in this order.<br />     */<br />    menus :table {<br />        file_menu :table {<br />            name :string {"File"}<br /><br />            items :array {<br />                :string {"New"},<br />                :string {"Open..."},<br />                :string {"Save"},<br />                :string {"Save As..."},<br />                :string {"Exit"}<br />            }<br />        }<br /><br />        edit_menu :table {<br />            name :string {"Edit"}<br /><br />            items :array {<br />                :string {"Cut"},<br />                :string {"Copy"},<br />                :string {"Paste"},<br />                :string {"Delete"}<br />            }<br />        }<br /><br />        help_menu :table {<br />            name :string {"Help"}<br /><br />            items :array {<br />                :string {"Help Topics"},<br />                :string {"About Hello World"}<br />            }<br />        }<br />    }<br />}</pre>
+
+
+
+
 
 
     
 <h3><a name="ExtractionTechniques" id="ExtractionTechniques">2.1. Extraction
     Techniques</a></h3>
+
+
+
+
 
 
 
@@ -534,7 +1099,15 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
     Translation (CAT), but software best practices favour using the same
     technology for both extraction and recomposition.</p>
 
+
+
+
+
 <h4><a name="UsingFilters" id="UsingFilters"></a>2.4.1. Using Filters</h4>
+
+
+
+
 
 
 
@@ -542,6 +1115,10 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 <p>It is necessary to extract the ICU Resource Bundles to XLIFF by developing a custom filter application. Such tools can be
     written using a variety of programming and scripting languages such as
     Perl, Python, C, C++, C#, Java, etc..</p>
+
+
+
+
 
 
 
@@ -554,8 +1131,16 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 
 
 
+
+
+
+
     
 <p>The following guidelines should be adhered to:</p>
+
+
+
+
 
 
 
@@ -563,20 +1148,38 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 <ul>
 
 
-      <li>Each .properties file is represented in a separate
+
+
+
+
+      <li>Each .txt file is represented in a separate
       <code>&lt;file&gt;</code> element in an XLIFF document</li>
 
 
 
+
+
+
+
       <li>The <code>datatype</code> attribute of a <code>&lt;file&gt;</code>
-      element is set to <code>javapropertyresourcebundle</code> or
-      <code>javalistresourcebundle</code>, depending on the type of
-      resource</li>
+      element is set to <code>x-icu-resourcebundle</code></li>
 
 
 
-      <li>The <code>&lt;body&gt;</code> element contains a separate
-      <code>&lt;trans-unit&gt;</code> element for each key-value pair</li>
+  <li>The <code>&lt;body&gt;</code> element contains a single top-level
+      <code>&lt;group&gt;</code> element</li>
+
+
+
+
+
+
+
+      <li>The top-level <code>&lt;group&gt;</code> element contains a separate<code></code> element for each top-level resource in the .txt file</li>
+
+
+
+
 
 
 
@@ -586,12 +1189,24 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 
 
 
+
+
+
+
       <li>The value string becomes the content of the child
       <code>&lt;source&gt;</code> element</li>
 
 
+
+
+
+
     
 </ul>
+
+
+
+
 
 
 
@@ -602,8 +1217,16 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 
 
 
+
+
+
+
     
 <ul>
+
+
+
+
 
 
       <li>Single quotes, double quotes, backslashes and other special
@@ -612,15 +1235,31 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 
 
 
+
+
+
+
       <li>The ICU Resource Bundle text files can be written in&nbsp;<code class="code">UTF-8</code>,&nbsp;<code class="code">UTF-16</code> or in any other codepage supported by ICU. Filters should respect the source endoding and convert to&nbsp;<code class="code">UTF-8</code> when writing the XLIFF file.</li>
 
+
+
+
+
 </ul>
+
+
+
+
 
 
 
     
 <h3><a name="OrderOfExtraction" id="OrderOfExtraction">2.5. Order of
     Extraction</a></h3>
+
+
+
+
 
 
 
@@ -632,7 +1271,15 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
     together as much as possible.</p>
 
 
+
+
+
+
   </div>
+
+
+
+
 
 
 
@@ -646,10 +1293,22 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 <h2 class="title" style="clear: both;"><a name="s.general_considerations" id="s.general_considerations"></a>3.&nbsp;General Considerations</h2>
 
 
+
+
+
+
       </div>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -661,8 +1320,16 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 
 
 
+
+
+
+
     
 <pre>// Comments start with a '//' and extend to the end of the line<br />// first, a locale name for the bundle is defined. The whole bundle is a table<br />// every resource, including the whole bundle has its name.<br />// The name consists of invariant characters, digits and following symbols: -, _. <br />root:table {<br />    menu:table {<br />        id:string { "mainmenu" }<br />        items:array {<br />       //un-named array<br />            :array{<br />                id:string { "file" }<br />                name:string { "&amp;File" }<br />                items:array {<br />                    {<br />                        id:string{ "open" }<br />                        name:string { "&amp;Open" }<br />                    }<br />                    {<br />                        id:string { "save" }<br />                        name:string { "&amp;Save" }<br />                    }<br />                    {<br />                        id:string { "exit" }<br />                        name:string { "&amp;Exit" }<br />                    }<br />                }<br />            }<br /><br />            :array{<br />                id:string { "edit" }<br />                name:string { "&amp;Edit" }<br />                items:string {<br />                    {<br />                        id:string { "copy" }<br />                        name:string { "&amp;Copy" }<br />                    }<br />                    {<br />                        id:string { "cut" }<br />                        name:string { "&amp;Cut" }<br />                    }<br />                    {<br />                        id:string { "paste" }<br />                        name:string { "&amp;Paste" }<br />                    }<br />                }<br />           }<br /><br />            ...<br />        }<br />    }<br /><br />    // This resource is an array, thus accessible only through iteration and indexes...<br />    errors:array {<br />        :string{"Invalid Command"},<br />        :string{"Bad Value"},<br /><br />        // Add more strings here...<br /><br />        :string{"Read the Manual"}<br />    }<br /><br />    splash:import { "splash_root.gif" } // This is a binary imported file<br /><br />    pgpkey:bin { a1b2c3d4e5f67890 } // a binary value<br /><br />    versionInfo:table { // a table<br />        major:int { 1 } // of integers<br />        minor:int { 4 }<br />        patch:int { 7 }<br />    }<br /><br />    buttonSize:intvector { 10, 20, 10, 20 } // an array of 32-bit integers<br /><br />    // will pick up data from zoneStrings resource in en bundle in the ICU package<br />    simpleAlias:alias { "/ICUDATA/en/zoneStrings" }<br /><br />    // will pick up data from CollationElements resource in en bundle<br />    // in the ICU package<br />    CollationElements:alias { "/ICUDATA/en" }   <br />}</pre>
+
+
+
+
 
 
 
@@ -684,15 +1351,31 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 
 
 
+
+
+
+
           
 <h3 class="title"><a name="s.general_considerations.resource_bundles" id="s.general_considerations.resource_bundles"></a>3.1. ICU Resource
           Bundles</h3>
 
 
+
+
+
+
         </div>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -705,11 +1388,19 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 
 
 
+
+
+
+
       
 <p>It is fully possible to apply this guide to XLIFF files extracted from
       other formats. However, that usage is not recommended since other formats
       may have constructs that have no equivalent construct in the ICU
       format.</p>
+
+
+
+
 
 
 
@@ -721,7 +1412,15 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
       with XLIFF &amp; ICU</a>.</p>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -735,6 +1434,10 @@ general structure of the ICU Resource Bundle file is defined <a href="http://icu
 <h3 class="title"><a name="s.general_considerations.languages" id="s.general_considerations.languages"></a>3.2. Source and Target
           Languages</h3>
 
+
+
+
+
 In ICU resources files the source language is appended to the file
           name. As an alternative, the filter tools can provide an option for
           specifing the source language of the file. ICU uses [<a href="xliff-profile-icuresourcebundle-1.2.htm#refRFC4646"><span class="abbrev">RFC 4646</span></a>] for naming its files and resource. ICU
@@ -747,10 +1450,22 @@ In ICU resources files the source language is appended to the file
         </div>
 
 
+
+
+
+
       </div>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -764,10 +1479,22 @@ In ICU resources files the source language is appended to the file
 <h3 class="title"><a name="s.general_considerations.ids" id="s.general_considerations.ids"></a>3.3. Translation Unit IDs</h3>
 
 
+
+
+
+
         </div>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -776,7 +1503,15 @@ In ICU resources files the source language is appended to the file
       major resource formats.</p>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -791,10 +1526,22 @@ In ICU resources files the source language is appended to the file
           Conversion</h3>
 
 
+
+
+
+
         </div>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -805,15 +1552,31 @@ In ICU resources files the source language is appended to the file
 
 
 
+
+
+
+
       
 <p>When extracting data from ICU Resource Bundle files, filters should
       respect the encoding of the file and provide conversion to <code class="code">UTF-8</code> for storing data in XLIFF.</p>
 
 
+
+
+
+
     </div>
 
 
+
+
+
+
   </div>
+
+
+
+
 
 
 
@@ -827,13 +1590,29 @@ In ICU resources files the source language is appended to the file
 <h2 class="title" style="clear: both;"><a name="s.general_structure" id="s.general_structure"></a>4.&nbsp;General Structure</h2>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
     </div>
 
 
+
+
+
+
 <pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2"&gt;<br />    &lt;file xml:space = "preserve" source-language = "en" datatype = "x-icu-resourcebundle"<br />            original = "en_fortune.txt" date = "2007-04-11T19:03:09Z"&gt;<br />        &lt;header&gt;..Header information..&lt;/header&gt;<br />        &lt;tool tool-id = "genrb-icu-3.7.1" tool-name = "genrb" /&gt;<br />        &lt;body&gt;<br />            &lt;group restype = "x-icu-table" xml:space = "preserve" id = "myResource" &gt;<br />                &lt;trans-unit xml:space = "preserve" id = "myResource_optionMessage"<br />                            resname = "optionMessage"&gt;<br />                    &lt;source xml:lang = "en"&gt;unrecognized command line option:&lt;/source&gt;<br />                &lt;/trans-unit&gt;<br />                &lt;trans-unit xml:space = "preserve" id = "myResource_usage"<br />                            resname = "usage"&gt;<br />                    &lt;source xml:lang = "en"&gt;usage: ufortune [-v]  [-l locale]&lt;/source&gt;<br />                &lt;/trans-unit&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt;<br />&lt;/xliff&gt;</pre>
+
+
+
+
 
 
 
@@ -847,6 +1626,10 @@ In ICU resources files the source language is appended to the file
 
 
 
+
+
+
+
     
 <p>The XLIFF <code class="sgmltag-element">&lt;body&gt;</code> element
     contains translation units, which may be grouped by ICU resource domains
@@ -854,7 +1637,15 @@ In ICU resources files the source language is appended to the file
     elements.</p>
 
 
+
+
+
+
   </div>
+
+
+
+
 
 
 
@@ -868,10 +1659,22 @@ In ICU resources files the source language is appended to the file
 <h2 class="title" style="clear: both;"><a name="s.detailed_mapping" id="s.detailed_mapping"></a>5.&nbsp;Detailed Mapping</h2>
 
 
+
+
+
+
       </div>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -885,10 +1688,22 @@ In ICU resources files the source language is appended to the file
 <h3 class="title"><a name="s.detailed_mapping.tlc" id="s.detailed_mapping.tlc"></a>5.1. Top Level Comments</h3>
 
 
+
+
+
+
         </div>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -899,11 +1714,23 @@ In ICU resources files the source language is appended to the file
 
 
 
+
+
+
+
       
 <p>For example:</p>
 
 
+
+
+
+
 <pre>/**<br /> * These are top level comments for the bundle. Tag name: root<br /> * @translate yes<br /> * @note Comments for tag named root<br /> */<br />root{<br />}</pre>
+
+
+
+
 
 
 
@@ -912,7 +1739,15 @@ would be mapped to:
 <pre>    &lt;file xml:space = "preserve" source-language = "en" datatype =<br />          "x-icu-resourcebundle" original = "root.txt" tool = "genrb" date =<br />             "2007-01-17T20:58:58Z"&gt;<br />        &lt;body&gt;<br />            &lt;group restype = "x-icu-table" xml:space = "preserve" id = "ra" &gt;<br />                &lt;!--These are top level comments for the bundle. Tag name: root--&gt;<br />                &lt;note&gt; Comments for tag named root&lt;/note&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt; </pre>
 
 
+
+
+
+
 <br />
+
+
+
+
 
 
 
@@ -924,10 +1759,22 @@ would be mapped to:
 <h3 class="title"><a name="s.detailed_mapping.strings" id="s.detailed_mapping.strings"></a>5.2. Strings</h3>
 
 
+
+
+
+
         </div>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -938,8 +1785,16 @@ would be mapped to:
 
 
 
+
+
+
+
       
 <p>For example:</p>
+
+
+
+
 
 
 
@@ -958,7 +1813,15 @@ would be mapped to:
 
 
 
+
+
+
+
 would be mapped to:   <br />
+
+
+
+
 
 
 
@@ -972,7 +1835,15 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -985,6 +1856,10 @@ would be mapped to:   <br />
           
 <h4><a name="s.detailed_mapping.strings.msg_format" id="s.detailed_mapping.strings.msg_format"></a>5.2.1.&nbsp;Preserving
           Message Replaceables in Value</h4>
+
+
+
+
 
 
 
@@ -1006,8 +1881,16 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
           
 <p>For example:</p>
+
+
+
+
 
 
 <pre id="listing_5"> choiceFormat:string{"Folder {0} contains {1,choice,0#no files|1#one file|1&lt;{2,number,integer}files}."}<br /> msgFormat:string{"At {1,time} on {1,date}, there was {2} on planet{0,number,integer}."}</pre>
@@ -1015,8 +1898,16 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
           
 <p>would be mapped to:</p>
+
+
+
+
 
 
 
@@ -1029,14 +1920,30 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
               
 <h3 class="title"><a name="s.detailed_mapping.integers" id="s.detailed_mapping.integers"></a>5.3. Integers</h3>
+
+
+
+
 
 
             </div>
 
 
+
+
+
+
           </div>
+
+
+
+
 
 
 
@@ -1048,8 +1955,16 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
           
 <p>For example:</p>
+
+
+
+
 
 
 <pre>        /**<br />         * Tag name: test5<br />         * @translate yes<br />         * @note This resource is for test5<br />         */<br />        test5:int{1}<br />    <em class="replaceable"><code>...</code></em>
@@ -1067,7 +1982,15 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
 would be mapped to:   <br />
+
+
+
+
 
 
 
@@ -1081,8 +2004,16 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
           
 <h3 class="title"><em class="replaceable"><a name="s.detailed_mapping.binarydata" id="s.detailed_mapping.binarydata"></a></em><span class="replaceable">5.4. Binary Data</span></h3>
+
+
+
+
 
 
 
@@ -1095,8 +2026,16 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
           
 <p><span class="replaceable">For example:</span></p>
+
+
+
+
 
 
 <pre><span class="replaceable">        /**<br />         * Tag name: test6<br />         * @translate no<br />         * @note This resource is for test6<br />         */<br />        test6:bin{"0102"}</span><em class="replaceable">    <em class="replaceable"><code>...</code></em>
@@ -1111,6 +2050,10 @@ would be mapped to:   <br />
 </em>
 </pre>
 
+
+
+
+
 <span class="replaceable">would be mapped to:</span> <em class="replaceable"></em>
 <pre><em class="replaceable">  </em><span class="replaceable">  &lt;bin-unit restype = "x-icu-bin" id = "test6"  mime-type = "application/octet-stream"<br />              resname = "test6" translate="no"&gt;<br />        &lt;!--Tag name: test6--&gt;<br />        &lt;bin-source&gt;<br />            &lt;internal-file form = "application" crc = "480784534"&gt;0102&lt;/internal-file&gt;<br />        &lt;/bin-source&gt;<br />        &lt;note&gt; This resource is for test6&lt;/note&gt;<br />    &lt;/bin-unit&gt;<br />    <span class="replaceable"><code>...<br /></code></span></span><span class="replaceable">&nbsp;   &lt;bin-unit restype = "x-icu-bin" id = "</span><span class="replaceable"><span class="replaceable"><code></code></span></span><em class="replaceable"><em class="replaceable"><code>&lt;resource name&gt;_&lt;array_index&gt;</code></em></em><span class="replaceable">"<br />              mime-type = "application/octet-stream"<br />              resname = "</span><span class="replaceable"><span class="replaceable"><code></code></span></span><em class="replaceable"><em class="replaceable"><code>&lt;resource name&gt;_&lt;array_index&gt;</code></em></em><span class="replaceable"><span class="replaceable"><code><span style="color: rgb(0, 0, 0);">"</span> </code></span></span><span class="replaceable">translate="no"&gt;<br />        &lt;!--comments for un-named binary--&gt;<br />        &lt;bin-source&gt;<br />            &lt;internal-file form = "application" crc = "-2140397846"&gt;12312312&lt;/internal-file&gt;<br />        &lt;/bin-source&gt;<br />        &lt;note&gt; This resource is for un-named binary&lt;/note&gt;<br />    &lt;/bin-unit&gt;</span><em class="replaceable"></em><em class="replaceable">      <em class="replaceable"><code>...</code></em>
 
@@ -1119,9 +2062,17 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
           
 <h3 class="title"><em class="replaceable"><a name="s.detailed_mapping.aliases" id="s.detailed_mapping.aliases"></a></em><span class="replaceable">5.5.
           Aliases</span></h3>
+
+
+
+
 
 
 
@@ -1135,11 +2086,23 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
           
 <p><span class="replaceable">For example:</span></p>
 
 
+
+
+
+
 <pre><span class="replaceable">        aaa:alias { "/ICUDATA/en/aab" }</span></pre>
+
+
+
+
 
 
 
@@ -1149,9 +2112,17 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
           
 <h3 class="title"><em class="replaceable"><a name="s.detailed_mapping.arrays" id="s.detailed_mapping.arrays"></a></em><span class="replaceable">5.6.
           Arrays</span></h3>
+
+
+
+
 
 <span class="replaceable">Arrays are used for
           bundling un-named items together.The ID values for each element of
@@ -1161,11 +2132,23 @@ would be mapped to:   <br />
           resource should be used.<br />
 
 
+
+
+
+
           For example:</span>
 <pre><span class="replaceable">    /**<br />     * Top level comments for Tag name: TestArray<br />     * @translate yes<br />     * @note This resource is for Tag name: Array<br />     */<br />    TestArray:array{<br />        /**<br />         * comments for un-named string<br />         * @translate yes<br />         * @note This resource is un-named string<br />         */<br />        :string{"abcde"},<br />        /** <br />         * comments for un-named int<br />         * @translate yes<br />         * @note This resource is un-named int<br />         */<br />        :int{1},<br />        /**<br />         * comments for un-named binary<br />         * @translate yes<br />         * @note This resource is for un-named binary<br />         */<br />        :bin{"12312312"}<br />    }</span></pre>
 
 
+
+
+
+
 <span class="replaceable"><br />
+
+
+
+
 
 
           would be converted to:</span>
@@ -1173,10 +2156,22 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
         </div>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -1189,6 +2184,10 @@ would be mapped to:   <br />
             
 <h3 class="title"><em class="replaceable"><a name="s.detailed_mapping.intvector" id="s.detailed_mapping.intvector"></a></em><span class="replaceable">5.7. Integer Vectors</span></h3>
 
+
+
+
+
 <span class="replaceable">Integer vectors are arrays of 32 bit integers and are
             used for bundling un-named integers together. The ID values for
             each element of the array are a concatenation of the ID of the
@@ -1198,7 +2197,15 @@ would be mapped to:   <br />
             used.<br />
 
 
+
+
+
+
             <br />
+
+
+
+
 
 
             For example:</span>
@@ -1206,7 +2213,15 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
 <span class="replaceable"><br />
+
+
+
+
 
 
             would be converted to:</span>
@@ -1215,31 +2230,63 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
             
 <h3 class="title"><em class="replaceable"><a name="s.detailed_mapping.tables" id="s.detailed_mapping.tables"></a></em><span class="replaceable">5.8.Tables</span></h3>
+
+
+
+
 
 <span class="replaceable">Tables are arrays of named items and are used for
             bundling named items together.<br />
 
 
+
+
+
+
             <br />
+
+
+
+
 
 
             For example:</span>
 <pre><span class="replaceable">    /**<br />     * comments for TestTable<br />     * @translate yes<br />     * @note This resource is for TestTable<br />     */<br />     TestTable{<br />        /**<br />         * comments for Month1<br />         * @translate yes<br />         * @note This resource is for Month1<br />         */<br />         Month1{"January"}<br />        /**<br />         * comments for Month2<br />         * @translate yes<br />         * @note This resource is for Month2<br />         */<br />         Month2{"February"}<br />        /**<br />         * comments for Month3<br />         * @translate yes<br />         * @note This resource is for Month3<br />         */<br />         Month3{"March"}<br />     }</span></pre>
 
 
+
+
+
+
 <span class="replaceable"><br />
+
+
+
+
 
 
             would be converted to:</span>
 <pre><span class="replaceable">   &lt;group restype = "x-icu-intvector" xml:space = "preserve" id = "TestTable" resname="TestTable"&gt;<br />        &lt;!--comments for TestTable--&gt;<br />        &lt;note&gt; This resource is for TestTable&lt;/note&gt;<br />        &lt;trans-unit xml:space = "preserve" id = "TestTable_Month1" translate="yes"&gt;<br />            &lt;!--comments for Month1--&gt;<br />            &lt;source &gt;January&lt;/source&gt;<br />            &lt;note&gt; This resource is for Month1&lt;/note&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit xml:space = "preserve" id = "TestTable_Month2" translate="yes"&gt;<br />            &lt;!--comments for Month2--&gt;<br />            &lt;source &gt;February&lt;/source&gt;<br />            &lt;note&gt; This resource is for Month2&lt;/note&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit xml:space = "preserve" id = "TestTable_Month3" translate="yes"&gt;<br />            &lt;!--comments for Month3--&gt;<br />            &lt;source &gt;March&lt;/source&gt;<br />            &lt;note&gt; This resource is for Month3&lt;/note&gt;<br />        &lt;/trans-unit&gt;<br />   &lt;/group&gt;</span><em class="replaceable"></em></pre>
 
 
+
+
+
+
 &middot;
             
 <h3 class="title"><em class="replaceable"><a name="s.detailed_mapping.import" id="s.detailed_mapping.import"></a></em><span class="replaceable">5.9.
             Import Directive</span></h3>
+
+
+
+
 
 <span class="replaceable">Binary data
             can be imported into a resource with the import data type.</span>
@@ -1248,7 +2295,15 @@ would be mapped to:   <br />
 <p><span class="replaceable">For example:</span></p>
 
 
+
+
+
+
 <pre><span class="replaceable">    /**<br />     * comments for TestImport<br />     * @translate no<br />     * @note This resource is for TestImport<br />     */<br />    TestImpport:import{"mytest.jpg"}</span></pre>
+
+
+
+
 
 
 <span class="replaceable">would be mapped to:</span>
@@ -1258,8 +2313,16 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
             
 <h3 class="title"><em class="replaceable"><a name="s.detailed_mapping.include" id="s.detailed_mapping.include"></a></em><span class="replaceable">5.10. Include Directive</span></h3>
+
+
+
+
 
 <span class="replaceable">Include directive indicates that text data imported
             into a resource. The contents of the file that is pointed to is
@@ -1269,7 +2332,15 @@ would be mapped to:   <br />
 <p><span class="replaceable">For example:</span></p>
 
 
+
+
+
+
 <pre><span class="replaceable">    /**<br />     * comments for TestInclude1<br />     * @translate no<br />     * @note This resource is for TestInclude1<br />     */<br />    TestInclude1:include{"translit_rules.txt"}<br /><br />    /**<br />     * comments for TestInclude2<br />     * @translate yes<br />     * @note This resource is for TestInclude2<br />     */<br />    TestInclude2:include{"mystring.txt"}</span></pre>
+
+
+
+
 
 
 
@@ -1277,20 +2348,44 @@ would be mapped to:   <br />
 <pre><span class="replaceable">   &lt;bin-unit restype = "x-icu-import" id = "TestInclude1"  mime-type = "application" <br />             resname = "TestInclude1" translate="no"&gt;<br />       &lt;!--comments for TestImport1--&gt;<br />       &lt;bin-source&gt;<br />              &lt;external-file href = "translit_rules.txt"/&gt;<br />       &lt;/bin-source&gt;<br />       &lt;note&gt;This resource is for TestInclude1&lt;/note&gt;<br />   &lt;/bin-unit&gt;<br />   &lt;trans-unit xml:space = "preserve" id = "TestInclude2" resname = "TestInclude2" translate="yes"&gt;<br />        &lt;!--comments for TestInclude--&gt;<br />        &lt;source&gt;<em><span class="replaceable"><code>Contents of mystring.txt</code></span></em>&lt;/source&gt;<br />        &lt;note&gt;This resource is for TestInclude2&lt;/note&gt;<br />   &lt;/trans-unit&gt;</span></pre>
 
 
+
+
+
+
 <span class="replaceable"></span>
           </div>
+
+
+
+
 
 
         </div>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
     </div>
 
 
+
+
+
+
   </div>
+
+
+
+
 
 
 
@@ -1301,9 +2396,17 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
     
 <p><span class="replaceable">The following people have contributed to this
     document:</span></p>
+
+
+
+
 
 
 
@@ -1311,7 +2414,15 @@ would be mapped to:   <br />
 <ul type="disc">
 
 
+
+
+
+
       <li>Ram Viswanadha</li>
+
+
+
+
 
 
 
@@ -1319,7 +2430,15 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
       <li>Yoshito Umaoka</li>
+
+
+
+
 
 
 
@@ -1327,11 +2446,23 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
       <li>Eric Mader</li>
+
+
+
+
 
 
     
 </ul>
+
+
+
+
 
 
 
@@ -1340,8 +2471,16 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
     
   </div>
+
+
+
+
 
 
 
@@ -1353,9 +2492,17 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
     
 <p><span class="replaceable">We have provided the following two examples of
     ICU resource files converted to XLIFF:</span></p>
+
+
+
+
 
 
 
@@ -1365,21 +2512,45 @@ would be mapped to:   <br />
 <ul type="disc">
 
 
+
+
+
+
         <li>A simple ICU Root Template file [<a href="example.pot" target="_top">root.txt]</a> converted to XLIFF [<a href="example.xlf" target="_top">root.xlf</a>].</li>
+
+
+
+
 
 
 
         <li>A translated ICU file [<a href="example_nb_NO.po" target="_top">te.txt</a>] converted to XLIFF [<a href="example_nb-NO.xlf" target="_top">te.xlf</a>].</li>
 
 
+
+
+
+
       
 </ul>
+
+
+
+
 
 
     </div>
 
 
+
+
+
+
   </div>
+
+
+
+
 
 
 
@@ -1394,9 +2565,17 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
         
 <h2 class="title"><span class="replaceable">Issues and
         Questions</span></h2>
+
+
+
+
 
 
 
@@ -1404,7 +2583,15 @@ would be mapped to:   <br />
 <ol>
 
 
+
+
+
+
           <li>Should I add a section on handling of escape sequences?</li>
+
+
+
+
 
 
 
@@ -1413,9 +2600,17 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
           
 
           <li>include directive needs work. Can we use &lt;bin-unit&gt; for "@translate no"?</li>
+
+
+
+
 
 
         
@@ -1423,14 +2618,30 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
         
 <h2 class="title"><span class="replaceable">References</span></h2>
+
+
+
+
 
 
       </div>
 
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -1444,7 +2655,15 @@ would be mapped to:   <br />
 <p class="bibliomixed"><span class="replaceable">[ ICU <span class="abbrev">Userguide</span>] <span class="citetitle"><span class="citetitle">The ICU Userguide <a href="http://www.gnu.org/software/gettext/manual" target="_top">http://icu.sourceforge.net/userguide/localizing.html</a></span></span></span></p>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -1457,7 +2676,15 @@ would be mapped to:   <br />
         Standards</a></span></span> Web site.</span></p>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -1470,7 +2697,15 @@ would be mapped to:   <br />
         .</span></span> Phillips and Davis, Sept 2006.</span></p>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -1483,7 +2718,15 @@ would be mapped to:   <br />
         .</span></span> W3C (World Wide Web Consortium), Feb 2004</span></p>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -1497,12 +2740,24 @@ would be mapped to:   <br />
 
 
 
+
+
+
+
         
 <p class="bibliomixed"><span class="replaceable">[<span class="abbrev">XLIFF</span> 1.2] <span class="citetitle"><span class="citetitle"><a href="http://www.oasis-open.org/committees/xliff/documents/xliff-1.2-specification.htm" target="_top">XLIFF 1.2 Specification</a> .</span></span> OASIS XLIFF
         Technical Committee, May 2006.</span></p>
 
+
+
+
+
 <span class="replaceable"><a name="refXLIFFTools" id="refXLIFFTools"></a></span>
       </div>
+
+
+
+
 
 
 
@@ -1512,13 +2767,29 @@ would be mapped to:   <br />
 <p class="bibliomixed"><span class="replaceable">[<span class="abbrev">XLIFF Tools</span>] <span class="citetitle"><span class="citetitle">The XLIFF Tools Project <a href="http://xliff-tools.freedesktop.org/" target="_top">http://xliff-tools.freedesktop.org/</a></span></span></span></p>
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
     </div>
 
 
+
+
+
+
   </div>
+
+
+
+
 
 
 </body>

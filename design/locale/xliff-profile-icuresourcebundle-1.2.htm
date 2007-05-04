@@ -194,28 +194,14 @@ general structure of the ICU Resource Bundle file is defined
 "http://icu.sourceforge.net/userguide/ResourceManagement.html">here</a>.</p>
 <p>An ICU Resource Bundle is a collection of resources. There are
 two main types of ICU resources: simple and complex. Simple
-resources each contain a single piece of data. There are five kinds
-of simple resources:</p>
-<ul>
-<li>string - a Unicode encoded text string.</li>
-<li>integer - a 32 bit integer value.</li>
-<li>integer vector - an indexed collection of 32 bit integer
-values.</li>
-<li>binary - binary information such as images and other processed
-data.</li>
-<li>alias - an indirect pointer to a resource in another
-bundle.</li>
-</ul>
-<p>Complex resources contain other simple and complex resources.
-There are two types of complex resources:</p>
-<ul>
-<li>table - a collection of named resources.</li>
-<li>array - an indexed collection of unnamed resources.</li>
-</ul>
-Table and array resources may contain any mixture of resources,
-including other table and array resources. An ICU Resource Bundle
-consists of a top-level table resource containing all the resources
-in the bundle.<br />
+resources each contain a single piece of data. There are five types
+of simple resources: string, integer, integer vector, binary and
+alias. Complex resources contain other simple and complex
+resources. There are two types of complex resources: table and
+array.</p>
+An ICU Resource Bundle consists of a top-level table resource
+containing all the resources in the bundle. The name of this
+resource is a locale name.<br />
 <br />
 ICU Resource bundles are specified in a text file. A resource is
 specified by a name followed by a type name and then the resource
@@ -223,7 +209,7 @@ data enclosed in&nbsp;<code>{</code> and&nbsp;<code>}</code>.
 &nbsp;The following table shows how to specify each resource
 type:<br />
 <br />
-<table style="text-align: left; width: 610px; height: 228px;"
+<table style="text-align: left; width: 641px; height: 286px;"
 border="1" cellpadding="2" cellspacing="2">
 <tbody>
 <tr>
@@ -234,22 +220,23 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td>string</td>
 <td><code>:string</code></td>
-<td>a quoted text string</td>
+<td>a text string optionally enclosed in quotes</td>
 </tr>
 <tr>
 <td>integer</td>
 <td><code>:integer</code> or <code>:int</code></td>
-<td>a string of decimal digits</td>
+<td>a decimal or hexadecimal integer</td>
 </tr>
 <tr>
 <td>integer vector</td>
 <td><code>:intvector</code></td>
-<td>a comma separated list of digits</td>
+<td>a comma separated list of integers</td>
 </tr>
 <tr>
 <td>binary</td>
 <td><code>:binary</code> or <code>:bin</code></td>
-<td>a string of hexadecimal digits</td>
+<td>a sequence of hexadecimal digits optinally enclosed in
+quotes</td>
 </tr>
 <tr>
 <td>alias</td>
@@ -281,6 +268,159 @@ special descriptors enclosed in <code>{</code> and
 curly brackets around resource data can be omitted. For clarity,
 we'll always show fully specified resources.</li>
 </ul>
+The following is a detailed explanation of how each resource type
+is represented in the text file.<br />
+<h3>2.1 String Resources</h3>
+String resources are represented by a sequence of Unicode
+characters, optionally enclosed in quotes. The string must be
+quoted if it's empty or if it contains a space or any of these
+special characters: <code>"</code> <code>:</code> <code>,</code>
+<code>{</code> <code>}</code>.<br />
+<br />
+The string can contain the following escape sequences:<br />
+&nbsp;<br />
+<table style="text-align: left; width: 632px; height: 512px;"
+border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td><strong>Escape</strong></td>
+<td><strong>Followed By</strong></td>
+<td><strong>Represents</strong></td>
+</tr>
+<tr>
+<td><code>\u</code></td>
+<td>four hex digits</td>
+<td>a 16 bit Unicode code point</td>
+</tr>
+<tr>
+<td><code>\U</code></td>
+<td>eight hex digits</td>
+<td>a 32 bit Unicode code point</td>
+</tr>
+<tr>
+<td><code>\x</code></td>
+<td>two hex digits</td>
+<td>a Unicode code point between U+0000 and U+00FF</td>
+</tr>
+<tr>
+<td><code>\x{</code></td>
+<td>one to eight hex digits then <code>}</code></td>
+<td>a Unicode code point</td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>one to three octal digits</td>
+<td>a Unicode code point between U+0000 and U+00FF</td>
+</tr>
+<tr>
+<td><code>\c</code></td>
+<td>any character</td>
+<td>a control code (low-order four bits of character's code
+point)</td>
+</tr>
+<tr>
+<td><code>\a</code></td>
+<td></td>
+<td>ASCII audible alert&nbsp; (U+0007)</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td></td>
+<td>ASCII backspace (U+0008)</td>
+</tr>
+<tr>
+<td><code>\e</code></td>
+<td></td>
+<td>ASCII escape (U+001B)</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td></td>
+<td>ASCII form feed (U+000C)</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td></td>
+<td>ASCII newline (U+000A)</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td></td>
+<td>ASCII carriage return (U+000D)</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td></td>
+<td>ASCII tab (U+0009)</td>
+</tr>
+<tr>
+<td><code>\v</code></td>
+<td></td>
+<td>ASCII vertical tab (U+000B)</td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>any other character</td>
+<td>the character (e.g. <code>\\</code>, <code>\"</code>,
+<code>\}</code>)</td>
+</tr>
+</tbody>
+</table>
+<br />
+A single string resource can be composed of multiple strings
+separated by whitespace characters. Quoted strings are simple
+concatenated &nbsp;together. For example, consider these two
+strings.<br />
+<code>"Processing your image. "</code><br />
+<code>"This may take several minutes."</code><br />
+<br />
+These two strings produce the same string resource as this
+string:<br />
+&nbsp;<code>"Processing your image. This may take several
+minutes."<br /></code><br />
+If the strings are not quoted, they are concatenated with a space
+between them:<br />
+<code>Processing your image.</code><br />
+<code>This may take several minutes.<br /></code><br />
+This is also the same as:<br />
+<code>"Processing your image. This may take several
+minutes."<br /></code>(Note that in this example, each word is
+actually a separate string because the spaces between them separate
+the strings.)<br />
+<br />
+<h3>2.2 Integer resources</h3>
+An integer resource is specified by a sequence of decimal digits or
+by <code>0x</code> followed by a sequence of hexadecimal digits. A
+negative value is proceeded by a minus sign. The value must be
+between -32,768 and 32,767. (i.e. it must fit in 32 bits.)<br />
+<h3>2.3 Integer vector resources</h3>
+An integer vector is specified by a sequence of integer values
+separated by commas. Each integer value is specified the same way
+that integer resources are specified. The last value may be
+followed by a comma. The vector may contain a single value, or it
+may be empty.<br />
+<h3>2.4 Binary resources</h3>
+A binary resource represents a chunk of binary data. It is
+represented by a sequence of hexadecimal digits, optionally
+enclosed in quotes. There must be an even number of digits. Quotes
+must be used to specify an empty resource.<br />
+<h3>2.5 Alias resources</h3>
+An alias resource is a reference to another resource, possible in a
+different resource bundle. The reference is specified as a quoted
+string.<br />
+<h3>2.6 Table resources</h3>
+Do we need to really say anything about tables?<br />
+<h3>2.7 Array resources</h3>
+Do we really need to say anything about arrays?<br />
+<h3>2.8 Implied Resource Type</h3>
+If a type name is not given, the type is determined by looking at
+what follows the <code>{</code>. A resource name followed by a type
+name or a <code>{</code> means that the resource is a table. A type
+name or a <code>{</code> means that the resource is an array. A
+string followed by a comma means that the resource is an array of
+strings. A string followed by a <code>}</code> means that the
+resource is a string.<br />
+<br />
 The text file can also contain C++ style comments. That is,
 comments that start with <code>//</code> and extend to the end of
 the line, and multi-line comments that start
@@ -293,12 +433,12 @@ or&nbsp;<code>no</code> instructs the translator whether or not the
 resource should be translated. The token&nbsp;<code>@note</code>
 begins a special not to the translator that extends to the end of
 the line.<br />
-<br />
+<h3>2.9 Sample ICU Resource Bundle</h3>
 Here is a sample ICU resource bundle containing the English
 resources for a fictitious Hello World application:<br />
 <br />
 <pre>
-/*<br /> * The resources for a fictitious Hello World application. The application<br /> * displays a single window with a logo and the hello message.<br /> */<br />en :table {<br />    /**<br />     * @note This is the message that the application displays to the user.<br />     */<br />    hello :string {"Hello, world!"}<br /><br />    /**<br />     * The height of the application window.<br />     *<br />     * @note Make sure this is tall enough to display the translated message.<br />     */<br />    window_height :integer {200}<br /><br />    /**<br />     * The width of the application window.<br />     *<br />     * @note Make sure this is wide enough to display the translated message.<br />     */<br />    window_width :integer {600}<br /><br />    /**<br />     * The application version number<br />     */<br />    version :intvector {<br />        /**<br />         * The major version number.<br />         *<br />         * @note The major version number.<br />         * @translate no<br />         */<br />        1,<br /><br />        /**<br />         * The minor version number.<br />         *<br />         * @translate no<br />         */<br />        2,<br /><br />        /**<br />         * The patch level.<br />         *<br />         * @translate no<br />         */<br />        3}<br /><br />    /**<br />     * The MD5 checksum of the application.<br />     *<br />     * @translate no<br />     */<br />    md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}<br /><br />    /**<br />     * The logo to be displayed in the application window.<br />     *<br />     * @translate no<br />     */<br />    logo :import {"logo.gif"}<br /><br />    /*<br />     * The Authors. Just use the name from the root bundle.<br />     */<br />    authors :alias {"root/authors"}<br /><br />    /*<br />     * The translators.<br />     */<br />    translators :array {<br />        :string {"John E. English"},<br />        :string {"Alan Smithee"},<br />        :string {"Allen Smythee"}<br />    }<br /><br /><br />    /**<br />     * The application menus.<br />     *<br />     * @note Keep the menus and the menu items in this order.<br />     */<br />    menus :table {<br />        file_menu :table {<br />            name :string {"File"}<br /><br />            items :array {<br />                :string {"New"},<br />                :string {"Open..."},<br />                :string {"Save"},<br />                :string {"Save As..."},<br />                :string {"Exit"}<br />            }<br />        }<br /><br />        edit_menu :table {<br />            name :string {"Edit"}<br /><br />            items :array {<br />                :string {"Cut"},<br />                :string {"Copy"},<br />                :string {"Paste"},<br />                :string {"Delete"}<br />            }<br />        }<br /><br />        help_menu :table {<br />            name :string {"Help"}<br /><br />            items :array {<br />                :string {"Help Topics"},<br />                :string {"About Hello World"}<br />            }<br />        }<br />    }<br />}
+/*<br /> * The resources for a fictitious Hello World application. The application<br /> * displays a single window with a logo and the hello message.<br /> */<br />en :table {<br />    /**<br />     * @note This is the message that the application displays to the user.<br />     */<br />    hello :string {"Hello, world!"}<br /><br />    /**<br />     * The height of the application window.<br />     *<br />     * @note Make sure this is tall enough to display the translated message.<br />     */<br />    window_height :integer {200}<br /><br />    /**<br />     * The width of the application window.<br />     *<br />     * @note Make sure this is wide enough to display the translated message.<br />     */<br />    window_width :integer {600}<br /><br />    /**<br />     * The application version number<br />     */<br />    version :intvector {<br />        /**<br />         * The major version number.<br />         *<br />         * @note The major version number.<br />         * @translate no<br />         */<br />        1,<br /><br />        /**<br />         * The minor version number.<br />         *<br />         * @translate no<br />         */<br />        2,<br /><br />        /**<br />         * The patch level.<br />         *<br />         * @translate no<br />         */<br />        3}<br /><br />    /**<br />     * The MD5 checksum of the application.<br />     *<br />     * @translate no<br />     */<br />    md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}<br /><br />    /**<br />     * The logo to be displayed in the application window.<br />     *<br />     * @translate no<br />     */<br />    logo :import {"logo.gif"}<br /><br />    /*<br />     * The Authors. Just use the name from the root bundle.<br />     */<br />    authors :alias {"root/authors"}<br /><br />    /*<br />     * The translators.<br />     */<br />    translators :array {<br />        :string {"John E. English"},<br />        :string {"Alan Smithee"},<br />        :string {"Allen Smythee"}<br />    }<br /><br /><br />    /**<br />     * The application menus.<br />     *<br />     * @note Keep the menus and the menu items in this order.<br />     */<br />    menus :table {<br />        file_menu :table {<br />            name :string {"File"}<br /><br />            items :array {<br />                :string {"New"},<br />                :string {"Open..."},<br />                :string {"Save"},<br />                :string {"Save As..."},<br />                :string {"Exit"}<br />            }<br />        }<br /><br />        edit_menu :table {<br />            name :string {"Edit"}<br /><br />            items :array {<br />                :string {"Cut"},<br />                :string {"Copy"},<br />                :string {"Paste"},<br />                :string {"Delete"}<br />            }<br />        }<br /><br />        help_menu :table {<br />            name :string {"Help"}<br /><br />            items :array {<br />                :string {"Help Topics"},<br />                :string {"About Hello World"}<br />            }<br />        }<br />    }<br />}<br />
 </pre>
 <h3><a name="ExtractionTechniques" id="ExtractionTechniques">2.1.
 Extraction Techniques</a></h3>
@@ -374,7 +514,7 @@ parts of the text together as much as possible.</p>
 account when extracting data from ICU files. An example of ICU
 Resource Bundle is shown below:</p>
 <pre>
-// Comments start with a '//' and extend to the end of the line<br />// first, a locale name for the bundle is defined. The whole bundle is a table<br />// every resource, including the whole bundle has its name.<br />// The name consists of invariant characters, digits and following symbols: -, _. <br />root:table {<br />    menu:table {<br />        id:string { "mainmenu" }<br />        items:array {<br />       //un-named array<br />            :array{<br />                id:string { "file" }<br />                name:string { "&amp;File" }<br />                items:array {<br />                    {<br />                        id:string{ "open" }<br />                        name:string { "&amp;Open" }<br />                    }<br />                    {<br />                        id:string { "save" }<br />                        name:string { "&amp;Save" }<br />                    }<br />                    {<br />                        id:string { "exit" }<br />                        name:string { "&amp;Exit" }<br />                    }<br />                }<br />            }<br /><br />            :array{<br />                id:string { "edit" }<br />                name:string { "&amp;Edit" }<br />                items:string {<br />                    {<br />                        id:string { "copy" }<br />                        name:string { "&amp;Copy" }<br />                    }<br />                    {<br />                        id:string { "cut" }<br />                        name:string { "&amp;Cut" }<br />                    }<br />                    {<br />                        id:string { "paste" }<br />                        name:string { "&amp;Paste" }<br />                    }<br />                }<br />           }<br /><br />            ...<br />        }<br />    }<br /><br />    // This resource is an array, thus accessible only through iteration and indexes...<br />    errors:array {<br />        :string{"Invalid Command"},<br />        :string{"Bad Value"},<br /><br />        // Add more strings here...<br /><br />        :string{"Read the Manual"}<br />    }<br /><br />    splash:import { "splash_root.gif" } // This is a binary imported file<br /><br />    pgpkey:bin { a1b2c3d4e5f67890 } // a binary value<br /><br />    versionInfo:table { // a table<br />        major:int { 1 } // of integers<br />        minor:int { 4 }<br />        patch:int { 7 }<br />    }<br /><br />    buttonSize:intvector { 10, 20, 10, 20 } // an array of 32-bit integers<br /><br />    // will pick up data from zoneStrings resource in en bundle in the ICU package<br />    simpleAlias:alias { "/ICUDATA/en/zoneStrings" }<br /><br />    // will pick up data from CollationElements resource in en bundle<br />    // in the ICU package<br />    CollationElements:alias { "/ICUDATA/en" }   <br />}
+// Comments start with a '//' and extend to the end of the line<br />// first, a locale name for the bundle is defined. The whole bundle is a table<br />// every resource, including the whole bundle has its name.<br />// The name consists of invariant characters, digits and following symbols: -, _. <br />root:table {<br />    menu:table {<br />        id:string { "mainmenu" }<br />        items:array {<br />       //un-named array<br />            :array{<br />                id:string { "file" }<br />                name:string { "&amp;File" }<br />                items:array {<br />                    {<br />                        id:string{ "open" }<br />                        name:string { "&amp;Open" }<br />                    }<br />                    {<br />                        id:string { "save" }<br />                        name:string { "&amp;Save" }<br />                    }<br />                    {<br />                        id:string { "exit" }<br />                        name:string { "&amp;Exit" }<br />                    }<br />                }<br />            }<br /><br />            :array{<br />                id:string { "edit" }<br />                name:string { "&amp;Edit" }<br />                items:string {<br />                    {<br />                        id:string { "copy" }<br />                        name:string { "&amp;Copy" }<br />                    }<br />                    {<br />                        id:string { "cut" }<br />                        name:string { "&amp;Cut" }<br />                    }<br />                    {<br />                        id:string { "paste" }<br />                        name:string { "&amp;Paste" }<br />                    }<br />                }<br />           }<br /><br />            ...<br />        }<br />    }<br /><br />    // This resource is an array, thus accessible only through iteration and indexes...<br />    errors:array {<br />        :string{"Invalid Command"},<br />        :string{"Bad Value"},<br /><br />        // Add more strings here...<br /><br />        :string{"Read the Manual"}<br />    }<br /><br />    splash:import { "splash_root.gif" } // This is a binary imported file<br /><br />    pgpkey:bin { a1b2c3d4e5f67890 } // a binary value<br /><br />    versionInfo:table { // a table<br />        major:int { 1 } // of integers<br />        minor:int { 4 }<br />        patch:int { 7 }<br />    }<br /><br />    buttonSize:intvector { 10, 20, 10, 20 } // an array of 32-bit integers<br /><br />    // will pick up data from zoneStrings resource in en bundle in the ICU package<br />    simpleAlias:alias { "/ICUDATA/en/zoneStrings" }<br /><br />    // will pick up data from CollationElements resource in en bundle<br />    // in the ICU package<br />    CollationElements:alias { "/ICUDATA/en" }   <br />}<br />
 </pre>
 <div class="section">
 <div class="titlepage">
@@ -460,7 +600,7 @@ Structure</h2>
 </div>
 </div>
 <pre class="programlisting">
-&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2"&gt;<br />    &lt;file xml:space = "preserve" source-language = "en" datatype = "x-icu-resourcebundle"<br />            original = "en_fortune.txt" date = "2007-04-11T19:03:09Z"&gt;<br />        &lt;header&gt;..Header information..&lt;/header&gt;<br />        &lt;tool tool-id = "genrb-icu-3.7.1" tool-name = "genrb" /&gt;<br />        &lt;body&gt;<br />            &lt;group restype = "x-icu-table" xml:space = "preserve" id = "myResource" &gt;<br />                &lt;trans-unit xml:space = "preserve" id = "myResource_optionMessage"<br />                            resname = "optionMessage"&gt;<br />                    &lt;source xml:lang = "en"&gt;unrecognized command line option:&lt;/source&gt;<br />                &lt;/trans-unit&gt;<br />                &lt;trans-unit xml:space = "preserve" id = "myResource_usage"<br />                            resname = "usage"&gt;<br />                    &lt;source xml:lang = "en"&gt;usage: ufortune [-v]  [-l locale]&lt;/source&gt;<br />                &lt;/trans-unit&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt;<br />&lt;/xliff&gt;
+&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2"&gt;<br />    &lt;file xml:space = "preserve" source-language = "en" datatype = "x-icu-resourcebundle"<br />            original = "en_fortune.txt" date = "2007-04-11T19:03:09Z"&gt;<br />        &lt;header&gt;..Header information..&lt;/header&gt;<br />        &lt;tool tool-id = "genrb-icu-3.7.1" tool-name = "genrb" /&gt;<br />        &lt;body&gt;<br />            &lt;group restype = "x-icu-table" xml:space = "preserve" id = "myResource" &gt;<br />                &lt;trans-unit xml:space = "preserve" id = "myResource_optionMessage"<br />                            resname = "optionMessage"&gt;<br />                    &lt;source xml:lang = "en"&gt;unrecognized command line option:&lt;/source&gt;<br />                &lt;/trans-unit&gt;<br />                &lt;trans-unit xml:space = "preserve" id = "myResource_usage"<br />                            resname = "usage"&gt;<br />                    &lt;source xml:lang = "en"&gt;usage: ufortune [-v]  [-l locale]&lt;/source&gt;<br />                &lt;/trans-unit&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt;<br />&lt;/xliff&gt;<br />
 </pre>
 <p>Each ICU Resource Bundle file maps to one XLIFF <code class=
 "sgmltag-element">&lt;file&gt;</code> element. XLIFF
@@ -493,11 +633,11 @@ syntax for preserving and recording information that pertains to a
 file as a whole.</p>
 <p>For example:</p>
 <pre>
-/**<br /> * These are top level comments for the bundle. Tag name: root<br /> * @translate yes<br /> * @note Comments for tag named root<br /> */<br />root{<br />}
+/**<br /> * These are top level comments for the bundle. Tag name: root<br /> * @translate yes<br /> * @note Comments for tag named root<br /> */<br />root{<br />}<br />
 </pre>
 would be mapped to:
 <pre>
-    &lt;file xml:space = "preserve" source-language = "en" datatype =<br />          "x-icu-resourcebundle" original = "root.txt" tool = "genrb" date =<br />             "2007-01-17T20:58:58Z"&gt;<br />        &lt;body&gt;<br />            &lt;group restype = "x-icu-table" xml:space = "preserve" id = "ra" &gt;<br />                &lt;!--These are top level comments for the bundle. Tag name: root--&gt;<br />                &lt;note&gt; Comments for tag named root&lt;/note&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt; 
+    &lt;file xml:space = "preserve" source-language = "en" datatype =<br />          "x-icu-resourcebundle" original = "root.txt" tool = "genrb" date =<br />             "2007-01-17T20:58:58Z"&gt;<br />        &lt;body&gt;<br />            &lt;group restype = "x-icu-table" xml:space = "preserve" id = "ra" &gt;<br />                &lt;!--These are top level comments for the bundle. Tag name: root--&gt;<br />                &lt;note&gt; Comments for tag named root&lt;/note&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt; <br />
 </pre>
 <br />
 <div class="titlepage">
@@ -550,13 +690,13 @@ filter developers should parse the elements correctly and hide the
 logic from the translator.</p>
 <p>For example:</p>
 <pre id="listing_5">
- choiceFormat:string{"Folder {0} contains {1,choice,0#no files|1#one file|1&lt;{2,number,integer}files}."}<br /> msgFormat:string{"At {1,time} on {1,date}, there was {2} on planet{0,number,integer}."}
+ choiceFormat:string{"Folder {0} contains {1,choice,0#no files|1#one file|1&lt;{2,number,integer}files}."}<br /> msgFormat:string{"At {1,time} on {1,date}, there was {2} on planet{0,number,integer}."}<br />
 </pre>
 <p>would be mapped to:</p>
 <div class="titlepage">
 <div>
 <pre id="listing_6">
-&lt;source&gt;Folder &lt;ph id="1"&gt;{0}&lt;/ph&gt; contains <br />  &lt;ph id="2"&gt;{1,choice,0#&lt;sub&gt;no files&lt;/sub&gt;|1#&lt;sub&gt;one file&lt;/sub&gt;|1&amp;lt;{2,number,integer}<br />             &lt;sub&gt;files&lt;/sub&gt;}&lt;/ph&gt;.<br />&lt;/source&gt;<br /><br />&lt;source&gt;At &lt;ph id="1"&gt;{1,time}&lt;/ph&gt; on &lt;ph id="2"&gt;{1, date}&lt;/ph&gt;, <br />        there was &lt;ph id="3"&gt;{2}&lt;/ph&gt; on planet &lt;ph id="4"&gt;{0,number,integer}&lt;/ph&gt;.<br />&lt;/source&gt;
+&lt;source&gt;Folder &lt;ph id="1"&gt;{0}&lt;/ph&gt; contains <br />  &lt;ph id="2"&gt;{1,choice,0#&lt;sub&gt;no files&lt;/sub&gt;|1#&lt;sub&gt;one file&lt;/sub&gt;|1&amp;lt;{2,number,integer}<br />             &lt;sub&gt;files&lt;/sub&gt;}&lt;/ph&gt;.<br />&lt;/source&gt;<br /><br />&lt;source&gt;At &lt;ph id="1"&gt;{1,time}&lt;/ph&gt; on &lt;ph id="2"&gt;{1, date}&lt;/ph&gt;, <br />        there was &lt;ph id="3"&gt;{2}&lt;/ph&gt; on planet &lt;ph id="4"&gt;{0,number,integer}&lt;/ph&gt;.<br />&lt;/source&gt;<br />
 </pre>
 <h3 class="title"><a name="s.detailed_mapping.integers" id=
 "s.detailed_mapping.integers"></a>5.3. Integers</h3>

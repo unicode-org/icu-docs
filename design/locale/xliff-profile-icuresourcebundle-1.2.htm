@@ -367,27 +367,27 @@ point)</td>
 </tbody>
 </table>
 <br />
-A single string resource can be composed of multiple strings
-separated by whitespace characters. Quoted strings are simple
-concatenated &nbsp;together. For example, consider these two
-strings.<br />
-<code>"Processing your image. "</code><br />
-<code>"This may take several minutes."</code><br />
-<br />
-These two strings produce the same string resource as this
-string:<br />
-&nbsp;<code>"Processing your image. This may take several
-minutes."<br /></code><br />
+A string resource can be composed of multiple strings separated by
+whitespace characters. Quoted strings are simply concatenated
+together. For example, the following two definitions produce the
+same resource:<br />
+<pre>
+processing_image :string {<br />    "Processing your image. "<br />    "This may take several minutes."<br />}
+</pre>
+<pre>
+processing_image :string {<br />    "Processing your image. This may take several minutes."<br />}
+</pre>
 If the strings are not quoted, they are concatenated with a space
-between them:<br />
-<code>Processing your image.</code><br />
-<code>This may take several minutes.<br /></code><br />
-This is also the same as:<br />
-<code>"Processing your image. This may take several
-minutes."<br /></code>(Note that in this example, each word is
-actually a separate string because the spaces between them separate
-the strings.)<br />
-<br />
+between them. Again, the following two definitions produce the same
+resource:<br />
+<pre>
+processing_image :string {<br />    Processing your image.<br />    This may take several minutes.<br />}
+</pre>
+<pre>
+processing_image :string {<br />    Processing your image. This may take several minutes.<br />}
+</pre>
+(Note that in this example, each word is actually a separate string
+because the spaces between them separate the strings.)<br />
 <h3>2.2 Integer resources</h3>
 An integer resource is specified by a sequence of decimal digits or
 by <code>0x</code> followed by a sequence of hexadecimal digits. A
@@ -409,9 +409,21 @@ An alias resource is a reference to another resource, possible in a
 different resource bundle. The reference is specified as a quoted
 string.<br />
 <h3>2.6 Table resources</h3>
-Do we need to really say anything about tables?<br />
+A table resource contains one or more named resources, including
+array resources and other table resources. The contained resources
+are accessed by name. The top-level resource in an ICU resource
+bundle is a table resource that contains all of the resources in
+the bundle. The name of this resource is a locale name.<br />
 <h3>2.7 Array resources</h3>
-Do we really need to say anything about arrays?<br />
+An array resource contains a sequence of unnamed resources,
+separated by commas. The contained resources are a accessed by
+index rather than by name. If the array contains all string
+resources, they can be specified without the <code>:string</code>
+type name or the enclosing <code>{</code> and <code>}</code>. For
+example:<br />
+<pre>
+fish :array {<br />    "One fish",<br />    "Two fish",<br />    "Red fish",<br />    "Blue fish"<br />}
+</pre>
 <h3>2.8 Implied Resource Type</h3>
 If a type name is not given, the type is determined by looking at
 what follows the <code>{</code>. A resource name followed by a type
@@ -420,7 +432,7 @@ name or a <code>{</code> means that the resource is an array. A
 string followed by a comma means that the resource is an array of
 strings. A string followed by a <code>}</code> means that the
 resource is a string.<br />
-<br />
+<h3>2.9 Comments<br /></h3>
 The text file can also contain C++ style comments. That is,
 comments that start with <code>//</code> and extend to the end of
 the line, and multi-line comments that start
@@ -433,9 +445,10 @@ or&nbsp;<code>no</code> instructs the translator whether or not the
 resource should be translated. The token&nbsp;<code>@note</code>
 begins a special not to the translator that extends to the end of
 the line.<br />
-<h3>2.9 Sample ICU Resource Bundle</h3>
+<h3>2.10 Sample ICU Resource Bundle</h3>
 Here is a sample ICU resource bundle containing the English
-resources for a fictitious Hello World application:<br />
+resources for a fictitious Hello World application. For clarity all
+resource type names have been specified.<br />
 <br />
 <pre>
 /*<br /> * The resources for a fictitious Hello World application. The application<br /> * displays a single window with a logo and the hello message.<br /> */<br />en :table {<br />    /**<br />     * @note This is the message that the application displays to the user.<br />     */<br />    hello :string {"Hello, world!"}<br /><br />    /**<br />     * The height of the application window.<br />     *<br />     * @note Make sure this is tall enough to display the translated message.<br />     */<br />    window_height :integer {200}<br /><br />    /**<br />     * The width of the application window.<br />     *<br />     * @note Make sure this is wide enough to display the translated message.<br />     */<br />    window_width :integer {600}<br /><br />    /**<br />     * The application version number<br />     */<br />    version :intvector {<br />        /**<br />         * The major version number.<br />         *<br />         * @note The major version number.<br />         * @translate no<br />         */<br />        1,<br /><br />        /**<br />         * The minor version number.<br />         *<br />         * @translate no<br />         */<br />        2,<br /><br />        /**<br />         * The patch level.<br />         *<br />         * @translate no<br />         */<br />        3}<br /><br />    /**<br />     * The MD5 checksum of the application.<br />     *<br />     * @translate no<br />     */<br />    md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}<br /><br />    /**<br />     * The logo to be displayed in the application window.<br />     *<br />     * @translate no<br />     */<br />    logo :import {"logo.gif"}<br /><br />    /*<br />     * The Authors. Just use the name from the root bundle.<br />     */<br />    authors :alias {"root/authors"}<br /><br />    /*<br />     * The translators.<br />     */<br />    translators :array {<br />        :string {"John E. English"},<br />        :string {"Alan Smithee"},<br />        :string {"Allen Smythee"}<br />    }<br /><br /><br />    /**<br />     * The application menus.<br />     *<br />     * @note Keep the menus and the menu items in this order.<br />     */<br />    menus :table {<br />        file_menu :table {<br />            name :string {"File"}<br /><br />            items :array {<br />                :string {"New"},<br />                :string {"Open..."},<br />                :string {"Save"},<br />                :string {"Save As..."},<br />                :string {"Exit"}<br />            }<br />        }<br /><br />        edit_menu :table {<br />            name :string {"Edit"}<br /><br />            items :array {<br />                :string {"Cut"},<br />                :string {"Copy"},<br />                :string {"Paste"},<br />                :string {"Delete"}<br />            }<br />        }<br /><br />        help_menu :table {<br />            name :string {"Help"}<br /><br />            items :array {<br />                :string {"Help Topics"},<br />                :string {"About Hello World"}<br />            }<br />        }<br />    }<br />}<br />

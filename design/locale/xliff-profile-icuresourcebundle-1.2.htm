@@ -28,7 +28,7 @@ Guide for ICU Resource Bundles</h1>
 </div>
 <p>This document defines a guide for mapping the International
 Components of Unicode Resource Bundle file format to XLIFF (XML
-Localisation Interchange File Format).</p>
+Localization Interchange File Format).</p>
 </dd>
 </dl>
 </div>
@@ -221,7 +221,7 @@ data enclosed in&nbsp;<code>{</code> and&nbsp;<code>}</code>.
 &nbsp;The following table shows how to specify each resource
 type:<br />
 <br />
-<table style="text-align: left; width: 641px; height: 286px;"
+<table style="text-align: left; width: 646px; height: 286px;"
 border="1" cellpadding="2" cellspacing="2">
 <tbody>
 <tr>
@@ -247,7 +247,7 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td>binary</td>
 <td><code>:binary</code> or <code>:bin</code></td>
-<td>a sequence of hexadecimal digits optinally enclosed in
+<td>a sequence of hexadecimal digits optionally enclosed in
 quotes</td>
 </tr>
 <tr>
@@ -392,9 +392,13 @@ processing_image :string {<br />    Processing your image. This may take several
 because the spaces between them separate the strings.)<br />
 <br />
 String resources may contain variable data represented by a special
-descritpor enclosed in <code>{</code> and <code>}</code>. If these
+descriptor enclosed in <code>{</code> and <code>}</code>. If these
 descriptors are present then either the string must be quoted or
 the <code>{</code> and <code>}</code> must be escaped.<br />
+<br />
+String resources can also be specified indirectly using the type
+name <code>:include</code> and a string value that is the name of a
+file containing the string resource data.<br />
 <h3><a name="s.overview.integer_resources" id=
 "s.overview.integer_resources"></a>2.2 Integer Resources</h3>
 An integer resource is specified by a sequence of decimal digits or
@@ -415,6 +419,10 @@ A binary resource represents a chunk of binary data. It is
 represented by a sequence of hexadecimal digits, optionally
 enclosed in quotes. There must be an even number of digits. Quotes
 must be used to specify an empty resource.<br />
+<br />
+Binary resources can be specified indirectly using the type name
+<code>:import</code> and a string value that is the name of a file
+containing the binary data.<br />
 <h3><a name="s.overview.alias_resources" id=
 "s.overview.alias_resources"></a>2.5 Alias Resources</h3>
 An alias resource is a reference to another resource, possible in a
@@ -500,7 +508,7 @@ Bundles</h3>
 </div>
 </div>
 <p>Lack of cross-platform and cross-language binary formats for
-storing and reading localizable data contrituted immensely to the
+storing and reading localizable data contributed immensely to the
 popularity of ICU resource bundles. This guide mainly covers
 representation of ICU Resource Bundle files generated from the ICU
 library and tools in XLIFF format.</p>
@@ -523,7 +531,7 @@ Localizing with XLIFF &amp; ICU</a>.</p>
 Languages</h3>
 In ICU resources files the source language is appended to the file
 name. As an alternative, the filter tools can provide an option for
-specifing the source language of the file. ICU uses [<a href=
+specifying the source language of the file. ICU uses [<a href=
 "xliff-profile-icuresourcebundle-1.2.htm#refRFC4646"><span class=
 "abbrev">RFC 4646</span></a>] for naming its files and resource.
 ICU resource format does not provide a way to store a target
@@ -531,7 +539,7 @@ language in the resource file. The idea is that, developers work on
 generating the base resource file, convert that file to multiple
 XLIFF files where the target language is specifed. So, the tools
 that convert ICU resources to XLIFF must provide an option for
-specifing the target language of each XLIFF file.</div>
+specifying the target language of each XLIFF file.</div>
 </div>
 </div>
 <div class="section">

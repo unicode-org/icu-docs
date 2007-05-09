@@ -60,8 +60,27 @@ Purpose</a></span></dt>
 Transitional and Strict</a></span></dt>
 </dl>
 </dd>
-<dt><span class="section"><a href="#s.po_overview">2. Overview of
-the ICU Resource Bundle file format</a></span></dt>
+<dt><span class="section"><a href="#s.overview">2. Overview of the
+ICU Resource Bundle file format</a></span></dt>
+<dd><a href="#s.overview.string_resources">2.1 String
+Resources</a></dd>
+<dd><a href="#s.overview.integer_resources">2.2 Integer
+Resources</a></dd>
+<dd><a href="#s.overview_integer_vector_resources">2.3 Integer
+Vector Resources</a></dd>
+<dd><a href="#s.overview.binary_resources">2.4 Binary
+Resources</a></dd>
+<dd><a href="#s.overview.alias_resources">2.5 Alias
+Resources</a></dd>
+<dd><a href="#s.overview.table_resources">2.6 Table
+Resources</a></dd>
+<dd><a href="#s.overview.array_resources">2.7 Array
+Resources</a></dd>
+<dd><a href="#s.overview.implied_resource_types">2.8 Implied
+Resource Types</a></dd>
+<dd><a href="#s.overview.comments">2.9 Comments</a></dd>
+<dd><a href="#s.overview.sample_bundle">2.10 Sample ICU Resource
+Bundle</a></dd>
 <dt><span class="section"><a href="#s.general_considerations">3.
 General Considerations</a></span></dt>
 <dd>
@@ -180,18 +199,11 @@ xliff-core-1.2-strict.xsd'</code></p>
 <div class="section" xml:lang="en" lang="en">
 <div class="titlepage">
 <div>
-<h2 class="title" style="clear: both;"><a name="s.po_overview" id=
+<h2 class="title" style="clear: both;"><a name="s.overview" id=
 "s.po_overview"></a>2.&nbsp;Overview of the ICU Resource Bundle
 file format</h2>
 </div>
 </div>
-<p>ICU Resource bundles are specified in a text file. The format is
-defined in this <a href="../bnf_rb.txt">formal definition file</a>.
-These text files are converted into binary resource files using the
-genrb tool. ICU reads these binary resource files at runtime. The
-general structure of the ICU Resource Bundle file is defined
-<a href=
-"http://icu.sourceforge.net/userguide/ResourceManagement.html">here</a>.</p>
 <p>An ICU Resource Bundle is a collection of resources. There are
 two main types of ICU resources: simple and complex. Simple
 resources each contain a single piece of data. There are five types
@@ -256,21 +268,11 @@ quotes</td>
 </tbody>
 </table>
 <br />
-Notes:<br />
-<ul>
-<li>Notice that all type names start with a colon
-("<code>:</code>")</li>
-<li>The name of the top level table must be a locale name</li>
-<li>String resources may contain variable data represented by
-special descriptors enclosed in <code>{</code> and
-<code>}</code></li>
-<li>In some cases the type name, the quotes around strings and
-curly brackets around resource data can be omitted. For clarity,
-we'll always show fully specified resources.</li>
-</ul>
+(Notice that all type names start with a colon.)<br />
 The following is a detailed explanation of how each resource type
 is represented in the text file.<br />
-<h3>2.1 String Resources</h3>
+<h3><a name="s.overview.string_resources" id=
+"s.overview.string_resources"></a>2.1 String Resources</h3>
 String resources are represented by a sequence of Unicode
 characters, optionally enclosed in quotes. The string must be
 quoted if it's empty or if it contains a space or any of these
@@ -372,49 +374,61 @@ whitespace characters. Quoted strings are simply concatenated
 together. For example, the following two definitions produce the
 same resource:<br />
 <pre>
-processing_image :string {<br />    "Processing your image. "<br />    "This may take several minutes."<br />}
+processing_image :string {<br />    "Processing your image. "<br />    "This may take several minutes."<br />}<br />
 </pre>
 <pre>
-processing_image :string {<br />    "Processing your image. This may take several minutes."<br />}
+processing_image :string {<br />    "Processing your image. This may take several minutes."<br />}<br />
 </pre>
 If the strings are not quoted, they are concatenated with a space
 between them. Again, the following two definitions produce the same
 resource:<br />
 <pre>
-processing_image :string {<br />    Processing your image.<br />    This may take several minutes.<br />}
+processing_image :string {<br />    Processing your image.<br />    This may take several minutes.<br />}<br />
 </pre>
 <pre>
-processing_image :string {<br />    Processing your image. This may take several minutes.<br />}
+processing_image :string {<br />    Processing your image. This may take several minutes.<br />}<br />
 </pre>
 (Note that in this example, each word is actually a separate string
 because the spaces between them separate the strings.)<br />
-<h3>2.2 Integer resources</h3>
+<br />
+String resources may contain variable data represented by a special
+descritpor enclosed in <code>{</code> and <code>}</code>. If these
+descriptors are present then either the string must be quoted or
+the <code>{</code> and <code>}</code> must be escaped.<br />
+<h3><a name="s.overview.integer_resources" id=
+"s.overview.integer_resources"></a>2.2 Integer Resources</h3>
 An integer resource is specified by a sequence of decimal digits or
 by <code>0x</code> followed by a sequence of hexadecimal digits. A
 negative value is proceeded by a minus sign. The value must be
 between -32,768 and 32,767. (i.e. it must fit in 32 bits.)<br />
-<h3>2.3 Integer vector resources</h3>
+<h3><a name="s.overview_integer_vector_resources" id=
+"s.overview_integer_vector_resources"></a>2.3 Integer Vector
+Resources</h3>
 An integer vector is specified by a sequence of integer values
 separated by commas. Each integer value is specified the same way
 that integer resources are specified. The last value may be
 followed by a comma. The vector may contain a single value, or it
 may be empty.<br />
-<h3>2.4 Binary resources</h3>
+<h3><a name="s.overview.binary_resources" id=
+"s.overview.binary_resources"></a>2.4 Binary Resources</h3>
 A binary resource represents a chunk of binary data. It is
 represented by a sequence of hexadecimal digits, optionally
 enclosed in quotes. There must be an even number of digits. Quotes
 must be used to specify an empty resource.<br />
-<h3>2.5 Alias resources</h3>
+<h3><a name="s.overview.alias_resources" id=
+"s.overview.alias_resources"></a>2.5 Alias Resources</h3>
 An alias resource is a reference to another resource, possible in a
 different resource bundle. The reference is specified as a quoted
 string.<br />
-<h3>2.6 Table resources</h3>
+<h3><a name="s.overview.table_resources" id=
+"s.overview.table_resources"></a>2.6 Table Resources</h3>
 A table resource contains one or more named resources, including
 array resources and other table resources. The contained resources
 are accessed by name. The top-level resource in an ICU resource
 bundle is a table resource that contains all of the resources in
 the bundle. The name of this resource is a locale name.<br />
-<h3>2.7 Array resources</h3>
+<h3><a name="s.overview.array_resources" id=
+"s.overview.array_resources"></a>2.7 Array Resources</h3>
 An array resource contains a sequence of unnamed resources,
 separated by commas. The contained resources are a accessed by
 index rather than by name. If the array contains all string
@@ -422,9 +436,11 @@ resources, they can be specified without the <code>:string</code>
 type name or the enclosing <code>{</code> and <code>}</code>. For
 example:<br />
 <pre>
-fish :array {<br />    "One fish",<br />    "Two fish",<br />    "Red fish",<br />    "Blue fish"<br />}
+fish :array {<br />    "One fish",<br />    "Two fish",<br />    "Red fish",<br />    "Blue fish"<br />}<br />
 </pre>
-<h3>2.8 Implied Resource Type</h3>
+<h3><a name="s.overview.implied_resource_types" id=
+"s.overview.implied_resource_types"></a>2.8 Implied Resource
+Types</h3>
 If a type name is not given, the type is determined by looking at
 what follows the <code>{</code>. A resource name followed by a type
 name or a <code>{</code> means that the resource is a table. A type
@@ -432,7 +448,8 @@ name or a <code>{</code> means that the resource is an array. A
 string followed by a comma means that the resource is an array of
 strings. A string followed by a <code>}</code> means that the
 resource is a string.<br />
-<h3>2.9 Comments<br /></h3>
+<h3><a name="s.overview.comments" id="s.overview.comments"></a>2.9
+Comments<br /></h3>
 The text file can also contain C++ style comments. That is,
 comments that start with <code>//</code> and extend to the end of
 the line, and multi-line comments that start
@@ -445,76 +462,15 @@ or&nbsp;<code>no</code> instructs the translator whether or not the
 resource should be translated. The token&nbsp;<code>@note</code>
 begins a special not to the translator that extends to the end of
 the line.<br />
-<h3>2.10 Sample ICU Resource Bundle</h3>
+<h3><a name="s.overview.sample_bundle" id=
+"s.overview.sample_bundle"></a>2.10 Sample ICU Resource Bundle</h3>
 Here is a sample ICU resource bundle containing the English
 resources for a fictitious Hello World application. For clarity all
 resource type names have been specified.<br />
 <br />
 <pre>
 /*<br /> * The resources for a fictitious Hello World application. The application<br /> * displays a single window with a logo and the hello message.<br /> */<br />en :table {<br />    /**<br />     * @note This is the message that the application displays to the user.<br />     */<br />    hello :string {"Hello, world!"}<br /><br />    /**<br />     * The height of the application window.<br />     *<br />     * @note Make sure this is tall enough to display the translated message.<br />     */<br />    window_height :integer {200}<br /><br />    /**<br />     * The width of the application window.<br />     *<br />     * @note Make sure this is wide enough to display the translated message.<br />     */<br />    window_width :integer {600}<br /><br />    /**<br />     * The application version number<br />     */<br />    version :intvector {<br />        /**<br />         * The major version number.<br />         *<br />         * @note The major version number.<br />         * @translate no<br />         */<br />        1,<br /><br />        /**<br />         * The minor version number.<br />         *<br />         * @translate no<br />         */<br />        2,<br /><br />        /**<br />         * The patch level.<br />         *<br />         * @translate no<br />         */<br />        3}<br /><br />    /**<br />     * The MD5 checksum of the application.<br />     *<br />     * @translate no<br />     */<br />    md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}<br /><br />    /**<br />     * The logo to be displayed in the application window.<br />     *<br />     * @translate no<br />     */<br />    logo :import {"logo.gif"}<br /><br />    /*<br />     * The Authors. Just use the name from the root bundle.<br />     */<br />    authors :alias {"root/authors"}<br /><br />    /*<br />     * The translators.<br />     */<br />    translators :array {<br />        :string {"John E. English"},<br />        :string {"Alan Smithee"},<br />        :string {"Allen Smythee"}<br />    }<br /><br /><br />    /**<br />     * The application menus.<br />     *<br />     * @note Keep the menus and the menu items in this order.<br />     */<br />    menus :table {<br />        file_menu :table {<br />            name :string {"File"}<br /><br />            items :array {<br />                :string {"New"},<br />                :string {"Open..."},<br />                :string {"Save"},<br />                :string {"Save As..."},<br />                :string {"Exit"}<br />            }<br />        }<br /><br />        edit_menu :table {<br />            name :string {"Edit"}<br /><br />            items :array {<br />                :string {"Cut"},<br />                :string {"Copy"},<br />                :string {"Paste"},<br />                :string {"Delete"}<br />            }<br />        }<br /><br />        help_menu :table {<br />            name :string {"Help"}<br /><br />            items :array {<br />                :string {"Help Topics"},<br />                :string {"About Hello World"}<br />            }<br />        }<br />    }<br />}<br />
-</pre>
-<h3><a name="ExtractionTechniques" id="ExtractionTechniques">2.1.
-Extraction Techniques</a></h3>
-<p>ICU Resource Bundles are text or binary files and not XML.
-Therefore, XSL transformation standards cannot directly be utilized
-to convert the resource bundles into XLIFF. XSLT could be used to
-transform the translated XLIFF back to the native text format, or
-to manipulate an intermediate XML or initial XLIFF file in
-preparation for manual or automated Computer Aided Translation
-(CAT), but software best practices favour using the same technology
-for both extraction and recomposition.</p>
-<h4><a name="UsingFilters" id="UsingFilters"></a>2.4.1. Using
-Filters</h4>
-<p>It is necessary to extract the ICU Resource Bundles to XLIFF by
-developing a custom filter application. Such tools can be written
-using a variety of programming and scripting languages such as
-Perl, Python, C, C++, C#, Java, etc..</p>
-<p>This document makes no assumption on the type of language used
-to process the ICU Resource Bundle input documents. It also makes
-no assumptions whether or not the tool creates a Skeleton file
-along with the XLIFF document generated, or if it creates one, how
-data are represented in the Skeleton.</p>
-<p>The following guidelines should be adhered to:</p>
-<ul>
-<li>Each .txt file is represented in a separate
-<code>&lt;file&gt;</code> element in an XLIFF document</li>
-<li>The <code>datatype</code> attribute of a
-<code>&lt;file&gt;</code> element is set to
-<code>x-icu-resourcebundle</code></li>
-<li>The <code>&lt;body&gt;</code> element contains a single
-top-level <code>&lt;group&gt;</code> element</li>
-<li>The top-level <code>&lt;group&gt;</code> element contains a
-separate element for each top-level resource in the .txt file</li>
-<li>The <code>translate</code> attribute of
-<code>&lt;trans-unit&gt;</code> element is set to <code>no</code>
-when the value string is a null string</li>
-<li>The value string becomes the content of the child
-<code>&lt;source&gt;</code> element</li>
-</ul>
-<p>Characters that require a special representation in an ICU
-Resource Bundle should be parsed by the XLIFF filter and
-represented appropriately in the XLIFF file. The following cases
-should be contemplated when designing a filter:</p>
-<ul>
-<li>Single quotes, double quotes, backslashes and other special
-characters need to be prefixed with a '<code>\</code>' character in
-an ICU Resource Bundle text file. Filters should use unescaped
-versions of these characters in the XLIFF file.</li>
-<li>The ICU Resource Bundle text files can be written
-in&nbsp;<code class="code">UTF-8</code>,&nbsp;<code class=
-"code">UTF-16</code> or in any other codepage supported by ICU.
-Filters should respect the source endoding and convert
-to&nbsp;<code class="code">UTF-8</code> when writing the XLIFF
-file.</li>
-</ul>
-<h3><a name="OrderOfExtraction" id="OrderOfExtraction">2.5. Order
-of Extraction</a></h3>
-<p>The flow of the extracted data in the XLIFF document should be
-in the same order as the flow of data in the original text file.
-The extraction order should reflect the order of the data in the
-source document, and the author is responsible to group logical
-parts of the text together as much as possible.</p>
-</div>
+</pre></div>
 <div class="section">
 <div class="titlepage">
 <div>

@@ -398,7 +398,9 @@ the <code>{</code> and <code>}</code> must be escaped.<br />
 <br />
 String resources can also be specified indirectly using the type
 name <code>:include</code> and a string value that is the name of a
-file containing the string resource data.<br />
+file containing the string resource data. The string resource data
+in this file can contain the same escape sequences as a regular
+string resource.<br />
 <h3><a name="s.overview.integer_resources" id=
 "s.overview.integer_resources"></a>2.2 Integer Resources</h3>
 An integer resource is specified by a sequence of decimal digits or
@@ -488,38 +490,29 @@ resource type names have been specified.<br />
 </div>
 </div>
 <p>This section discusses the general considerations to take in
-account when extracting data from ICU files. An example of ICU
-Resource Bundle is shown below:</p>
-<pre>
-// Comments start with a '//' and extend to the end of the line<br />// first, a locale name for the bundle is defined. The whole bundle is a table<br />// every resource, including the whole bundle has its name.<br />// The name consists of invariant characters, digits and following symbols: -, _. <br />root:table {<br />    menu:table {<br />        id:string { "mainmenu" }<br />        items:array {<br />       //un-named array<br />            :array{<br />                id:string { "file" }<br />                name:string { "&amp;File" }<br />                items:array {<br />                    {<br />                        id:string{ "open" }<br />                        name:string { "&amp;Open" }<br />                    }<br />                    {<br />                        id:string { "save" }<br />                        name:string { "&amp;Save" }<br />                    }<br />                    {<br />                        id:string { "exit" }<br />                        name:string { "&amp;Exit" }<br />                    }<br />                }<br />            }<br /><br />            :array{<br />                id:string { "edit" }<br />                name:string { "&amp;Edit" }<br />                items:string {<br />                    {<br />                        id:string { "copy" }<br />                        name:string { "&amp;Copy" }<br />                    }<br />                    {<br />                        id:string { "cut" }<br />                        name:string { "&amp;Cut" }<br />                    }<br />                    {<br />                        id:string { "paste" }<br />                        name:string { "&amp;Paste" }<br />                    }<br />                }<br />           }<br /><br />            ...<br />        }<br />    }<br /><br />    // This resource is an array, thus accessible only through iteration and indexes...<br />    errors:array {<br />        :string{"Invalid Command"},<br />        :string{"Bad Value"},<br /><br />        // Add more strings here...<br /><br />        :string{"Read the Manual"}<br />    }<br /><br />    splash:import { "splash_root.gif" } // This is a binary imported file<br /><br />    pgpkey:bin { a1b2c3d4e5f67890 } // a binary value<br /><br />    versionInfo:table { // a table<br />        major:int { 1 } // of integers<br />        minor:int { 4 }<br />        patch:int { 7 }<br />    }<br /><br />    buttonSize:intvector { 10, 20, 10, 20 } // an array of 32-bit integers<br /><br />    // will pick up data from zoneStrings resource in en bundle in the ICU package<br />    simpleAlias:alias { "/ICUDATA/en/zoneStrings" }<br /><br />    // will pick up data from CollationElements resource in en bundle<br />    // in the ICU package<br />    CollationElements:alias { "/ICUDATA/en" }   <br />}<br />
-</pre>
+account when extracting data from ICU resource bundles. &nbsp;ICU
+has a tool for converting resource bundle source files to XLIFF and
+for converting XLIFF files to ICU resource bundle source files. We
+recommend the use of these tools whenever possible.</p>
 <div class="section">
 <div class="titlepage">
 <div>
-<p>ICU supports many kinds or resources and mapping of each
-resource will be explained below. Each resource can be either named
-or un-named. Named resources are accessed using the name and
-un-named are accessed by their respective index in the enclosing
-resource.</p>
 <h3 class="title"><a name=
 "s.general_considerations.resource_bundles" id=
 "s.general_considerations.resource_bundles"></a>3.1. ICU Resource
 Bundles</h3>
 </div>
 </div>
-<p>Lack of cross-platform and cross-language binary formats for
-storing and reading localizable data contributed immensely to the
-popularity of ICU resource bundles. This guide mainly covers
-representation of ICU Resource Bundle files generated from the ICU
-library and tools in XLIFF format.</p>
-<p>It is fully possible to apply this guide to XLIFF files
-extracted from other formats. However, that usage is not
-recommended since other formats may have constructs that have no
-equivalent construct in the ICU format.</p>
-<p>It is highly recommended to use native XLIFF format be used as
-storage format for localizable content and convert to ICU format
-only as a build step. For more information on localization workflow
-process, please see the <a href=
+<p>The ICU genrb tool converts the resource bundle text files into
+binary resource files. It is possible to extract data from either
+the text or the binary files. We recommend extrracting the data
+from the text files because the comments, and the meta-information
+that they contain, such as <code>@translate</code> and
+<code>@note</code>, is not included in the binary files.</p>
+<p>Where practical, we recommend maintaining resource data as XLIFF
+files and converting to ICU format only as a build step. For more
+information on localization workflow process, please see the
+<a href=
 "http://icu.sourceforge.net/docs/papers/localize_with_XLIFF_and_ICU.pdf">
 Localizing with XLIFF &amp; ICU</a>.</p>
 </div>
@@ -534,12 +527,13 @@ name. As an alternative, the filter tools can provide an option for
 specifying the source language of the file. ICU uses [<a href=
 "xliff-profile-icuresourcebundle-1.2.htm#refRFC4646"><span class=
 "abbrev">RFC 4646</span></a>] for naming its files and resource.
-ICU resource format does not provide a way to store a target
-language in the resource file. The idea is that, developers work on
-generating the base resource file, convert that file to multiple
-XLIFF files where the target language is specifed. So, the tools
-that convert ICU resources to XLIFF must provide an option for
-specifying the target language of each XLIFF file.</div>
+The ICU resource format does not provide a way to store both a
+source and a target language in the resource file. The idea is that
+developers work on generating the base resource file and convert
+that file to multiple XLIFF files where the target language is
+specifed. So, the tools that convert ICU resources to XLIFF must
+provide an option for specifying the target language of each XLIFF
+file.</div>
 </div>
 </div>
 <div class="section">
@@ -574,10 +568,13 @@ should respect the encoding of the file and provide conversion to
 <h2 class="title" style="clear: both;"><a name=
 "s.general_structure" id="s.general_structure"></a>4.&nbsp;General
 Structure</h2>
-</div>
+Note: all XLIFF source examples will be shown with extra whitespace
+to enhance readability. We recommend that filters generate XLIFF
+files without any extra whitespace to keep the generated files as
+small as possible.</div>
 </div>
 <pre class="programlisting">
-&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2"&gt;<br />    &lt;file xml:space = "preserve" source-language = "en" datatype = "x-icu-resourcebundle"<br />            original = "en_fortune.txt" date = "2007-04-11T19:03:09Z"&gt;<br />        &lt;header&gt;..Header information..&lt;/header&gt;<br />        &lt;tool tool-id = "genrb-icu-3.7.1" tool-name = "genrb" /&gt;<br />        &lt;body&gt;<br />            &lt;group restype = "x-icu-table" xml:space = "preserve" id = "myResource" &gt;<br />                &lt;trans-unit xml:space = "preserve" id = "myResource_optionMessage"<br />                            resname = "optionMessage"&gt;<br />                    &lt;source xml:lang = "en"&gt;unrecognized command line option:&lt;/source&gt;<br />                &lt;/trans-unit&gt;<br />                &lt;trans-unit xml:space = "preserve" id = "myResource_usage"<br />                            resname = "usage"&gt;<br />                    &lt;source xml:lang = "en"&gt;usage: ufortune [-v]  [-l locale]&lt;/source&gt;<br />                &lt;/trans-unit&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt;<br />&lt;/xliff&gt;<br />
+&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2"&gt;<br />    &lt;file xml:space = "preserve" source-language = "en" datatype = "x-icu-resourcebundle"<br />            original = "en.txt" date = "2007-04-11T19:03:09Z"&gt;<br />        &lt;header&gt;<br />            &lt;tool tool-id = "genrb-icu-3.7.1" tool-name = "genrb" /&gt;<br />        &lt;/header&gt;<br />        &lt;body&gt;<br />            &lt;group restype = "x-icu-table" id = "en" &gt;<br />                <em><code>... the resources in the resource bundle...</code></em><br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt;<br />&lt;/xliff&gt;<br />
 </pre>
 <p>Each ICU Resource Bundle file maps to one XLIFF <code class=
 "sgmltag-element">&lt;file&gt;</code> element. XLIFF
@@ -585,11 +582,14 @@ representations of ICU Resource Bundle files should have the
 <code class="code">datatype</code> attribute set to <code class=
 "code">x-icu-resourcebundle</code>, and the <code class=
 "code">original</code> attribute set to the name of the resource
-bundle text file.</p>
+bundle file from which the data was extracted.</p>
+<p>The optional XLIFF <code>&lt;header&gt;</code> element contains
+a <code>&lt;tool&gt;</code> element which identifies the tool that
+extracted the data from the ICU resource bundle.</p>
 <p>The XLIFF <code class="sgmltag-element">&lt;body&gt;</code>
-element contains translation units, which may be grouped by ICU
-resource domains using hierarchical <code class=
-"sgmltag-element">&lt;group&gt;</code> elements.</p>
+element contains translation units, which may be grouped using
+hierarchical <code class="sgmltag-element">&lt;group&gt;</code>
+elements representing table and array resources..</p>
 </div>
 <div class="section" xml:lang="en" lang="en">
 <div class="titlepage">
@@ -602,12 +602,22 @@ id="s.detailed_mapping"></a>5.&nbsp;Detailed Mapping</h2>
 <div class="titlepage">
 <div>
 <h3 class="title"><a name="s.detailed_mapping.tlc" id=
-"s.detailed_mapping.tlc"></a>5.1. Top Level Comments</h3>
+"s.detailed_mapping.tlc"></a>5.1.&nbsp;Comments</h3>
 </div>
 </div>
-<p>ICU provides comment syntax that is identical to Javadoc comment
-syntax for preserving and recording information that pertains to a
-file as a whole.</p>
+<p>Comments in the text file that start with <code>/**</code> and
+end with <code>*/</code>, i.e. "doc" comments, should be extracted
+and included as comments in the XLIFF file. If the comment
+contains&nbsp; <code>@translate</code>, this should be used to set
+the <code>tranlsate</code> attribute on the first
+<code>&lt;trans-unit&gt;</code> generated after the comment is
+extracted. It is not necessary to generate a <code>translate</code>
+attribute for <code>@translate yes</code> since this is the
+default.</p>
+<p>If the comment contains <code>@note</code>, this should be
+extracted to a <code>&lt;note&gt;</code> element in the first
+<code>&lt;trans-unit&gt;</code> generated after the comment is
+extracted.</p>
 <p>For example:</p>
 <pre>
 /**<br /> * These are top level comments for the bundle. Tag name: root<br /> * @translate yes<br /> * @note Comments for tag named root<br /> */<br />root{<br />}<br />

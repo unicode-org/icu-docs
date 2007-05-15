@@ -624,7 +624,7 @@ extracted.</p>
 </pre>
 would be mapped to:
 <pre>
-    &lt;file xml:space = "preserve" source-language = "en" datatype =<br />          "x-icu-resourcebundle" original = "root.txt" tool = "genrb" date =<br />             "2007-01-17T20:58:58Z"&gt;<br />        &lt;body&gt;<br />            &lt;group restype = "x-icu-table" xml:space = "preserve" id = "ra" &gt;<br />                &lt;!--These are top level comments for the bundle. Tag name: root--&gt;<br />                &lt;note&gt; Comments for tag named root&lt;/note&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt; <br />
+    &lt;file xml:space = "preserve" source-language = "en" datatype =<br />          "x-icu-resourcebundle" original = "root.txt" tool = "genrb" date =<br />             "2007-01-17T20:58:58Z"&gt;<br />        &lt;body&gt;<br />            &lt;group restype = "x-icu-table" id = "ra" &gt;<br />                &lt;!--These are top level comments for the bundle. Tag name: root--&gt;<br />                &lt;note&gt; Comments for tag named root&lt;/note&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt; <br />
 </pre>
 <br />
 <div class="titlepage">
@@ -633,34 +633,25 @@ would be mapped to:
 "s.detailed_mapping.strings"></a>5.2. Strings</h3>
 </div>
 </div>
-<p>ICU provides two ways to specify string resources, namely,
-string resources with an ID and string resources without an id. The
-string resources without an ID are used in array resources.</p>
+<p>Each string resource should be mapped to a single
+<code>&lt;source&gt;</code> element within a
+<code>&lt;trans-unit&gt;</code>. Filters should concatenate
+multiple strings into a single string and convert all escape
+sequences to the corresponding characters.</p>
 <p>For example:</p>
 <pre>
-    /**<br />     * Tag name: test2<br />     * @note This resource is for test2<br />     * @translate yes<br />     */<br />    test2:string{"some translatable stuff"} <br />    <span class="item"
-style="color: rgb(51, 204, 255);">...</span>
-        /**
-         * comments for un-named string
-         * @translate yes
-         * @note This resource is un-named string
-         */
-        :string{"abcde"}, 
-    <em class="replaceable"><code>...</code></em>
+    /**<br />     * @note This is the message that the application displays to the user.<br />     */<br />    hello :string {"Hello, world!"}
 
 </pre>
 would be mapped to:<br />
 <pre>
-                &lt;trans-unit xml:space = "preserve" id = "test2" resname = "test2" translate="yes"&gt;<br />                    &lt;!--Tag name: test2--&gt;<br />                    &lt;source &gt;some translatable stuff&lt;/source&gt;<br />                    &lt;note&gt; This resource is for test2&lt;/note&gt;<br />                &lt;/trans-unit&gt;<br /><em class="replaceable"><code>             ... </code></em>
-                    &lt;trans-unit xml:space = "preserve" id = "<em class="replaceable"><code>&lt;resource name&gt;_&lt;array_incdex&gt;</code></em>" <br />                                translate="yes"&gt;<br />                        &lt;!--comments for un-named string--&gt;<br />                        &lt;source &gt;abcde&lt;/source&gt;<br />                        &lt;note&gt; This resource is un-named string&lt;/note&gt;<br />                    &lt;/trans-unit&gt;<br />               <em class="replaceable"><code> ...</code></em>
+    &lt;trans-unit id = "hello" resname = "hello"&gt;<br />        &lt;source&gt;Hello, world!&lt;/source&gt;<br />        &lt;note&gt; This is the message that the application displays to the user.&lt;/note&gt;<br />    &lt;/trans-unit&gt;
 
 </pre></div>
 <div class="section" xml:lang="en" lang="en">
 <div class="titlepage">
 <div>
-<h4><a name="s.detailed_mapping.strings.msg_format" id=
-"s.detailed_mapping.strings.msg_format"></a>5.2.1.&nbsp;Preserving
-Message Replaceables in Value</h4>
+<h4>5.2.1.&nbsp;Preserving Message Replaceables in Value</h4>
 <p>Messages are a concatenation of strings, numbers, and dates that
 present a complex formatting challenge&mdash;how to put together
 the sequences of strings, numbers, dates, and other formats to
@@ -677,7 +668,7 @@ filter developers should parse the elements correctly and hide the
 logic from the translator.</p>
 <p>For example:</p>
 <pre id="listing_5">
- choiceFormat:string{"Folder {0} contains {1,choice,0#no files|1#one file|1&lt;{2,number,integer}files}."}<br /> msgFormat:string{"At {1,time} on {1,date}, there was {2} on planet{0,number,integer}."}<br />
+ choiceFormat :string{"Folder {0} contains {1,choice,0#no files|1#one file|1&lt;{2,number,integer}files}."}<br /> msgFormat :string{"At {1,time} on {1,date}, there was {2} on planet{0,number,integer}."}<br />
 </pre>
 <p>would be mapped to:</p>
 <div class="titlepage">
@@ -689,27 +680,19 @@ logic from the translator.</p>
 "s.detailed_mapping.integers"></a>5.3. Integers</h3>
 </div>
 </div>
-<p>ICU provides two ways to specify storage of 32 bit integer
-resources, namely, integer resources with an ID and integer
-resources without an id. The integer resources without an ID are
-used in array resources.</p>
+<p>Integer resources should be mapped to
+<code>&lt;source&gt;</code> elements inside of a
+<code>&lt;trans-unit&gt;</code> element with <code>restype</code>
+attrribute with the value <code>"x-icu-integer"</code>. There is no
+need to convert integer resourcs specified as hexadecimal numbers,
+i.e. those strarting with <code>0x</code>, to decimal notation.</p>
 <p>For example:</p>
 <pre>
-        /**<br />         * Tag name: test5<br />         * @translate yes<br />         * @note This resource is for test5<br />         */<br />        test5:int{1}<br />    <em class="replaceable"><code>...</code></em>
-        /**
-         * comments for un-named int
-         * @translate yes
-         * @note This resource is un-named int
-         */
-
-        :int{1},
-    <em class="replaceable"><code>...</code></em>
-
+    /**<br />     * The height of the application window.<br />     *<br />     * @note Make sure this is tall enough to display the translated message.<br />     */<br />    window_height :integer {200}<br /><br />    /**<br />     * The width of the application window.<br />     *<br />     * @note Make sure this is wide enough to display the translated message.<br />     */<br />    window_width :integer {600}<br />
 </pre>
 would be mapped to:<br />
 <pre>
-                    &lt;trans-unit restype = "x-icu-int" xml:space = "preserve" id = "test5" resname = "test5"<br />                                   translate="yes"&gt;<br />                        &lt;!--Tag name: test5--&gt;<br />                        &lt;source&gt;1&lt;/source&gt;<br />                        &lt;note&gt; This resource is for test5&lt;/note&gt;<br />                    &lt;/trans-unit&gt;<br />               <em class="replaceable"><code>...</code>
-                   &lt;trans-unit xml:space = "preserve" id = </em><span class="replaceable">"</span><em class="replaceable"><em class="replaceable"><code>&lt;resource name&gt;_&lt;array_index&gt;</code></em></em><span class="replaceable">" <br />                               translate="yes"&gt;<br />                        &lt;!--comments for un-named int--&gt;<br />                        &lt;source&gt;1&lt;/source&gt;<br />                        &lt;note&gt; This resource is un-named int&lt;/note&gt;<br />                    &lt;/trans-unit&gt;</span><em class="replaceable"><br />               <em class="replaceable"><code>...</code></em>
+    &lt;trans-unit restype = "x-icu-integer" id = "window_height" resname = "window_height"&gt;<br />        &lt;source&gt;200&lt;/source&gt;<br />        &lt;note&gt;Make sure this is tall enough to display the translated message.&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br />             <br />    &lt;trans-unit restype = "x-icu-integer" id = "<span class="replaceable"><span class="replaceable"><span style="font-family: monospace;">window_width" resname="window_width</span></span></span><span class="replaceable">"&gt;<br />        &lt;source&gt;600&lt;/source&gt;<br />        &lt;note&gt;</span> Make sure this is wide enough to display the translated message.<span class="replaceable">&lt;/note&gt;<br />    &lt;/trans-unit&gt;</span><em class="replaceable">
 
 </em>
 </pre>
@@ -717,29 +700,28 @@ would be mapped to:<br />
 "s.detailed_mapping.binarydata" id=
 "s.detailed_mapping.binarydata"></a></em><span class=
 "replaceable">5.4. Binary Data</span></h3>
-<p><span class="replaceable">Binary data is represented as a string
-of decimal integers representing the binary values. ICU provides
-two ways to specify binary resources, binary resources with an ID
-and binary resources without an id. The binary resources without an
-ID are used in array resources.</span></p>
+<p><span class="replaceable">Binary resources should be mapped to a
+<code>&lt;bin-source&gt;</code> element inside of a
+<code>&lt;bin-unit&gt;</code> element. The
+<code>&lt;bin-unit&gt;</code> should have a <code>restype</code>
+attribute with the value <code>"x-icu-binary"</code> and a
+<code>mime-type</code> attribute with the value
+<code>"application/octet-stream"</code>. The
+<code>&lt;bin-source&gt;</code> element should contain an
+<code>&lt;internal-file&gt;</code> element that specifies the
+binary data.</span></p>
 <p><span class="replaceable">For example:</span></p>
 <pre>
-<span class=
-"replaceable">        /**<br />         * Tag name: test6<br />         * @translate no<br />         * @note This resource is for test6<br />         */<br />        test6:bin{"0102"}</span><em class="replaceable">    <em class="replaceable"><code>...</code></em>
-        /**
-         * comments for un-named binary
-         * @translate no
-         * @note This resource is for un-named binary
-         */
-        :bin{"12312312"}
-    <em class="replaceable"><code>...</code></em>
+<span class="replaceable"><span style=
+"font-family: &quot;Courier New&quot;;"><span style=
+"font-style: italic;">    /**<br />     * The MD5 checksum of the application.<br />     *<br />     * @translate no<br />     */<br />    md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}<br /></span></span></span><em class="replaceable">
 
 </em>
 </pre>
 <span class="replaceable">would be mapped to:</span>
 <pre>
 <em class="replaceable">  </em><span class=
-"replaceable">  &lt;bin-unit restype = "x-icu-bin" id = "test6"  mime-type = "application/octet-stream"<br />              resname = "test6" translate="no"&gt;<br />        &lt;!--Tag name: test6--&gt;<br />        &lt;bin-source&gt;<br />            &lt;internal-file form = "application" crc = "480784534"&gt;0102&lt;/internal-file&gt;<br />        &lt;/bin-source&gt;<br />        &lt;note&gt; This resource is for test6&lt;/note&gt;<br />    &lt;/bin-unit&gt;<br />    <span class="replaceable"><code>...</code></span></span><span class="replaceable">    &lt;bin-unit restype = "x-icu-bin" id = "</span><em class="replaceable"><em class="replaceable"><code>&lt;resource name&gt;_&lt;array_index&gt;</code></em></em><span class="replaceable">"<br />              mime-type = "application/octet-stream"<br />              resname = "</span><em class="replaceable"><em class="replaceable"><code>&lt;resource name&gt;_&lt;array_index&gt;</code></em></em><span class="replaceable"><span class="replaceable"><code><span style="color: rgb(0, 0, 0);">"</span> </code></span></span><span class="replaceable">translate="no"&gt;<br />        &lt;!--comments for un-named binary--&gt;<br />        &lt;bin-source&gt;<br />            &lt;internal-file form = "application" crc = "-2140397846"&gt;12312312&lt;/internal-file&gt;<br />        &lt;/bin-source&gt;<br />        &lt;note&gt; This resource is for un-named binary&lt;/note&gt;<br />    &lt;/bin-unit&gt;</span><em class="replaceable">      <em class="replaceable"><code>...</code></em>
+"replaceable">  &lt;bin-unit restype = "x-icu-binary" id = "md5_sum"  mime-type = "application/octet-stream"<br />              resname = "md5_sum" translate = "no"&gt;<br />        &lt;bin-source&gt;<br />            &lt;internal-file form = "application/octet-stream" crc = "187654673"&gt;BCFE765BE0FDFAB22C5F9EFD12C52ABC&lt;/internal-file&gt;<br />        &lt;/bin-source&gt;<br />    &lt;/bin-unit&gt;</span><em class="replaceable">
 
 </em>
 </pre>
@@ -747,42 +729,46 @@ ID are used in array resources.</span></p>
 "s.detailed_mapping.aliases" id=
 "s.detailed_mapping.aliases"></a></em><span class=
 "replaceable">5.5. Aliases</span></h3>
-<p><span class="replaceable">Aliases point to other resources. They
-are useful for preventing duplication of data in resources that are
-not on the same branch of the fallback chain. Alias can also have
-an empty path. In that case the position of the alias resource is
-used to find the aliased resource. For a alias resource the
-translate attribute should always be set to "no".</span></p>
+<p><span class="replaceable">Alias resources should be mapped to a
+<code>&lt;source&gt;</code> element inside of a
+<code>&lt;trans-unit&gt;</code> element. The
+<code>&lt;trans-unit&gt;</code> should have a <code>restype</code>
+attributue with the value <code>"x-icu-alias"</code>. The alias
+path should be mapped to a <code>&lt;ph&gt;</code> element who's
+<code>id</code> attribute value is the path. For an alias resource
+the <code>translate</code> attribute should always be set to
+<code>"no"</code>.</span></p>
 <p><span class="replaceable">For example:</span></p>
 <pre>
 <span class=
-"replaceable">        aaa:alias { "/ICUDATA/en/aab" }</span>
+"replaceable">    authors :alias {"root/authors"}</span>
 </pre>
 <span class="replaceable">would be mapped to:</span>
 <pre>
 <span class=
-"replaceable">    &lt;trans-unit restype = "x-icu-alias" xml:space = "preserve" id = "aaa" resname="aaa" translate="no"&gt;<br />        &lt;source&gt;&lt;ph xid="/ICUDATA/en/aab"/&gt;&lt;/source&gt;<br />    &lt;/trans-unit&gt;</span>
+"replaceable">    &lt;trans-unit restype = "x-icu-alias" id = "authors" resname = "authors" translate = "no"&gt;<br />        &lt;source&gt;&lt;ph id="root/authors"/&gt;&lt;/source&gt;<br />    &lt;/trans-unit&gt;</span>
 </pre>
 <h3 class="title"><em class="replaceable"><a name=
 "s.detailed_mapping.arrays" id=
 "s.detailed_mapping.arrays"></a></em><span class="replaceable">5.6.
 Arrays</span></h3>
-<span class="replaceable">Arrays are used for bundling un-named
-items together.The ID values for each element of the array are a
-concatenation of the ID of the enclosing resource and the index of
-the individual element separated by an underscore. If the enclosing
-resource is an un-named resource then, the index of the resource
-should be used.<br />
+<span class="replaceable">An array resource should be mapped to a
+<code>&lt;group&gt;</code> element with a <code>restype</code>
+attribute with a value of <code>"x-icu-array"</code>. Because the
+resources contained in the array are not named their
+<code>id</code> atrributes should have a value that is the name of
+the array followed by a <code>_</code> followed by the resource's
+index in the array.<br />
+<br />
 For example:</span>
 <pre>
 <span class=
-"replaceable">    /**<br />     * Top level comments for Tag name: TestArray<br />     * @translate yes<br />     * @note This resource is for Tag name: Array<br />     */<br />    TestArray:array{<br />        /**<br />         * comments for un-named string<br />         * @translate yes<br />         * @note This resource is un-named string<br />         */<br />        :string{"abcde"},<br />        /** <br />         * comments for un-named int<br />         * @translate yes<br />         * @note This resource is un-named int<br />         */<br />        :int{1},<br />        /**<br />         * comments for un-named binary<br />         * @translate yes<br />         * @note This resource is for un-named binary<br />         */<br />        :bin{"12312312"}<br />    }</span>
+"replaceable">    menu_items :array {<br />        :string {"Cut"},<br />        :string {"Copy"},<br />        :string {"Paste"},<br />        :string {"Delete"}<br />    }</span>
 </pre>
-<span class="replaceable"><br />
-would be converted to:</span>
+<span class="replaceable">would be mapped to:</span>
 <pre>
 <span class=
-"replaceable">             &lt;group restype = "x-icu-array" xml:space = "preserve" id = "TestArray" resname="TestArray"&gt;<br />                 &lt;!--Top level comments for Tag name: TestArray--&gt;<br />                 &lt;note&gt; This resource is for Tag name: Array&lt;/note&gt;<br />                 &lt;trans-unit xml:space = "preserve" id = "TestArray_0" translate="yes"&gt;<br />                     &lt;!--comments for un-named string--&gt;<br />                     &lt;source &gt;abcde&lt;/source&gt;<br />                     &lt;note&gt; This resource is un-named string&lt;/note&gt;<br />                 &lt;/trans-unit&gt;<br />                 &lt;trans-unit restype = "x-icu-int" xml:space = "preserve" id = "TestArray_1" translate="yes"&gt;<br />                        &lt;!--comments for un-named int--&gt;<br />                        &lt;source&gt;1&lt;/source&gt;<br />                        &lt;note&gt; This resource is un-named int&lt;/note&gt;<br />                 &lt;/trans-unit&gt;<br />                 &lt;bin-unit restype = "x-icu-bin" id = "TestArray_2"<br />                           mime-type = "application/octet-stream" translate="yes"&gt;<br />                     &lt;!--comments for un-named binary--&gt;<br />                     &lt;bin-source&gt;<br />                         &lt;internal-file form = "application" crc = "-2140397846"&gt;12312312&lt;/internal-file&gt;<br />                     &lt;/bin-source&gt;<br />                     &lt;note&gt; This resource is for un-named binary&lt;/note&gt;<br />                 &lt;/bin-unit&gt;<br />             &lt;/group&gt;</span>
+"replaceable">    &lt;group restype = "x-icu-array" id = "menu_items" resname = "menu_items"&gt;<br />        &lt;trans-unit id = "menu_items_0"&gt;<br />            &lt;source &gt;Cut&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br /></span><span class="replaceable">        &lt;trans-unit id = "menu_items_1"&gt;<br />            &lt;source &gt;Copy&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br /></span><span class="replaceable">        &lt;trans-unit id = "menu_items_2"&gt;<br />            &lt;source &gt;Paste&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br /></span><span class="replaceable">        &lt;trans-unit id = "menu_items_3"&gt;<br />            &lt;source &gt;Delete&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br /></span><span class="replaceable">     &lt;/group&gt;</span>
 </pre></div>
 </div>
 <div class="section" xml:lang="en" lang="en">
@@ -792,76 +778,85 @@ would be converted to:</span>
 "s.detailed_mapping.intvector" id=
 "s.detailed_mapping.intvector"></a></em><span class=
 "replaceable">5.7. Integer Vectors</span></h3>
-<span class="replaceable">Integer vectors are arrays of 32 bit
-integers and are used for bundling un-named integers together. The
-ID values for each element of the array are a concatenation of the
-ID of the enclosing resource and the index of the individual
-element separated by an underscore. If the enclosing resource is an
-un-named resource then, the index of the resource should be
-used.<br />
+<span class="replaceable">Integer vector resources should be mapped
+to a <code>&lt;group&gt;</code> element with a <code>restype</code>
+attribute that has the value <code>"x-icu-intvector"</code>. The
+individual integers should be mapped to
+<code>&lt;trans-unit&gt;</code> elements with an <code>id</code>
+attrbute with a value that is the name of integer vector followed
+by a <code>_</code> followed by the index of the integer. The
+integer value should be in a <code>&lt;source&gt;</code> element
+inside the <code>&lt;trans-unit&gt;</code>.<br />
 <br />
 For example:</span>
 <pre>
 <span class=
-"replaceable">    /**<br />     * comments for TestIntVector<br />     * @translate yes<br />     * @note This resource is for TestIntVector<br />     */<br />     TestIntVector{<br />        /**<br />         * comments for element 1<br />         * @translate yes<br />         * @note This resource is for element 1<br />         */<br />         1,<br />        /**<br />         * comments for element 2<br />         * @translate yes<br />         * @note This resource is for element 2<br />         */<br />         2,<br />        /**<br />         * comments for element 3<br />         * @translate yes<br />         * @note This resource is for element 3<br />         */<br />         3<br />     }</span>
+"replaceable">    /**<br />     * The application version number<br />     */<br />    version :intvector {<br />        /**<br />         * The major version number.<br />         *<br />         * @translate no<br />         */<br />        1,<br /><br />        /**<br />         * The minor version number.<br />         *<br />         * @translate no<br />         */<br />        2,<br /><br />        /**<br />         * The patch level.<br />         *<br />         * @translate no<br />         */<br />        3<br />    }</span>
 </pre>
-<span class="replaceable"><br />
-would be converted to:</span>
+<span class="replaceable">would be mapped to:</span>
 <pre>
 <span class=
-"replaceable">  &lt;group restype = "x-icu-intvector" xml:space = "preserve" id = "TestIntVector" resname="TestIntVector"&gt;<br />    &lt;!--comments for TestIntVector--&gt;<br />    &lt;note&gt; This resource is for TestIntVector&lt;/note&gt;<br />    &lt;trans-unit xml:space = "preserve" id = "TestIntVector_0" translate="yes"&gt;<br />        &lt;!--comments for element 1--&gt;<br />        &lt;source &gt;1&lt;/source&gt;<br />        &lt;note&gt; This resource is for element 1&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br />    &lt;trans-unit xml:space = "preserve" id = "TestIntVector_1" translate="yes"&gt;<br />        &lt;!--comments for element 2--&gt;<br />        &lt;source &gt;2&lt;/source&gt;<br />        &lt;note&gt; This resource is for element 2&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br />    &lt;trans-unit xml:space = "preserve" id = "TestIntVector_2" translate="yes"&gt;<br />        &lt;!--comments for element 3--&gt;<br />        &lt;source &gt;3&lt;/source&gt;<br />        &lt;note&gt; This resource is for element 3&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br />  &lt;/group&gt;</span>
+"replaceable">  &lt;group restype = "x-icu-intvector" id = "version" resname = "version"&gt;<br />    &lt;note&gt;The application version number&lt;/note&gt;<br />    &lt;trans-unit id = "version_0" translate = "no"&gt;<br />        &lt;!--The major version number.--&gt;<br />        &lt;source &gt;1&lt;/source&gt;<br />    &lt;/trans-unit&gt;<br />    &lt;trans-unit id = "version_1" translate = "no"&gt;<br />        &lt;!--The minor version number.--&gt;<br />        &lt;source &gt;2&lt;/source&gt;<br />    &lt;/trans-unit&gt;<br />    &lt;trans-unit id = "version_2" translate = "no"&gt;<br />        &lt;!--The patch level.--&gt;<br />        &lt;source &gt;3&lt;/source<br />    &lt;/trans-unit&gt;<br />  &lt;/group&gt;</span>
 </pre>
 <h3 class="title"><em class="replaceable"><a name=
 "s.detailed_mapping.tables" id=
 "s.detailed_mapping.tables"></a></em><span class=
 "replaceable">5.8.Tables</span></h3>
-<span class="replaceable">Tables are arrays of named items and are
-used for bundling named items together.<br />
+<span class="replaceable">Table resources are mapped to a
+<code>&lt;group&gt;</code> element with a restype atrribute that
+has the value <code>"x-icu-table"</code>. Each resource in the
+table has an <code>id</code> atrribute that is the table name
+followed by <code>_</code> followed by the name of the
+resource.<br />
 <br />
 For example:</span>
 <pre>
 <span class=
-"replaceable">    /**<br />     * comments for TestTable<br />     * @translate yes<br />     * @note This resource is for TestTable<br />     */<br />     TestTable{<br />        /**<br />         * comments for Month1<br />         * @translate yes<br />         * @note This resource is for Month1<br />         */<br />         Month1{"January"}<br />        /**<br />         * comments for Month2<br />         * @translate yes<br />         * @note This resource is for Month2<br />         */<br />         Month2{"February"}<br />        /**<br />         * comments for Month3<br />         * @translate yes<br />         * @note This resource is for Month3<br />         */<br />         Month3{"March"}<br />     }</span>
-</pre>
-<span class="replaceable"><br />
-would be converted to:</span>
-<pre>
-<span class=
-"replaceable">   &lt;group restype = "x-icu-intvector" xml:space = "preserve" id = "TestTable" resname="TestTable"&gt;<br />        &lt;!--comments for TestTable--&gt;<br />        &lt;note&gt; This resource is for TestTable&lt;/note&gt;<br />        &lt;trans-unit xml:space = "preserve" id = "TestTable_Month1" translate="yes"&gt;<br />            &lt;!--comments for Month1--&gt;<br />            &lt;source &gt;January&lt;/source&gt;<br />            &lt;note&gt; This resource is for Month1&lt;/note&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit xml:space = "preserve" id = "TestTable_Month2" translate="yes"&gt;<br />            &lt;!--comments for Month2--&gt;<br />            &lt;source &gt;February&lt;/source&gt;<br />            &lt;note&gt; This resource is for Month2&lt;/note&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit xml:space = "preserve" id = "TestTable_Month3" translate="yes"&gt;<br />            &lt;!--comments for Month3--&gt;<br />            &lt;source &gt;March&lt;/source&gt;<br />            &lt;note&gt; This resource is for Month3&lt;/note&gt;<br />        &lt;/trans-unit&gt;<br />   &lt;/group&gt;</span>
-</pre>
-&middot;
-<h3 class="title"><em class="replaceable"><a name=
-"s.detailed_mapping.import" id=
-"s.detailed_mapping.import"></a></em><span class="replaceable">5.9.
-Import Directive</span></h3>
-<span class="replaceable">Binary data can be imported into a
-resource with the import data type.</span>
-<p><span class="replaceable">For example:</span></p>
-<pre>
-<span class=
-"replaceable">    /**<br />     * comments for TestImport<br />     * @translate no<br />     * @note This resource is for TestImport<br />     */<br />    TestImpport:import{"mytest.jpg"}</span>
+"replaceable">    /**<br />     * The names of the primary colors<br />     */<br />     primary_colors{<br />        red :string {"Red"}<br /><br />        orange :string {"Orange"}<br /><br />        yellow :string {"Yellow"}<br /><br />        green :string {"Green"}<br /><br />        blue :string {"Blue"}<br /><br />        indigo :string {"Indigo"}<br /><br />        violet :string {"Violet"}<br />     }</span>
 </pre>
 <span class="replaceable">would be mapped to:</span>
 <pre>
 <span class=
-"replaceable">   &lt;bin-unit restype = "x-icu-import" id = "TestImpport"<br />             mime-type = "application/octet-stream" <br />             resname = "TestImpport" translate="no"&gt;<br />       &lt;!--comments for TestImport--&gt;<br />       &lt;bin-source&gt;<br />              &lt;external-file href = "mytest.jpg"/&gt;<br />       &lt;/bin-source&gt;<br />       &lt;note&gt; This resource is for TestImport&lt;/note&gt;<br />   &lt;/bin-unit&gt;</span>
+"replaceable">   &lt;group restype = "x-icu-table" id = "primary_colors" resname="primary_colors"&gt;<br />        &lt;!--The names of the primary colors--&gt;<br />        &lt;trans-unit id = "primary_colors_red"&gt;<br />            &lt;source &gt;Red&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit id = "primary_colors_orange"&gt;<br />            &lt;source &gt;Orange&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit id = "</span><span class="replaceable">primary_colors</span><span class="replaceable">_yellow"&gt;<br />            &lt;source &gt;Yellow&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br /></span><span class="replaceable">        &lt;trans-unit id = "</span><span class="replaceable">primary_colors</span><span class="replaceable">_green"&gt;<br />            &lt;source &gt;Green&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit id = "</span><span class="replaceable">primary_colors</span><span class="replaceable">_blue"&gt;<br />            &lt;source &gt;Blue&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit id = "</span><span class="replaceable">primary_colors</span><span class="replaceable">_indigo"&gt;<br />            &lt;source &gt;Indigo&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br /></span><span class="replaceable">        &lt;trans-unit id = "</span><span class="replaceable">primary_colors</span><span class="replaceable">_violet"&gt;<br />            &lt;source &gt;Violet&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br /></span><span class="replaceable">   &lt;/group&gt;</span>
+</pre>
+<h3 class="title"><em class="replaceable"><a name=
+"s.detailed_mapping.import" id=
+"s.detailed_mapping.import"></a></em><span class="replaceable">5.9.
+Import Directive</span></h3>
+<span class="replaceable">Binary resources specified using
+<code>:import</code> should be mapped to an
+<code>&lt;external-file&gt;</code> element inside of a
+<code>&lt;bin-source&gt;</code> element inside of a
+<code>&lt;bin-unit&gt;</code> element. The <code>restype</code>
+attribute of the <code>&lt;bin-unit&gt;</code> &nbsp;should have
+the value <code>"x-icu-binary"</code>.</span>
+<p><span class="replaceable">For example:</span></p>
+<pre>
+<span class=
+"replaceable">    /**<br />     * The logo to be displayed in the application window.<br />     *<br />     * @translate no<br />     */<br />    logo :import {"logo.gif"}</span>
+</pre>
+<span class="replaceable">would be mapped to:</span>
+<pre>
+<span class=
+"replaceable">   &lt;bin-unit restype = "x-icu-binary" id = "logo"<br />             mime-type = "application/octet-stream" <br />             resname = "logo" translate = "no"&gt;<br />       &lt;!--The logo to be displayed in the application window.--&gt;<br />       &lt;bin-source&gt;<br />              &lt;external-file href = "logo.gif"/&gt;<br />       &lt;/bin-source&gt;<br />   &lt;/bin-unit&gt;</span>
 </pre>
 <h3 class="title"><em class="replaceable"><a name=
 "s.detailed_mapping.include" id=
 "s.detailed_mapping.include"></a></em><span class=
 "replaceable">5.10. Include Directive</span></h3>
-<span class="replaceable">Include directive indicates that text
-data imported into a resource. The contents of the file that is
-pointed to is replaced in the section.</span>
+<span class="replaceable">For string resources specified using
+<code>:include</code>, filters should read the contents of the
+included file and process it as if it had been specified
+directly.&nbsp;</span>
 <p><span class="replaceable">For example:</span></p>
 <pre>
 <span class=
-"replaceable">    /**<br />     * comments for TestInclude1<br />     * @translate no<br />     * @note This resource is for TestInclude1<br />     */<br />    TestInclude1:include{"translit_rules.txt"}<br /><br />    /**<br />     * comments for TestInclude2<br />     * @translate yes<br />     * @note This resource is for TestInclude2<br />     */<br />    TestInclude2:include{"mystring.txt"}</span>
+"replaceable">    /**<br />     * Included text.<br />     */<br />    included_text :include {"mystring.txt"}</span>
 </pre>
 <span class="replaceable">would be mapped to:</span>
 <pre>
 <span class=
-"replaceable">   &lt;bin-unit restype = "x-icu-import" id = "TestInclude1"  mime-type = "application" <br />             resname = "TestInclude1" translate="no"&gt;<br />       &lt;!--comments for TestImport1--&gt;<br />       &lt;bin-source&gt;<br />              &lt;external-file href = "translit_rules.txt"/&gt;<br />       &lt;/bin-source&gt;<br />       &lt;note&gt;This resource is for TestInclude1&lt;/note&gt;<br />   &lt;/bin-unit&gt;<br />   &lt;trans-unit xml:space = "preserve" id = "TestInclude2" resname = "TestInclude2" translate="yes"&gt;<br />        &lt;!--comments for TestInclude--&gt;<br />        &lt;source&gt;<em><span class="replaceable"><code>Contents of mystring.txt</code></span></em>&lt;/source&gt;<br />        &lt;note&gt;This resource is for TestInclude2&lt;/note&gt;<br />   &lt;/trans-unit&gt;</span>
+"replaceable">   &lt;trans-unit id = "included_text" resname = "included_text"&gt;<br />        &lt;!--Included text.--&gt;<br />        &lt;source&gt;<em><span class="replaceable"><code>Contents of mystring.txt</code></span></em>&lt;/source&gt;<br />   &lt;/trans-unit&gt;</span>
 </pre></div>
 </div>
 </div>

@@ -640,13 +640,11 @@ multiple strings into a single string and convert all escape
 sequences to the corresponding characters.</p>
 <p>For example:</p>
 <pre>
-    /**<br />     * @note This is the message that the application displays to the user.<br />     */<br />    hello :string {"Hello, world!"}
-
+    /**<br />     * @note This is the message that the application displays to the user.<br />     */<br />    hello :string {"Hello, world!"}<br /><br />
 </pre>
 would be mapped to:<br />
 <pre>
-    &lt;trans-unit id = "hello" resname = "hello"&gt;<br />        &lt;source&gt;Hello, world!&lt;/source&gt;<br />        &lt;note&gt; This is the message that the application displays to the user.&lt;/note&gt;<br />    &lt;/trans-unit&gt;
-
+    &lt;trans-unit id = "hello" resname = "hello"&gt;<br />        &lt;source&gt;Hello, world!&lt;/source&gt;<br />        &lt;note&gt; This is the message that the application displays to the user.&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br /><br />
 </pre></div>
 <div class="section" xml:lang="en" lang="en">
 <div class="titlepage">
@@ -668,13 +666,13 @@ filter developers should parse the elements correctly and hide the
 logic from the translator.</p>
 <p>For example:</p>
 <pre id="listing_5">
- choiceFormat :string{"Folder {0} contains {1,choice,0#no files|1#one file|1&lt;{2,number,integer}files}."}<br /> msgFormat :string{"At {1,time} on {1,date}, there was {2} on planet{0,number,integer}."}<br />
+ choiceFormat :string{"Folder {0} contains {1,choice,0#no files|1#one file|1&lt;{1,number,integer} files}."}<br /> msgFormat :string{"At {1,time} on {1,date}, there was {2} on planet{0,number,integer}."}<br />
 </pre>
 <p>would be mapped to:</p>
 <div class="titlepage">
 <div>
 <pre id="listing_6">
-&lt;source&gt;Folder &lt;ph id="1"&gt;{0}&lt;/ph&gt; contains <br />  &lt;ph id="2"&gt;{1,choice,0#&lt;sub&gt;no files&lt;/sub&gt;|1#&lt;sub&gt;one file&lt;/sub&gt;|1&amp;lt;{2,number,integer}<br />             &lt;sub&gt;files&lt;/sub&gt;}&lt;/ph&gt;.<br />&lt;/source&gt;<br /><br />&lt;source&gt;At &lt;ph id="1"&gt;{1,time}&lt;/ph&gt; on &lt;ph id="2"&gt;{1, date}&lt;/ph&gt;, <br />        there was &lt;ph id="3"&gt;{2}&lt;/ph&gt; on planet &lt;ph id="4"&gt;{0,number,integer}&lt;/ph&gt;.<br />&lt;/source&gt;<br />
+&lt;source&gt;Folder &lt;ph id="1"&gt;{0}&lt;/ph&gt; contains <br />  &lt;ph id="2"&gt;{1,choice,0#&lt;sub&gt;no files&lt;/sub&gt;|1#&lt;sub&gt;one file&lt;/sub&gt;|1&amp;lt;{1,number,integer}<br />             &lt;sub&gt; files&lt;/sub&gt;}&lt;/ph&gt;.<br />&lt;/source&gt;<br /><br />&lt;source&gt;At &lt;ph id="1"&gt;{1,time}&lt;/ph&gt; on &lt;ph id="2"&gt;{1, date}&lt;/ph&gt;, <br />        there was &lt;ph id="3"&gt;{2}&lt;/ph&gt; on planet &lt;ph id="4"&gt;{0,number,integer}&lt;/ph&gt;.<br />&lt;/source&gt;<br />
 </pre>
 <h3 class="title"><a name="s.detailed_mapping.integers" id=
 "s.detailed_mapping.integers"></a>5.3. Integers</h3>

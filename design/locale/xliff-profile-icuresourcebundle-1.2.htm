@@ -116,16 +116,11 @@ Preserving Message Replaceables in Value</a></dd>
 "#s.detailed_mapping.aliases">5.5. Aliases</a></span></dt>
 <dt><span class="section"><a href="#s.detailed_mapping.arrays">5.6.
 Arrays</a></span></dt>
-<dt><a href="#s.detailed_mapping.tables">5.7. Tables</a></dt>
-<dt><a href="#s.detailed_mapping.intvector">5.8. Integer
+<dt><a href="#s.detailed_mapping.intvector">5.7. Integer
 Vectors</a></dt>
+<dt><a href="#s.detailed_mapping.tables">5.8. Tables</a></dt>
 </dl>
 </dd>
-<dd><a href=
-"xliff-profile-icuresourcebundle-1.2.htm#s.detailed_mapping.import">
-5.9. Import Directive</a></dd>
-<dd><a href="#s.detailed_mapping.include">5.10. Include
-Directive</a></dd>
 </dl>
 <h3>Appendixes</h3>
 <dl>
@@ -640,16 +635,31 @@ multiple strings into a single string and convert all escape
 sequences to the corresponding characters.</p>
 <p>For example:</p>
 <pre>
-    /**<br />     * @note This is the message that the application displays to the user.<br />     */<br />    hello :string {"Hello, world!"}<br /><br />
+    /**<br />     * @note This is the message that the application displays to the user.<br />     */<br />    hello :string {"Hello, world!"}<br />
 </pre>
 would be mapped to:<br />
 <pre>
-    &lt;trans-unit id = "hello" resname = "hello"&gt;<br />        &lt;source&gt;Hello, world!&lt;/source&gt;<br />        &lt;note&gt; This is the message that the application displays to the user.&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br /><br />
+    &lt;trans-unit id = "hello" resname = "hello"&gt;<br />        &lt;source&gt;Hello, world!&lt;/source&gt;<br />        &lt;note&gt; This is the message that the application displays to the user.&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br />
 </pre></div>
 <div class="section" xml:lang="en" lang="en">
 <div class="titlepage">
-<div>
-<h4>5.2.1.&nbsp;Preserving Message Replaceables in Value</h4>
+<div><span class="replaceable"><br />
+For string resources specified using <code>:include</code>, filters
+should read the contents of the included file and process it as if
+it had been specified directly.<br />
+<br /></span> <span class="replaceable">For example:</span>
+<pre>
+<span class=
+"replaceable">    /**<br />     * Included text.<br />     */<br />    included_text :include {"mystring.txt"}</span>
+</pre>
+<span class="replaceable">would be mapped to:</span>
+<pre>
+<span class=
+"replaceable">   &lt;trans-unit id = "included_text" resname = "included_text"&gt;<br />        &lt;!--Included text.--&gt;<br />        &lt;source&gt;<em><span class="replaceable"><code>Contents of mystring.txt</code></span></em>&lt;/source&gt;<br />   &lt;/trans-unit&gt;</span>
+</pre>
+<h4><a name="s.detailed_mapping.strings.msg_format" id=
+"s.detailed_mapping.strings.msg_format"></a>5.2.1.&nbsp;Preserving
+Message Replaceables in Value</h4>
 <p>Messages are a concatenation of strings, numbers, and dates that
 present a complex formatting challenge&mdash;how to put together
 the sequences of strings, numbers, dates, and other formats to
@@ -690,9 +700,7 @@ i.e. those strarting with <code>0x</code>, to decimal notation.</p>
 </pre>
 would be mapped to:<br />
 <pre>
-    &lt;trans-unit restype = "x-icu-integer" id = "window_height" resname = "window_height"&gt;<br />        &lt;source&gt;200&lt;/source&gt;<br />        &lt;note&gt;Make sure this is tall enough to display the translated message.&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br />             <br />    &lt;trans-unit restype = "x-icu-integer" id = "<span class="replaceable"><span class="replaceable"><span style="font-family: monospace;">window_width" resname="window_width</span></span></span><span class="replaceable">"&gt;<br />        &lt;source&gt;600&lt;/source&gt;<br />        &lt;note&gt;</span> Make sure this is wide enough to display the translated message.<span class="replaceable">&lt;/note&gt;<br />    &lt;/trans-unit&gt;</span><em class="replaceable">
-
-</em>
+    &lt;trans-unit restype = "x-icu-integer" id = "window_height" resname = "window_height"&gt;<br />        &lt;source&gt;200&lt;/source&gt;<br />        &lt;note&gt;Make sure this is tall enough to display the translated message.&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br />             <br />    &lt;trans-unit restype = "x-icu-integer" id = "<span class="replaceable"><span class="replaceable"><span style="font-family: monospace;">window_width" resname="window_width</span></span></span><span class="replaceable">"&gt;<br />        &lt;source&gt;600&lt;/source&gt;<br />        &lt;note&gt;</span> Make sure this is wide enough to display the translated message.<span class="replaceable">&lt;/note&gt;<br />    &lt;/trans-unit&gt;</span>
 </pre>
 <h3 class="title"><em class="replaceable"><a name=
 "s.detailed_mapping.binarydata" id=
@@ -712,16 +720,29 @@ binary data.</span></p>
 <pre>
 <span class="replaceable"><span style=
 "font-family: &quot;Courier New&quot;;"><span style=
-"font-style: italic;">    /**<br />     * The MD5 checksum of the application.<br />     *<br />     * @translate no<br />     */<br />    md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}<br /></span></span></span><em class="replaceable">
-
-</em>
+"font-style: italic;">    /**<br />     * The MD5 checksum of the application.<br />     *<br />     * @translate no<br />     */<br />    md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}</span></span></span>
 </pre>
 <span class="replaceable">would be mapped to:</span>
 <pre>
 <em class="replaceable">  </em><span class=
-"replaceable">  &lt;bin-unit restype = "x-icu-binary" id = "md5_sum"  mime-type = "application/octet-stream"<br />              resname = "md5_sum" translate = "no"&gt;<br />        &lt;bin-source&gt;<br />            &lt;internal-file form = "application/octet-stream" crc = "187654673"&gt;BCFE765BE0FDFAB22C5F9EFD12C52ABC&lt;/internal-file&gt;<br />        &lt;/bin-source&gt;<br />    &lt;/bin-unit&gt;</span><em class="replaceable">
-
-</em>
+"replaceable">  &lt;bin-unit restype = "x-icu-binary" id = "md5_sum"  mime-type = "application/octet-stream"<br />              resname = "md5_sum" translate = "no"&gt;<br />        &lt;bin-source&gt;<br />            &lt;internal-file form = "application/octet-stream" crc = "187654673"&gt;BCFE765BE0FDFAB22C5F9EFD12C52ABC&lt;/internal-file&gt;<br />        &lt;/bin-source&gt;<br />    &lt;/bin-unit&gt;<br /></span>
+</pre>
+<span class="replaceable"><br />
+Binary resources specified using <code>:import</code> should be
+mapped to an <code>&lt;external-file&gt;</code> element inside of a
+<code>&lt;bin-source&gt;</code> element inside of a
+<code>&lt;bin-unit&gt;</code> element. The <code>restype</code>
+attribute of the <code>&lt;bin-unit&gt;</code> &nbsp;should have
+the value <code>"x-icu-binary"</code>.</span>
+<p><span class="replaceable">For example:</span></p>
+<pre>
+<span class=
+"replaceable">    /**<br />     * The logo to be displayed in the application window.<br />     *<br />     * @translate no<br />     */<br />    logo :import {"logo.gif"}</span>
+</pre>
+<span class="replaceable">would be mapped to:</span>
+<pre>
+<span class=
+"replaceable">   &lt;bin-unit restype = "x-icu-binary" id = "logo"<br />             mime-type = "application/octet-stream" <br />             resname = "logo" translate = "no"&gt;<br />       &lt;!--The logo to be displayed in the application window.--&gt;<br />       &lt;bin-source&gt;<br />              &lt;external-file href = "logo.gif"/&gt;<br />       &lt;/bin-source&gt;<br />   &lt;/bin-unit&gt;</span>
 </pre>
 <h3 class="title"><em class="replaceable"><a name=
 "s.detailed_mapping.aliases" id=
@@ -816,45 +837,6 @@ For example:</span>
 <pre>
 <span class=
 "replaceable">   &lt;group restype = "x-icu-table" id = "primary_colors" resname="primary_colors"&gt;<br />        &lt;!--The names of the primary colors--&gt;<br />        &lt;trans-unit id = "primary_colors_red"&gt;<br />            &lt;source &gt;Red&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit id = "primary_colors_orange"&gt;<br />            &lt;source &gt;Orange&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit id = "</span><span class="replaceable">primary_colors</span><span class="replaceable">_yellow"&gt;<br />            &lt;source &gt;Yellow&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br /></span><span class="replaceable">        &lt;trans-unit id = "</span><span class="replaceable">primary_colors</span><span class="replaceable">_green"&gt;<br />            &lt;source &gt;Green&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit id = "</span><span class="replaceable">primary_colors</span><span class="replaceable">_blue"&gt;<br />            &lt;source &gt;Blue&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br />        &lt;trans-unit id = "</span><span class="replaceable">primary_colors</span><span class="replaceable">_indigo"&gt;<br />            &lt;source &gt;Indigo&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br /></span><span class="replaceable">        &lt;trans-unit id = "</span><span class="replaceable">primary_colors</span><span class="replaceable">_violet"&gt;<br />            &lt;source &gt;Violet&lt;/source&gt;<br />        &lt;/trans-unit&gt;<br /></span><span class="replaceable">   &lt;/group&gt;</span>
-</pre>
-<h3 class="title"><em class="replaceable"><a name=
-"s.detailed_mapping.import" id=
-"s.detailed_mapping.import"></a></em><span class="replaceable">5.9.
-Import Directive</span></h3>
-<span class="replaceable">Binary resources specified using
-<code>:import</code> should be mapped to an
-<code>&lt;external-file&gt;</code> element inside of a
-<code>&lt;bin-source&gt;</code> element inside of a
-<code>&lt;bin-unit&gt;</code> element. The <code>restype</code>
-attribute of the <code>&lt;bin-unit&gt;</code> &nbsp;should have
-the value <code>"x-icu-binary"</code>.</span>
-<p><span class="replaceable">For example:</span></p>
-<pre>
-<span class=
-"replaceable">    /**<br />     * The logo to be displayed in the application window.<br />     *<br />     * @translate no<br />     */<br />    logo :import {"logo.gif"}</span>
-</pre>
-<span class="replaceable">would be mapped to:</span>
-<pre>
-<span class=
-"replaceable">   &lt;bin-unit restype = "x-icu-binary" id = "logo"<br />             mime-type = "application/octet-stream" <br />             resname = "logo" translate = "no"&gt;<br />       &lt;!--The logo to be displayed in the application window.--&gt;<br />       &lt;bin-source&gt;<br />              &lt;external-file href = "logo.gif"/&gt;<br />       &lt;/bin-source&gt;<br />   &lt;/bin-unit&gt;</span>
-</pre>
-<h3 class="title"><em class="replaceable"><a name=
-"s.detailed_mapping.include" id=
-"s.detailed_mapping.include"></a></em><span class=
-"replaceable">5.10. Include Directive</span></h3>
-<span class="replaceable">For string resources specified using
-<code>:include</code>, filters should read the contents of the
-included file and process it as if it had been specified
-directly.&nbsp;</span>
-<p><span class="replaceable">For example:</span></p>
-<pre>
-<span class=
-"replaceable">    /**<br />     * Included text.<br />     */<br />    included_text :include {"mystring.txt"}</span>
-</pre>
-<span class="replaceable">would be mapped to:</span>
-<pre>
-<span class=
-"replaceable">   &lt;trans-unit id = "included_text" resname = "included_text"&gt;<br />        &lt;!--Included text.--&gt;<br />        &lt;source&gt;<em><span class="replaceable"><code>Contents of mystring.txt</code></span></em>&lt;/source&gt;<br />   &lt;/trans-unit&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -872,25 +854,25 @@ to this document:</span></p>
 <li>Yoshito Umaoka</li>
 <li>George Rhoten</li>
 <li>Eric Mader</li>
+<li>David Walters</li>
 </ul>
-<p><span class="replaceable">...</span></p>
 </div>
 <div class="appendix" xml:lang="en" lang="en">
 <h2 class="title" style="clear: both;"><span class=
 "replaceable"><a name="id2506764" id=
 "id2506764"></a>B.&nbsp;Examples of converted ICU files</span></h2>
-<p><span class="replaceable">We have provided the following two
-examples of ICU resource files converted to XLIFF:</span></p>
+<p><span class="replaceable">We have provided the following example
+of ICU resource files converted to XLIFF:</span></p>
 <div class="itemizedlist">
 <ul type="disc">
-<li>A simple ICU Root Template file [<a href="example.pot" target=
-"_top">root.txt]</a> converted to XLIFF [<a href="example.xlf"
-target="_top">root.xlf</a>].</li>
-<li>A translated ICU file [<a href="example_nb_NO.po" target=
-"_top">te.txt</a>] converted to XLIFF [<a href="example_nb-NO.xlf"
-target="_top">te.xlf</a>].</li>
+<li>A simple ICU resource bundle text file [<a href=
+"en.txt">en.txt</a>] converted to XLIFF [<a href=
+"en.xlf">en.xlf</a>].</li>
 </ul>
-</div>
+<span class="replaceable">Note that the examples contain extra
+whitespace for readability. We recommend that filters produce XLIFF
+files with the minimum anount of whitespace so that the files are
+as small as possible.</span></div>
 </div>
 <div class="bibliography">
 <div class="titlepage">
@@ -900,11 +882,10 @@ target="_top">te.xlf</a>].</li>
 <h2 class="title"><span class="replaceable">Issues and
 Questions</span></h2>
 <ol>
-<li>Should I add a section on handling of escape sequences?</li>
-<li>Should xml:space="preserve" attribute be set on all
-elements?</li>
-<li>include directive needs work. Can we use &lt;bin-unit&gt; for
-"@translate no"?</li>
+<li>ChoiceFormat may need some work... no XLIFF tool I tried could
+deal with <code>&lt;sub&gt;</code> inside of
+<code>&lt;ph&gt;</code>.</li>
+<li>Should we create an example of a translated &nbsp;bundle?</li>
 </ol>
 <h2 class="title"><span class="replaceable">References</span></h2>
 </div>

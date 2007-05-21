@@ -1,0 +1,119 @@
+﻿/**
+ * The resources for a fictious Hello World application. The application
+ * displays a single window with a logo and the hello message.
+ */
+en :table {
+    /**
+     * @note This is the message that the application displays to the user.
+     */
+    hello :string {"Hello, world!"}
+
+    /**
+     * The height of the application window.
+     *
+     * @note Make sure this is tall enough to display the translated message.
+     */
+    window_height :integer {200}
+
+    /**
+     * The width of the application window.
+     *
+     * @note Make sure this is wide enough to display the translated message.
+     */
+    window_width :integer {600}
+
+    /**
+     * The application version number
+     */
+    version :intvector {
+        /**
+         * The major version number.
+         *
+         * @note The major version number.
+         * @translate no
+         */
+        1,
+
+        /**
+         * The minor version number.
+         *
+         * @translate no
+         */
+        2,
+
+        /**
+         * The patch level.
+         *
+         * @translate no
+         */
+        3
+    }
+
+    /**
+     * The MD5 checksum of the application.
+     *
+     * @translate no
+     */
+    md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}
+
+    /**
+     * The logo to be displayed in the application window.
+     *
+     * @translate no
+     */
+    logo :import {"logo.gif"}
+
+    /*
+     * The Authors. Just use the name from the root bundle.
+     */
+    authors :alias {"root/authors"}
+
+    /*
+     * The translators.
+     */
+    translators :array {
+        :string {"John E. English"},
+        :string {"Alan Smithee"},
+        :string {"Allen Smythee"}
+    }
+
+
+    /**
+     * The application menus.
+     *
+     * @note Keep the menus and the menu items in this order.
+     */
+    menus :table {
+        file_menu :table {
+            name :string {"File"}
+
+            items :array {
+                :string {"New"},
+                :string {"Open..."},
+                :string {"Save"},
+                :string {"Save As..."},
+                :string {"Exit"}
+            }
+        }
+
+        edit_menu :table {
+            name :string {"Edit"}
+
+            items :array {
+                :string {"Cut"},
+                :string {"Copy"},
+                :string {"Paste"},
+                :string {"Delete"}
+            }
+        }
+
+        help_menu :table {
+            name :string {"Help"}
+
+            items :array {
+                :string {"Help Topics"},
+                :string {"About Hello World"}
+            }
+        }
+    }
+}

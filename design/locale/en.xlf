@@ -7,59 +7,59 @@
         </header>
 
         <body>
-            <group restype = "x-icu-table" id = "en" >
+            <group id = "en" restype = "x-icu-table">
                 <!--The resources for a fictious Hello World application. The application displays a single window with a logo and the hello message.-->
                 <trans-unit id = "hello" resname = "hello">
                     <source >Hello, world!</source>
-                    <note> This is the message that the application displays to the user.</note>
+                    <note>This is the message that the application displays to the user.</note>
                 </trans-unit>
 
-                <trans-unit restype = "x-icu-integer" id = "window_height" resname = "window_height">
+                <trans-unit id = "window_height" resname = "window_height" restype = "x-icu-integer">
                     <!--The height of the application window.-->
                     <source>200</source>
                     <note> Make sure this is tall enough to display the translated message.</note>
                 </trans-unit>
 
-                <trans-unit restype = "x-icu-integer" id = "window_width" resname = "window_width">
+                <trans-unit id = "window_width" resname = "window_width" restype = "x-icu-integer">
                     <!--The width of the application window.-->
                     <source>600</source>
                     <note> Make sure this is wide enough to display the translated message.</note>
                 </trans-unit>
 
-                <group restype = "x-icu-intvector" id = "version" resname="version">
+                <group id = "version" resname = "version" restype = "x-icu-intvector">
                     <!--The application version number-->
-                    <trans-unit restype = "x-icu-integer"  id = "version_0">
+                    <trans-unit id = "version_0" restype = "x-icu-integer">
                         <source>1</source>
                     </trans-unit>
 
-                    <trans-unit restype = "x-icu-integer"  id = "version_1">
+                    <trans-unit id = "version_1" restype = "x-icu-integer">
                         <source>2</source>
                     </trans-unit>
 
-                    <trans-unit restype = "x-icu-integer"  id = "version_2">
+                    <trans-unit id = "version_2" restype = "x-icu-integer">
                         <source>3</source>
                     </trans-unit>
                 </group>
 
-                <bin-unit restype = "x-icu-binary" id = "md5_sum"  mime-type = "application/octet-stream" resname = "md5_sum" translate="no">
+                <bin-unit id = "md5_sum" resname = "md5_sum" restype = "x-icu-binary"  mime-type = "application/octet-stream" translate="no">
                     <!--The MD5 checksum of the application.-->
                     <bin-source>
                         <internal-file form = "application" crc = "187654673">BCFE765BE0FDFAB22C5F9EFD12C52ABC</internal-file>
                     </bin-source>
                 </bin-unit>
 
-                <bin-unit restype = "x-icu-binary" id = "logo"  mime-type = "application/octet-stream" resname = "logo" translate="no">
+                <bin-unit id = "logo" resname = "logo" restype = "x-icu-binary"  mime-type = "application/octet-stream" translate="no">
                     <!--The logo to be displayed in the application window.-->
                     <bin-source>
                         <external-file xref = "logo.gif"/>
                     </bin-source>
                 </bin-unit>
 
-                <trans-unit restype = "x-icu-alias" id = "authors" resname="authors">
+                <trans-unit id = "authors" resname = "authors" restype = "x-icu-alias">
                     <source><ph id = "root/authors"/></source>
                 </trans-unit>
 
-                <group restype = "x-icu-array" id = "translators" resname="translators">
+                <group id = "translators" resname = "translators" restype = "x-icu-array">
                     <trans-unit id = "translators_0">
                         <source >John E. English</source>
                     </trans-unit>
@@ -73,15 +73,15 @@
                     </trans-unit>
                 </group>
 
-                <group restype = "x-icu-table" id = "menus" resname="menus" >
+                <group id = "menus" resname = "menus" restype = "x-icu-table">
                     <!--The application menus.-->
-                    <note> Keep the menus and the menu items in this order.</note>
-                    <group restype = "x-icu-table" id = "menus_file_menu" resname="file_menu" >
+                    <note>Keep the menus and the menu items in this order.</note>
+                    <group id = "menus_file_menu" resname = "file_menu" restype = "x-icu-table">
                         <trans-unit id = "menus_file_menu_name" resname = "name">
                             <source >File</source>
                         </trans-unit>
 
-                        <group restype = "x-icu-array" id = "menus_file_menu_items" resname="items">
+                        <group id = "menus_file_menu_items" resname = "items" restype = "x-icu-array">
                             <trans-unit id = "menus_file_menu_items_0">
                                 <source >New</source>
                             </trans-unit>
@@ -104,12 +104,12 @@
                         </group>
                     </group>
 
-                    <group restype = "x-icu-table" id = "menus_edit_menu" resname="edit_menu" >
+                    <group id = "menus_edit_menu" resname = "edit_menu" restype = "x-icu-table">
                         <trans-unit id = "menus_edit_menu_name" resname = "name">
                             <source >Edit</source>
                         </trans-unit>
 
-                        <group restype = "x-icu-array" id = "menus_edit_menu_items" resname="items">
+                        <group id = "menus_edit_menu_items" resname = "items" restype = "x-icu-array">
                             <trans-unit id = "menus_edit_menu_items_0">
                                 <source >Cut</source>
                             </trans-unit>
@@ -128,8 +128,8 @@
                         </group>
                     </group>
 
-                    <group restype = "x-icu-table" id = "menus_help_menu" resname="help_menu" >
-                        <group restype = "x-icu-array" id = "menus_help_menu_items" resname="items">
+                    <group id = "menus_help_menu" resname = "help_menu" restype = "x-icu-table">
+                        <group id = "menus_help_menu_items" resname = "items" restype = "x-icu-array">
                         <trans-unit id = "menus_help_menu_name" resname = "name">
                             <source >Help</source>
                         </trans-unit>

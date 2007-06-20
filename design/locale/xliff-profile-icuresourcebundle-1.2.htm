@@ -107,7 +107,7 @@ Top Level Comments</a></span></dt>
 <dt><span class="section"><a href=
 "#s.detailed_mapping.strings">5.2. Strings</a></span></dt>
 <dd><a href="#s.detailed_mapping.strings.msg_format">5.2.1.
-Preserving Message Replaceables in Value</a></dd>
+Preserving MessageFormat and ChoiceFormat Descriptors</a></dd>
 <dt><span class="section"><a href=
 "#s.detailed_mapping.integers">5.3. Integers</a></span></dt>
 <dt><a href="#s.detailed_mapping.tu.autocomment"></a><a href=
@@ -370,26 +370,26 @@ point)</td>
 <br />
 Here are some example string resources:<br />
 <pre>
-quoted_string :string {<br />    "This is a simple quoted string."<br />}<br /><br />unquoted_string :string {<br />    Supercalifragilisticexpialidocious<br />}<br /><br />string_with_escapes :string {<br />    "The ideograph for \"sun\" is \u65E5."<br />}
+quoted_string :string {<br />    "This is a simple quoted string."<br />}<br /><br />unquoted_string :string {<br />    Supercalifragilisticexpialidocious<br />}<br /><br />string_with_escapes :string {<br />    "The ideograph for \"sun\" is \u65E5."<br />}<br />
 </pre>
 A string resource can be composed of multiple strings separated by
 whitespace characters. Quoted strings are simply concatenated
 together. For example, the following two definitions produce the
 same resource:<br />
 <pre>
-only_a_test :string {<br />    "This is "<br />    "only a test."<br />}
+only_a_test :string {<br />    "This is "<br />    "only a test."<br />}<br />
 </pre>
 <pre>
-only_a_test :string {<br />    "This is only a test."<br />}
+only_a_test :string {<br />    "This is only a test."<br />}<br />
 </pre>
 If the strings are not quoted, they are concatenated with a space
 between them. Again, the following two definitions produce the same
 resource:<br />
 <pre>
-only_a_test :string {<br />    This<br />    is<br />    only<br />    a<br />    test.<br />}
+only_a_test :string {<br />    This<br />    is<br />    only<br />    a<br />    test.<br />}<br />
 </pre>
 <pre>
-only_a_test :string {<br />    This is only a test.<br />}
+only_a_test :string {<br />    This is only a test.<br />}<br />
 </pre>
 (Note that in this example, each word is actually a separate
 string.)<br />
@@ -399,9 +399,19 @@ that are written without spaces because the concatenation will add
 spaces to the string.<br />
 <br />
 String resources may contain variable data represented by a special
-descriptor enclosed in <code>{</code> and <code>}</code>. If these
-descriptors are present then either the string must be quoted or
-the <code>{</code> and <code>}</code> must be escaped.<br />
+descriptor enclosed in <code>{</code> and <code>}</code>. The
+variable data is supplied at runtime using the ICU
+<code>MessageFormat</code> and <code>ChoiceFormat</code>
+interfaces. Consult <a href=
+"http://www.icu-project.org/userguide/formatMessages.html">the ICU
+User Guide</a> for more information about these interfaces. If
+<code>MessageFormat</code> or <code>ChoiceFormat</code> descriptors
+are present then either the string must be quoted or the
+<code>{</code> and <code>}</code> must be escaped.<br />
+<br />
+(Note: <code>ChoiceFormat</code> messages are difficult to
+translate without a detailed knowledge of their syntax. For this
+reason, it is recommended that their use be avoided.)<br />
 <br />
 String resources can also be specified indirectly using the type
 name <code>:include</code> and a string value that is the name of a
@@ -416,7 +426,7 @@ negative value is preceded by a minus sign. The value is a 32 bit
 signed value. Here are some examples of&nbsp;integer
 resources:<br />
 <pre>
-window_height :integer {<br />    600<br />}<br /><br />window_offset :integer {<br />    -200<br />}<br /><br />checksum :integer {<br />    0xBCFE3759<br />}
+window_height :integer {<br />    600<br />}<br /><br />window_offset :integer {<br />    -200<br />}<br /><br />checksum :integer {<br />    0xBCFE3759<br />}<br />
 </pre>
 <h3><a name="s.overview_integer_vector_resources" id=
 "s.overview_integer_vector_resources"></a>2.3 Integer Vector
@@ -428,7 +438,7 @@ followed by a comma. The vector may contain a single value,
 multiple values, or it may be empty. Here are some examples of
 integer vector resources:<br />
 <pre>
-font_sizes :intvector {<br />    8,<br />   10,<br />   12,<br />   18,<br />   24,<br />   36<br />}<br /><br />single_font_size :intvector {<br />    12<br />}<br /><br />empty :intvector {<br />}
+font_sizes :intvector {<br />    8,<br />   10,<br />   12,<br />   18,<br />   24,<br />   36<br />}<br /><br />single_font_size :intvector {<br />    12<br />}<br /><br />empty :intvector {<br />}<br />
 </pre>
 <h3><a name="s.overview.binary_resources" id=
 "s.overview.binary_resources"></a>2.4 Binary Resources</h3>
@@ -437,14 +447,14 @@ represented by a sequence of hexadecimal digits, optionally
 enclosed in quotes. There must be an even number of digits. Quotes
 must be used to specify an empty resource. For example:<br />
 <pre>
-md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}
+md5_sum :binary {bcfe765be0fdfab22c5f9efd12c52abc}<br />
 </pre>
 <br />
 Binary resources can be specified indirectly using the type name
 <code>:import</code> and a quoted path for file containing the
 binary data. For example:<br />
 <pre>
-logo :import {"logo.gif"}
+logo :import {"logo.gif"}<br />
 </pre>
 <h3><a name="s.overview.alias_resources" id=
 "s.overview.alias_resources"></a>2.5 Alias Resources</h3>
@@ -452,8 +462,11 @@ An alias resource is a reference to another resource, possible in a
 different Resource Bundle. The reference is specified as a path in
 quotes. For example:<br />
 <pre>
-authors :alias {"root/authors"}
+authors :alias {"root/authors"}<br />
 </pre>
+(Note: in general an alias resource that's used in one Resource
+Bundle may not be appropriate in another Resource Bundle. For this
+reason the use of alias resources be avoided.)
 <h3><a name="s.overview.table_resources" id=
 "s.overview.table_resources"></a>2.6 Table Resources</h3>
 A table resource contains one or more named resources, including
@@ -463,7 +476,7 @@ an ICU Resource Bundle is a table resource that contains all of the
 resources in the bundle. The name of this resource is a locale
 name. Here are some examples of table resources:<br />
 <pre>
-primary_colors :table {<br />    red    :string {"Red"}<br />    orange :string {"Orange"}<br />    yellow :string {"Yellow"}<br />    green  :string {"Green"}<br />    blue   :string {"Blue"}<br />    indigo :string {"Indigo"}<br />    violet :string {"Violet"}<br />}<br /><br />fonts :table {<br />    default_size :integer {12}<br /><br />    font_sizes :intvector {<br />        8,<br />       10,<br />       12,<br />       16,<br />       24,<br />       36<br />    }<br /><br />    font_families :array {<br />        :string {"Times"},<br />        :string {"Helvetica"},<br />        :string {"Courier"}<br />    }<br />}
+primary_colors :table {<br />    red    :string {"Red"}<br />    orange :string {"Orange"}<br />    yellow :string {"Yellow"}<br />    green  :string {"Green"}<br />    blue   :string {"Blue"}<br />    indigo :string {"Indigo"}<br />    violet :string {"Violet"}<br />}<br /><br />fonts :table {<br />    default_size :integer {12}<br /><br />    font_sizes :intvector {<br />        8,<br />       10,<br />       12,<br />       16,<br />       24,<br />       36<br />    }<br /><br />    font_families :array {<br />        :string {"Times"},<br />        :string {"Helvetica"},<br />        :string {"Courier"}<br />    }<br />}<br />
 </pre>
 <h3><a name="s.overview.array_resources" id=
 "s.overview.array_resources"></a>2.7 Array Resources</h3>
@@ -472,14 +485,14 @@ separated by commas. The contained resources are accessed by index
 rather than by name. Here are some examples of array
 resources:<br />
 <pre>
-file_menu_items :array {<br />    :string {"Cut"},<br />    :string {"Copy"},<br />    :string {"Paste"},<br />    :string {"Delete"}<br />}<br /><br />fonts :array {<br />    :integer {12},<br /><br />    :intvector {<br />        8,<br />       10,<br />       12,<br />       16,<br />       24,<br />       36<br />    },<br /><br />    :array {<br />        :string {"Times"},<br />        :string {"Helvetica"},<br />        :string {"Courier"}<br />    }<br />}
+file_menu_items :array {<br />    :string {"Cut"},<br />    :string {"Copy"},<br />    :string {"Paste"},<br />    :string {"Delete"}<br />}<br /><br />fonts :array {<br />    :integer {12},<br /><br />    :intvector {<br />        8,<br />       10,<br />       12,<br />       16,<br />       24,<br />       36<br />    },<br /><br />    :array {<br />        :string {"Times"},<br />        :string {"Helvetica"},<br />        :string {"Courier"}<br />    }<br />}<br />
 </pre>
 <br />
 If the array contains all string resources, they can be specified
 without the <code>:string</code> type name or the enclosing
 <code>{</code> and <code>}</code>. For example:<br />
 <pre>
-fish :array {<br />    "One fish",<br />    "Two fish",<br />    "Red fish",<br />    "Blue fish"<br />}
+fish :array {<br />    "One fish",<br />    "Two fish",<br />    "Red fish",<br />    "Blue fish"<br />}<br />
 </pre>
 <h3><a name="s.overview.implied_resource_types" id=
 "s.overview.implied_resource_types"></a>2.8 Implied Resource
@@ -503,7 +516,7 @@ the end of the line, and multi-line comments that start
 with&nbsp;<code>/*</code> and end with&nbsp;<code>*/</code>. Here
 are some examples of comments:<br />
 <pre>
-/*<br /> * The resources for a fictitious Hello World application. The application<br /> * displays a single window with a logo and the hello message.<br /> */<br />sample :table {<br /> ....<br />}<br /><br />// The names of<br />// the translators<br />translators :array {<br />    "John E. English",<br />    "Alan Smithee"<br />}<br /><br />checksum :integer { // a CRC checksum of<br />    0xBCFE3759      // the application binary<br />}
+/*<br /> * The resources for a fictitious Hello World application. The application<br /> * displays a single window with a logo and the hello message.<br /> */<br />sample :table {<br /> ....<br />}<br /><br />// The names of<br />// the translators<br />translators :array {<br />    "John E. English",<br />    "Alan Smithee"<br />}<br /><br />checksum :integer { // a CRC checksum of<br />    0xBCFE3759      // the application binary<br />}<br />
 </pre>
 <br />
 Comments that start with&nbsp;<code>/**</code> and end
@@ -519,7 +532,7 @@ token. Leading and trailing whitespace and <code>*</code>
 characters are ignored. Here are some examples of documentation
 comments:<br />
 <pre>
-/**<br /> * The names of the translators.<br /> *<br /> * @note replace these with your names.<br /> */<br />translators :array {<br />    "John E. English",<br />    "Allen Smythee"<br />}<br /><br />/**<br /> * The width of the application window.<br /> *<br /> * @translate yes<br /> * @note Be sure that the window is<br /> *       wide enough to contain the<br /> *       translated greeting.<br /> */<br />window_width :integer {<br />    600<br />}<br /><br />/**<br /> * The height of the application window<br /> *<br /> * @translate yes<br /> * @noteThere is no space after the token!<br /> */<br />window_height :integer {<br />    400<br />}
+/**<br /> * The names of the translators.<br /> *<br /> * @note replace these with your names.<br /> */<br />translators :array {<br />    "John E. English",<br />    "Allen Smythee"<br />}<br /><br />/**<br /> * The width of the application window.<br /> *<br /> * @translate yes<br /> * @note Be sure that the window is<br /> *       wide enough to contain the<br /> *       translated greeting.<br /> */<br />window_width :integer {<br />    600<br />}<br /><br />/**<br /> * The height of the application window<br /> *<br /> * @translate yes<br /> * @noteThere is no space after the token!<br /> */<br />window_height :integer {<br />    400<br />}<br />
 </pre>
 <h3><a name="s.overview.sample_bundle" id=
 "s.overview.sample_bundle"></a>2.10 Sample ICU Resource Bundle</h3>
@@ -624,7 +637,7 @@ XLIFF files without any extra whitespace to keep the generated
 files as small as possible.</div>
 </div>
 <pre class="programlisting">
-&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;xliff version='1.2' xmlns='urn:oasis:names:tc:xliff:document:1.2'<br />        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'<br />        xsi:schemaLocation='urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd'&gt;<br />    &lt;file xml:space = "preserve" source-language = "en" datatype = "x-icu-resource-bundle"<br />            original = "en.txt" date = "2007-04-11T19:03:09Z"&gt;<br />        &lt;header&gt;<br />            &lt;tool tool-id = "genrb-3.3-icu-3.7.1" tool-name = "genrb"/&gt;<br />        &lt;/header&gt;<br />        &lt;body&gt;<br />            &lt;group id = "en" restype = "x-icu-table"&gt;<br />                <em><code>... the resources in the resource bundle...</code></em><br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt;<br />&lt;/xliff&gt;
+&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;xliff version='1.2' xmlns='urn:oasis:names:tc:xliff:document:1.2'<br />        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'<br />        xsi:schemaLocation='urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd'&gt;<br />    &lt;file xml:space = "preserve" source-language = "en" datatype = "x-icu-resource-bundle"<br />            original = "en.txt" date = "2007-04-11T19:03:09Z"&gt;<br />        &lt;header&gt;<br />            &lt;tool tool-id = "genrb-3.3-icu-3.7.1" tool-name = "genrb"/&gt;<br />        &lt;/header&gt;<br />        &lt;body&gt;<br />            &lt;group id = "en" restype = "x-icu-table"&gt;<br />                <em><code>... the resources in the resource bundle...</code></em><br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt;<br />&lt;/xliff&gt;<br />
 </pre>
 <p>Each ICU Resource Bundle file maps to one XLIFF <code class=
 "sgmltag-element">&lt;file&gt;</code> element. XLIFF
@@ -681,11 +694,11 @@ next&nbsp;<code>&lt;group&gt;</code>,
 generated after the comment is extracted.</p>
 <p>For example:</p>
 <pre>
-/**<br /> * These are top level comments for the bundle. Tag name: root<br /> * @translate yes<br /> * @note Comments for tag named root<br /> */<br />root{<br />    /**<br />     * The CRC checksum for<br />     * the application binary.<br />     *<br />     * @translate no<br />     * @noteThis was calculated by developement.<br />     */<br />    checksum :integer {<br />        0xBCFE3759<br />    }<br />}
+/**<br /> * These are top level comments for the bundle. Tag name: root<br /> * @translate yes<br /> * @note Comments for tag named root<br /> */<br />root{<br />    /**<br />     * The CRC checksum for<br />     * the application binary.<br />     *<br />     * @translate no<br />     * @noteThis was calculated by developement.<br />     */<br />    checksum :integer {<br />        0xBCFE3759<br />    }<br />}<br />
 </pre>
 would be mapped to:
 <pre>
-    &lt;file xml:space = "preserve" source-language = "en" datatype =<br />          "x-icu-resource-bundle" original = "root.txt" date = "2007-01-17T20:58:58Z"&gt;<br />        &lt;header&gt;<br />            &lt;tool tool-id = "genrb-3.3-icu-3.7.1" tool-name = "genrb" /&gt;<br />        &lt;/header&gt;<br />        &lt;body&gt;<br />            &lt;group id = "root" restype = "x-icu-table"&gt;<br />                &lt;!--These are top level comments for the bundle. Tag name: root--&gt;<br />                &lt;note&gt;Comments for tag named root&lt;/note&gt;<br />                &lt;trans-unit id = "checksum" resname = "checksum" translate = "no"&gt;<br />                    &lt;!--The CRC checksum for the application binary.--&gt;<br />                    &lt;source&gt;0xBFCE3759&lt;/source&gt;<br />                    &lt;note&gt;This was calculated by development.&lt;/note&gt;<br />                &lt;/trans-unit&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt;
+    &lt;file xml:space = "preserve" source-language = "en" datatype =<br />          "x-icu-resource-bundle" original = "root.txt" date = "2007-01-17T20:58:58Z"&gt;<br />        &lt;header&gt;<br />            &lt;tool tool-id = "genrb-3.3-icu-3.7.1" tool-name = "genrb" /&gt;<br />        &lt;/header&gt;<br />        &lt;body&gt;<br />            &lt;group id = "root" restype = "x-icu-table"&gt;<br />                &lt;!--These are top level comments for the bundle. Tag name: root--&gt;<br />                &lt;note&gt;Comments for tag named root&lt;/note&gt;<br />                &lt;trans-unit id = "checksum" resname = "checksum" translate = "no"&gt;<br />                    &lt;!--The CRC checksum for the application binary.--&gt;<br />                    &lt;source&gt;0xBFCE3759&lt;/source&gt;<br />                    &lt;note&gt;This was calculated by development.&lt;/note&gt;<br />                &lt;/trans-unit&gt;<br />            &lt;/group&gt;<br />        &lt;/body&gt;<br />    &lt;/file&gt;<br />
 </pre>
 <h3><a name="s.detailed_mapping.strings" id=
 "s.detailed_mapping.strings"></a>5.2. Strings</h3>
@@ -698,11 +711,11 @@ sequences to the corresponding characters.</div>
 </div>
 <p>For example the string resources:</p>
 <pre>
-hello :string {<br />    "Hello, world!"<br />}<br /><br /><br />string_with_escapes :string {<br />    "The ideograph for \"sun\" is \u65E5."<br />}<br /><br />only_a_test :string {<br />    This<br />    is<br />    only<br />    a<br />    test.<br />}
+hello :string {<br />    "Hello, world!"<br />}<br /><br /><br />string_with_escapes :string {<br />    "The ideograph for \"sun\" is \u65E5."<br />}<br /><br />only_a_test :string {<br />    This<br />    is<br />    only<br />    a<br />    test.<br />}<br />
 </pre>
 would be mapped to:<br />
 <pre>
-    &lt;trans-unit id = "hello" resname = "hello"&gt;<br />        &lt;source&gt;Hello, world!&lt;/source&gt;<br />    &lt;/trans-unit&gt;<br /><br />    &lt;trans-unit id = "string_with_escapes" resname = "string_with_escapes"&gt;<br />        &lt;source&gt;The ideograph for "sun" is &#26085;.&lt;/source&gt;<br />    &lt;/trans-unit&gt;<br /><br />    &lt;trans-unit id = "only_a_test" resname = "only_a_test"&gt;<br />        &lt;source&gt;This is only a test.&lt;/source&gt;<br />    &lt;trans-unit&gt;
+    &lt;trans-unit id = "hello" resname = "hello"&gt;<br />        &lt;source&gt;Hello, world!&lt;/source&gt;<br />    &lt;/trans-unit&gt;<br /><br />    &lt;trans-unit id = "string_with_escapes" resname = "string_with_escapes"&gt;<br />        &lt;source&gt;The ideograph for "sun" is &#26085;.&lt;/source&gt;<br />    &lt;/trans-unit&gt;<br /><br />    &lt;trans-unit id = "only_a_test" resname = "only_a_test"&gt;<br />        &lt;source&gt;This is only a test.&lt;/source&gt;<br />    &lt;trans-unit&gt;<br />
 </pre></div>
 <div class="section" xml:lang="en" lang="en">
 <div class="titlepage">
@@ -722,32 +735,30 @@ it had been specified directly.<br />
 </pre>
 <h4><a name="s.detailed_mapping.strings.msg_format" id=
 "s.detailed_mapping.strings.msg_format"></a>5.2.1.&nbsp;Preserving
-Message Replaceables in Value</h4>
-<p>Messages are a concatenation of strings, numbers, and dates that
-present a complex formatting challenge&mdash;how to put together
-the sequences of strings, numbers, dates, and other formats to
-create language-neutral messages. Localization is facilitated
-because there is no required hard coding message strings or
-concatenation sequences. ICU has two formats used to create
-language-neutral messages: <code>MessageFormat</code> and
-<code>ChoiceFormat</code>. The replaceables in these formats should
-be enclosed in <code>&lt;ph&gt;</code> elements by the filter that
-generates the XLIFF representation. These strings are identical to
-Java's <code>MessageFormat</code> and <code>ChoiceFormat</code>
-strings, so the handling of these messages is also identical. The
-filter developers should parse the elements correctly and hide the
-logic from the translator.</p>
-<p>For example:</p>
+MessageFormat and ChoiceFormat Descriptors</h4>
+<p><code>MessageFormat</code> descriptors in string resources
+represent variable data that is supplied at runtime, and should not
+be translated. These descriptors should be mapped to a
+<code>&lt;ph&gt;</code> element. <code>ChoiceFormat</code>
+descriptors in string resources represent a combination of variable
+data that is supplied at runtime and text that should be
+translated. These descriptors should also be mapped to a
+<code>&lt;ph&gt;</code> element and the translatable text within
+them should be mapped to a <code>&lt;sub&gt;</code> element. For
+example:</p>
 <pre id="listing_5">
- choiceFormat :string{"Folder {0} contains {1,choice,0#no files|1#one file|1&lt;{1,number,integer} files}."}<br /> msgFormat :string{"At {1,time} on {1,date}, there was {2} on planet{0,number,integer}."}<br />
+   msgFormat :string {<br />      "At {1,time} on {1,date}, there was {2} on planet{0,number,integer}."<br />   }<br /><br />    choiceFormat :string {<br />        "Folder {0} contains {1,choice,0#no files|1#one file|1&lt;{1,number,integer} files}."<br />    }
 </pre>
 <p>would be mapped to:</p>
 <div class="titlepage">
 <div>
 <pre id="listing_6">
-&lt;source&gt;Folder &lt;ph id="1"&gt;{0}&lt;/ph&gt; contains <br />  &lt;ph id="2"&gt;{1,choice,0#&lt;sub&gt;no files&lt;/sub&gt;|1#&lt;sub&gt;one file&lt;/sub&gt;|1&amp;lt;{1,number,integer}<br />             &lt;sub&gt; files&lt;/sub&gt;}&lt;/ph&gt;.<br />&lt;/source&gt;<br /><br />&lt;source&gt;At &lt;ph id="1"&gt;{1,time}&lt;/ph&gt; on &lt;ph id="2"&gt;{1, date}&lt;/ph&gt;, <br />        there was &lt;ph id="3"&gt;{2}&lt;/ph&gt; on planet &lt;ph id="4"&gt;{0,number,integer}&lt;/ph&gt;.<br />&lt;/source&gt;<br />
+    &lt;source&gt;At &lt;ph id="1"&gt;{1,time}&lt;/ph&gt; on &lt;ph id="2"&gt;{1, date}&lt;/ph&gt;, <br />            there was &lt;ph id="3"&gt;{2}&lt;/ph&gt; on planet &lt;ph id="4"&gt;{0,number,integer}&lt;/ph&gt;.<br />    &lt;/source&gt;<br /><br />    &lt;source&gt;Folder &lt;ph id="1"&gt;{0}&lt;/ph&gt; contains <br />      &lt;ph id="2"&gt;{1,choice,0#&lt;sub&gt;no files&lt;/sub&gt;|1#&lt;sub&gt;one file&lt;/sub&gt;|1&amp;lt;{1,number,integer}<br />                 &lt;sub&gt; files&lt;/sub&gt;}&lt;/ph&gt;.<br />    &lt;/source&gt;
 </pre>
-<h3 class="title"><a name="s.detailed_mapping.integers" id=
+(Note: extra whitespace has been added to these XLIFF examples for
+readability. In both examples the <code>&lt;source&gt;</code>
+element should be on a single line.)<br />
+<h3><a name="s.detailed_mapping.integers" id=
 "s.detailed_mapping.integers"></a>5.3. Integers</h3>
 </div>
 </div>
@@ -764,7 +775,7 @@ strarting with <code>0x</code>, to decimal notation.</p>
 </pre>
 would be mapped to:<br />
 <pre>
-    &lt;trans-unit id = "window_height" resname = "window_height" restype = "x-icu-integer"&gt;<br />        &lt;!--The height of the application window.--&gt;<br />        &lt;source&gt;200&lt;/source&gt;<br />        &lt;note&gt;Make sure this is tall enough to display the translated message.&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br />             <br />    &lt;trans-unit id = "<span class="replaceable"><span class="replaceable"><span style="font-family: monospace;">window_width" resname = "window_width</span></span></span><span class="replaceable">"</span> restype = "x-icu-integer"<span class="replaceable">&gt;<br />        &lt;--The width of the application window.--&gt;<br />        &lt;source&gt;600&lt;/source&gt;<br />        &lt;note&gt;</span> Make sure this is wide enough to display the translated message.<span class="replaceable">&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br /><br /></span>    &lt;trans-unit id = "checksum" resname = "checksum" restype = "x-icu-integer" translate = "no"&gt;<br />        &lt;!--The CRC checksum for the application binary.--&gt;<br />        &lt;source&gt;0xBCEF3759&lt;/source&gt;<br />        &lt;note&gt;This was calculated by development.&lt;/note&gt;<br />    &lt;/trans-unit&gt;
+    &lt;trans-unit id = "window_height" resname = "window_height" restype = "x-icu-integer"&gt;<br />        &lt;!--The height of the application window.--&gt;<br />        &lt;source&gt;200&lt;/source&gt;<br />        &lt;note&gt;Make sure this is tall enough to display the translated message.&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br />             <br />    &lt;trans-unit id = "<span class="replaceable"><span class="replaceable"><span style="font-family: monospace;">window_width" resname = "window_width</span></span></span><span class="replaceable">"</span> restype = "x-icu-integer"<span class="replaceable">&gt;<br />        &lt;--The width of the application window.--&gt;<br />        &lt;source&gt;600&lt;/source&gt;<br />        &lt;note&gt;</span> Make sure this is wide enough to display the translated message.<span class="replaceable">&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br /><br /></span>    &lt;trans-unit id = "checksum" resname = "checksum" restype = "x-icu-integer" translate = "no"&gt;<br />        &lt;!--The CRC checksum for the application binary.--&gt;<br />        &lt;source&gt;0xBCEF3759&lt;/source&gt;<br />        &lt;note&gt;This was calculated by development.&lt;/note&gt;<br />    &lt;/trans-unit&gt;<br />
 </pre>
 <h3 class="title"><em class="replaceable"><a name=
 "s.detailed_mapping.binarydata" id=

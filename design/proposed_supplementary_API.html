@@ -2,8 +2,6 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
-<meta name="ProgId" content="FrontPage.Editor.Document">
 <title>Proposed Supplementary API (JSR 204)</title>
 </head>
 
@@ -11,7 +9,7 @@
 
 <h1>Proposed Supplementary API (JSR 204)</h1>
 <p><i>Mark Davis, 2003-06-05 (later)</i></p>
-<p><i>Note: all offsets are char offsets, except in </i><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findOffsetFromCodePoint(java.lang.String, int)">findOffsetFromCodePoint</a></b></code></p>
+<p><i>Note: all offsets are char offsets, except in </i><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#findOffsetFromCodePoint(java.lang.String, int)">findOffsetFromCodePoint</a></b></code></p>
 <h2>Contents</h2>
 <blockquote>
   <dl>
@@ -28,19 +26,19 @@
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#CODEPOINT_MIN_VALUE">CODEPOINT_MIN_VALUE</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#CODEPOINT_MIN_VALUE">CODEPOINT_MIN_VALUE</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The lowest
       Unicode code point value. (0)</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html#MAX_VALUE">CODE_POINT_MAX_VALUE</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/lang/UCharacter.html#MAX_VALUE">CODE_POINT_MAX_VALUE</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The highest
       Unicode code point value according to the Unicode Standard. (0x10FFFF)</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html#SUPPLEMENTARY_MIN_VALUE">SUPPLEMENTARY_MIN_VALUE</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/lang/UCharacter.html#SUPPLEMENTARY_MIN_VALUE">SUPPLEMENTARY_MIN_VALUE</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The minimum
       value for Supplementary code points (0x10000)</td>
   </tr>
@@ -50,37 +48,37 @@
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#SURROGATE_MIN_VALUE">SURROGATE_MIN_VALUE</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#SURROGATE_MIN_VALUE">SURROGATE_MIN_VALUE</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surrogate
       minimum value (0xD800)</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_MIN_VALUE">LEAD_SURROGATE_MIN_VALUE</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_MIN_VALUE">LEAD_SURROGATE_MIN_VALUE</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lead surrogate
       minimum value (0xD800)</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_MAX_VALUE">LEAD_SURROGATE_MAX_VALUE</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_MAX_VALUE">LEAD_SURROGATE_MAX_VALUE</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lead surrogate
       maximum value (0xDBFF)</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_MIN_VALUE">TRAIL_SURROGATE_MIN_VALUE</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_MIN_VALUE">TRAIL_SURROGATE_MIN_VALUE</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trail
       surrogate minimum value (0xDC00)</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_MAX_VALUE">TRAIL_SURROGATE_MAX_VALUE</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_MAX_VALUE">TRAIL_SURROGATE_MAX_VALUE</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trail
       surrogate maximum value (0xDFFF)</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#SURROGATE_MAX_VALUE">SURROGATE_MAX_VALUE</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#SURROGATE_MAX_VALUE">SURROGATE_MAX_VALUE</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maximum
       surrogate value (0xDFFF)</td>
   </tr>
@@ -92,7 +90,7 @@
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;class</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.StringComparator.html">StringCPComparator</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.StringComparator.html">StringCPComparator</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UTF16 string
       comparator class. Its compare method differs from the String compareTo
       method in that the comparison is by code point, not code unit. Thus
@@ -106,49 +104,49 @@
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html#getCodePoint(char, char)">getCodePoint</a></b>(char&nbsp;lead,
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/lang/UCharacter.html#getCodePoint(char, char)">getCodePoint</a></b>(char&nbsp;lead,
       char&nbsp;trail)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns a code
       point corresponding to the two UTF16 characters.</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#getCharCount(int)">getCharCount</a></b>(int&nbsp;char32)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#getCharCount(int)">getCharCount</a></b>(int&nbsp;char32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines how
       many chars this char32 requires.</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;char</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#getLeadSurrogate(int)">getLeadSurrogate</a></b>(int&nbsp;char32)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#getLeadSurrogate(int)">getLeadSurrogate</a></b>(int&nbsp;char32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
       lead surrogate.</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;char</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#getTrailSurrogate(int)">getTrailSurrogate</a></b>(int&nbsp;char32)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#getTrailSurrogate(int)">getTrailSurrogate</a></b>(int&nbsp;char32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
       trail surrogate.</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;boolean</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#isSurrogate(char)">isSurrogate</a></b>(char&nbsp;char16)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#isSurrogate(char)">isSurrogate</a></b>(char&nbsp;char16)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines
       whether the code value is a surrogate.</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;boolean</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#isLeadSurrogate(char)">isLeadSurrogate</a></b>(char&nbsp;char16)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#isLeadSurrogate(char)">isLeadSurrogate</a></b>(char&nbsp;char16)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines
       whether the character is a lead surrogate.</td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;boolean</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#isTrailSurrogate(char)">isTrailSurrogate</a></b>(char&nbsp;char16)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#isTrailSurrogate(char)">isTrailSurrogate</a></b>(char&nbsp;char16)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines
       whether the character is a trail surrogate.</td>
   </tr>
 </table>
-<p>Other property methods on Character need overloads for int, as in <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/lang/UCharacter.html">ICU4J's
+<p>Other property methods on Character need overloads for int, as in <a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/lang/UCharacter.html">ICU4J's
 UCharacter.html</a>.</p>
 <h2><a name="CharSequence">CharSequence</a> (and subclasses)</h2>
 <p><i>The following functions should go on subclasses of CharSequence (char32At
@@ -159,7 +157,7 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#SINGLE_CHAR_BOUNDARY">SINGLE_CHAR_BOUNDARY</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#SINGLE_CHAR_BOUNDARY">SINGLE_CHAR_BOUNDARY</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value returned
       in <code><a href="#bounds(java.lang.String, int)">bounds32(offset)</a></code>.
       The substring bounds for the code point that contains charAt(offset) are
@@ -168,7 +166,7 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value returned
       in <code><a href="#bounds(java.lang.String, int)">bounds32(offset)</a></code>.
       The substring bounds for the code point that contains charAt(offset) are
@@ -176,7 +174,7 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>static&nbsp;int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a></b></code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a></b></code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value returned
       in <code><a href="#bounds(java.lang.String, int)">bounds32(offset)</a></code>.
       The substring bounds for the code point that contains charAt(offset) are
@@ -191,39 +189,39 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#bounds(java.lang.String, int)">bounds32</a></b>(int&nbsp;offset)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#bounds(java.lang.String, int)">bounds32</a></b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
       type of the boundaries around the char at offset.</td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#charAt(java.lang.String, int)">char32At</a></b>(int&nbsp;offset)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#charAt(java.lang.String, int)">char32At</a></b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extract a
       single UTF-32 value from a string. If offset is in the middle of a code
       point, returns that code point.</td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#countCodePoint(java.lang.String)">length32</a></b>()</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#countCodePoint(java.lang.String)">length32</a></b>()</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of code
       points in a UTF16 String. Equivalent to <code>findcode pointOffset(length())</code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a></b>(int&nbsp;offset)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a></b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
       UTF-32 offset corresponding to the first UTF-32 boundary at or after the
-      given UTF-16 offset. Inverse of <code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a>.</b></code></td>
+      given UTF-16 offset. Inverse of <code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a>.</b></code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findOffsetFromCodePoint(java.lang.String, int)">findOffsetFromCodePoint</a></b>(int&nbsp;offset32)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#findOffsetFromCodePoint(java.lang.String, int)">findOffsetFromCodePoint</a></b>(int&nbsp;offset32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the
-      UTF-16 offset that corresponds to a UTF-32 offset. Inverse of <code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a>.</b></code></td>
+      UTF-16 offset that corresponds to a UTF-32 offset. Inverse of <code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#findCodePointOffset(java.lang.String, int)">findCodePointOffset</a>.</b></code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#getCharCount(int)">getCharCount</a></b>(int
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#getCharCount(int)">getCharCount</a></b>(int
       offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determines how
       many chars the code point at offset requires. If offset is in the middle
@@ -231,7 +229,7 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.String</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#replace(java.lang.String, int, int)">replace</a></b>(int&nbsp;oldChar32,
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#replace(java.lang.String, int, int)">replace</a></b>(int&nbsp;oldChar32,
       int&nbsp;newChar32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns a new
       UTF16 format Unicode string resulting from replacing all occurrences of
@@ -239,7 +237,7 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.String</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#replace(java.lang.String, java.lang.String, java.lang.String)">replace</a></b>(java.lang.String&nbsp;oldStr,
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#replace(java.lang.String, java.lang.String, java.lang.String)">replace</a></b>(java.lang.String&nbsp;oldStr,
       java.lang.String&nbsp;newStr)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns a new
       UTF16 format Unicode string resulting from replacing all occurrences of
@@ -251,15 +249,15 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>boolean</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#hasMoreCodePointsThan(java.lang.String, int)">hasMoreCodePointsThan</a></b>(int&nbsp;number)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#hasMoreCodePointsThan(java.lang.String, int)">hasMoreCodePointsThan</a></b>(int&nbsp;number)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Check if the
       string contains more Unicode code points than a certain number. Equivalent
-      to but <i>much</i> faster than: <code>str.<a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#countCodePoint(java.lang.String)">length32</a>()
+      to but <i>much</i> faster than: <code>str.<a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#countCodePoint(java.lang.String)">length32</a>()
       &gt; number</code></td>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>int</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#moveCodePointOffset(java.lang.String, int, int)">moveCodePointOffset</a></b>(java.lang.String&nbsp;source,
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#moveCodePointOffset(java.lang.String, int, int)">moveCodePointOffset</a></b>(java.lang.String&nbsp;source,
       int&nbsp;offset, int&nbsp;shift32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shifts offset
       by the argument number of code points. Equivalent to but <i>much</i>
@@ -268,7 +266,7 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr>
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.String</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#valueOf(java.lang.String, int)">valueOf</a>32</b>(int&nbsp;offset)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#valueOf(java.lang.String, int)">valueOf</a>32</b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convenience
       method corresponding to, but much faster than, <code>String.valueOf(myString.charAt(offset)).</code>
       Internally uses .substring(x,y), where x and y are determined by calling
@@ -279,7 +277,7 @@ should go on CharSequence itself, if possible).</i></p>
   <p>Note: Some existing methods need to be modified to work with
   supplementaries, such as:</p>
   <blockquote>
-    <p><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#reverse(java.lang.StringBuffer)">reverse</a></b>()&nbsp;&nbsp;&nbsp;
+    <p><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#reverse(java.lang.StringBuffer)">reverse</a></b>()&nbsp;&nbsp;&nbsp;
     </code>It needs to not reverse surrogate-pairs.<code><br>
     indexOf()&nbsp;&nbsp;&nbsp; Interpret int as code point<br>
     lastIndexOf()</code></p>
@@ -292,7 +290,7 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.StringBuffer</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#append(java.lang.StringBuffer, int)">append</a>32</b>(int&nbsp;char32)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#append(java.lang.StringBuffer, int)">append</a>32</b>(int&nbsp;char32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append a
       single UTF-32 value to the end of a StringBuffer. Equivalent to but faster
       than:<br>
@@ -300,33 +298,33 @@ should go on CharSequence itself, if possible).</i></p>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.StringBuffer</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#delete(java.lang.StringBuffer, int)">delete</a>32</b>(int&nbsp;offset)</code><br>
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#delete(java.lang.StringBuffer, int)">delete</a>32</b>(int&nbsp;offset)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Removes the
       code point at the specified position in this target (shortening target by
       1 character if the code point is a non-supplementary, 2 otherwise).
       Equivalent to (but faster than):<br>
       <code>int bounds = bounds32(offset);<br>
-      int start = offset - (bounds == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
+      int start = offset - (bounds == <a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
       ? 1 : 0);<br>
-      int end = offset + (bounds == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a>
+      int end = offset + (bounds == <a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#LEAD_SURROGATE_BOUNDARY">LEAD_SURROGATE_BOUNDARY</a>
       ? 2 : 1);<br>
       delete(start, end);</code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>java.lang.StringBuffer</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#insert(java.lang.StringBuffer, int, int)">insert</a>32</b>(int&nbsp;offset,
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#insert(java.lang.StringBuffer, int, int)">insert</a>32</b>(int&nbsp;offset,
       int&nbsp;char32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inserts char32
       code point into target at (or before) the argument offset. Equivalent to
       but faster than:<br>
       <code>int bounds = bounds32(offset);<br>
-      int start = offset - (bounds == <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
+      int start = offset - (bounds == <a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#TRAIL_SURROGATE_BOUNDARY">TRAIL_SURROGATE_BOUNDARY</a>
       ? 1 : 0);<br>
       </code><code>insert(String.value32Of(char32), start);</code></td>
   </tr>
   <tr class="TableRowColor" bgcolor="white">
     <td valign="top" align="right" width="1%"><font size="-1"><code>void</code></font></td>
-    <td><code><b><a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UTF16.html#setCharAt(java.lang.StringBuffer, int, int)">setChar32At</a></b>(int&nbsp;offset,
+    <td><code><b><a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UTF16.html#setCharAt(java.lang.StringBuffer, int, int)">setChar32At</a></b>(int&nbsp;offset,
       int&nbsp;char32)</code><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set a code
       point into a UTF16 position. Equivalent to but faster than:<br>
@@ -343,12 +341,12 @@ should go on CharSequence itself, if possible).</i></p>
 <p>This doesn't extend well to cases where the next boundary is not simply
 adding an increment, since the function becomes less efficient.</p>
 <p>There are some possibilities:</p>
-<p>1. In our ICU4J version: <a href="http://oss.software.ibm.com/icu4j/doc/com/ibm/icu/text/UCharacterIterator.html" target="classFrame">UCharacterIterator</a>,
+<p>1. In our ICU4J version: <a href="http://www.icu-project.org/apiref/icu4j/com/ibm/icu/text/UCharacterIterator.html" target="classFrame">UCharacterIterator</a>,
 we simply produced a different iterator that used better semantics.</p>
 <p>2. Alternatively, we could modify <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/CharacterIterator.html">CharacterIterator</a>
 to add methods that deal with code points and address the next() issue by adding
 alternative methods (see <a href="#Additional_Methods">below</a>). We did that
-in our C++ <a href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html">version</a>.</p>
+in our C++ <a href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html">version</a>.</p>
 <p>3. Another possibility is to have an abstract base class that implements
 CharacterIterator, but has default implementation for everything but move() and
 current(). (All other functions can be defined reasonably in terms of those;
@@ -370,33 +368,33 @@ following:</p>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr>
     <td valign="top" nowrap align="right"><code>int</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a5">setToStart</a>
       ()</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td><font size="-1"><em>Sets the iterator to refer to the first code unit or
       code point in its iteration range. This can be used to begin a forward
-      iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a5">nextPostInc</a>()
-      or <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a6">next32PostInc</a>().<br>
+      iteration with <a class="el" href="http://www.icu-project.org/apiref/icu4c/classForwardCharacterIterator.html#a5">nextPostInc</a>()
+      or <a class="el" href="http://www.icu-project.org/apiref/icu4c/classForwardCharacterIterator.html#a6">next32PostInc</a>().<br>
       Returns: the start position of the iteration range</em></font></td>
   </tr>
   <tr>
     <td valign="top" nowrap align="right"><code>int&nbsp;</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a2">firstPostInc</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a2">firstPostInc</a>
       ()</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td><em><font size="-1">Sets the iterator to refer to the first code unit in
       its iteration range, returns that code unit, and moves the position to the
-      second code unit. This is an alternative to <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>()
-      for forward iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a5">nextPostInc</a>().<br>
+      second code unit. This is an alternative to <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a5">setToStart</a>()
+      for forward iteration with <a class="el" href="http://www.icu-project.org/apiref/icu4c/classForwardCharacterIterator.html#a5">nextPostInc</a>().<br>
       Returns: the first code unit in its iteration range.</font></em></td>
   </tr>
   <tr>
     <td valign="top" nowrap align="right"><code>&nbsp;int</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a4">first32PostInc</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a4">first32PostInc</a>
       ()</code></td>
   </tr>
   <tr>
@@ -404,14 +402,14 @@ following:</p>
     <td><em><font size="-1">Sets the iterator to refer to the first code point
       in its iteration range, returns that code point, and moves the position to
       the second code point.</font></em> <em><font size="-1">This is an
-      alternative to <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>()
-      for forward iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a6">next32PostInc</a>().<br>
+      alternative to <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a5">setToStart</a>()
+      for forward iteration with <a class="el" href="http://www.icu-project.org/apiref/icu4c/classForwardCharacterIterator.html#a6">next32PostInc</a>().<br>
       Returns:</font></em> <em><font size="-1">the first code point in its
       iteration range.</font></em></td>
   </tr>
   <tr>
     <td valign="top" nowrap align="right"><code>int</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a14">next32PostInc</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a14">next32PostInc</a>
       ()</code></td>
   </tr>
   <tr>
@@ -423,33 +421,33 @@ following:</p>
   </tr>
   <tr>
     <td valign="top" nowrap align="right" bgcolor="#EEEEEE"><code>int&nbsp;</code></td>
-    <td valign="bottom" bgcolor="#EEEEEE"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a3">first32</a>
+    <td valign="bottom" bgcolor="#EEEEEE"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a3">first32</a>
       ()</code></td>
   </tr>
   <tr>
     <td bgcolor="#EEEEEE">&nbsp;</td>
     <td bgcolor="#EEEEEE"><font size="-1"><em>Sets the iterator to refer to the
       first code point in its iteration range, and returns that code unit. This
-      can be used to begin an iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a14">next32</a>().
-      Note that an iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a6">next32PostInc</a>(),
-      beginning with, e.g., <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a5">setToStart</a>()
-      or <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a2">firstPostInc</a>(),
+      can be used to begin an iteration with <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a14">next32</a>().
+      Note that an iteration with <a class="el" href="http://www.icu-project.org/apiref/icu4c/classForwardCharacterIterator.html#a6">next32PostInc</a>(),
+      beginning with, e.g., <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a5">setToStart</a>()
+      or <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a2">firstPostInc</a>(),
       is more efficient.<br>
       Returns: the first code point in its iteration range.</em></font></td>
   </tr>
   <tr>
     <td valign="top" nowrap align="right" bgcolor="#EEEEEE"><code>int</code></td>
-    <td valign="bottom" bgcolor="#EEEEEE"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a14">next32</a>
+    <td valign="bottom" bgcolor="#EEEEEE"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a14">next32</a>
       ()</code></td>
   </tr>
   <tr>
     <td bgcolor="#EEEEEE">&nbsp;</td>
     <td bgcolor="#EEEEEE"><em><font size="-1">Advances to the next code point in
-      the iteration range (toward <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a19">endIndex</a>()),
+      the iteration range (toward <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a19">endIndex</a>()),
       and returns that code point. If there are no more code points to return,
       returns DONE. Note that iteration with &quot;pre-increment&quot; semantics
       is less efficient than iteration with &quot;p</font></em><font size="-1"><em>ost-increment&quot;
-      semantics that is provided by <a class="el" href="http://oss.software.ibm.com/icu/apiref/classForwardCharacterIterator.html#a6">next32PostInc</a>().<br>
+      semantics that is provided by <a class="el" href="http://www.icu-project.org/apiref/icu4c/classForwardCharacterIterator.html#a6">next32PostInc</a>().<br>
       Returns: the next code point.</em></font></td>
   </tr>
   <tr>
@@ -458,39 +456,39 @@ following:</p>
   </tr>
   <tr>
     <td valign="top" nowrap align="right"><code>&nbsp;int</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a8">setToEnd</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a8">setToEnd</a>
       ()</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td><font size="-1"><em>Sets the iterator to the end of its iteration range,
       just behind the last code unit or code point. This can be used to begin a
-      backward iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a15">previous</a>()
-      or <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a16">previous32</a>().<br>
+      backward iteration with <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a15">previous</a>()
+      or <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a16">previous32</a>().<br>
       Returns: the end position of the iteration range</em></font></td>
   </tr>
   <tr>
     <td valign="top" nowrap align="right"><code>int</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a7">last32</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a7">last32</a>
       ()</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td><font size="-1"><em>Sets the iterator to refer to the last code point in
       its iteration range, and returns that code point. </em></font><em><font size="-1">This
-      can be used to begin an iteration with <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a16">previous32</a>().<br>
+      can be used to begin an iteration with <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a16">previous32</a>().<br>
       </font></em><font size="-1"><em>Returns:</em></font> <font size="-1"><em>the
       last code point.</em></font></td>
   </tr>
   <tr>
     <td valign="top" nowrap align="right"><code>int</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a16">previous32</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a16">previous32</a>
       ()</code></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td><em><font size="-1">Advances to the previous code point in the iteration
-      range (toward <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a18">startIndex</a>()),
+      range (toward <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a18">startIndex</a>()),
       and returns that code point. If there are no more code points to return,
       returns DONE.<br>
       Returns: the previous code point.</font></em></td>
@@ -501,8 +499,8 @@ following:</p>
   </tr>
   <tr>
     <td valign="top" nowrap align="right"><code>int</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a10">setIndex32</a>
-      (<a class="el" href="http://oss.software.ibm.com/icu/apiref/pwin32_8h.html#a31">int</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a10">setIndex32</a>
+      (<a class="el" href="http://www.icu-project.org/apiref/icu4c/pwin32_8h.html#a31">int</a>
       position)=0</code></td>
   </tr>
   <tr>
@@ -513,7 +511,7 @@ following:</p>
   </tr>
   <tr>
     <td valign="top" nowrap align="right"><code>int</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a12">current32</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a12">current32</a>
       (void) const=0</code></td>
   </tr>
   <tr>
@@ -527,8 +525,8 @@ following:</p>
   </tr>
   <tr>
     <td valign="top" nowrap align="right"><code>int</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a22">move</a>
-      (int delta, <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#s3">EOrigin</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a22">move</a>
+      (int delta, <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#s3">EOrigin</a>
       origin)=0</code></td>
   </tr>
   <tr>
@@ -538,8 +536,8 @@ following:</p>
   </tr>
   <tr>
     <td valign="top" nowrap align="right"><code>int</code></td>
-    <td valign="bottom"><code><a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#a23">move32</a>
-      (int delta, <a class="el" href="http://oss.software.ibm.com/icu/apiref/classCharacterIterator.html#s3">EOrigin</a>
+    <td valign="bottom"><code><a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#a23">move32</a>
+      (int delta, <a class="el" href="http://www.icu-project.org/apiref/icu4c/classCharacterIterator.html#s3">EOrigin</a>
       origin)=0</code></td>
   </tr>
   <tr>

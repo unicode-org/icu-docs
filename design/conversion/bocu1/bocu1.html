@@ -9,7 +9,7 @@
 <body>
 
 <h1>BOCU-1</h1>
-<p>A MIME-compatible application of the <a href="http://oss.software.ibm.com/icu/docs/papers/binary_ordered_compression_for_unicode.html">Binary
+<p>A MIME-compatible application of the <a href="http://www.icu-project.org/docs/papers/binary_ordered_compression_for_unicode.html">Binary
 Ordered Compression for Unicode</a> base algorithm.</p>
 <p align="right">Markus Scherer &amp; Mark Davis<br>
 San José 2002-jan-29</p>
@@ -104,7 +104,7 @@ The same procedure could be used to remove an FF reset command.</p>
 <p>An initial U+FEFF is encoded in BOCU-1 with the three bytes FB EE 28.</p>
 
 <h2>Encoding algorithm</h2>
-<p>The basic algorithm is as described in <a href="http://oss.software.ibm.com/icu/docs/papers/binary_ordered_compression_for_unicode.html">Binary
+<p>The basic algorithm is as described in <a href="http://www.icu-project.org/docs/papers/binary_ordered_compression_for_unicode.html">Binary
 Ordered Compression for Unicode</a>.</p>
 <p>BOCU-1 differs from the generic algorithm by using a different set of byte
 value ranges and by encoding U+0000..U+0020 directly with byte values 00..20. In
@@ -144,7 +144,7 @@ the input (e.g., unmatched single surrogate code units in UTF-16). Proper input
 of supplementary code points (e.g., matched surrogate pairs in UTF-16) must be
 encoded by code points.</p>
 
-<p>This code uses <a href="http://oss.software.ibm.com/icu/">ICU</a> standard
+<p>This code uses <a href="http://www.icu-project.org/">ICU</a> standard
 headers and the one implementation file <code>icu/source/common/utf_impl.c</code>.
 (It is not necessary to link the entire ICU common library.) This is for
 convenience in the surrounding test functions and not necessary for the core
@@ -156,7 +156,7 @@ BOCU-1 functions. These headers and implementation file provide the following:</
   <li>Define UTF* macros to handle reading and writing of in-process UTF-8/16
     strings.</li>
 </ul>
-<p>This code is under the <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icu/license.html">X
+<p>This code is under the <a href="http://source.icu-project.org/repos/icu/icu/trunk/license.html">X
 license (ICU version)</a>.</p>
 
 <p>Files:</p>
@@ -195,9 +195,9 @@ U+2029 (Paragraph Separator).</p>
   <h2>BOCU-1 performance</h2>
   <p align="right">Markus Scherer<br>2002apr03</p>
   <p>This document provides a performance comparison between
-    <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/conversion/bocu1/bocu1.html">BOCU-1</a>,
+    <a href="http://source.icu-project.org/repos/icu/icuhtml/trunk/design/conversion/bocu1/bocu1.html">BOCU-1</a>,
     UTF-8, and <a href="http://www.unicode.org/unicode/reports/tr6/">SCSU</a>
-    when implemented as <a href="http://oss.software.ibm.com/icu/">ICU</a> converters,
+    when implemented as <a href="http://www.icu-project.org/">ICU</a> converters,
     which convert to and from UTF-16.</p>
 
   <h2>Summary</h2>
@@ -993,7 +993,7 @@ platform endianness:                      little-endian
   <p>Copyright (c) 2002 International Business Machines
     Corporation and others. All Rights Reserved.</p>
 
-  <p>For the ICU license and other information please see the <a href="http://oss.software.ibm.com/icu/">ICU homepage</a>.</p>
+  <p>For the ICU license and other information please see the <a href="http://www.icu-project.org/">ICU homepage</a>.</p>
 
 </body>
 

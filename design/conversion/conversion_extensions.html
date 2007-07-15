@@ -23,12 +23,7 @@
   </tr>
   <tr>
     <td>Latest Version:</td>
-    <td><a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/conversion/conversion_extensions.html">http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/conversion/conversion_extensions.html</a></td>
-  </tr>
-  <tr>
-    <td>CVS:</td>
-    <td><a href="http://oss.software.ibm.com/cvs/icu/icuhtml/design/conversion/conversion_extensions.html">http://oss.software.ibm.com/cvs/icu/icuhtml/design/conversion/conversion_extensions.html</a>
-    </td>
+    <td><a href="http://source.icu-project.org/repos/icu/icuhtml/trunk/design/conversion/conversion_extensions.html">http://source.icu-project.org/repos/icu/icuhtml/trunk/design/conversion/conversion_extensions.html</a></td>
   </tr>
 </table>
 <h2>Issues</h2>
@@ -37,7 +32,7 @@
   <li>Ideally, ICU would support as many of them out of the box as possible.</li>
   <li>Out of the box, ICU already supports &gt;200 conversion tables, taking up 
     more than half of its 8MB data.
-    There are hundreds more conversion tables in the <a href="http://icu.sourceforge.net/charts/charset/">ICU 
+    There are hundreds more conversion tables in the <a href="http://www.icu-project.org/charts/charset/">ICU 
     charset repository</a>.</li>
   <li>ICU's data structures (.ucm source files and .cnv binaries) do not  
     currently support conversion of multiple characters/code points at once. For  
@@ -108,9 +103,9 @@ would have to be data structures for each direction (to/from Unicode) that allow
 at least a binary search.</p>
 <p>Reasonable performance of extension lookups is especially important when the 
 base table does not have special markers for extension mappings.</p>
-<p>For ideas about data structures for conversion extension data see <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/conversion/ucnv_ext.h">ucnv_ext.h</a> 
-and <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/conversion/ucnv_ext.c">ucnv_ext.c</a> 
-in this same design folder (<a href="http://oss.software.ibm.com/cvs/icu/icuhtml/design/conversion/">icuhtml/design/conversion</a>).</p>
+<p>For ideas about data structures for conversion extension data see <a href="http://source.icu-project.org/repos/icu/icuhtml/trunk/design/conversion/ucnv_ext.h">ucnv_ext.h</a> 
+and <a href="http://source.icu-project.org/repos/icu/icuhtml/trunk/design/conversion/ucnv_ext.c">ucnv_ext.c</a> 
+in this same design folder (<a href="http://source.icu-project.org/repos/icu/icuhtml/trunk/design/conversion/">icuhtml/design/conversion</a>).</p>
 <h3>Multiple Extension Tables per File</h3> 
 <p>A single .cnv file may contain multiple such data structures, one per   
 conversion table variant. A Shift-JIS .cnv table would use the regular state   

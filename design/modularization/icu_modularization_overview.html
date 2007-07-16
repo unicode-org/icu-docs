@@ -3,8 +3,6 @@
 <head>
 <meta http-equiv="Content-Language" content="en-us">
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
-<meta name="ProgId" content="FrontPage.Editor.Document">
 <title>ICU Componentization</title>
 <style>
 <!--
@@ -111,7 +109,8 @@ bullet, in parentheses.</p>
     into smaller pieces that can be separately installed. This involves
     decoupling pieces of code from one another, and decoupling data. The data
     may need to be decoupled both on the basis of service and on the basis of
-    locale. Some of this is underway, while much remains to be done. See <a href="http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/icu_footprint.html">http://oss.software.ibm.com/cvs/icu/~checkout~/icuhtml/design/icu_footprint.html</a>
+    locale. Some of this is underway, while much remains to be done. See 
+    <a href="http://source.icu-project.org/repos/icu/icuhtml/trunk/design/icu_footprint.html">http://source.icu-project.org/repos/icu/icuhtml/trunk/design/icu_footprint.html</a>
     for figures.
     <ol>
       <li><b>Data Modularization (J&amp;C)</b>
@@ -265,7 +264,7 @@ bullet, in parentheses.</p>
       <li>Currently, once a public API has graduated from <i>draft</i> status,
         we only allow removal if it is dangerously broken (e.g. with unfixable
         memory ownership issues). Even then, we mark them as deprecated, and
-        keep them for at least two releases. See <a href="http://oss.software.ibm.com/icu/develop/">ICU
+        keep them for at least two releases. See <a href="http://www.icu-project.org/userguide/design.html#ICU_Binary_Compatibility">ICU
         Development Overview</a>. Binary compatibility will imply keeping them
         forever (but returning an error if called).</li>
       <li>Binary compatibility means <b>C </b>and<b> Java</b>, <b><i>not</i> C++</b>.

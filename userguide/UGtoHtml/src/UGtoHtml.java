@@ -7,7 +7,7 @@
  */
  
  /*
-  *   Copyright (C) 2004-2006, International Business Machines
+  *   Copyright (C) 2004-2007, International Business Machines
   *   Corporation and others.  All Rights Reserved.
   *
   */
@@ -128,7 +128,7 @@ public class UGtoHtml {
     
     //  convertElement      Convert an Open Office node, and, recursively, any children.
     //
-    static boolean doingTableHeader = false;
+    static boolean doingTableHeader; // true if >0
     static boolean doingNote        = false;
     static boolean doingSource      = false;
     void convertElement(Node n) {
@@ -218,7 +218,7 @@ public class UGtoHtml {
                 
             } else if (xmlTag.equals("text:tab-stop")) {
                 fHtml.append("\t");
-            } else if (xmlTag.equals("table:table")) {
+            } else if (xmlTag.equals("table:table") || xmlTag.equals("table:sub-table")) {
                 fHtml.append("<table>");
             } else if (xmlTag.equals("text:p") && styleAttr.equals("Table Contents")) {
                 // No action required.
@@ -232,13 +232,13 @@ public class UGtoHtml {
             } else if (xmlTag.equals("table:table-column")) {
                 // No action required.
             } else if (xmlTag.equals("table:table-header-rows")) {
-                doingTableHeader = true;
+                doingTableHeader=true;
             } else if (xmlTag.equals("table:table-row")) {
                 fHtml.append("<tr bgcolor=\"#99ccff\">");
             } else if (xmlTag.equals("table:table-cell")) {
                 fHtml.append(doingTableHeader? "<th bgcolor=\"#cccccc\"" : "<td bgcolor=\"#EEEEEE\"");
                 String colspan = e.getAttribute("table:number-columns-spanned");
-                if (!(colspan.equals("") && colspan.equals("1"))) {
+                if (!(colspan.equals("") || colspan.equals("1"))) {
                     fHtml.append(" colspan=\"" + colspan + "\"");
                 }
                 fHtml.append(">");
@@ -386,12 +386,14 @@ public class UGtoHtml {
                 fHtml.append("</i></td></tr></table>\n");
             } else if (xmlTag.equals("table:table")) {
                 fHtml.append("</table>");
+            } else if (xmlTag.equals("table:sub-table")) {
+                fHtml.append("</table>");
             } else if (xmlTag.equals("table:table-header-rows")) {
                 doingTableHeader = false;
             } else if (xmlTag.equals("table:table-row")) {
                 fHtml.append("</tr>");
             } else if (xmlTag.equals("table:table-cell")) {
-                fHtml.append(doingTableHeader? "</th>" : "</td>");
+                fHtml.append(doingTableHeader ?  "</th>" : "</td>");
             } else if (xmlTag.equals("text:a") && !e.getAttribute("xlink:href").equals("")) {
                 fHtml.append("</a>\n");                
             } 

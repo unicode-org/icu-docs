@@ -292,15 +292,14 @@ are evaluated left to right.&nbsp; In Java, the implicit union has
 higher precedence than '&amp;'.&nbsp;<br>
 </li>
 <li> \p{InBlockName} for added for Unicode Blocks, in addition
-to the standard form for block names </li>
+to the standard form for block names. &nbsp;Add \p{javaLowerCase, \p{javaWhiteSpace} and other properties from Java. </li>
 <li> $ appearing as the last element of a set is no longer ignored.
 &nbsp;(The trailing $ has special meaning for ICU UnicodeSets used with
 transliterators.) </li>
 <li>We need to think about what the \X (grapheme cluster match)
 should really do. &nbsp;ICU differs from Perl. </li>
 <li> A '-' in a set will be treated as a literal if it can not
-be interpreted as a set difference operator or as part of a range.<br>
-</li>
+be interpreted as a set difference operator or as part of a range.</li><li>Treat unknown embedded flags as literals. &nbsp; (Test Java behavior to get this right)</li><li>Add a UNIX_LINES option, in which only line feed is recognized as a new-line.</li>
 </ol>
 <br>
 Differences with Perl<br>

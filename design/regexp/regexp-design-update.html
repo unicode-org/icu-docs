@@ -1,8 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<!-- Copyright (C) 2007 International Business Machines Corporation, Google,  and others.  All Rights Reserved -->
-<head>
-</head>
+<html><head><!-- Copyright (C) 2007 International Business Machines Corporation, Google,  and others.  All Rights Reserved --></head>
 <body>
 <h2>
   ICU Regular Expression Revisions for Improved Java Compatibility
@@ -14,9 +11,7 @@ Here is a proposal for an update to ICU regular expressions to improve
 compatibility with Java.&nbsp; ICU is actually pretty close to Java already, and
 these changes will clean up most of the remaining differences.<br>
 
-<br>
-
-9/28/2007<br>
+<br>10/01/2007<br>
 
 Andy Heninger<br>
 
@@ -56,7 +51,7 @@ expressions, the proposed ICU syntax is described here.<br>
 
 <br>
 
-Here is the approximate grammar of an ICU bracket expression.&nbsp; There are
+Here is the approximate grammar of an ICU set, or bracket, expression.&nbsp; There are
 some constraints that are not easily expressed in this kind of syntax notation
 that are described in text at the end.<br>
 
@@ -189,12 +184,12 @@ that are described in text at the end.<br>
 
       </td>
 
-      <td>
-        x&nbsp;&nbsp;&nbsp; The character x, for all characters other than '\'<br>
+      <td><span style="font-style: italic;">
+        x</span>&nbsp;&nbsp;&nbsp; The character x, for all characters other than '\'<br>
 
         \\&nbsp;&nbsp;&nbsp; The backslash character<br>
 
-        \x&nbsp;&nbsp;&nbsp; For ASCII letters and digits, either<br>
+        \<span style="font-style: italic;">x</span>&nbsp;&nbsp;&nbsp; For ASCII letters and digits, either<br>
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a special
         meaning, listed separately, or<br>
@@ -204,7 +199,7 @@ that are described in text at the end.<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; For characters other than ASCII letters
         and digits,<br>
 
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x, the character
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-style: italic;">x</span>, the character
         itself.<br>
 
         <br>
@@ -489,9 +484,7 @@ that are described in text at the end.<br>
   
 </ol>
 
-  <br>
-
-  <br>
+  
 
   <br>
 
@@ -542,10 +535,7 @@ ignored during matching.&nbsp; </li>
 ICU. &nbsp;(The trailing $ had special meaning for sets used with
 transliterators; it was ignored by regular expressions.) </li>
 
-    <li>
-      Change \X (Grapheme Cluster) to be a zero width boundary test rather than
-      a matching operation.&nbsp; I believe we got it wrong the first time, and
-      this seems like an opportune time to fix it.
+    <li>We need to think about what the \X (grapheme cluster match) should really do. &nbsp;ICU differs from Perl.
     </li>
 
     <li>
@@ -560,15 +550,14 @@ transliterators; it was ignored by regular expressions.) </li>
   <br>
 
   Differences with Perl<br>
-<br>
 <ol>
-  <li>Perl will recognize \p{properties} without the brackets. &nbsp;\pL for letters, for example.</li>
-  <li>No&nbsp;<code class="inline">(?&gt;pattern)</code></li>
-  <li>Octal Escaping and BackReferences. &nbsp; In Java and in this
+  <li>Perl will recognize \p{properties} without the brackets. &nbsp;\pL for letters, for example.</li><li>Java and ICU lack Perl's&nbsp; \xhh, \x{xxxx} (hex escapes), \l, \u, \L, \U &nbsp;(upper and lower casing of pattern)</li>
+  
+  <li>Java and ICU lack Perl's &nbsp;<span style="font-family: monospace;">(?&gt;pattern)</span> &nbsp;. &nbsp;Equivalent for ICU or Java would be <span style="font-family: monospace;">p(?:pattern){1}+</span></li><li><span style="font-family: monospace;"></span>Java and ICU lack Perl's conditional experssions, i.e. <span style="font-style: italic;">(?(condition)A|B). &nbsp;</span>There is nothing directly equivalent in Java.</li><li><code class="inline"></code>Octal Escaping and BackReferences. &nbsp; In Java and in this
 proposal, octal escapes must begin with \0, to distinguish them from
 back references.&nbsp;</li>
-  <li>Perl supports conditional expressions like&nbsp; <span style="font-style: italic;">(?(condition)A|B) </span>; ICU does not</li>
-  <li>ICU supports possessive quantifiers, and set intersection (&amp;&amp;) and difference (--); Perl does not.</li>
+  
+  <li>ICU supports possessive quantifiers, and set intersection (&amp;&amp;) and difference (--); Perl does not.</li><li>Perl's \X is not exactly a grapheme cluster. &nbsp;It is \p{M}\p{^M}* . &nbsp;</li>
 </ol>
 
   <br>
@@ -576,5 +565,4 @@ back references.&nbsp;</li>
 </div>
 
 <br>
-</body>
-</html>
+</body></html>

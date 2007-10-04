@@ -8,12 +8,15 @@
 <body>
 
 
+
 <h2> ICU Regular Expression Revisions for Improved Java
 Compatibility
 </h2>
 
 
+
 <br>
+
 
 
 Here is a proposal for an update to ICU regular expressions to improve
@@ -22,19 +25,25 @@ already, and
 these changes will clean up most of the remaining differences.<br>
 
 
+
 <br>
+
 
 
 10/02/2007<br>
 
+
 Draft 0.2 <br>
+
 
 
 Andy Heninger<br>
 
 
+
 <h3> Modes
 </h3>
+
 
 
 ICU could support multiple modes for regular expressions - a Java
@@ -50,7 +59,9 @@ continue to
 trip up users with ICU's non-standard behavior.<br>
 
 
+
 <br>
+
 
 
 The bottom line:&nbsp; No modes.&nbsp; All of ICU's existing
@@ -58,11 +69,14 @@ Regular Expression
 functionality remains available, with some minor syntax differences.<br>
 
 
+
 <br>
+
 
 
 <h3> Proposed ICU Regular Expression Syntax
 </h3>
+
 
 
 Most of the syntax for ICU regular expressions will exactly follow the
@@ -72,21 +86,27 @@ Expressions are described here: <a href="http://java.sun.com/javase/6/docs/api/j
 <br>
 
 
+
 <br>
+
 
 
 Because there are differences with Java in the area of character class
 expressions, the proposed ICU syntax is described here.<br>
 
 
+
 <br>
+
 
 
 <p> <b> ICU Set Expressions </b>
 </p>
 
 
+
 <br>
+
 
 
 Here is the approximate grammar of an ICU set, or bracket,
@@ -96,320 +116,422 @@ notation
 that are described in text at the end.<br>
 
 
+
 <br>
 
 
+
 <br>
+
 
 
 <div>
 <table id="gov." border="1" bordercolor="#666666" cellpadding="3" cellspacing="0">
 
 
+
   <tbody>
+
 
 
     <tr>
 
 
+
       <td> set expression<br>
 
 
+
       </td>
+
 
 
       <td> '['&nbsp; '^'?&nbsp; ']'?&nbsp;
 [intersection or difference]?&nbsp; ']'<br>
 
 
+
       </td>
+
 
 
       <td> notes 1, 2<br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
     <tr>
+
 
 
       <td> intersection or difference<br>
 
 
+
       </td>
+
 
 
       <td> term (('&amp;' | '&amp;&amp;' | '-' |
 '--') term)*<br>
 
 
+
       </td>
+
 
 
       <td> note 3, 4<br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
     <tr>
+
 
 
       <td> term<br>
 
 
+
       </td>
+
 
 
       <td> (property expression |<br>
 
 
+
 range |<br>
+
 
 
 single char |<br>
 
 
+
 set expression) +<br>
+
 
 
       <br>
 
 
+
       </td>
+
 
 
       <td><br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
     <tr>
+
 
 
       <td> property expression<br>
 
 
+
       </td>
+
 
 
       <td> '\p{' property '}' |<br>
 
 
+
 '\P{' property '}' |<br>
+
 
 
 '[:' property ':]'&nbsp; &nbsp; |<br>
 
+
 '[:^' property ':]' |<br>
+
 
 
 '\d' | '\D' |<br>
 
 
+
 '\s' | '\S' |<br>
+
 
 
 '\w | '\W'<br>
 
 
+
       </td>
+
 
 
       <td> <br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
     <tr>
+
 
 
       <td> range<br>
 
 
+
       </td>
+
 
 
       <td> single char '-' single char<br>
 
 
+
       </td>
+
 
 
       <td> note 5<br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
     <tr>
+
 
 
       <td> single char<br>
 
 
+
       </td>
+
 
 
       <td><span style="font-style: italic;">z</span>&nbsp;&nbsp;&nbsp;
 The character z, for all characters other than '\'<br>
 
 
+
 \\&nbsp;&nbsp;&nbsp; The backslash character<br>
+
 
 
 \<span style="font-style: italic;">z</span> &nbsp;&nbsp;
 For ASCII letters and digits, either<br>
 
 
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 a special meaning, listed separately, or<br>
+
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 an error.<br>
 
 
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; For characters other
 than ASCII letters and digits,<br>
+
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-style: italic;">z</span>,
 the character itself.<br>
 
 
+
       <br>
+
 
 
 \uhhhh or \Uhhhhhhhh&nbsp; <br>
 
+
 \xhh &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (exactly two hex digits)<br>
 
+
 \x{hhhhhh} &nbsp; &nbsp; (1 to 6 hex digits)<br>
+
 
 
 \N{Unicode Character Name}<br>
 
 
+
 \0ooo&nbsp;&nbsp;&nbsp; (1 to 3 octal digits)<br>
+
 
 
 \t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 (tab)<br>
 
 
+
 \n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 (new line)<br>
+
 
 
 \r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 (carriage return<br>
 
 
+
 \f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 (form feed)<br>
+
 
 
 \a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 (bell, \u0007)<br>
 
 
+
 \e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 (escape)<br>
+
 
 
 \cx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the
 control character corresponding to x<br>
 
 
+
       <br>
 
 
+
       <br>
+
 
 
       </td>
+
 
 
       <td> note 6<br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
     <tr>
+
 
 
       <td> property<br>
 
 
+
       </td>
+
 
 
       <td> Anything recognized by the ICU property APIs, plus<br>
 
 
+
 &nbsp;- POSIX compatibility property names from<br>
+
 
 
 &nbsp;&nbsp;
 http://www.unicode.org/reports/tr18/#Compatibility_Properties<br>
 
 
+
 &nbsp;- Alternate names for Unicode Blocks of the form<br>
+
 
 
 &nbsp;&nbsp; InBlockName<br>
 
 
+
       <br>
 
 
+
       </td>
+
 
 
       <td> <br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
+  
   
   </tbody>
 </table>
 
 
+
 <br>
+
 
 
 Notes<br>
 
 
+
 <ol>
+
 
 
   <li> Negation (^) can only appear immediately following an
@@ -418,9 +540,11 @@ matching brackets.&nbsp; In other locations within a set
 expression0, a '^' is treated as a literal character. </li>
 
 
+
   <li> A ']' as the first character in a set is treated as a
 literal, and does not close the set.&nbsp; No other characters have
 special behavior in this opening position. </li>
+
 
 
   <li> A '-' or '&amp;' is recognized as a difference or
@@ -435,478 +559,685 @@ new to this proposal, and is included to maintain symmetry with Java's
 '&amp;&amp;' operator. </li>
 
 
+
   <li> Intersection and Difference operators have the same
 precedence and are evaluated left to right.<br>
 
 
+
   </li>
+
 
 
   <li> Ranges are based on Unicode code point values.&nbsp; A
 range with the lower bound greater than the upper bound is an error.</li>
 
 
+
   <li>This set of single character escapes exactly matches those
 supported by Java.</li>
+
 
 
 </ol>
 
 
+
 <br>
 
 
+
 <br>
+
 
 
 Precedence of Character Class operators<br>
 
 
+
 <br>
+
 
 
 <div>
 <table id="dwkq" border="1" bordercolor="#666666" cellpadding="3" cellspacing="0">
 
 
+
   <tbody>
 
 
+
     <tr>
+
 
 
       <td> 1&nbsp;&nbsp;<br>
 
 
+
       </td>
+
 
 
       <td> escaping<br>
 
 
+
       </td>
+
 
 
       <td> \$<br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
     <tr>
+
 
 
       <td> 2<br>
 
 
+
       </td>
+
 
 
       <td> grouping<br>
 
 
+
       </td>
+
 
 
       <td> [...]<br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
     <tr>
+
 
 
       <td> 3<br>
 
 
+
       </td>
+
 
 
       <td> range<br>
 
 
+
       </td>
+
 
 
       <td> a-z<br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
     <tr>
+
 
 
       <td> 4<br>
 
 
+
       </td>
+
 
 
       <td> union<br>
 
 
+
       </td>
+
 
 
       <td> \p{Letter}\p{Number}<br>
 
 
+
       </td>
 
 
+
     </tr>
+
 
 
     <tr>
 
 
+
       <td> 5<br>
 
 
+
       </td>
+
 
 
       <td> intersection and difference&nbsp;&nbsp;<br>
 
 
+
       </td>
+
 
 
       <td> \p{Letter}&amp;&amp;\p{script=Hebrew}<br>
 
 
+
       </td>
+
 
 
     </tr>
 
 
+
+  
   
   </tbody>
 </table>
 
 
+
 </div>
 
 
-<br>
 
 <br>
+
+
+<br>
+
 
 <h3>API Additions</h3>
 
+
 Most of the proposed new functions correspond directly to methods added to Java regular expressions in Java 1.5<br>
 
+
 <br>
+
 
 In file uregex.h<br>
 
+
 <br>
 
+
 <br style="font-family: monospace;">
+
 
 <div style="margin-left: 40px;"><span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; /**&nbsp; If set, only '\n' line terminator is recognized in the behavior of ., ^ and $.</span><br>
 
+
 <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp; * &nbsp;The embedded pattern flag 'd' will also enable this mode.</span><br>
+
 
 <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp; * &nbsp;This option is provided primarily for compatibility with Java regular expressions.</span><br style="font-family: monospace;">
 
+
 <span style="font-family: monospace;"></span><span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp; @draft ICU 4.0 */</span><br style="font-family: monospace;">
+
 
 &nbsp;<span style="font-family: monospace;">&nbsp;&nbsp; UREGEX_UNIX_LINES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 16,<br>
 
+
 <br>
+
 
 &nbsp; &nbsp; <span style="font-style: italic;"><br>
 
+
 &nbsp;<span style="color: rgb(204, 0, 0);"> &nbsp; TODO: &nbsp;Add plain C equivalents for all of the functions listed below for C++</span><br>
+
 
 <br style="font-family: monospace;">
 
+
 </span></span></div>
 
+
 <br>
+
 
 In file regex.h, <br>
 
+
 <br>
+
 
 <div style="margin-left: 40px;"><span style="font-family: monospace;">class U_I18N_API RegexMatcher: public UObject {</span><br style="font-family: monospace;">
 
+
 <span style="font-family: monospace;">public:<br>
 
-<br>
 
 <br>
+
+
+<br>
+
 
 &nbsp; &nbsp;/** Sets the limits of this matcher's region. <br>
 
+
 &nbsp; &nbsp; &nbsp;* The region is the part of the input string that will be searched to find a match.<br>
+
 
 &nbsp; &nbsp; &nbsp;* Invoking this method resets the matcher, and then sets the region to start<br>
 
+
 &nbsp; &nbsp; &nbsp;* at the index specified by the start parameter and end at the index specified<br>
+
 
 &nbsp; &nbsp; &nbsp;* by the end parameter.<br>
 
+
 &nbsp; &nbsp; &nbsp;*<br>
+
 
 &nbsp; &nbsp; &nbsp;* Depending on the transparency and anchoring being used (see useTransparentBounds<br>
 
+
 &nbsp; &nbsp; &nbsp;* and useAnchoringBounds), certain constructs such as anchors may behave differently<br>
+
 
 &nbsp; &nbsp; &nbsp;* at or around the boundaries of the region<br>
 
+
 &nbsp; &nbsp; &nbsp;*<br>
+
 
 &nbsp; &nbsp; &nbsp;* The function will fail if start is greater than limit, or if either index<br>
 
+
 &nbsp; &nbsp; &nbsp;* &nbsp;is less than zero or greater than the length of the string being matched.<br>
 
+
 &nbsp; &nbsp; &nbsp;*<br>
+
 
 &nbsp; &nbsp; &nbsp;* @param start &nbsp;The index to begin searches at.<br>
 
+
 &nbsp; &nbsp; &nbsp;* @param limit &nbsp;The index to end searches at (exclusive).<br>
+
 
 &nbsp; &nbsp; &nbsp;* @param status A reference to a UErrorCode to receive any errors.<br>
 
+
 &nbsp; &nbsp; &nbsp;* @draft ICU 4.0<br>
+
 
 &nbsp; &nbsp; &nbsp;*/<br>
 
+
 &nbsp; &nbsp; &nbsp;virtual RegexMatcher &amp;region(int32_t start, int32_t limit, UErrorCode &amp;status);<br>
 
-<br>
 
 <br>
+
+
+<br>
+
 
 &nbsp; &nbsp;/**<br>
 
+
 &nbsp; &nbsp; &nbsp;* Reports the start index of this matcher's region. The searches this matcher<br>
+
 
 &nbsp; &nbsp; &nbsp;* conducts are limited to finding matches within regionStart (inclusive) and <br>
 
+
 &nbsp; &nbsp; &nbsp;* regionEnd (exclusive).<br>
+
 
 &nbsp; &nbsp; &nbsp;*<br>
 
+
 &nbsp; &nbsp; &nbsp;* @return The starting index of this matcher's region.<br>
+
 
 </span><span style="font-family: monospace;">&nbsp; &nbsp; &nbsp;* @draft ICU 4.0</span><br>
 
+
 <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp;*/<br>
+
 
 &nbsp; &nbsp; &nbsp;virtual int regionStart() const;<br>
 
-<br>
 
 <br>
+
+
+<br>
+
 
 &nbsp; &nbsp; /**<br>
+
 
 &nbsp; &nbsp; &nbsp; * Reports the end (limit) index (exclusive) of this matcher's region. The searches<br>
 
+
 &nbsp; &nbsp; &nbsp; * this matcher conducts are limited to finding matches within regionStart<br>
+
 
 &nbsp; &nbsp; &nbsp; * (inclusive) and regionEnd (exclusive).<br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * @return The ending point of this matcher's region.<br>
 
+
 </span><span style="font-family: monospace;">&nbsp; &nbsp; &nbsp; * @draft ICU 4.0</span><br>
+
 
 <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp; */<br>
 
+
 &nbsp; &nbsp; &nbsp; virtual int regionEnd() const;<br>
 
-<br>
 
 <br>
+
+
+<br>
+
 
 &nbsp; &nbsp; /**<br>
+
 
 &nbsp;&nbsp;&nbsp; &nbsp; * Queries the transparency of region bounds for this matcher.<br>
 
+
 &nbsp;&nbsp;&nbsp; &nbsp; * See useTransparentBounds for a description of transparent and opaque bounds.<br>
+
 
 &nbsp;&nbsp;&nbsp; &nbsp; * By default, a matcher uses opaque region boundaries.<br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * @return TRUE if this matcher is using opaque bounds, false if it is not.<br>
 
+
 &nbsp; &nbsp; &nbsp; * @draft ICU 4.0<br>
 
+
 &nbsp; &nbsp; &nbsp; */<br>
+
 
 &nbsp; &nbsp; &nbsp; virtual UBool hasTransparentBounds() const;<br>
 
+
 <br>
 
+
 &nbsp; &nbsp; /**<br>
+
 
 &nbsp; &nbsp; &nbsp; * Sets the transparency of region bounds for this matcher.<br>
 
+
 &nbsp; &nbsp; &nbsp; * Invoking this function with an argument of true will set this matcher to use transparent bounds.<br>
+
 
 &nbsp; &nbsp; &nbsp; * If the boolean argument is false, then opaque bounds will be used.<br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * Using transparent bounds, the boundaries of this matcher's region are transparent<br>
 
+
 &nbsp; &nbsp; &nbsp; * to lookahead, lookbehind, and boundary matching constructs. Those constructs can<br>
+
 
 &nbsp; &nbsp; &nbsp; * see text beyond the boundaries of the region while checking for a match.<br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * With opaque bounds, no text outside of the matcher's region is visible to lookahead,<br>
 
+
 &nbsp; &nbsp; &nbsp; * lookbehind, and boundary matching constructs.<br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * By default, a matcher uses opaque bounds. <br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * @param &nbsp; b TRUE for transparent bounds; FALSE for opaque bounds<br>
 
+
 &nbsp; &nbsp; &nbsp; * @return &nbsp;This Matcher;<br>
 
+
 &nbsp; &nbsp; &nbsp; * @draft &nbsp; ICU 4.0<br>
+
 
 &nbsp; &nbsp; &nbsp; **/<br>
 
+
 &nbsp; &nbsp; &nbsp; virtual Matcher &amp;useTransparentBounds(UBool b);<br>
 
+
 <br>
+
 
 &nbsp; &nbsp; &nbsp;<br>
 
+
 &nbsp; &nbsp; /**<br>
+
 
 &nbsp; &nbsp;&nbsp; &nbsp;* Return true if this matcher is using anchoring bounds.<br>
 
+
 &nbsp; &nbsp; &nbsp; * By default, matchers use anchoring region boounds.<br>
+
 
 &nbsp; &nbsp;&nbsp; &nbsp;*<br>
 
+
 &nbsp; &nbsp; &nbsp; * @return TRUE if this matcher is using anchoring bounds.<br>
 
+
 &nbsp; &nbsp; &nbsp; * @draft &nbsp;ICU 4.0<br>
+
 
 &nbsp; &nbsp; &nbsp; */&nbsp;&nbsp; &nbsp; <br>
 
+
 &nbsp; &nbsp; &nbsp; virtual UBool hasAnchoringBounds() const;<br>
+
 
 <br>
 
+
 &nbsp; &nbsp; /**<br>
+
 
 &nbsp; &nbsp; &nbsp; * Set whether this matcher is using Anchoring Bounds for its region.<br>
 
+
 &nbsp; &nbsp; &nbsp; * With anchoring bounds, pattern anchors such as ^ and $ will match at the start<br>
+
 
 &nbsp; &nbsp; &nbsp; * and end of the region. &nbsp;Without Anchoring Bounds, anchors will only match at<br>
 
+
 &nbsp; &nbsp; &nbsp; * the positions they would in the complete text.<br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * Anchoring Bounds are the default for regions.<br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * @param b TRUE if to enable anchoring bounds; FALSE to disable them.<br>
 
+
 &nbsp; &nbsp; &nbsp; * @return &nbsp;This Matcher<br>
+
 
 &nbsp; &nbsp; &nbsp; * @draft &nbsp; ICU 4.0<br>
 
+
 &nbsp; &nbsp; &nbsp; */<br>
+
 
 &nbsp; &nbsp; &nbsp; virtual Matcher &amp;useAnchoringBounds(UBool b);<br>
 
+
 <br>
 
+
 &nbsp; &nbsp; /**<br>
+
 
 &nbsp; &nbsp; &nbsp; * Return&nbsp;</span><span style="font-family: monospace;">TRUE</span><span style="font-family: monospace;"> if the most recent matching operation touched the end of the<br>
 
+
 &nbsp; &nbsp; &nbsp; * &nbsp;end of the text being processed. &nbsp;In this case, additional input text could <br>
+
 
 &nbsp; &nbsp; &nbsp; * &nbsp;change the results of that match.<br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * &nbsp; (TODO: &nbsp;how does this interact with transparent bounds and look-ahead?)<br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * &nbsp;@return &nbsp;TRUE if the most recent match hit the end of input<br>
 
+
 &nbsp; &nbsp; &nbsp; * &nbsp;@draft &nbsp; ICU 4.0<br>
 
+
 &nbsp; &nbsp; &nbsp; */<br>
+
 
 &nbsp; &nbsp; &nbsp; virtual UBool hitEnd() const;<br>
 
+
 <br>
+
 
 &nbsp; &nbsp; /**<br>
 
+
 &nbsp; &nbsp; &nbsp; * Return TRUE the most recent match succeeded and additional input could cause<br>
+
 
 &nbsp; &nbsp; &nbsp; * it to fail. If this method returns false and a match was found, then more input<br>
 
+
 &nbsp; &nbsp; &nbsp; * might change the match but the match won't be lost. If a match was not found,<br>
+
 
 &nbsp; &nbsp; &nbsp; * then requireEnd has no meaning. <br>
 
+
 &nbsp; &nbsp; &nbsp; *<br>
+
 
 &nbsp; &nbsp; &nbsp; * @return TRUE if more input could cause the most recent match to no longer match.<br>
 
+
 &nbsp; &nbsp; &nbsp; * @draft &nbsp;ICU 4.0<br>
+
 
 &nbsp; &nbsp; &nbsp; */<br>
 
+
 &nbsp; &nbsp; &nbsp; virtual boolean requireEnd() const;<br>
 
-<br>
 
 <br>
 
+
 <br>
+
+
+<br>
+
 
 </span><span style="font-family: monospace;"></span></div>
 
 
+
 <br>
+
 
 <h3>
 Differences between this Proposal and Java</h3>
 
 
+
 <br>
 
 
+
 <ol>
+
 
 
   <li> Recognize&nbsp; POSIX style syntax for character
@@ -914,8 +1245,10 @@ classes, e.g. [:Alpha:].&nbsp; This is in addition to the Java/Perl
 style of \p{Alpha}&nbsp; </li>
 
 
+
   <li> POSIX compatibility character classes operate over the
 entire Unicode range; they are not limited to ASCII.</li>
+
 
   <li>Case-insensitive matching always works over the full Unicode
 character set. &nbsp; By default, Java case insensitive matching
@@ -926,10 +1259,13 @@ nothing corresponding to Java's UNICODE_CASE flag value for use in API
 functions.</li>
 
 
+
   <li> Add support for all Unicode properties.<br>
 
 
+
   </li>
+
 
 
   <li> Add the set difference operator '--'.&nbsp;
@@ -937,64 +1273,75 @@ Incompatibility is minimal, the operator would look like part of a
 highly improbable range expression in Java.<br>
 
 
+
   </li>
+
 
 
   <li> No support for CANON_EQ, but Java's support appears to be
 broken anyhow. </li>
 
 
+
   <li> Add \N{UNICODE CHARACTER NAME} </li>
+
 
 
   <li> Add \X which is a test for a grapheme cluster boundary.</li>
 
+
   <li>Add \x{hhhhhh} hex escape form (from Perl)</li>
+
 
 
 </ol>
 
 
+
 <br>
+
 
 <h3>
 Differences with classic ICU</h3>
 
 
+
 <br>
+
 
 
 <ol>
 
 
+
   <li>Add new API corresponding to the functions added in Java 1.5.</li>
+
 
   <li> Backslash escapes of ASCII letters and digits with no
 special meaning are taken as the literal ASCII character in old
 ICU.&nbsp; (Perl behavior) </li>
 
 
-  <li> No ICU single quoting conventions in set expressions.
-&nbsp;In old ICU, text within single quotes within a set expression
-is treated as literal characters. &nbsp;<br>
+
+  
 
 
-  </li>
+  <li>Auto-escape of ']' at the first position in a set. &nbsp; This is a pattern compile error now.</li>
 
-
-  <li>Auto-escape of ']' at the first position in a set.</li>
 
 
   <li>\b and \v (backspace and vertical tab) are not recognized
 escapes within set expressions.</li>
 
-  <li>Add \x{hhhh} hex escapes.</li>
+
+  
 
 
   <li> No strings in sets.&nbsp; Strings in ICU sets were
 enclosed
 in {curly brackets}. &nbsp;They were recognized syntactically, then
-ignored during matching.&nbsp; </li>
+ignored during matching. &nbsp; Current behavior is essentially a bug. </li>
+
 
 
   <li> &amp;&amp; and -- are recognized in addition to &amp; and -
@@ -1003,13 +1350,16 @@ bracketed for the
 &amp;&amp; and -- forms. </li>
 
 
+
   <li> Precedence of operators in sets: in original ICU the
 operators '&amp;', '-' and the implicit union are all equal, and
 are evaluated left to right.&nbsp; In Java, the implicit union has
 higher precedence than '&amp;'.&nbsp;<br>
 
 
+
   </li>
+
 
 
   <li> \p{InBlockName} is added for Unicode Blocks, in addition
@@ -1017,51 +1367,66 @@ to the standard form of [:block=BlockName:] for block names. &nbsp;Add
 \p{javaLowerCase, \p{javaWhiteSpace} and other properties from Java. </li>
 
 
+
   <li> $ appearing as the last element of a set is no longer ignored.
 &nbsp;(The trailing $ has special meaning for ICU UnicodeSets used with
-transliterators.) </li>
+transliterators.) &nbsp;Current behavior is essentially a bug. </li>
+
 
 
   <li>We need to think about what the \X (grapheme cluster match)
-should really do. &nbsp;ICU differs from Perl. </li>
+should really do. &nbsp;ICU differs from Perl's \X. &nbsp;Probably should stay as is for compatibility. </li>
+
 
 
   <li> A '-' in a set will be treated as a literal if it can not
 be interpreted as a set difference operator or as part of a range.</li>
 
+
   <li>Treat unknown embedded flags as literals. &nbsp; (Test Java behavior to get this right)</li>
+
 
   <li>Add a UNIX_LINES option, and the corresponding 'd' pattern flag,
 with which only line feed is recognized as a new-line during matching.</li>
+
 
   <li>Octal escapes (\0123) will be implemented according to Java
 conventions. &nbsp;Existing ICU does not support Octal outside of set
 expressions.</li>
 
 
+
 </ol>
+
 
 
 <br>
 
+
 <h3>
 Differences with Perl.</h3>
+
 
 Perl regular expression syntax is described at <a href="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</a><br>
 
 
+
 <ol>
+
 
 
   <li>Perl will recognize \p{properties} without the brackets.
 &nbsp;\pL for letters, for example.</li>
 
 
+
   <li>Java and ICU lack Perl's&nbsp;&nbsp; \l, \u, \L, \U &nbsp;(upper and lower casing of pattern)</li>
+
 
 
   <li>Java and ICU lack Perl's &nbsp;<span style="font-family: monospace;">(?&gt;pattern)</span>
 &nbsp;. &nbsp;Equivalent with ICU or Java would be <span style="font-family: monospace;">p(?:pattern){1}+</span></li>
+
 
 
   <li><span style="font-family: monospace;"></span>Java
@@ -1069,29 +1434,37 @@ and ICU lack Perl's conditional expressions, i.e. <span style="font-style: itali
 is nothing directly equivalent in Java.</li>
 
 
+
   <li><code class="inline"></code>Octal escaping is different. &nbsp; In Java and in this
 proposal, octal escapes must begin with \0, to distinguish them from
 back references.&nbsp;</li>
+
 
 
   <li>ICU supports possessive quantifiers, and set intersection
 (&amp;&amp;) and difference (--); Perl does not.</li>
 
 
+
   <li>Perl's \X is not exactly a grapheme cluster. &nbsp;It
 is \P{M}\p{M}* . &nbsp; Note this does not match at all when starting on a Mark. &nbsp;ICU's \X will never fail to match.</li>
+
 
 
 </ol>
 
 
+
 <br>
+
 
 
 </div>
 
 
+
 <br>
+
 
 
 </body>

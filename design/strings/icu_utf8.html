@@ -1,13 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--
-Copyright (c) 2006, International Business Machines Corporation and others.
-All Rights Reserved.
- -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-        <meta name="generator" content="Adobe GoLive" />
+        <meta name="COPYRIGHT" content="Copyright 2006-2007, IBM Corp. All Rights Reserved.">
         <title>ICU UTF-8 Design</title>
     </head>
 
@@ -15,8 +11,8 @@ All Rights Reserved.
         <h1>ICU UTF-8 Design</h1>
         <p align="right">Markus Scherer 2006-apr-13..2006-may-02</p>
         <div align="right">
-            <p>Latest version: <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/strings/icu_utf8.html">http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icuhtml/design/strings/icu_utf8.html</a></p>
-            <p>Previous versions: <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icuhtml/design/strings/icu_utf8.html">http://dev.icu-project.org/cgi-bin/viewcvs.cgi/icuhtml/design/strings/icu_utf8.html</a></p>
+            <p>Latest version: <a href="http://source.icu-project.org/repos/icu/icuhtml/trunk/design/strings/icu_utf8.html">http://source.icu-project.org/repos/icu/icuhtml/trunk/design/strings/icu_utf8.html</a></p>
+            <p>Previous versions: <a href="http://source.icu-project.org/repos/icu/icuhtml/trunk/design/strings/icu_utf8.html">http://source.icu-project.org/repos/icu/icuhtml/trunk/design/strings/icu_utf8.html</a></p>
         </div>
         <h2>Objectives</h2>
         <p>Note: &quot;ICU&quot; in this document refers to ICU4C, the C/C++ libraries.</p>
@@ -41,10 +37,10 @@ All Rights Reserved.
         <h2><a id="helpers" name="helpers"></a>Helpers</h2>
         <p>ICU already provides a small number of macros and functions for UTF-8 text processing. So far, these have been provided for convenience and not optimized particularly for performance.</p>
         <h3>Macros</h3>
-        <p>Low-level macros for accessing Unicode code points from UTF-8 text are in <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/source/common/unicode/utf8.h">unicode/utf8.h</a></p>
+        <p>Low-level macros for accessing Unicode code points from UTF-8 text are in <a href="http://source.icu-project.org/repos/icu/icu/trunk/source/common/unicode/utf8.h">unicode/utf8.h</a></p>
         <p>Currently, the validating (&quot;safe&quot;) code point access macros (like <code>U8_NEXT()</code>) only handle ASCII characters inline and incur a function call for all other characters. With a small amount of additional inline code, they could easily handle most other common characters inline as well. In particular, all 2-byte UTF-8 sequences and 3-byte sequences for U+1000..U+CFFF which all use the full set of trail byte values. Other valid sequences, and error cases, could continue to incur a function call.</p>
         <h3>Transformation Functions</h3>
-        <p>ICU provides UTF-8↔UTF-16 transformation functions. (<code>u_strFromUTF8()</code> and <code>u_strToUTF8()</code> in <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/source/common/unicode/ustring.h">unicode/ustring.h</a>) The same inlining as for the macros could speed these up as well.</p>
+        <p>ICU provides UTF-8↔UTF-16 transformation functions. (<code>u_strFromUTF8()</code> and <code>u_strToUTF8()</code> in <a href="http://source.icu-project.org/repos/icu/icu/trunk/source/common/unicode/ustring.h">unicode/ustring.h</a>) The same inlining as for the macros could speed these up as well.</p>
         <h2><a id="wrappers" name="wrappers"></a>Wrappers</h2>
         <p>Wrapper functions could be added in ICU, or on top of ICU, providing existing functionality with UTF-8 text APIs. Input UTF-8 strings would be transformed to UTF-16, and output strings transformed back to UTF-8. (This is how Windows NT/2000/XP... works with non-Unicode &quot;ANSI&quot; strings.) Wrappers are simple and fast to write and test.</p>
         <p>In some cases, it may make sense to provide a single wrapper for a sequence of function calls. For example, a single function could be provided for fetching a message format string from a resource bundle and using it to instantiate a formatter, without transforming the string at all.</p>
@@ -58,7 +54,7 @@ All Rights Reserved.
         <h2><a id="utf8impl" name="utf8impl"></a>Dedicated UTF-8 Implementations</h2>
         <p>The highest performance, and the largest amount of code duplication and development, can be expected from dedicated UTF-8 implementations parallel to existing UTF-16 implementations. They also require full testing. Hopefully, existing test code can be restructured to test both implementations with relatively little extra code.</p>
         <h3>Converters</h3>
-        <p>ICU already has a function <code>ucnv_convertEx()</code> (see <a href="http://dev.icu-project.org/cgi-bin/viewcvs.cgi/*checkout*/icu/source/common/unicode/ucnv.h">unicode/ucnv.h</a>) which takes two UConverter objects and converts between to charsets, one of which can be UTF-8. It pivots through UTF-16, via a buffer that can be supplied by the caller (for full functionality) or internally on the stack (for convenience). The <code>ucnv_convert()</code> function does the same, but takes charset names instead of converter objects, which makes it easier to use but limits its applicability.</p>
+        <p>ICU already has a function <code>ucnv_convertEx()</code> (see <a href="http://source.icu-project.org/repos/icu/icu/trunk/common/unicode/ucnv.h">unicode/ucnv.h</a>) which takes two UConverter objects and converts between to charsets, one of which can be UTF-8. It pivots through UTF-16, via a buffer that can be supplied by the caller (for full functionality) or internally on the stack (for convenience). The <code>ucnv_convert()</code> function does the same, but takes charset names instead of converter objects, which makes it easier to use but limits its applicability.</p>
         <p>Character conversion tends to be performance-sensitive. These conversion functions provide a few opportunities for improvement, even without new API functions:</p>
         <ul>
             <li>A <em>relatively </em>simple optimization could use a dedicated UTF-8↔charset conversion implementation for &quot;normal&quot; charsets which are the most common and tend to be the most important for performance. (Using the existing .cnv data file format.) The functions would continue to pivot through UTF-16 for more complicated charsets (e.g., ISO 2022 variants or SCSU etc.).</li>

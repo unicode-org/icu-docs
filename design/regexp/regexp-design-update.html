@@ -48,7 +48,8 @@ these changes will clean up most of the remaining differences.<br>
 
 
 <br>
-11/14/2007 Draft 0.3 &nbsp;Add plain C APIs<br>
+11/16/2007 Draft 0.4 &nbsp;Revise C matching APIs to work with Regions.<br>
+11/14/2007 Draft 0.3 &nbsp;Add plain C APIs.<br>
 
 
 
@@ -1167,7 +1168,10 @@ Precedence of Character Class operators<br>
 
 
 
-Most of the proposed new functions correspond directly to methods added to Java regular expressions in Java 1.5<br>
+Most of the proposed new functions correspond directly to methods added to Java regular expressions in Java 1.5. &nbsp;<br>
+uregex_matches(), uregex_lookingAt() and uregex_find() are existing
+functions with new behavior when starting passed a starting index of
+-1. <br>
 
 
 
@@ -1221,6 +1225,117 @@ In file uregex.h (the plain C API)<br>
 &nbsp;<span style="font-family: monospace;">&nbsp;&nbsp; UREGEX_UNIX_LINES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 16,<br>
 <br>
 <span style="font-style: italic;">[----snip----]<br>
+<br>
+<br>
+</span><span style="color: rgb(102, 102, 102);">/**</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; Attempts to match the input string against the pattern.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; To succeed, the match must extend to the end of the string,</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; or cover the complete match region.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; If startIndex &gt;= zero the match operation starts at the specified</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; index and must extend to the end of the input string.&nbsp; <span style="color: black; font-weight: bold;">Any region</span></span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp; that has been specified is reset.</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp; If startIndex == -1 the match must cover the input region, or the entire</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp; input string if no region has been set.&nbsp; This directly corresponds to</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp; Matcher.matches() in Java</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp; @param&nbsp; regexp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The compiled regular expression.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp; @param&nbsp; startIndex&nbsp; The input string index at which to begin matching, or -1</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+to match the input Region.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp; @param&nbsp; status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Receives errors detected by this function.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp;
+@return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TRUE if there is a match</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp; @stable ICU 3.0</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; */</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">U_STABLE UBool U_EXPORT2 </span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">uregex_matches(URegularExpression *regexp,</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int32_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+startIndex,</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UErrorCode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *status);</span><br style="color: rgb(102, 102, 102);">
+<br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">/**</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; Attempts to match the input string, starting from the specified index, against the pattern.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; The match may be of any length, and is not required to extend to the end</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; of the input string.&nbsp; Contrast with uregex_matches().</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *</span><br style="color: rgb(102, 102, 102);">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp; &lt;p&gt;If startIndex is &gt;= 0 any input region that was set for this</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp; URegularExpression is reset before the operation begins.</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp; &lt;p&gt;If the specified starting index == -1 the match begins at the start of the input </span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp; region, or at the start of the full string if no region has been specified.</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp; This corresponds directly with Matcher.lookingAt() in Java.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; &lt;p&gt;If the match succeeds then more information can be obtained via the</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp; &lt;code&gt;uregexp_start()&lt;/code&gt;, &lt;code&gt;uregexp_end()&lt;/code&gt;,</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp; and &lt;code&gt;uregexp_group()&lt;/code&gt; functions.&lt;/p&gt;</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp; @param&nbsp;&nbsp; regexp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The compiled regular expression.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp; @param&nbsp;&nbsp; startIndex&nbsp; The input string index at which to begin matching, or</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-1 to match the Input Region</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp;
+@param&nbsp;&nbsp; status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A reference to
+a UErrorCode to receive any errors.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp; @return&nbsp; TRUE if there is a match.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp; @stable ICU 3.0</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; */</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">U_STABLE UBool U_EXPORT2 </span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">uregex_lookingAt(URegularExpression *regexp,</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int32_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+startIndex,</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UErrorCode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *status);</span><br style="color: rgb(102, 102, 102);">
+<br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">/**</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; Find the first matching substring of the input string that matches the pattern.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; If startIndex is &gt;= zero the search for a match begins at the specified index,</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and any match
+region is reset.&nbsp; This corresponds directly with</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Matcher.find(startIndex) in Java.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *</span><br style="color: rgb(102, 102, 102);">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp; If startIndex == -1 the search begins at the start of the input region,</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or at the
+start of the full string if no region has been specified.</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TODO:&nbsp; Or, should this be the same as findNext()?</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Consistency between the C functions (as it is), or</span><br style="color: black; font-weight: bold;">
+<span style="color: black; font-weight: bold;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+consistency with -1 meaning match Java behavior?</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; If a match is found, &lt;code&gt;uregex_start(), uregex_end()&lt;/code&gt;, and</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; &lt;code&gt;uregex_group()&lt;/code&gt; will provide more information regarding the match.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; @param&nbsp;&nbsp; regexp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The compiled regular expression.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; @param&nbsp;&nbsp; startIndex&nbsp; The position in the input string to begin the search, or</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-1 to search within the Input Region.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; @param&nbsp;&nbsp; status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A reference to a UErrorCode to receive any errors.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp;
+@return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TRUE if a match is found.</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; *&nbsp;&nbsp; @stable ICU 3.0</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp; */</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">U_STABLE UBool U_EXPORT2 </span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">uregex_find(URegularExpression *regexp,</span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int32_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+startIndex, </span><br style="color: rgb(102, 102, 102);">
+<span style="color: rgb(102, 102, 102);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UErrorCode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *status);</span><br style="color: rgb(102, 102, 102);">
+<span style="font-style: italic;"><br style="color: rgb(102, 102, 102);">
 <br>
 </span>
 
@@ -2067,10 +2182,70 @@ In file regex.h (the C++ API) <br>
 
 <br>
 <br>
-
-
-
-
+<h3>Comparison between Java, C++ and C for the matching APIs. &nbsp;</h3>
+<br>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td>Java JDK</td>
+      <td>ICU C++</td>
+      <td>ICU plain C</td>
+    </tr>
+    <tr>
+      <td style="font-family: monospace;">matches()</td>
+      <td style="font-family: monospace;">matches()</td>
+      <td style="font-family: monospace;">-</td>
+    </tr>
+    <tr>
+      <td style="font-family: monospace;">-</td>
+      <td style="font-family: monospace;">matches(startIndex)</td>
+      <td style="font-family: monospace;">matches(startIndex)</td>
+    </tr>
+    <tr>
+      <td style="font-family: monospace;">loogingAt()</td>
+      <td style="font-family: monospace;">lookingAt()</td>
+      <td style="font-family: monospace;">-</td>
+    </tr>
+    <tr>
+      <td style="font-family: monospace;">-</td>
+      <td style="font-family: monospace;">lookingAt(startIndex)</td>
+      <td style="font-family: monospace;">lookingAt(startIndex)</td>
+    </tr>
+    <tr>
+      <td style="font-family: monospace;">find()</td>
+      <td style="font-family: monospace;">find()</td>
+      <td style="font-family: monospace;">findNext()</td>
+    </tr>
+    <tr>
+      <td style="font-family: monospace;">find(startIndex)</td>
+      <td style="font-family: monospace;">find(startIndex)</td>
+      <td style="font-family: monospace;">find(startIndex)</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+ Incorporating matching regions into the C APIs proved to be a little awkward.<br>
+<br>
+Prior to the introduction &nbsp;of regions, <span style="font-family: monospace;">matches()</span> and <span style="font-family: monospace;">lookingAt()</span>,
+in both Java and ICU C++, begin matching at zero. &nbsp;To hold down
+the number of C functions, I only created one version of each, with an
+explicit start index.<br>
+<br>
+With the introduction of matching regions into Java, we need functions
+with no explicit starting index, functions that honor any region that
+has been specified.<br>
+<br>
+Further complicating the picture is that Java's <span style="font-family: monospace;">find(startIndex)</span>
+explicitly resets any region, which is something that, to maintain
+consistency, ICU should also do in its corresponding functions.
+&nbsp;So each of the three ICU C++ functions with an explicit starting
+index reset regions.<br>
+<br>
+With this background, to make Regions work in plain C, we need matching
+functions that don't take a starting index. &nbsp;The choices appear to
+be either new functions or a special&nbsp; (-1) value of startIndex.
+&nbsp; The reserved value seems cleaner.<br>
+<br>
 <h3>
 Differences between this Proposal and Java</h3>
 

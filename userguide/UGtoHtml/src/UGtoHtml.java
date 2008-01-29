@@ -7,7 +7,7 @@
  */
  
  /*
-  *   Copyright (C) 2004-2007, International Business Machines
+  *   Copyright (C) 2004-2008, International Business Machines
   *   Corporation and others.  All Rights Reserved.
   *
   */
@@ -304,6 +304,8 @@ public class UGtoHtml {
             } else if (xmlTag.startsWith("draw:")) {
             	processChildNodes = false;
              	// ignore embedded images.
+            }else if (xmlTag.equals("text:soft-page-break")){      
+                //no action   
             } else {
                 System.out.print("Unhandled <" + xmlTag);
                 if (xmlTag.startsWith("text")) {

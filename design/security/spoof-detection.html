@@ -1,0 +1,704 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>ICU Spoof Detection</title>
+</head>
+<body>
+<span style="font-family: monospace;"></span>
+<h1>Unicode Security API Proposal</h1>
+<span style="font-family: monospace;">3/20/2008<br>
+Andy Heninger<br>
+<br>
+</span>This is a proposal for an ICU API to provide Unicode Security services (spoof detection), as described in <a href="http://www.unicode.org/reports/tr36/">UTR 36</a> and <a href="http://www.unicode.org/reports/tr39/">UTS 39</a><br>
+<br>
+The idea is to have a service that checks for suspicious looking URLs
+or other identifiers - for cases where an identifier may not be what it
+(visually) appears to be because of the presence of characters that
+could be easily confused for others.<br>
+<br>
+The algorithms and data for the checks are described in the UTRs
+referenced above. &nbsp;The expectation is that the data would be
+updated relatively frequently, as additional confusable characters or
+combinations of characters are identified.<br>
+<br>
+This proposal is for a plain C style API. &nbsp;There does not appear
+to be much gained in convenience with a C++ specific API, so avoiding
+the costs of developing and maintaining parallel C and C++ versions
+seems reasonable.<br>
+<br>
+A Java version will be needed later.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<br>
+<br>
+<span style="font-family: monospace;">/*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">***************************************************************************</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">* Copyright (C) 2008, International Business Machines Corporation</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">* and others. All Rights Reserved.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">***************************************************************************</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">*&nbsp;&nbsp; file name:&nbsp; uspoof.h</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">*&nbsp;&nbsp; encoding:&nbsp;&nbsp; US-ASCII</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">*&nbsp;&nbsp; tab size:&nbsp;&nbsp; 8 (not used)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">*&nbsp;&nbsp; indentation:4</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">*&nbsp;&nbsp; created on: 2008Feb13</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">*&nbsp;&nbsp; created by: Andy Heninger</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">*&nbsp;&nbsp; Unicode Spoof Detection</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">*/</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* \file</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* \brief C API: Unicode Spoof Detection</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* &lt;p&gt;C API for Unicode Security and Spoofing Detection&lt;/p&gt;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* These functions are intended to check strings, typically</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* identifiers or URLs, for the presence of combinations of</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* characters that are likely to be visually confusing - </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* for cases where the displayed form of an identifier may</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* not be what it appears to be.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Unicode security considerations, and descriptions of the checks</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* performed by these functions, are describe in </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Unicode Technical Report #36, http://unicode.org/reports/tr36, and</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Unicode Technical Standard #39, http://unicode.org/reports/tr39</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">#ifndef USPOOF_H</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">#define USPOOF_H</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">#include "unicode/utypes.h"</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">#include "unicode/uset.h"</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">#ifdef XP_CPLUSPLUS</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">#include "unicode/unistr.h"</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">#include "unicode/uniset.h"</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">#endif</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">struct USpoofChecker;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">typedef struct USpoofChecker USpoofChecker;</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Enum for the kinds of checks that USpoofChecker can perform.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* These enum values are used both to select the set of checks that</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* will be performed, and to report results from the check function.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">typedef enum USpoofChecks {</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; USPOOF_SINGLE_SCRIPT_CONFUSABLE =&nbsp; 1,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; USPOOF_MIXED_SCRIPT_CONFUSABLE&nbsp; =&nbsp; 2,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; USPOOF_WHOLE_SCRIPT_CONFUSABLE&nbsp; =&nbsp; 4,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+USPOOF_SECURE_ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+=&nbsp; 8,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; USPOOF_MIXED_SCRIPT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 16,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; USPOOF_LOCALE_LIMIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 32,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; USPOOF_CHAR_LIMIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 64,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; USPOOF_ALL_CHECKS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0x7f</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; };</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp; &nbsp;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp; &nbsp;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; Create a Unicode Spoof Checker, configured to perform all </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; checks except for USPOOF_LOCALE_LIMIT and USPOOF_CHAR_LIMIT.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; Note that additional checks may be added in the future,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; resulting in the changes to the default checking behavior.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; @param status&nbsp; The error code, set if this function encounters a problem.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the newly created Spoof Checker</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; @draft&nbsp; ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT USpoofChecker * U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_open(UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Specify the set of checks that will be performed by the check</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* functions of this Spoof Checker.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @checks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The set of checks that this spoof checker will perform.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The value is a bit set, obtained by OR-ing together</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+values from enum USpoofChecks.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp;&nbsp; The error code, set if this function encounters a problem.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft&nbsp; ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT void U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_setChecks(USpoofChecker *sc, int32_t checks, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Get the set of checks that this Spoof Checker has been configured to perform.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp;&nbsp; The error code, set if this function encounters a problem.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The set of checks that this spoof checker will perform.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The value is a bit set, obtained by OR-ing together</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+values from enum USpoofChecks.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft&nbsp; ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT int32_t U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_getChecks(const USpoofChecker sc, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Limit characters that are acceptable in identifiers being checked to those </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* normally used with the languages associated with the specified locales.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Any previously specified list of locales is replaced by the new settings.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* A set of languages is determined from the locale(s), and</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* from those a set of acceptable Unicode scripts is determined.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Characters from this set of scripts, along with characters from</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* the "common" and "inherited" Unicode Script categories</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* will be permitted.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Supplying an empty string removes all restrictions;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* characters from any script will be allowed.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The USPOOF_LOCALE_LIMIT test is automatically enabled for this</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* USpoofChecker when calling this function with a non-empty set</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* of locales.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param localesList&nbsp; A list list of locales, from which the language</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+and associated script are extracted.&nbsp; The list</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+list has the format of an HTTP Accept-Language</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+header, and .</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The error code, set if this function encounters a problem.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft&nbsp; ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT void U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_setAllowedLocales(USpoofChecker *sc, const char *localesList, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Get a list of locales for the scripts that are acceptable in strings</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; to be checked.&nbsp; If no limitations on scripts have been specified,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; an empty string will be returned.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; The format of the returned list is that of an HTTP Accept-Language</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; header field, but it may not be identical to the original string passed</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; to uspoof_setAllowedLocales();&nbsp; the string may be</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; reformatted, and information other than languages from the originally</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp; specified HTTP header may be omitted.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The error code, set if this function encounters a problem.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*
+@return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+A string containing a list of&nbsp; locales corresponding</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+to the acceptable scripts, formatted like an</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+HTTP Accept Language value.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* &nbsp;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT const char * U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_getAllowedLocales(USpoofChecker *sc, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Limit the acceptable characters to those specified by a Unicode Set.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp; Any previously specified character limit is</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp; is replaced by the new settings.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The USPOOF_CHAR_LIMIT test is automatically enabled for this</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* USpoofChecker by this function.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param chars&nbsp;&nbsp;&nbsp; A Unicode Set containing the list of</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+charcters that are permitted.&nbsp; Ownership of the set</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+remains with the caller.&nbsp; The incoming set is cloned by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this function, so there are no restrictions on modifying</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+or deleting the USet after calling this function.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp;&nbsp; The error code, set if this function encounters a problem.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT void U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_setAllowedChars(USpoofChecker *sc, const USet *chars, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Get a USet for the characters permitted in an identifier.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* This corresponds to the limits imposed by the Set Allowed Characters</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* functions. Limitations imposed by other checks will not be</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* reflected in the set returned by this function.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The returned set will be frozen, meaning that it cannot be modified</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* by the caller.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Ownership of the returned set remains with the Spoof Detector.&nbsp; The</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* returned set will become invalid if the spoof detector is closed,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* or if a new set of allowed characters is specified.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param chars&nbsp;&nbsp;&nbsp; A Unicode Set containing the complete list of</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+charcters that are permitted.&nbsp; Ownership of the set</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+remains with the caller.&nbsp; The incoming set is cloned by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this function, so there are no restrictions on modifying</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+or deleting the USet after calling this function.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp;&nbsp; The error code, set if this function encounters a problem.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A USet containing the characters that are permitted by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the USPOOF_CHAR_LIMIT test.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT const USet * U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_getAllowedChars(USpoofChecker *sc, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">#ifdef XP_CPLUSPLUS</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Limit the acceptable characters to those specified by a Unicode Set.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp; Any previously specified character limit is</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp; is replaced by the new settings.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The USPOOF_CHAR_LIMIT test is automatically enabled for this</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* USoofChecker by this function.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param chars&nbsp;&nbsp;&nbsp; A Unicode Set containing the list of</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+charcters that are permitted.&nbsp; Ownership of the set</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+remains with the caller.&nbsp; The incoming set is cloned by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this function, so there are no restrictions on modifying</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+or deleting the USet after calling this function.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp;&nbsp; The error code, set if this function encounters a problem.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT void U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_setAllowedUnicodeSet(USpoofChecker *sc, const UnicodeSet *chars, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Get a UnicodeSet for the characters permitted in an identifier.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* This corresponds to the limits imposed by the Set Allowed Characters / </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* UnicodeSet functions. Limitations imposed by other checks will not be</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* reflected in the set returned by this function.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The returned set will be frozen, meaning that it cannot be modified</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* by the caller.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Ownership of the returned set remains with the Spoof Detector.&nbsp; The</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* returned set will become invalid if the spoof detector is closed,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* or if a new set of allowed characters is specified.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp;&nbsp; The error code, set if this function encounters a problem.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A UnicodeSet containing the characters that are permitted by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the USPOOF_CHAR_LIMIT test.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT const UnicodeSet * U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_getAllowedUnicodeSet(USpoofChecker *sc, UErrorCode *status);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">#endif</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Check the specified string for possible security issues.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The text to be checked will typically be an indentifier of some sort.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The set of checks to be performed is specified with uspoof_setChecks().</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param text&nbsp;&nbsp;&nbsp; The string to be checked for possible security issues,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; in UTF-16 format.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param length&nbsp; the length of the string to be checked, expressed in</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16 bit UTF-16 code units, or -1 if the string is </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zero terminated.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp; The error code, set if an error occured while attempting to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perform the check.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Spoofing or security issues detected with the input string are</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+not reported here, but through the function's return value.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; An integer value with bits set for any potential security</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+or spoofing issues detected.&nbsp; The bits are defined by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enum USpoofChecks.&nbsp; Zero is returned if no issues</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+are found with the input string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT int32_t U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_check(const USpoofChecker *sc, const UChar *text, int32_t length, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Check the specified string for possible security issues.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The text to be checked will typically be an indentifier of some sort.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The set of checks to be performed is specified with uspoof_setChecks().</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param text&nbsp;&nbsp;&nbsp; The string to be checked for possible security issues,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; in UTF-16 format.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param length&nbsp; the length of the string to be checked, expressed in</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16 bit UTF-16 code units, or -1 if the string is </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zero terminated.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp; The error code, set if an error occured while attempting to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perform the check.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Spoofing or security issues detected with the input string are</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+not reported here, but through the function's return value.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; An integer value with bits set for any potential security</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+or spoofing issues detected.&nbsp; The bits are defined by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enum USpoofChecks.&nbsp; Zero is returned if no issues</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+are found with the input string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT int32_t U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_check(const USpoofChecker *sc, const UChar *text, int32_t length, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Check the specified string for possible security issues.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The text to be checked will typically be an indentifier of some sort.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The set of checks to be performed is specified with uspoof_setChecks().</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param text&nbsp;&nbsp;&nbsp; A UTF-8 string to be checked for possible security issues.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param length&nbsp; the length of the string to be checked, or -1 if the string is </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zero terminated.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp; The error code, set if an error occured while attempting to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perform the check.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Spoofing or security issues detected with the input string are</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+not reported here, but through the function's return value.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; An integer value with bits set for any potential security</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+or spoofing issues detected.&nbsp; The bits are defined by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enum USpoofChecks.&nbsp; Zero is returned if no issues</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+are found with the input string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT int32_t U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_checkUTF8(const USpoofChecker *sc, const char *text, int32_t length, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">#ifdef XP_CPLUSPLUS</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Check the specified string for possible security issues.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The text to be checked will typically be an indentifier of some sort.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The set of checks to be performed is specified with uspoof_setChecks().</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param text&nbsp;&nbsp;&nbsp; A UnicodeString to be checked for possible security issues.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp; The error code, set if an error occured while attempting to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perform the check.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Spoofing or security issues detected with the input string are</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+not reported here, but through the function's return value.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; An integer value with bits set for any potential security</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+or spoofing issues detected.&nbsp; The bits are defined by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enum USpoofChecks.&nbsp; Zero is returned if no issues</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+are found with the input string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT int32_t U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_checkUnicodeString(const USpoofChecker *sc,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const U_NAMESPACE_QUALIFIER UnicodeString &amp;text, </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int32_t length, UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">#endif</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Check the whether two specified strings are visually confusable.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The types of confusability to be tested - single script, mixed script,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* or whole script - are determined by the check options set for the</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* USpoofChecker.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param s1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The first of the two strings to be compared for </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+confusability.&nbsp; The strings are in UTF-16 format.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param length1 the length of the first string, expressed in</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16 bit UTF-16 code units, or -1 if the string is </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zero terminated.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param s2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The second of the two strings to be compared for </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+confusability.&nbsp; The strings are in UTF-16 format.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param length2 The length of the second string, expressed in</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16 bit UTF-16 code units, or -1 if the string is </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zero terminated.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp; The error code, set if an error occured while attempting to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perform the check.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Confusability of the strings is not reported here,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+but through this function's return value.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; An integer value with bit(s) set corresponding to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the type of confusability found, as defined by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enum USpoofChecks.&nbsp; Zero is returned if the strings</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; are not confusable.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT int32_t U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_areConfusable(const USpoofChecker *sc,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const UChar *s1, int32_t length1,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const UChar *s2, int32_t length2,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Check the whether two specified strings are visually confusable.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The types of confusability to be tested - single script, mixed script,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* or whole script - are determined by the check options set for the</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* USpoofChecker.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param s1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The first of the two strings to be compared for </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+confusability.&nbsp; The strings are in UTF-8 format.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param length1 the length of the first string, in bytes, or -1 </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if the string is zero terminated.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param s2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The second of the two strings to be compared for </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+confusability.&nbsp; The strings are in UTF-18 format.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param length2 The length of the second string in bytes, or -1 </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if the string is zero terminated.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp; The error code, set if an error occured while attempting to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perform the check.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Confusability of the strings is not reported here,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+but through this function's return value.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; An integer value with bit(s) set corresponding to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the type of confusability found, as defined by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enum USpoofChecks.&nbsp; Zero is returned if the strings</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; are not confusable.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT int32_t U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_areConfusableUTF8(const USpoofChecker *sc,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const char *s1, int32_t length1,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const char *s2, int32_t length2,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UErrorCode *status);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">#ifdef XP_CPLUSPLUS</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* Check the whether two specified strings are visually confusable.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* The types of confusability to be tested - single script, mixed script,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* or whole script - are determined by the check options set for the</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* USpoofChecker.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param s1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The first of the two strings to be compared for </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+confusability.&nbsp; The strings are in UTF-8 format.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param s2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The second of the two strings to be compared for </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+confusability.&nbsp; The strings are in UTF-18 format.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @param status&nbsp; The error code, set if an error occured while attempting to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perform the check.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Confusability of the strings is not reported here,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+but through this function's return value.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; An integer value with bit(s) set corresponding to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the type of confusability found, as defined by</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enum USpoofChecks.&nbsp; Zero is returned if the strings</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; are not confusable.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;* @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;*/</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT int32_t U_EXPORT2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_areConfusableUnicodeString(const USpoofChecker *sc,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const U_NAMESPACE_QUALIFIER UnicodeString &amp;text,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const U_NAMESPACE_QUALIFIER UnicodeString &amp;text,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UErrorCode *status);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">#endif</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Get the "skeleton" for an identifier string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Skeletons are a transformation of the input string;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Two strings are confusable if their skeletons are identical.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; See Unicode UAX 39 for additional information.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Using skeletons directly makes it possible to quickly check</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; whether an identifier is confusable with any of some large</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; set of existing identifiers, by creating an efficiently</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; searchable collection of the skeletons.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The input string whose skeleton will be computed.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param length&nbsp; The length of the input string, expressed in 16 bit</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UTF-16 code units, or -1 if the string is zero terminated.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param dest&nbsp;&nbsp;&nbsp; The output buffer, to receive the skeleton string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param destCapacity&nbsp; The length of the output buffer, in 16 bit units.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The destCapacity may be zero, in which case the function will</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return the actual length of the skeleton.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param status&nbsp; The error code, set if an error occured while attempting to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perform the check.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The length of the skeleton string.&nbsp; The returned length</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+is always that of the complete skeleton, even when the</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+supplied buffer is too small (or of zero length)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; */</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT int32_t U_EXPORT</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_getSkeleton(const USpoofChecker *sc,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const UChar *s,&nbsp; int32_t length,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UChar *dest, int32_t destCapacity,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UErrorCode *status);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp; &nbsp;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Get the "skeleton" for an identifier string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Skeletons are a transformation of the input string;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Two strings are confusable if their skeletons are identical.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; See Unicode UAX 39 for additional information.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Using skeletons directly makes it possible to quickly check</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; whether an identifier is confusable with any of some large</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; set of existing identifiers, by creating an efficiently</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; searchable collection of the skeletons.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The UTF-8 format input string whose skeleton will be computed.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param length&nbsp; The length of the input string, in bytes,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+or -1 if the string is zero terminated.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param dest&nbsp;&nbsp;&nbsp; The output buffer, to receive the skeleton string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param destCapacity&nbsp; The length of the output buffer, in bytes.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The destCapacity may be zero, in which case the function will</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return the actual length of the skeleton.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param status&nbsp; The error code, set if an error occured while attempting to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perform the check.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *
+@return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The length of the
+skeleton string, in bytes.&nbsp; The returned length</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+is always that of the complete skeleton, even when the</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+supplied buffer is too small (or of zero length)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; */&nbsp; &nbsp;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT int32_t U_EXPORT</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_getSkeletonUTF8(const USpoofChecker *sc,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const char *s,&nbsp; int32_t length,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+char *dest, int32_t destCapacity,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UErrorCode *status);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp; &nbsp;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">#ifdef XP_CPLUSPLUS</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">/**</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Get the "skeleton" for an identifier string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Skeletons are a transformation of the input string;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Two strings are confusable if their skeletons are identical.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; See Unicode UAX 39 for additional information.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; Using skeletons directly makes it possible to quickly check</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; whether an identifier is confusable with any of some large</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; set of existing identifiers, by creating an efficiently</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp; searchable collection of the skeletons.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The USpoofChecker </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The input string whose skeleton will be computed.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param dest&nbsp;&nbsp;&nbsp; The output string, to receive the skeleton string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param destCapacity&nbsp; The length of the output buffer, in bytes.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The destCapacity may be zero, in which case the function will</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return the actual length of the skeleton.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @param status&nbsp; The error code, set if an error occured while attempting to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perform the check.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A reference to the destination (skeleton) string.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; * @draft ICU 4.0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; */&nbsp; &nbsp;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">U_DRAFT UnicodeString &amp; U_EXPORT</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">uspoof_getSkeletonUnicodeString(const USpoofChecker *sc,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const UnicodeString &amp;s,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UnicodeString &amp;dest,</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UErrorCode *status);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">#endif</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">#endif</span><br style="font-family: monospace;">
+</body>
+</html>

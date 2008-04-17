@@ -55,7 +55,8 @@ public class UGtoHtml {
             ZipFile zf = new ZipFile(inFile);
             ZipEntry ze = new ZipEntry("content.xml");
             InputStream is = zf.getInputStream(ze);
-
+            
+                
             // Set up an xml parser.
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setIgnoringComments(true);
@@ -67,7 +68,7 @@ public class UGtoHtml {
             String entityBaseURL = pathToURL(new File("OODTD").getAbsolutePath() + "/");
             Document doc = builder.parse(is, entityBaseURL);
             Element root = doc.getDocumentElement();
-            
+                       
             // Build up a hash table of the auto-generated styles used in the document
             //   These are created by OO in response to applying bold, italic, etc.
             //   by hand to pieces of text, without using named styles.
@@ -156,7 +157,7 @@ public class UGtoHtml {
             if (doingSource && !(
                     xmlTag.equals("text:p") && styleAttr.equals("icu-source") ||
                     xmlTag.equals("text:s") ||
-                    xmlTag.equals("text:line-break")
+                    xmlTag.equals("text:line-break")|| xmlTag.equals("text:soft-page-break")
                     ) ) {
                 // Close off a icu-source table box.
                 fHtml.append("</pre></td></tr></table>\n");
@@ -305,7 +306,7 @@ public class UGtoHtml {
             	processChildNodes = false;
              	// ignore embedded images.
             }else if (xmlTag.equals("text:soft-page-break")){      
-                //no action   
+                fHtml.append("<br/>");   
             } else {
                 System.out.print("Unhandled <" + xmlTag);
                 if (xmlTag.startsWith("text")) {

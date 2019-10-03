@@ -9,7 +9,7 @@
 
 |           |   C                              |             J                    |
 |-----------|----------------------------------|----------------------------------|
-| Released  | [icu4c](./apidoc/released/icu4c) | [icu4j](./apidoc/released/icu4j) |
+| Released  | [icu4c 65.1](./apidoc/released/icu4c) | [icu4j 65.1](./apidoc/released/icu4j) |
 | Dev       | [icu4c](./apidoc/dev/icu4c)      | [icu4j](./apidoc/dev/icu4j)      |
 
 ## Other Docs

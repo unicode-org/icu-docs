@@ -445,9 +445,9 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
     {FALSE, FALSE, TRUE},
     {&quot;no files&quot;, &quot;one file&quot;, &quot;many files&quot;}</pre><p>Here is an example that shows formatting and parsing: </p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="choicfmt_8h.html">unicode/choicfmt.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="unistr_8h.html">unicode/unistr.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;iostream.h&gt;</span></div><div class="line"></div><div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {</div><div class="line">    <span class="keywordtype">double</span> limits[] = {1,2,3,4,5,6,7};</div><div class="line">    UnicodeString monthNames[] = {</div><div class="line">        <span class="stringliteral">&quot;Sun&quot;</span>,<span class="stringliteral">&quot;Mon&quot;</span>,<span class="stringliteral">&quot;Tue&quot;</span>,<span class="stringliteral">&quot;Wed&quot;</span>,<span class="stringliteral">&quot;Thu&quot;</span>,<span class="stringliteral">&quot;Fri&quot;</span>,<span class="stringliteral">&quot;Sat&quot;</span>};</div><div class="line">    <a class="code" href="classicu_1_1ChoiceFormat.html#a39ccafe6c07e0262cedddb604e8c4c2a">ChoiceFormat</a> fmt(limits, monthNames, 7);</div><div class="line">    UnicodeString str;</div><div class="line">    <span class="keywordtype">char</span> buf[256];</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">double</span> x = 1.0; x &lt;= 8.0; x += 1.0) {</div><div class="line">        fmt.format(x, str);</div><div class="line">        str.extract(0, str.length(), buf, 256, <span class="stringliteral">&quot;&quot;</span>);</div><div class="line">        str.truncate(0);</div><div class="line">        cout &lt;&lt; x &lt;&lt; <span class="stringliteral">&quot; -&gt; &quot;</span></div><div class="line">             &lt;&lt; buf &lt;&lt; endl;</div><div class="line">    }</div><div class="line">    cout &lt;&lt; endl;</div><div class="line">    <span class="keywordflow">return</span> 0;</div><div class="line">}</div></div><!-- fragment --><p><em>User subclasses are not supported.</em> While clients may write subclasses, such code will not necessarily work and will not be guaranteed to work stably from release to release.</p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000312">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000311">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="choicfmt_8h_source.html#l00175">175</a> of file <a class="el" href="choicfmt_8h_source.html">choicfmt.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="choicfmt_8h_source.html#l00176">176</a> of file <a class="el" href="choicfmt_8h_source.html">choicfmt.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a39ccafe6c07e0262cedddb604e8c4c2a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a39ccafe6c07e0262cedddb604e8c4c2a">&#9670;&nbsp;</a></span>ChoiceFormat() <span class="overload">[1/4]</span></h2>
@@ -483,7 +483,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000313">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000312">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -530,7 +530,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000314">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000313">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -583,7 +583,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000315">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000314">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -610,7 +610,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000316">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000315">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -638,7 +638,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
 </div><div class="memdoc">
 
 <p>Destructor. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000318">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000317">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -685,7 +685,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000321">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000320">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -738,7 +738,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000322">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000321">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -768,7 +768,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
 <p>Clones this <a class="el" href="classicu_1_1Format.html" title="Base class for all formats. ">Format</a> object. </p>
 <p>The caller owns the result and must delete it when done.</p>
 <dl class="section return"><dt>Returns</dt><dd>a copy of this object </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000319">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000318">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1NumberFormat.html#a83d4f908ba7e282927dfcdc938543cc5">icu::NumberFormat</a>.</p>
 
@@ -824,7 +824,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000329">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000328">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1NumberFormat.html#ac30ed7aea34164b9413a7fc7e6130f67">icu::NumberFormat</a>.</p>
 
@@ -880,7 +880,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000330">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000329">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1NumberFormat.html#a602293dda4ed854aee4971286d27f071">icu::NumberFormat</a>.</p>
 
@@ -936,7 +936,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000331">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000330">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classicu_1_1NumberFormat.html#ad05a458bc24e0e80214b8b33e57e785f">icu::NumberFormat</a>.</p>
 
@@ -1006,7 +1006,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000332">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000331">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -1043,7 +1043,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>NULL </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000327">Deprecated:</a></b></dt><dd>ICU 4.8 Use the <a class="el" href="classicu_1_1MessagePattern.html" title="Parses and represents ICU MessageFormat patterns. ">MessagePattern</a> class to analyze a <a class="el" href="classicu_1_1ChoiceFormat.html" title="ChoiceFormat converts between ranges of numeric values and strings for those ranges. ">ChoiceFormat</a> pattern. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000326">Deprecated:</a></b></dt><dd>ICU 4.8 Use the <a class="el" href="classicu_1_1MessagePattern.html" title="Parses and represents ICU MessageFormat patterns. ">MessagePattern</a> class to analyze a <a class="el" href="classicu_1_1ChoiceFormat.html" title="ChoiceFormat converts between ranges of numeric values and strings for those ranges. ">ChoiceFormat</a> pattern. </dd></dl>
 
 </div>
 </div>
@@ -1074,7 +1074,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
 <p>Returns a unique class ID POLYMORPHICALLY. </p>
 <p>Part of ICU's "poor man's RTTI".</p>
 <dl class="section return"><dt>Returns</dt><dd>The class ID for this object. All objects of a given class have the same class ID. Objects of other classes have different class IDs. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000334">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000333">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1NumberFormat.html#a4079988d94411e263079d144f5451136">icu::NumberFormat</a>.</p>
 
@@ -1113,7 +1113,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>NULL </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000328">Deprecated:</a></b></dt><dd>ICU 4.8 Use the <a class="el" href="classicu_1_1MessagePattern.html" title="Parses and represents ICU MessageFormat patterns. ">MessagePattern</a> class to analyze a <a class="el" href="classicu_1_1ChoiceFormat.html" title="ChoiceFormat converts between ranges of numeric values and strings for those ranges. ">ChoiceFormat</a> pattern. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000327">Deprecated:</a></b></dt><dd>ICU 4.8 Use the <a class="el" href="classicu_1_1MessagePattern.html" title="Parses and represents ICU MessageFormat patterns. ">MessagePattern</a> class to analyze a <a class="el" href="classicu_1_1ChoiceFormat.html" title="ChoiceFormat converts between ranges of numeric values and strings for those ranges. ">ChoiceFormat</a> pattern. </dd></dl>
 
 </div>
 </div>
@@ -1150,7 +1150,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>NULL </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000326">Deprecated:</a></b></dt><dd>ICU 4.8 Use the <a class="el" href="classicu_1_1MessagePattern.html" title="Parses and represents ICU MessageFormat patterns. ">MessagePattern</a> class to analyze a <a class="el" href="classicu_1_1ChoiceFormat.html" title="ChoiceFormat converts between ranges of numeric values and strings for those ranges. ">ChoiceFormat</a> pattern. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000325">Deprecated:</a></b></dt><dd>ICU 4.8 Use the <a class="el" href="classicu_1_1MessagePattern.html" title="Parses and represents ICU MessageFormat patterns. ">MessagePattern</a> class to analyze a <a class="el" href="classicu_1_1ChoiceFormat.html" title="ChoiceFormat converts between ranges of numeric values and strings for those ranges. ">ChoiceFormat</a> pattern. </dd></dl>
 
 </div>
 </div>
@@ -1184,7 +1184,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
 .       if (polymorphic_pointer-&gt;<a class="el" href="classicu_1_1ChoiceFormat.html#a33e0adc5d7bdf31326d3c298956210fe" title="Returns a unique class ID POLYMORPHICALLY. ">getDynamicClassID()</a> ==
 .           Derived::getStaticClassID()) ...
 </pre> <dl class="section return"><dt>Returns</dt><dd>The class ID for all objects of this class. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000335">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000334">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -1211,7 +1211,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000317">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000316">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -1248,7 +1248,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if other is the same as this. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000320">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000319">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classicu_1_1NumberFormat.html#a25db33790aab9b1a35c4e4801988feee">icu::NumberFormat</a>.</p>
 
@@ -1304,7 +1304,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000333">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000332">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1NumberFormat.html#ad5e4c0cda1236bc24240bafa472341cc">icu::NumberFormat</a>.</p>
 
@@ -1360,7 +1360,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000324">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000323">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -1421,7 +1421,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000325">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000324">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>
@@ -1457,7 +1457,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to 'pattern' </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000323">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000322">Deprecated:</a></b></dt><dd>ICU 49 Use <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</a> instead, with plural and select arguments. </dd></dl>
 
 </div>
 </div>

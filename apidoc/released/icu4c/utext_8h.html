@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 65.1: utext.h File Reference</title>
+<title>ICU 66.1: utext.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 65.1
-   &#160;<span id="projectnumber">65.1</span>
+   <div id="projectname">ICU 66.1
+   &#160;<span id="projectnumber">66.1</span>
    </div>
   </td>
  </tr>
@@ -317,7 +317,7 @@ ICU services to operate on that format.
 <b>Value:</b><div class="fragment"><div class="line">((ut)-&gt;chunkOffset &lt;= (ut)-&gt;nativeIndexingLimit?   \</div><div class="line">        (ut)-&gt;chunkNativeStart+(ut)-&gt;chunkOffset :     \</div><div class="line">        (ut)-&gt;pFuncs-&gt;mapOffsetToNative(ut))</div></div><!-- fragment -->
 <p>inline version of <a class="el" href="utext_8h.html#acd28c25814787d3d1620e3edb8f917fd" title="Get the current iterator position, which can range from 0 to the length of the text. ">utext_getNativeIndex()</a>, for performance-critical situations. </p>
 <p>Get the current iterator position, which can range from 0 to the length of the text. The position is a native index into the input text, in whatever format it may have (possibly UTF-8 for example), and may not always be the same as the corresponding UChar (UTF-16) index. The returned position will always be aligned to a code point boundary.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003123">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003136">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l00753">753</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -339,7 +339,7 @@ ICU services to operate on that format.
 </div><!-- fragment -->
 <p>initializer to be used with local (stack) instances of a <a class="el" href="structUText.html" title="UText struct. ">UText</a> struct. </p>
 <p><a class="el" href="structUText.html" title="UText struct. ">UText</a> structs must be initialized before passing them to one of the utext_open functions.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003143">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003156">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l01577">1577</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -364,7 +364,7 @@ ICU services to operate on that format.
 </div><!-- fragment -->
 <p>inline version of <a class="el" href="utext_8h.html#ad4c8e3ba851a3482b2c77cc58cff9ad0" title="Get the code point at the current iteration position of the UText, and advance the position to the fi...">utext_next32()</a>, for performance-critical situations. </p>
 <p>Get the code point at the current iteration position of the <a class="el" href="structUText.html" title="UText struct. ">UText</a>, and advance the position to the first index following the character. This is a post-increment operation. Returns U_SENTINEL (-1) if the position is at the end of the text.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003121">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003134">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l00722">722</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -389,7 +389,7 @@ ICU services to operate on that format.
 </div><!-- fragment -->
 <p>inline version of <a class="el" href="utext_8h.html#af762d727316244730b78667d12e26dd6" title="Move the iterator position to the character (code point) whose index precedes the current position...">utext_previous32()</a>, for performance-critical situations. </p>
 <p>Move the iterator position to the character (code point) whose index precedes the current position, and return that character. This is a pre-decrement operation. Returns U_SENTINEL (-1) if the position is at the start of the text.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003122">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003135">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l00736">736</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -425,7 +425,7 @@ ICU services to operate on that format.
 </div><!-- fragment -->
 <p>inline version of <a class="el" href="utext_8h.html#a530b4bb7f0e577008e4930f2b39ecd8a" title="Set the current iteration position to the nearest code point boundary at or preceding the specified i...">utext_setNativeIndex()</a>, for performance-critical situations. </p>
 <p>Set the current iteration position to the nearest code point boundary at or preceding the specified index. The index is in the native units of the original input text. If the index is out of range, it will be pinned to be within the range of the input text.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003124">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003137">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l00769">769</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -445,7 +445,7 @@ ICU services to operate on that format.
 </div><div class="memdoc">
 
 <p>C typedef for struct <a class="el" href="structUText.html" title="UText struct. ">UText</a>. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003098">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003111">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l00153">153</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -476,7 +476,7 @@ ICU services to operate on that format.
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the requested index could be accessed. The chunk will contain the requested text. False value if a chunk cannot be accessed (the requested index is out of bounds).</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structUText.html" title="UText struct. ">UText</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003133">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003146">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l01043">1043</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -510,7 +510,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The newly created clone, or NULL if the clone operation failed.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003131">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003144">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l01003">1003</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -538,7 +538,7 @@ ICU services to operate on that format.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003139">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003152">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l01201">1201</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -572,7 +572,7 @@ ICU services to operate on that format.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003136">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003149">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l01142">1142</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -606,7 +606,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of UChars in the data. Does not include a trailing NUL.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003134">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003147">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l01073">1073</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -654,7 +654,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Chunk-relative UTF-16 offset corresponding to the specified native index.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003138">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003151">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l01180">1180</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -682,7 +682,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Absolute (native) index corresponding to chunkOffset in the current chunk. The returned native index should always be to a code point boundary.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003137">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003150">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l01162">1162</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -709,7 +709,7 @@ ICU services to operate on that format.
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the length, in the native units of the original text string. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structUText.html" title="UText struct. ">UText</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003132">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003145">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l01015">1015</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -744,7 +744,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The signed number of (native) storage units by which the length of the text expanded or contracted.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003135">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003148">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utext_8h_source.html#l01108">1108</a> of file <a class="el" href="utext_8h_source.html">utext.h</a>.</p>
 
@@ -768,21 +768,21 @@ ICU services to operate on that format.
 <dl class="stable"><dt><b>Stable:</b></dt><dd>ICU 3.4 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a80155586fa275b28773c9b203f52cabaa752c07f9df260b5b0e234e15eab97f9f"></a>UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE&#160;</td><td class="fielddoc"><p>It is potentially time consuming for the provider to determine the length of the text. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003145">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003158">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a80155586fa275b28773c9b203f52cabaa52bb5c9cacd1f46eb87a856c71c073be"></a>UTEXT_PROVIDER_STABLE_CHUNKS&#160;</td><td class="fielddoc"><p>Text chunks remain valid and usable until the text object is modified or deleted, not just until the next time the access() function is called (which is the default). </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003146">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003159">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a80155586fa275b28773c9b203f52cabaac67ce6ecf6bf959645e282f7194fbe3b"></a>UTEXT_PROVIDER_WRITABLE&#160;</td><td class="fielddoc"><p>The provider supports modifying the text via the replace() and copy() functions. </p>
 <dl class="section see"><dt>See also</dt><dd>Replaceable </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003147">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003160">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a80155586fa275b28773c9b203f52cabaa40c5cd24aea472f3752b4833b9ce63ca"></a>UTEXT_PROVIDER_HAS_META_DATA&#160;</td><td class="fielddoc"><p>There is meta data associated with the text. </p>
 <dl class="section see"><dt>See also</dt><dd>Replaceable::hasMetaData() </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003148">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003161">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a80155586fa275b28773c9b203f52cabaa75695072a896ec104b5d77598a7429f7"></a>UTEXT_PROVIDER_OWNS_TEXT&#160;</td><td class="fielddoc"><p>Text provider owns the text storage. </p>
-<p>Generally occurs as the result of a deep clone of the <a class="el" href="structUText.html" title="UText struct. ">UText</a>. When closing the <a class="el" href="structUText.html" title="UText struct. ">UText</a>, the associated text must also be closed/deleted/freed/ whatever is appropriate. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003149">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<p>Generally occurs as the result of a deep clone of the <a class="el" href="structUText.html" title="UText struct. ">UText</a>. When closing the <a class="el" href="structUText.html" title="UText struct. ">UText</a>, the associated text must also be closed/deleted/freed/ whatever is appropriate. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003162">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 </table>
 
@@ -847,7 +847,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the code point at the specified index. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003110">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003123">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -916,7 +916,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The newly created clone, or NULL if the clone operation failed. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003106">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003119">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -947,7 +947,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>NULL if the <a class="el" href="structUText.html" title="UText struct. ">UText</a> struct was deleted by the close. If the <a class="el" href="structUText.html" title="UText struct. ">UText</a> struct was originally provided by the caller to the open function, it is returned by this function, and may be safely used again in a subsequent utext_open.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003099">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003112">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1018,7 +1018,7 @@ ICU services to operate on that format.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003128">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003141">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1046,7 +1046,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the Unicode code point at the current iterator position. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003111">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003124">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1086,7 +1086,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if the two UTexts are equal. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003107">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003120">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -1157,7 +1157,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of UChars in the data to be extracted. Does not include a trailing NUL.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003120">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003133">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1186,7 +1186,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utext_8h.html#af67295033b5dc1b2951b8b05e5ce9222" title="Return TRUE if the text can be written (modified) with utext_replace() or utext_copy(). ">utext_isWritable()</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003129">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003142">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -1215,7 +1215,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the current index position, in the native units of the text provider. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003116">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003129">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1245,7 +1245,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the native index of the character preceding the current index position, or zero if the current position is at the start of the text. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003119">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003132">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -1274,7 +1274,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if the underlying text includes meta data. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003126">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003139">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1304,7 +1304,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if determining the length of the text could be time consuming. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003109">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003122">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1339,7 +1339,7 @@ ICU services to operate on that format.
 <a class="el" href="utext_8h.html#aa781cea4987dda8a7c5f0351e311bf07" title="Replace a range of the original text with a replacement text. ">utext_replace()</a> </dd>
 <dd>
 <a class="el" href="utext_8h.html#abe74b66b8da9b9de17ea7e59af395c53" title="Copy or move a substring from one position to another within the text, while retaining any metadata a...">utext_copy()</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003125">Stable:</a></b></dt><dd>ICU 3.4</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003138">Stable:</a></b></dt><dd>ICU 3.4</dd></dl>
 
 </div>
 </div>
@@ -1380,7 +1380,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if the position could be moved the requested number of positions while staying within the range [0 - text length]. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003118">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003131">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1409,7 +1409,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the length of the text, expressed in native units.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003108">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003121">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1441,7 +1441,7 @@ ICU services to operate on that format.
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the Unicode code point at the iteration position. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utext_8h.html#aa4b973aeeb5f10f8aec454545f85b6a2" title="inline version of utext_next32(), for performance-critical situations. ">UTEXT_NEXT32</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003112">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003125">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1481,7 +1481,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Code point which starts at or before index, or U_SENTINEL (-1) if it is out of bounds. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003114">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003127">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1528,7 +1528,7 @@ ICU services to operate on that format.
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the <a class="el" href="structUText.html" title="UText struct. ">UText</a>. If a <a class="el" href="structUText.html" title="UText struct. ">UText</a> was supplied as input, this will always be used and returned. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Replaceable </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003105">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003118">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1575,7 +1575,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the <a class="el" href="structUText.html" title="UText struct. ">UText</a>. If a <a class="el" href="structUText.html" title="UText struct. ">UText</a> was supplied as input, this will always be used and returned. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003103">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003116">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1622,7 +1622,7 @@ ICU services to operate on that format.
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the <a class="el" href="structUText.html" title="UText struct. ">UText</a>. If a <a class="el" href="structUText.html" title="UText struct. ">UText</a> was supplied as input, this will always be used and returned. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Replaceable </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003104">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003117">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1675,7 +1675,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the <a class="el" href="structUText.html" title="UText struct. ">UText</a>. If a pre-allocated <a class="el" href="structUText.html" title="UText struct. ">UText</a> was provided, it will always be used and returned. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003101">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003114">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1721,7 +1721,7 @@ ICU services to operate on that format.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the <a class="el" href="structUText.html" title="UText struct. ">UText</a>. If a <a class="el" href="structUText.html" title="UText struct. ">UText</a> was supplied as input, this will always be used and returned. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003102">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003115">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1780,7 +1780,7 @@ Any other illegal bytes will each be replaced by a \uFFFD.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the <a class="el" href="structUText.html" title="UText struct. ">UText</a>. If a pre-allocated <a class="el" href="structUText.html" title="UText struct. ">UText</a> was provided, it will always be used and returned. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003100">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003113">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1812,7 +1812,7 @@ Any other illegal bytes will each be replaced by a \uFFFD.
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the previous UChar32 code point, or U_SENTINEL (-1) if the iteration has reached the start of the text. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utext_8h.html#a8aa3d9bae7b252622fe8e70e87758205" title="inline version of utext_previous32(), for performance-critical situations. ">UTEXT_PREVIOUS32</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003113">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003126">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1853,7 +1853,7 @@ Any other illegal bytes will each be replaced by a \uFFFD.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Code point preceding the one at the initial index, or U_SENTINEL (-1) if it is out of bounds.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003115">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003128">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1923,7 +1923,7 @@ Any other illegal bytes will each be replaced by a \uFFFD.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The signed number of (native) storage units by which the length of the text expanded or contracted.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003127">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003140">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1964,7 +1964,7 @@ Any other illegal bytes will each be replaced by a \uFFFD.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003117">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003130">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -2011,7 +2011,7 @@ Any other illegal bytes will each be replaced by a \uFFFD.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to the <a class="el" href="structUText.html" title="UText struct. ">UText</a>, allocated if necessary, with extra space set up if requested. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003142">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003155">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 65.1: uset.h File Reference</title>
+<title>ICU 66.1: uset.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 65.1
-   &#160;<span id="projectnumber">65.1</span>
+   <div id="projectname">ICU 66.1
+   &#160;<span id="projectnumber">66.1</span>
    </div>
   </td>
  </tr>
@@ -294,7 +294,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A serialized form of a Unicode set. </p>
-<p>Limited manipulations are possible directly on a serialized set. See below. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002854">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<p>Limited manipulations are possible directly on a serialized set. See below. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002867">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -311,7 +311,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>USet is the C API type corresponding to C++ class UnicodeSet. </p>
-<p>Use the uset_* API to manipulate. Create with uset_open*, and destroy with uset_close. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002851">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<p>Use the uset_* API to manipulate. Create with uset_open*, and destroy with uset_close. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002864">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uset_8h_source.html#l00047">47</a> of file <a class="el" href="uset_8h_source.html">uset.h</a>.</p>
 
@@ -345,7 +345,7 @@ Functions</h2></td></tr>
 </ul>
 <p>Note: If it is important to get the same boundaries whether iterating forward or backward through a string, then either only span() should be used and the boundaries cached for backward operation, or an ICU BreakIterator could be used.</p>
 <p>Note: Unpaired surrogates are treated like surrogate code points. Similarly, set strings match only on code point boundaries, never in the middle of a surrogate pair. Illegal UTF-8 sequences are treated like U+FFFD. When processing UTF-8 strings, malformed set strings (strings with unpaired surrogates which cannot be converted to UTF-8) are ignored.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002853">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002866">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -366,17 +366,17 @@ Functions</h2></td></tr>
 <dl class="stable"><dt><b>Stable:</b></dt><dd>ICU 2.4 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da0273be77d90674cbb82a37f9edb504ff"></a>USET_IGNORE_SPACE&#160;</td><td class="fielddoc"><p>Ignore white space within patterns unless quoted or escaped. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002911">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002924">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da740685a55f610ca84868b60aef83db7b"></a>USET_CASE_INSENSITIVE&#160;</td><td class="fielddoc"><p>Enable case insensitive matching. </p>
 <p>E.g., "[ab]" with this flag will match 'a', 'A', 'b', and 'B'. "[^ab]" with this flag will match all except 'a', 'A', 'b', and 'B'. This performs a full closure over case mappings, e.g. U+017F for s.</p>
 <p>The resulting set is a superset of the input for the code points but not for the strings. It performs a case mapping closure of the code points and adds full case folding strings for the code points, and reduces strings of the original set to their full case folding equivalents.</p>
 <p>This is designed for case-insensitive matches, for example in regular expressions. The full code point case closure allows checking of an input character directly against the closure set. Strings are matched by comparing the case-folded form from the closure set with an incremental case folding of the string in question.</p>
 <p>The closure set will also contain single code points if the original set contained case-equivalent strings (like U+00DF for "ss" or "Ss" etc.). This is not necessary (that is, redundant) for the above matching method but results in the same closure sets regardless of whether the original set contained the code point or a string.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002912">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002925">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da68133c690985f92d95996e4cf9abd80d"></a>USET_ADD_CASE_MAPPINGS&#160;</td><td class="fielddoc"><p>Enable case insensitive matching. </p>
-<p>E.g., "[ab]" with this flag will match 'a', 'A', 'b', and 'B'. "[^ab]" with this flag will match all except 'a', 'A', 'b', and 'B'. This adds the lower-, title-, and uppercase mappings as well as the case folding of each existing element in the set. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002913">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<p>E.g., "[ab]" with this flag will match 'a', 'A', 'b', and 'B'. "[^ab]" with this flag will match all except 'a', 'A', 'b', and 'B'. This adds the lower-, title-, and uppercase mappings as well as the case folding of each existing element in the set. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002926">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 </td></tr>
 </table>
 
@@ -397,7 +397,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aba01db17f4a2bfbc3db60dc172972a25a755814d28a97e9ab24a450e008644d81"></a>USET_SERIALIZED_STATIC_ARRAY_CAPACITY&#160;</td><td class="fielddoc"><p>Capacity of <a class="el" href="structUSerializedSet.html#a081a169f02575428ad27411aa5451bfc" title="A small buffer for the array to reduce memory allocations. ">USerializedSet::staticArray</a>. </p>
-<p>Enough for any single-code point set. Also provides padding for nice sizeof(USerializedSet). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002917">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<p>Enough for any single-code point set. Also provides padding for nice sizeof(USerializedSet). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002930">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 </td></tr>
 </table>
 
@@ -433,18 +433,18 @@ Functions</h2></td></tr>
 </ul>
 <p>Note: If it is important to get the same boundaries whether iterating forward or backward through a string, then either only span() should be used and the boundaries cached for backward operation, or an ICU BreakIterator could be used.</p>
 <p>Note: Unpaired surrogates are treated like surrogate code points. Similarly, set strings match only on code point boundaries, never in the middle of a surrogate pair. Illegal UTF-8 sequences are treated like U+FFFD. When processing UTF-8 strings, malformed set strings (strings with unpaired surrogates which cannot be converted to UTF-8) are ignored.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002853">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002866">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5fc2e77dd6c8385e0e88fc6a7d72d9b4a02c1d43f074e8153eddaa79eb74d80f4"></a>USET_SPAN_NOT_CONTAINED&#160;</td><td class="fielddoc"><p>Continues a span() while there is no set element at the current position. </p>
 <p>Increments by one code point at a time. Stops before the first set element (character or string). (For code points only, this is like while contains(current)==FALSE).</p>
 <p>When span() returns, the substring between where it started and the position it returned consists only of characters that are not in the set, and none of its strings overlap with the span.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002914">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002927">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5fc2e77dd6c8385e0e88fc6a7d72d9b4a0a731ae6bad64429eeb153b8704e4d40"></a>USET_SPAN_CONTAINED&#160;</td><td class="fielddoc"><p>Spans the longest substring that is a concatenation of set elements (characters or strings). </p>
 <p>(For characters only, this is like while contains(current)==TRUE).</p>
 <p>When span() returns, the substring between where it started and the position it returned consists only of set elements (characters or strings) that are in the set.</p>
 <p>If a set contains strings, then the span will be the longest substring for which there exists at least one non-overlapping concatenation of set elements (characters or strings). This is equivalent to a POSIX regular expression for <code>(OR of each set element)*</code>. (Java/ICU/Perl regex stops at the first match of an OR.)</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002915">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002928">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5fc2e77dd6c8385e0e88fc6a7d72d9b4a79e5e08a799906f1de00a58f189a3f3a"></a>USET_SPAN_SIMPLE&#160;</td><td class="fielddoc"><p>Continues a span() while there is a set element at the current position. </p>
 <p>Increments by the longest matching element at each position. (For characters only, this is like while contains(current)==TRUE).</p>
@@ -452,7 +452,7 @@ Functions</h2></td></tr>
 <p>If a set only contains single characters, then this is the same as USET_SPAN_CONTAINED.</p>
 <p>If a set contains strings, then the span will be the longest substring with a match at each position with the longest single set element (character or string).</p>
 <p>Use this span condition together with other longest-match algorithms, such as ICU converters (<a class="el" href="ucnv_8h.html#aec7c273c8ce917ff75224e25914c53be" title="Returns the set of Unicode code points that can be converted by an ICU converter. ...">ucnv_getUnicodeSet()</a>).</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002916">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002929">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5fc2e77dd6c8385e0e88fc6a7d72d9b4a6b1ad879b4752df1122a027e528a89d0"></a>USET_SPAN_CONDITION_COUNT&#160;</td><td class="fielddoc"><p>One more than the last span condition. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000131">Deprecated:</a></b></dt><dd>ICU 58 The numeric value may change over time, see ICU ticket #12420. </dd></dl>
@@ -498,7 +498,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002870">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002883">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -537,7 +537,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002871">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002884">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 
 </div>
 </div>
@@ -582,7 +582,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002874">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002887">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -627,7 +627,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002872">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002885">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
 
 </div>
 </div>
@@ -672,7 +672,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002873">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002886">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -725,7 +725,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002866">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002879">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -785,7 +785,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Upon successful parse, the value is either the index of the character after the closing ']' of the parsed pattern. If the status code indicates failure, then the return value is the index of the error in the source.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002865">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002878">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
 </div>
 </div>
@@ -858,7 +858,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002867">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002880">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -897,7 +897,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the character at the given index, or (UChar32)-1. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002892">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002905">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -924,7 +924,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002884">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002897">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -953,7 +953,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the newly allocated copy of the set </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uset_8h.html#a6b84cdeb472adde6bfa8b7ea7f33f0d4" title="Clone the set and make the clone mutable. ">uset_cloneAsThawed</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002860">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002873">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -986,7 +986,7 @@ Functions</h2></td></tr>
 <a class="el" href="uset_8h.html#ac56a97260c2b1092381111b5004c9e40" title="Determines whether the set has been frozen (made immutable) or not. ">uset_isFrozen</a> </dd>
 <dd>
 <a class="el" href="uset_8h.html#a1965f27413bb1fee1cc03bdfb061148e" title="Returns a copy of this object. ">uset_clone</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002863">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002876">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -1013,7 +1013,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002859">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002872">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1059,7 +1059,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002885">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002898">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1087,7 +1087,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002881">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002894">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -1114,7 +1114,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002882">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002895">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1153,7 +1153,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002883">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002896">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -1192,7 +1192,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if set contains c </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002888">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002901">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1231,7 +1231,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the test condition is met </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002896">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002909">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -1277,7 +1277,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the test condition is met </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002897">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002910">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1316,7 +1316,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the test condition is met </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002898">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002911">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -1362,7 +1362,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if set contains the range </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002889">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002902">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
 
 </div>
 </div>
@@ -1401,7 +1401,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the test condition is met </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002899">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002912">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -1447,7 +1447,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if set contains str </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002890">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002903">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1486,7 +1486,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the test condition is met </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002904">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002917">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -1517,7 +1517,7 @@ Functions</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uset_8h.html#ac56a97260c2b1092381111b5004c9e40" title="Determines whether the set has been frozen (made immutable) or not. ">uset_isFrozen</a> </dd>
 <dd>
 <a class="el" href="uset_8h.html#a6b84cdeb472adde6bfa8b7ea7f33f0d4" title="Clone the set and make the clone mutable. ">uset_cloneAsThawed</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002862">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002875">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -1591,7 +1591,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the length of the string (&gt;= 2), or 0 if the item is a range, in which case it is the range *start..*end, or -1 if itemIndex is out of range </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002895">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002908">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1619,7 +1619,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a non-negative integer counting the character ranges and/or strings contained in set </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002894">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002907">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1672,7 +1672,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if rangeIndex is valid, otherwise false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002910">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002923">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1700,7 +1700,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a non-negative integer counting the character ranges contained in set </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002909">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002922">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1746,7 +1746,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the given array is valid, otherwise false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002906">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002919">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1785,7 +1785,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an index from 0..size()-1, or -1 </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002891">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002904">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -1813,7 +1813,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if set is empty </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002887">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002900">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1844,7 +1844,7 @@ Functions</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uset_8h.html#a851fc7d7e6920ff73fb9529d75aba387" title="Freeze the set (make it immutable). ">uset_freeze</a> </dd>
 <dd>
 <a class="el" href="uset_8h.html#a6b84cdeb472adde6bfa8b7ea7f33f0d4" title="Clone the set and make the clone mutable. ">uset_cloneAsThawed</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002861">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002874">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -1883,7 +1883,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a newly created USet. The caller must call <a class="el" href="uset_8h.html#abb0d0fb8d660204fd7fef7fe920bb70c" title="Disposes of the storage used by a USet object. ">uset_close()</a> on it when done. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002856">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002869">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1905,7 +1905,7 @@ Functions</h2></td></tr>
 
 <p>Create an empty USet object. </p>
 <p>Equivalent to uset_open(1, 0). </p><dl class="section return"><dt>Returns</dt><dd>a newly created USet. The caller must call <a class="el" href="uset_8h.html#abb0d0fb8d660204fd7fef7fe920bb70c" title="Disposes of the storage used by a USet object. ">uset_close()</a> on it when done. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002855">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002868">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1950,7 +1950,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002857">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002870">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -2002,7 +2002,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002858">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002871">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -2040,7 +2040,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002875">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002888">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -2078,7 +2078,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002878">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002891">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -2105,7 +2105,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002886">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002899">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -2150,7 +2150,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002876">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002889">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
 
 </div>
 </div>
@@ -2195,7 +2195,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002877">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002890">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -2240,7 +2240,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002868">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002881">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -2286,7 +2286,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002879">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002892">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -2325,7 +2325,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002880">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002893">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -2385,7 +2385,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the total length of the serialized format, including the header, that is, n+2*m+(m!=0?2:1), or 0 on error other than U_BUFFER_OVERFLOW_ERROR. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002905">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002918">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -2424,7 +2424,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if set contains c </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002908">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002921">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -2469,7 +2469,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002864">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002877">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -2507,7 +2507,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002907">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002920">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -2535,7 +2535,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a non-negative integer counting the characters and strings contained in set </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002893">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002906">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -2588,7 +2588,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the length of the initial substring according to the spanCondition; 0 if the start of the string does not fit the spanCondition </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002900">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002913">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uset_8h.html#a5fc2e77dd6c8385e0e88fc6a7d72d9b4" title="Argument values for whether span() and similar functions continue while the current character is cont...">USetSpanCondition</a> </dd></dl>
 
 </div>
@@ -2642,7 +2642,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the start of the trailing substring according to the spanCondition; the string length if the end of the string does not fit the spanCondition </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002901">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002914">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uset_8h.html#a5fc2e77dd6c8385e0e88fc6a7d72d9b4" title="Argument values for whether span() and similar functions continue while the current character is cont...">USetSpanCondition</a> </dd></dl>
 
 </div>
@@ -2696,7 +2696,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the start of the trailing substring according to the spanCondition; the string length if the end of the string does not fit the spanCondition </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002903">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002916">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uset_8h.html#a5fc2e77dd6c8385e0e88fc6a7d72d9b4" title="Argument values for whether span() and similar functions continue while the current character is cont...">USetSpanCondition</a> </dd></dl>
 
 </div>
@@ -2750,7 +2750,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the length of the initial substring according to the spanCondition; 0 if the start of the string does not fit the spanCondition </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002902">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002915">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uset_8h.html#a5fc2e77dd6c8385e0e88fc6a7d72d9b4" title="Argument values for whether span() and similar functions continue while the current character is cont...">USetSpanCondition</a> </dd></dl>
 
 </div>
@@ -2811,7 +2811,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>length of string, possibly larger than resultCapacity </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002869">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002882">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>

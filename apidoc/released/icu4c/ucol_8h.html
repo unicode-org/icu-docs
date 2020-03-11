@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 65.1: ucol.h File Reference</title>
+<title>ICU 66.1: ucol.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 65.1
-   &#160;<span id="projectnumber">65.1</span>
+   <div id="projectname">ICU 66.1
+   &#160;<span id="projectnumber">66.1</span>
    </div>
   </td>
  </tr>
@@ -372,7 +372,7 @@ Functions</h2></td></tr>
 <p>Diacritical differences on the same base letter represent a secondary difference. Set comparison level to UCOL_SECONDARY to ignore tertiary differences. Use this to set the strength of a Collator object. Example of secondary difference, "&amp;auml;" &gt;&gt; "a".</p>
 <p>Uppercase and lowercase versions of the same character represents a tertiary difference. Set comparison level to UCOL_TERTIARY to include all comparison differences. Use this to set the strength of a Collator object. Example of tertiary difference, "abc" &lt;&lt;&lt; "ABC".</p>
 <p>Two characters are considered "identical" when they have the same unicode spellings. UCOL_IDENTICAL. For example, "&amp;auml;" == "&amp;auml;".</p>
-<p>UCollationStrength is also used to determine the strength of sort keys generated from UCollator objects These values can be now found in the UColAttributeValue enum. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005408">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>UCollationStrength is also used to determine the strength of sort keys generated from UCollator objects These values can be now found in the UColAttributeValue enum. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005421">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="ucol_8h_source.html#l00236">236</a> of file <a class="el" href="ucol_8h_source.html">ucol.h</a>.</p>
 
@@ -391,7 +391,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>structure representing a collator object instance </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005404">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005417">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="ucol_8h_source.html#l00058">58</a> of file <a class="el" href="ucol_8h_source.html">ucol.h</a>.</p>
 
@@ -411,30 +411,30 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Attributes that collation service understands. </p>
-<p>All the attributes can take UCOL_DEFAULT value, as well as the values specific to each one. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005409">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>All the attributes can take UCOL_DEFAULT value, as well as the values specific to each one. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005422">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a583fbe7fc4a850e2fcc692e766d2826ca580844224ecd5721b5bf4716426a268a"></a>UCOL_FRENCH_COLLATION&#160;</td><td class="fielddoc"><p>Attribute for direction of secondary weights - used in Canadian French. </p>
-<p>Acceptable values are UCOL_ON, which results in secondary weights being considered backwards and UCOL_OFF which treats secondary weights in the order they appear. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005462">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Acceptable values are UCOL_ON, which results in secondary weights being considered backwards and UCOL_OFF which treats secondary weights in the order they appear. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005475">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a583fbe7fc4a850e2fcc692e766d2826cae979ae2dd00543d6ac89936fcc500f54"></a>UCOL_ALTERNATE_HANDLING&#160;</td><td class="fielddoc"><p>Attribute for handling variable elements. </p>
-<p>Acceptable values are UCOL_NON_IGNORABLE (default) which treats all the codepoints with non-ignorable primary weights in the same way, and UCOL_SHIFTED which causes codepoints with primary weights that are equal or below the variable top value to be ignored on primary level and moved to the quaternary level. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005463">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Acceptable values are UCOL_NON_IGNORABLE (default) which treats all the codepoints with non-ignorable primary weights in the same way, and UCOL_SHIFTED which causes codepoints with primary weights that are equal or below the variable top value to be ignored on primary level and moved to the quaternary level. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005476">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a583fbe7fc4a850e2fcc692e766d2826ca04e048554399e8d90e0f84ab8a059c97"></a>UCOL_CASE_FIRST&#160;</td><td class="fielddoc"><p>Controls the ordering of upper and lower case letters. </p>
-<p>Acceptable values are UCOL_OFF (default), which orders upper and lower case letters in accordance to their tertiary weights, UCOL_UPPER_FIRST which forces upper case letters to sort before lower case letters, and UCOL_LOWER_FIRST which does the opposite. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005464">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Acceptable values are UCOL_OFF (default), which orders upper and lower case letters in accordance to their tertiary weights, UCOL_UPPER_FIRST which forces upper case letters to sort before lower case letters, and UCOL_LOWER_FIRST which does the opposite. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005477">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a583fbe7fc4a850e2fcc692e766d2826ca5439a6821b5e3b9de592098dabef1f4e"></a>UCOL_CASE_LEVEL&#160;</td><td class="fielddoc"><p>Controls whether an extra case level (positioned before the third level) is generated or not. </p>
-<p>Acceptable values are UCOL_OFF (default), when case level is not generated, and UCOL_ON which causes the case level to be generated. Contents of the case level are affected by the value of UCOL_CASE_FIRST attribute. A simple way to ignore accent differences in a string is to set the strength to UCOL_PRIMARY and enable case level. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005465">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Acceptable values are UCOL_OFF (default), when case level is not generated, and UCOL_ON which causes the case level to be generated. Contents of the case level are affected by the value of UCOL_CASE_FIRST attribute. A simple way to ignore accent differences in a string is to set the strength to UCOL_PRIMARY and enable case level. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005478">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a583fbe7fc4a850e2fcc692e766d2826caef5f0957c1d75026720fe4e1fafabc51"></a>UCOL_NORMALIZATION_MODE&#160;</td><td class="fielddoc"><p>Controls whether the normalization check and necessary normalizations are performed. </p>
-<p>When set to UCOL_OFF (default) no normalization check is performed. The correctness of the result is guaranteed only if the input data is in so-called FCD form (see users manual for more info). When set to UCOL_ON, an incremental check is performed to see whether the input data is in the FCD form. If the data is not in the FCD form, incremental NFD normalization is performed. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005466">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>When set to UCOL_OFF (default) no normalization check is performed. The correctness of the result is guaranteed only if the input data is in so-called FCD form (see users manual for more info). When set to UCOL_ON, an incremental check is performed to see whether the input data is in the FCD form. If the data is not in the FCD form, incremental NFD normalization is performed. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005479">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a583fbe7fc4a850e2fcc692e766d2826ca62a765fae5bc78a300665939f3770803"></a>UCOL_DECOMPOSITION_MODE&#160;</td><td class="fielddoc"><p>An alias for UCOL_NORMALIZATION_MODE attribute. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005467">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005480">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a583fbe7fc4a850e2fcc692e766d2826ca46616a060f4d1d81196f27b51ef5f9ff"></a>UCOL_STRENGTH&#160;</td><td class="fielddoc"><p>The strength attribute. </p>
 <p>Can be either UCOL_PRIMARY, UCOL_SECONDARY, UCOL_TERTIARY, UCOL_QUATERNARY or UCOL_IDENTICAL. The usual strength for most locales (except Japanese) is tertiary.</p>
 <p>Quaternary strength is useful when combined with shifted setting for alternate handling attribute and for JIS X 4061 collation, when it is used to distinguish between Katakana and Hiragana. Otherwise, quaternary level is affected only by the number of non-ignorable code points in the string.</p>
-<p>Identical strength is rarely useful, as it amounts to codepoints of the NFD form of the string. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005468">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Identical strength is rarely useful, as it amounts to codepoints of the NFD form of the string. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005481">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a583fbe7fc4a850e2fcc692e766d2826ca60b94665bb1469bfed55543e3e9e3651"></a>UCOL_HIRAGANA_QUATERNARY_MODE&#160;</td><td class="fielddoc"><p>When turned on, this attribute positions Hiragana before all non-ignorables on quaternary level This is a sneaky way to produce JIS sort order. </p>
 <p>This attribute was an implementation detail of the CLDR Japanese tailoring. Since ICU 50, this attribute is not settable any more via API functions. Since CLDR 25/ICU 53, explicit quaternary relations are used to achieve the same Japanese sort order.</p>
@@ -443,7 +443,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a583fbe7fc4a850e2fcc692e766d2826ca2efca83794416797ef04abda570c6f5b"></a>UCOL_NUMERIC_COLLATION&#160;</td><td class="fielddoc"><p>When turned on, this attribute makes substrings of digits sort according to their numeric values. </p>
 <p>This is a way to get '100' to sort AFTER '2'. Note that the longest digit substring that can be treated as a single unit is 254 digits (not counting leading zeros). If a digit substring is longer than that, the digits beyond the limit will be treated as a separate digit substring.</p>
 <p>A "digit" in this sense is a code point with General_Category=Nd, which does not include circled numbers, roman numerals, etc. Only a contiguous digit substring is considered, that is, non-negative integers without separators. There is no support for plus/minus signs, decimals, exponents, etc.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005469">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005482">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a583fbe7fc4a850e2fcc692e766d2826ca9b2d19cbeac7a64b3d0354046a3c2fa0"></a>UCOL_ATTRIBUTE_COUNT&#160;</td><td class="fielddoc"><p>One more than the highest normal UColAttribute value. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000406">Deprecated:</a></b></dt><dd>ICU 58 The numeric value may change over time, see ICU ticket #12420. </dd></dl>
@@ -467,7 +467,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enum containing attribute values for controling collation behavior. </p>
-<p>Here are all the allowable values. Not every attribute can take every value. The only universal value is UCOL_DEFAULT, which resets the attribute value to the predefined value for that locale </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005406">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Here are all the allowable values. Not every attribute can take every value. The only universal value is UCOL_DEFAULT, which resets the attribute value to the predefined value for that locale </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005419">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="acc801048729e684bcabed328be85f77aa4463bb61ef754d062635567e42561a06"></a>UCOL_DEFAULT&#160;</td><td class="fielddoc"><p>accepted by most attributes </p>
 </td></tr>
@@ -519,7 +519,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>enum that is taken by ucol_getBound API See below for explanation do not change the values assigned to the members of this enum. </p>
-<p>Underlying code depends on them having these numbers </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005437">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Underlying code depends on them having these numbers </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005450">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa3b11e0e399df62d3048174b8309657ca07971cd4fb76b1ac281462f5b2a70fd5"></a>UCOL_BOUND_LOWER&#160;</td><td class="fielddoc"><p>lower bound </p>
 </td></tr>
@@ -550,7 +550,7 @@ Functions</h2></td></tr>
 
 <p>UCOL_LESS is returned if source string is compared to be less than target string in the <a class="el" href="ucol_8h.html#aa194d8b0092106c0fea4070060790694" title="Compare two strings. ">ucol_strcoll()</a> method. </p>
 <p>UCOL_EQUAL is returned if source string is compared to be equal to target string in the <a class="el" href="ucol_8h.html#aa194d8b0092106c0fea4070060790694" title="Compare two strings. ">ucol_strcoll()</a> method. UCOL_GREATER is returned if source string is compared to be greater than target string in the <a class="el" href="ucol_8h.html#aa194d8b0092106c0fea4070060790694" title="Compare two strings. ">ucol_strcoll()</a> method. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#aa194d8b0092106c0fea4070060790694" title="Compare two strings. ">ucol_strcoll()</a> </dd></dl>
-<p>Possible values for a comparison result </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005405">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Possible values for a comparison result </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005418">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8b4e71db8109af87f84ac1576e2b245dad62021a93c87f18e7d7400aeae76afbe"></a>UCOL_EQUAL&#160;</td><td class="fielddoc"><p>string a == string b </p>
 </td></tr>
@@ -584,34 +584,34 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#a3d52959dc92e90d2bccc800fab679e65" title="Retrieves the reorder codes that are grouped with the given reorder code. ">ucol_getEquivalentReorderCodes</a> </dd>
 <dd>
 <a class="el" href="uscript_8h.html#afee717f56927f828c0fe8aaa3f637303" title="Constants for ISO 15924 script codes. ">UScriptCode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005407">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005420">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae491f1262ff311f19e74830eb685f887a21f7a26a846970611988c3bd5540e292"></a>UCOL_REORDER_CODE_DEFAULT&#160;</td><td class="fielddoc"><p>A special reordering code that is used to specify the default reordering codes for a locale. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005453">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005466">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="ae491f1262ff311f19e74830eb685f887a18077893b37324c1d5753c60a437d9b4"></a>UCOL_REORDER_CODE_NONE&#160;</td><td class="fielddoc"><p>A special reordering code that is used to specify no reordering codes. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005454">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005467">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="ae491f1262ff311f19e74830eb685f887a1053091a40da5ad91fca2530e17e5f45"></a>UCOL_REORDER_CODE_OTHERS&#160;</td><td class="fielddoc"><p>A special reordering code that is used to specify all other codes used for reordering except for the codes lised as UColReorderCode values and those listed explicitly in a reordering. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005455">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005468">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="ae491f1262ff311f19e74830eb685f887a961b335efb535ce3b480c927a82cfd8e"></a>UCOL_REORDER_CODE_SPACE&#160;</td><td class="fielddoc"><p>Characters with the space property. </p>
-<p>This is equivalent to the rule value "space". </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005456">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<p>This is equivalent to the rule value "space". </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005469">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="ae491f1262ff311f19e74830eb685f887ac1cdea67134c7f0815454cf0e4914b53"></a>UCOL_REORDER_CODE_FIRST&#160;</td><td class="fielddoc"><p>The first entry in the enumeration of reordering groups. </p>
-<p>This is intended for use in range checking and enumeration of the reorder codes. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005457">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<p>This is intended for use in range checking and enumeration of the reorder codes. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005470">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="ae491f1262ff311f19e74830eb685f887a7403925d0681a31ae6548ff12308d8fe"></a>UCOL_REORDER_CODE_PUNCTUATION&#160;</td><td class="fielddoc"><p>Characters with the punctuation property. </p>
-<p>This is equivalent to the rule value "punct". </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005458">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<p>This is equivalent to the rule value "punct". </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005471">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="ae491f1262ff311f19e74830eb685f887a46e6d81b83777db4bf754fa8175533ab"></a>UCOL_REORDER_CODE_SYMBOL&#160;</td><td class="fielddoc"><p>Characters with the symbol property. </p>
-<p>This is equivalent to the rule value "symbol". </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005459">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<p>This is equivalent to the rule value "symbol". </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005472">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="ae491f1262ff311f19e74830eb685f887ae2dd17d6e761e782a4c3131e89a4fa24"></a>UCOL_REORDER_CODE_CURRENCY&#160;</td><td class="fielddoc"><p>Characters with the currency property. </p>
-<p>This is equivalent to the rule value "currency". </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005460">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<p>This is equivalent to the rule value "currency". </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005473">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="ae491f1262ff311f19e74830eb685f887a574ecd4c743af4bc92c4316462bd9e26"></a>UCOL_REORDER_CODE_DIGIT&#160;</td><td class="fielddoc"><p>Characters with the digit property. </p>
-<p>This is equivalent to the rule value "digit". </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005461">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<p>This is equivalent to the rule value "digit". </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005474">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="ae491f1262ff311f19e74830eb685f887a33a969251c0d8437609c6cdd40c11da3"></a>UCOL_REORDER_CODE_LIMIT&#160;</td><td class="fielddoc"><p>One more than the highest normal UColReorderCode value. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000404">Deprecated:</a></b></dt><dd>ICU 58 The numeric value may change over time, see ICU ticket #12420. </dd></dl>
@@ -635,13 +635,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Options for retrieving the rule string. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005410">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005423">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a46363290036b8dffd6862c35e7b5872fac2d59cd7a59b9be9fe1b38dc4de593f7"></a>UCOL_TAILORING_ONLY&#160;</td><td class="fielddoc"><p>Retrieves the tailoring rules only. </p>
-<p>Same as calling the version of getRules() without UColRuleOption. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005470">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Same as calling the version of getRules() without UColRuleOption. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005483">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a46363290036b8dffd6862c35e7b5872fa6e027e190a33aa58b026afd48a97b67f"></a>UCOL_FULL_RULES&#160;</td><td class="fielddoc"><p>Retrieves the "UCA rules" concatenated with the tailoring rules. </p>
-<p>The "UCA rules" are an <em>approximation</em> of the root collator's sort order. They are almost never used or useful at runtime and can be removed from the data. See <a href="http://userguide.icu-project.org/collation/customization#TOC-Building-on-Existing-Locales">http://userguide.icu-project.org/collation/customization#TOC-Building-on-Existing-Locales</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005471">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>The "UCA rules" are an <em>approximation</em> of the root collator's sort order. They are almost never used or useful at runtime and can be removed from the data. See <a href="http://userguide.icu-project.org/collation/customization#TOC-Building-on-Existing-Locales">http://userguide.icu-project.org/collation/customization#TOC-Building-on-Existing-Locales</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005484">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 </table>
 
@@ -700,7 +700,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>size of the image </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#a467ea0dde69a6990f6ecbb7e30da6003" title="Opens a collator from a collator binary image created using ucol_cloneBinary. ">ucol_openBinary</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005451">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005464">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -732,7 +732,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#aa128ea0ed3869415c1c96a9a2c997c2d" title="Produce a UCollator instance according to the rules supplied. ">ucol_openRules</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#a917cd8e16df3b35bbe97dd96d881f227" title="Thread safe cloning operation. ">ucol_safeClone</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005414">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005427">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -755,7 +755,7 @@ Functions</h2></td></tr>
 <p>Determine how many locales have collation rules available. </p>
 <p>This function is most useful as determining the loop ending condition for calls to <a class="el" href="ucol_8h.html#a0e375872b21ab6286258638dcf3817c0">ucol_getAvailable</a>. </p><dl class="section return"><dt>Returns</dt><dd>The number of locales for which collation rules are available. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#a0e375872b21ab6286258638dcf3817c0" title="Get a locale for which collation rules are available. ">ucol_getAvailable</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005428">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005441">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -820,7 +820,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#aa9eb676fde40581f43cc7eb24b597e0e" title="Determine if one string is greater than another. ">ucol_greater</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#ad04f5b8001a319c71f1dc2da06519091" title="Determine if one string is greater than or equal to another. ">ucol_greaterOrEqual</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005419">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005432">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -876,7 +876,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#acc801048729e684bcabed328be85f77a" title="Enum containing attribute values for controling collation behavior. ">UColAttributeValue</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#a3a2302e315d5b474f94354cffedeecd7" title="Universal attribute setter. ">ucol_setAttribute</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005443">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005456">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -905,7 +905,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A locale for which collation rules are available, or 0 if none. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#abd3f9bd0c933c74cb36723f524c91d19" title="Determine how many locales have collation rules available. ">ucol_countAvailable</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005427">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005440">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -983,7 +983,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The size needed to fully store the bound. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucoleitr_8h.html#a705331b3ca250e3f5f74accfee861fa4" title="get a hash code for a key... ">ucol_keyHashCode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005438">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005451">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 </div>
 </div>
@@ -1088,7 +1088,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005413">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005426">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1148,7 +1148,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total buffer size needed; if greater than resultLength, the output was truncated. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005426">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005439">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1209,7 +1209,7 @@ Functions</h2></td></tr>
 <a class="el" href="uscript_8h.html#afee717f56927f828c0fe8aaa3f637303" title="Constants for ISO 15924 script codes. ">UScriptCode</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#ae491f1262ff311f19e74830eb685f887" title="Enum containing the codes for reordering segments of the collation table that are not script codes...">UColReorderCode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005425">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005438">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 
 </div>
 </div>
@@ -1276,7 +1276,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the actual buffer size needed for the locale. If greater than resultCapacity, the returned full name will be truncated and an error code will be returned. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005433">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005446">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1304,7 +1304,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string enumeration over locale strings. The caller is responsible for closing the result. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005430">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005443">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1343,7 +1343,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string enumeration over collation keyword values, or NULL upon error. The caller is responsible for closing the result. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005431">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005444">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1396,7 +1396,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string enumeration over keyword values for the given key and the locale. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005432">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005445">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1488,7 +1488,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>real locale name from which the collation data comes. If the collator was instantiated from rules, returns NULL. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005449">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005462">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
 </div>
 </div>
@@ -1517,7 +1517,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the maximum variable reordering group. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#a59507ee73d0aab54bb22f5d05d598138" title="Sets the variable top to the top of the specified reordering group. ">ucol_setMaxVariable</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005445">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005458">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -1577,7 +1577,7 @@ Functions</h2></td></tr>
 <a class="el" href="uscript_8h.html#afee717f56927f828c0fe8aaa3f637303" title="Constants for ISO 15924 script codes. ">UScriptCode</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#ae491f1262ff311f19e74830eb685f887" title="Enum containing the codes for reordering segments of the collation table that are not script codes...">UColReorderCode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005423">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005436">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 
 </div>
 </div>
@@ -1616,7 +1616,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The collation tailoring rules. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005434">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005447">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1670,7 +1670,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>current rules </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005448">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005461">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#a46363290036b8dffd6862c35e7b5872fa6e027e190a33aa58b026afd48a97b67f" title="Retrieves the &quot;UCA rules&quot; concatenated with the tailoring rules. ">UCOL_FULL_RULES</a> </dd></dl>
 
 </div>
@@ -1797,7 +1797,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The size needed to fully store the sort key. If there was an internal error generating the sort key, a zero value is returned. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucoleitr_8h.html#a705331b3ca250e3f5f74accfee861fa4" title="get a hash code for a key... ">ucol_keyHashCode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005435">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005448">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1826,7 +1826,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The collation strength; one of UCOL_PRIMARY, UCOL_SECONDARY, UCOL_TERTIARY, UCOL_QUATERNARY, UCOL_IDENTICAL </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#adcbb3eee538142a06a89e066400dd9b7" title="Set the collation strength used in a UCollator. ">ucol_setStrength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005421">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005434">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1868,7 +1868,7 @@ Functions</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#aa128ea0ed3869415c1c96a9a2c997c2d" title="Produce a UCollator instance according to the rules supplied. ">ucol_openRules</a> </dd>
 <dd>
 <a class="el" href="uset_8h.html#abb0d0fb8d660204fd7fef7fe920bb70c" title="Disposes of the storage used by a USet object. ">uset_close</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005450">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005463">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
 </div>
@@ -1906,7 +1906,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005440">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005453">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
 </div>
 </div>
@@ -1996,7 +1996,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#a0e9c28a8b8b88890722daca111207688" title="Sets the variable top to the primary weight of the specified string. ">ucol_setVariableTop</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#ad10de03e206f2b9dceb59b59e75bc7d8" title="Sets the variable top to the specified primary weight. ">ucol_restoreVariableTop</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005446">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005459">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2034,7 +2034,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005439">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005452">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2099,7 +2099,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#ad04f5b8001a319c71f1dc2da06519091" title="Determine if one string is greater than or equal to another. ">ucol_greaterOrEqual</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#ad592bf65b8b5859ea06ab565f0e6e869" title="Compare two strings for equality. ">ucol_equal</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005417">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005430">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2164,7 +2164,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#aa9eb676fde40581f43cc7eb24b597e0e" title="Determine if one string is greater than another. ">ucol_greater</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#ad592bf65b8b5859ea06ab565f0e6e869" title="Compare two strings for equality. ">ucol_equal</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005418">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005431">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2239,7 +2239,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the length of the merged sort key, src1Length+src2Length; can be larger than destCapacity, or 0 if an error occurs (only for illegal arguments), in which cases the contents of dest is undefined </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005441">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005454">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2307,7 +2307,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the actual number of bytes of a sortkey. It can be smaller than count if we have reached the end of the sort key. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005436">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005449">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 
 </div>
 </div>
@@ -2415,7 +2415,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#a917cd8e16df3b35bbe97dd96d881f227" title="Thread safe cloning operation. ">ucol_safeClone</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#a68fce4fae47371bfece8a288ef05f11f" title="Close a UCollator. ">ucol_close</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005411">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005424">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2443,7 +2443,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string enumeration over locale strings. The caller is responsible for closing the result. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005429">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005442">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2497,7 +2497,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>newly created collator </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#a2719995a75ebed7aacc1419bb2b781db" title="Creates a binary image of a collator. ">ucol_cloneBinary</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005452">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005465">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 </div>
 </div>
@@ -2631,7 +2631,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#a917cd8e16df3b35bbe97dd96d881f227" title="Thread safe cloning operation. ">ucol_safeClone</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#a68fce4fae47371bfece8a288ef05f11f" title="Close a UCollator. ">ucol_close</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005412">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005425">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2792,7 +2792,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#aa128ea0ed3869415c1c96a9a2c997c2d" title="Produce a UCollator instance according to the rules supplied. ">ucol_openRules</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#a68fce4fae47371bfece8a288ef05f11f" title="Close a UCollator. ">ucol_close</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005447">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005460">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2849,7 +2849,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#acc801048729e684bcabed328be85f77a" title="Enum containing attribute values for controling collation behavior. ">UColAttributeValue</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#af96cc7dc7da7981d2d12356b104e058a" title="Universal attribute getter. ">ucol_getAttribute</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005442">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005455">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2895,7 +2895,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#a15526321f50d1b424e659e3726a5ece4" title="Returns the maximum reordering group whose characters are affected by UCOL_ALTERNATE_HANDLING. ">ucol_getMaxVariable</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005444">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005457">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -2959,7 +2959,7 @@ Functions</h2></td></tr>
 <a class="el" href="uscript_8h.html#afee717f56927f828c0fe8aaa3f637303" title="Constants for ISO 15924 script codes. ">UScriptCode</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#ae491f1262ff311f19e74830eb685f887" title="Enum containing the codes for reordering segments of the collation table that are not script codes...">UColReorderCode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005424">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005437">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 
 </div>
 </div>
@@ -2998,7 +2998,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#abc4eaea4396300af64c5891fc6c4c0a6" title="Get the collation strength used in a UCollator. ">ucol_getStrength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005422">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005435">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3121,7 +3121,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#ad04f5b8001a319c71f1dc2da06519091" title="Determine if one string is greater than or equal to another. ">ucol_greaterOrEqual</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#ad592bf65b8b5859ea06ab565f0e6e869" title="Compare two strings for equality. ">ucol_equal</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005415">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005428">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3180,7 +3180,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ucol_8h.html#aa194d8b0092106c0fea4070060790694" title="Compare two strings. ">ucol_strcoll</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005420">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005433">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 
 </div>
 </div>
@@ -3252,7 +3252,7 @@ Functions</h2></td></tr>
 <a class="el" href="ucol_8h.html#ad04f5b8001a319c71f1dc2da06519091" title="Determine if one string is greater than or equal to another. ">ucol_greaterOrEqual</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#ad592bf65b8b5859ea06ab565f0e6e869" title="Compare two strings for equality. ">ucol_equal</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005416">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005429">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>

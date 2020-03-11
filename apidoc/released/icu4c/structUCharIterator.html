@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 65.1: UCharIterator Struct Reference</title>
+<title>ICU 66.1: UCharIterator Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 65.1
-   &#160;<span id="projectnumber">65.1</span>
+   <div id="projectname">ICU 66.1
+   &#160;<span id="projectnumber">66.1</span>
    </div>
   </td>
  </tr>
@@ -110,7 +110,7 @@ Data Fields</h2></td></tr>
 <p>The <a class="el" href="structUCharIterator.html#ac247dee1b3e3e6fec6688f9dcb5bc1c6" title="(public) Return the code unit at the current position, or U_SENTINEL if there is none (index is at th...">current()</a> and <a class="el" href="structUCharIterator.html#aae26243728a62e6a13ed2008972afb50" title="(public) Return the code unit at the current index and increment the index (post-increment, like s[i++]), or return U_SENTINEL if there is none (index is at the limit). ">next()</a> functions only check the current index against the limit, and <a class="el" href="structUCharIterator.html#a65cd2a527c6abe69a0f37a368ce51cfb" title="(public) Decrement the index and return the code unit from there (pre-decrement, like s[–i])...">previous()</a> only checks the current index against the start, to see if the iterator already reached the end of the iteration range.</p>
 <p>The assumption - in all iterators - is that the index is moved via the API, which means it won't go out of bounds, or the index is modified by user code that knows enough about the iterator implementation to set valid index values.</p>
 <p><a class="el" href="structUCharIterator.html" title="C API for code unit iteration. ">UCharIterator</a> functions return code unit values 0..0xffff, or U_SENTINEL if the iteration bounds are reached.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002059">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002068">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00341">341</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
@@ -127,7 +127,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(protected) Pointer to string or wrapped object or similar. </p>
-<p>Not used by caller. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002071">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<p>Not used by caller. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002080">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00347">347</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -147,7 +147,7 @@ Data Fields</h2></td></tr>
 
 <p>(public) Return the code unit at the current position, or U_SENTINEL if there is none (index is at the limit). </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uiter_8h.html#a1f6bcc32677477c92a0ca50c9758d209" title="Function type declaration for UCharIterator.current(). ">UCharIteratorCurrent</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002081">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002090">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00427">427</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -167,7 +167,7 @@ Data Fields</h2></td></tr>
 
 <p>(public) Returns the current position or the start or limit index of the iteration range. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uiter_8h.html#a2c5cdcc035b270eecd9fefd3a8e61eb6" title="Function type declaration for UCharIterator.getIndex(). ">UCharIteratorGetIndex</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002077">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002086">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00390">390</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -188,7 +188,7 @@ Data Fields</h2></td></tr>
 <p>(public) Return the state of the iterator, to be restored later with <a class="el" href="structUCharIterator.html#ad216d787e1125bc81b49686c7700b52f" title="(public) Restore the iterator state from the state word from a call to getState(). ">setState()</a>. </p>
 <p>This function pointer is NULL if the iterator does not implement it.</p>
 <dl class="section see"><dt>See also</dt><dd>UCharIteratorGet </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002085">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002094">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00464">464</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -208,7 +208,7 @@ Data Fields</h2></td></tr>
 
 <p>(public) Check if <a class="el" href="structUCharIterator.html#ac247dee1b3e3e6fec6688f9dcb5bc1c6" title="(public) Return the code unit at the current position, or U_SENTINEL if there is none (index is at th...">current()</a> and <a class="el" href="structUCharIterator.html#aae26243728a62e6a13ed2008972afb50" title="(public) Return the code unit at the current index and increment the index (post-increment, like s[i++]), or return U_SENTINEL if there is none (index is at the limit). ">next()</a> can still return another code unit. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uiter_8h.html#aa64ffc5487dbe1d707c3761bf49ea290" title="Function type declaration for UCharIterator.hasNext(). ">UCharIteratorHasNext</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002079">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002088">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00410">410</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -228,7 +228,7 @@ Data Fields</h2></td></tr>
 
 <p>(public) Check if <a class="el" href="structUCharIterator.html#a65cd2a527c6abe69a0f37a368ce51cfb" title="(public) Decrement the index and return the code unit from there (pre-decrement, like s[–i])...">previous()</a> can still return another code unit. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uiter_8h.html#a2972212270826ec6cc2469e7e757a99b" title="Function type declaration for UCharIterator.hasPrevious(). ">UCharIteratorHasPrevious</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002080">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002089">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00418">418</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -247,7 +247,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(protected) Current index or similar. </p>
-<p>Not used by caller. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002074">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<p>Not used by caller. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002083">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00368">368</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -266,7 +266,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(protected) Length of string or similar. </p>
-<p>Not used by caller. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002072">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<p>Not used by caller. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002081">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00354">354</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -285,7 +285,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(protected) Limit index or similar. </p>
-<p>Not used by caller. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002075">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<p>Not used by caller. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002084">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00375">375</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -306,7 +306,7 @@ Data Fields</h2></td></tr>
 <p>(public) Moves the current position relative to the start or limit of the iteration range, or relative to the current position itself. </p>
 <p>The movement is expressed in numbers of code units forward or backward by specifying a positive or negative delta.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uiter_8h.html#a96e7ff26382bff30b61e04129dcba777" title="Function type declaration for UCharIterator.move(). ">UCharIteratorMove</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002078">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002087">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00401">401</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -326,7 +326,7 @@ Data Fields</h2></td></tr>
 
 <p>(public) Return the code unit at the current index and increment the index (post-increment, like s[i++]), or return U_SENTINEL if there is none (index is at the limit). </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uiter_8h.html#a376c5501f8368974019bd238df5bf25f" title="Function type declaration for UCharIterator.next(). ">UCharIteratorNext</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002082">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002091">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00437">437</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -346,7 +346,7 @@ Data Fields</h2></td></tr>
 
 <p>(public) Decrement the index and return the code unit from there (pre-decrement, like s[&ndash;i]), or return U_SENTINEL if there is none (index is at the start). </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uiter_8h.html#aa264f21cccaadf857e2ffe8466275305" title="Function type declaration for UCharIterator.previous(). ">UCharIteratorPrevious</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002083">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002092">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00447">447</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -365,7 +365,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(protected) Used by UTF-8 iterators and possibly others. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002076">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002085">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00381">381</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -386,7 +386,7 @@ Data Fields</h2></td></tr>
 <p>(public) Reserved for future use. </p>
 <p>Currently NULL.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uiter_8h.html#acafec86a399b523670cc7575b7c070f6" title="Function type declaration for UCharIterator.reservedFn(). ">UCharIteratorReserved</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002084">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002093">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00455">455</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -407,7 +407,7 @@ Data Fields</h2></td></tr>
 <p>(public) Restore the iterator state from the state word from a call to <a class="el" href="structUCharIterator.html#adbdac3a7450c4b9344aad58b1e72d1b4" title="(public) Return the state of the iterator, to be restored later with setState(). ">getState()</a>. </p>
 <p>This function pointer is NULL if the iterator does not implement it.</p>
 <dl class="section see"><dt>See also</dt><dd>UCharIteratorSet </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002086">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002095">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00474">474</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 
@@ -426,7 +426,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(protected) Start index or similar. </p>
-<p>Not used by caller. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002073">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<p>Not used by caller. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002082">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uiter_8h_source.html#l00361">361</a> of file <a class="el" href="uiter_8h_source.html">uiter.h</a>.</p>
 

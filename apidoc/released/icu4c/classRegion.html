@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 65.1: icu::Region Class Reference</title>
+<title>ICU 66.1: icu::Region Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 65.1
-   &#160;<span id="projectnumber">65.1</span>
+   <div id="projectname">ICU 66.1
+   &#160;<span id="projectnumber">66.1</span>
    </div>
   </td>
  </tr>
@@ -137,7 +137,7 @@ Static Public Member Functions</h2></td></tr>
 <p>GROUPING - A widely understood grouping of territories that has a well defined membership such that a region code has been assigned for it. Some of these are UNM.49 codes that do't fall into the world/continent/sub-continent hierarchy, while others are just well known groupings that have their own region code. <a class="el" href="classicu_1_1Region.html" title="Region is the class representing a Unicode Region Code, also known as a Unicode Region Subtag...">Region</a> "EU" (European Union) is one such region code that is a grouping. Groupings will never be returned by the <a class="el" href="classicu_1_1Region.html#acb75f60073597a2529bd5f6951ff82c0" title="Returns a pointer to the region that contains this region. ">getContainingRegion()</a> API, since a different type of region ( WORLD, CONTINENT, or SUBCONTINENT ) will always be the containing region instead.</p>
 <p>The <a class="el" href="classicu_1_1Region.html" title="Region is the class representing a Unicode Region Code, also known as a Unicode Region Subtag...">Region</a> class is not intended for public subclassing.</p>
 <dl class="section author"><dt>Author</dt><dd>John Emmons </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004707">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004720">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="region_8h_source.html#l00072">72</a> of file <a class="el" href="region_8h_source.html">region.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -165,7 +165,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Destructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004708">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004721">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -215,7 +215,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns true if this region contains the supplied other region anywhere in the region hierarchy. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004718">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004731">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -254,7 +254,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns an enumeration over the IDs of all known regions that match the given type. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004713">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004726">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -275,7 +275,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Return an enumeration over the IDs of all the regions that are immediate children of this region in the region hierarchy. </p>
-<p>These returned regions could be either macro regions, territories, or a mixture of the two, depending on the containment data as defined in CLDR. This API may return NULL if this region doesn't have any sub-regions. For example, calling this method with region "150" (Europe) returns an enumeration containing the various sub regions of Europe - "039" (Southern Europe) - "151" (Eastern Europe) - "154" (Northern Europe) and "155" (Western Europe). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004716">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
+<p>These returned regions could be either macro regions, territories, or a mixture of the two, depending on the containment data as defined in CLDR. This API may return NULL if this region doesn't have any sub-regions. For example, calling this method with region "150" (Europe) returns an enumeration containing the various sub regions of Europe - "039" (Southern Europe) - "151" (Eastern Europe) - "154" (Northern Europe) and "155" (Western Europe). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004729">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -306,7 +306,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns an enumeration over the IDs of all the regions that are children of this region anywhere in the region hierarchy and match the given type. </p>
-<p>This API may return an empty enumeration if this region doesn't have any sub-regions that match the given type. For example, calling this method with region "150" (Europe) and type "URGN_TERRITORY" returns a set containing all the territories in Europe ( "FR" (France) - "IT" (Italy) - "DE" (Germany) etc. ) </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004717">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
+<p>This API may return an empty enumeration if this region doesn't have any sub-regions that match the given type. For example, calling this method with region "150" (Europe) and type "URGN_TERRITORY" returns a set containing all the territories in Europe ( "FR" (France) - "IT" (Italy) - "DE" (Germany) etc. ) </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004730">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -326,7 +326,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to the region that contains this region. </p>
-<p>Returns NULL if this region is code "001" (World) or "ZZ" (Unknown region). For example, calling this method with region "IT" (Italy) returns the region "039" (Southern Europe). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004714">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<p>Returns NULL if this region is code "001" (World) or "ZZ" (Unknown region). For example, calling this method with region "IT" (Italy) returns the region "039" (Southern Europe). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004727">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -347,7 +347,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Return a pointer to the region that geographically contains this region and matches the given type, moving multiple steps up the containment chain if necessary. </p>
-<p>Returns NULL if no containing region can be found that matches the given type. Note: The URegionTypes = "URGN_GROUPING", "URGN_DEPRECATED", or "URGN_UNKNOWN" are not appropriate for use in this API. NULL will be returned in this case. For example, calling this method with region "IT" (Italy) for type "URGN_CONTINENT" returns the region "150" ( Europe ). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004715">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<p>Returns NULL if no containing region can be found that matches the given type. Note: The URegionTypes = "URGN_GROUPING", "URGN_DEPRECATED", or "URGN_UNKNOWN" are not appropriate for use in this API. NULL will be returned in this case. For example, calling this method with region "IT" (Italy) for type "URGN_CONTINENT" returns the region "150" ( Europe ). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004728">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -386,7 +386,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to a <a class="el" href="classicu_1_1Region.html" title="Region is the class representing a Unicode Region Code, also known as a Unicode Region Subtag...">Region</a> using the given region code. </p>
-<p>The region code can be either 2-letter ISO code, 3-letter ISO code, UNM.49 numeric code, or other valid Unicode <a class="el" href="classicu_1_1Region.html" title="Region is the class representing a Unicode Region Code, also known as a Unicode Region Subtag...">Region</a> Code as defined by the LDML specification. The identifier will be canonicalized internally using the supplemental metadata as defined in the CLDR. If the region code is NULL or not recognized, the appropriate error code will be set ( U_ILLEGAL_ARGUMENT_ERROR ) </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004711">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<p>The region code can be either 2-letter ISO code, 3-letter ISO code, UNM.49 numeric code, or other valid Unicode <a class="el" href="classicu_1_1Region.html" title="Region is the class representing a Unicode Region Code, also known as a Unicode Region Subtag...">Region</a> Code as defined by the LDML specification. The identifier will be canonicalized internally using the supplemental metadata as defined in the CLDR. If the region code is NULL or not recognized, the appropriate error code will be set ( U_ILLEGAL_ARGUMENT_ERROR ) </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004724">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -425,7 +425,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to a <a class="el" href="classicu_1_1Region.html" title="Region is the class representing a Unicode Region Code, also known as a Unicode Region Subtag...">Region</a> using the given numeric region code. </p>
-<p>If the numeric region code is not recognized, the appropriate error code will be set ( U_ILLEGAL_ARGUMENT_ERROR ). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004712">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<p>If the numeric region code is not recognized, the appropriate error code will be set ( U_ILLEGAL_ARGUMENT_ERROR ). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004725">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -445,7 +445,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Return this region's numeric code. </p>
-<p>Returns a negative value if the given region does not have a numeric code assigned to it. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004721">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<p>Returns a negative value if the given region does not have a numeric code assigned to it. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004734">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -466,7 +466,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>For deprecated regions, return an enumeration over the IDs of the regions that are the preferred replacement regions for this region. </p>
-<p>Returns null for a non-deprecated region. For example, calling this method with region "SU" (Soviet Union) would return a list of the regions containing "RU" (Russia), "AM" (Armenia), "AZ" (Azerbaijan), etc... </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004719">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
+<p>Returns null for a non-deprecated region. For example, calling this method with region "SU" (Soviet Union) would return a list of the regions containing "RU" (Russia), "AM" (Armenia), "AZ" (Azerbaijan), etc... </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004732">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -486,7 +486,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Return this region's canonical region code. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004720">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004733">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -506,7 +506,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the region type of this region. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004722">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004735">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -527,7 +527,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns true if the two regions are NOT equal; that is, if <a class="el" href="classicu_1_1Region.html#a6cb8690e5068cfe7d84029dcd482e948" title="Returns true if the two regions are equal. ">operator ==()</a> returns false. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004710">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004723">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -548,7 +548,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns true if the two regions are equal. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004709">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004722">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>

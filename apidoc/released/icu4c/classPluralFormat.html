@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 65.1: icu::PluralFormat Class Reference</title>
+<title>ICU 66.1: icu::PluralFormat Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 65.1
-   &#160;<span id="projectnumber">65.1</span>
+   <div id="projectname">ICU 66.1
+   &#160;<span id="projectnumber">66.1</span>
    </div>
   </td>
  </tr>
@@ -236,7 +236,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
 <h4>Defining Custom Plural Rules</h4>
 <p>If you need to use <code><a class="el" href="classicu_1_1PluralFormat.html">PluralFormat</a></code> with custom rules, you can create a <code><a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords. ">PluralRules</a></code> object and pass it to <code><a class="el" href="classicu_1_1PluralFormat.html">PluralFormat</a></code>'s constructor. If you also specify a locale in this constructor, this locale will be used to format the number in the message texts. </p>
 <p>For more information about <code><a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords. ">PluralRules</a></code>, see <a class="el" href="classicu_1_1PluralRules.html">PluralRules</a>. </p>
-<p>ported from Java </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004505">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>ported from Java </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004518">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="plurfmt_8h_source.html#l00148">148</a> of file <a class="el" href="plurfmt_8h_source.html">plurfmt.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -263,7 +263,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004506">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004519">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -301,7 +301,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004507">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004520">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -339,7 +339,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004508">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004521">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -384,7 +384,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004509">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004522">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 <h4>Sample code</h4>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="plurfmt_8h.html">unicode/plurfmt.h</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="msgfmt_8h.html">unicode/msgfmt.h</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="ustdio_8h.html">unicode/ustdio.h</a>&quot;</span></div></div><!-- fragment --> <div class="fragment"><div class="line">        <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> status =<a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a>; </div><div class="line">        Locale locEn = Locale(<span class="stringliteral">&quot;en&quot;</span>);</div><div class="line">    Locale locSl = Locale(<span class="stringliteral">&quot;sl&quot;</span>);</div><div class="line"></div><div class="line">    UnicodeString patEn = UnicodeString(<span class="stringliteral">&quot;one{dog} other{dogs}&quot;</span>);                      <span class="comment">// English &#39;dog&#39;</span></div><div class="line">    UnicodeString patSl = UnicodeString(<span class="stringliteral">&quot;one{pes} two{psa} few{psi} other{psov}&quot;</span>);    <span class="comment">// Slovenian translation of dog in Plural Form</span></div><div class="line"></div><div class="line">    <span class="comment">// Create a new PluralFormat for a given locale locale and pattern string</span></div><div class="line">    <a class="code" href="classicu_1_1PluralFormat.html#a86d9ecf09311766e18c4fc410d6d93a1">PluralFormat</a> plfmtEn = <a class="code" href="classicu_1_1PluralFormat.html#a86d9ecf09311766e18c4fc410d6d93a1">PluralFormat</a>(locEn, patEn,status);</div><div class="line">    <a class="code" href="classicu_1_1PluralFormat.html#a86d9ecf09311766e18c4fc410d6d93a1">PluralFormat</a> plfmtSl = <a class="code" href="classicu_1_1PluralFormat.html#a86d9ecf09311766e18c4fc410d6d93a1">PluralFormat</a>(locSl, patSl,status);</div><div class="line">    <span class="comment">// Constructs a MessageFormat for given pattern and locale.</span></div><div class="line">    MessageFormat* msgfmtEn =  <span class="keyword">new</span> MessageFormat(<span class="stringliteral">&quot;{0,number} {1}&quot;</span>, locEn,status);</div><div class="line">    MessageFormat* msgfmtSl =  <span class="keyword">new</span> MessageFormat(<span class="stringliteral">&quot;{0,number} {1}&quot;</span>, locSl,status);</div><div class="line"></div><div class="line">        <span class="keywordtype">int</span> numbers[] = {0, 1, 2, 3, 4, 5, 10, 100, 101, 102};</div><div class="line">        <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;Output by using PluralFormat and MessageFormat API\n&quot;</span>);</div><div class="line">    <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;%-16s%-16s%-16s\n&quot;</span>,<span class="stringliteral">&quot;Number&quot;</span>, <span class="stringliteral">&quot;English&quot;</span>,<span class="stringliteral">&quot;Slovenian&quot;</span>);</div><div class="line"> </div><div class="line">    <span class="comment">// Use MessageFormat.format () to format the objects and append to the given StringBuffer</span></div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;<span class="keyword">sizeof</span>(numbers)/<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>);i++) {</div><div class="line">              UnicodeString msgEn,msgSl;</div><div class="line">                  FieldPosition fpos = 0;</div><div class="line">                  Formattable argEn[]={Formattable(numbers[i]), Formattable(plfmtEn.format(numbers[i],status))};</div><div class="line">                  Formattable argSl[]={Formattable(numbers[i]), Formattable(plfmtSl.format(numbers[i],status))};</div><div class="line">                  msgfmtEn-&gt;format(argEn,2,msgEn,fpos,status);</div><div class="line">                  msgfmtSl-&gt;format(argSl,2,msgSl,fpos,status);</div><div class="line">                  <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;%-16d%-16S%-16S\n&quot;</span>, numbers[i], msgEn.getTerminatedBuffer(),msgSl.getTerminatedBuffer());</div><div class="line">      }</div><div class="line"></div><div class="line">     <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;\n&quot;</span>);</div><div class="line"></div><div class="line">      <span class="comment">// Equivalent code with message format pattern</span></div><div class="line">      UnicodeString msgPatEn = <span class="stringliteral">&quot;{0,plural, one{# dog} other{# dogs}}&quot;</span>;</div><div class="line">      UnicodeString msgPatSl = <span class="stringliteral">&quot;{0,plural, one{# pes} two{# psa} few{# psi} other{# psov}}&quot;</span>;</div><div class="line"> </div><div class="line">          MessageFormat* altMsgfmtEn = <span class="keyword">new</span> MessageFormat(msgPatEn, locEn,status);</div><div class="line">      MessageFormat* altMsgfmtSl = <span class="keyword">new</span> MessageFormat(msgPatSl, locSl,status);</div><div class="line">      <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;Same Output by using MessageFormat API only\n&quot;</span>);</div><div class="line">      <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;%-16s%-16s%-16s\n&quot;</span>,<span class="stringliteral">&quot;Number&quot;</span>, <span class="stringliteral">&quot;English&quot;</span>,<span class="stringliteral">&quot;Slovenian&quot;</span>);</div><div class="line">      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;<span class="keyword">sizeof</span>(numbers)/<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>);i++) {</div><div class="line">          UnicodeString msgEn,msgSl;</div><div class="line">                  Formattable arg[] = {numbers[i]};</div><div class="line">                  FieldPosition fPos =0;</div><div class="line">                  altMsgfmtEn-&gt;format(arg, 1, msgEn, fPos, status);</div><div class="line">          altMsgfmtSl-&gt;format(arg, 1, msgSl, fPos,status);</div><div class="line">          <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;%-16d%-16S%-16S\n&quot;</span>, numbers[i], msgEn.getTerminatedBuffer(), msgSl.getTerminatedBuffer());</div><div class="line">      }</div><div class="line"></div><div class="line">        <span class="keyword">delete</span> msgfmtEn;</div><div class="line">        <span class="keyword">delete</span> msgfmtSl;</div><div class="line">        <span class="keyword">delete</span> altMsgfmtEn;</div><div class="line">        <span class="keyword">delete</span> altMsgfmtSl;</div></div><!-- fragment --> 
 </div>
@@ -430,7 +430,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004510">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004523">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -468,7 +468,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004511">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004524">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -513,7 +513,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004512">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004525">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -558,7 +558,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004513">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004526">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -610,7 +610,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004514">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004527">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -662,7 +662,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004515">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004528">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -683,7 +683,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
 </div><div class="memdoc">
 
 <p>copy constructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004516">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004529">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -711,7 +711,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
 </div><div class="memdoc">
 
 <p>Destructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004517">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004530">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -751,7 +751,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004518">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004531">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -779,7 +779,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
 </div><div class="memdoc">
 
 <p>Clones this <a class="el" href="classicu_1_1Format.html" title="Base class for all formats. ">Format</a> object polymorphically. </p>
-<p>The caller owns the result and should delete it when done. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004527">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>The caller owns the result and should delete it when done. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable004540">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1Format.html#ad606fa4ed45908fe4220085c6276c65a">icu::Format</a>.</p>
 
@@ -820,7 +820,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the string containing the formatted plural message. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004519">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004532">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -859,7 +859,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the string containing the formatted plural message. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004520">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004533">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -912,7 +912,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the string containing the formatted plural message. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004521">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004534">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -965,7 +965,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the string containing the formatted plural message. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004522">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004535">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -1026,7 +1026,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004528">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004541">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1Format.html#a68fb0a8875645f7ab11bb5230c03c212">icu::Format</a>.</p>
 
@@ -1056,7 +1056,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
 </div><div class="memdoc">
 
 <p>ICU "poor man's RTTI", returns a UClassID for the actual class. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004532">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004545">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classicu_1_1UObject.html#aca1169c4978c52ce2b76eda104e9a214">icu::UObject</a>.</p>
 
@@ -1087,7 +1087,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
 </div><div class="memdoc">
 
 <p>ICU "poor man's RTTI", returns a UClassID for this class. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004531">Stable:</a></b></dt><dd>ICU 4.0</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004544">Stable:</a></b></dt><dd>ICU 4.0</dd></dl>
 
 </div>
 </div>
@@ -1123,7 +1123,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if other is semantically unequal to this. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004526">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004539">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -1150,7 +1150,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004524">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004537">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -1186,7 +1186,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if other is semantically equal to this. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004525">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004538">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1Format.html#ab2db8f1097b03f3660d329752370bdf7">icu::Format</a>.</p>
 
@@ -1244,7 +1244,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004530">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004543">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1Format.html#a292d797eb9d3bc8a42d8d8efba119a83">icu::Format</a>.</p>
 
@@ -1322,7 +1322,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004523">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004536">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -1350,7 +1350,7 @@ message: see <a class="el" href="classicu_1_1MessageFormat.html">MessageFormat</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="classicu_1_1UnicodeString.html" title="UnicodeString is a string class that stores Unicode characters directly and provides similar function...">UnicodeString</a> with inserted pattern. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004529">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004542">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>

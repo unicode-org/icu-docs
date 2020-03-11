@@ -9432,6 +9432,54 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>UBLOCK_CHORASMIAN</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a9fe083c41ef31af20870bebc7f31ca7b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901ad86cc883422bae6d837e427031782bcb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_DIVES_AKURU</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a7b262f3b91f1375b32a467760460df74</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_KHITAN_SMALL_SCRIPT</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a3b69ca1401ff0150ae6bfbdb6464a896</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_LISU_SUPPLEMENT</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901ac2789df06b00fba269854f05d4e2a621</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_SYMBOLS_FOR_LEGACY_COMPUTING</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a2145c9334e54a7029570ceb712947d86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_TANGUT_SUPPLEMENT</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a806f09cc749ad412530b81d5ef8586a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_YEZIDI</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a8b0895d2c5a06a9f275fae085be47c28</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>UBLOCK_COUNT</name>
       <anchorfile>uchar_8h.html</anchorfile>
       <anchor>a19f1662c9c33c31593612d05777ea901a04e4577a8946c1c6b032ee1a17728eff</anchor>
@@ -10258,6 +10306,12 @@
       <name>U_INPC_VISUAL_ORDER_LEFT</name>
       <anchorfile>uchar_8h.html</anchorfile>
       <anchor>a4a8ca6509baf410b4a25a1790cc31887a0f6861e2e89e62328e028865595d7b1c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_INPC_TOP_AND_BOTTOM_AND_LEFT</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a4a8ca6509baf410b4a25a1790cc31887a2b247f7b0bb0d88ab10ef088b22faf9e</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -22876,6 +22930,30 @@
       <name>USCRIPT_WANCHO</name>
       <anchorfile>uscript_8h.html</anchorfile>
       <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a169f20375ac0d7f45d92a5ccfabe4a22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_CHORASMIAN</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a6da72b0a0cd94846a47067420b6a1b39</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_DIVES_AKURU</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a9a5335f749d1aa474633283306664772</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_KHITAN_SMALL_SCRIPT</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a75f871a108689f30e09809618de84ed7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_YEZIDI</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a654e88d1dba3e713df74629b5c3f186c</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">

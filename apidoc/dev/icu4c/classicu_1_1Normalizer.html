@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 66.1: icu::Normalizer Class Reference</title>
+<title>ICU 67.1: icu::Normalizer Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 66.1
-   &#160;<span id="projectnumber">66.1</span>
+   <div id="projectname">ICU 67.1
+   &#160;<span id="projectnumber">67.1</span>
    </div>
   </td>
  </tr>
@@ -219,7 +219,7 @@ Static Public Member Functions</h2></td></tr>
 <p>The following "safe" index, the internal buffer, and the secondary iteration index into that buffer are not exposed on the API. This also means that it is currently not practical to return to a particular, arbitrary position in the text because one would need to know, and be able to set, in addition to the <a class="el" href="classicu_1_1Normalizer.html#a2e6d9ddfd0b55394adefc8499aaca473" title="Retrieve the current iteration position in the input text that is being normalized. ">getIndex()</a>, at least also the current index into the internal buffer. It is currently only possible to observe when <a class="el" href="classicu_1_1Normalizer.html#a2e6d9ddfd0b55394adefc8499aaca473" title="Retrieve the current iteration position in the input text that is being normalized. ">getIndex()</a> changes (with careful consideration of the iteration semantics), at which time the internal index will be 0. For example, if <a class="el" href="classicu_1_1Normalizer.html#a2e6d9ddfd0b55394adefc8499aaca473" title="Retrieve the current iteration position in the input text that is being normalized. ">getIndex()</a> is different after <a class="el" href="classicu_1_1Normalizer.html#acd60e9dd5c5e0eec68baf55b31555e90" title="Return the next character in the normalized text. ">next()</a> than before it, then the internal index is 0 and one can return to this <a class="el" href="classicu_1_1Normalizer.html#a2e6d9ddfd0b55394adefc8499aaca473" title="Retrieve the current iteration position in the input text that is being normalized. ">getIndex()</a> later with <a class="el" href="classicu_1_1Normalizer.html#afb668341f4eef37f4c669c8d0fe4a994" title="Set the iteration position in the input text that is being normalized, without any immediate normaliz...">setIndexOnly()</a>.</p>
 <p>Note: While the setIndex() and <a class="el" href="classicu_1_1Normalizer.html#a2e6d9ddfd0b55394adefc8499aaca473" title="Retrieve the current iteration position in the input text that is being normalized. ">getIndex()</a> refer to indices in the underlying Unicode input text, the <a class="el" href="classicu_1_1Normalizer.html#acd60e9dd5c5e0eec68baf55b31555e90" title="Return the next character in the normalized text. ">next()</a> and <a class="el" href="classicu_1_1Normalizer.html#a376c6bd949263f4649640fa7092e834f" title="Return the previous character in the normalized text and decrement. ">previous()</a> methods iterate through characters in the normalized output. This means that there is not necessarily a one-to-one correspondence between characters returned by <a class="el" href="classicu_1_1Normalizer.html#acd60e9dd5c5e0eec68baf55b31555e90" title="Return the next character in the normalized text. ">next()</a> and <a class="el" href="classicu_1_1Normalizer.html#a376c6bd949263f4649640fa7092e834f" title="Return the previous character in the normalized text and decrement. ">previous()</a> and the indices passed to and returned from setIndex() and <a class="el" href="classicu_1_1Normalizer.html#a2e6d9ddfd0b55394adefc8499aaca473" title="Retrieve the current iteration position in the input text that is being normalized. ">getIndex()</a>. It is for this reason that <a class="el" href="classicu_1_1Normalizer.html" title="Old Unicode normalization API. ">Normalizer</a> does not implement the <a class="el" href="classicu_1_1CharacterIterator.html" title="Abstract class that defines an API for iteration on text objects. ">CharacterIterator</a> interface.</p>
 <dl class="section author"><dt>Author</dt><dd>Laura Werner, Mark Davis, Markus Scherer </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000531">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000553">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="normlzr_8h_source.html#l00136">136</a> of file <a class="el" href="normlzr_8h_source.html">normlzr.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
@@ -521,7 +521,7 @@ Static Public Member Functions</h2></td></tr>
 <a class="el" href="ustring_8h.html#a51fe041d3e4e408595d665c0f5f68715" title="Compare two Unicode strings (binary order). ">u_strCompare</a> </dd>
 <dd>
 <a class="el" href="ustring_8h.html#a56c7ed13d57379ff8b5f0736b0628e09" title="Compare two strings case-insensitively using full case folding. ">u_strCaseCompare</a></dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000532">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000554">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="normlzr_8h_source.html#l00800">800</a> of file <a class="el" href="normlzr_8h_source.html">normlzr.h</a>.</p>
 

@@ -829,6 +829,7 @@
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
     <includes id="formattedvalue_8h" name="formattedvalue.h" local="yes" imported="no">unicode/formattedvalue.h</includes>
+    <includes id="ulistformatter_8h" name="ulistformatter.h" local="yes" imported="no">unicode/ulistformatter.h</includes>
     <class kind="class">icu::FormattedList</class>
     <class kind="class">icu::ListFormatter</class>
     <namespace>icu</namespace>
@@ -893,6 +894,25 @@
       <name>ULOCMATCH_DEMOTION_REGION</name>
       <anchorfile>localematcher_8h.html</anchorfile>
       <anchor>a6a6d01604c7b22789bff287433b020f2a382d3e5b743091baa307924a865f5737</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>ULocMatchDirection</name>
+      <anchorfile>localematcher_8h.html</anchorfile>
+      <anchor>aab5631d903b418f749a3c2f74eaa6455</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULOCMATCH_DIRECTION_WITH_ONE_WAY</name>
+      <anchorfile>localematcher_8h.html</anchorfile>
+      <anchor>aab5631d903b418f749a3c2f74eaa6455a8dacff75d7d8b7342efe6f73627c5c49</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULOCMATCH_DIRECTION_ONLY_TWO_WAY</name>
+      <anchorfile>localematcher_8h.html</anchorfile>
+      <anchor>aab5631d903b418f749a3c2f74eaa6455a62ced1eb9f15a0ca3a62c071ed227552</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -1011,8 +1031,174 @@
     <filename>measunit_8h</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
+    <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
     <class kind="class">icu::MeasureUnit</class>
     <namespace>icu</namespace>
+    <member kind="typedef">
+      <type>enum icu::UMeasureSIPrefix</type>
+      <name>UMeasureSIPrefix</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a16deff0163977d75e625f35864fbf941</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UMeasureUnitComplexity</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>abe143c36f216db4b601bd71bc3b7da6f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_UNIT_SINGLE</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>abe143c36f216db4b601bd71bc3b7da6fab2c5214ad2f4de097d7bf0591f077014</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_UNIT_COMPOUND</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>abe143c36f216db4b601bd71bc3b7da6fa9a913a872b000d551d03701b79c0d904</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_UNIT_MIXED</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>abe143c36f216db4b601bd71bc3b7da6fa025335798b0ab2f4e1135778d96645e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UMeasureSIPrefix</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_YOTTA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa3ef501d12448fb20b595cf8dcde58ae1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_ZETTA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fae2be91c0150edda73adea8523192f375</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_EXA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa89b3539f60e65f76046fdfc0556d6659</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_PETA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa7042daffed249a7ab4c722294e769977</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_TERA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa0d63edf986f4aa86454380cd571f1916</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_GIGA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa10924a13bf629f42e4367b2a5eb0c123</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_MEGA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fabba7a562d25dc5c6756ca6c0f20985f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_KILO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa00d5a8b5184fe7f7e88bec460ace19cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_HECTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faa27d2f76dba8c2d0b91f4a5bbb4233e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_DEKA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fae22dc75f8d3beef7f085fc1364dc9caa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_ONE</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa613fafa3fb6862087623be3a2f0cd1f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_DECI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fafb9a31df882e090ceef2d533681f70ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_CENTI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa2c864290bd22b9b60e930f15aa6ab3c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_MILLI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fac1d5c96b3077118965658df26c713b8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_MICRO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fad652e1d24d44c43a3c5f4c8b49081026</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_NANO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faeb968914a37b2bfb07da22275ec0eb73</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_PICO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa641c9324676a88d5682f3a1906026ae1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_FEMTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa33b8e3af842d6962959619ac296a0e52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_ATTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faba35aa890fcab4052a3b2cba18be45da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_ZEPTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa80094f796e636710923480b8888f2ddd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_YOCTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa86a821ab287066c003a1be3c27343167</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>measure.h</name>
@@ -14190,6 +14376,13 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>enum UDateFormatHourCycle</type>
+      <name>UDateFormatHourCycle</name>
+      <anchorfile>udat_8h.html</anchorfile>
+      <anchor>ac515d7dbb1d2f458e9f0b81f89350fb4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>enum UDateFormatSymbolType</type>
       <name>UDateFormatSymbolType</name>
       <anchorfile>udat_8h.html</anchorfile>
@@ -14541,6 +14734,37 @@
       <name>UDAT_BOOLEAN_ATTRIBUTE_COUNT</name>
       <anchorfile>udat_8h.html</anchorfile>
       <anchor>afb77ea9256f65ea466b4c9b73f33bbaaa91ed820b55c1ebddc7c6c2afe8cfc33b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UDateFormatHourCycle</name>
+      <anchorfile>udat_8h.html</anchorfile>
+      <anchor>adbadd2be9a80fe5b53ba52d72aeb256b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDAT_HOUR_CYCLE_11</name>
+      <anchorfile>udat_8h.html</anchorfile>
+      <anchor>adbadd2be9a80fe5b53ba52d72aeb256ba4089d026039a670be24c43061f982fde</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDAT_HOUR_CYCLE_12</name>
+      <anchorfile>udat_8h.html</anchorfile>
+      <anchor>adbadd2be9a80fe5b53ba52d72aeb256bafe9f5c4de1512aa01d8755f8c9e04261</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDAT_HOUR_CYCLE_23</name>
+      <anchorfile>udat_8h.html</anchorfile>
+      <anchor>adbadd2be9a80fe5b53ba52d72aeb256ba9d83e7eb0b68b97c6feb9460ebdaf7bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDAT_HOUR_CYCLE_24</name>
+      <anchorfile>udat_8h.html</anchorfile>
+      <anchor>adbadd2be9a80fe5b53ba52d72aeb256baeaa26ab4277a10491bd1728d31e2240c</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -15136,6 +15360,7 @@
     <path>/src/icu/icu4c/source/i18n/unicode/</path>
     <filename>udateintervalformat_8h</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
+    <includes id="ucal_8h" name="ucal.h" local="yes" imported="no">unicode/ucal.h</includes>
     <includes id="umisc_8h" name="umisc.h" local="yes" imported="no">unicode/umisc.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
     <includes id="uformattedvalue_8h" name="uformattedvalue.h" local="yes" imported="no">unicode/uformattedvalue.h</includes>
@@ -15200,8 +15425,15 @@
       <type>void</type>
       <name>udtitvfmt_formatToResult</name>
       <anchorfile>udateintervalformat_8h.html</anchorfile>
-      <anchor>a42957f0db77e5e4838b42a85101e584a</anchor>
-      <arglist>(const UDateIntervalFormat *formatter, UFormattedDateInterval *result, UDate fromDate, UDate toDate, UErrorCode *status)</arglist>
+      <anchor>aa59fb9c3b8a8bd217458128b7f0200df</anchor>
+      <arglist>(const UDateIntervalFormat *formatter, UDate fromDate, UDate toDate, UFormattedDateInterval *result, UErrorCode *status)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>udtitvfmt_formatCalendarToResult</name>
+      <anchorfile>udateintervalformat_8h.html</anchorfile>
+      <anchor>a20b75c31a0f6dbc617d780a6f659b3ed</anchor>
+      <arglist>(const UDateIntervalFormat *formatter, UCalendar *fromCalendar, UCalendar *toCalendar, UFormattedDateInterval *result, UErrorCode *status)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -15209,6 +15441,7 @@
     <path>/src/icu/icu4c/source/i18n/unicode/</path>
     <filename>udatpg_8h</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
+    <includes id="udat_8h" name="udat.h" local="yes" imported="no">unicode/udat.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
     <namespace>icu</namespace>
@@ -15609,6 +15842,13 @@
       <anchorfile>udatpg_8h.html</anchorfile>
       <anchor>a08cd0d48bbecc5a55deeafaff4e65b9a</anchor>
       <arglist>(const UDateTimePatternGenerator *dtpg, const UChar *skeleton, int32_t skeletonLength, int32_t *pLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>UDateFormatHourCycle</type>
+      <name>udatpg_getDefaultHourCycle</name>
+      <anchorfile>udatpg_8h.html</anchorfile>
+      <anchor>ad875446661495d2ce444c9b958919858</anchor>
+      <arglist>(const UDateTimePatternGenerator *dtpg, UErrorCode *pErrorCode)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -16877,6 +17117,20 @@
       <anchor>a329331511c6fb25892b71bba193c0855</anchor>
       <arglist></arglist>
     </member>
+    <member kind="typedef">
+      <type>enum UListFormatterType</type>
+      <name>UListFormatterType</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>a2413d8e500be7fa3cc04aff1532af04b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum UListFormatterWidth</type>
+      <name>UListFormatterWidth</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>a8659549f169f1e80294de6f2c9fa9664</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="enumeration">
       <type></type>
       <name>UListFormatterField</name>
@@ -16896,12 +17150,69 @@
       <anchor>abcac2e1e255bf5e5b47eb1e6d237c547a3f1fd7058c5d46d403b0f5d69d119fd1</anchor>
       <arglist></arglist>
     </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UListFormatterType</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>af311a9fd3c2f3124bb448cf2ac8d1f1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULISTFMT_TYPE_AND</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>af311a9fd3c2f3124bb448cf2ac8d1f1ba38b64ea00613be77023ba3e6370a8109</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULISTFMT_TYPE_OR</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>af311a9fd3c2f3124bb448cf2ac8d1f1ba1c362cbd125869013e977bec3f6679ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULISTFMT_TYPE_UNITS</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>af311a9fd3c2f3124bb448cf2ac8d1f1bacfc7cbb5bb6482dd154b664a5f52e65e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UListFormatterWidth</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>aba6fac43a1622318978e1ee68ecf339b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULISTFMT_WIDTH_WIDE</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>aba6fac43a1622318978e1ee68ecf339baa211c4478f863988043878c0127e6a04</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULISTFMT_WIDTH_SHORT</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>aba6fac43a1622318978e1ee68ecf339baf705b01c074d9662e571351d46677ee2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULISTFMT_WIDTH_NARROW</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>aba6fac43a1622318978e1ee68ecf339ba0c2ccff47ec0a5e8bf0af43b58f3b80f</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>U_CAPI UListFormatter *</type>
       <name>ulistfmt_open</name>
       <anchorfile>ulistformatter_8h.html</anchorfile>
       <anchor>a5f6947155fff8847fd272d95a98b1347</anchor>
       <arglist>(const char *locale, UErrorCode *status)</arglist>
+    </member>
+    <member kind="function">
+      <type>UListFormatter *</type>
+      <name>ulistfmt_openForType</name>
+      <anchorfile>ulistformatter_8h.html</anchorfile>
+      <anchor>a7635c9427da25367b659a9369c2a237d</anchor>
+      <arglist>(const char *locale, UListFormatterType type, UListFormatterWidth width, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
       <type>U_CAPI void</type>
@@ -17264,6 +17575,24 @@
       <name>UAcceptResult</name>
       <anchorfile>uloc_8h.html</anchorfile>
       <anchor>a3ad5cb6cf40e47fec510070d20c29cf9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULOC_ACCEPT_FAILED</name>
+      <anchorfile>uloc_8h.html</anchorfile>
+      <anchor>a3ad5cb6cf40e47fec510070d20c29cf9ae76f332914a525446147cbad5eceb859</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULOC_ACCEPT_VALID</name>
+      <anchorfile>uloc_8h.html</anchorfile>
+      <anchor>a3ad5cb6cf40e47fec510070d20c29cf9a25da68a0063939ace4af715cc6120bc2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ULOC_ACCEPT_FALLBACK</name>
+      <anchorfile>uloc_8h.html</anchorfile>
+      <anchor>a3ad5cb6cf40e47fec510070d20c29cf9a6cd1a1f00861c3d425942814da8e8b25</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -18025,7 +18354,7 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>uint16_t</type>
+      <type>char16_t</type>
       <name>UChar</name>
       <anchorfile>umachine_8h.html</anchorfile>
       <anchor>a6bb9fad572d65b305324ef288165e2ac</anchor>
@@ -28074,6 +28403,54 @@
       <anchor>a6076ad13223437bd15a3266791905308adc7c76609b5e07c3693c596ba27335a2</anchor>
       <arglist></arglist>
     </member>
+    <member kind="enumvalue">
+      <name>UTRACE_UBRK_START</name>
+      <anchorfile>utrace_8h.html</anchorfile>
+      <anchor>a6076ad13223437bd15a3266791905308a4e009d643b954d675880d288da512459</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UTRACE_UBRK_CREATE_CHARACTER</name>
+      <anchorfile>utrace_8h.html</anchorfile>
+      <anchor>a6076ad13223437bd15a3266791905308af5c0a7b71785aaa95443f79fb0f2b905</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UTRACE_UBRK_CREATE_WORD</name>
+      <anchorfile>utrace_8h.html</anchorfile>
+      <anchor>a6076ad13223437bd15a3266791905308a43b7d767e1efb264ef9552904d9f180f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UTRACE_UBRK_CREATE_LINE</name>
+      <anchorfile>utrace_8h.html</anchorfile>
+      <anchor>a6076ad13223437bd15a3266791905308a5108fe0fd5a171761c0f0d97657c7300</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UTRACE_UBRK_CREATE_SENTENCE</name>
+      <anchorfile>utrace_8h.html</anchorfile>
+      <anchor>a6076ad13223437bd15a3266791905308a773111da8901eb083eddbc4bf93230d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UTRACE_UBRK_CREATE_TITLE</name>
+      <anchorfile>utrace_8h.html</anchorfile>
+      <anchor>a6076ad13223437bd15a3266791905308a97a23b1c2675dea309615a78b0dfbcb4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UTRACE_UBRK_CREATE_BREAK_ENGINE</name>
+      <anchorfile>utrace_8h.html</anchorfile>
+      <anchor>a6076ad13223437bd15a3266791905308a0d5758489b9feb53124ba77e17d07d74</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UTRACE_UBRK_LIMIT</name>
+      <anchorfile>utrace_8h.html</anchorfile>
+      <anchor>a6076ad13223437bd15a3266791905308a7d42702c04b0cd2c8d50f83a1f76986f</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>utrace_setLevel</name>
@@ -30131,6 +30508,13 @@
       <arglist>(const BasicTimeZone &amp;source)</arglist>
     </member>
     <member kind="function" protection="protected">
+      <type>BasicTimeZone &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classicu_1_1BasicTimeZone.html</anchorfile>
+      <anchor>afb90e4bbd719cd9085826fe0f5a8f4ad</anchor>
+      <arglist>(const BasicTimeZone &amp;)=default</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>void</type>
       <name>getTimeZoneRulesAfter</name>
       <anchorfile>classicu_1_1BasicTimeZone.html</anchorfile>
@@ -30557,6 +30941,13 @@
       <arglist>(ULocMatchDemotion demotion)</arglist>
     </member>
     <member kind="function">
+      <type>Builder &amp;</type>
+      <name>setDirection</name>
+      <anchorfile>classicu_1_1LocaleMatcher_1_1Builder.html</anchorfile>
+      <anchor>a0477952a68ebb616bc7aac54f440c86b</anchor>
+      <arglist>(ULocMatchDirection direction)</arglist>
+    </member>
+    <member kind="function">
       <type>UBool</type>
       <name>copyErrorTo</name>
       <anchorfile>classicu_1_1LocaleMatcher_1_1Builder.html</anchorfile>
@@ -30595,6 +30986,20 @@
       <anchorfile>classicu_1_1ByteSink.html</anchorfile>
       <anchor>a61fe994281322e8a3e3ed2e50c910e41</anchor>
       <arglist>(const char *bytes, int32_t n)=0</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>AppendU8</name>
+      <anchorfile>classicu_1_1ByteSink.html</anchorfile>
+      <anchor>a2d5b62995d93a766a52651fcac809591</anchor>
+      <arglist>(const char *bytes, int32_t n)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>AppendU8</name>
+      <anchorfile>classicu_1_1ByteSink.html</anchorfile>
+      <anchor>aceeb6e6dd959bf559b7c5e656e3ba107</anchor>
+      <arglist>(const char8_t *bytes, int32_t n)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual char *</type>
@@ -35185,6 +35590,13 @@
       <anchor>a1b9ddb9d99f2a501db54342127370ba3</anchor>
       <arglist>() const</arglist>
     </member>
+    <member kind="function">
+      <type>UDateFormatHourCycle</type>
+      <name>getDefaultHourCycle</name>
+      <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
+      <anchor>aac46d070eda087c888c7ca348abb8493</anchor>
+      <arglist>(UErrorCode &amp;status) const</arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual UClassID</type>
       <name>getDynamicClassID</name>
@@ -36660,6 +37072,13 @@
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
       <anchor>a558b9c02c0325a9b4eb16fe7c33d148e</anchor>
       <arglist>(ENumberFormatSymbol symbol, const UnicodeString &amp;value, const UBool propogateDigits)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCurrency</name>
+      <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
+      <anchor>aeffc8350d5007014bb35d83cf6bb0653</anchor>
+      <arglist>(const UChar *currency, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
       <type>Locale</type>
@@ -38266,20 +38685,6 @@
       <arglist>(ConstrainedFieldPosition &amp;cfpos, UErrorCode &amp;status) const U_OVERRIDE</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
-      <name>nextFieldPosition</name>
-      <anchorfile>classicu_1_1number_1_1FormattedNumber.html</anchorfile>
-      <anchor>aaba48ddbac3e2e442c9ade0ed40d160e</anchor>
-      <arglist>(FieldPosition &amp;fieldPosition, UErrorCode &amp;status) const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>getAllFieldPositions</name>
-      <anchorfile>classicu_1_1number_1_1FormattedNumber.html</anchorfile>
-      <anchor>ae034f7c5359078708721ebe4c0f3698b</anchor>
-      <arglist>(FieldPositionIterator &amp;iterator, UErrorCode &amp;status) const</arglist>
-    </member>
-    <member kind="function">
       <type>StringClass</type>
       <name>toDecimalNumber</name>
       <anchorfile>classicu_1_1number_1_1FormattedNumber.html</anchorfile>
@@ -38333,20 +38738,6 @@
       <anchorfile>classicu_1_1number_1_1FormattedNumberRange.html</anchorfile>
       <anchor>acce999d939a57fb173b3e164a963c306</anchor>
       <arglist>(ConstrainedFieldPosition &amp;cfpos, UErrorCode &amp;status) const U_OVERRIDE</arglist>
-    </member>
-    <member kind="function">
-      <type>UBool</type>
-      <name>nextFieldPosition</name>
-      <anchorfile>classicu_1_1number_1_1FormattedNumberRange.html</anchorfile>
-      <anchor>a612a7765fcd266118bcebcdb4ea218a9</anchor>
-      <arglist>(FieldPosition &amp;fieldPosition, UErrorCode &amp;status) const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>getAllFieldPositions</name>
-      <anchorfile>classicu_1_1number_1_1FormattedNumberRange.html</anchorfile>
-      <anchor>a3e593e96058a80d220b5f75f03a2f2f2</anchor>
-      <arglist>(FieldPositionIterator &amp;iterator, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
       <type>UnicodeString</type>
@@ -39725,13 +40116,6 @@
       <arglist>(const UnicodeString items[], int32_t n_items, UnicodeString &amp;appendTo, UErrorCode &amp;errorCode) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
-      <name>format</name>
-      <anchorfile>classicu_1_1ListFormatter.html</anchorfile>
-      <anchor>a5d734ed7f4fb0b7e344422f1abac775e</anchor>
-      <arglist>(const UnicodeString items[], int32_t n_items, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;errorCode) const</arglist>
-    </member>
-    <member kind="function">
       <type>FormattedList</type>
       <name>formatStringsToValue</name>
       <anchorfile>classicu_1_1ListFormatter.html</anchorfile>
@@ -39772,6 +40156,13 @@
       <anchorfile>classicu_1_1ListFormatter.html</anchorfile>
       <anchor>a1e67d895419202980a8e1e9319baa2ed</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;errorCode)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static ListFormatter *</type>
+      <name>createInstance</name>
+      <anchorfile>classicu_1_1ListFormatter.html</anchorfile>
+      <anchor>a85ee4e64cbf75f76f87253eca233196a</anchor>
+      <arglist>(const Locale &amp;locale, UListFormatterType type, UListFormatterWidth width, UErrorCode &amp;errorCode)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static ListFormatter *</type>
@@ -40023,6 +40414,13 @@
       <name>minimizeSubtags</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
       <anchor>a0638620f0b0c25aad55539f14f739244</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>canonicalize</name>
+      <anchorfile>classicu_1_1Locale.html</anchorfile>
+      <anchor>a9e8ce3f1e540a132e9f8c754839f8ded</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
@@ -41498,13 +41896,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>const CurrencySymbols *</type>
-      <name>currencySymbols</name>
-      <anchorfile>structicu_1_1number_1_1impl_1_1MacroProps.html</anchorfile>
-      <anchor>aa0338de7d2060f97d93b55f90e186654</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>int32_t</type>
       <name>threshold</name>
       <anchorfile>structicu_1_1number_1_1impl_1_1MacroProps.html</anchorfile>
@@ -41868,11 +42259,25 @@
       <arglist>(const MeasureUnit &amp;other)</arglist>
     </member>
     <member kind="function">
+      <type></type>
+      <name>MeasureUnit</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a969167160a1dd1fda91ea14137dd4e5a</anchor>
+      <arglist>(MeasureUnit &amp;&amp;other) noexcept</arglist>
+    </member>
+    <member kind="function">
       <type>MeasureUnit &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a97b6480e5343ebc2e642e2de8c42d180</anchor>
       <arglist>(const MeasureUnit &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>MeasureUnit &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ae5ef1cef2ca73f275e65b451d0b36d8f</anchor>
+      <arglist>(MeasureUnit &amp;&amp;other) noexcept</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual MeasureUnit *</type>
@@ -41916,6 +42321,69 @@
       <anchor>a66f11f1fccbc2d9d5bf1685c2d8c0bfb</anchor>
       <arglist>() const</arglist>
     </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>getIdentifier</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aa202c3285acda0a889d7e60f995aba28</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>UMeasureUnitComplexity</type>
+      <name>getComplexity</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a54acf4629e284955675b8ad7ef96df12</anchor>
+      <arglist>(UErrorCode &amp;status) const</arglist>
+    </member>
+    <member kind="function">
+      <type>MeasureUnit</type>
+      <name>withSIPrefix</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>af18cdebec38df5f98fb3c9de6ff33ad3</anchor>
+      <arglist>(UMeasureSIPrefix prefix, UErrorCode &amp;status) const</arglist>
+    </member>
+    <member kind="function">
+      <type>UMeasureSIPrefix</type>
+      <name>getSIPrefix</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a2218cac1d3804313e8513c4eefac1406</anchor>
+      <arglist>(UErrorCode &amp;status) const</arglist>
+    </member>
+    <member kind="function">
+      <type>MeasureUnit</type>
+      <name>withDimensionality</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>afe7603509062a2be9e793a08acc5f4cc</anchor>
+      <arglist>(int32_t dimensionality, UErrorCode &amp;status) const</arglist>
+    </member>
+    <member kind="function">
+      <type>int32_t</type>
+      <name>getDimensionality</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a22c44bce0105ab6619051d63ddfbaf0d</anchor>
+      <arglist>(UErrorCode &amp;status) const</arglist>
+    </member>
+    <member kind="function">
+      <type>MeasureUnit</type>
+      <name>reciprocal</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ab5a3abf7217908b6f36c4089edcec68e</anchor>
+      <arglist>(UErrorCode &amp;status) const</arglist>
+    </member>
+    <member kind="function">
+      <type>MeasureUnit</type>
+      <name>product</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a33989bf14373182f3a88ed032c55431f</anchor>
+      <arglist>(const MeasureUnit &amp;other, UErrorCode &amp;status) const</arglist>
+    </member>
+    <member kind="function">
+      <type>LocalArray&lt; MeasureUnit &gt;</type>
+      <name>splitToSingleUnits</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>afe26f04d5ac3efd834f93e826bacddea</anchor>
+      <arglist>(int32_t &amp;outCount, UErrorCode &amp;status) const</arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual UClassID</type>
       <name>getDynamicClassID</name>
@@ -41929,6 +42397,13 @@
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a81d869fd3a629af55fed8ca15939cc8f</anchor>
       <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>forIdentifier</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a96926941923f1609540f9bbc8f0b9a68</anchor>
+      <arglist>(StringPiece identifier, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static int32_t</type>
@@ -44398,8 +44873,8 @@
       <type>void</type>
       <name>initCurrency</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
-      <anchor>a54db59a1eeaa96c9f5b2711db4af33a2</anchor>
-      <arglist>(const char *isoCurrency)</arglist>
+      <anchor>a0d7730fda44ca2c1545af9a2bcfbfe0a</anchor>
+      <arglist>(StringPiece isoCurrency)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -47201,6 +47676,13 @@
       <anchorfile>classicu_1_1NumberingSystem.html</anchorfile>
       <anchor>acceb4048712c854457fa03dff6bf86e5</anchor>
       <arglist>(const NumberingSystem &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>NumberingSystem &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classicu_1_1NumberingSystem.html</anchorfile>
+      <anchor>ab42e98f3e81775071fcfd509329e6e05</anchor>
+      <arglist>(const NumberingSystem &amp;other)=default</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
@@ -52690,8 +53172,29 @@
       <type></type>
       <name>StringPiece</name>
       <anchorfile>classicu_1_1StringPiece.html</anchorfile>
+      <anchor>a25b121ccdf279b0cd241431964ada557</anchor>
+      <arglist>(const char8_t *str)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>StringPiece</name>
+      <anchorfile>classicu_1_1StringPiece.html</anchorfile>
+      <anchor>a958d13378a809ac220bd867a60d52c99</anchor>
+      <arglist>(std::nullptr_t p)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>StringPiece</name>
+      <anchorfile>classicu_1_1StringPiece.html</anchorfile>
       <anchor>ae52992082e683c5a8206ac3ec040f4aa</anchor>
       <arglist>(const std::string &amp;str)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>StringPiece</name>
+      <anchorfile>classicu_1_1StringPiece.html</anchorfile>
+      <anchor>a35f4dd3da9d40eb99de966e9e52b4fa6</anchor>
+      <arglist>(const std::u8string &amp;str)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -52706,6 +53209,13 @@
       <anchorfile>classicu_1_1StringPiece.html</anchorfile>
       <anchor>af97f22b270d21d5c97337d5d58966a59</anchor>
       <arglist>(const char *offset, int32_t len)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>StringPiece</name>
+      <anchorfile>classicu_1_1StringPiece.html</anchorfile>
+      <anchor>ac749de6914d0f02082bc002dded7f927</anchor>
+      <arglist>(const char8_t *str, int32_t len)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -52772,6 +53282,20 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>set</name>
+      <anchorfile>classicu_1_1StringPiece.html</anchorfile>
+      <anchor>a56c189120008fdae16fdfaa2c05d39ca</anchor>
+      <arglist>(const char8_t *xdata, int32_t len)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classicu_1_1StringPiece.html</anchorfile>
+      <anchor>aa3267fbc0ae7eff7360d1578f4fe9d0e</anchor>
+      <arglist>(const char8_t *str)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>remove_prefix</name>
       <anchorfile>classicu_1_1StringPiece.html</anchorfile>
       <anchor>abd554715ec521ecf2413923c8429c4b5</anchor>
@@ -52783,6 +53307,20 @@
       <anchorfile>classicu_1_1StringPiece.html</anchorfile>
       <anchor>ac53d760ea1e9655cff791779fee49f58</anchor>
       <arglist>(int32_t n)</arglist>
+    </member>
+    <member kind="function">
+      <type>int32_t</type>
+      <name>find</name>
+      <anchorfile>classicu_1_1StringPiece.html</anchorfile>
+      <anchor>a471e53374b7e3219adc83854e4638d18</anchor>
+      <arglist>(StringPiece needle, int32_t offset)</arglist>
+    </member>
+    <member kind="function">
+      <type>int32_t</type>
+      <name>compare</name>
+      <anchorfile>classicu_1_1StringPiece.html</anchorfile>
+      <anchor>abed8fcf3ba90e7076b68120e8beeccc4</anchor>
+      <arglist>(StringPiece other)</arglist>
     </member>
     <member kind="function">
       <type>StringPiece</type>
@@ -59291,6 +59829,13 @@
       <anchor>a3a6a9cba02d5e5819c84d085616fe531</anchor>
       <arglist>[12][8]</arglist>
     </member>
+    <member kind="typedef">
+      <type>enum icu::UMeasureSIPrefix</type>
+      <name>UMeasureSIPrefix</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a16deff0163977d75e625f35864fbf941</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="enumeration">
       <type></type>
       <name>UMatchDegree</name>
@@ -59314,6 +59859,164 @@
       <name>U_MATCH</name>
       <anchorfile>namespaceicu.html</anchorfile>
       <anchor>a6b6eaca969662d8185a58bb2e2e68d0fad05ce45bf573b88d340c190d8f25cfe5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UMeasureUnitComplexity</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>abe143c36f216db4b601bd71bc3b7da6f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_UNIT_SINGLE</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>abe143c36f216db4b601bd71bc3b7da6fab2c5214ad2f4de097d7bf0591f077014</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_UNIT_COMPOUND</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>abe143c36f216db4b601bd71bc3b7da6fa9a913a872b000d551d03701b79c0d904</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_UNIT_MIXED</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>abe143c36f216db4b601bd71bc3b7da6fa025335798b0ab2f4e1135778d96645e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UMeasureSIPrefix</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_YOTTA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa3ef501d12448fb20b595cf8dcde58ae1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_ZETTA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fae2be91c0150edda73adea8523192f375</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_EXA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa89b3539f60e65f76046fdfc0556d6659</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_PETA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa7042daffed249a7ab4c722294e769977</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_TERA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa0d63edf986f4aa86454380cd571f1916</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_GIGA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa10924a13bf629f42e4367b2a5eb0c123</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_MEGA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fabba7a562d25dc5c6756ca6c0f20985f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_KILO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa00d5a8b5184fe7f7e88bec460ace19cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_HECTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faa27d2f76dba8c2d0b91f4a5bbb4233e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_DEKA</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fae22dc75f8d3beef7f085fc1364dc9caa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_ONE</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa613fafa3fb6862087623be3a2f0cd1f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_DECI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fafb9a31df882e090ceef2d533681f70ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_CENTI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa2c864290bd22b9b60e930f15aa6ab3c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_MILLI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fac1d5c96b3077118965658df26c713b8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_MICRO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fad652e1d24d44c43a3c5f4c8b49081026</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_NANO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faeb968914a37b2bfb07da22275ec0eb73</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_PICO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa641c9324676a88d5682f3a1906026ae1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_FEMTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa33b8e3af842d6962959619ac296a0e52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_ATTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faba35aa890fcab4052a3b2cba18be45da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_ZEPTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa80094f796e636710923480b8888f2ddd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_SI_PREFIX_YOCTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa86a821ab287066c003a1be3c27343167</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">

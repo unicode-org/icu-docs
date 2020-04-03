@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 65.1: icu::DateTimePatternGenerator Class Reference</title>
+<title>ICU 66.1: icu::DateTimePatternGenerator Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 65.1
-   &#160;<span id="projectnumber">65.1</span>
+   <div id="projectname">ICU 66.1
+   &#160;<span id="projectnumber">66.1</span>
    </div>
   </td>
  </tr>
@@ -175,7 +175,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="textblock"><p>This class provides flexible generation of date format patterns, like "yy-MM-dd". </p>
 <p>The user can build up the generator by adding successive patterns. Once that is done, a query can be made using a "skeleton", which is a pattern which just includes the desired fields and lengths. The generator will return the "best fit" pattern corresponding to that skeleton. </p>
 <p>The main method people will use is getBestPattern(String skeleton), since normally this class is pre-built with data from a particular locale. However, generators can be built directly from other data as well. </p>
-<p><em>Issue: may be useful to also have a function that returns the list of fields in a pattern, in order, since we have that internally. That would be useful for getting the UI order of field elements.</em> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003824">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<p><em>Issue: may be useful to also have a function that returns the list of fields in a pattern, in order, since we have that internally. That would be useful for getting the UI order of field elements.</em> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003837">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="dtptngen_8h_source.html#l00058">58</a> of file <a class="el" href="dtptngen_8h_source.html">dtptngen.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -203,7 +203,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Destructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003828">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003841">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -259,7 +259,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>conflicting status. The value could be UDATPG_NO_CONFLICT, UDATPG_BASE_CONFLICT or UDATPG_CONFLICT. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003836">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003849">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 <h4>Sample code</h4>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="smpdtfmt_8h.html">unicode/smpdtfmt.h</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="dtptngen_8h.html">unicode/dtptngen.h</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="ustdio_8h.html">unicode/ustdio.h</a>&quot;</span></div></div><!-- fragment --><div class="fragment"><div class="line">                <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> status =<a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a>;</div><div class="line">                UnicodeString conflictingPattern,dateReturned, pattern;</div><div class="line">                Locale locale=<a class="code" href="classicu_1_1Locale.html#ad9bd58caef2a7c11588ad8a830d504a9">Locale::getFrance</a>();</div><div class="line">                Calendar *cal = <a class="code" href="classicu_1_1Calendar.html#ad2d72d348ce478cf1715dd79b7262c89">Calendar::createInstance</a>(status);</div><div class="line">                cal-&gt;set (1999,9,13,23,58,59);</div><div class="line">                <a class="code" href="utypes_8h.html#ace1704e9e77d407d1eaaa2e73ec0c039">UDate</a> date = cal-&gt;getTime(status);</div><div class="line">        <span class="comment">// Create an DateTimePatternGenerator instance for the given locale</span></div><div class="line">                DateTimePatternGenerator *dtfg= <a class="code" href="classicu_1_1DateTimePatternGenerator.html#a8c88762bc7e4c479296975500088639d">DateTimePatternGenerator::createInstance</a>(locale,status);</div><div class="line">                SimpleDateFormat *sdf = <span class="keyword">new</span> SimpleDateFormat(dtfg-&gt;getBestPattern(<span class="stringliteral">&quot;MMMMddHmm&quot;</span>,status),locale,status);</div><div class="line">        <span class="comment">// Add &#39;. von&#39; to the existing pattern</span></div><div class="line">        dtfg-&gt;addPattern(<span class="stringliteral">&quot;dd&#39;. von&#39; MMMM&quot;</span>, <span class="keyword">true</span>, conflictingPattern,status);</div><div class="line">        <span class="comment">// Apply the new pattern</span></div><div class="line">        sdf-&gt;applyPattern(dtfg-&gt;getBestPattern(<span class="stringliteral">&quot;MMMMddHmm&quot;</span>,status));</div><div class="line">                dateReturned = sdf-&gt;format(date, dateReturned, status);</div><div class="line">                pattern =sdf-&gt;toPattern(pattern);</div><div class="line">                <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;%s\n&quot;</span>, <span class="stringliteral">&quot;New Pattern for FRENCH: &quot;</span>);</div><div class="line">        <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;%S\n&quot;</span>, pattern.getTerminatedBuffer());</div><div class="line">                <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;%s\n&quot;</span>, <span class="stringliteral">&quot;Date Time in new Pattern: &quot;</span>);</div><div class="line">                <a class="code" href="ustdio_8h.html#a6c47bcc0394a1d176c636a59aff0ff0a">u_printf</a>(<span class="stringliteral">&quot;%S\n&quot;</span>, dateReturned.getTerminatedBuffer());</div><div class="line">                <span class="keyword">delete</span> dtfg;</div><div class="line">                <span class="keyword">delete</span> sdf;</div><div class="line">                <span class="keyword">delete</span> cal;</div><div class="line"></div></div><!-- fragment -->
 </div>
@@ -280,7 +280,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Clone <a class="el" href="classicu_1_1DateTimePatternGenerator.html" title="This class provides flexible generation of date format patterns, like &quot;yy-MM-dd&quot;. ...">DateTimePatternGenerator</a> object. </p>
-<p>Clients are responsible for deleting the <a class="el" href="classicu_1_1DateTimePatternGenerator.html" title="This class provides flexible generation of date format patterns, like &quot;yy-MM-dd&quot;. ...">DateTimePatternGenerator</a> object cloned. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003829">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<p>Clients are responsible for deleting the <a class="el" href="classicu_1_1DateTimePatternGenerator.html" title="This class provides flexible generation of date format patterns, like &quot;yy-MM-dd&quot;. ...">DateTimePatternGenerator</a> object cloned. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003842">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -315,7 +315,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003827">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003840">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -350,7 +350,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003825">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003838">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -396,7 +396,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003826">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003839">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -425,7 +425,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>append pattern for field </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003838">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003851">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -455,7 +455,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>name for field </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classicu_1_1DateTimePatternGenerator.html#a68aeb75a0325a6d7d15ab3972b3cad9b" title="The general interface to get a display name for a particular date/time field, in one of several possi...">getFieldDisplayName</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003840">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003853">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -495,7 +495,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>base skeleton, such as "MMMd" </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003835">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003848">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -523,7 +523,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classicu_1_1StringEnumeration.html" title="Base class for &#39;pure&#39; C++ implementations of uenum api. ">StringEnumeration</a> with the base skeletons. The caller must delete the object. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003850">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003863">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -563,7 +563,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bestPattern The best pattern found from the given skeleton. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003844">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003857">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 <h4>Sample code</h4>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="smpdtfmt_8h.html">unicode/smpdtfmt.h</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="dtptngen_8h.html">unicode/dtptngen.h</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="ustdio_8h.html">unicode/ustdio.h</a>&quot;</span></div></div><!-- fragment --><div class="fragment"><div class="line">        UnicodeString skeletons [] = {</div><div class="line">                UnicodeString(<span class="stringliteral">&quot;yQQQQ&quot;</span>), <span class="comment">// year + full name of quarter, i.e., 4th quarter 1999</span></div><div class="line">        UnicodeString(<span class="stringliteral">&quot;yMMMM&quot;</span>), <span class="comment">// year + full name of month, i.e., October 1999</span></div><div class="line">        UnicodeString(<span class="stringliteral">&quot;MMMMd&quot;</span>), <span class="comment">// full name of month + day of the month, i.e., October 25</span></div><div class="line">        UnicodeString(<span class="stringliteral">&quot;hhmm&quot;</span>),  <span class="comment">// 12-hour-cycle format, i.e., 1:32 PM</span></div><div class="line">        UnicodeString(<span class="stringliteral">&quot;jjmm&quot;</span>), <span class="comment">// preferred hour format for the given locale, i.e., 24-hour-cycle format for fr_FR</span></div><div class="line">                0,</div><div class="line">        };</div><div class="line"></div><div class="line">        Locale locales[] = {</div><div class="line">                Locale (<span class="stringliteral">&quot;en_US&quot;</span>),</div><div class="line">                Locale (<span class="stringliteral">&quot;fr_FR&quot;</span>),</div><div class="line">                Locale (<span class="stringliteral">&quot;zh_CN&quot;</span>),</div><div class="line">        };</div><div class="line">        </div><div class="line">        <span class="keyword">const</span> <span class="keywordtype">char</span>* filename = <span class="stringliteral">&quot;sample.txt&quot;</span>;</div><div class="line">        <span class="comment">/* open a UTF-8 file for writing */</span></div><div class="line">        <a class="code" href="ustdio_8h.html#ae90a658afbabf4e36c17dd4eeb95f1a6">UFILE</a>* f = <a class="code" href="ustdio_8h.html#a921519fbcb17c3e3c020b2871afb8b23">u_fopen</a>(filename, <span class="stringliteral">&quot;w&quot;</span>, <a class="code" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,<span class="stringliteral">&quot;UTF-8&quot;</span>);</div><div class="line">        UnicodeString dateReturned;</div><div class="line">        <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> status =<a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a>;</div><div class="line">        Calendar *cal = <a class="code" href="classicu_1_1Calendar.html#ad2d72d348ce478cf1715dd79b7262c89">Calendar::createInstance</a>(status);</div><div class="line">        cal-&gt;set (1999,9,13,23,58,59);</div><div class="line">        <a class="code" href="utypes_8h.html#ace1704e9e77d407d1eaaa2e73ec0c039">UDate</a> date = cal-&gt;getTime(status);</div><div class="line">        <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(f, <span class="stringliteral">&quot;%-20S%-20S%-20S%-20S\n&quot;</span>, UnicodeString(<span class="stringliteral">&quot;Skeleton&quot;</span>).getTerminatedBuffer(),UnicodeString(<span class="stringliteral">&quot;en_US&quot;</span>).getTerminatedBuffer(),UnicodeString(<span class="stringliteral">&quot;fr_FR&quot;</span>).getTerminatedBuffer(),UnicodeString(<span class="stringliteral">&quot;zh_CN&quot;</span>).getTerminatedBuffer());</div><div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;skeletons[i]!=<a class="code" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;i++) {</div><div class="line">                <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(f, <span class="stringliteral">&quot;%-20S&quot;</span>,skeletons[i].getTerminatedBuffer());</div><div class="line">                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;<span class="keyword">sizeof</span>(locales)/<span class="keyword">sizeof</span>(locales[0]);j++) {</div><div class="line">                        <span class="comment">// create a DateTimePatternGenerator instance for given locale</span></div><div class="line">                        DateTimePatternGenerator *dtfg= <a class="code" href="classicu_1_1DateTimePatternGenerator.html#a8c88762bc7e4c479296975500088639d">DateTimePatternGenerator::createInstance</a>(locales[j],status);</div><div class="line">                        <span class="comment">// use getBestPattern method to get the best pattern for the given skeleton</span></div><div class="line">                        UnicodeString pattern = dtfg-&gt;getBestPattern(skeletons[i],status);</div><div class="line">                        <span class="comment">// Constructs a SimpleDateFormat with the best pattern generated above and the given locale</span></div><div class="line">                        SimpleDateFormat *sdf = <span class="keyword">new</span> SimpleDateFormat(pattern,locales[j],status);</div><div class="line">                        dateReturned.remove();</div><div class="line">                        <span class="comment">// Get the format of the given date</span></div><div class="line">                        sdf-&gt;format(date,dateReturned,status);</div><div class="line">                        <span class="comment">/* write Unicode string to file */</span></div><div class="line">                        <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(f, <span class="stringliteral">&quot;%-20S&quot;</span>, dateReturned.getTerminatedBuffer());</div><div class="line">                        <span class="keyword">delete</span> dtfg;</div><div class="line">                        <span class="keyword">delete</span> sdf;</div><div class="line">                } </div><div class="line">                <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(f,<span class="stringliteral">&quot;\n&quot;</span>);</div><div class="line">        }</div><div class="line">        <span class="comment">/* close the file resource */</span></div><div class="line">        <a class="code" href="ustdio_8h.html#ab3241cbe6c98cc23a1a164b19d9f2d84">u_fclose</a>(f);</div><div class="line">        <span class="keyword">delete</span> cal;</div></div><!-- fragment -->
 </div>
@@ -611,7 +611,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bestPattern The best pattern found from the given skeleton. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003845">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003858">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -632,7 +632,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Getter corresponding to setDateTimeFormat. </p>
 <dl class="section return"><dt>Returns</dt><dd>DateTimeFormat. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003843">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003856">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -653,7 +653,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Getter corresponding to setDecimal. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classicu_1_1UnicodeString.html" title="UnicodeString is a string class that stores Unicode characters directly and provides similar function...">UnicodeString</a> corresponding to the decimal point </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003852">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003865">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -681,7 +681,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>ICU "poor man's RTTI", returns a UClassID for the actual class. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003853">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003866">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classicu_1_1UObject.html#aca1169c4978c52ce2b76eda104e9a214">icu::UObject</a>.</p>
 
@@ -722,7 +722,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The display name for field </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003841">Stable:</a></b></dt><dd>ICU 61 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003854">Stable:</a></b></dt><dd>ICU 61 </dd></dl>
 
 </div>
 </div>
@@ -750,7 +750,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pattern corresponding to a given skeleton. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003849">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003862">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -819,7 +819,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>skeleton such as "MMMdd" </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003833">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003846">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -848,7 +848,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classicu_1_1StringEnumeration.html" title="Base class for &#39;pure&#39; C++ implementations of uenum api. ">StringEnumeration</a> with the skeletons. The caller must delete the object. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003848">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003861">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -877,7 +877,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>ICU "poor man's RTTI", returns a UClassID for this class. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003854">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003867">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -944,7 +944,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if other is semantically unequal to this. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003831">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003844">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -972,7 +972,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if other is semantically equal to this. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003830">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003843">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -1019,7 +1019,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pattern adjusted to match the skeleton fields widths and subtypes. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003846">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003859">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 <h4>Sample code</h4>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="smpdtfmt_8h.html">unicode/smpdtfmt.h</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="dtptngen_8h.html">unicode/dtptngen.h</a>&quot;</span></div><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="ustdio_8h.html">unicode/ustdio.h</a>&quot;</span></div></div><!-- fragment --><div class="fragment"><div class="line">                <a class="code" href="ustdio_8h.html#ae90a658afbabf4e36c17dd4eeb95f1a6">UFILE</a> *out = <a class="code" href="ustdio_8h.html#a97b3a4c3639271188f378bf87e2c957d">u_finit</a>(stdout, <a class="code" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <span class="stringliteral">&quot;UTF-8&quot;</span>);</div><div class="line">                <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> status =<a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a>;</div><div class="line">                UnicodeString pattern,dateReturned;</div><div class="line">                Locale locale =<a class="code" href="classicu_1_1Locale.html#ad9bd58caef2a7c11588ad8a830d504a9">Locale::getFrance</a>();</div><div class="line">                Calendar *cal = <a class="code" href="classicu_1_1Calendar.html#ad2d72d348ce478cf1715dd79b7262c89">Calendar::createInstance</a>(status);</div><div class="line">                cal-&gt;set (1999,9,13,23,58,59);</div><div class="line">                <a class="code" href="utypes_8h.html#ace1704e9e77d407d1eaaa2e73ec0c039">UDate</a> date = cal-&gt;getTime(status);</div><div class="line">                TimeZone *zone = <a class="code" href="classicu_1_1TimeZone.html#a35da0507b62754ffe5d8d59c19775cdb">TimeZone::createTimeZone</a>(UnicodeString(<span class="stringliteral">&quot;Europe/Paris&quot;</span>));</div><div class="line">                DateTimePatternGenerator *dtfg = <a class="code" href="classicu_1_1DateTimePatternGenerator.html#a8c88762bc7e4c479296975500088639d">DateTimePatternGenerator::createInstance</a>(locale,status);</div><div class="line">            SimpleDateFormat *sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="stringliteral">&quot;EEEE d MMMM y HH:mm:ss zzzz&quot;</span>,locale,status);</div><div class="line">                sdf-&gt;setTimeZone(*zone);</div><div class="line">                pattern = sdf-&gt;toPattern(pattern);</div><div class="line">                <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(out, <span class="stringliteral">&quot;%S\n&quot;</span>, UnicodeString(<span class="stringliteral">&quot;Pattern before replacement:&quot;</span>).getTerminatedBuffer());</div><div class="line">        <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(out, <span class="stringliteral">&quot;%S\n&quot;</span>, pattern.getTerminatedBuffer());</div><div class="line">                dateReturned.remove();</div><div class="line">                dateReturned = sdf-&gt;format(date, dateReturned, status);</div><div class="line">                <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(out, <span class="stringliteral">&quot;%S\n&quot;</span>, UnicodeString(<span class="stringliteral">&quot;Date/Time format in fr_FR:&quot;</span>).getTerminatedBuffer());</div><div class="line">                <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(out, <span class="stringliteral">&quot;%S\n&quot;</span>, dateReturned.getTerminatedBuffer());</div><div class="line">        <span class="comment">// Replace zone &quot;zzzz&quot; in the pattern with &quot;vvvv&quot;</span></div><div class="line">                UnicodeString newPattern = dtfg-&gt;replaceFieldTypes(pattern, <span class="stringliteral">&quot;vvvv&quot;</span>, status);</div><div class="line">                <span class="comment">// Apply the new pattern</span></div><div class="line">                sdf-&gt;applyPattern(newPattern);</div><div class="line">                dateReturned.remove();</div><div class="line">                dateReturned = sdf-&gt;format(date, dateReturned, status);</div><div class="line">                <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(out, <span class="stringliteral">&quot;%S\n&quot;</span>, UnicodeString(<span class="stringliteral">&quot;Pattern after replacement:&quot;</span>).getTerminatedBuffer());</div><div class="line">        <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(out, <span class="stringliteral">&quot;%S\n&quot;</span>, newPattern.getTerminatedBuffer());</div><div class="line">        <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(out, <span class="stringliteral">&quot;%S\n&quot;</span>, UnicodeString(<span class="stringliteral">&quot;Date/Time format in fr_FR:&quot;</span>).getTerminatedBuffer());</div><div class="line">                <a class="code" href="ustdio_8h.html#aace6d50c4e497147fa383f36619b6691">u_fprintf</a>(out, <span class="stringliteral">&quot;%S\n&quot;</span>, dateReturned.getTerminatedBuffer());</div><div class="line">                <span class="keyword">delete</span> sdf;</div><div class="line">                <span class="keyword">delete</span> dtfg;</div><div class="line">                <span class="keyword">delete</span> zone;</div><div class="line">                <span class="keyword">delete</span> cal;</div><div class="line">                <a class="code" href="ustdio_8h.html#ab3241cbe6c98cc23a1a164b19d9f2d84">u_fclose</a>(out);</div></div><!-- fragment -->
 </div>
@@ -1074,7 +1074,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pattern adjusted to match the skeleton fields widths and subtypes. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003847">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003860">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -1115,7 +1115,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003837">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003850">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -1155,7 +1155,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003839">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003852">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -1184,7 +1184,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003842">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003855">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -1212,7 +1212,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003851">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003864">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 
 </div>
 </div>
@@ -1260,7 +1260,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>base skeleton, such as "MMMd" </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003834">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003847">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
 
 </div>
 </div>
@@ -1308,7 +1308,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>skeleton such as "MMMdd" </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003832">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003845">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
 
 </div>
 </div>

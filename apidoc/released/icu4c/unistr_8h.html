@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 65.1: unistr.h File Reference</title>
+<title>ICU 66.1: unistr.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 65.1
-   &#160;<span id="projectnumber">65.1</span>
+   <div id="projectname">ICU 66.1
+   &#160;<span id="projectnumber">66.1</span>
    </div>
   </td>
  </tr>
@@ -147,7 +147,7 @@ Functions</h2></td></tr>
 <p>Unicode String literals in C++. </p>
 <p>Note: these macros are not recommended for new code. Prior to the availability of C++11 and u"unicode string literals", these macros were provided for portability and efficiency when initializing UnicodeStrings from literals.</p>
 <p>They work only for strings that contain "invariant characters", i.e., only latin letters, digits, and some punctuation. See <a class="el" href="utypes_8h.html" title="Basic definitions for ICU, for both C and C++ APIs. ">utypes.h</a> for details.</p>
-<p>The string parameter must be a C string literal. The length of the string, not including the terminating <code>NUL</code>, must be specified as a constant. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002342">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>The string parameter must be a C string literal. The length of the string, not including the terminating <code>NUL</code>, must be specified as a constant. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002351">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00116">116</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
@@ -171,7 +171,7 @@ Functions</h2></td></tr>
 
 <p>Unicode String literals in C++. </p>
 <p>Dependent on the platform properties, different UnicodeString constructors should be used to create a UnicodeString object from a string literal. The macros are defined for improved performance. They work only for strings that contain "invariant characters", i.e., only latin letters, digits, and some punctuation. See <a class="el" href="utypes_8h.html" title="Basic definitions for ICU, for both C and C++ APIs. ">utypes.h</a> for details.</p>
-<p>The string parameter must be a C string literal. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002343">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>The string parameter must be a C string literal. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002352">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00134">134</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
@@ -190,7 +190,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This can be defined to be empty or "explicit". </p>
-<p>If explicit, then the UnicodeString(char16_t) and UnicodeString(UChar32) constructors are marked as explicit, preventing their inadvertent use. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002344">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<p>If explicit, then the UnicodeString(char16_t) and UnicodeString(UChar32) constructors are marked as explicit, preventing their inadvertent use. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002353">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00149">149</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
@@ -210,7 +210,7 @@ Functions</h2></td></tr>
 
 <p>This can be defined to be empty or "explicit". </p>
 <p>If explicit, then the UnicodeString(const char *) and UnicodeString(const char16_t *) constructors are marked as explicit, preventing their inadvertent use.</p>
-<p>In particular, this helps prevent accidentally depending on ICU conversion code by passing a string literal into an API with a const UnicodeString &amp; parameter. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002345">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<p>In particular, this helps prevent accidentally depending on ICU conversion code by passing a string literal into an API with a const UnicodeString &amp; parameter. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002354">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00169">169</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
@@ -238,7 +238,7 @@ Functions</h2></td></tr>
 <p>For example, on a 64-bit machine where sizeof(vtable pointer) is 8, sizeof(UnicodeString) = 64 would leave space for (64 - sizeof(vtable pointer) - 2) / U_SIZEOF_UCHAR = (64 - 8 - 2) / 2 = 27 char16_ts stored inside the object.</p>
 <p>The minimum object size on a 64-bit machine would be 4 * sizeof(pointer) = 4 * 8 = 32 bytes, and the internal buffer would hold up to 11 char16_ts in that case.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf16_8h.html#ab14454ab71a81f0cf86e523e50690eee" title="The maximum number of 16-bit code units per Unicode code point (U+0000..U+10ffff). ">U16_MAX_LENGTH</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002346">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002355">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00207">207</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
@@ -260,7 +260,7 @@ Functions</h2></td></tr>
 
 <p>Constant to be used in the UnicodeString(char *, int32_t, EInvariant) constructor which constructs a Unicode string from an invariant-character char * string. </p>
 <p>About invariant characters see <a class="el" href="utypes_8h.html" title="Basic definitions for ICU, for both C and C++ APIs. ">utypes.h</a>. This constructor has no runtime dependency on conversion code and is therefore recommended over ones taking a charset name string (where the empty string "" indicates invariant-character conversion).</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002341">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002350">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00096">96</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 

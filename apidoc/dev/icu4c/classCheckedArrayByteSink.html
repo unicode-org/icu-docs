@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 66.1: icu::CheckedArrayByteSink Class Reference</title>
+<title>ICU 67.1: icu::CheckedArrayByteSink Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 66.1
-   &#160;<span id="projectnumber">66.1</span>
+   <div id="projectname">ICU 67.1
+   &#160;<span id="projectnumber">67.1</span>
    </div>
   </td>
  </tr>
@@ -97,6 +97,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeea90b9a402f4446d493f7e6cc3361c0 inherit pub_methods_classicu_1_1ByteSink"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1ByteSink.html#aeea90b9a402f4446d493f7e6cc3361c0">~ByteSink</a> ()</td></tr>
 <tr class="memdesc:aeea90b9a402f4446d493f7e6cc3361c0 inherit pub_methods_classicu_1_1ByteSink"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <a href="classicu_1_1ByteSink.html#aeea90b9a402f4446d493f7e6cc3361c0">More...</a><br /></td></tr>
 <tr class="separator:aeea90b9a402f4446d493f7e6cc3361c0 inherit pub_methods_classicu_1_1ByteSink"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d5b62995d93a766a52651fcac809591 inherit pub_methods_classicu_1_1ByteSink"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1ByteSink.html#a2d5b62995d93a766a52651fcac809591">AppendU8</a> (const char *bytes, int32_t n)</td></tr>
+<tr class="memdesc:a2d5b62995d93a766a52651fcac809591 inherit pub_methods_classicu_1_1ByteSink"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends n bytes to this.  <a href="classicu_1_1ByteSink.html#a2d5b62995d93a766a52651fcac809591">More...</a><br /></td></tr>
+<tr class="separator:a2d5b62995d93a766a52651fcac809591 inherit pub_methods_classicu_1_1ByteSink"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceeb6e6dd959bf559b7c5e656e3ba107 inherit pub_methods_classicu_1_1ByteSink"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1ByteSink.html#aceeb6e6dd959bf559b7c5e656e3ba107">AppendU8</a> (const char8_t *bytes, int32_t n)</td></tr>
+<tr class="memdesc:aceeb6e6dd959bf559b7c5e656e3ba107 inherit pub_methods_classicu_1_1ByteSink"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends n bytes to this.  <a href="classicu_1_1ByteSink.html#aceeb6e6dd959bf559b7c5e656e3ba107">More...</a><br /></td></tr>
+<tr class="separator:aceeb6e6dd959bf559b7c5e656e3ba107 inherit pub_methods_classicu_1_1ByteSink"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8b12cabefa31cfcdd1dc166a9f829f2 inherit pub_methods_classicu_1_1ByteSink"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1ByteSink.html#ad8b12cabefa31cfcdd1dc166a9f829f2">Flush</a> ()</td></tr>
 <tr class="memdesc:ad8b12cabefa31cfcdd1dc166a9f829f2 inherit pub_methods_classicu_1_1ByteSink"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush internal buffers.  <a href="classicu_1_1ByteSink.html#ad8b12cabefa31cfcdd1dc166a9f829f2">More...</a><br /></td></tr>
 <tr class="separator:ad8b12cabefa31cfcdd1dc166a9f829f2 inherit pub_methods_classicu_1_1ByteSink"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -105,7 +111,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Implementation of <a class="el" href="classicu_1_1ByteSink.html" title="A ByteSink can be filled with bytes. ">ByteSink</a> that writes to a flat byte array, with bounds-checking: This sink will not write more than capacity bytes to outbuf. </p>
 <p>If more than capacity bytes are <a class="el" href="classicu_1_1CheckedArrayByteSink.html#aa927725da1eec2f646f7be734d4d4c06" title="Append &quot;bytes[0,n-1]&quot; to this. ">Append()</a>ed, then excess bytes are ignored, and <a class="el" href="classicu_1_1CheckedArrayByteSink.html#ab1b0344012dae42c91b43b553a048eac" title="Returns true if any bytes were discarded, i.e., if there was an attempt to write more than &#39;capacity&#39;...">Overflowed()</a> will return true. Overflow does not cause a runtime error. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000051">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00148">148</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00182">182</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2ad2fd80f945eb971384e704a24a4da4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ad2fd80f945eb971384e704a24a4da4">&#9670;&nbsp;</a></span>CheckedArrayByteSink()</h2>
@@ -319,7 +325,7 @@ Public Member Functions</h2></td></tr>
 <p>If <a class="el" href="classicu_1_1CheckedArrayByteSink.html#ab1b0344012dae42c91b43b553a048eac" title="Returns true if any bytes were discarded, i.e., if there was an attempt to write more than &#39;capacity&#39;...">Overflowed()</a> then <a class="el" href="classicu_1_1CheckedArrayByteSink.html#a8c3c34a78801711969e3199e3a4d69de" title="Returns the number of bytes appended to the sink. ">NumberOfBytesAppended()</a>&gt;<a class="el" href="classicu_1_1CheckedArrayByteSink.html#a0e10087229f4a410e759822fcfa89edb" title="Returns the number of bytes actually written to the sink. ">NumberOfBytesWritten()</a> else they return the same number. </p><dl class="section return"><dt>Returns</dt><dd>number of bytes written to the buffer </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000065">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00216">216</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00250">250</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
 
 </div>
 </div>
@@ -350,7 +356,7 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes written to the buffer </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000063">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00201">201</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00235">235</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
 
 </div>
 </div>
@@ -381,7 +387,7 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if more than 'capacity' bytes were <a class="el" href="classicu_1_1CheckedArrayByteSink.html#aa927725da1eec2f646f7be734d4d4c06" title="Append &quot;bytes[0,n-1]&quot; to this. ">Append()</a>ed </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000064">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00208">208</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00242">242</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
 
 </div>
 </div>

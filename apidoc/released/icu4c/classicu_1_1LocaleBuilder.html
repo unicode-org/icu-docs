@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 66.1: icu::LocaleBuilder Class Reference</title>
+<title>ICU 67.1: icu::LocaleBuilder Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,8 +18,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 66.1
-   &#160;<span id="projectnumber">66.1</span>
+   <div id="projectname">ICU 67.1
+   &#160;<span id="projectnumber">67.1</span>
    </div>
   </td>
  </tr>
@@ -146,9 +146,9 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
 </pre> </blockquote>
 <p>LocaleBuilders can be reused; <code><a class="el" href="classicu_1_1LocaleBuilder.html#aac79ba36b0edb1542f4e0c72c5e3f3f2" title="Resets the builder to its initial, empty state. ">clear()</a></code> resets all fields to their default values.</p>
 <p><a class="el" href="classicu_1_1LocaleBuilder.html" title="LocaleBuilder is used to build instances of Locale from values configured by the setters. ">LocaleBuilder</a> tracks errors in an internal UErrorCode. For all setters, except setLanguageTag and setLocale, <a class="el" href="classicu_1_1LocaleBuilder.html" title="LocaleBuilder is used to build instances of Locale from values configured by the setters. ">LocaleBuilder</a> will return immediately if the internal UErrorCode is in error state. To reset internal state and error code, call clear method. The setLanguageTag and setLocale method will first clear the internal UErrorCode, then track the error of the validation of the input parameter into the internal UErrorCode.</p>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000003">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000282">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="localebuilder_8h_source.html#l00062">62</a> of file <a class="el" href="localebuilder_8h_source.html">localebuilder.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="localebuilder_8h_source.html#l00061">61</a> of file <a class="el" href="localebuilder_8h_source.html">localebuilder.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac35d857f70c6a7d2b1300fd05c723577"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac35d857f70c6a7d2b1300fd05c723577">&#9670;&nbsp;</a></span>LocaleBuilder()</h2>
@@ -167,7 +167,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
 
 <p>Constructs an empty <a class="el" href="classicu_1_1LocaleBuilder.html" title="LocaleBuilder is used to build instances of Locale from values configured by the setters. ">LocaleBuilder</a>. </p>
 <p>The default value of all fields, extensions, and private use information is the empty string.</p>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000004">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000283">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -195,7 +195,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
 </div><div class="memdoc">
 
 <p>Destructor. </p>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000005">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000284">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -225,7 +225,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder. </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000014">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000293">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -248,7 +248,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
 <p>Returns an instance of <code><a class="el" href="classicu_1_1Locale.html" title="A Locale object represents a specific geographical, political, or cultural region. ">Locale</a></code> created from the fields set on this builder. </p>
 <p>If any set methods or during the <a class="el" href="classicu_1_1LocaleBuilder.html#a223a4927091f5179fa213582b871e9c7" title="Returns an instance of Locale created from the fields set on this builder. ">build()</a> call require memory allocation but fail U_MEMORY_ALLOCATION_ERROR will be set to status. If any of the fields set by the setters are not well-formed, the status will be set to U_ILLEGAL_ARGUMENT_ERROR. The state of the builder will not change after the <a class="el" href="classicu_1_1LocaleBuilder.html#a223a4927091f5179fa213582b871e9c7" title="Returns an instance of Locale created from the fields set on this builder. ">build()</a> call and the caller is free to keep using the same builder to build more locales.</p>
 <dl class="section return"><dt>Returns</dt><dd>a new <a class="el" href="classicu_1_1Locale.html" title="A Locale object represents a specific geographical, political, or cultural region. ">Locale</a> </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000018">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000297">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -270,7 +270,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
 <p>Resets the builder to its initial, empty state. </p>
 <p>This method clears the internal UErrorCode.</p>
 <dl class="section return"><dt>Returns</dt><dd>this builder </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000016">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000295">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -292,7 +292,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
 <p>Resets the extensions to their initial, empty state. </p>
 <p>Language, script, region and variant are unchanged.</p>
 <dl class="section return"><dt>Returns</dt><dd>this builder </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000017">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000296">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -320,7 +320,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if <a class="el" href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f" title="Does the error code indicate a failure? ">U_FAILURE(outErrorCode)</a> </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000019">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 65 </dd></dl>
+<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000005">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 65 </dd></dl>
 
 </div>
 </div>
@@ -350,7 +350,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder. </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000015">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000294">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -392,7 +392,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder. </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000012">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000291">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -422,7 +422,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder. </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000008">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000287">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -452,7 +452,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder. </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000007">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000286">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -483,7 +483,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder.</dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000006">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000285">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -514,7 +514,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder. </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000010">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000289">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -544,7 +544,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder. </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000009">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000288">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -586,7 +586,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder. </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000013">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000292">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -616,7 +616,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This builder. </dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000011">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000290">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>

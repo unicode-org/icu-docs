@@ -17,7 +17,7 @@
 (See [github.com/unicode-org/icu-docs](https://github.com/unicode-org/icu-docs.git) to browse)
 
 * [./design/](./design/) - Design documents. These do not constitute a spec, please see API/User Guide for more detail
-* [./docs/pres/](./design/pres/) - Presentations from the Unicode Conference https://unicodeconference.org
+* [./docs/pres/](./docs/pres/) - Presentations from the Unicode Conference https://unicodeconference.org
 * [./legal/](./legal/) - old Legal content, from before the move to unicode.org (under IBM stewardship)
 * [./userguide/](./userguide/) - the old user guide in OO and HTML form. Obsolete, not updated. Please see http://userguide.icu-project.org
 * [How to update this repository](./HOWTO-Update.md)

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<tagfile>
+<tagfile doxygen_version="1.9.1">
   <compound kind="file">
     <name>alphaindex.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>alphaindex_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -53,7 +53,7 @@
   </compound>
   <compound kind="file">
     <name>appendable.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>appendable_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -63,7 +63,7 @@
   </compound>
   <compound kind="file">
     <name>basictz.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>basictz_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="timezone_8h" name="timezone.h" local="yes" imported="no">unicode/timezone.h</includes>
@@ -74,7 +74,7 @@
   </compound>
   <compound kind="file">
     <name>brkiter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>brkiter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -90,7 +90,7 @@
   </compound>
   <compound kind="file">
     <name>bytestream.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>bytestream_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -102,7 +102,7 @@
   </compound>
   <compound kind="file">
     <name>bytestrie.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>bytestrie_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringpiece_8h" name="stringpiece.h" local="yes" imported="no">unicode/stringpiece.h</includes>
@@ -115,7 +115,7 @@
   </compound>
   <compound kind="file">
     <name>bytestriebuilder.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>bytestriebuilder_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="bytestrie_8h" name="bytestrie.h" local="yes" imported="no">unicode/bytestrie.h</includes>
@@ -126,7 +126,7 @@
   </compound>
   <compound kind="file">
     <name>calendar.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>calendar_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -146,7 +146,7 @@
   </compound>
   <compound kind="file">
     <name>caniter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>caniter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -163,7 +163,7 @@
   </compound>
   <compound kind="file">
     <name>casemap.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>casemap_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringpiece_8h" name="stringpiece.h" local="yes" imported="no">unicode/stringpiece.h</includes>
@@ -173,7 +173,7 @@
   </compound>
   <compound kind="file">
     <name>char16ptr.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>char16ptr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="class">icu::Char16Ptr</class>
@@ -217,7 +217,7 @@
   </compound>
   <compound kind="file">
     <name>chariter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>chariter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -228,7 +228,7 @@
   </compound>
   <compound kind="file">
     <name>choicfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>choicfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="fieldpos_8h" name="fieldpos.h" local="yes" imported="no">unicode/fieldpos.h</includes>
@@ -241,7 +241,7 @@
   </compound>
   <compound kind="file">
     <name>coleitr.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>coleitr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -251,7 +251,7 @@
   </compound>
   <compound kind="file">
     <name>coll.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>coll_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -268,7 +268,7 @@
   </compound>
   <compound kind="file">
     <name>compactdecimalformat.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>compactdecimalformat_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="decimfmt_8h" name="decimfmt.h" local="yes" imported="no">unicode/decimfmt.h</includes>
@@ -277,7 +277,7 @@
   </compound>
   <compound kind="file">
     <name>curramt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>curramt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="measure_8h" name="measure.h" local="yes" imported="no">unicode/measure.h</includes>
@@ -287,7 +287,7 @@
   </compound>
   <compound kind="file">
     <name>currpinf.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>currpinf_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -296,7 +296,7 @@
   </compound>
   <compound kind="file">
     <name>currunit.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>currunit_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="measunit_8h" name="measunit.h" local="yes" imported="no">unicode/measunit.h</includes>
@@ -305,7 +305,7 @@
   </compound>
   <compound kind="file">
     <name>datefmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>datefmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="udat_8h" name="udat.h" local="yes" imported="no">unicode/udat.h</includes>
@@ -320,7 +320,7 @@
   </compound>
   <compound kind="file">
     <name>dbbi.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>dbbi_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="rbbi_8h" name="rbbi.h" local="yes" imported="no">unicode/rbbi.h</includes>
@@ -335,7 +335,7 @@
   </compound>
   <compound kind="file">
     <name>dcfmtsym.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>dcfmtsym_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uchar_8h" name="uchar.h" local="yes" imported="no">unicode/uchar.h</includes>
@@ -349,7 +349,7 @@
   </compound>
   <compound kind="file">
     <name>decimfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>decimfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="dcfmtsym_8h" name="dcfmtsym.h" local="yes" imported="no">unicode/dcfmtsym.h</includes>
@@ -364,12 +364,12 @@
   </compound>
   <compound kind="file">
     <name>docmain.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>docmain_8h.html</filename>
   </compound>
   <compound kind="file">
     <name>dtfmtsym.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtfmtsym_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">unicode/calendar.h</includes>
@@ -383,7 +383,7 @@
   </compound>
   <compound kind="file">
     <name>dtintrv.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>dtintrv_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -392,7 +392,7 @@
   </compound>
   <compound kind="file">
     <name>dtitvfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtitvfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucal_8h" name="ucal.h" local="yes" imported="no">unicode/ucal.h</includes>
@@ -408,7 +408,7 @@
   </compound>
   <compound kind="file">
     <name>dtitvinf.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtitvinf_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="udat_8h" name="udat.h" local="yes" imported="no">unicode/udat.h</includes>
@@ -420,7 +420,7 @@
   </compound>
   <compound kind="file">
     <name>dtptngen.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtptngen_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="datefmt_8h" name="datefmt.h" local="yes" imported="no">unicode/datefmt.h</includes>
@@ -433,7 +433,7 @@
   </compound>
   <compound kind="file">
     <name>dtrule.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtrule_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -442,7 +442,7 @@
   </compound>
   <compound kind="file">
     <name>edits.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>edits_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -452,14 +452,14 @@
   </compound>
   <compound kind="file">
     <name>enumset.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>enumset_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <namespace>icu</namespace>
   </compound>
   <compound kind="file">
     <name>errorcode.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>errorcode_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -468,7 +468,7 @@
   </compound>
   <compound kind="file">
     <name>fieldpos.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>fieldpos_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -477,7 +477,7 @@
   </compound>
   <compound kind="file">
     <name>filteredbrk.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>filteredbrk_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="brkiter_8h" name="brkiter.h" local="yes" imported="no">unicode/brkiter.h</includes>
@@ -486,7 +486,7 @@
   </compound>
   <compound kind="file">
     <name>fmtable.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>fmtable_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -497,7 +497,7 @@
   </compound>
   <compound kind="file">
     <name>format.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>format_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -512,7 +512,7 @@
   </compound>
   <compound kind="file">
     <name>formattedvalue.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>formattedvalue_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="appendable_8h" name="appendable.h" local="yes" imported="no">unicode/appendable.h</includes>
@@ -525,7 +525,7 @@
   </compound>
   <compound kind="file">
     <name>fpositer.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>fpositer_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -536,7 +536,7 @@
   </compound>
   <compound kind="file">
     <name>gender.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>gender_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
@@ -554,7 +554,7 @@
   </compound>
   <compound kind="file">
     <name>gregocal.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>gregocal_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">unicode/calendar.h</includes>
@@ -563,7 +563,7 @@
   </compound>
   <compound kind="file">
     <name>icudataver.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>icudataver_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -590,7 +590,7 @@
   </compound>
   <compound kind="file">
     <name>icuplug.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>icuplug_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -620,6 +620,13 @@
       <anchorfile>icuplug_8h.html</anchorfile>
       <anchor>a76366e1934f586858c76e83f8f5cf6d6</anchor>
       <arglist>(UPlugData *plug, UPlugReason reason, UErrorCode *status)</arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct UPlugData</type>
+      <name>UPlugData</name>
+      <anchorfile>icuplug_8h.html</anchorfile>
+      <anchor>a8ab87ad6fbdd4ebaeb84be954deeefe5</anchor>
+      <arglist></arglist>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -732,24 +739,24 @@
       <arglist>(UPlugData *plug, const char *name)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uplug_getPlugName</name>
       <anchorfile>icuplug_8h.html</anchorfile>
-      <anchor>a24352abc26affe94cc0d1bd2496bf41a</anchor>
+      <anchor>aa7bf3679f660dc8bf72dba7368c8ac83</anchor>
       <arglist>(UPlugData *plug)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uplug_getSymbolName</name>
       <anchorfile>icuplug_8h.html</anchorfile>
-      <anchor>a56ef87436f86503374e72a5fee4b91d1</anchor>
+      <anchor>ad6cd449cc88f64a8b30f9d6903eda453</anchor>
       <arglist>(UPlugData *plug)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uplug_getLibraryName</name>
       <anchorfile>icuplug_8h.html</anchorfile>
-      <anchor>a90d33647e9ad5ca7788a731a8f7a9eff</anchor>
+      <anchor>a9661b29056783e2fbec1a16edf7df541</anchor>
       <arglist>(UPlugData *plug, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -774,10 +781,10 @@
       <arglist>(UPlugData *plug, void *context)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uplug_getConfiguration</name>
       <anchorfile>icuplug_8h.html</anchorfile>
-      <anchor>a06b5fb2ff6cd261c7219295a5b588500</anchor>
+      <anchor>a80983c998cf9576621a0601140785ac4</anchor>
       <arglist>(UPlugData *plug)</arglist>
     </member>
     <member kind="function">
@@ -808,10 +815,17 @@
       <anchor>a4885fe10c3fcac3ddc17e8b17998844a</anchor>
       <arglist>(UPlugData *plug, UErrorCode *status)</arglist>
     </member>
+    <member kind="typedef">
+      <type>struct UPlugData</type>
+      <name>UPlugData</name>
+      <anchorfile>icuplug_8h.html</anchorfile>
+      <anchor>a8ab87ad6fbdd4ebaeb84be954deeefe5</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>idna.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>idna_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="bytestream_8h" name="bytestream.h" local="yes" imported="no">unicode/bytestream.h</includes>
@@ -824,7 +838,7 @@
   </compound>
   <compound kind="file">
     <name>listformatter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>listformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -837,7 +851,7 @@
   </compound>
   <compound kind="file">
     <name>localebuilder.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>localebuilder_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
@@ -849,7 +863,7 @@
   </compound>
   <compound kind="file">
     <name>localematcher.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>localematcher_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
@@ -919,7 +933,7 @@
   </compound>
   <compound kind="file">
     <name>localpointer.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>localpointer_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="class">icu::LocalPointerBase</class>
@@ -936,7 +950,7 @@
   </compound>
   <compound kind="file">
     <name>locdspnm.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>locdspnm_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
@@ -949,7 +963,7 @@
   </compound>
   <compound kind="file">
     <name>locid.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>locid_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="bytestream_8h" name="bytestream.h" local="yes" imported="no">unicode/bytestream.h</includes>
@@ -974,7 +988,7 @@
   </compound>
   <compound kind="file">
     <name>measfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>measfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">unicode/format.h</includes>
@@ -1028,7 +1042,7 @@
   </compound>
   <compound kind="file">
     <name>measunit.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>measunit_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -1036,10 +1050,10 @@
     <class kind="class">icu::MeasureUnit</class>
     <namespace>icu</namespace>
     <member kind="typedef">
-      <type>enum icu::UMeasureSIPrefix</type>
-      <name>UMeasureSIPrefix</name>
+      <type>enum icu::UMeasurePrefix</type>
+      <name>UMeasurePrefix</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>a7cd90e8bc68a82564a4b3c111538bfb5</anchor>
+      <anchor>a5d1ae889b89c3877e788f01da2dad133</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -1069,141 +1083,233 @@
     </member>
     <member kind="enumeration">
       <type></type>
-      <name>UMeasureSIPrefix</name>
+      <name>UMeasurePrefix</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757f</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_YOTTA</name>
+      <name>UMEASURE_PREFIX_ONE</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa3ef501d12448fb20b595cf8dcde58ae1</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa57958636f35eaf6429e89fe9eb78ac2</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_ZETTA</name>
+      <name>UMEASURE_PREFIX_YOTTA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fae2be91c0150edda73adea8523192f375</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa74b2cdc575a286f082dfc190bc27325</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_EXA</name>
+      <name>UMEASURE_PREFIX_INTERNAL_MAX_SI</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa89b3539f60e65f76046fdfc0556d6659</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6ace0ae0fdd82debc41357637aee84a569</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_PETA</name>
+      <name>UMEASURE_PREFIX_ZETTA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa7042daffed249a7ab4c722294e769977</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6ab5a40ff89462d0a73552103a254919ac</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_TERA</name>
+      <name>UMEASURE_PREFIX_EXA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa0d63edf986f4aa86454380cd571f1916</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a3d25e8ef52e0dc861e784f276f9565c3</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_GIGA</name>
+      <name>UMEASURE_PREFIX_PETA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa10924a13bf629f42e4367b2a5eb0c123</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6afaa62c47fcec1c213827b949de73af4d</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_MEGA</name>
+      <name>UMEASURE_PREFIX_TERA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fabba7a562d25dc5c6756ca6c0f20985f5</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6ac8d1bc3d1d36ab299ce16cc0ec1ad5b4</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_KILO</name>
+      <name>UMEASURE_PREFIX_GIGA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa00d5a8b5184fe7f7e88bec460ace19cb</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a05983b0bf1fd4106279495a1cd5e6e0c</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_HECTO</name>
+      <name>UMEASURE_PREFIX_MEGA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faa27d2f76dba8c2d0b91f4a5bbb4233e8</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a443bf7a6bf415fed8a2a472709d5b4df</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_DEKA</name>
+      <name>UMEASURE_PREFIX_KILO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fae22dc75f8d3beef7f085fc1364dc9caa</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa1b98ad43cdab86145fe4a2bb70557b6</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_ONE</name>
+      <name>UMEASURE_PREFIX_HECTO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa613fafa3fb6862087623be3a2f0cd1f3</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a212c5db513fe3a685875bc6bd190d5cf</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_DECI</name>
+      <name>UMEASURE_PREFIX_DEKA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fafb9a31df882e090ceef2d533681f70ee</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa289f985eda840ca53c3462a3c524786</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_CENTI</name>
+      <name>UMEASURE_PREFIX_DECI</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa2c864290bd22b9b60e930f15aa6ab3c4</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a6030290deb268020f5f5a5880ec0b469</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_MILLI</name>
+      <name>UMEASURE_PREFIX_CENTI</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fac1d5c96b3077118965658df26c713b8d</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a7b9aae6b30785630de5af3fb123a65c0</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_MICRO</name>
+      <name>UMEASURE_PREFIX_MILLI</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fad652e1d24d44c43a3c5f4c8b49081026</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6ae2970705e333e541b0afc34b00033b65</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_NANO</name>
+      <name>UMEASURE_PREFIX_MICRO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faeb968914a37b2bfb07da22275ec0eb73</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6af21c5b44877e18df84989564d3aea76c</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_PICO</name>
+      <name>UMEASURE_PREFIX_NANO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa641c9324676a88d5682f3a1906026ae1</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a160e5746a9f0aa7b70bcf33ffddc4384</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_FEMTO</name>
+      <name>UMEASURE_PREFIX_PICO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa33b8e3af842d6962959619ac296a0e52</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a145160ec08cc639984945582df3193ca</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_ATTO</name>
+      <name>UMEASURE_PREFIX_FEMTO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faba35aa890fcab4052a3b2cba18be45da</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a402d267ad50cb1671c60ef32a1844a4c</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_ZEPTO</name>
+      <name>UMEASURE_PREFIX_ATTO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa80094f796e636710923480b8888f2ddd</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa9f3de5c056c17a0651ad07f6e83c777</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_YOCTO</name>
+      <name>UMEASURE_PREFIX_ZEPTO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa86a821ab287066c003a1be3c27343167</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a6d36638939c9031c4862d497023654c9</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_YOCTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aac90bccf3eb98a92f3e55bbf01ad78de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_INTERNAL_MIN_SI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a17413e7ff3947c9220a38c019fb10837</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_INTERNAL_ONE_BIN</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a3c1938df09fcd1a326a7fa3aedbc496e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_KIBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a3adf6af40c629476035bb6ccd0da16b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_INTERNAL_MIN_BIN</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a1f74468f9aa631addb4a8dc38b9dc674</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_MEBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a43aa27ba8c02e31fe72a6177e89ce2f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_GIBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a121671351b0466fe06f0c8b77bf7cbba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_TEBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a130a144467ec986acc541f1afcd6e0f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_PEBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a49427e473e21471b06de108aa64758a4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_EXBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6ac140ed5ae1987c49d1a93e9e60a0b1ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_ZEBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a8bdd11bfd7f1fe7f4e2c6181143854ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_YOBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a0501253e7c6a25830a8be1eb362c0b06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_INTERNAL_MAX_BIN</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa83da9a92c9176177de5fdeb9590b8dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI int32_t</type>
+      <name>umeas_getPrefixBase</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a18693928f778ce9f454f33c542dffb74</anchor>
+      <arglist>(UMeasurePrefix unitPrefix)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI int32_t</type>
+      <name>umeas_getPrefixPower</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a3594ae62f889d072cd4df09d479dc2dc</anchor>
+      <arglist>(UMeasurePrefix unitPrefix)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>measure.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>measure_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="fmtable_8h" name="fmtable.h" local="yes" imported="no">unicode/fmtable.h</includes>
@@ -1212,7 +1318,7 @@
   </compound>
   <compound kind="file">
     <name>messagepattern.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>messagepattern_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="parseerr_8h" name="parseerr.h" local="yes" imported="no">unicode/parseerr.h</includes>
@@ -1423,7 +1529,7 @@
   </compound>
   <compound kind="file">
     <name>msgfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>msgfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">unicode/format.h</includes>
@@ -1444,7 +1550,7 @@
   </compound>
   <compound kind="file">
     <name>normalizer2.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>normalizer2_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringpiece_8h" name="stringpiece.h" local="yes" imported="no">unicode/stringpiece.h</includes>
@@ -1457,7 +1563,7 @@
   </compound>
   <compound kind="file">
     <name>normlzr.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>normlzr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="chariter_8h" name="chariter.h" local="yes" imported="no">unicode/chariter.h</includes>
@@ -1470,7 +1576,7 @@
   </compound>
   <compound kind="file">
     <name>nounit.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>nounit_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="measunit_8h" name="measunit.h" local="yes" imported="no">unicode/measunit.h</includes>
@@ -1479,7 +1585,7 @@
   </compound>
   <compound kind="file">
     <name>numberformatter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>numberformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="appendable_8h" name="appendable.h" local="yes" imported="no">unicode/appendable.h</includes>
@@ -1508,7 +1614,7 @@
     <class kind="class">icu::number::IncrementPrecision</class>
     <class kind="class">icu::number::IntegerWidth</class>
     <class kind="class">icu::number::Scale</class>
-    <class kind="class">icu::number::impl::Usage</class>
+    <class kind="class">icu::number::impl::StringProp</class>
     <class kind="class">icu::number::impl::SymbolsWrapper</class>
     <class kind="class">icu::number::impl::Grouper</class>
     <class kind="class">icu::number::impl::Padder</class>
@@ -1557,7 +1663,7 @@
   </compound>
   <compound kind="file">
     <name>numberrangeformatter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>numberrangeformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="appendable_8h" name="appendable.h" local="yes" imported="no">unicode/appendable.h</includes>
@@ -1576,7 +1682,7 @@
   </compound>
   <compound kind="file">
     <name>numfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>numfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -1593,7 +1699,7 @@
   </compound>
   <compound kind="file">
     <name>numsys.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>numsys_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">unicode/format.h</includes>
@@ -1610,7 +1716,7 @@
   </compound>
   <compound kind="file">
     <name>ParagraphLayout.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/layoutex/layout/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/layoutex/layout/</path>
     <filename>ParagraphLayout_8h.html</filename>
     <includes id="uscript_8h" name="uscript.h" local="yes" imported="no">unicode/uscript.h</includes>
     <includes id="ubidi_8h" name="ubidi.h" local="yes" imported="no">unicode/ubidi.h</includes>
@@ -1623,7 +1729,7 @@
   </compound>
   <compound kind="file">
     <name>parseerr.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>parseerr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="struct">UParseError</class>
@@ -1637,7 +1743,7 @@
   </compound>
   <compound kind="file">
     <name>parsepos.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>parsepos_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -1646,7 +1752,7 @@
   </compound>
   <compound kind="file">
     <name>platform.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>platform_8h.html</filename>
     <includes id="uconfig_8h" name="uconfig.h" local="yes" imported="no">unicode/uconfig.h</includes>
     <includes id="uvernum_8h" name="uvernum.h" local="yes" imported="no">unicode/uvernum.h</includes>
@@ -2269,7 +2375,7 @@
   </compound>
   <compound kind="file">
     <name>playout.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/layoutex/layout/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/layoutex/layout/</path>
     <filename>playout_8h.html</filename>
     <includes id="ubidi_8h" name="ubidi.h" local="yes" imported="no">unicode/ubidi.h</includes>
     <includes id="plruns_8h" name="plruns.h" local="yes" imported="no">plruns.h</includes>
@@ -2407,17 +2513,17 @@
       <arglist>(const pl_line *line)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI pl_visualRun *</type>
+      <type>U_CAPI const pl_visualRun *</type>
       <name>pl_getLineVisualRun</name>
       <anchorfile>playout_8h.html</anchorfile>
-      <anchor>ae9373f4b1c015d93a34dab0626d9962d</anchor>
+      <anchor>a3a76644cc0088e5c420f87658e979a9d</anchor>
       <arglist>(const pl_line *line, le_int32 runIndex)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI le_font *</type>
+      <type>U_CAPI const le_font *</type>
       <name>pl_getVisualRunFont</name>
       <anchorfile>playout_8h.html</anchorfile>
-      <anchor>af886320ad1b4ff8c46e7d911fd538e0f</anchor>
+      <anchor>a39693c0bb1ba1827320dd01690242f56</anchor>
       <arglist>(const pl_visualRun *run)</arglist>
     </member>
     <member kind="function">
@@ -2435,24 +2541,24 @@
       <arglist>(const pl_visualRun *run)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI LEGlyphID *</type>
+      <type>U_CAPI const LEGlyphID *</type>
       <name>pl_getVisualRunGlyphs</name>
       <anchorfile>playout_8h.html</anchorfile>
-      <anchor>a4b58f49f01f59a54ab3ea603739b0837</anchor>
+      <anchor>aeea7884e04071af6cde0012d30feff3c</anchor>
       <arglist>(const pl_visualRun *run)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI float *</type>
+      <type>U_CAPI const float *</type>
       <name>pl_getVisualRunPositions</name>
       <anchorfile>playout_8h.html</anchorfile>
-      <anchor>add9da3ba9d338e149b34e023d0f6be64</anchor>
+      <anchor>a144d28739f18a1d4f8f0f74baefc29de</anchor>
       <arglist>(const pl_visualRun *run)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI le_int32 *</type>
+      <type>U_CAPI const le_int32 *</type>
       <name>pl_getVisualRunGlyphToCharMap</name>
       <anchorfile>playout_8h.html</anchorfile>
-      <anchor>a0958a4d77a2b6356442f9f1440554591</anchor>
+      <anchor>a10850ece2695f9f397faa2f11ce7faee</anchor>
       <arglist>(const pl_visualRun *run)</arglist>
     </member>
     <member kind="function">
@@ -2479,7 +2585,7 @@
   </compound>
   <compound kind="file">
     <name>plruns.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/layoutex/layout/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/layoutex/layout/</path>
     <filename>plruns_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ubidi_8h" name="ubidi.h" local="yes" imported="no">unicode/ubidi.h</includes>
@@ -2554,10 +2660,10 @@
       <arglist>(const pl_fontRuns *fontRuns, le_int32 run)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI le_font *</type>
+      <type>U_CAPI const le_font *</type>
       <name>pl_getFontRunFont</name>
       <anchorfile>plruns_8h.html</anchorfile>
-      <anchor>a0a739d4b3e7a6803defe847adb9abf08</anchor>
+      <anchor>a30dcfdf8e12edf5b9d5cd83420705235</anchor>
       <arglist>(const pl_fontRuns *fontRuns, le_int32 run)</arglist>
     </member>
     <member kind="function">
@@ -2680,10 +2786,10 @@
       <arglist>(const pl_localeRuns *localeRuns, le_int32 run)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>pl_getLocaleRunLocale</name>
       <anchorfile>plruns_8h.html</anchorfile>
-      <anchor>acf86e50fca59155fb542e5086ee23eca</anchor>
+      <anchor>a2cf84db0d7515ad0777db8ec94077249</anchor>
       <arglist>(const pl_localeRuns *localeRuns, le_int32 run)</arglist>
     </member>
     <member kind="function">
@@ -2696,7 +2802,7 @@
   </compound>
   <compound kind="file">
     <name>plurfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>plurfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="messagepattern_8h" name="messagepattern.h" local="yes" imported="no">unicode/messagepattern.h</includes>
@@ -2707,7 +2813,7 @@
   </compound>
   <compound kind="file">
     <name>plurrule.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>plurrule_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">unicode/format.h</includes>
@@ -2725,7 +2831,7 @@
   </compound>
   <compound kind="file">
     <name>ptypes.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ptypes_8h.html</filename>
     <includes id="platform_8h" name="platform.h" local="yes" imported="no">unicode/platform.h</includes>
     <member kind="define">
@@ -2738,7 +2844,7 @@
   </compound>
   <compound kind="file">
     <name>putil.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>putil_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -2784,10 +2890,10 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>u_getDataDirectory</name>
       <anchorfile>putil_8h.html</anchorfile>
-      <anchor>a9d64fa070d83544651cbe8d59de7141b</anchor>
+      <anchor>af6a3529729ba576d2e152b77811ea5ba</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function">
@@ -2798,10 +2904,10 @@
       <arglist>(const char *directory)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>u_getTimeZoneFilesDirectory</name>
       <anchorfile>putil_8h.html</anchorfile>
-      <anchor>a24bd60f62e059a57cd41ed417aea6efc</anchor>
+      <anchor>a8ac481f4934202fe69e5b04ffc22ff4a</anchor>
       <arglist>(UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -2870,7 +2976,7 @@
   </compound>
   <compound kind="file">
     <name>rbbi.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>rbbi_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="brkiter_8h" name="brkiter.h" local="yes" imported="no">unicode/brkiter.h</includes>
@@ -2882,7 +2988,7 @@
   </compound>
   <compound kind="file">
     <name>rbnf.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>rbnf_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="dcfmtsym_8h" name="dcfmtsym.h" local="yes" imported="no">unicode/dcfmtsym.h</includes>
@@ -2918,7 +3024,7 @@
   </compound>
   <compound kind="file">
     <name>rbtz.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>rbtz_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="basictz_8h" name="basictz.h" local="yes" imported="no">unicode/basictz.h</includes>
@@ -2928,7 +3034,7 @@
   </compound>
   <compound kind="file">
     <name>regex.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>regex_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -2942,7 +3048,7 @@
   </compound>
   <compound kind="file">
     <name>region.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>region_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uregion_8h" name="uregion.h" local="yes" imported="no">unicode/uregion.h</includes>
@@ -2955,7 +3061,7 @@
   </compound>
   <compound kind="file">
     <name>reldatefmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>reldatefmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3197,7 +3303,7 @@
   </compound>
   <compound kind="file">
     <name>rep.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>rep_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3206,7 +3312,7 @@
   </compound>
   <compound kind="file">
     <name>resbund.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>resbund_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3218,7 +3324,7 @@
   </compound>
   <compound kind="file">
     <name>RunArrays.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/layoutex/layout/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/layoutex/layout/</path>
     <filename>RunArrays_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
@@ -3244,7 +3350,7 @@
   </compound>
   <compound kind="file">
     <name>schriter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>schriter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="chariter_8h" name="chariter.h" local="yes" imported="no">unicode/chariter.h</includes>
@@ -3254,7 +3360,7 @@
   </compound>
   <compound kind="file">
     <name>scientificnumberformatter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>scientificnumberformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -3263,7 +3369,7 @@
   </compound>
   <compound kind="file">
     <name>search.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>search_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3283,7 +3389,7 @@
   </compound>
   <compound kind="file">
     <name>selfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>selfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="messagepattern_8h" name="messagepattern.h" local="yes" imported="no">unicode/messagepattern.h</includes>
@@ -3293,7 +3399,7 @@
   </compound>
   <compound kind="file">
     <name>simpleformatter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>simpleformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -3302,7 +3408,7 @@
   </compound>
   <compound kind="file">
     <name>simpletz.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>simpletz_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="basictz_8h" name="basictz.h" local="yes" imported="no">unicode/basictz.h</includes>
@@ -3311,7 +3417,7 @@
   </compound>
   <compound kind="file">
     <name>smpdtfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>smpdtfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="datefmt_8h" name="datefmt.h" local="yes" imported="no">unicode/datefmt.h</includes>
@@ -3323,7 +3429,7 @@
   </compound>
   <compound kind="file">
     <name>sortkey.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>sortkey_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3334,13 +3440,13 @@
   </compound>
   <compound kind="file">
     <name>std_string.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>std__string_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
   </compound>
   <compound kind="file">
     <name>strenum.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>strenum_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3350,7 +3456,7 @@
   </compound>
   <compound kind="file">
     <name>stringoptions.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>stringoptions_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -3440,7 +3546,7 @@
   </compound>
   <compound kind="file">
     <name>stringpiece.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>stringpiece_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3464,7 +3570,7 @@
   </compound>
   <compound kind="file">
     <name>stringtriebuilder.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>stringtriebuilder_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3490,7 +3596,7 @@
   </compound>
   <compound kind="file">
     <name>stsearch.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>stsearch_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="tblcoll_8h" name="tblcoll.h" local="yes" imported="no">unicode/tblcoll.h</includes>
@@ -3501,7 +3607,7 @@
   </compound>
   <compound kind="file">
     <name>symtable.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>symtable_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3510,7 +3616,7 @@
   </compound>
   <compound kind="file">
     <name>tblcoll.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>tblcoll_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="coll_8h" name="coll.h" local="yes" imported="no">unicode/coll.h</includes>
@@ -3522,7 +3628,7 @@
   </compound>
   <compound kind="file">
     <name>timezone.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>timezone_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3534,7 +3640,7 @@
   </compound>
   <compound kind="file">
     <name>tmunit.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>tmunit_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="measunit_8h" name="measunit.h" local="yes" imported="no">unicode/measunit.h</includes>
@@ -3543,7 +3649,7 @@
   </compound>
   <compound kind="file">
     <name>tmutamt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>tmutamt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="measure_8h" name="measure.h" local="yes" imported="no">unicode/measure.h</includes>
@@ -3553,7 +3659,7 @@
   </compound>
   <compound kind="file">
     <name>tmutfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>tmutfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -3599,7 +3705,7 @@
   </compound>
   <compound kind="file">
     <name>translit.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>translit_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3613,7 +3719,7 @@
   </compound>
   <compound kind="file">
     <name>tzfmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>tzfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">unicode/format.h</includes>
@@ -3878,7 +3984,7 @@
   </compound>
   <compound kind="file">
     <name>tznames.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>tznames_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -3951,7 +4057,7 @@
   </compound>
   <compound kind="file">
     <name>tzrule.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>tzrule_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3965,7 +4071,7 @@
   </compound>
   <compound kind="file">
     <name>tztrans.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>tztrans_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3974,7 +4080,7 @@
   </compound>
   <compound kind="file">
     <name>ubidi.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ubidi_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uchar_8h" name="uchar.h" local="yes" imported="no">unicode/uchar.h</includes>
@@ -4329,10 +4435,10 @@
       <arglist>(const UChar *text, int32_t length)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>ubidi_getText</name>
       <anchorfile>ubidi_8h.html</anchorfile>
-      <anchor>a43e6f279fc377323a3dd521475e20b75</anchor>
+      <anchor>af975c39171d45198ab0137ed6d40c186</anchor>
       <arglist>(const UBiDi *pBiDi)</arglist>
     </member>
     <member kind="function">
@@ -4378,10 +4484,10 @@
       <arglist>(const UBiDi *pBiDi, int32_t charIndex)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UBiDiLevel *</type>
+      <type>U_CAPI const UBiDiLevel *</type>
       <name>ubidi_getLevels</name>
       <anchorfile>ubidi_8h.html</anchorfile>
-      <anchor>ad13a1b46a861060b3d431e352d40632e</anchor>
+      <anchor>afca5f320d38375d61994d9733a35048d</anchor>
       <arglist>(UBiDi *pBiDi, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
@@ -4506,7 +4612,7 @@
   </compound>
   <compound kind="file">
     <name>ubiditransform.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ubiditransform_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ubidi_8h" name="ubidi.h" local="yes" imported="no">unicode/ubidi.h</includes>
@@ -4582,7 +4688,7 @@
   </compound>
   <compound kind="file">
     <name>ubrk.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ubrk_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -4847,6 +4953,13 @@
       <arglist>(const UBreakIterator *bi, void *stackBuffer, int32_t *pBufferSize, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
+      <type>U_CAPI UBreakIterator *</type>
+      <name>ubrk_clone</name>
+      <anchorfile>ubrk_8h.html</anchorfile>
+      <anchor>a270084469c7ac09076a45569dea1ddae</anchor>
+      <arglist>(const UBreakIterator *bi, UErrorCode *status)</arglist>
+    </member>
+    <member kind="function">
       <type>U_CAPI void</type>
       <name>ubrk_close</name>
       <anchorfile>ubrk_8h.html</anchorfile>
@@ -4917,10 +5030,10 @@
       <arglist>(UBreakIterator *bi, int32_t offset)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ubrk_getAvailable</name>
       <anchorfile>ubrk_8h.html</anchorfile>
-      <anchor>a057c7aa55ec0000a1f31505f86d94712</anchor>
+      <anchor>a89ca2f84689fda69dfc5ff09d9827370</anchor>
       <arglist>(int32_t index)</arglist>
     </member>
     <member kind="function">
@@ -4952,10 +5065,10 @@
       <arglist>(UBreakIterator *bi, int32_t *fillInVec, int32_t capacity, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ubrk_getLocaleByType</name>
       <anchorfile>ubrk_8h.html</anchorfile>
-      <anchor>a93ca540e907298a939dd28ae8d57f9d2</anchor>
+      <anchor>a25541b9cd838fd30b23e491b48403a61</anchor>
       <arglist>(const UBreakIterator *bi, ULocDataLocaleType type, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -4975,7 +5088,7 @@
   </compound>
   <compound kind="file">
     <name>ucal.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>ucal_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -5078,6 +5191,13 @@
       <name>UTimeZoneTransitionType</name>
       <anchorfile>ucal_8h.html</anchorfile>
       <anchor>a5850f53c7316e46ee0e7a5e002a18a20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum UTimeZoneLocalOption</type>
+      <name>UTimeZoneLocalOption</name>
+      <anchorfile>ucal_8h.html</anchorfile>
+      <anchor>a097a148dc5590ca54728ff0692a4d2ea</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -5638,6 +5758,49 @@
       <anchor>a7efe6a88e42a2f34185095f4b1769531a5e861097e29e7d07b870c30f89ab2ddb</anchor>
       <arglist></arglist>
     </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UTimeZoneLocalOption</name>
+      <anchorfile>ucal_8h.html</anchorfile>
+      <anchor>a15c4c761da085c0a7fcb7a02a68d6e58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UCAL_TZ_LOCAL_FORMER</name>
+      <anchorfile>ucal_8h.html</anchorfile>
+      <anchor>a15c4c761da085c0a7fcb7a02a68d6e58ad822e50397415708bf1a162e550142ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UCAL_TZ_LOCAL_LATTER</name>
+      <anchorfile>ucal_8h.html</anchorfile>
+      <anchor>a15c4c761da085c0a7fcb7a02a68d6e58a9fc8113e02833eedd377cafa0d75e395</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UCAL_TZ_LOCAL_STANDARD_FORMER</name>
+      <anchorfile>ucal_8h.html</anchorfile>
+      <anchor>a15c4c761da085c0a7fcb7a02a68d6e58a27ee1b4dffb86283ce29ebb09ca0b41e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UCAL_TZ_LOCAL_STANDARD_LATTER</name>
+      <anchorfile>ucal_8h.html</anchorfile>
+      <anchor>a15c4c761da085c0a7fcb7a02a68d6e58a09f1db0ff46315ff9d3d33721261601c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UCAL_TZ_LOCAL_DAYLIGHT_FORMER</name>
+      <anchorfile>ucal_8h.html</anchorfile>
+      <anchor>a15c4c761da085c0a7fcb7a02a68d6e58a5720506cc800c7c6537c27868069b949</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UCAL_TZ_LOCAL_DAYLIGHT_LATTER</name>
+      <anchorfile>ucal_8h.html</anchorfile>
+      <anchor>a15c4c761da085c0a7fcb7a02a68d6e58a09d0971c7536a9054a45e56f1e49c50b</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>U_CAPI UEnumeration *</type>
       <name>ucal_openTimeZoneIDEnumeration</name>
@@ -5772,10 +5935,10 @@
       <arglist>(UCalendar *cal, UCalendarAttribute attr, int32_t newValue)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucal_getAvailable</name>
       <anchorfile>ucal_8h.html</anchorfile>
-      <anchor>a61929ef52d25116d757c89a26fdcac8b</anchor>
+      <anchor>a36aff5e8b88d9dd35aadbebfc442aebd</anchor>
       <arglist>(int32_t localeIndex)</arglist>
     </member>
     <member kind="function">
@@ -5877,17 +6040,17 @@
       <arglist>(const UCalendar *cal, UCalendarDateFields field, UCalendarLimitType type, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucal_getLocaleByType</name>
       <anchorfile>ucal_8h.html</anchorfile>
-      <anchor>a9746707c723eb326534a0db7616ba888</anchor>
+      <anchor>aaeca5a3521ce61f30e9b82b332365096</anchor>
       <arglist>(const UCalendar *cal, ULocDataLocaleType type, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucal_getTZDataVersion</name>
       <anchorfile>ucal_8h.html</anchorfile>
-      <anchor>a122129be4a80c2927b89bfbfd503c3e8</anchor>
+      <anchor>ab7eb650b9bc7b97f5191aed5fc6ed29f</anchor>
       <arglist>(UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -5898,10 +6061,10 @@
       <arglist>(const UChar *id, int32_t len, UChar *result, int32_t resultCapacity, UBool *isSystemID, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucal_getType</name>
       <anchorfile>ucal_8h.html</anchorfile>
-      <anchor>a4e3d26dd0e46215fc8944a83be77a78e</anchor>
+      <anchor>ad0628282299cdc810842a507f1048f80</anchor>
       <arglist>(const UCalendar *cal, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -5960,10 +6123,17 @@
       <anchor>ac345a8561828554c092663e541b1c7bd</anchor>
       <arglist>(const UChar *winid, int32_t len, const char *region, UChar *id, int32_t idCapacity, UErrorCode *status)</arglist>
     </member>
+    <member kind="function">
+      <type>U_CAPI void</type>
+      <name>ucal_getTimeZoneOffsetFromLocal</name>
+      <anchorfile>ucal_8h.html</anchorfile>
+      <anchor>a96a8393b0b1cf48221b68b74cf3056fb</anchor>
+      <arglist>(const UCalendar *cal, UTimeZoneLocalOption nonExistingTimeOpt, UTimeZoneLocalOption duplicatedTimeOpt, int32_t *rawOffset, int32_t *dstOffset, UErrorCode *status)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>ucasemap.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucasemap_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringoptions_8h" name="stringoptions.h" local="yes" imported="no">unicode/stringoptions.h</includes>
@@ -5992,10 +6162,10 @@
       <arglist>(UCaseMap *csm)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucasemap_getLocale</name>
       <anchorfile>ucasemap_8h.html</anchorfile>
-      <anchor>a9f37fbdf4d1735848e3b3fc49405e7bd</anchor>
+      <anchor>ad7f645f22fa6b7c2b63dcd3bc93074db</anchor>
       <arglist>(const UCaseMap *csm)</arglist>
     </member>
     <member kind="function">
@@ -6020,10 +6190,10 @@
       <arglist>(UCaseMap *csm, uint32_t options, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UBreakIterator *</type>
+      <type>U_CAPI const UBreakIterator *</type>
       <name>ucasemap_getBreakIterator</name>
       <anchorfile>ucasemap_8h.html</anchorfile>
-      <anchor>aad05f3a88898b8f2336a678dd66016af</anchor>
+      <anchor>ab59570026822f4174e5dcc509e58c136</anchor>
       <arglist>(const UCaseMap *csm)</arglist>
     </member>
     <member kind="function">
@@ -6071,7 +6241,7 @@
   </compound>
   <compound kind="file">
     <name>ucat.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucat_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ures_8h" name="ures.h" local="yes" imported="no">unicode/ures.h</includes>
@@ -6097,16 +6267,16 @@
       <arglist>(u_nl_catd catd)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>u_catgets</name>
       <anchorfile>ucat_8h.html</anchorfile>
-      <anchor>aceb03a1dc30b4601f5cd4453fcc99686</anchor>
+      <anchor>a91cb3fe66cf68400528672abb92c66bf</anchor>
       <arglist>(u_nl_catd catd, int32_t set_num, int32_t msg_num, const UChar *s, int32_t *len, UErrorCode *ec)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>uchar.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uchar_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringoptions_8h" name="stringoptions.h" local="yes" imported="no">unicode/stringoptions.h</includes>
@@ -10651,10 +10821,10 @@
       <arglist>(UChar32 c, UProperty which)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI USet *</type>
+      <type>U_CAPI const USet *</type>
       <name>u_getBinaryPropertySet</name>
       <anchorfile>uchar_8h.html</anchorfile>
-      <anchor>ad99ad989c35e6c27cd41418a195d65d2</anchor>
+      <anchor>abc493e2496ffd288bf0b9339ff0d6638</anchor>
       <arglist>(UProperty property, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
@@ -10707,10 +10877,10 @@
       <arglist>(UProperty which)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UCPMap *</type>
+      <type>U_CAPI const UCPMap *</type>
       <name>u_getIntPropertyMap</name>
       <anchorfile>uchar_8h.html</anchorfile>
-      <anchor>abbfffe0df7a628499fd9fb51f95c578a</anchor>
+      <anchor>a60edef045fb27b2481fda323e81cd03f</anchor>
       <arglist>(UProperty property, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
@@ -10938,10 +11108,10 @@
       <arglist>(UChar32 start, UChar32 limit, UEnumCharNamesFn *fn, void *context, UCharNameChoice nameChoice, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>u_getPropertyName</name>
       <anchorfile>uchar_8h.html</anchorfile>
-      <anchor>aafe6062bc5334fdd96a1434976823c40</anchor>
+      <anchor>a83c815c42939aebe1c3f84d1be060db2</anchor>
       <arglist>(UProperty property, UPropertyNameChoice nameChoice)</arglist>
     </member>
     <member kind="function">
@@ -10952,10 +11122,10 @@
       <arglist>(const char *alias)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>u_getPropertyValueName</name>
       <anchorfile>uchar_8h.html</anchorfile>
-      <anchor>a38fb9bd052c0cd5c9f4df54f00036319</anchor>
+      <anchor>aba92d96d574a3930e7296669e89ebf33</anchor>
       <arglist>(UProperty property, int32_t value, UPropertyNameChoice nameChoice)</arglist>
     </member>
     <member kind="function">
@@ -11066,7 +11236,7 @@
   </compound>
   <compound kind="file">
     <name>ucharstrie.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucharstrie_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -11079,7 +11249,7 @@
   </compound>
   <compound kind="file">
     <name>ucharstriebuilder.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucharstriebuilder_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringtriebuilder_8h" name="stringtriebuilder.h" local="yes" imported="no">unicode/stringtriebuilder.h</includes>
@@ -11090,7 +11260,7 @@
   </compound>
   <compound kind="file">
     <name>uchriter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uchriter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="chariter_8h" name="chariter.h" local="yes" imported="no">unicode/chariter.h</includes>
@@ -11099,7 +11269,7 @@
   </compound>
   <compound kind="file">
     <name>uclean.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uclean_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="typedef">
@@ -11189,7 +11359,7 @@
   </compound>
   <compound kind="file">
     <name>ucnv.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucnv_8h.html</filename>
     <includes id="ucnv__err_8h" name="ucnv_err.h" local="yes" imported="no">unicode/ucnv_err.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -11689,10 +11859,10 @@
       <arglist>(const UConverter *converter, const char *displayLocale, UChar *displayName, int32_t displayNameCapacity, UErrorCode *err)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucnv_getName</name>
       <anchorfile>ucnv_8h.html</anchorfile>
-      <anchor>a1e36cddc49ac06e13551b1b8298906f6</anchor>
+      <anchor>adcd3d700402d315e8f08d1464bc225d3</anchor>
       <arglist>(const UConverter *converter, UErrorCode *err)</arglist>
     </member>
     <member kind="function">
@@ -11836,10 +12006,10 @@
       <arglist>(void)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucnv_getAvailableName</name>
       <anchorfile>ucnv_8h.html</anchorfile>
-      <anchor>ab54e931b76e853b0c5dad4754051d80c</anchor>
+      <anchor>aac7a88b0c9cb9ce01a0801574b9fd820</anchor>
       <arglist>(int32_t n)</arglist>
     </member>
     <member kind="function">
@@ -11857,10 +12027,10 @@
       <arglist>(const char *alias, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucnv_getAlias</name>
       <anchorfile>ucnv_8h.html</anchorfile>
-      <anchor>a8b48bb2206aef32485465db91776e26a</anchor>
+      <anchor>aab8b957f4d59bf15722ec041820c60ce</anchor>
       <arglist>(const char *alias, uint16_t n, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
@@ -11885,31 +12055,31 @@
       <arglist>(void)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucnv_getStandard</name>
       <anchorfile>ucnv_8h.html</anchorfile>
-      <anchor>a1d32ef1e6ce59e225c58268ce87e0311</anchor>
+      <anchor>a683eba61e398605d3a57d4708268922c</anchor>
       <arglist>(uint16_t n, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucnv_getStandardName</name>
       <anchorfile>ucnv_8h.html</anchorfile>
-      <anchor>a049b7b9dc9237a8d98a7a6c2cd3c4f86</anchor>
+      <anchor>ae8295835ea44ddd53fcb6f81bff9e21c</anchor>
       <arglist>(const char *name, const char *standard, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucnv_getCanonicalName</name>
       <anchorfile>ucnv_8h.html</anchorfile>
-      <anchor>a1155e466e7fcd2323e4aa4c17b67201a</anchor>
+      <anchor>a87227bd73fa17240aceb4a2fc131e221</anchor>
       <arglist>(const char *alias, const char *standard, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucnv_getDefaultName</name>
       <anchorfile>ucnv_8h.html</anchorfile>
-      <anchor>a7924b8cd1149efa532be4d611a1348b6</anchor>
+      <anchor>ab905641380c47b304f7adfb8750df9f2</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function">
@@ -11948,10 +12118,10 @@
       <arglist>(const UConverter *cnv)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucnv_detectUnicodeSignature</name>
       <anchorfile>ucnv_8h.html</anchorfile>
-      <anchor>a5421986284699c4d40a9555c7cba5cdb</anchor>
+      <anchor>a838802e9280caaf02172fbe1e743a8ee</anchor>
       <arglist>(const char *source, int32_t sourceLength, int32_t *signatureLength, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
@@ -11978,7 +12148,7 @@
   </compound>
   <compound kind="file">
     <name>ucnv_cb.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucnv__cb_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucnv_8h" name="ucnv.h" local="yes" imported="no">unicode/ucnv.h</includes>
@@ -12021,7 +12191,7 @@
   </compound>
   <compound kind="file">
     <name>ucnv_err.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucnv__err_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="struct">UConverterFromUnicodeArgs</class>
@@ -12198,7 +12368,7 @@
   </compound>
   <compound kind="file">
     <name>ucnvsel.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucnvsel_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uset_8h" name="uset.h" local="yes" imported="no">unicode/uset.h</includes>
@@ -12207,6 +12377,13 @@
     <includes id="ucnv_8h" name="ucnv.h" local="yes" imported="no">unicode/ucnv.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
     <namespace>icu</namespace>
+    <member kind="typedef">
+      <type>struct UConverterSelector</type>
+      <name>UConverterSelector</name>
+      <anchorfile>ucnvsel_8h.html</anchorfile>
+      <anchor>a4bc48420c52373dc8016be5391bcc723</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>U_CAPI UConverterSelector *</type>
       <name>ucnvsel_open</name>
@@ -12249,10 +12426,17 @@
       <anchor>a467365bf0bb7b6989a1777f31251d139</anchor>
       <arglist>(const UConverterSelector *sel, const char *s, int32_t length, UErrorCode *status)</arglist>
     </member>
+    <member kind="typedef">
+      <type>struct UConverterSelector</type>
+      <name>UConverterSelector</name>
+      <anchorfile>ucnvsel_8h.html</anchorfile>
+      <anchor>a4bc48420c52373dc8016be5391bcc723</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>ucol.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>ucol_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unorm_8h" name="unorm.h" local="yes" imported="no">unicode/unorm.h</includes>
@@ -12710,10 +12894,10 @@
       <arglist>(const char *objLoc, const char *dispLoc, UChar *result, int32_t resultLength, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucol_getAvailable</name>
       <anchorfile>ucol_8h.html</anchorfile>
-      <anchor>a5437e7e196d823e20a574ed56756b09e</anchor>
+      <anchor>a7ab760c562a03bfd1fb32164d089ad5c</anchor>
       <arglist>(int32_t localeIndex)</arglist>
     </member>
     <member kind="function">
@@ -12759,10 +12943,10 @@
       <arglist>(char *result, int32_t resultCapacity, const char *keyword, const char *locale, UBool *isAvailable, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>ucol_getRules</name>
       <anchorfile>ucol_8h.html</anchorfile>
-      <anchor>a531dfd8c167f86a69dfc521e6c04deec</anchor>
+      <anchor>a47699dcfa9c862b4011aea1927c53d4b</anchor>
       <arglist>(const UCollator *coll, int32_t *length)</arglist>
     </member>
     <member kind="function">
@@ -12892,10 +13076,10 @@
       <arglist>(const UCollator *coll, ULocDataLocaleType type, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucol_getLocaleByType</name>
       <anchorfile>ucol_8h.html</anchorfile>
-      <anchor>a8067db077b1dc001085a260d95afae11</anchor>
+      <anchor>a8ea9e3d2477c17330c747fb7048253ca</anchor>
       <arglist>(const UCollator *coll, ULocDataLocaleType type, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -12936,7 +13120,7 @@
   </compound>
   <compound kind="file">
     <name>ucoleitr.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>ucoleitr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucol_8h" name="ucol.h" local="yes" imported="no">unicode/ucol.h</includes>
@@ -13048,7 +13232,7 @@
   </compound>
   <compound kind="file">
     <name>uconfig.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uconfig_8h.html</filename>
     <member kind="define">
       <type>#define</type>
@@ -13256,7 +13440,7 @@
   </compound>
   <compound kind="file">
     <name>ucpmap.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucpmap_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="typedef">
@@ -13315,7 +13499,7 @@
   </compound>
   <compound kind="file">
     <name>ucptrie.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucptrie_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucpmap_8h" name="ucpmap.h" local="yes" imported="no">unicode/ucpmap.h</includes>
@@ -13515,7 +13699,7 @@
   </compound>
   <compound kind="file">
     <name>ucsdet.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>ucsdet_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -13564,24 +13748,24 @@
       <arglist>(UCharsetDetector *ucsd, const char *encoding, int32_t length, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UCharsetMatch *</type>
+      <type>U_CAPI const UCharsetMatch *</type>
       <name>ucsdet_detect</name>
       <anchorfile>ucsdet_8h.html</anchorfile>
-      <anchor>aab2db92d8b9bfac207dd1793bd9cebe7</anchor>
+      <anchor>af4880eb6b22328e118f698fd2ceaad98</anchor>
       <arglist>(UCharsetDetector *ucsd, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UCharsetMatch **</type>
+      <type>U_CAPI const UCharsetMatch **</type>
       <name>ucsdet_detectAll</name>
       <anchorfile>ucsdet_8h.html</anchorfile>
-      <anchor>ae906ceefcac173f577cb0ec2cc952165</anchor>
+      <anchor>a50b60117e8300e81db1671393a785b2a</anchor>
       <arglist>(UCharsetDetector *ucsd, int32_t *matchesFound, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucsdet_getName</name>
       <anchorfile>ucsdet_8h.html</anchorfile>
-      <anchor>ad5f922e0fdd01720808a64c5b8b55202</anchor>
+      <anchor>aba47914dead8870e144a426356ab063c</anchor>
       <arglist>(const UCharsetMatch *ucsm, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -13592,10 +13776,10 @@
       <arglist>(const UCharsetMatch *ucsm, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ucsdet_getLanguage</name>
       <anchorfile>ucsdet_8h.html</anchorfile>
-      <anchor>a9036411cc9f71e1c3573025ca9381a4f</anchor>
+      <anchor>aeb4322dcfa998c6497cd957f5d6f53c7</anchor>
       <arglist>(const UCharsetMatch *ucsm, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -13643,7 +13827,7 @@
   </compound>
   <compound kind="file">
     <name>ucurr.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ucurr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -13659,6 +13843,13 @@
       <name>UCurrNameStyle</name>
       <anchorfile>ucurr_8h.html</anchorfile>
       <anchor>a88ede2b40c357b2a68142b8ecdc31741</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>const void *</type>
+      <name>UCurrRegistryKey</name>
+      <anchorfile>ucurr_8h.html</anchorfile>
+      <anchor>a2bac7adc785f3b6ec275a08c29dea02d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -13789,17 +13980,17 @@
       <arglist>(UCurrRegistryKey key, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>ucurr_getName</name>
       <anchorfile>ucurr_8h.html</anchorfile>
-      <anchor>a367779c4a54545f2d5ab3e295c1aa0c4</anchor>
+      <anchor>aebf37befca69de9fc1863d3f6da05433</anchor>
       <arglist>(const UChar *currency, const char *locale, UCurrNameStyle nameStyle, UBool *isChoiceFormat, int32_t *len, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>ucurr_getPluralName</name>
       <anchorfile>ucurr_8h.html</anchorfile>
-      <anchor>a67f024b8dd9d4fbdc08f0efa985d81a8</anchor>
+      <anchor>ac0c7a01e62582c8deedff3989500c782</anchor>
       <arglist>(const UChar *currency, const char *locale, UBool *isChoiceFormat, const char *pluralCount, int32_t *len, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
@@ -13872,17 +14063,10 @@
       <anchor>a67a1077ebad252ede00f7df561906526</anchor>
       <arglist>(const UChar *currency)</arglist>
     </member>
-    <member kind="variable">
-      <type>const typedef void *</type>
-      <name>UCurrRegistryKey</name>
-      <anchorfile>ucurr_8h.html</anchorfile>
-      <anchor>a2b978705265d42d1bee3f0b00a958a03</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="file">
     <name>udat.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>udat_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucal_8h" name="ucal.h" local="yes" imported="no">unicode/ucal.h</includes>
@@ -14924,10 +15108,10 @@
       <arglist>(UDateFormat *fmt, UBool isLenient)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UCalendar *</type>
+      <type>U_CAPI const UCalendar *</type>
       <name>udat_getCalendar</name>
       <anchorfile>udat_8h.html</anchorfile>
-      <anchor>ae64ef708399c620ae9c017311a0ae81a</anchor>
+      <anchor>a227ce734651cce747aa6ff33ef731ecc</anchor>
       <arglist>(const UDateFormat *fmt)</arglist>
     </member>
     <member kind="function">
@@ -14938,17 +15122,17 @@
       <arglist>(UDateFormat *fmt, const UCalendar *calendarToSet)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UNumberFormat *</type>
+      <type>U_CAPI const UNumberFormat *</type>
       <name>udat_getNumberFormat</name>
       <anchorfile>udat_8h.html</anchorfile>
-      <anchor>a70261e8851569dc45ee358c45c875a42</anchor>
+      <anchor>aa128c166154b3e13c39802daa7b01496</anchor>
       <arglist>(const UDateFormat *fmt)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UNumberFormat *</type>
+      <type>U_CAPI const UNumberFormat *</type>
       <name>udat_getNumberFormatForField</name>
       <anchorfile>udat_8h.html</anchorfile>
-      <anchor>a0e6be329e830e66ef08cad18e58451f1</anchor>
+      <anchor>a40d71ea58699da6d438c96531a3be439</anchor>
       <arglist>(const UDateFormat *fmt, UChar field)</arglist>
     </member>
     <member kind="function">
@@ -14973,10 +15157,10 @@
       <arglist>(UDateFormat *fmt, UNumberFormat *numberFormatToAdopt)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>udat_getAvailable</name>
       <anchorfile>udat_8h.html</anchorfile>
-      <anchor>a52da24724afe992349905fce7691f9cb</anchor>
+      <anchor>ac0f13e8d6610127692e87508d47015c8</anchor>
       <arglist>(int32_t localeIndex)</arglist>
     </member>
     <member kind="function">
@@ -15036,10 +15220,10 @@
       <arglist>(UDateFormat *format, UDateFormatSymbolType type, int32_t symbolIndex, UChar *value, int32_t valueLength, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>udat_getLocaleByType</name>
       <anchorfile>udat_8h.html</anchorfile>
-      <anchor>a6b153bf76e2847ff21ec7338900a4480</anchor>
+      <anchor>aa77b0eb73b9494ba479594a5ac027d32</anchor>
       <arglist>(const UDateFormat *fmt, ULocDataLocaleType type, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -15094,7 +15278,7 @@
   </compound>
   <compound kind="file">
     <name>udata.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>udata_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -15221,10 +15405,10 @@
       <arglist>(UDataMemory *pData)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI void *</type>
+      <type>U_CAPI const void *</type>
       <name>udata_getMemory</name>
       <anchorfile>udata_8h.html</anchorfile>
-      <anchor>a8ae6321f7d0d21ced55c0b923132bcc7</anchor>
+      <anchor>ad5af72e5eb85d19403e63d3ad021cba8</anchor>
       <arglist>(UDataMemory *pData)</arglist>
     </member>
     <member kind="function">
@@ -15258,7 +15442,7 @@
   </compound>
   <compound kind="file">
     <name>udateintervalformat.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>udateintervalformat_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucal_8h" name="ucal.h" local="yes" imported="no">unicode/ucal.h</includes>
@@ -15303,10 +15487,10 @@
       <arglist>(UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UFormattedValue *</type>
+      <type>U_CAPI const UFormattedValue *</type>
       <name>udtitvfmt_resultAsValue</name>
       <anchorfile>udateintervalformat_8h.html</anchorfile>
-      <anchor>a1151e3a1be712cce77b9a58b1d15d2a8</anchor>
+      <anchor>a1d8bdb44ecb595895f0ba4d559fef4ac</anchor>
       <arglist>(const UFormattedDateInterval *uresult, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
@@ -15354,7 +15538,7 @@
   </compound>
   <compound kind="file">
     <name>udatpg.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>udatpg_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="udat_8h" name="udat.h" local="yes" imported="no">unicode/udat.h</includes>
@@ -15669,10 +15853,10 @@
       <arglist>(UDateTimePatternGenerator *dtpg, UDateTimePatternField field, const UChar *value, int32_t length)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>udatpg_getAppendItemFormat</name>
       <anchorfile>udatpg_8h.html</anchorfile>
-      <anchor>a69fd307c0ede1b1f2b08d8b0211142b5</anchor>
+      <anchor>a4a87d163b3ef5aebae07809b2401c149</anchor>
       <arglist>(const UDateTimePatternGenerator *dtpg, UDateTimePatternField field, int32_t *pLength)</arglist>
     </member>
     <member kind="function">
@@ -15683,10 +15867,10 @@
       <arglist>(UDateTimePatternGenerator *dtpg, UDateTimePatternField field, const UChar *value, int32_t length)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>udatpg_getAppendItemName</name>
       <anchorfile>udatpg_8h.html</anchorfile>
-      <anchor>ac3784223c967fe720c2d290ea03878e0</anchor>
+      <anchor>aeed1993872f334b5392540277c305cd1</anchor>
       <arglist>(const UDateTimePatternGenerator *dtpg, UDateTimePatternField field, int32_t *pLength)</arglist>
     </member>
     <member kind="function">
@@ -15704,10 +15888,10 @@
       <arglist>(const UDateTimePatternGenerator *dtpg, const UChar *dtFormat, int32_t length)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>udatpg_getDateTimeFormat</name>
       <anchorfile>udatpg_8h.html</anchorfile>
-      <anchor>a8c3823880c332e4e39ad70c1cb8d4dcb</anchor>
+      <anchor>a1c05af1b00a7270a3f173502b8c3469f</anchor>
       <arglist>(const UDateTimePatternGenerator *dtpg, int32_t *pLength)</arglist>
     </member>
     <member kind="function">
@@ -15718,10 +15902,10 @@
       <arglist>(UDateTimePatternGenerator *dtpg, const UChar *decimal, int32_t length)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>udatpg_getDecimal</name>
       <anchorfile>udatpg_8h.html</anchorfile>
-      <anchor>ac1022544bc05bea3621899e9ebbd6bf2</anchor>
+      <anchor>adcac48e0cccf81ffe29cffdad6451fa7</anchor>
       <arglist>(const UDateTimePatternGenerator *dtpg, int32_t *pLength)</arglist>
     </member>
     <member kind="function">
@@ -15753,10 +15937,10 @@
       <arglist>(const UDateTimePatternGenerator *dtpg, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>udatpg_getPatternForSkeleton</name>
       <anchorfile>udatpg_8h.html</anchorfile>
-      <anchor>a3390e08535a3ae7d2326d44618f97d54</anchor>
+      <anchor>aa6bef23173cb23d94be12b4263f1fe3a</anchor>
       <arglist>(const UDateTimePatternGenerator *dtpg, const UChar *skeleton, int32_t skeletonLength, int32_t *pLength)</arglist>
     </member>
     <member kind="function">
@@ -15769,7 +15953,7 @@
   </compound>
   <compound kind="file">
     <name>udisplaycontext.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>udisplaycontext_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="typedef">
@@ -15893,7 +16077,7 @@
   </compound>
   <compound kind="file">
     <name>uenum.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uenum_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -15920,17 +16104,17 @@
       <arglist>(UEnumeration *en, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>uenum_unext</name>
       <anchorfile>uenum_8h.html</anchorfile>
-      <anchor>a060626d6686da1b3b5d45d6bca6bc3d0</anchor>
+      <anchor>afde1d761cfe211d150edc3f17948ec74</anchor>
       <arglist>(UEnumeration *en, int32_t *resultLength, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uenum_next</name>
       <anchorfile>uenum_8h.html</anchorfile>
-      <anchor>a6daafa3e67e414e04d69c0d4045a712e</anchor>
+      <anchor>afc60c150cda05c0284b29d154d6486e6</anchor>
       <arglist>(UEnumeration *en, int32_t *resultLength, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -15964,7 +16148,7 @@
   </compound>
   <compound kind="file">
     <name>ufieldpositer.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>ufieldpositer_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -16000,7 +16184,7 @@
   </compound>
   <compound kind="file">
     <name>uformattable.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>uformattable_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -16131,17 +16315,17 @@
       <arglist>(UFormattable *fmt, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI void *</type>
+      <type>U_CAPI const void *</type>
       <name>ufmt_getObject</name>
       <anchorfile>uformattable_8h.html</anchorfile>
-      <anchor>adaf1be7993bcc62fc76a34d05af76285</anchor>
+      <anchor>ad32f154c108c502694b9abe9fa0b2d2f</anchor>
       <arglist>(const UFormattable *fmt, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>ufmt_getUChars</name>
       <anchorfile>uformattable_8h.html</anchorfile>
-      <anchor>a5a200d114287d6918ba930e2fd524ca5</anchor>
+      <anchor>a0f80e5976b2e7eb9a76aa364d9051a9c</anchor>
       <arglist>(UFormattable *fmt, int32_t *len, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -16159,16 +16343,16 @@
       <arglist>(UFormattable *fmt, int32_t n, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ufmt_getDecNumChars</name>
       <anchorfile>uformattable_8h.html</anchorfile>
-      <anchor>a5a5324e169b86365c9924b86a526cffd</anchor>
+      <anchor>a87b3c250b2b3851db4b340841e95dfb7</anchor>
       <arglist>(UFormattable *fmt, int32_t *len, UErrorCode *status)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>uformattedvalue.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>uformattedvalue_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ufieldpositer_8h" name="ufieldpositer.h" local="yes" imported="no">unicode/ufieldpositer.h</includes>
@@ -16253,6 +16437,12 @@
       <name>UFIELD_CATEGORY_DATE_INTERVAL_SPAN</name>
       <anchorfile>uformattedvalue_8h.html</anchorfile>
       <anchor>a3cbae86bf8813a784ebb8c66a477c2d2a06466fb2a54d51e50652a3b61c642a06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UFIELD_CATEGORY_NUMBER_RANGE_SPAN</name>
+      <anchorfile>uformattedvalue_8h.html</anchorfile>
+      <anchor>a3cbae86bf8813a784ebb8c66a477c2d2aa5ca21ee8b4de92deb1402470ed7dab1</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -16340,10 +16530,10 @@
       <arglist>(UConstrainedFieldPosition *ucfpos, int32_t category, int32_t field, int32_t start, int32_t limit, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>ufmtval_getString</name>
       <anchorfile>uformattedvalue_8h.html</anchorfile>
-      <anchor>a1abbbd1107ac7c4ebe0545f318ab6fab</anchor>
+      <anchor>a04bd25d05b5efbb40cb2868d8d1c6037</anchor>
       <arglist>(const UFormattedValue *ufmtval, int32_t *pLength, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
@@ -16356,7 +16546,7 @@
   </compound>
   <compound kind="file">
     <name>ugender.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>ugender_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -16400,10 +16590,10 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UGenderInfo *</type>
+      <type>U_CAPI const UGenderInfo *</type>
       <name>ugender_getInstance</name>
       <anchorfile>ugender_8h.html</anchorfile>
-      <anchor>afaf6ac5362a22edff3bdcf35e9db4aad</anchor>
+      <anchor>a44f759c78394ddc21fdbd65741d43014</anchor>
       <arglist>(const char *locale, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -16416,7 +16606,7 @@
   </compound>
   <compound kind="file">
     <name>uidna.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uidna_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="parseerr_8h" name="parseerr.h" local="yes" imported="no">unicode/parseerr.h</includes>
@@ -16690,7 +16880,7 @@
   </compound>
   <compound kind="file">
     <name>uiter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uiter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="struct">UCharIterator</class>
@@ -16872,7 +17062,7 @@
   </compound>
   <compound kind="file">
     <name>uldnames.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uldnames_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uscript_8h" name="uscript.h" local="yes" imported="no">unicode/uscript.h</includes>
@@ -16920,10 +17110,10 @@
       <arglist>(ULocaleDisplayNames *ldn)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uldn_getLocale</name>
       <anchorfile>uldnames_8h.html</anchorfile>
-      <anchor>a44d674c6b5f7434ab2dd1859ac624cbb</anchor>
+      <anchor>a47eb0fc26600c29f18928d8f7d90cfa9</anchor>
       <arglist>(const ULocaleDisplayNames *ldn)</arglist>
     </member>
     <member kind="function">
@@ -17006,7 +17196,7 @@
   </compound>
   <compound kind="file">
     <name>ulistformatter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>ulistformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uformattedvalue_8h" name="uformattedvalue.h" local="yes" imported="no">unicode/uformattedvalue.h</includes>
@@ -17145,10 +17335,10 @@
       <arglist>(UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UFormattedValue *</type>
+      <type>U_CAPI const UFormattedValue *</type>
       <name>ulistfmt_resultAsValue</name>
       <anchorfile>ulistformatter_8h.html</anchorfile>
-      <anchor>ae380b2589562e192e59a0000c98b6044</anchor>
+      <anchor>a04d2715ab099d6c3959eabc8d4cad2f1</anchor>
       <arglist>(const UFormattedList *uresult, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
@@ -17175,7 +17365,7 @@
   </compound>
   <compound kind="file">
     <name>uloc.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uloc_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -17512,10 +17702,10 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uloc_getDefault</name>
       <anchorfile>uloc_8h.html</anchorfile>
-      <anchor>a55816cb0e9baa4673c86413593d80359</anchor>
+      <anchor>a196a502d25cf1f047a8854808bc0b911</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function">
@@ -17568,17 +17758,17 @@
       <arglist>(const char *localeID, char *name, int32_t nameCapacity, UErrorCode *err)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uloc_getISO3Language</name>
       <anchorfile>uloc_8h.html</anchorfile>
-      <anchor>acac8959185f490d67eeb3309bd3433f4</anchor>
+      <anchor>a1c214ae64e0d3210a69f494d7b970c02</anchor>
       <arglist>(const char *localeID)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uloc_getISO3Country</name>
       <anchorfile>uloc_8h.html</anchorfile>
-      <anchor>a851b7323068221cf73af785ecfc972c2</anchor>
+      <anchor>a45c3fc2c21a47aed111da820c805e6aa</anchor>
       <arglist>(const char *localeID)</arglist>
     </member>
     <member kind="function">
@@ -17638,10 +17828,10 @@
       <arglist>(const char *localeID, const char *inLocaleID, UChar *result, int32_t maxResultSize, UErrorCode *err)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uloc_getAvailable</name>
       <anchorfile>uloc_8h.html</anchorfile>
-      <anchor>a0ca120b5253f50d98fb2b359b6d6ef60</anchor>
+      <anchor>a138262a64c85ec1570eacbeaf907355c</anchor>
       <arglist>(int32_t n)</arglist>
     </member>
     <member kind="function">
@@ -17659,17 +17849,17 @@
       <arglist>(ULocAvailableType type, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *const  *</type>
+      <type>U_CAPI const char *const  *</type>
       <name>uloc_getISOLanguages</name>
       <anchorfile>uloc_8h.html</anchorfile>
-      <anchor>a42c215f01da638c30e030d2bf118158f</anchor>
+      <anchor>af8d22be7376c0e6e0d47f74ef24e482e</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *const  *</type>
+      <type>U_CAPI const char *const  *</type>
       <name>uloc_getISOCountries</name>
       <anchorfile>uloc_8h.html</anchorfile>
-      <anchor>a69a440e19f8f1892cbc670b950dfe8b7</anchor>
+      <anchor>a88b4a9c743c0a2df77fd311bf0b3f7b5</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function">
@@ -17778,37 +17968,37 @@
       <arglist>(const char *localeID, char *langtag, int32_t langtagCapacity, UBool strict, UErrorCode *err)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uloc_toUnicodeLocaleKey</name>
       <anchorfile>uloc_8h.html</anchorfile>
-      <anchor>ad16d47e8254c2fac228d7aeeacd535ef</anchor>
+      <anchor>ab7d8ab938aed3897ee38878921d49fb4</anchor>
       <arglist>(const char *keyword)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uloc_toUnicodeLocaleType</name>
       <anchorfile>uloc_8h.html</anchorfile>
-      <anchor>a501fd35e1d7a81fa66988e02fa9c4a94</anchor>
+      <anchor>a296fe9cf683a38ccde65a46da8fc6dc9</anchor>
       <arglist>(const char *keyword, const char *value)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uloc_toLegacyKey</name>
       <anchorfile>uloc_8h.html</anchorfile>
-      <anchor>a65e1f0d68357d60fbb18b10f90772c1c</anchor>
+      <anchor>af002fb0090a82d1a91f6055628c81f77</anchor>
       <arglist>(const char *keyword)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uloc_toLegacyType</name>
       <anchorfile>uloc_8h.html</anchorfile>
-      <anchor>a2a2285242fd66f6faf405fa40fcbba30</anchor>
+      <anchor>a4e95d02aba4a27a12e094e77a60c5c71</anchor>
       <arglist>(const char *keyword, const char *value)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>ulocdata.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>ulocdata_8h.html</filename>
     <includes id="ures_8h" name="ures.h" local="yes" imported="no">unicode/ures.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -18028,7 +18218,7 @@
   </compound>
   <compound kind="file">
     <name>umachine.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>umachine_8h.html</filename>
     <includes id="ptypes_8h" name="ptypes.h" local="yes" imported="no">unicode/ptypes.h</includes>
     <member kind="define">
@@ -18300,7 +18490,7 @@
   </compound>
   <compound kind="file">
     <name>umisc.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>umisc_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="struct">UFieldPosition</class>
@@ -18311,17 +18501,17 @@
       <anchor>a5198fab311818480ff82c14ad7cc6482</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>const typedef void *</type>
+    <member kind="typedef">
+      <type>const void *</type>
       <name>URegistryKey</name>
       <anchorfile>umisc_8h.html</anchorfile>
-      <anchor>ac08cf10a70a1c58f4fddb74e7ceab4bc</anchor>
+      <anchor>ab5905d79ed3b979840cee1d5fd48b4fb</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>umsg.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>umsg_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -18420,10 +18610,10 @@
       <arglist>(UMessageFormat *fmt, const char *locale)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>umsg_getLocale</name>
       <anchorfile>umsg_8h.html</anchorfile>
-      <anchor>a148adc3fe931688a0129d4937ea4bdea</anchor>
+      <anchor>a99e64eaf01009de6cd0f58115a2d33a5</anchor>
       <arglist>(const UMessageFormat *fmt)</arglist>
     </member>
     <member kind="function">
@@ -18478,7 +18668,7 @@
   </compound>
   <compound kind="file">
     <name>umutablecptrie.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>umutablecptrie_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucpmap_8h" name="ucpmap.h" local="yes" imported="no">unicode/ucpmap.h</includes>
@@ -18566,7 +18756,7 @@
   </compound>
   <compound kind="file">
     <name>unifilt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>unifilt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unifunct_8h" name="unifunct.h" local="yes" imported="no">unicode/unifunct.h</includes>
@@ -18583,7 +18773,7 @@
   </compound>
   <compound kind="file">
     <name>unifunct.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>unifunct_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -18592,7 +18782,7 @@
   </compound>
   <compound kind="file">
     <name>unimatch.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>unimatch_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="class">icu::UnicodeMatcher</class>
@@ -18625,7 +18815,7 @@
   </compound>
   <compound kind="file">
     <name>unirepl.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>unirepl_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="class">icu::UnicodeReplacer</class>
@@ -18633,7 +18823,7 @@
   </compound>
   <compound kind="file">
     <name>uniset.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uniset_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucpmap_8h" name="ucpmap.h" local="yes" imported="no">unicode/ucpmap.h</includes>
@@ -18645,7 +18835,7 @@
   </compound>
   <compound kind="file">
     <name>unistr.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>unistr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="char16ptr_8h" name="char16ptr.h" local="yes" imported="no">unicode/char16ptr.h</includes>
@@ -18705,6 +18895,13 @@
       <arglist>(int32_t caseLocale, uint32_t options, icu::BreakIterator *iter, char16_t *dest, int32_t destCapacity, const char16_t *src, int32_t srcLength, icu::Edits *edits, UErrorCode &amp;errorCode)</arglist>
     </member>
     <member kind="function">
+      <type>U_CAPI int32_t</type>
+      <name>u_strlen</name>
+      <anchorfile>group__ustring__ustrlen.html</anchorfile>
+      <anchor>ga43199ed47f7c008e6baceccb5f66914a</anchor>
+      <arglist>(const UChar *s)</arglist>
+    </member>
+    <member kind="function">
       <type>U_COMMON_API UnicodeString</type>
       <name>operator+</name>
       <anchorfile>namespaceicu.html</anchorfile>
@@ -18714,7 +18911,7 @@
   </compound>
   <compound kind="file">
     <name>unorm.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>unorm_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uiter_8h" name="uiter.h" local="yes" imported="no">unicode/uiter.h</includes>
@@ -18846,7 +19043,7 @@
   </compound>
   <compound kind="file">
     <name>unorm2.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>unorm2_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringoptions_8h" name="stringoptions.h" local="yes" imported="no">unicode/stringoptions.h</includes>
@@ -18924,45 +19121,45 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UNormalizer2 *</type>
+      <type>U_CAPI const UNormalizer2 *</type>
       <name>unorm2_getNFCInstance</name>
       <anchorfile>unorm2_8h.html</anchorfile>
-      <anchor>a60cea0d0a5d890f18c544a9bdfa05571</anchor>
+      <anchor>af617e4f945ce7175a8002b935de678f9</anchor>
       <arglist>(UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UNormalizer2 *</type>
+      <type>U_CAPI const UNormalizer2 *</type>
       <name>unorm2_getNFDInstance</name>
       <anchorfile>unorm2_8h.html</anchorfile>
-      <anchor>a61f1d020b63e552523be57b853b1cce6</anchor>
+      <anchor>ab1f3bf293f7817d3f90c729830e1559c</anchor>
       <arglist>(UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UNormalizer2 *</type>
+      <type>U_CAPI const UNormalizer2 *</type>
       <name>unorm2_getNFKCInstance</name>
       <anchorfile>unorm2_8h.html</anchorfile>
-      <anchor>aec592ccd1dd9844a908ff0a7c285967e</anchor>
+      <anchor>a47f04495d52791727bb38e3bfce03834</anchor>
       <arglist>(UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UNormalizer2 *</type>
+      <type>U_CAPI const UNormalizer2 *</type>
       <name>unorm2_getNFKDInstance</name>
       <anchorfile>unorm2_8h.html</anchorfile>
-      <anchor>ac4814cc015298d2049cfb57782f3bcf7</anchor>
+      <anchor>ad92492f5b6938ce5b60608445179f68f</anchor>
       <arglist>(UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UNormalizer2 *</type>
+      <type>U_CAPI const UNormalizer2 *</type>
       <name>unorm2_getNFKCCasefoldInstance</name>
       <anchorfile>unorm2_8h.html</anchorfile>
-      <anchor>aa5d20c0ea162120df2a564dd5ffdbe7a</anchor>
+      <anchor>a97332b4f0918763dff9770a0d23ddd3c</anchor>
       <arglist>(UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UNormalizer2 *</type>
+      <type>U_CAPI const UNormalizer2 *</type>
       <name>unorm2_getInstance</name>
       <anchorfile>unorm2_8h.html</anchorfile>
-      <anchor>a5b7c2bc59f3f1fbaf8894f11f5e6e78b</anchor>
+      <anchor>a70af54b0aa3163361691374e16e1e44a</anchor>
       <arglist>(const char *packageName, const char *name, UNormalization2Mode mode, UErrorCode *pErrorCode)</arglist>
     </member>
     <member kind="function">
@@ -19080,7 +19277,7 @@
   </compound>
   <compound kind="file">
     <name>unum.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>unum_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -19319,6 +19516,24 @@
       <name>UNUM_ROUND_UNNECESSARY</name>
       <anchorfile>unum_8h.html</anchorfile>
       <anchor>a2f46653ee48f5d8d5b8e67d4a1b8230aa0f59afe5c61b0334a1f1fbb89d054595</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UNUM_ROUND_HALF_ODD</name>
+      <anchorfile>unum_8h.html</anchorfile>
+      <anchor>a2f46653ee48f5d8d5b8e67d4a1b8230aaa6cd55fb2dcc24f67008a38795745731</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UNUM_ROUND_HALF_CEILING</name>
+      <anchorfile>unum_8h.html</anchorfile>
+      <anchor>a2f46653ee48f5d8d5b8e67d4a1b8230aacffbb1ef6bf1389df9a73e52cc6f14e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UNUM_ROUND_HALF_FLOOR</name>
+      <anchorfile>unum_8h.html</anchorfile>
+      <anchor>a2f46653ee48f5d8d5b8e67d4a1b8230aac10772676875a08271190462bcb62978</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -20031,10 +20246,10 @@
       <arglist>(UNumberFormat *format, UBool localized, const UChar *pattern, int32_t patternLength, UParseError *parseError, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>unum_getAvailable</name>
       <anchorfile>unum_8h.html</anchorfile>
-      <anchor>ac80487b3c128f7487688d2674b03cabd</anchor>
+      <anchor>ae8f9edad9124a04bc75b518f8433faa1</anchor>
       <arglist>(int32_t localeIndex)</arglist>
     </member>
     <member kind="function">
@@ -20108,10 +20323,10 @@
       <arglist>(UNumberFormat *fmt, UNumberFormatSymbol symbol, const UChar *value, int32_t length, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>unum_getLocaleByType</name>
       <anchorfile>unum_8h.html</anchorfile>
-      <anchor>abc46bd2dca5507b813c9a8ab99cb264a</anchor>
+      <anchor>ac81810c3277cfb0b51b1d3929cbfb473</anchor>
       <arglist>(const UNumberFormat *fmt, ULocDataLocaleType type, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -20131,7 +20346,7 @@
   </compound>
   <compound kind="file">
     <name>unumberformatter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>unumberformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="parseerr_8h" name="parseerr.h" local="yes" imported="no">unicode/parseerr.h</includes>
@@ -20139,6 +20354,13 @@
     <includes id="umisc_8h" name="umisc.h" local="yes" imported="no">unicode/umisc.h</includes>
     <includes id="uformattedvalue_8h" name="uformattedvalue.h" local="yes" imported="no">unicode/uformattedvalue.h</includes>
     <namespace>icu</namespace>
+    <member kind="typedef">
+      <type>enum UNumberRoundingPriority</type>
+      <name>UNumberRoundingPriority</name>
+      <anchorfile>unumberformatter_8h.html</anchorfile>
+      <anchor>ae481df8b480671a6affec8af37491dd5</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>enum UNumberUnitWidth</type>
       <name>UNumberUnitWidth</name>
@@ -20168,6 +20390,13 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>enum UNumberTrailingZeroDisplay</type>
+      <name>UNumberTrailingZeroDisplay</name>
+      <anchorfile>unumberformatter_8h.html</anchorfile>
+      <anchor>a6589afa357c20be35272c7450cf2c1d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>struct UNumberFormatter</type>
       <name>UNumberFormatter</name>
       <anchorfile>unumberformatter_8h.html</anchorfile>
@@ -20179,6 +20408,25 @@
       <name>UFormattedNumber</name>
       <anchorfile>unumberformatter_8h.html</anchorfile>
       <anchor>a9d4030bdc4dd1ec4de828bf1bcf4b1b6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UNumberRoundingPriority</name>
+      <anchorfile>unumberformatter_8h.html</anchorfile>
+      <anchor>a002bb379f6d06333590e00771c613c71</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UNUM_ROUNDING_PRIORITY_RELAXED</name>
+      <anchorfile>unumberformatter_8h.html</anchorfile>
+      <anchor>a002bb379f6d06333590e00771c613c71a08945b9561fa619c16140a916e8781e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UNUM_ROUNDING_PRIORITY_STRICT</name>
+      <anchorfile>unumberformatter_8h.html</anchorfile>
+      <anchor>a002bb379f6d06333590e00771c613c71adce485a55ec6629f86c2feaa8b344a04</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -20329,6 +20577,18 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>UNUM_SIGN_NEGATIVE</name>
+      <anchorfile>unumberformatter_8h.html</anchorfile>
+      <anchor>a18092ae1533c9c260f01c9dbf25589c9ac06db8e834dd916f3af016910c7fa1b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UNUM_SIGN_ACCOUNTING_NEGATIVE</name>
+      <anchorfile>unumberformatter_8h.html</anchorfile>
+      <anchor>a18092ae1533c9c260f01c9dbf25589c9a35d5896fc2f19a99fdd0a502931abbf4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>UNUM_SIGN_COUNT</name>
       <anchorfile>unumberformatter_8h.html</anchorfile>
       <anchor>a18092ae1533c9c260f01c9dbf25589c9ae5314fcda9c534ff8c6e686f967a4c54</anchor>
@@ -20357,6 +20617,25 @@
       <name>UNUM_DECIMAL_SEPARATOR_COUNT</name>
       <anchorfile>unumberformatter_8h.html</anchorfile>
       <anchor>a1e0fe0c910e360dda5cdad3387e5a0c6a1d1b364e55dcabab30649afbaa200cd0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UNumberTrailingZeroDisplay</name>
+      <anchorfile>unumberformatter_8h.html</anchorfile>
+      <anchor>a39a7f386dd7f624dd611d4f5249c2c26</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UNUM_TRAILING_ZERO_AUTO</name>
+      <anchorfile>unumberformatter_8h.html</anchorfile>
+      <anchor>a39a7f386dd7f624dd611d4f5249c2c26a673c844c1941590a781fab2f0d2fb7b2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UNUM_TRAILING_ZERO_HIDE_IF_WHOLE</name>
+      <anchorfile>unumberformatter_8h.html</anchorfile>
+      <anchor>a39a7f386dd7f624dd611d4f5249c2c26a89147ccac5570a1817c370f8e63837df</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -20402,10 +20681,10 @@
       <arglist>(const UNumberFormatter *uformatter, const char *value, int32_t valueLen, UFormattedNumber *uresult, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UFormattedValue *</type>
+      <type>U_CAPI const UFormattedValue *</type>
       <name>unumf_resultAsValue</name>
       <anchorfile>unumberformatter_8h.html</anchorfile>
-      <anchor>af81cf03aa94d7ddc6f9f40d62e8894be</anchor>
+      <anchor>a1c7b5bb3f964a19f788ae4938d4067aa</anchor>
       <arglist>(const UFormattedNumber *uresult, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
@@ -20453,7 +20732,7 @@
   </compound>
   <compound kind="file">
     <name>unumberrangeformatter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>unumberrangeformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="parseerr_8h" name="parseerr.h" local="yes" imported="no">unicode/parseerr.h</includes>
@@ -20619,10 +20898,10 @@
       <arglist>(const UNumberRangeFormatter *uformatter, const char *first, int32_t firstLen, const char *second, int32_t secondLen, UFormattedNumberRange *uresult, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UFormattedValue *</type>
+      <type>U_CAPI const UFormattedValue *</type>
       <name>unumrf_resultAsValue</name>
       <anchorfile>unumberrangeformatter_8h.html</anchorfile>
-      <anchor>a831487b8a4e1daf9454cd0a8d275aaf6</anchor>
+      <anchor>afe7ccf24e69e8bff546f46d2cffaf28a</anchor>
       <arglist>(const UFormattedNumberRange *uresult, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
@@ -20663,7 +20942,7 @@
   </compound>
   <compound kind="file">
     <name>unumsys.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>unumsys_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -20705,10 +20984,10 @@
       <arglist>(UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>unumsys_getName</name>
       <anchorfile>unumsys_8h.html</anchorfile>
-      <anchor>a41bfdf126a8e0991dd199e4d57cd8e65</anchor>
+      <anchor>aabd6585aa6b7f5d316175311c4e31229</anchor>
       <arglist>(const UNumberingSystem *unumsys)</arglist>
     </member>
     <member kind="function">
@@ -20735,7 +21014,7 @@
   </compound>
   <compound kind="file">
     <name>uobject.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uobject_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="platform_8h" name="platform.h" local="yes" imported="no">unicode/platform.h</includes>
@@ -20773,7 +21052,7 @@
   </compound>
   <compound kind="file">
     <name>upluralrules.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>upluralrules_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -20878,7 +21157,7 @@
   </compound>
   <compound kind="file">
     <name>uregex.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>uregex_8h.html</filename>
     <includes id="utext_8h" name="utext.h" local="yes" imported="no">unicode/utext.h</includes>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
@@ -21010,10 +21289,10 @@
       <arglist>(const URegularExpression *regexp, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>uregex_pattern</name>
       <anchorfile>uregex_8h.html</anchorfile>
-      <anchor>a5596618b6d07bef0c46f6ce07361b08f</anchor>
+      <anchor>a118348bbb465e11201fa7553bedebb7f</anchor>
       <arglist>(const URegularExpression *regexp, int32_t *patLength, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -21045,10 +21324,10 @@
       <arglist>(URegularExpression *regexp, UText *text, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>uregex_getText</name>
       <anchorfile>uregex_8h.html</anchorfile>
-      <anchor>aab4b9bb3c05438786255f97e456ae240</anchor>
+      <anchor>a69fd75e94c95d5229d3ba45220a680b9</anchor>
       <arglist>(URegularExpression *regexp, int32_t *textLength, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -21411,7 +21690,7 @@
   </compound>
   <compound kind="file">
     <name>uregion.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>uregion_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -21485,17 +21764,17 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI URegion *</type>
+      <type>U_CAPI const URegion *</type>
       <name>uregion_getRegionFromCode</name>
       <anchorfile>uregion_8h.html</anchorfile>
-      <anchor>a5a172186cce4209ccc7c401bb6b16863</anchor>
+      <anchor>a5e5d48490fb369c1704150e992fcc091</anchor>
       <arglist>(const char *regionCode, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI URegion *</type>
+      <type>U_CAPI const URegion *</type>
       <name>uregion_getRegionFromNumericCode</name>
       <anchorfile>uregion_8h.html</anchorfile>
-      <anchor>a454ef6320a4f8df5ae5ba0caac654aa3</anchor>
+      <anchor>a44a8ae740132d993dbbba66e80e56d94</anchor>
       <arglist>(int32_t code, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -21513,17 +21792,17 @@
       <arglist>(const URegion *uregion, const URegion *otherRegion)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI URegion *</type>
+      <type>U_CAPI const URegion *</type>
       <name>uregion_getContainingRegion</name>
       <anchorfile>uregion_8h.html</anchorfile>
-      <anchor>a6ee50729dadeb0b60f3121689a4c4a92</anchor>
+      <anchor>a077832be0c883daa423b63e639bf70d8</anchor>
       <arglist>(const URegion *uregion)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI URegion *</type>
+      <type>U_CAPI const URegion *</type>
       <name>uregion_getContainingRegionOfType</name>
       <anchorfile>uregion_8h.html</anchorfile>
-      <anchor>a3f7d775fb655f325eddcf06a25cb2875</anchor>
+      <anchor>a1b7edb79da3c11181cb3f946fae7f847</anchor>
       <arglist>(const URegion *uregion, URegionType type)</arglist>
     </member>
     <member kind="function">
@@ -21555,10 +21834,10 @@
       <arglist>(const URegion *uregion, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uregion_getRegionCode</name>
       <anchorfile>uregion_8h.html</anchorfile>
-      <anchor>a2f1ff01fd6b62f1f5fc978615dd870d8</anchor>
+      <anchor>afea2dd8f9e047ad00965bd6f9c740170</anchor>
       <arglist>(const URegion *uregion)</arglist>
     </member>
     <member kind="function">
@@ -21578,7 +21857,7 @@
   </compound>
   <compound kind="file">
     <name>ureldatefmt.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>ureldatefmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unum_8h" name="unum.h" local="yes" imported="no">unicode/unum.h</includes>
@@ -21796,10 +22075,10 @@
       <arglist>(UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UFormattedValue *</type>
+      <type>U_CAPI const UFormattedValue *</type>
       <name>ureldatefmt_resultAsValue</name>
       <anchorfile>ureldatefmt_8h.html</anchorfile>
-      <anchor>a9f9a7a56fdf11962f432dc3dc1bbc428</anchor>
+      <anchor>a359399266f12f9fa41ad809253a1b8a3</anchor>
       <arglist>(const UFormattedRelativeDateTime *ufrdt, UErrorCode *ec)</arglist>
     </member>
     <member kind="function">
@@ -21847,7 +22126,7 @@
   </compound>
   <compound kind="file">
     <name>urep.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>urep_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="struct">UReplaceableCallbacks</class>
@@ -21868,7 +22147,7 @@
   </compound>
   <compound kind="file">
     <name>ures.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ures_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -22054,10 +22333,10 @@
       <arglist>(const UResourceBundle *resourceBundle, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ures_getLocaleByType</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>a3dd39f3b181451c86d4d02320b489f2b</anchor>
+      <anchor>aa809e421724d33f89bff64e323b054a5</anchor>
       <arglist>(const UResourceBundle *resourceBundle, ULocDataLocaleType type, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -22068,31 +22347,31 @@
       <arglist>(UResourceBundle *r, const char *packageName, const char *localeID, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>ures_getString</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>ae5321e8b45ce4098334eaae0a119d43c</anchor>
+      <anchor>af026b3cceb9c5480150a3aa145a7a1a4</anchor>
       <arglist>(const UResourceBundle *resourceBundle, int32_t *len, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ures_getUTF8String</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>aa273bc3abec3c0400318f76f7ab38ec3</anchor>
+      <anchor>a9b1018a423f9ebbc9aa8d45b19c2ff1d</anchor>
       <arglist>(const UResourceBundle *resB, char *dest, int32_t *length, UBool forceCopy, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI uint8_t *</type>
+      <type>U_CAPI const uint8_t *</type>
       <name>ures_getBinary</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>aa1717c98ccca43b32a6d3050623d34cb</anchor>
+      <anchor>a67dcad6de08c23f116e2dd3e448eeb45</anchor>
       <arglist>(const UResourceBundle *resourceBundle, int32_t *len, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI int32_t *</type>
+      <type>U_CAPI const int32_t *</type>
       <name>ures_getIntVector</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>a05ef4387fd36745add1324252c99f127</anchor>
+      <anchor>a70fe48f95bfd4cfd4d93a2c0384fbec3</anchor>
       <arglist>(const UResourceBundle *resourceBundle, int32_t *len, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -22124,10 +22403,10 @@
       <arglist>(const UResourceBundle *resourceBundle)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ures_getKey</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>a8a5e4c4f331ee9599a760413b6cadbaf</anchor>
+      <anchor>ac31526ba1e383cb064d6b5b7e6d7036b</anchor>
       <arglist>(const UResourceBundle *resourceBundle)</arglist>
     </member>
     <member kind="function">
@@ -22152,10 +22431,10 @@
       <arglist>(UResourceBundle *resourceBundle, UResourceBundle *fillIn, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>ures_getNextString</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>af8693a7fcfe9b7f768a1f5d596c3fe94</anchor>
+      <anchor>ad5524d11a698dbcb8a239ee3ed28c0a0</anchor>
       <arglist>(UResourceBundle *resourceBundle, int32_t *len, const char **key, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -22166,17 +22445,17 @@
       <arglist>(const UResourceBundle *resourceBundle, int32_t indexR, UResourceBundle *fillIn, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>ures_getStringByIndex</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>a093c5acb89b982480e08d765eca6dedb</anchor>
+      <anchor>ad4020b767bcefbf49cd755eb72e75c67</anchor>
       <arglist>(const UResourceBundle *resourceBundle, int32_t indexS, int32_t *len, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ures_getUTF8StringByIndex</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>a9e7d06dc9f7e7301c8ed444cb00b77fd</anchor>
+      <anchor>a79f79c6a9d804bdce516a576959324dc</anchor>
       <arglist>(const UResourceBundle *resB, int32_t stringIndex, char *dest, int32_t *pLength, UBool forceCopy, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -22187,17 +22466,17 @@
       <arglist>(const UResourceBundle *resourceBundle, const char *key, UResourceBundle *fillIn, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>ures_getStringByKey</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>a4e09e97bd02330e11c7397ae57b914b6</anchor>
+      <anchor>af356017bb890e998bb4df86d79dc3061</anchor>
       <arglist>(const UResourceBundle *resB, const char *key, int32_t *len, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>ures_getUTF8StringByKey</name>
       <anchorfile>ures_8h.html</anchorfile>
-      <anchor>ad5ba091c33629a86e3a0a79e3232db9d</anchor>
+      <anchor>a7233a5eff3fe7f1af1b4906e4a7158eb</anchor>
       <arglist>(const UResourceBundle *resB, const char *key, char *dest, int32_t *pLength, UBool forceCopy, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -22238,7 +22517,7 @@
   </compound>
   <compound kind="file">
     <name>uscript.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uscript_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <namespace>icu</namespace>
@@ -23520,17 +23799,17 @@
       <arglist>(const char *nameOrAbbrOrLocale, UScriptCode *fillIn, int32_t capacity, UErrorCode *err)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uscript_getName</name>
       <anchorfile>uscript_8h.html</anchorfile>
-      <anchor>adb84177cd3348636a0e633f0085ac323</anchor>
+      <anchor>a9cbe0bc56eb69dbb4b1ba1c5128b3509</anchor>
       <arglist>(UScriptCode scriptCode)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>uscript_getShortName</name>
       <anchorfile>uscript_8h.html</anchorfile>
-      <anchor>a5e97cb134ad0bd59b33a2e2b64caf2dd</anchor>
+      <anchor>ac39403502a294ca4bc250ce566c15fea</anchor>
       <arglist>(UScriptCode scriptCode)</arglist>
     </member>
     <member kind="function">
@@ -23599,7 +23878,7 @@
   </compound>
   <compound kind="file">
     <name>usearch.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>usearch_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucol_8h" name="ucol.h" local="yes" imported="no">unicode/ucol.h</includes>
@@ -23779,10 +24058,10 @@
       <arglist>(UStringSearch *strsrch, UBreakIterator *breakiter, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UBreakIterator *</type>
+      <type>U_CAPI const UBreakIterator *</type>
       <name>usearch_getBreakIterator</name>
       <anchorfile>usearch_8h.html</anchorfile>
-      <anchor>ad97273f9aa9f3d6f299a135cf34d19b5</anchor>
+      <anchor>aaa40ff0bfd124d2adf0381b7258ff7bc</anchor>
       <arglist>(const UStringSearch *strsrch)</arglist>
     </member>
     <member kind="function">
@@ -23793,10 +24072,10 @@
       <arglist>(UStringSearch *strsrch, const UChar *text, int32_t textlength, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>usearch_getText</name>
       <anchorfile>usearch_8h.html</anchorfile>
-      <anchor>a9a15adf0e440c4ef5a1dfe7ac4056347</anchor>
+      <anchor>aa9c34ffc3ad3079e97626bfe9a3a0a07</anchor>
       <arglist>(const UStringSearch *strsrch, int32_t *length)</arglist>
     </member>
     <member kind="function">
@@ -23821,10 +24100,10 @@
       <arglist>(UStringSearch *strsrch, const UChar *pattern, int32_t patternlength, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>usearch_getPattern</name>
       <anchorfile>usearch_8h.html</anchorfile>
-      <anchor>a02a804de4fcb56eeffd9c622dbb5b7dc</anchor>
+      <anchor>af32eadacb224264d942dd75986706043</anchor>
       <arglist>(const UStringSearch *strsrch, int32_t *length)</arglist>
     </member>
     <member kind="function">
@@ -23893,7 +24172,7 @@
   </compound>
   <compound kind="file">
     <name>uset.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uset_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uchar_8h" name="uchar.h" local="yes" imported="no">unicode/uchar.h</includes>
@@ -24139,6 +24418,13 @@
     </member>
     <member kind="function">
       <type>U_CAPI void</type>
+      <name>uset_removeAllCodePoints</name>
+      <anchorfile>uset_8h.html</anchorfile>
+      <anchor>a5e5080ced3b899c79e3e3a1c4fc064f7</anchor>
+      <arglist>(USet *set, const UChar *str, int32_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI void</type>
       <name>uset_removeAll</name>
       <anchorfile>uset_8h.html</anchorfile>
       <anchor>afc91ced491684dc252f63dc9cf02c1e8</anchor>
@@ -24150,6 +24436,20 @@
       <anchorfile>uset_8h.html</anchorfile>
       <anchor>ab0f17dfbe6d9bfd47d1df2f3b9606d9f</anchor>
       <arglist>(USet *set, UChar32 start, UChar32 end)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI void</type>
+      <name>uset_retainString</name>
+      <anchorfile>uset_8h.html</anchorfile>
+      <anchor>afc68954accd52c08a28b843f8aa3c657</anchor>
+      <arglist>(USet *set, const UChar *str, int32_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI void</type>
+      <name>uset_retainAllCodePoints</name>
+      <anchorfile>uset_8h.html</anchorfile>
+      <anchor>acb196211653bdf1a63678d3af4ba643b</anchor>
+      <arglist>(USet *set, const UChar *str, int32_t length)</arglist>
     </member>
     <member kind="function">
       <type>U_CAPI void</type>
@@ -24171,6 +24471,27 @@
       <anchorfile>uset_8h.html</anchorfile>
       <anchor>ab9eb12c5e512d15f7b671a3fb1eb36b0</anchor>
       <arglist>(USet *set)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI void</type>
+      <name>uset_complementRange</name>
+      <anchorfile>uset_8h.html</anchorfile>
+      <anchor>a38f2fe928702e40d97d87b638b7cf932</anchor>
+      <arglist>(USet *set, UChar32 start, UChar32 end)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI void</type>
+      <name>uset_complementString</name>
+      <anchorfile>uset_8h.html</anchorfile>
+      <anchor>a378a7cceddb0215143d7284c20b2f5b6</anchor>
+      <arglist>(USet *set, const UChar *str, int32_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI void</type>
+      <name>uset_complementAllCodePoints</name>
+      <anchorfile>uset_8h.html</anchorfile>
+      <anchor>a41d97a5eb4d35643a566acb5fadc85b5</anchor>
+      <arglist>(USet *set, const UChar *str, int32_t length)</arglist>
     </member>
     <member kind="function">
       <type>U_CAPI void</type>
@@ -24371,7 +24692,7 @@
   </compound>
   <compound kind="file">
     <name>usetiter.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>usetiter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -24381,7 +24702,7 @@
   </compound>
   <compound kind="file">
     <name>ushape.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ushape_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -24744,7 +25065,7 @@
   </compound>
   <compound kind="file">
     <name>uspoof.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>uspoof_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uset_8h" name="uset.h" local="yes" imported="no">unicode/uset.h</includes>
@@ -24991,10 +25312,10 @@
       <arglist>(USpoofChecker *sc, const char *localesList, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *U_EXPORT2</type>
+      <type>U_CAPI const char *U_EXPORT2</type>
       <name>uspoof_getAllowedLocales</name>
       <anchorfile>uspoof_8h.html</anchorfile>
-      <anchor>ae13653abd36db564ff5ccf757a323a95</anchor>
+      <anchor>ac1b886dc082dd31e6f1f50fda3e5114e</anchor>
       <arglist>(USpoofChecker *sc, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -25005,10 +25326,10 @@
       <arglist>(USpoofChecker *sc, const USet *chars, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI USet *U_EXPORT2</type>
+      <type>U_CAPI const USet *U_EXPORT2</type>
       <name>uspoof_getAllowedChars</name>
       <anchorfile>uspoof_8h.html</anchorfile>
-      <anchor>a78478f1a99e175990a30036a587dc6ec</anchor>
+      <anchor>a4c191792f687a5f35273b9162f96f717</anchor>
       <arglist>(const USpoofChecker *sc, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -25068,10 +25389,10 @@
       <arglist>(const USpoofCheckResult *checkResult, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI USet *U_EXPORT2</type>
+      <type>U_CAPI const USet *U_EXPORT2</type>
       <name>uspoof_getCheckResultNumerics</name>
       <anchorfile>uspoof_8h.html</anchorfile>
-      <anchor>ac01f23352da41012762a1d47927c3cce</anchor>
+      <anchor>a1d383a4c222622f6723d7538e1b4b51d</anchor>
       <arglist>(const USpoofCheckResult *checkResult, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -25103,17 +25424,17 @@
       <arglist>(const USpoofChecker *sc, uint32_t type, const char *id, int32_t length, char *dest, int32_t destCapacity, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI USet *U_EXPORT2</type>
+      <type>U_CAPI const USet *U_EXPORT2</type>
       <name>uspoof_getInclusionSet</name>
       <anchorfile>uspoof_8h.html</anchorfile>
-      <anchor>afe0a5957aee8a7bcd05b1744c42d71bf</anchor>
+      <anchor>aa208577ca79ddc9f6f98e411557f785d</anchor>
       <arglist>(UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI USet *U_EXPORT2</type>
+      <type>U_CAPI const USet *U_EXPORT2</type>
       <name>uspoof_getRecommendedSet</name>
       <anchorfile>uspoof_8h.html</anchorfile>
-      <anchor>a63d0e974bce7ffa7ebdafe0a46a08ad3</anchor>
+      <anchor>aa04f3b1f741bcc67861824eae1fbe912</anchor>
       <arglist>(UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -25131,10 +25452,10 @@
       <arglist>(USpoofChecker *sc, const icu::UnicodeSet *chars, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI icu::UnicodeSet *U_EXPORT2</type>
+      <type>U_CAPI const icu::UnicodeSet *U_EXPORT2</type>
       <name>uspoof_getAllowedUnicodeSet</name>
       <anchorfile>uspoof_8h.html</anchorfile>
-      <anchor>a7b406d913e65587f670a9889eb6f0aae</anchor>
+      <anchor>a811e5aa0d36db0a5cac25b2f44fbd123</anchor>
       <arglist>(const USpoofChecker *sc, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -25166,23 +25487,23 @@
       <arglist>(const USpoofChecker *sc, uint32_t type, const icu::UnicodeString &amp;id, icu::UnicodeString &amp;dest, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI icu::UnicodeSet *U_EXPORT2</type>
+      <type>U_CAPI const icu::UnicodeSet *U_EXPORT2</type>
       <name>uspoof_getInclusionUnicodeSet</name>
       <anchorfile>uspoof_8h.html</anchorfile>
-      <anchor>adc87406fe489d0d4d16ad3ba52a0b326</anchor>
+      <anchor>a0abe034866a960513b507f869a7c4df2</anchor>
       <arglist>(UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI icu::UnicodeSet *U_EXPORT2</type>
+      <type>U_CAPI const icu::UnicodeSet *U_EXPORT2</type>
       <name>uspoof_getRecommendedUnicodeSet</name>
       <anchorfile>uspoof_8h.html</anchorfile>
-      <anchor>adbd5a810d2bc9f776d35555cb71f6b90</anchor>
+      <anchor>aeabd1ed7d9756e136d715f45d339d33c</anchor>
       <arglist>(UErrorCode *status)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>usprep.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>usprep_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -25338,7 +25659,7 @@
   </compound>
   <compound kind="file">
     <name>ustdio.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/io/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/io/unicode/</path>
     <filename>ustdio_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucnv_8h" name="ucnv.h" local="yes" imported="no">unicode/ucnv.h</includes>
@@ -25438,10 +25759,10 @@
       <arglist>(UFILE *f)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>u_fgetlocale</name>
       <anchorfile>ustdio_8h.html</anchorfile>
-      <anchor>aed63bfc057d47472ca0b9928d1f2966b</anchor>
+      <anchor>a70ba8c3aff63f09c1443ec30c6b37088</anchor>
       <arglist>(UFILE *file)</arglist>
     </member>
     <member kind="function">
@@ -25452,10 +25773,10 @@
       <arglist>(UFILE *file, const char *locale)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>u_fgetcodepage</name>
       <anchorfile>ustdio_8h.html</anchorfile>
-      <anchor>a35769ee019edc45adc041a53862fbe29</anchor>
+      <anchor>a37793e54f807778f51d0e237dc298cd1</anchor>
       <arglist>(UFILE *file)</arglist>
     </member>
     <member kind="function">
@@ -25473,10 +25794,10 @@
       <arglist>(UFILE *f)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UNumberFormat *</type>
+      <type>U_CAPI const UNumberFormat *</type>
       <name>u_fgetNumberFormat</name>
       <anchorfile>ustdio_8h.html</anchorfile>
-      <anchor>a0c9a62a755ce61fa139375591a025d80</anchor>
+      <anchor>a45f6ebd093f742bbc1dfd8d213ccacba</anchor>
       <arglist>(UFILE *f)</arglist>
     </member>
     <member kind="function">
@@ -25706,7 +26027,7 @@
   </compound>
   <compound kind="file">
     <name>ustream.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/io/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/io/unicode/</path>
     <filename>ustream_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -25728,7 +26049,7 @@
   </compound>
   <compound kind="file">
     <name>ustring.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ustring_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="putil_8h" name="putil.h" local="yes" imported="no">unicode/putil.h</includes>
@@ -26198,7 +26519,7 @@
   </compound>
   <compound kind="file">
     <name>ustringtrie.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>ustringtrie_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -26256,7 +26577,7 @@
   </compound>
   <compound kind="file">
     <name>utext.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>utext_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uchar_8h" name="uchar.h" local="yes" imported="no">unicode/uchar.h</includes>
@@ -26615,7 +26936,7 @@
   </compound>
   <compound kind="file">
     <name>utf.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>utf_8h.html</filename>
     <includes id="umachine_8h" name="umachine.h" local="yes" imported="no">unicode/umachine.h</includes>
     <includes id="utf8_8h" name="utf8.h" local="yes" imported="no">unicode/utf8.h</includes>
@@ -26687,7 +27008,7 @@
   </compound>
   <compound kind="file">
     <name>utf16.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>utf16_8h.html</filename>
     <includes id="umachine_8h" name="umachine.h" local="yes" imported="no">unicode/umachine.h</includes>
     <includes id="utf_8h" name="utf.h" local="yes" imported="no">unicode/utf.h</includes>
@@ -26939,12 +27260,12 @@
   </compound>
   <compound kind="file">
     <name>utf32.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>utf32_8h.html</filename>
   </compound>
   <compound kind="file">
     <name>utf8.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>utf8_8h.html</filename>
     <includes id="umachine_8h" name="umachine.h" local="yes" imported="no">unicode/umachine.h</includes>
     <includes id="utf_8h" name="utf.h" local="yes" imported="no">unicode/utf.h</includes>
@@ -27238,7 +27559,7 @@
   </compound>
   <compound kind="file">
     <name>utf_old.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>utf__old_8h.html</filename>
     <includes id="utf_8h" name="utf.h" local="yes" imported="no">unicode/utf.h</includes>
     <includes id="utf8_8h" name="utf8.h" local="yes" imported="no">unicode/utf8.h</includes>
@@ -28231,7 +28552,7 @@
       <arglist>(s, start, i, length)</arglist>
     </member>
     <member kind="variable">
-      <type>U_CFUNC const U_IMPORT uint8_t</type>
+      <type>U_CFUNC U_IMPORT const uint8_t</type>
       <name>utf8_countTrailBytes</name>
       <anchorfile>utf__old_8h.html</anchorfile>
       <anchor>af44fa40548d2aa7c3f729529e58ec41a</anchor>
@@ -28240,7 +28561,7 @@
   </compound>
   <compound kind="file">
     <name>utmscale.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>utmscale_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="typedef">
@@ -28433,7 +28754,7 @@
   </compound>
   <compound kind="file">
     <name>utrace.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>utrace_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="typedef">
@@ -28672,16 +28993,16 @@
       <arglist>(char *outBuf, int32_t capacity, int32_t indent, const char *fmt,...)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>utrace_functionName</name>
       <anchorfile>utrace_8h.html</anchorfile>
-      <anchor>a14a25e1c2c1888b983b725b56a133033</anchor>
+      <anchor>a3e1bbf84ed8aee3761ac737a749eece9</anchor>
       <arglist>(int32_t fnNumber)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>utrans.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>utrans_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="urep_8h" name="urep.h" local="yes" imported="no">unicode/urep.h</includes>
@@ -28760,10 +29081,10 @@
       <arglist>(UTransliterator *trans)</arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI UChar *</type>
+      <type>U_CAPI const UChar *</type>
       <name>utrans_getUnicodeID</name>
       <anchorfile>utrans_8h.html</anchorfile>
-      <anchor>a6040ccfa4fa732dc01385061475cbad5</anchor>
+      <anchor>a898c445205a56b00b226685c22e11095</anchor>
       <arglist>(const UTransliterator *trans, int32_t *resultLength)</arglist>
     </member>
     <member kind="function">
@@ -28874,7 +29195,7 @@
   </compound>
   <compound kind="file">
     <name>utypes.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>utypes_8h.html</filename>
     <includes id="umachine_8h" name="umachine.h" local="yes" imported="no">unicode/umachine.h</includes>
     <includes id="uversion_8h" name="uversion.h" local="yes" imported="no">unicode/uversion.h</includes>
@@ -29971,10 +30292,10 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>const U_CAPI char *</type>
+      <type>U_CAPI const char *</type>
       <name>u_errorName</name>
       <anchorfile>utypes_8h.html</anchorfile>
-      <anchor>a5e9e9d196c0addc4ba377a26a64871f3</anchor>
+      <anchor>a1d0851a6f3368e9a0d070c7e09b6fc0f</anchor>
       <arglist>(UErrorCode code)</arglist>
     </member>
     <member kind="define">
@@ -29994,7 +30315,7 @@
   </compound>
   <compound kind="file">
     <name>uvernum.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uvernum_8h.html</filename>
     <member kind="define">
       <type>#define</type>
@@ -30111,7 +30432,7 @@
   </compound>
   <compound kind="file">
     <name>uversion.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/common/unicode/</path>
     <filename>uversion_8h.html</filename>
     <includes id="umachine_8h" name="umachine.h" local="yes" imported="no">unicode/umachine.h</includes>
     <includes id="uvernum_8h" name="uvernum.h" local="yes" imported="no">unicode/uvernum.h</includes>
@@ -30181,7 +30502,7 @@
   </compound>
   <compound kind="file">
     <name>vtzone.h</name>
-    <path>/home/hugovdm/git/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU69/icu/icu4c/source/i18n/unicode/</path>
     <filename>vtzone_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="basictz_8h" name="basictz.h" local="yes" imported="no">unicode/basictz.h</includes>
@@ -30661,7 +30982,14 @@
       <type>virtual void</type>
       <name>getOffsetFromLocal</name>
       <anchorfile>classicu_1_1BasicTimeZone.html</anchorfile>
-      <anchor>a01d9e3e8b844fda0044c7c3be45b0746</anchor>
+      <anchor>a49fe120d78a17b93657fd3e97168ca30</anchor>
+      <arglist>(UDate date, UTimeZoneLocalOption nonExistingTimeOpt, UTimeZoneLocalOption duplicatedTimeOpt, int32_t &amp;rawOffset, int32_t &amp;dstOffset, UErrorCode &amp;status) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getOffsetFromLocal</name>
+      <anchorfile>classicu_1_1BasicTimeZone.html</anchorfile>
+      <anchor>a65086b161e48bb92f382734e3610d854</anchor>
       <arglist>(UDate date, int32_t nonExistingTimeOpt, int32_t duplicatedTimeOpt, int32_t &amp;rawOffset, int32_t &amp;dstOffset, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -38995,14 +39323,14 @@
       <type>UFormattable *</type>
       <name>toUFormattable</name>
       <anchorfile>classicu_1_1Formattable.html</anchorfile>
-      <anchor>ab6f0cdbb00dbdcb91362a5dc853f60bb</anchor>
+      <anchor>abec9822687a6113ed86c6d8db1c9009b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>const UFormattable *</type>
       <name>toUFormattable</name>
       <anchorfile>classicu_1_1Formattable.html</anchorfile>
-      <anchor>a3420d1ab0f2f7146016c9f0636888fcd</anchor>
+      <anchor>aadb98dfb7e4a8d25037def0bf96c43b0</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -39304,6 +39632,13 @@
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
+      <type>const char *</type>
+      <name>getGender</name>
+      <anchorfile>classicu_1_1number_1_1FormattedNumber.html</anchorfile>
+      <anchor>a414fb7b4141ee2fff78ef58d26a24d6c</anchor>
+      <arglist>(UErrorCode &amp;status) const</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>getDecimalQuantity</name>
       <anchorfile>classicu_1_1number_1_1FormattedNumber.html</anchorfile>
@@ -39350,20 +39685,6 @@
       <anchorfile>classicu_1_1number_1_1FormattedNumberRange.html</anchorfile>
       <anchor>acce999d939a57fb173b3e164a963c306</anchor>
       <arglist>(ConstrainedFieldPosition &amp;cfpos, UErrorCode &amp;status) const U_OVERRIDE</arglist>
-    </member>
-    <member kind="function">
-      <type>UnicodeString</type>
-      <name>getFirstDecimal</name>
-      <anchorfile>classicu_1_1number_1_1FormattedNumberRange.html</anchorfile>
-      <anchor>a15ea38c2e371f5d913e484b207ee699c</anchor>
-      <arglist>(UErrorCode &amp;status) const</arglist>
-    </member>
-    <member kind="function">
-      <type>UnicodeString</type>
-      <name>getSecondDecimal</name>
-      <anchorfile>classicu_1_1number_1_1FormattedNumberRange.html</anchorfile>
-      <anchor>a77f2f2c3752fdae00e2792ffda626a59</anchor>
-      <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
       <type>std::pair&lt; StringClass, StringClass &gt;</type>
@@ -39618,6 +39939,13 @@
     <base>icu::number::Precision</base>
     <member kind="function">
       <type>Precision</type>
+      <name>withSignificantDigits</name>
+      <anchorfile>classicu_1_1number_1_1FractionPrecision.html</anchorfile>
+      <anchor>a6b603ef1074ef3167f807ab1c1aca1eb</anchor>
+      <arglist>(int32_t minSignificantDigits, int32_t maxSignificantDigits, UNumberRoundingPriority priority) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Precision</type>
       <name>withMinDigits</name>
       <anchorfile>classicu_1_1number_1_1FractionPrecision.html</anchorfile>
       <anchor>a249ba78b57a95f6b823eedc9704e112e</anchor>
@@ -39660,6 +39988,13 @@
       <name>fMaxSig</name>
       <anchorfile>structicu_1_1number_1_1Precision_1_1PrecisionUnion_1_1FractionSignificantSettings.html</anchorfile>
       <anchor>a8752111435d6ff1d49e5a938f6b206c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>UNumberRoundingPriority</type>
+      <name>fPriority</name>
+      <anchorfile>structicu_1_1number_1_1Precision_1_1PrecisionUnion_1_1FractionSignificantSettings.html</anchorfile>
+      <anchor>aa6a817084236b82fee06c9303663cd80</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -40378,31 +40713,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>icu::Locale::Iterator</name>
-    <filename>classicu_1_1Locale_1_1Iterator.html</filename>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~Iterator</name>
-      <anchorfile>classicu_1_1Locale_1_1Iterator.html</anchorfile>
-      <anchor>a77c1e3c50d451ce5a99e556a720e8b74</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual UBool</type>
-      <name>hasNext</name>
-      <anchorfile>classicu_1_1Locale_1_1Iterator.html</anchorfile>
-      <anchor>a05067eb4491741293efe95ad4b8957bb</anchor>
-      <arglist>() const =0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual const Locale &amp;</type>
-      <name>next</name>
-      <anchorfile>classicu_1_1Locale_1_1Iterator.html</anchorfile>
-      <anchor>a8f9a4455fa81d20eb9c1e98a0b219953</anchor>
-      <arglist>()=0</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>icu::BytesTrie::Iterator</name>
     <filename>classicu_1_1BytesTrie_1_1Iterator.html</filename>
     <base>icu::UMemory</base>
@@ -40571,6 +40881,31 @@
       <anchorfile>structicu_1_1Edits_1_1Iterator.html</anchorfile>
       <anchor>ab5893d6fc93e98091226d27e47a34082</anchor>
       <arglist>(UnicodeString &amp;appendTo) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>icu::Locale::Iterator</name>
+    <filename>classicu_1_1Locale_1_1Iterator.html</filename>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~Iterator</name>
+      <anchorfile>classicu_1_1Locale_1_1Iterator.html</anchorfile>
+      <anchor>a77c1e3c50d451ce5a99e556a720e8b74</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual UBool</type>
+      <name>hasNext</name>
+      <anchorfile>classicu_1_1Locale_1_1Iterator.html</anchorfile>
+      <anchor>a05067eb4491741293efe95ad4b8957bb</anchor>
+      <arglist>() const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual const Locale &amp;</type>
+      <name>next</name>
+      <anchorfile>classicu_1_1Locale_1_1Iterator.html</anchorfile>
+      <anchor>a8f9a4455fa81d20eb9c1e98a0b219953</anchor>
+      <arglist>()=0</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -40782,13 +41117,6 @@
       <anchorfile>classicu_1_1ListFormatter.html</anchorfile>
       <anchor>a85ee4e64cbf75f76f87253eca233196a</anchor>
       <arglist>(const Locale &amp;locale, UListFormatterType type, UListFormatterWidth width, UErrorCode &amp;errorCode)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static ListFormatter *</type>
-      <name>createInstance</name>
-      <anchorfile>classicu_1_1ListFormatter.html</anchorfile>
-      <anchor>a5eed49d6d65f32b12853519cad9960af</anchor>
-      <arglist>(const Locale &amp;locale, const char *style, UErrorCode &amp;errorCode)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -41880,7 +42208,7 @@
   <compound kind="class">
     <name>icu::number::LocalizedNumberFormatter</name>
     <filename>classicu_1_1number_1_1LocalizedNumberFormatter.html</filename>
-    <base>icu::number::NumberFormatterSettings</base>
+    <base>NumberFormatterSettings&lt; LocalizedNumberFormatter &gt;</base>
     <base>icu::UMemory</base>
     <member kind="function">
       <type>FormattedNumber</type>
@@ -41991,7 +42319,7 @@
   <compound kind="class">
     <name>icu::number::LocalizedNumberRangeFormatter</name>
     <filename>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</filename>
-    <base>icu::number::NumberRangeFormatterSettings</base>
+    <base>NumberRangeFormatterSettings&lt; LocalizedNumberRangeFormatter &gt;</base>
     <base>icu::UMemory</base>
     <member kind="function">
       <type>FormattedNumberRange</type>
@@ -42318,10 +42646,6 @@
     <filename>classLocalUFormattedNumberPointer.html</filename>
   </compound>
   <compound kind="class">
-    <name>LocalUFormattedNumberPointer</name>
-    <filename>classLocalUFormattedNumberPointer.html</filename>
-  </compound>
-  <compound kind="class">
     <name>LocalUFormattedRelativeDateTimePointer</name>
     <filename>classLocalUFormattedRelativeDateTimePointer.html</filename>
   </compound>
@@ -42516,10 +42840,17 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Usage</type>
+      <type>StringProp</type>
       <name>usage</name>
       <anchorfile>structicu_1_1number_1_1impl_1_1MacroProps.html</anchorfile>
-      <anchor>a6266bbf9d834e68e9b4eb21926a1b16a</anchor>
+      <anchor>a75a3c28098b16c0fb9316f60cb031daa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>StringProp</type>
+      <name>unitDisplayCase</name>
+      <anchorfile>structicu_1_1number_1_1impl_1_1MacroProps.html</anchorfile>
+      <anchor>a7a0413a63ced9de02c1d1fb8d7043f69</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -43013,16 +43344,16 @@
     </member>
     <member kind="function">
       <type>MeasureUnit</type>
-      <name>withSIPrefix</name>
+      <name>withPrefix</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
-      <anchor>af18cdebec38df5f98fb3c9de6ff33ad3</anchor>
-      <arglist>(UMeasureSIPrefix prefix, UErrorCode &amp;status) const</arglist>
+      <anchor>ad048da7faad949f1f6363b7963252b8a</anchor>
+      <arglist>(UMeasurePrefix prefix, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UMeasureSIPrefix</type>
-      <name>getSIPrefix</name>
+      <type>UMeasurePrefix</type>
+      <name>getPrefix</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
-      <anchor>a2218cac1d3804313e8513c4eefac1406</anchor>
+      <anchor>a66931176467cf959cbdf0582b8bf8984</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
@@ -43359,6 +43690,20 @@
       <name>getKarat</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>aa4e4031511a57151d06a569c7a1b6790</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createMilligramOfglucosePerDeciliter</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a2ed977e7789be4bb024df475f376414d</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getMilligramOfglucosePerDeciliter</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>afed682b6f3f40c3abef18044babb1333</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -47791,6 +48136,20 @@
     </member>
     <member kind="function">
       <type>Derived</type>
+      <name>unitDisplayCase</name>
+      <anchorfile>classicu_1_1number_1_1NumberFormatterSettings.html</anchorfile>
+      <anchor>a8726e0160f758f6c1100e572fad96a72</anchor>
+      <arglist>(StringPiece unitDisplayCase) const &amp;</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived</type>
+      <name>unitDisplayCase</name>
+      <anchorfile>classicu_1_1number_1_1NumberFormatterSettings.html</anchorfile>
+      <anchor>a03d71ed70ba0f920bc66fb334adc5c9c</anchor>
+      <arglist>(StringPiece unitDisplayCase) &amp;&amp;</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived</type>
       <name>padding</name>
       <anchorfile>classicu_1_1number_1_1NumberFormatterSettings.html</anchorfile>
       <anchor>ab84df2cb41bde918e3ed467cdcd8e0aa</anchor>
@@ -48103,6 +48462,20 @@
     </member>
     <member kind="function">
       <type>LocalizedNumberFormatter</type>
+      <name>unitDisplayCase</name>
+      <anchorfile>classicu_1_1number_1_1NumberFormatterSettings.html</anchorfile>
+      <anchor>a8726e0160f758f6c1100e572fad96a72</anchor>
+      <arglist>(StringPiece unitDisplayCase) const &amp;</arglist>
+    </member>
+    <member kind="function">
+      <type>LocalizedNumberFormatter</type>
+      <name>unitDisplayCase</name>
+      <anchorfile>classicu_1_1number_1_1NumberFormatterSettings.html</anchorfile>
+      <anchor>a03d71ed70ba0f920bc66fb334adc5c9c</anchor>
+      <arglist>(StringPiece unitDisplayCase) &amp;&amp;</arglist>
+    </member>
+    <member kind="function">
+      <type>LocalizedNumberFormatter</type>
       <name>padding</name>
       <anchorfile>classicu_1_1number_1_1NumberFormatterSettings.html</anchorfile>
       <anchor>ab84df2cb41bde918e3ed467cdcd8e0aa</anchor>
@@ -48412,6 +48785,20 @@
       <anchorfile>classicu_1_1number_1_1NumberFormatterSettings.html</anchorfile>
       <anchor>a93708dbf5affad9233623f46a910a048</anchor>
       <arglist>(StringPiece usage) &amp;&amp;</arglist>
+    </member>
+    <member kind="function">
+      <type>UnlocalizedNumberFormatter</type>
+      <name>unitDisplayCase</name>
+      <anchorfile>classicu_1_1number_1_1NumberFormatterSettings.html</anchorfile>
+      <anchor>a8726e0160f758f6c1100e572fad96a72</anchor>
+      <arglist>(StringPiece unitDisplayCase) const &amp;</arglist>
+    </member>
+    <member kind="function">
+      <type>UnlocalizedNumberFormatter</type>
+      <name>unitDisplayCase</name>
+      <anchorfile>classicu_1_1number_1_1NumberFormatterSettings.html</anchorfile>
+      <anchor>a03d71ed70ba0f920bc66fb334adc5c9c</anchor>
+      <arglist>(StringPiece unitDisplayCase) &amp;&amp;</arglist>
     </member>
     <member kind="function">
       <type>UnlocalizedNumberFormatter</type>
@@ -49802,6 +50189,13 @@
     <name>icu::number::Precision</name>
     <filename>classicu_1_1number_1_1Precision.html</filename>
     <base>icu::UMemory</base>
+    <member kind="function">
+      <type>Precision</type>
+      <name>trailingZeroDisplay</name>
+      <anchorfile>classicu_1_1number_1_1Precision.html</anchorfile>
+      <anchor>aafec4886f4b9e6ab181fd88634f58b0e</anchor>
+      <arglist>(UNumberTrailingZeroDisplay trailingZeroDisplay) const</arglist>
+    </member>
     <member kind="function" static="yes">
       <type>static Precision</type>
       <name>unlimited</name>
@@ -52575,8 +52969,8 @@
       <type>virtual void</type>
       <name>getOffsetFromLocal</name>
       <anchorfile>classicu_1_1RuleBasedTimeZone.html</anchorfile>
-      <anchor>abca89ebac9b12e4e3767ed6166bcadbf</anchor>
-      <arglist>(UDate date, int32_t nonExistingTimeOpt, int32_t duplicatedTimeOpt, int32_t &amp;rawOffset, int32_t &amp;dstOffset, UErrorCode &amp;status) const</arglist>
+      <anchor>a19f18917dce936558c0ce483a1c1733e</anchor>
+      <arglist>(UDate date, UTimeZoneLocalOption nonExistingTimeOpt, UTimeZoneLocalOption duplicatedTimeOpt, int32_t &amp;rawOffset, int32_t &amp;dstOffset, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual UClassID</type>
@@ -53966,8 +54360,8 @@
       <type>virtual void</type>
       <name>getOffsetFromLocal</name>
       <anchorfile>classicu_1_1SimpleTimeZone.html</anchorfile>
-      <anchor>a41907bd36c0f75a460ef20e342db809f</anchor>
-      <arglist>(UDate date, int32_t nonExistingTimeOpt, int32_t duplicatedTimeOpt, int32_t &amp;rawOffset, int32_t &amp;dstOffset, UErrorCode &amp;status) const</arglist>
+      <anchor>a69bd9f64ec78edfa97f40a797e105e77</anchor>
+      <arglist>(UDate date, UTimeZoneLocalOption nonExistingTimeOpt, UTimeZoneLocalOption duplicatedTimeOpt, int32_t &amp;rawOffset, int32_t &amp;dstOffset, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual int32_t</type>
@@ -54531,6 +54925,67 @@
       <anchorfile>classicu_1_1StringPiece.html</anchorfile>
       <anchor>a495638fbbd40637881ee185bd3413720</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>icu::number::impl::StringProp</name>
+    <filename>classicu_1_1number_1_1impl_1_1StringProp.html</filename>
+    <base>icu::UMemory</base>
+    <member kind="function">
+      <type></type>
+      <name>StringProp</name>
+      <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
+      <anchor>a3509b51dffe3e6b732d4d809aa29e3f1</anchor>
+      <arglist>(const StringProp &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>StringProp &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
+      <anchor>ada41da9175e0428d4d3b61ff7d96fc57</anchor>
+      <arglist>(const StringProp &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>StringProp</name>
+      <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
+      <anchor>afab2479789424f7e91e9723234855a1b</anchor>
+      <arglist>(StringProp &amp;&amp;src) U_NOEXCEPT</arglist>
+    </member>
+    <member kind="function">
+      <type>StringProp &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
+      <anchor>a13a04467c0585b291fef1dd29760ee9f</anchor>
+      <arglist>(StringProp &amp;&amp;src) U_NOEXCEPT</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~StringProp</name>
+      <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
+      <anchor>a6f5c8657ae57b29f4b027261595f3363</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int16_t</type>
+      <name>length</name>
+      <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
+      <anchor>a5662a34d902f3a0ab69251245cabb715</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
+      <anchor>af57722a7681033418e2d9e3025542c4d</anchor>
+      <arglist>(StringPiece value)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isSet</name>
+      <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
+      <anchor>a5a31dbbeff3762c1df25f2b494dc0704</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -57862,14 +58317,14 @@
       <type>USet *</type>
       <name>toUSet</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a68d8929a0f32095b883ea9472d3e73f1</anchor>
+      <anchor>aec4b95d4d74d07a89431f630236aa18d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>const USet *</type>
       <name>toUSet</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a0e01d900d9afdef59481ccfdef9d1b9d</anchor>
+      <anchor>a4c32d1f8aaa5a402d7738806459cfd9a</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -58165,6 +58620,13 @@
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
       <anchor>a35bed13035c8dfd2e080788e2f404607</anchor>
       <arglist>(UChar32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
+      <name>retain</name>
+      <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
+      <anchor>a64b7a796758cc2100a5ba97c6edb10be</anchor>
+      <arglist>(const UnicodeString &amp;s)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual UnicodeSet &amp;</type>
@@ -59989,7 +60451,7 @@
   <compound kind="class">
     <name>icu::number::UnlocalizedNumberFormatter</name>
     <filename>classicu_1_1number_1_1UnlocalizedNumberFormatter.html</filename>
-    <base>icu::number::NumberFormatterSettings</base>
+    <base>NumberFormatterSettings&lt; UnlocalizedNumberFormatter &gt;</base>
     <base>icu::UMemory</base>
     <member kind="function">
       <type>LocalizedNumberFormatter</type>
@@ -60044,7 +60506,7 @@
   <compound kind="class">
     <name>icu::number::UnlocalizedNumberRangeFormatter</name>
     <filename>classicu_1_1number_1_1UnlocalizedNumberRangeFormatter.html</filename>
-    <base>icu::number::NumberRangeFormatterSettings</base>
+    <base>NumberRangeFormatterSettings&lt; UnlocalizedNumberRangeFormatter &gt;</base>
     <base>icu::UMemory</base>
     <member kind="function">
       <type>LocalizedNumberRangeFormatter</type>
@@ -60191,67 +60653,6 @@
       <anchorfile>structUReplaceableCallbacks.html</anchorfile>
       <anchor>a7affba31f6d3e5a31f8cd33358420fc6</anchor>
       <arglist>)(UReplaceable *rep, int32_t start, int32_t limit, int32_t dest)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>icu::number::impl::Usage</name>
-    <filename>classicu_1_1number_1_1impl_1_1Usage.html</filename>
-    <base>icu::UMemory</base>
-    <member kind="function">
-      <type></type>
-      <name>Usage</name>
-      <anchorfile>classicu_1_1number_1_1impl_1_1Usage.html</anchorfile>
-      <anchor>a45926af9fca14a0731ae51580b95b0a5</anchor>
-      <arglist>(const Usage &amp;other)</arglist>
-    </member>
-    <member kind="function">
-      <type>Usage &amp;</type>
-      <name>operator=</name>
-      <anchorfile>classicu_1_1number_1_1impl_1_1Usage.html</anchorfile>
-      <anchor>ae28a6a38e751fd37d015d71af5a20e49</anchor>
-      <arglist>(const Usage &amp;other)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Usage</name>
-      <anchorfile>classicu_1_1number_1_1impl_1_1Usage.html</anchorfile>
-      <anchor>affe2a782e1b3270ec02419e4e4ce8d1f</anchor>
-      <arglist>(Usage &amp;&amp;src) U_NOEXCEPT</arglist>
-    </member>
-    <member kind="function">
-      <type>Usage &amp;</type>
-      <name>operator=</name>
-      <anchorfile>classicu_1_1number_1_1impl_1_1Usage.html</anchorfile>
-      <anchor>a9dd0f710046e82038da374428b7c6b62</anchor>
-      <arglist>(Usage &amp;&amp;src) U_NOEXCEPT</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~Usage</name>
-      <anchorfile>classicu_1_1number_1_1impl_1_1Usage.html</anchorfile>
-      <anchor>a3d28fb5a075b1095e486899505ead500</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int16_t</type>
-      <name>length</name>
-      <anchorfile>classicu_1_1number_1_1impl_1_1Usage.html</anchorfile>
-      <anchor>afd74ef798583e0b3385d45ed857a7ff6</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>set</name>
-      <anchorfile>classicu_1_1number_1_1impl_1_1Usage.html</anchorfile>
-      <anchor>a09da27dad09e404094f5b0f66d95c76b</anchor>
-      <arglist>(StringPiece value)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>isSet</name>
-      <anchorfile>classicu_1_1number_1_1impl_1_1Usage.html</anchorfile>
-      <anchor>ab5fe348931d90d4c61b00223c363397c</anchor>
-      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -60874,6 +61275,13 @@
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
+      <name>getOffsetFromLocal</name>
+      <anchorfile>classicu_1_1VTimeZone.html</anchorfile>
+      <anchor>a229c314e35d63468a90fa396790499c9</anchor>
+      <arglist>(UDate date, UTimeZoneLocalOption nonExistingTimeOpt, UTimeZoneLocalOption duplicatedTimeOpt, int32_t &amp;rawOffset, int32_t &amp;dstOffset, UErrorCode &amp;status) const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
       <name>setRawOffset</name>
       <anchorfile>classicu_1_1VTimeZone.html</anchorfile>
       <anchor>adf28c96db4662d6e3d8e9f0e9f6607e1</anchor>
@@ -60975,131 +61383,131 @@
     <name>icu</name>
     <filename>namespaceicu.html</filename>
     <namespace>icu::NoUnit</namespace>
-    <class kind="class">icu::AlphabeticIndex</class>
-    <class kind="class">icu::AnnualTimeZoneRule</class>
     <class kind="class">icu::Appendable</class>
-    <class kind="class">icu::BasicTimeZone</class>
+    <class kind="class">icu::UnicodeStringAppendable</class>
     <class kind="class">icu::BreakIterator</class>
     <class kind="class">icu::ByteSink</class>
+    <class kind="class">icu::CheckedArrayByteSink</class>
+    <class kind="class">icu::StringByteSink</class>
     <class kind="class">icu::BytesTrie</class>
     <class kind="class">icu::BytesTrieBuilder</class>
-    <class kind="class">icu::Calendar</class>
     <class kind="class">icu::CanonicalIterator</class>
     <class kind="class">icu::CaseMap</class>
     <class kind="class">icu::Char16Ptr</class>
+    <class kind="class">icu::ConstChar16Ptr</class>
+    <class kind="class">icu::ForwardCharacterIterator</class>
     <class kind="class">icu::CharacterIterator</class>
-    <class kind="class">icu::CheckedArrayByteSink</class>
+    <class kind="class">icu::DateInterval</class>
+    <class kind="class">icu::Edits</class>
+    <class kind="class">icu::ErrorCode</class>
+    <class kind="class">icu::FilteredBreakIteratorBuilder</class>
+    <class kind="class">icu::IDNA</class>
+    <class kind="class">icu::IDNAInfo</class>
+    <class kind="class">icu::LocaleBuilder</class>
+    <class kind="class">icu::LocaleMatcher</class>
+    <class kind="class">icu::LocalPointerBase</class>
+    <class kind="class">icu::LocalPointer</class>
+    <class kind="class">icu::LocalArray</class>
+    <class kind="class">icu::LocaleDisplayNames</class>
+    <class kind="class">icu::Locale</class>
+    <class kind="class">icu::MessagePattern</class>
+    <class kind="class">icu::Normalizer2</class>
+    <class kind="class">icu::FilteredNormalizer2</class>
+    <class kind="class">icu::Normalizer</class>
+    <class kind="class">icu::ParsePosition</class>
+    <class kind="class">icu::RuleBasedBreakIterator</class>
+    <class kind="class">icu::Replaceable</class>
+    <class kind="class">icu::ResourceBundle</class>
+    <class kind="class">icu::StringCharacterIterator</class>
+    <class kind="class">icu::SimpleFormatter</class>
+    <class kind="class">icu::StringEnumeration</class>
+    <class kind="class">icu::StringPiece</class>
+    <class kind="class">icu::SymbolTable</class>
+    <class kind="class">icu::UCharsTrie</class>
+    <class kind="class">icu::UCharsTrieBuilder</class>
+    <class kind="class">icu::UCharCharacterIterator</class>
+    <class kind="class">icu::UnicodeFilter</class>
+    <class kind="class">icu::UnicodeFunctor</class>
+    <class kind="class">icu::UnicodeMatcher</class>
+    <class kind="class">icu::UnicodeSet</class>
+    <class kind="class">icu::UnicodeString</class>
+    <class kind="class">icu::UMemory</class>
+    <class kind="class">icu::UObject</class>
+    <class kind="class">icu::UnicodeSetIterator</class>
+    <class kind="class">icu::AlphabeticIndex</class>
+    <class kind="class">icu::BasicTimeZone</class>
+    <class kind="class">icu::Calendar</class>
     <class kind="class">icu::ChoiceFormat</class>
     <class kind="class">icu::CollationElementIterator</class>
-    <class kind="class">icu::CollationKey</class>
     <class kind="class">icu::Collator</class>
     <class kind="class">icu::CollatorFactory</class>
     <class kind="class">icu::CompactDecimalFormat</class>
-    <class kind="class">icu::ConstChar16Ptr</class>
-    <class kind="class">icu::ConstrainedFieldPosition</class>
     <class kind="class">icu::CurrencyAmount</class>
     <class kind="class">icu::CurrencyPluralInfo</class>
     <class kind="class">icu::CurrencyUnit</class>
     <class kind="class">icu::DateFormat</class>
+    <class kind="class">icu::DecimalFormatSymbols</class>
+    <class kind="class">icu::DecimalFormat</class>
     <class kind="class">icu::DateFormatSymbols</class>
-    <class kind="class">icu::DateInterval</class>
+    <class kind="class">icu::FormattedDateInterval</class>
     <class kind="class">icu::DateIntervalFormat</class>
     <class kind="class">icu::DateIntervalInfo</class>
     <class kind="class">icu::DateTimePatternGenerator</class>
     <class kind="class">icu::DateTimeRule</class>
-    <class kind="class">icu::DecimalFormat</class>
-    <class kind="class">icu::DecimalFormatSymbols</class>
-    <class kind="class">icu::Edits</class>
-    <class kind="class">icu::ErrorCode</class>
     <class kind="class">icu::FieldPosition</class>
-    <class kind="class">icu::FieldPositionIterator</class>
-    <class kind="class">icu::FilteredBreakIteratorBuilder</class>
-    <class kind="class">icu::FilteredNormalizer2</class>
-    <class kind="class">icu::FontRuns</class>
-    <class kind="class">icu::Format</class>
     <class kind="class">icu::Formattable</class>
-    <class kind="class">icu::FormattedDateInterval</class>
-    <class kind="class">icu::FormattedList</class>
-    <class kind="class">icu::FormattedRelativeDateTime</class>
+    <class kind="class">icu::Format</class>
+    <class kind="class">icu::ConstrainedFieldPosition</class>
     <class kind="class">icu::FormattedValue</class>
-    <class kind="class">icu::ForwardCharacterIterator</class>
+    <class kind="class">icu::FieldPositionIterator</class>
     <class kind="class">icu::GenderInfo</class>
     <class kind="class">icu::GregorianCalendar</class>
-    <class kind="class">icu::IDNA</class>
-    <class kind="class">icu::IDNAInfo</class>
-    <class kind="class">icu::InitialTimeZoneRule</class>
+    <class kind="class">icu::FormattedList</class>
     <class kind="class">icu::ListFormatter</class>
-    <class kind="class">icu::LocalArray</class>
-    <class kind="class">icu::Locale</class>
-    <class kind="class">icu::LocaleBuilder</class>
-    <class kind="class">icu::LocaleDisplayNames</class>
-    <class kind="class">icu::LocaleMatcher</class>
-    <class kind="class">icu::LocaleRuns</class>
-    <class kind="class">icu::LocalPointer</class>
-    <class kind="class">icu::LocalPointerBase</class>
-    <class kind="class">icu::Measure</class>
     <class kind="class">icu::MeasureFormat</class>
     <class kind="class">icu::MeasureUnit</class>
+    <class kind="class">icu::Measure</class>
     <class kind="class">icu::MessageFormat</class>
-    <class kind="class">icu::MessagePattern</class>
-    <class kind="class">icu::Normalizer</class>
-    <class kind="class">icu::Normalizer2</class>
     <class kind="class">icu::NumberFormat</class>
     <class kind="class">icu::NumberFormatFactory</class>
+    <class kind="class">icu::SimpleNumberFormatFactory</class>
     <class kind="class">icu::NumberingSystem</class>
-    <class kind="class">icu::ParagraphLayout</class>
-    <class kind="class">icu::ParsePosition</class>
     <class kind="class">icu::PluralFormat</class>
     <class kind="class">icu::PluralRules</class>
-    <class kind="class">icu::RegexMatcher</class>
-    <class kind="class">icu::RegexPattern</class>
-    <class kind="class">icu::Region</class>
-    <class kind="class">icu::RelativeDateTimeFormatter</class>
-    <class kind="class">icu::Replaceable</class>
-    <class kind="class">icu::ResourceBundle</class>
-    <class kind="class">icu::RuleBasedBreakIterator</class>
-    <class kind="class">icu::RuleBasedCollator</class>
     <class kind="class">icu::RuleBasedNumberFormat</class>
     <class kind="class">icu::RuleBasedTimeZone</class>
-    <class kind="class">icu::RunArray</class>
+    <class kind="class">icu::RegexPattern</class>
+    <class kind="class">icu::RegexMatcher</class>
+    <class kind="class">icu::Region</class>
+    <class kind="class">icu::FormattedRelativeDateTime</class>
+    <class kind="class">icu::RelativeDateTimeFormatter</class>
     <class kind="class">icu::ScientificNumberFormatter</class>
     <class kind="class">icu::SearchIterator</class>
     <class kind="class">icu::SelectFormat</class>
-    <class kind="class">icu::SimpleDateFormat</class>
-    <class kind="class">icu::SimpleFormatter</class>
-    <class kind="class">icu::SimpleNumberFormatFactory</class>
     <class kind="class">icu::SimpleTimeZone</class>
-    <class kind="class">icu::StringByteSink</class>
-    <class kind="class">icu::StringCharacterIterator</class>
-    <class kind="class">icu::StringEnumeration</class>
-    <class kind="class">icu::StringPiece</class>
+    <class kind="class">icu::SimpleDateFormat</class>
+    <class kind="class">icu::CollationKey</class>
     <class kind="class">icu::StringSearch</class>
-    <class kind="class">icu::SymbolTable</class>
-    <class kind="class">icu::TimeArrayTimeZoneRule</class>
+    <class kind="class">icu::RuleBasedCollator</class>
+    <class kind="class">icu::TimeZone</class>
     <class kind="class">icu::TimeUnit</class>
     <class kind="class">icu::TimeUnitAmount</class>
     <class kind="class">icu::TimeUnitFormat</class>
-    <class kind="class">icu::TimeZone</class>
+    <class kind="class">icu::Transliterator</class>
     <class kind="class">icu::TimeZoneFormat</class>
     <class kind="class">icu::TimeZoneNames</class>
     <class kind="class">icu::TimeZoneRule</class>
+    <class kind="class">icu::InitialTimeZoneRule</class>
+    <class kind="class">icu::AnnualTimeZoneRule</class>
+    <class kind="class">icu::TimeArrayTimeZoneRule</class>
     <class kind="class">icu::TimeZoneTransition</class>
-    <class kind="class">icu::Transliterator</class>
-    <class kind="class">icu::UCharCharacterIterator</class>
-    <class kind="class">icu::UCharsTrie</class>
-    <class kind="class">icu::UCharsTrieBuilder</class>
-    <class kind="class">icu::UMemory</class>
-    <class kind="class">icu::UnicodeFilter</class>
-    <class kind="class">icu::UnicodeFunctor</class>
-    <class kind="class">icu::UnicodeMatcher</class>
     <class kind="class">icu::UnicodeReplacer</class>
-    <class kind="class">icu::UnicodeSet</class>
-    <class kind="class">icu::UnicodeSetIterator</class>
-    <class kind="class">icu::UnicodeString</class>
-    <class kind="class">icu::UnicodeStringAppendable</class>
-    <class kind="class">icu::UObject</class>
-    <class kind="class">icu::ValueRuns</class>
     <class kind="class">icu::VTimeZone</class>
+    <class kind="class">icu::ParagraphLayout</class>
+    <class kind="class">icu::RunArray</class>
+    <class kind="class">icu::FontRuns</class>
+    <class kind="class">icu::LocaleRuns</class>
+    <class kind="class">icu::ValueRuns</class>
     <member kind="typedef">
       <type>RuleBasedBreakIterator</type>
       <name>DictionaryBasedBreakIterator</name>
@@ -61115,10 +61523,10 @@
       <arglist>[12][8]</arglist>
     </member>
     <member kind="typedef">
-      <type>enum icu::UMeasureSIPrefix</type>
-      <name>UMeasureSIPrefix</name>
+      <type>enum icu::UMeasurePrefix</type>
+      <name>UMeasurePrefix</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>a7cd90e8bc68a82564a4b3c111538bfb5</anchor>
+      <anchor>a5d1ae889b89c3877e788f01da2dad133</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -61173,135 +61581,213 @@
     </member>
     <member kind="enumeration">
       <type></type>
-      <name>UMeasureSIPrefix</name>
+      <name>UMeasurePrefix</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757f</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_YOTTA</name>
+      <name>UMEASURE_PREFIX_ONE</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa3ef501d12448fb20b595cf8dcde58ae1</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa57958636f35eaf6429e89fe9eb78ac2</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_ZETTA</name>
+      <name>UMEASURE_PREFIX_YOTTA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fae2be91c0150edda73adea8523192f375</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa74b2cdc575a286f082dfc190bc27325</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_EXA</name>
+      <name>UMEASURE_PREFIX_INTERNAL_MAX_SI</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa89b3539f60e65f76046fdfc0556d6659</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6ace0ae0fdd82debc41357637aee84a569</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_PETA</name>
+      <name>UMEASURE_PREFIX_ZETTA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa7042daffed249a7ab4c722294e769977</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6ab5a40ff89462d0a73552103a254919ac</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_TERA</name>
+      <name>UMEASURE_PREFIX_EXA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa0d63edf986f4aa86454380cd571f1916</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a3d25e8ef52e0dc861e784f276f9565c3</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_GIGA</name>
+      <name>UMEASURE_PREFIX_PETA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa10924a13bf629f42e4367b2a5eb0c123</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6afaa62c47fcec1c213827b949de73af4d</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_MEGA</name>
+      <name>UMEASURE_PREFIX_TERA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fabba7a562d25dc5c6756ca6c0f20985f5</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6ac8d1bc3d1d36ab299ce16cc0ec1ad5b4</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_KILO</name>
+      <name>UMEASURE_PREFIX_GIGA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa00d5a8b5184fe7f7e88bec460ace19cb</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a05983b0bf1fd4106279495a1cd5e6e0c</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_HECTO</name>
+      <name>UMEASURE_PREFIX_MEGA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faa27d2f76dba8c2d0b91f4a5bbb4233e8</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a443bf7a6bf415fed8a2a472709d5b4df</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_DEKA</name>
+      <name>UMEASURE_PREFIX_KILO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fae22dc75f8d3beef7f085fc1364dc9caa</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa1b98ad43cdab86145fe4a2bb70557b6</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_ONE</name>
+      <name>UMEASURE_PREFIX_HECTO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa613fafa3fb6862087623be3a2f0cd1f3</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a212c5db513fe3a685875bc6bd190d5cf</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_DECI</name>
+      <name>UMEASURE_PREFIX_DEKA</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fafb9a31df882e090ceef2d533681f70ee</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa289f985eda840ca53c3462a3c524786</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_CENTI</name>
+      <name>UMEASURE_PREFIX_DECI</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa2c864290bd22b9b60e930f15aa6ab3c4</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a6030290deb268020f5f5a5880ec0b469</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_MILLI</name>
+      <name>UMEASURE_PREFIX_CENTI</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fac1d5c96b3077118965658df26c713b8d</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a7b9aae6b30785630de5af3fb123a65c0</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_MICRO</name>
+      <name>UMEASURE_PREFIX_MILLI</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fad652e1d24d44c43a3c5f4c8b49081026</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6ae2970705e333e541b0afc34b00033b65</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_NANO</name>
+      <name>UMEASURE_PREFIX_MICRO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faeb968914a37b2bfb07da22275ec0eb73</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6af21c5b44877e18df84989564d3aea76c</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_PICO</name>
+      <name>UMEASURE_PREFIX_NANO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa641c9324676a88d5682f3a1906026ae1</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a160e5746a9f0aa7b70bcf33ffddc4384</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_FEMTO</name>
+      <name>UMEASURE_PREFIX_PICO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa33b8e3af842d6962959619ac296a0e52</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a145160ec08cc639984945582df3193ca</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_ATTO</name>
+      <name>UMEASURE_PREFIX_FEMTO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757faba35aa890fcab4052a3b2cba18be45da</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a402d267ad50cb1671c60ef32a1844a4c</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_ZEPTO</name>
+      <name>UMEASURE_PREFIX_ATTO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa80094f796e636710923480b8888f2ddd</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa9f3de5c056c17a0651ad07f6e83c777</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>UMEASURE_SI_PREFIX_YOCTO</name>
+      <name>UMEASURE_PREFIX_ZEPTO</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ad036408fc0e16409ba7ab1b6f2d9757fa86a821ab287066c003a1be3c27343167</anchor>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a6d36638939c9031c4862d497023654c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_YOCTO</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aac90bccf3eb98a92f3e55bbf01ad78de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_INTERNAL_MIN_SI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a17413e7ff3947c9220a38c019fb10837</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_INTERNAL_ONE_BIN</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a3c1938df09fcd1a326a7fa3aedbc496e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_KIBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a3adf6af40c629476035bb6ccd0da16b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_INTERNAL_MIN_BIN</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a1f74468f9aa631addb4a8dc38b9dc674</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_MEBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a43aa27ba8c02e31fe72a6177e89ce2f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_GIBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a121671351b0466fe06f0c8b77bf7cbba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_TEBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a130a144467ec986acc541f1afcd6e0f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_PEBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a49427e473e21471b06de108aa64758a4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_EXBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6ac140ed5ae1987c49d1a93e9e60a0b1ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_ZEBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a8bdd11bfd7f1fe7f4e2c6181143854ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_YOBI</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6a0501253e7c6a25830a8be1eb362c0b06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UMEASURE_PREFIX_INTERNAL_MAX_BIN</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a6adf1228a8d73c3f0e810e5c9a8f8cd6aa83da9a92c9176177de5fdeb9590b8dc</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -61409,6 +61895,20 @@
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
+      <type>U_CAPI int32_t</type>
+      <name>umeas_getPrefixBase</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a18693928f778ce9f454f33c542dffb74</anchor>
+      <arglist>(UMeasurePrefix unitPrefix)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI int32_t</type>
+      <name>umeas_getPrefixPower</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a3594ae62f889d072cd4df09d479dc2dc</anchor>
+      <arglist>(UMeasurePrefix unitPrefix)</arglist>
+    </member>
+    <member kind="function">
       <type>U_IO_API std::ostream &amp;</type>
       <name>operator&lt;&lt;</name>
       <anchorfile>namespaceicu.html</anchorfile>
@@ -61438,11 +61938,18 @@
     <name>ustring_ustrlen</name>
     <title>String Length</title>
     <filename>group__ustring__ustrlen.html</filename>
+    <member kind="function">
+      <type>U_CAPI int32_t</type>
+      <name>u_strlen</name>
+      <anchorfile>group__ustring__ustrlen.html</anchorfile>
+      <anchor>ga43199ed47f7c008e6baceccb5f66914a</anchor>
+      <arglist>(const UChar *s)</arglist>
+    </member>
   </compound>
   <compound kind="page">
     <name>index</name>
     <title></title>
-    <filename>index</filename>
+    <filename>index.html</filename>
     <docanchor file="index.html" title="API Reference Usage">API</docanchor>
   </compound>
 </tagfile>

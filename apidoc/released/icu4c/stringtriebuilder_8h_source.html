@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 69.1: stringtriebuilder.h Source File</title>
+<title>ICU 70.1: stringtriebuilder.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 69.1
-   &#160;<span id="projectnumber">69.1</span>
+   <div id="projectname">ICU 70.1
+   &#160;<span id="projectnumber">70.1</span>
    </div>
   </td>
  </tr>
@@ -196,8 +196,8 @@ $(function() {
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="comment">// Handles node==NULL.</span></div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <span class="keyword">static</span> <span class="keyword">inline</span> int32_t hashCode(<span class="keyword">const</span> Node *node) { <span class="keywordflow">return</span> node==<a class="code" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> ? 0 : node-&gt;hashCode(); }</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="comment">// Base class operator==() compares the actual class types.</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keyword">inline</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#ae44c6e373e08014d12f6a4d51ca96b0e">operator!=</a>(<span class="keyword">const</span> Node &amp;other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> !<a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(other); }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a8d8f68e93f4a83a227b82cec7745dff6">operator!=</a>(<span class="keyword">const</span> Node &amp;other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> !<a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(other); }</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber);</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="comment">// write() must set the offset to a positive value.</span></div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder) = 0;</div>
@@ -229,8 +229,8 @@ $(function() {
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment"></span>    <span class="keyword">class </span>FinalValueNode : <span class="keyword">public</span> Node {</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        FinalValueNode(int32_t v) : Node(0x111111u*37u+v), value(v) {}</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        int32_t value;</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    };</div>
@@ -241,7 +241,7 @@ $(function() {
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="comment"></span>    <span class="keyword">class </span>ValueNode : <span class="keyword">public</span> Node {</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        ValueNode(int32_t initialHash) : Node(initialHash), hasValue(false), value(0) {}</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const override</span>;</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <span class="keywordtype">void</span> setValue(int32_t v) {</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            hasValue=<span class="keyword">true</span>;</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            value=v;</div>
@@ -257,9 +257,9 @@ $(function() {
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        IntermediateValueNode(int32_t v, Node *nextNode)</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                : ValueNode(0x222222u*37u+hashCode(nextNode)), next(nextNode) { setValue(v); }</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        Node *next;</div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    };</div>
@@ -272,8 +272,8 @@ $(function() {
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        LinearMatchNode(int32_t len, Node *nextNode)</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                : ValueNode((0x333333u*37u+len)*37u+hashCode(nextNode)),</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                  length(len), next(nextNode) {}</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        int32_t length;</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        Node *next;</div>
@@ -290,9 +290,9 @@ $(function() {
 <div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    <span class="keyword">class </span>ListBranchNode : <span class="keyword">public</span> BranchNode {</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        ListBranchNode() : BranchNode(0x444444), length(0) {}</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber);</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder);</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        <span class="comment">// Adds a unit with a final value.</span></div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        <span class="keywordtype">void</span> add(int32_t c, int32_t value) {</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            units[length]=(char16_t)c;</div>
@@ -322,9 +322,9 @@ $(function() {
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                : BranchNode(((0x555555u*37u+middleUnit)*37u+</div>
 <div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                              hashCode(lessThanNode))*37u+hashCode(greaterOrEqualNode)),</div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                  unit(middleUnit), lessThan(lessThanNode), greaterOrEqual(greaterOrEqualNode) {}</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber);</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder);</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        char16_t unit;</div>
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        Node *lessThan;</div>
@@ -337,9 +337,9 @@ $(function() {
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        BranchHeadNode(int32_t len, Node *subNode)</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                : ValueNode((0x666666u*37u+len)*37u+hashCode(subNode)),</div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                  length(len), next(subNode) {}</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber);</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder);</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> Node &amp;other) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        <span class="keyword">virtual</span> int32_t markRightEdgesFirst(int32_t edgeNumber) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(StringTrieBuilder &amp;builder) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        int32_t length;</div>
 <div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        Node *next;  <span class="comment">// A branch sub-node.</span></div>
@@ -364,7 +364,7 @@ $(function() {
 <div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// __STRINGTRIEBUILDER_H__</span></div>
 <div class="ttc" id="amsgfmt_8h_html_a6c890111dda4b555e2a2ef52178b5129"><div class="ttname"><a href="msgfmt_8h.html#a6c890111dda4b555e2a2ef52178b5129">UHashtable</a></div><div class="ttdeci">struct UHashtable UHashtable</div><div class="ttdef"><b>Definition:</b> <a href="msgfmt_8h_source.html#l00001">msgfmt.h:43</a></div></div>
 <div class="ttc" id="anamespaceicu_html_a1c2f6ca43e636f38d1a3291eb851e9f0"><div class="ttname"><a href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">icu::operator==</a></div><div class="ttdeci">U_EXPORT UBool operator==(const StringPiece &amp;x, const StringPiece &amp;y)</div><div class="ttdoc">Global operator == for StringPiece.</div></div>
-<div class="ttc" id="anamespaceicu_html_ae44c6e373e08014d12f6a4d51ca96b0e"><div class="ttname"><a href="namespaceicu.html#ae44c6e373e08014d12f6a4d51ca96b0e">icu::operator!=</a></div><div class="ttdeci">UBool operator!=(const StringPiece &amp;x, const StringPiece &amp;y)</div><div class="ttdoc">Global operator != for StringPiece.</div><div class="ttdef"><b>Definition:</b> <a href="stringpiece_8h_source.html#l00335">stringpiece.h:335</a></div></div>
+<div class="ttc" id="anamespaceicu_html_a8d8f68e93f4a83a227b82cec7745dff6"><div class="ttname"><a href="namespaceicu.html#a8d8f68e93f4a83a227b82cec7745dff6">icu::operator!=</a></div><div class="ttdeci">bool operator!=(const StringPiece &amp;x, const StringPiece &amp;y)</div><div class="ttdoc">Global operator != for StringPiece.</div><div class="ttdef"><b>Definition:</b> <a href="stringpiece_8h_source.html#l00335">stringpiece.h:335</a></div></div>
 <div class="ttc" id="astringtriebuilder_8h_html_ab557ad2f18077945b8b81cf44a9233e5"><div class="ttname"><a href="stringtriebuilder_8h.html#ab557ad2f18077945b8b81cf44a9233e5">UStringTrieBuildOption</a></div><div class="ttdeci">UStringTrieBuildOption</div><div class="ttdoc">Build options for BytesTrieBuilder and CharsTrieBuilder.</div><div class="ttdef"><b>Definition:</b> <a href="stringtriebuilder_8h_source.html#l00041">stringtriebuilder.h:41</a></div></div>
 <div class="ttc" id="astringtriebuilder_8h_html_ab557ad2f18077945b8b81cf44a9233e5a1abf45627350241a0ad18a35e288fe92"><div class="ttname"><a href="stringtriebuilder_8h.html#ab557ad2f18077945b8b81cf44a9233e5a1abf45627350241a0ad18a35e288fe92">USTRINGTRIE_BUILD_SMALL</a></div><div class="ttdeci">@ USTRINGTRIE_BUILD_SMALL</div><div class="ttdoc">Builds a trie more slowly, attempting to generate a shorter but equivalent serialization.</div><div class="ttdef"><b>Definition:</b> <a href="stringtriebuilder_8h_source.html#l00058">stringtriebuilder.h:57</a></div></div>
 <div class="ttc" id="astringtriebuilder_8h_html_ab557ad2f18077945b8b81cf44a9233e5a358f59684457d3d22402fcf227bd5605"><div class="ttname"><a href="stringtriebuilder_8h.html#ab557ad2f18077945b8b81cf44a9233e5a358f59684457d3d22402fcf227bd5605">USTRINGTRIE_BUILD_FAST</a></div><div class="ttdeci">@ USTRINGTRIE_BUILD_FAST</div><div class="ttdoc">Builds a trie quickly.</div><div class="ttdef"><b>Definition:</b> <a href="stringtriebuilder_8h_source.html#l00046">stringtriebuilder.h:46</a></div></div>

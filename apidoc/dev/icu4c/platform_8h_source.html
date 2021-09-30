@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 69.1: platform.h Source File</title>
+<title>ICU 70.1: platform.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 69.1
-   &#160;<span id="projectnumber">69.1</span>
+   <div id="projectname">ICU 70.1
+   &#160;<span id="projectnumber">70.1</span>
    </div>
   </td>
  </tr>
@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_30087b5439e04c85304dbcf15650710b.html">common</a></li><li class="navelem"><a class="el" href="dir_8bf9c54ed6ca2fd1e2117fb037e4ad06.html">unicode</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li><li class="navelem"><a class="el" href="dir_f59c6450ff718ff1b085cfd1c36acbd7.html">unicode</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -576,8 +576,8 @@ $(function() {
 <div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;    <span class="comment">/* Use the predefined value. */</span></div>
 <div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;<span class="preprocessor">#elif defined(U_STATIC_IMPLEMENTATION)</span></div>
 <div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;<span class="preprocessor">#   define U_EXPORT</span></div>
-<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;<span class="preprocessor">#elif defined(_MSC_VER) || (UPRV_HAS_DECLSPEC_ATTRIBUTE(dllexport) &amp;&amp; \</span></div>
-<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;<span class="preprocessor">                            UPRV_HAS_DECLSPEC_ATTRIBUTE(dllimport))</span></div>
+<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;<span class="preprocessor">#elif defined(_MSC_VER) || (UPRV_HAS_DECLSPEC_ATTRIBUTE(__dllexport__) &amp;&amp; \</span></div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;<span class="preprocessor">                            UPRV_HAS_DECLSPEC_ATTRIBUTE(__dllimport__))</span></div>
 <div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;<span class="preprocessor">#   define U_EXPORT __declspec(dllexport)</span></div>
 <div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;<span class="preprocessor">#elif defined(__GNUC__)</span></div>
 <div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;<span class="preprocessor">#   define U_EXPORT __attribute__((visibility(&quot;default&quot;</span>)))</div>
@@ -601,8 +601,8 @@ $(function() {
 <div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160; </div>
 <div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;<span class="preprocessor">#ifdef U_IMPORT</span></div>
 <div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;    <span class="comment">/* Use the predefined value. */</span></div>
-<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;<span class="preprocessor">#elif defined(_MSC_VER) || (UPRV_HAS_DECLSPEC_ATTRIBUTE(dllexport) &amp;&amp; \</span></div>
-<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;<span class="preprocessor">                            UPRV_HAS_DECLSPEC_ATTRIBUTE(dllimport))</span></div>
+<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;<span class="preprocessor">#elif defined(_MSC_VER) || (UPRV_HAS_DECLSPEC_ATTRIBUTE(__dllexport__) &amp;&amp; \</span></div>
+<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;<span class="preprocessor">                            UPRV_HAS_DECLSPEC_ATTRIBUTE(__dllimport__))</span></div>
 <div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;    <span class="comment">/* Windows needs to export/import data. */</span></div>
 <div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;<span class="preprocessor">#   define U_IMPORT __declspec(dllimport)</span></div>
 <div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;<span class="preprocessor">#else</span></div>

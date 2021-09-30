@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 69.1: ustdio.h File Reference</title>
+<title>ICU 70.1: ustdio.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 69.1
-   &#160;<span id="projectnumber">69.1</span>
+   <div id="projectname">ICU 70.1
+   &#160;<span id="projectnumber">70.1</span>
    </div>
   </td>
  </tr>
@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_80c9bbdb0d239ca6adfcaca0891dbb0e.html">io</a></li><li class="navelem"><a class="el" href="dir_abe4e7b24df4d15a5546b6bd2a845541.html">unicode</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_bc161955dc3a3d2485839eba21420d01.html">io</a></li><li class="navelem"><a class="el" href="dir_4f66ea94ab501ae66e9edea2ec5eed02.html">unicode</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -266,7 +266,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>C API: Unicode stdio-like API. </p>
 <h2>Unicode stdio-like C API</h2>
-<p>This API provides an stdio-like API wrapper around ICU's other formatting and parsing APIs. It is meant to ease the transition of adding Unicode support to a preexisting applications using stdio. The following is a small list of noticable differences between stdio and ICU I/O's ustdio implementation.</p>
+<p>This API provides an stdio-like API wrapper around ICU's other formatting and parsing APIs. It is meant to ease the transition of adding Unicode support to a preexisting applications using stdio. The following is a small list of noticeable differences between stdio and ICU I/O's ustdio implementation.</p>
 <ul>
 <li>
 Locale specific formatting and parsing is only done with file IO. </li>
@@ -408,7 +408,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 
 <p>When an end of file is encountered, this value can be returned. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a375dc875f73afde5209d991d983c13e2" title="Read a UChar from a UFILE.">u_fgetc</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006737">Stable:</a></b></dt><dd>3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006807">Stable:</a></b></dt><dd>3.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="ustdio_8h_source.html#l00212">212</a> of file <a class="el" href="ustdio_8h_source.html">ustdio.h</a>.</p>
 
@@ -428,7 +428,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </div><div class="memdoc">
 
 <p>Forward declaration of a Unicode-aware file. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006738">Stable:</a></b></dt><dd>3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006808">Stable:</a></b></dt><dd>3.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="ustdio_8h_source.html#l00001">1</a> of file <a class="el" href="ustdio_8h_source.html">ustdio.h</a>.</p>
 
@@ -449,7 +449,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 
 <p>Enum for which direction of stream a transliterator applies to. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a606d48a4bce386eb5b9d0a4b7e0e305e" title="Set a transliterator on the UFILE.">u_fsettransliterator</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006739">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006809">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="ustdio_8h_source.html#l00222">222</a> of file <a class="el" href="ustdio_8h_source.html">ustdio.h</a>.</p>
 
@@ -493,12 +493,12 @@ If * is used in printf, then the precision is passed in as an argument before th
   <table class="params">
     <tr><td class="paramname">f</td><td>The FILE* which this UFILE will take ownership of. </td></tr>
     <tr><td class="paramname">locale</td><td>The locale whose conventions will be used to format and parse output. If this parameter is NULL, the default locale will be used. </td></tr>
-    <tr><td class="paramname">codepage</td><td>The codepage in which data will be written to and read from the file. If this paramter is NULL, data will be written and read using the default codepage for <code>locale</code>, unless <code>locale</code> is NULL, in which case the system default codepage will be used. </td></tr>
+    <tr><td class="paramname">codepage</td><td>The codepage in which data will be written to and read from the file. If this parameter is NULL, data will be written and read using the default codepage for <code>locale</code>, unless <code>locale</code> is NULL, in which case the system default codepage will be used. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new UFILE, or NULL if an error occurred. If an error occurs the ownership of the FILE* stream remains with the caller. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006743">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006813">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -525,7 +525,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006745">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006815">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a3d0bc1b93d8108ea4428ec05c88394b6" title="Flush output of a UFILE.">u_fflush</a> </dd></dl>
 
 </div>
@@ -554,7 +554,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true after the first read operation that attempts to read past the end of the file. It returns false if the current position is not end of file. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006746">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006816">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -581,7 +581,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006747">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006817">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -610,7 +610,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The UChar value read, or U+FFFF if no character was available. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006771">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006841">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -638,7 +638,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The codepage in which data is written to and read from the UFILE, or NULL if an error occurred. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006752">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006822">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -666,7 +666,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>alias to the converter (The converter <em>must not</em> be modified or closed) </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006754">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006824">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -695,7 +695,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The UChar32 value read, or U_EOF if no character was available, or U+FFFFFFFF if an ill-formed character was encountered. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustring_8h.html#a4d4e4b413fcab139d6113b92e8cea092" title="Unescape a string of characters and write the resulting Unicode characters to the destination buffer.">u_unescape()</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006772">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006842">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -723,7 +723,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A FILE*, owned by the UFILE. (The FILE <em>must not</em> be modified or closed) </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006749">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006819">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -751,7 +751,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The locale whose conventions are used to format and parse output. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006750">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006820">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -779,7 +779,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>alias to the number formatter (The formatter <em>must not</em> be modified or closed) </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006755">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006825">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -825,7 +825,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to <code>s</code>, or NULL if no characters were available. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006770">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006840">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -871,7 +871,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters read. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006774">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006844">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -918,7 +918,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters written. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a814723cb97f9bba58d5eb30673ecd9c1" title="Write a Unicode to a UFILE.">u_fputs</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006765">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006835">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -959,12 +959,12 @@ If * is used in printf, then the precision is passed in as an argument before th
   <table class="params">
     <tr><td class="paramname">f</td><td>The FILE* to which this UFILE will attach and use. </td></tr>
     <tr><td class="paramname">locale</td><td>The locale whose conventions will be used to format and parse output. If this parameter is NULL, the default locale will be used. </td></tr>
-    <tr><td class="paramname">codepage</td><td>The codepage in which data will be written to and read from the file. If this paramter is NULL, data will be written and read using the default codepage for <code>locale</code>, unless <code>locale</code> is NULL, in which case the system default codepage will be used. </td></tr>
+    <tr><td class="paramname">codepage</td><td>The codepage in which data will be written to and read from the file. If this parameter is NULL, data will be written and read using the default codepage for <code>locale</code>, unless <code>locale</code> is NULL, in which case the system default codepage will be used. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new UFILE, or NULL if an error occurred. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006742">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006812">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1012,12 +1012,12 @@ If * is used in printf, then the precision is passed in as an argument before th
     <tr><td class="paramname">filename</td><td>The name of the file to open. Must be 0-terminated. </td></tr>
     <tr><td class="paramname">perm</td><td>The read/write permission for the UFILE; one of "r", "w", "rw" </td></tr>
     <tr><td class="paramname">locale</td><td>The locale whose conventions will be used to format and parse output. If this parameter is NULL, the default locale will be used. </td></tr>
-    <tr><td class="paramname">codepage</td><td>The codepage in which data will be written to and read from the file. If this paramter is NULL the system default codepage will be used. </td></tr>
+    <tr><td class="paramname">codepage</td><td>The codepage in which data will be written to and read from the file. If this parameter is NULL the system default codepage will be used. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new UFILE, or NULL if an error occurred. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006740">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006810">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1065,12 +1065,12 @@ If * is used in printf, then the precision is passed in as an argument before th
     <tr><td class="paramname">filename</td><td>The name of the file to open. Must be 0-terminated. </td></tr>
     <tr><td class="paramname">perm</td><td>The read/write permission for the UFILE; one of "r", "w", "rw" </td></tr>
     <tr><td class="paramname">locale</td><td>The locale whose conventions will be used to format and parse output. If this parameter is NULL, the default locale will be used. </td></tr>
-    <tr><td class="paramname">codepage</td><td>The codepage in which data will be written to and read from the file. If this paramter is NULL the system default codepage will be used. </td></tr>
+    <tr><td class="paramname">codepage</td><td>The codepage in which data will be written to and read from the file. If this parameter is NULL the system default codepage will be used. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new UFILE, or NULL if an error occurred. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006741">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006811">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 
 </div>
 </div>
@@ -1115,7 +1115,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters written to <code>f</code>. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006757">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006827">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1160,7 +1160,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters written to <code>f</code>. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006761">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006831">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1199,7 +1199,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The character written if successful, EOF otherwise. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006764">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006834">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1239,7 +1239,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A non-negative number if successful, EOF otherwise. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a3c2e0433774f4ec0920bc8fa8449bc4b" title="Write Unicode to a UFILE.">u_file_write</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006763">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006833">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1266,7 +1266,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006748">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006818">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1311,7 +1311,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of items successfully converted and assigned, or EOF if an error occurred. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006766">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006836">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1356,7 +1356,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of items successfully converted and assigned, or EOF if an error occurred. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006768">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006838">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1396,7 +1396,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, otherwise a negative number. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a4bb526a09dd29c1de74eff3d3c808d9e" title="Rewind the file pointer to the beginning of the file.">u_frewind</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006753">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006823">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1435,7 +1435,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>NULL if successful, otherwise a negative number. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006751">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006821">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1488,7 +1488,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The previously set transliterator, owned by the caller. If U_READWRITE is specified, only the WRITE transliterator is returned. In most cases, the caller should call <a class="el" href="utrans_8h.html#a57e3f45458d001e7614064a1372bd25b" title="Close a transliterator.">utrans_close()</a> on the result of this function. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006775">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006845">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1534,7 +1534,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new UFILE, or NULL if an error occurred. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006744">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006814">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1565,7 +1565,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </div><div class="memdoc">
 
 <p>Unget a UChar from a UFILE. </p>
-<p>If this function is not the first to operate on <code>f</code> after a call to <code>u_fgetc</code>, the results are undefined. If this function is passed a character that was not recieved from the previous <code>u_fgetc</code> or <code>u_fgetcx</code> call, the results are undefined. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>If this function is not the first to operate on <code>f</code> after a call to <code>u_fgetc</code>, the results are undefined. If this function is passed a character that was not received from the previous <code>u_fgetc</code> or <code>u_fgetcx</code> call, the results are undefined. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>The UChar to put back on the stream. </td></tr>
     <tr><td class="paramname">f</td><td>The UFILE to receive <code>c</code>. </td></tr>
@@ -1573,7 +1573,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The UChar32 value put back if successful, U_EOF otherwise. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006773">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006843">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1595,7 +1595,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 
 <p>Get a UFILE for <code>stdout</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd>UFILE that writes to <code>stdout</code> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006760">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006830">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 </div>
 </div>
@@ -1633,7 +1633,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters written to <code>stdout</code> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006756">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006826">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 </div>
 </div>
@@ -1671,7 +1671,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters written to <code>stdout</code> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006759">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006829">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 </div>
 </div>
@@ -1724,7 +1724,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters that would have been written to <code>buffer</code> had count been sufficiently large. This does not include the terminating null character. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006777">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006847">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1777,7 +1777,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters that would have been written to <code>buffer</code> had count been sufficiently large. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006781">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006851">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1822,7 +1822,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode code units written to <code>buffer</code>. This does not include the terminating null character. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006776">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006846">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1867,7 +1867,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters written to <code>buffer</code>. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006780">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006850">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1912,7 +1912,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of items successfully converted and assigned, or EOF if an error occurred. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006784">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006854">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1957,7 +1957,7 @@ If * is used in printf, then the precision is passed in as an argument before th
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of items successfully converted and assigned, or EOF if an error occurred. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006786">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006856">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2004,7 +2004,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters written to <code>f</code>. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#ad3701ab6f3f755845b18a9b04872592e" title="Write formatted data to a UFILE.">u_fprintf</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006758">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006828">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2051,7 +2051,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters written to <code>f</code>. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a4651d485ae0f188275e15b8fbaa11303" title="Write formatted data to a UFILE.">u_fprintf_u</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006762">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006832">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2098,7 +2098,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of items successfully converted and assigned, or EOF if an error occurred. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a6e570515e6b804cfcf252e562e6fe150" title="Read formatted data from a UFILE.">u_fscanf</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006767">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006837">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2145,7 +2145,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of items successfully converted and assigned, or EOF if an error occurred. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a2c05c6b7b9b1f108504cb5b3b9b91143" title="Read formatted data from a UFILE.">u_fscanf_u</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006769">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006839">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2202,7 +2202,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters that would have been written to <code>buffer</code> had count been sufficiently large. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a6e19f35fb6d6be4ee29af8df93680871" title="Write formatted data to a Unicode string.">u_sprintf</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006779">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006849">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2257,7 +2257,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters that would have been written to <code>f</code> had count been sufficiently large. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#ad17e519be0e6776d567d761a9938ab0a" title="Write formatted data to a Unicode string.">u_sprintf_u</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006783">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006853">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2305,7 +2305,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters written to <code>buffer</code>. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a6e19f35fb6d6be4ee29af8df93680871" title="Write formatted data to a Unicode string.">u_sprintf</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006778">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006848">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2353,7 +2353,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of Unicode characters written to <code>f</code>. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#ad17e519be0e6776d567d761a9938ab0a" title="Write formatted data to a Unicode string.">u_sprintf_u</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006782">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006852">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2401,7 +2401,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of items successfully converted and assigned, or EOF if an error occurred. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#a71bfbfbd2f49e20ea8f3e9f958c95a9c" title="Read formatted data from a Unicode string.">u_sscanf</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006785">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006855">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -2449,7 +2449,7 @@ If * is used in printf, then the precision is passed in as an argument before th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of items successfully converted and assigned, or EOF if an error occurred. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ustdio_8h.html#ac21964ce505ae69e4d9d01210accc98a" title="Read formatted data from a Unicode string.">u_sscanf_u</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006787">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006857">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>

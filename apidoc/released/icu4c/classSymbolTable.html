@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 69.1: icu::SymbolTable Class Reference</title>
+<title>ICU 70.1: icu::SymbolTable Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 69.1
-   &#160;<span id="projectnumber">69.1</span>
+   <div id="projectname">ICU 70.1
+   &#160;<span id="projectnumber">70.1</span>
    </div>
   </td>
  </tr>
@@ -106,7 +106,7 @@ Public Member Functions</h2></td></tr>
 <p>A symbol table maintains two kinds of mappings. The first is between symbolic names and their values. For example, if the variable with the name "start" is set to the value "alpha" (perhaps, though not necessarily, through an expression such as "$start=alpha"), then the call lookup("start") will return the char[] array ['a', 'l', 'p', 'h', 'a'].</p>
 <p>The second kind of mapping is between character values and <a class="el" href="classicu_1_1UnicodeMatcher.html" title="UnicodeMatcher defines a protocol for objects that can match a range of characters in a Replaceable s...">UnicodeMatcher</a> objects. This is used by RuleBasedTransliterator, which uses characters in the private use area to represent objects such as UnicodeSets. If U+E015 is mapped to the <a class="el" href="classicu_1_1UnicodeSet.html" title="A mutable set of Unicode characters and multicharacter strings.">UnicodeSet</a> [a-z], then lookupMatcher(0xE015) will return the <a class="el" href="classicu_1_1UnicodeSet.html" title="A mutable set of Unicode characters and multicharacter strings.">UnicodeSet</a> [a-z].</p>
 <p>Finally, a symbol table defines parsing behavior for symbolic names. All symbolic names start with the SYMBOL_REF character. When a parser encounters this character, it calls <a class="el" href="classicu_1_1SymbolTable.html#ae311015e6547ecafcb24495f16df5562" title="Parse a symbol reference name from the given string, starting at the given position.">parseReference()</a> with the position immediately following the SYMBOL_REF. The symbol table parses the name, if there is one, and returns it.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000821">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000824">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="symtable_8h_source.html#l00059">59</a> of file <a class="el" href="symtable_8h_source.html">symtable.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
@@ -154,7 +154,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Destructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000823">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000826">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
 </div>
 </div>
@@ -191,7 +191,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string containing the name's value, or <code>NULL</code> if there is no mapping for s. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000824">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000827">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
 </div>
 </div>
@@ -227,7 +227,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="classicu_1_1UnicodeMatcher.html" title="UnicodeMatcher defines a protocol for objects that can match a range of characters in a Replaceable s...">UnicodeMatcher</a> object represented by the given character, or NULL if there is no mapping for ch. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000825">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000828">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
 </div>
 </div>
@@ -281,7 +281,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the parsed name, or an empty string if there is no valid symbolic name at the given position. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000826">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000829">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
 </div>
 </div>

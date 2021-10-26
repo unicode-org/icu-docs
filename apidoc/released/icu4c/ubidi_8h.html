@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 69.1: ubidi.h File Reference</title>
+<title>ICU 70.1: ubidi.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 69.1
-   &#160;<span id="projectnumber">69.1</span>
+   <div id="projectname">ICU 70.1
+   &#160;<span id="projectnumber">70.1</span>
    </div>
   </td>
  </tr>
@@ -329,7 +329,7 @@ Such a run of text is passed to the graphics system with characters (code units)
 The line-breaking algorithm is very complicated and Locale-dependent - and therefore its implementation omitted from this sample code. </li>
 </ul>
 <pre>
-<div class="fragment"><div class="line">*#include <span class="stringliteral">&quot;unicode/ubidi.h&quot;</span></div>
+<div class="fragment"><div class="line">*#include &lt;unicode/ubidi.h&gt;</div>
 <div class="line"> </div>
 <div class="line">*<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
 <div class="line">      styleNormal=0, styleSelected=1,</div>
@@ -381,11 +381,11 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <div class="line">          <span class="keywordtype">int</span> styleLimit;</div>
 <div class="line"> </div>
 <div class="line">          <span class="keywordflow">for</span>(i=0; i&lt;styleRunCount; ++i) {</div>
-<div class="line">              styleLimit=styleRun[i].limit;</div>
+<div class="line">              styleLimit=styleRuns[i].limit;</div>
 <div class="line">              <span class="keywordflow">if</span>(start&lt;styleLimit) {</div>
 <div class="line">                  <span class="keywordflow">if</span>(styleLimit&gt;limit) { styleLimit=limit; }</div>
 <div class="line">                  renderRun(text, start, styleLimit,</div>
-<div class="line">                            direction, styleRun[i].style);</div>
+<div class="line">                            direction, styleRuns[i].style);</div>
 <div class="line">                  <span class="keywordflow">if</span>(styleLimit==limit) { <span class="keywordflow">break</span>; }</div>
 <div class="line">                  start=styleLimit;</div>
 <div class="line">              }</div>
@@ -395,14 +395,14 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <div class="line"> </div>
 <div class="line">          <span class="keywordflow">for</span>(i=styleRunCount-1; i&gt;=0; --i) {</div>
 <div class="line">              <span class="keywordflow">if</span>(i&gt;0) {</div>
-<div class="line">                  styleStart=styleRun[i-1].limit;</div>
+<div class="line">                  styleStart=styleRuns[i-1].limit;</div>
 <div class="line">              } <span class="keywordflow">else</span> {</div>
 <div class="line">                  styleStart=0;</div>
 <div class="line">              }</div>
 <div class="line">              <span class="keywordflow">if</span>(limit&gt;=styleStart) {</div>
 <div class="line">                  <span class="keywordflow">if</span>(styleStart&lt;start) { styleStart=start; }</div>
 <div class="line">                  renderRun(text, styleStart, limit,</div>
-<div class="line">                            direction, styleRun[i].style);</div>
+<div class="line">                            direction, styleRuns[i].style);</div>
 <div class="line">                  <span class="keywordflow">if</span>(styleStart==start) { <span class="keywordflow">break</span>; }</div>
 <div class="line">                  limit=styleStart;</div>
 <div class="line">              }</div>
@@ -413,7 +413,8 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <div class="line">  <span class="comment">// the line object represents text[start..limit-1]</span></div>
 <div class="line">  <span class="keywordtype">void</span> renderLine(<a class="code" href="ubidi_8h.html#aeed24292bbed966df93f088bc6791f74">UBiDi</a> *line, <span class="keyword">const</span> <a class="code" href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a> *text,</div>
 <div class="line">                  int32_t start, int32_t limit,</div>
-<div class="line">                  <span class="keyword">const</span> StyleRun *styleRuns, <span class="keywordtype">int</span> styleRunCount) {</div>
+<div class="line">                  <span class="keyword">const</span> StyleRun *styleRuns, <span class="keywordtype">int</span> styleRunCount,</div>
+<div class="line">                  <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> *pErrorCode) {</div>
 <div class="line">      <a class="code" href="ubidi_8h.html#a68a6b5fdcbf80aaa51b5bd39f7f31102">UBiDiDirection</a> direction=<a class="code" href="ubidi_8h.html#ab07743e602f803405b0d36b5560425ec">ubidi_getDirection</a>(line);</div>
 <div class="line">      <span class="keywordflow">if</span>(direction!=<a class="code" href="ubidi_8h.html#a68a6b5fdcbf80aaa51b5bd39f7f31102a5cc55b0dc99fa2ef003c7a8beb00844d">UBIDI_MIXED</a>) {</div>
 <div class="line">          <span class="comment">// unidirectional</span></div>
@@ -428,14 +429,14 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <div class="line">          int32_t count, i, length;</div>
 <div class="line">          <a class="code" href="ubidi_8h.html#ab2460a19f323ab9787a79a95db91a606">UBiDiLevel</a> level;</div>
 <div class="line"> </div>
-<div class="line">          count=<a class="code" href="ubidi_8h.html#a237c6da70395a05ba43b58d184e2ca7d">ubidi_countRuns</a>(para, pErrorCode);</div>
+<div class="line">          count=<a class="code" href="ubidi_8h.html#a237c6da70395a05ba43b58d184e2ca7d">ubidi_countRuns</a>(line, pErrorCode);</div>
 <div class="line">          <span class="keywordflow">if</span>(<a class="code" href="utypes_8h.html#a527f2c69e6b2e3b2c53ad8a99fb36711">U_SUCCESS</a>(*pErrorCode)) {</div>
 <div class="line">              <span class="keywordflow">if</span>(styleRunCount&lt;=1) {</div>
 <div class="line">                  Style style=styleRuns[0].style;</div>
 <div class="line"> </div>
 <div class="line">                  <span class="comment">// iterate over directional runs</span></div>
 <div class="line">                 <span class="keywordflow">for</span>(i=0; i&lt;count; ++i) {</div>
-<div class="line">                     direction=<a class="code" href="ubidi_8h.html#aec250446cb8f9327eee5f219eaf65c25">ubidi_getVisualRun</a>(para, i, &amp;start, &amp;length);</div>
+<div class="line">                     direction=<a class="code" href="ubidi_8h.html#aec250446cb8f9327eee5f219eaf65c25">ubidi_getVisualRun</a>(line, i, &amp;start, &amp;length);</div>
 <div class="line">                      renderRun(text, start, start+length, direction, style);</div>
 <div class="line">                 }</div>
 <div class="line">              } <span class="keywordflow">else</span> {</div>
@@ -489,7 +490,7 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <div class="line">              startLine(paraLevel, width);</div>
 <div class="line"> </div>
 <div class="line">              renderLine(para, text, 0, length,</div>
-<div class="line">                         styleRuns, styleRunCount);</div>
+<div class="line">                         styleRuns, styleRunCount, pErrorCode);</div>
 <div class="line">          } <span class="keywordflow">else</span> {</div>
 <div class="line">              <a class="code" href="ubidi_8h.html#aeed24292bbed966df93f088bc6791f74">UBiDi</a> *line;</div>
 <div class="line"> </div>
@@ -513,7 +514,7 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <div class="line"> </div>
 <div class="line">                          renderLine(line, text, start, limit,</div>
 <div class="line">                                     styleRuns+styleRunStart,</div>
-<div class="line">                                     styleRunLimit-styleRunStart);</div>
+<div class="line">                                     styleRunLimit-styleRunStart, pErrorCode);</div>
 <div class="line">                      }</div>
 <div class="line">                      <span class="keywordflow">if</span>(limit==length) { <span class="keywordflow">break</span>; }</div>
 <div class="line">                      start=limit;</div>
@@ -532,25 +533,25 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <div class="line">*}</div>
 <div class="line">*</div>
 <div class="ttc" id="aubidi_8h_html_a0530c3a15aad61314f2b2b1f7cc14489"><div class="ttname"><a href="ubidi_8h.html#a0530c3a15aad61314f2b2b1f7cc14489">ubidi_openSized</a></div><div class="ttdeci">U_CAPI UBiDi * ubidi_openSized(int32_t maxLength, int32_t maxRunCount, UErrorCode *pErrorCode)</div><div class="ttdoc">Allocate a UBiDi structure with preallocated memory for internal structures.</div></div>
-<div class="ttc" id="aubidi_8h_html_a0b4d6ac752ab7a8a33eb825e9c76683d"><div class="ttname"><a href="ubidi_8h.html#a0b4d6ac752ab7a8a33eb825e9c76683d">UBIDI_DEFAULT_RTL</a></div><div class="ttdeci">#define UBIDI_DEFAULT_RTL</div><div class="ttdoc">Paragraph level setting.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00392">ubidi.h:392</a></div></div>
-<div class="ttc" id="aubidi_8h_html_a165ae276878c7a54fd8b067db0d12f40"><div class="ttname"><a href="ubidi_8h.html#a165ae276878c7a54fd8b067db0d12f40">UBIDI_DEFAULT_LTR</a></div><div class="ttdeci">#define UBIDI_DEFAULT_LTR</div><div class="ttdoc">Paragraph level setting.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00365">ubidi.h:365</a></div></div>
+<div class="ttc" id="aubidi_8h_html_a0b4d6ac752ab7a8a33eb825e9c76683d"><div class="ttname"><a href="ubidi_8h.html#a0b4d6ac752ab7a8a33eb825e9c76683d">UBIDI_DEFAULT_RTL</a></div><div class="ttdeci">#define UBIDI_DEFAULT_RTL</div><div class="ttdoc">Paragraph level setting.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00393">ubidi.h:393</a></div></div>
+<div class="ttc" id="aubidi_8h_html_a165ae276878c7a54fd8b067db0d12f40"><div class="ttname"><a href="ubidi_8h.html#a165ae276878c7a54fd8b067db0d12f40">UBIDI_DEFAULT_LTR</a></div><div class="ttdeci">#define UBIDI_DEFAULT_LTR</div><div class="ttdoc">Paragraph level setting.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00366">ubidi.h:366</a></div></div>
 <div class="ttc" id="aubidi_8h_html_a237c6da70395a05ba43b58d184e2ca7d"><div class="ttname"><a href="ubidi_8h.html#a237c6da70395a05ba43b58d184e2ca7d">ubidi_countRuns</a></div><div class="ttdeci">U_CAPI int32_t ubidi_countRuns(UBiDi *pBiDi, UErrorCode *pErrorCode)</div><div class="ttdoc">Get the number of runs.</div></div>
 <div class="ttc" id="aubidi_8h_html_a4d95aed272db06b5fbb6765cc1c76735"><div class="ttname"><a href="ubidi_8h.html#a4d95aed272db06b5fbb6765cc1c76735">ubidi_setLine</a></div><div class="ttdeci">U_CAPI void ubidi_setLine(const UBiDi *pParaBiDi, int32_t start, int32_t limit, UBiDi *pLineBiDi, UErrorCode *pErrorCode)</div><div class="ttdoc">ubidi_setLine() sets a UBiDi to contain the reordering information, especially the resolved levels,...</div></div>
 <div class="ttc" id="aubidi_8h_html_a598978d4e57a58f7cbdcac31e4397f72"><div class="ttname"><a href="ubidi_8h.html#a598978d4e57a58f7cbdcac31e4397f72">ubidi_close</a></div><div class="ttdeci">U_CAPI void ubidi_close(UBiDi *pBiDi)</div><div class="ttdoc">ubidi_close() must be called to free the memory associated with a UBiDi object.</div></div>
-<div class="ttc" id="aubidi_8h_html_a68a6b5fdcbf80aaa51b5bd39f7f31102"><div class="ttname"><a href="ubidi_8h.html#a68a6b5fdcbf80aaa51b5bd39f7f31102">UBiDiDirection</a></div><div class="ttdeci">UBiDiDirection</div><div class="ttdoc">UBiDiDirection values indicate the text direction.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00428">ubidi.h:428</a></div></div>
-<div class="ttc" id="aubidi_8h_html_a68a6b5fdcbf80aaa51b5bd39f7f31102a3378628e1b7851cd6d00e7f74d29f6c3"><div class="ttname"><a href="ubidi_8h.html#a68a6b5fdcbf80aaa51b5bd39f7f31102a3378628e1b7851cd6d00e7f74d29f6c3">UBIDI_LTR</a></div><div class="ttdeci">@ UBIDI_LTR</div><div class="ttdoc">Left-to-right text.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00440">ubidi.h:440</a></div></div>
-<div class="ttc" id="aubidi_8h_html_a68a6b5fdcbf80aaa51b5bd39f7f31102a5cc55b0dc99fa2ef003c7a8beb00844d"><div class="ttname"><a href="ubidi_8h.html#a68a6b5fdcbf80aaa51b5bd39f7f31102a5cc55b0dc99fa2ef003c7a8beb00844d">UBIDI_MIXED</a></div><div class="ttdeci">@ UBIDI_MIXED</div><div class="ttdoc">Mixed-directional text.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00459">ubidi.h:459</a></div></div>
+<div class="ttc" id="aubidi_8h_html_a68a6b5fdcbf80aaa51b5bd39f7f31102"><div class="ttname"><a href="ubidi_8h.html#a68a6b5fdcbf80aaa51b5bd39f7f31102">UBiDiDirection</a></div><div class="ttdeci">UBiDiDirection</div><div class="ttdoc">UBiDiDirection values indicate the text direction.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00429">ubidi.h:429</a></div></div>
+<div class="ttc" id="aubidi_8h_html_a68a6b5fdcbf80aaa51b5bd39f7f31102a3378628e1b7851cd6d00e7f74d29f6c3"><div class="ttname"><a href="ubidi_8h.html#a68a6b5fdcbf80aaa51b5bd39f7f31102a3378628e1b7851cd6d00e7f74d29f6c3">UBIDI_LTR</a></div><div class="ttdeci">@ UBIDI_LTR</div><div class="ttdoc">Left-to-right text.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00441">ubidi.h:441</a></div></div>
+<div class="ttc" id="aubidi_8h_html_a68a6b5fdcbf80aaa51b5bd39f7f31102a5cc55b0dc99fa2ef003c7a8beb00844d"><div class="ttname"><a href="ubidi_8h.html#a68a6b5fdcbf80aaa51b5bd39f7f31102a5cc55b0dc99fa2ef003c7a8beb00844d">UBIDI_MIXED</a></div><div class="ttdeci">@ UBIDI_MIXED</div><div class="ttdoc">Mixed-directional text.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00460">ubidi.h:460</a></div></div>
 <div class="ttc" id="aubidi_8h_html_a90b3cfcc52e1c6a3fd4b76e4263e64e9"><div class="ttname"><a href="ubidi_8h.html#a90b3cfcc52e1c6a3fd4b76e4263e64e9">ubidi_setPara</a></div><div class="ttdeci">U_CAPI void ubidi_setPara(UBiDi *pBiDi, const UChar *text, int32_t length, UBiDiLevel paraLevel, UBiDiLevel *embeddingLevels, UErrorCode *pErrorCode)</div><div class="ttdoc">Perform the Unicode Bidi algorithm.</div></div>
 <div class="ttc" id="aubidi_8h_html_ab07743e602f803405b0d36b5560425ec"><div class="ttname"><a href="ubidi_8h.html#ab07743e602f803405b0d36b5560425ec">ubidi_getDirection</a></div><div class="ttdeci">U_CAPI UBiDiDirection ubidi_getDirection(const UBiDi *pBiDi)</div><div class="ttdoc">Get the directionality of the text.</div></div>
-<div class="ttc" id="aubidi_8h_html_ab2460a19f323ab9787a79a95db91a606"><div class="ttname"><a href="ubidi_8h.html#ab2460a19f323ab9787a79a95db91a606">UBiDiLevel</a></div><div class="ttdeci">uint8_t UBiDiLevel</div><div class="ttdoc">UBiDiLevel is the type of the level values in this Bidi implementation.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00339">ubidi.h:339</a></div></div>
+<div class="ttc" id="aubidi_8h_html_ab2460a19f323ab9787a79a95db91a606"><div class="ttname"><a href="ubidi_8h.html#ab2460a19f323ab9787a79a95db91a606">UBiDiLevel</a></div><div class="ttdeci">uint8_t UBiDiLevel</div><div class="ttdoc">UBiDiLevel is the type of the level values in this Bidi implementation.</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00340">ubidi.h:340</a></div></div>
 <div class="ttc" id="aubidi_8h_html_ac943a8e2e67072715cd15e3509603750"><div class="ttname"><a href="ubidi_8h.html#ac943a8e2e67072715cd15e3509603750">ubidi_getParaLevel</a></div><div class="ttdeci">U_CAPI UBiDiLevel ubidi_getParaLevel(const UBiDi *pBiDi)</div><div class="ttdoc">Get the paragraph level of the text.</div></div>
 <div class="ttc" id="aubidi_8h_html_aec250446cb8f9327eee5f219eaf65c25"><div class="ttname"><a href="ubidi_8h.html#aec250446cb8f9327eee5f219eaf65c25">ubidi_getVisualRun</a></div><div class="ttdeci">U_CAPI UBiDiDirection ubidi_getVisualRun(UBiDi *pBiDi, int32_t runIndex, int32_t *pLogicalStart, int32_t *pLength)</div><div class="ttdoc">Get one run's logical start, length, and directionality, which can be 0 for LTR or 1 for RTL.</div></div>
-<div class="ttc" id="aubidi_8h_html_aeed24292bbed966df93f088bc6791f74"><div class="ttname"><a href="ubidi_8h.html#aeed24292bbed966df93f088bc6791f74">UBiDi</a></div><div class="ttdeci">struct UBiDi UBiDi</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00339">ubidi.h:485</a></div></div>
+<div class="ttc" id="aubidi_8h_html_aeed24292bbed966df93f088bc6791f74"><div class="ttname"><a href="ubidi_8h.html#aeed24292bbed966df93f088bc6791f74">UBiDi</a></div><div class="ttdeci">struct UBiDi UBiDi</div><div class="ttdef"><b>Definition:</b> <a href="ubidi_8h_source.html#l00340">ubidi.h:486</a></div></div>
 <div class="ttc" id="aumachine_8h_html_a6bb9fad572d65b305324ef288165e2ac"><div class="ttname"><a href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a></div><div class="ttdeci">char16_t UChar</div><div class="ttdoc">The base type for UTF-16 code units and pointers.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00418">umachine.h:418</a></div></div>
 <div class="ttc" id="autypes_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Define NULL if necessary, to nullptr for C++ and to ((void *)0) for C.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00188">utypes.h:188</a></div></div>
 <div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00415">utypes.h:415</a></div></div>
-<div class="ttc" id="autypes_8h_html_a4d202200b6aa6f3c965ea370e0c8155f"><div class="ttname"><a href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f">U_FAILURE</a></div><div class="ttdeci">#define U_FAILURE(x)</div><div class="ttdoc">Does the error code indicate a failure?</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00719">utypes.h:719</a></div></div>
-<div class="ttc" id="autypes_8h_html_a527f2c69e6b2e3b2c53ad8a99fb36711"><div class="ttname"><a href="utypes_8h.html#a527f2c69e6b2e3b2c53ad8a99fb36711">U_SUCCESS</a></div><div class="ttdeci">#define U_SUCCESS(x)</div><div class="ttdoc">Does the error code indicate success?</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00714">utypes.h:714</a></div></div>
+<div class="ttc" id="autypes_8h_html_a4d202200b6aa6f3c965ea370e0c8155f"><div class="ttname"><a href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f">U_FAILURE</a></div><div class="ttdeci">#define U_FAILURE(x)</div><div class="ttdoc">Does the error code indicate a failure?</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00717">utypes.h:717</a></div></div>
+<div class="ttc" id="autypes_8h_html_a527f2c69e6b2e3b2c53ad8a99fb36711"><div class="ttname"><a href="utypes_8h.html#a527f2c69e6b2e3b2c53ad8a99fb36711">U_SUCCESS</a></div><div class="ttdeci">#define U_SUCCESS(x)</div><div class="ttdoc">Does the error code indicate success?</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00712">utypes.h:712</a></div></div>
 </div><!-- fragment -->
   </pre> 
 <p class="definition">Definition in file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
@@ -572,7 +573,7 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a77893628988f90ea58198aaac9c6fcea" title="Callback type declaration for overriding default Bidi class values with custom ones.">UBiDiClassCallback</a> </dd></dl>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000048">Deprecated:</a></b></dt><dd>ICU 58 The numeric value may change over time, see ICU ticket #12420. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01991">1991</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01992">1992</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -594,9 +595,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <p>If reordering option <code>UBIDI_OPTION_INSERT_MARKS</code> is set, an RLM may be added at the beginning of the result string to ensure round trip (that the result string, when reordered back to visual, will produce the original source text). </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a88693e5a8ad4be974dc90ec6b8db56dfa8ca4fe9b9d87e67c37c8a80bed3147aa" title="Visual to Logical algorithm equivalent to the regular Logical to Visual algorithm.">UBIDI_REORDER_INVERSE_LIKE_DIRECT</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a88693e5a8ad4be974dc90ec6b8db56dfa0c426985f03689d0c4a2aade0e48c69e" title="Inverse Bidi (Visual to Logical) algorithm for the UBIDI_REORDER_NUMBERS_SPECIAL Bidi algorithm.">UBIDI_REORDER_INVERSE_FOR_NUMBERS_SPECIAL</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000828">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000831">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00365">365</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00366">366</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -618,9 +619,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <p>If reordering option <code>UBIDI_OPTION_INSERT_MARKS</code> is set, an RLM may be added at the beginning of the result string to ensure round trip (that the result string, when reordered back to visual, will produce the original source text). </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a88693e5a8ad4be974dc90ec6b8db56dfa8ca4fe9b9d87e67c37c8a80bed3147aa" title="Visual to Logical algorithm equivalent to the regular Logical to Visual algorithm.">UBIDI_REORDER_INVERSE_LIKE_DIRECT</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a88693e5a8ad4be974dc90ec6b8db56dfa0c426985f03689d0c4a2aade0e48c69e" title="Inverse Bidi (Visual to Logical) algorithm for the UBIDI_REORDER_NUMBERS_SPECIAL Bidi algorithm.">UBIDI_REORDER_INVERSE_FOR_NUMBERS_SPECIAL</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000829">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000832">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00392">392</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00393">393</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -638,9 +639,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 
 <p>option bit for <a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered()</a>: replace characters with the "mirrored" property in RTL runs by their mirror-image mappings </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000874">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000877">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01863">1863</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01864">1864</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -661,9 +662,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#ae3bdfba88b6c895ffc5570249d5687c8" title="Modify the operation of the Bidi algorithm such that it approximates an &quot;inverse Bidi&quot; algorithm.">ubidi_setInverse</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000875">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000878">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01877">1877</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01878">1878</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -682,9 +683,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <p>option flags for <a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered()</a> </p>
 <p>option bit for <a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered()</a>: keep combining characters after their base characters in RTL runs</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000873">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000876">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01853">1853</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01854">1854</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -701,9 +702,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 </div><div class="memdoc">
 
 <p>Bit flag for level input. </p>
-<p>Overrides directional properties. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000831">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Overrides directional properties. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000834">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00407">407</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00408">408</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -727,9 +728,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <a class="el" href="ubidi_8h.html#ada674f50f497d04ffe76260050439dea" title="Get the logical text position from a visual position.">ubidi_getLogicalIndex</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#aec7f1cb5a9ab4a8440c6dcaa6a5b726b" title="Get a logical-to-visual index map (array) for the characters in the UBiDi (paragraph or line) object.">ubidi_getLogicalMap</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000832">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000835">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00422">422</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00423">423</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -746,9 +747,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 </div><div class="memdoc">
 
 <p>Maximum explicit embedding level. </p>
-<p>Same as the max_depth value in the <a href="http://www.unicode.org/reports/tr9/#BD2">Unicode Bidirectional Algorithm</a>. (The maximum resolved level can be up to <code>UBIDI_MAX_EXPLICIT_LEVEL+1</code>). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000830">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Same as the max_depth value in the <a href="http://www.unicode.org/reports/tr9/#BD2">Unicode Bidirectional Algorithm</a>. (The maximum resolved level can be up to <code>UBIDI_MAX_EXPLICIT_LEVEL+1</code>). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000833">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00401">401</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00402">402</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -767,9 +768,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <p>option bit for <a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered()</a>: write the output in reverse order </p>
 <p>This has the same effect as calling <code><a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered()</a></code> first without this option, and then calling <code><a class="el" href="ubidi_8h.html#a74b4388204bb14cb234338dcd6eb2a86" title="Reverse a Right-To-Left run of Unicode text.">ubidi_writeReverse()</a></code> without mirroring. Doing this in the same step is faster and avoids a temporary buffer. An example for using this option is output to a character terminal that is designed for RTL scripts and stores text in reverse order.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000877">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000880">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01906">1906</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01907">1907</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -788,9 +789,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <p>option bit for <a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered()</a>: remove Bidi control characters (this does not affect <a class="el" href="ubidi_8h.html#adad66f9132bc4e4621427091acfc0f40" title="option bit for ubidi_writeReordered(): surround the run with LRMs if necessary; this is part of the a...">UBIDI_INSERT_LRM_FOR_NUMERIC</a>) </p>
 <p>This option does not imply corresponding adjustment of the index mappings.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000876">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000879">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01890">1890</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l01891">1891</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -806,9 +807,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000836">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000839">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00339">339</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00340">340</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -837,9 +838,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a69be01f3b9f17fc7cc604b10fa31c2f4" title="Set the callback function and callback data used by the UBA implementation for Bidi class determinati...">ubidi_setClassCallback</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#ab1273cb31073809b9450b9c2bc36d4b7" title="Get the current callback function used for Bidi class determination.">ubidi_getClassCallback</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000880">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000883">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l02015">2015</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l02016">2016</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -854,9 +855,9 @@ The line-breaking algorithm is very complicated and Locale-dependent - and there
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000834">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000837">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00339">339</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00340">340</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -891,9 +892,9 @@ bit&#160;7 of an <code>embeddingLevels[]</code> value indicates whether the usin
 <a class="el" href="ubidi_8h.html#a5e4049fa946dd8e0a1b3c01e5c1c3711" title="Bit flag for level input.">UBIDI_LEVEL_OVERRIDE</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a531b2d2bfa7655df6bf86d1236a1928a" title="Maximum explicit embedding level.">UBIDI_MAX_EXPLICIT_LEVEL</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000827">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000830">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00339">339</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00340">340</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -911,7 +912,7 @@ bit&#160;7 of an <code>embeddingLevels[]</code> value indicates whether the usin
 
 <p><code>UBiDiReorderingMode</code> values indicate which variant of the Bidi algorithm to use. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#afdcfcfb2304b87d4ce761404f9c72b74" title="Modify the operation of the Bidi algorithm such that it implements some variant to the basic Bidi alg...">ubidi_setReorderingMode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000844">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000847">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -929,7 +930,7 @@ bit&#160;7 of an <code>embeddingLevels[]</code> value indicates whether the usin
 
 <p><code>UBiDiReorderingOption</code> values indicate which options are specified to affect the Bidi algorithm. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a6b3cb52e9337daa17f328cd7bc3b756d" title="Specify which of the reordering options should be applied during Bidi transformations.">ubidi_setReorderingOptions</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000847">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000850">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -947,7 +948,7 @@ bit&#160;7 of an <code>embeddingLevels[]</code> value indicates whether the usin
 </div><div class="memdoc">
 
 <p><code>UBiDiDirection</code> values indicate the text direction. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000833">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000836">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a68a6b5fdcbf80aaa51b5bd39f7f31102a3378628e1b7851cd6d00e7f74d29f6c3"></a>UBIDI_LTR&#160;</td><td class="fielddoc"><p>Left-to-right text. </p>
 <p>This is a 0 value. </p><ul>
@@ -956,7 +957,7 @@ As return value for <code><a class="el" href="ubidi_8h.html#ab07743e602f803405b0
 <li>
 As return value for <code><a class="el" href="ubidi_8h.html#a493510dbfe211553823922e3273399fd" title="Gets the base direction of the text provided according to the Unicode Bidirectional Algorithm.">ubidi_getBaseDirection()</a></code>, it means that the first strong character of the source string has a left-to-right direction. </li>
 </ul>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000886">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000889">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a68a6b5fdcbf80aaa51b5bd39f7f31102a73e659e3118b58f822cc1384e7fcd8ec"></a>UBIDI_RTL&#160;</td><td class="fielddoc"><p>Right-to-left text. </p>
 <p>This is a 1 value. </p><ul>
@@ -965,17 +966,17 @@ As return value for <code><a class="el" href="ubidi_8h.html#ab07743e602f803405b0
 <li>
 As return value for <code><a class="el" href="ubidi_8h.html#a493510dbfe211553823922e3273399fd" title="Gets the base direction of the text provided according to the Unicode Bidirectional Algorithm.">ubidi_getBaseDirection()</a></code>, it means that the first strong character of the source string has a right-to-left direction. </li>
 </ul>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000887">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000890">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a68a6b5fdcbf80aaa51b5bd39f7f31102a5cc55b0dc99fa2ef003c7a8beb00844d"></a>UBIDI_MIXED&#160;</td><td class="fielddoc"><p>Mixed-directional text. </p>
-<p>As return value for <code><a class="el" href="ubidi_8h.html#ab07743e602f803405b0d36b5560425ec" title="Get the directionality of the text.">ubidi_getDirection()</a></code>, it means that the source string contains both left-to-right and right-to-left characters. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000888">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>As return value for <code><a class="el" href="ubidi_8h.html#ab07743e602f803405b0d36b5560425ec" title="Get the directionality of the text.">ubidi_getDirection()</a></code>, it means that the source string contains both left-to-right and right-to-left characters. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000891">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a68a6b5fdcbf80aaa51b5bd39f7f31102a4ec7a06cf7b96d2df5d39ac54765be12"></a>UBIDI_NEUTRAL&#160;</td><td class="fielddoc"><p>No strongly directional text. </p>
-<p>As return value for <code><a class="el" href="ubidi_8h.html#a493510dbfe211553823922e3273399fd" title="Gets the base direction of the text provided according to the Unicode Bidirectional Algorithm.">ubidi_getBaseDirection()</a></code>, it means that the source string is missing or empty, or contains neither left-to-right nor right-to-left characters. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000889">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
+<p>As return value for <code><a class="el" href="ubidi_8h.html#a493510dbfe211553823922e3273399fd" title="Gets the base direction of the text provided according to the Unicode Bidirectional Algorithm.">ubidi_getBaseDirection()</a></code>, it means that the source string is missing or empty, or contains neither left-to-right nor right-to-left characters. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000892">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00428">428</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00429">429</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -993,37 +994,37 @@ As return value for <code><a class="el" href="ubidi_8h.html#a493510dbfe211553823
 
 <p><code>UBiDiReorderingMode</code> values indicate which variant of the Bidi algorithm to use. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#afdcfcfb2304b87d4ce761404f9c72b74" title="Modify the operation of the Bidi algorithm such that it implements some variant to the basic Bidi alg...">ubidi_setReorderingMode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000844">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000847">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a88693e5a8ad4be974dc90ec6b8db56dfac366446a9080bf062aca0080e9effc5b"></a>UBIDI_REORDER_DEFAULT&#160;</td><td class="fielddoc"><p>Regular Logical to Visual Bidi algorithm according to Unicode. </p>
-<p>This is a 0 value. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000891">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<p>This is a 0 value. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000894">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a88693e5a8ad4be974dc90ec6b8db56dfa447996fecd0eefb0d12ce247cb511e5f"></a>UBIDI_REORDER_NUMBERS_SPECIAL&#160;</td><td class="fielddoc"><p>Logical to Visual algorithm which handles numbers in a way which mimics the behavior of Windows XP. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000892">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000895">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a88693e5a8ad4be974dc90ec6b8db56dfa0cd75b3d1d8abc971554a2a7d459c6d7"></a>UBIDI_REORDER_GROUP_NUMBERS_WITH_R&#160;</td><td class="fielddoc"><p>Logical to Visual algorithm grouping numbers with adjacent R characters (reversible algorithm). </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000893">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000896">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a88693e5a8ad4be974dc90ec6b8db56dfa103b373c5933dd91cbfb2382b77bde8d"></a>UBIDI_REORDER_RUNS_ONLY&#160;</td><td class="fielddoc"><p>Reorder runs only to transform a Logical LTR string to the Logical RTL string with the same display, or vice-versa. </p>
 <p><br  />
- If this mode is set together with option <code><a class="el" href="ubidi_8h.html#a4505e4adc8da792501414b770f49f386a23405ee9a1f1b254cc692132712ef9a6" title="option bit for ubidi_setReorderingOptions: insert Bidi marks (LRM or RLM) when needed to ensure corre...">UBIDI_OPTION_INSERT_MARKS</a></code>, some Bidi controls in the source text may be removed and other controls may be added to produce the minimum combination which has the required display. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000894">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+ If this mode is set together with option <code><a class="el" href="ubidi_8h.html#a4505e4adc8da792501414b770f49f386a23405ee9a1f1b254cc692132712ef9a6" title="option bit for ubidi_setReorderingOptions: insert Bidi marks (LRM or RLM) when needed to ensure corre...">UBIDI_OPTION_INSERT_MARKS</a></code>, some Bidi controls in the source text may be removed and other controls may be added to produce the minimum combination which has the required display. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000897">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a88693e5a8ad4be974dc90ec6b8db56dfa6d23bae87c6e629866a3b87e11250e9a"></a>UBIDI_REORDER_INVERSE_NUMBERS_AS_L&#160;</td><td class="fielddoc"><p>Visual to Logical algorithm which handles numbers like L (same algorithm as selected by <code>ubidi_setInverse(true)</code>. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#ae3bdfba88b6c895ffc5570249d5687c8" title="Modify the operation of the Bidi algorithm such that it approximates an &quot;inverse Bidi&quot; algorithm.">ubidi_setInverse</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000895">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000898">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a88693e5a8ad4be974dc90ec6b8db56dfa8ca4fe9b9d87e67c37c8a80bed3147aa"></a>UBIDI_REORDER_INVERSE_LIKE_DIRECT&#160;</td><td class="fielddoc"><p>Visual to Logical algorithm equivalent to the regular Logical to Visual algorithm. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000896">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000899">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a88693e5a8ad4be974dc90ec6b8db56dfa0c426985f03689d0c4a2aade0e48c69e"></a>UBIDI_REORDER_INVERSE_FOR_NUMBERS_SPECIAL&#160;</td><td class="fielddoc"><p>Inverse Bidi (Visual to Logical) algorithm for the <code>UBIDI_REORDER_NUMBERS_SPECIAL</code> Bidi algorithm. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000897">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000900">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a88693e5a8ad4be974dc90ec6b8db56dfae19ca6f8614a91e49454b21264f6a379"></a>UBIDI_REORDER_COUNT&#160;</td><td class="fielddoc"><p>Number of values for reordering mode. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000049">Deprecated:</a></b></dt><dd>ICU 58 The numeric value may change over time, see ICU ticket #12420. </dd></dl>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00698">698</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00699">699</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -1041,11 +1042,11 @@ As return value for <code><a class="el" href="ubidi_8h.html#a493510dbfe211553823
 
 <p><code>UBiDiReorderingOption</code> values indicate which options are specified to affect the Bidi algorithm. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a6b3cb52e9337daa17f328cd7bc3b756d" title="Specify which of the reordering options should be applied during Bidi transformations.">ubidi_setReorderingOptions</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000847">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000850">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4505e4adc8da792501414b770f49f386ae3c7e82fa51ecfccacb2d85fb6dc60fb"></a>UBIDI_OPTION_DEFAULT&#160;</td><td class="fielddoc"><p>option value for <code>ubidi_setReorderingOptions</code>: disable all the options which can be set with this function </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a6b3cb52e9337daa17f328cd7bc3b756d" title="Specify which of the reordering options should be applied during Bidi transformations.">ubidi_setReorderingOptions</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000898">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000901">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a4505e4adc8da792501414b770f49f386a23405ee9a1f1b254cc692132712ef9a6"></a>UBIDI_OPTION_INSERT_MARKS&#160;</td><td class="fielddoc"><p>option bit for <code>ubidi_setReorderingOptions</code>: insert Bidi marks (LRM or RLM) when needed to ensure correct result of a reordering to a Logical order </p>
 <p>This option must be set or reset before calling <code>ubidi_setPara</code>.</p>
@@ -1066,7 +1067,7 @@ As return value for <code><a class="el" href="ubidi_8h.html#a493510dbfe211553823
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#afdcfcfb2304b87d4ce761404f9c72b74" title="Modify the operation of the Bidi algorithm such that it implements some variant to the basic Bidi alg...">ubidi_setReorderingMode</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a6b3cb52e9337daa17f328cd7bc3b756d" title="Specify which of the reordering options should be applied during Bidi transformations.">ubidi_setReorderingOptions</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000899">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000902">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a4505e4adc8da792501414b770f49f386aeeff5ec55e7544a4ee713c53715fc502"></a>UBIDI_OPTION_REMOVE_CONTROLS&#160;</td><td class="fielddoc"><p>option bit for <code>ubidi_setReorderingOptions</code>: remove Bidi control characters </p>
 <p>This option must be set or reset before calling <code>ubidi_setPara</code>.</p>
@@ -1074,7 +1075,7 @@ As return value for <code><a class="el" href="ubidi_8h.html#a493510dbfe211553823
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#afdcfcfb2304b87d4ce761404f9c72b74" title="Modify the operation of the Bidi algorithm such that it implements some variant to the basic Bidi alg...">ubidi_setReorderingMode</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a6b3cb52e9337daa17f328cd7bc3b756d" title="Specify which of the reordering options should be applied during Bidi transformations.">ubidi_setReorderingOptions</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000900">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000903">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a4505e4adc8da792501414b770f49f386aa2760cf6aad6086eeca7a022ad9c59d7"></a>UBIDI_OPTION_STREAMING&#160;</td><td class="fielddoc"><p>option bit for <code>ubidi_setReorderingOptions</code>: process the output as part of a stream to be continued </p>
 <p>This option must be set or reset before calling <code>ubidi_setPara</code>.</p>
@@ -1097,11 +1098,11 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 <a class="el" href="ubidi_8h.html#a4599899debf670a089ac2c39eacc2788" title="Get the length of the source text processed by the last call to ubidi_setPara().">ubidi_getProcessedLength</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#ab3c885b8a44e37201f0fb73fe94ec7ec" title="Specify whether block separators must be allocated level zero, so that successive paragraphs will pro...">ubidi_orderParagraphsLTR</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000901">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000904">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00913">913</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ubidi_8h_source.html#l00914">914</a> of file <a class="el" href="ubidi_8h_source.html">ubidi.h</a>.</p>
 
 </div>
 </div>
@@ -1133,7 +1134,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a90b3cfcc52e1c6a3fd4b76e4263e64e9" title="Perform the Unicode Bidi algorithm.">ubidi_setPara</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a4d95aed272db06b5fbb6765cc1c76735" title="ubidi_setLine() sets a UBiDi to contain the reordering information, especially the resolved levels,...">ubidi_setLine</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000839">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000842">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1161,7 +1162,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of paragraphs. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000858">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000861">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1201,7 +1202,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of runs. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000864">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000867">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1243,7 +1244,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>UBIDI_LTR</code>, <code>UBIDI_RTL</code>, <code>UBIDI_NEUTRAL</code></dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a68a6b5fdcbf80aaa51b5bd39f7f31102" title="UBiDiDirection values indicate the text direction.">UBiDiDirection</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000854">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000857">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
 
 </div>
 </div>
@@ -1289,7 +1290,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a69be01f3b9f17fc7cc604b10fa31c2f4" title="Set the callback function and callback data used by the UBA implementation for Bidi class determinati...">ubidi_setClassCallback</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000883">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000886">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -1330,7 +1331,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Bidi class for character <code>c</code> based on the given <code>pBiDi</code> instance. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a77893628988f90ea58198aaac9c6fcea" title="Callback type declaration for overriding default Bidi class values with custom ones.">UBiDiClassCallback</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000881">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000884">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -1359,7 +1360,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a value of <code>UBIDI_LTR</code>, <code>UBIDI_RTL</code> or <code>UBIDI_MIXED</code> that indicates if the entire text represented by this object is unidirectional, and which direction, or if it is mixed-directional. Note - The value <code>UBIDI_NEUTRAL</code> is never returned from this method.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a68a6b5fdcbf80aaa51b5bd39f7f31102" title="UBiDiDirection values indicate the text direction.">UBiDiDirection</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000853">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000856">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="ParagraphLayout_8h_source.html#l00653">icu::ParagraphLayout::getTextDirection()</a>.</p>
 
@@ -1389,7 +1390,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the text that the UBiDi object was created for. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000856">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000859">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1431,7 +1432,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#ab2460a19f323ab9787a79a95db91a606" title="UBiDiLevel is the type of the level values in this Bidi implementation.">UBiDiLevel</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a4599899debf670a089ac2c39eacc2788" title="Get the length of the source text processed by the last call to ubidi_setPara().">ubidi_getProcessedLength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000861">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000864">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1474,7 +1475,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#ab2460a19f323ab9787a79a95db91a606" title="UBiDiLevel is the type of the level values in this Bidi implementation.">UBiDiLevel</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a4599899debf670a089ac2c39eacc2788" title="Get the length of the source text processed by the last call to ubidi_setPara().">ubidi_getProcessedLength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000862">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000865">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1529,7 +1530,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 <a class="el" href="ubidi_8h.html#ac58fcad9353342d5b097f134dea60aa4" title="Get the visual position from a logical text position.">ubidi_getVisualIndex</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#ab65cf00de23919640e3b9be50874cb4b" title="Get the length of the reordered text resulting from the last call to ubidi_setPara().">ubidi_getResultLength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000867">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000870">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1586,7 +1587,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 <a class="el" href="ubidi_8h.html#a4599899debf670a089ac2c39eacc2788" title="Get the length of the source text processed by the last call to ubidi_setPara().">ubidi_getProcessedLength</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#ab65cf00de23919640e3b9be50874cb4b" title="Get the length of the reordered text resulting from the last call to ubidi_setPara().">ubidi_getResultLength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000868">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000871">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1641,7 +1642,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a4599899debf670a089ac2c39eacc2788" title="Get the length of the source text processed by the last call to ubidi_setPara().">ubidi_getProcessedLength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000863">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000866">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1711,7 +1712,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The index of the paragraph containing the specified position.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a4599899debf670a089ac2c39eacc2788" title="Get the length of the source text processed by the last call to ubidi_setPara().">ubidi_getProcessedLength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000859">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000862">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1778,7 +1779,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000860">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000863">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -1811,7 +1812,7 @@ resubmit the same text after turning off option <code>UBIDI_OPTION_STREAMING</co
 <a class="el" href="ubidi_8h.html#a99859a62739d316d6d2b06038af4404d" title="Get a paragraph, given a position within the text.">ubidi_getParagraph</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a7ed3e4388ceb1cd2ae8331b4e4333a9e" title="Get a paragraph, given the index of this paragraph.">ubidi_getParagraphByIndex</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000857">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000860">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="ParagraphLayout_8h_source.html#l00648">icu::ParagraphLayout::getParagraphLevel()</a>.</p>
 
@@ -1864,7 +1865,7 @@ length of text processed by <code>ubidi_writeReordered</code> </li>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a90b3cfcc52e1c6a3fd4b76e4263e64e9" title="Perform the Unicode Bidi algorithm.">ubidi_setPara</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a4505e4adc8da792501414b770f49f386aa2760cf6aad6086eeca7a022ad9c59d7" title="option bit for ubidi_setReorderingOptions: process the output as part of a stream to be continued">UBIDI_OPTION_STREAMING</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000878">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000881">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -1893,7 +1894,7 @@ length of text processed by <code>ubidi_writeReordered</code> </li>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the current reordering mode of the Bidi object </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#afdcfcfb2304b87d4ce761404f9c72b74" title="Modify the operation of the Bidi algorithm such that it implements some variant to the basic Bidi alg...">ubidi_setReorderingMode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000846">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000849">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -1922,7 +1923,7 @@ length of text processed by <code>ubidi_writeReordered</code> </li>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the current reordering options of the Bidi object </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a6b3cb52e9337daa17f328cd7bc3b756d" title="Specify which of the reordering options should be applied during Bidi transformations.">ubidi_setReorderingOptions</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000849">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000852">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -1963,7 +1964,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
 <a class="el" href="ubidi_8h.html#a4505e4adc8da792501414b770f49f386a23405ee9a1f1b254cc692132712ef9a6" title="option bit for ubidi_setReorderingOptions: insert Bidi marks (LRM or RLM) when needed to ensure corre...">UBIDI_OPTION_INSERT_MARKS</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a4505e4adc8da792501414b770f49f386aeeff5ec55e7544a4ee713c53715fc502" title="option bit for ubidi_setReorderingOptions: remove Bidi control characters">UBIDI_OPTION_REMOVE_CONTROLS</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000879">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000882">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -1994,7 +1995,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a90b3cfcc52e1c6a3fd4b76e4263e64e9" title="Perform the Unicode Bidi algorithm.">ubidi_setPara</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a4d95aed272db06b5fbb6765cc1c76735" title="ubidi_setLine() sets a UBiDi to contain the reordering information, especially the resolved levels,...">ubidi_setLine</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000855">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000858">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2049,7 +2050,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
 <a class="el" href="ubidi_8h.html#ada674f50f497d04ffe76260050439dea" title="Get the logical text position from a visual position.">ubidi_getLogicalIndex</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a4599899debf670a089ac2c39eacc2788" title="Get the length of the source text processed by the last call to ubidi_setPara().">ubidi_getProcessedLength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000866">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000869">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2105,7 +2106,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
 <a class="el" href="ubidi_8h.html#a4599899debf670a089ac2c39eacc2788" title="Get the length of the source text processed by the last call to ubidi_setPara().">ubidi_getProcessedLength</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#ab65cf00de23919640e3b9be50874cb4b" title="Get the length of the reordered text resulting from the last call to ubidi_setPara().">ubidi_getResultLength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000869">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000872">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2179,7 +2180,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
 <div class="line">*</div>
 </div><!-- fragment -->
   </pre><p>Note that in right-to-left runs, code like this places second surrogates before first ones (which is generally a bad idea) and combining characters before base characters. </p>
-<p>Use of <code><a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered()</a></code>, optionally with the <code><a class="el" href="ubidi_8h.html#a2e022ccd0d2c55a21c2aa233c30ecd88" title="option flags for ubidi_writeReordered()">UBIDI_KEEP_BASE_COMBINING</a></code> option, can be considered in order to avoid these issues. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000865">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Use of <code><a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered()</a></code>, optionally with the <code><a class="el" href="ubidi_8h.html#a2e022ccd0d2c55a21c2aa233c30ecd88" title="option flags for ubidi_writeReordered()">UBIDI_KEEP_BASE_COMBINING</a></code> option, can be considered in order to avoid these issues. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000868">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2226,7 +2227,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a6bdc9eb61fd6146789e9827bdbded171" title="Special value which can be returned by the mapping functions when a logical index has no correspondin...">UBIDI_MAP_NOWHERE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000872">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000875">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2258,7 +2259,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#ae3bdfba88b6c895ffc5570249d5687c8" title="Modify the operation of the Bidi algorithm such that it approximates an &quot;inverse Bidi&quot; algorithm.">ubidi_setInverse</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#afdcfcfb2304b87d4ce761404f9c72b74" title="Modify the operation of the Bidi algorithm such that it implements some variant to the basic Bidi alg...">ubidi_setReorderingMode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000841">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000844">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2287,7 +2288,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the Bidi object is set to allocate level 0 to block separators.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#ab3c885b8a44e37201f0fb73fe94ec7ec" title="Specify whether block separators must be allocated level zero, so that successive paragraphs will pro...">ubidi_orderParagraphsLTR</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000843">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000846">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -2312,7 +2313,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
 <p>This object can be reused for as long as it is not deallocated by calling <code><a class="el" href="ubidi_8h.html#a598978d4e57a58f7cbdcac31e4397f72" title="ubidi_close() must be called to free the memory associated with a UBiDi object.">ubidi_close()</a></code>.</p>
 <p><code><a class="el" href="ubidi_8h.html#a90b3cfcc52e1c6a3fd4b76e4263e64e9" title="Perform the Unicode Bidi algorithm.">ubidi_setPara()</a></code> and <code><a class="el" href="ubidi_8h.html#a4d95aed272db06b5fbb6765cc1c76735" title="ubidi_setLine() sets a UBiDi to contain the reordering information, especially the resolved levels,...">ubidi_setLine()</a></code> will allocate additional memory for internal structures as necessary.</p>
 <dl class="section return"><dt>Returns</dt><dd>An empty <code>UBiDi</code> object. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000837">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000840">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2363,7 +2364,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An empty <code>UBiDi</code> object with preallocated memory. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000838">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000841">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2403,7 +2404,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a90b3cfcc52e1c6a3fd4b76e4263e64e9" title="Perform the Unicode Bidi algorithm.">ubidi_setPara</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000842">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000845">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
 </div>
 </div>
@@ -2449,7 +2450,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
   </table>
   </dd>
 </dl>
-<p>The index map will result in <code>indexMap[logicalIndex]==visualIndex</code>. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000870">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>The index map will result in <code>indexMap[logicalIndex]==visualIndex</code>. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000873">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2495,7 +2496,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
   </table>
   </dd>
 </dl>
-<p>The index map will result in <code>indexMap[visualIndex]==logicalIndex</code>. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000871">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>The index map will result in <code>indexMap[visualIndex]==logicalIndex</code>. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000874">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2563,7 +2564,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#ab1273cb31073809b9450b9c2bc36d4b7" title="Get the current callback function used for Bidi class determination.">ubidi_getClassCallback</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000882">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000885">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -2645,7 +2646,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a90b3cfcc52e1c6a3fd4b76e4263e64e9" title="Perform the Unicode Bidi algorithm.">ubidi_setPara</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000850">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000853">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 
 </div>
 </div>
@@ -2694,7 +2695,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
 <a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#afdcfcfb2304b87d4ce761404f9c72b74" title="Modify the operation of the Bidi algorithm such that it implements some variant to the basic Bidi alg...">ubidi_setReorderingMode</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000840">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000843">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2763,7 +2764,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a90b3cfcc52e1c6a3fd4b76e4263e64e9" title="Perform the Unicode Bidi algorithm.">ubidi_setPara</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a4599899debf670a089ac2c39eacc2788" title="Get the length of the source text processed by the last call to ubidi_setPara().">ubidi_getProcessedLength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000852">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000855">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2843,7 +2844,7 @@ number of elements of the <code>*indexMap</code> argument of <code>ubidi_getVisu
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000851">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000854">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2943,7 +2944,7 @@ When the reordering mode is set to <code><a class="el" href="ubidi_8h.html#a8869
 <a class="el" href="ubidi_8h.html#a90b3cfcc52e1c6a3fd4b76e4263e64e9" title="Perform the Unicode Bidi algorithm.">ubidi_setPara</a> </dd>
 <dd>
 <a class="el" href="ubidi_8h.html#a6b933b5f408c7a78292fddd726bd8ac8" title="Take a UBiDi object containing the reordering information for a piece of text (one or more paragraphs...">ubidi_writeReordered</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000845">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000848">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -2982,7 +2983,7 @@ When the reordering mode is set to <code><a class="el" href="ubidi_8h.html#a8869
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#aa90ef494a7afaa1f3a33c1062ef63114" title="What are the reordering options applied to a given Bidi object?">ubidi_getReorderingOptions</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000848">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000851">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 
 </div>
 </div>
@@ -3046,7 +3047,7 @@ When the reordering mode is set to <code><a class="el" href="ubidi_8h.html#a8869
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the output string.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ubidi_8h.html#a4599899debf670a089ac2c39eacc2788" title="Get the length of the source text processed by the last call to ubidi_setPara().">ubidi_getProcessedLength</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000884">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000887">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3116,7 +3117,7 @@ When the reordering mode is set to <code><a class="el" href="ubidi_8h.html#a8869
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the output string. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000885">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000888">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>

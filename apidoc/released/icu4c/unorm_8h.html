@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 69.1: unorm.h File Reference</title>
+<title>ICU 70.1: unorm.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 69.1
-   &#160;<span id="projectnumber">69.1</span>
+   <div id="projectname">ICU 70.1
+   &#160;<span id="projectnumber">70.1</span>
    </div>
   </td>
  </tr>
@@ -161,7 +161,7 @@ Functions</h2></td></tr>
 <p>The form is defined such that the "raw decomposition", the recursive canonical decomposition of each character, results in a string that is canonically ordered. This means that precomposed characters are allowed for as long as their decompositions do not need canonical reordering.</p>
 <p>Its advantage for a process like collation is that all NFD and most NFC texts - and many unnormalized texts - already conform to FCD and do not need to be normalized (NFD) for such a process. The FCD quick check will return UNORM_YES for most strings in practice.</p>
 <p>unorm_normalize(UNORM_FCD) may be implemented with UNORM_NFD.</p>
-<p>For more details on FCD see the collation design document: <a href="http://source.icu-project.org/repos/icu/icuhtml/trunk/design/collation/ICU_collation_design.htm">http://source.icu-project.org/repos/icu/icuhtml/trunk/design/collation/ICU_collation_design.htm</a></p>
+<p>For more details on FCD see the collation design document: <a href="https://htmlpreview.github.io/?https://github.com/unicode-org/icu-docs/blob/main/design/collation/ICU_collation_design.htm">https://htmlpreview.github.io/?https://github.com/unicode-org/icu-docs/blob/main/design/collation/ICU_collation_design.htm</a></p>
 <p>ICU collation performs either NFD or FCD normalization automatically if normalization is turned on for the collator object. Beyond collation and string search, normalized strings may be useful for string equivalence comparisons, transliteration/transcription, unique representations, etc.</p>
 <p>The W3C generally recommends to exchange texts in NFC. Note also that most legacy character encodings use only precomposed forms and often do not encode any combining marks by themselves. For conversion to such character encodings the Unicode text needs to be normalized to NFC. For more usage examples, see the Unicode Standard Annex. </p>
 

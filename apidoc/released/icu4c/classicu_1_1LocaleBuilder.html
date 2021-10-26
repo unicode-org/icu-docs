@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 69.1: icu::LocaleBuilder Class Reference</title>
+<title>ICU 70.1: icu::LocaleBuilder Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 69.1
-   &#160;<span id="projectnumber">69.1</span>
+   <div id="projectname">ICU 70.1
+   &#160;<span id="projectnumber">70.1</span>
    </div>
   </td>
  </tr>
@@ -101,7 +101,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5592724aff641c919bba69a641affa80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the <code><a class="el" href="classicu_1_1LocaleBuilder.html" title="LocaleBuilder is used to build instances of Locale from values configured by the setters.">LocaleBuilder</a></code> to match the provided <code>locale</code>.  <a href="classicu_1_1LocaleBuilder.html#a5592724aff641c919bba69a641affa80">More...</a><br /></td></tr>
 <tr class="separator:a5592724aff641c919bba69a641affa80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cc75804f7cf2e3e486e173144a9b2a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classicu_1_1LocaleBuilder.html">LocaleBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1LocaleBuilder.html#a0cc75804f7cf2e3e486e173144a9b2a7">setLanguageTag</a> (<a class="el" href="classicu_1_1StringPiece.html">StringPiece</a> tag)</td></tr>
-<tr class="memdesc:a0cc75804f7cf2e3e486e173144a9b2a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the <a class="el" href="classicu_1_1LocaleBuilder.html" title="LocaleBuilder is used to build instances of Locale from values configured by the setters.">LocaleBuilder</a> to match the provided <a href="http://www.unicode.org/reports/tr35/tr35.html#unicode_locale_id">Unicode Locale Identifier</a> .  <a href="classicu_1_1LocaleBuilder.html#a0cc75804f7cf2e3e486e173144a9b2a7">More...</a><br /></td></tr>
+<tr class="memdesc:a0cc75804f7cf2e3e486e173144a9b2a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the <a class="el" href="classicu_1_1LocaleBuilder.html" title="LocaleBuilder is used to build instances of Locale from values configured by the setters.">LocaleBuilder</a> to match the provided IETF BCP 47 language tag.  <a href="classicu_1_1LocaleBuilder.html#a0cc75804f7cf2e3e486e173144a9b2a7">More...</a><br /></td></tr>
 <tr class="separator:a0cc75804f7cf2e3e486e173144a9b2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f306ccd1c42bd92bd27faafa70038c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classicu_1_1LocaleBuilder.html">LocaleBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1LocaleBuilder.html#a1f306ccd1c42bd92bd27faafa70038c0">setLanguage</a> (<a class="el" href="classicu_1_1StringPiece.html">StringPiece</a> language)</td></tr>
 <tr class="memdesc:a1f306ccd1c42bd92bd27faafa70038c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the language.  <a href="classicu_1_1LocaleBuilder.html#a1f306ccd1c42bd92bd27faafa70038c0">More...</a><br /></td></tr>
@@ -466,12 +466,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>LocaleMatcher::Resul
       </table>
 </div><div class="memdoc">
 
-<p>Resets the <a class="el" href="classicu_1_1LocaleBuilder.html" title="LocaleBuilder is used to build instances of Locale from values configured by the setters.">LocaleBuilder</a> to match the provided <a href="http://www.unicode.org/reports/tr35/tr35.html#unicode_locale_id">Unicode Locale Identifier</a> . </p>
+<p>Resets the <a class="el" href="classicu_1_1LocaleBuilder.html" title="LocaleBuilder is used to build instances of Locale from values configured by the setters.">LocaleBuilder</a> to match the provided IETF BCP 47 language tag. </p>
 <p>Discards the existing state. The empty string causes the builder to be reset, like <a class="el" href="classicu_1_1LocaleBuilder.html#aac79ba36b0edb1542f4e0c72c5e3f3f2">clear</a>. Legacy language tags (marked as “Type: grandfathered” in BCP 47) are converted to their canonical form before being processed. Otherwise, the <code>language tag</code> must be well-formed, or else the <a class="el" href="classicu_1_1LocaleBuilder.html#a223a4927091f5179fa213582b871e9c7" title="Returns an instance of Locale created from the fields set on this builder.">build()</a> method will later report an U_ILLEGAL_ARGUMENT_ERROR.</p>
 <p>This method clears the internal UErrorCode.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tag</td><td>the language tag, defined as <a href="http://www.unicode.org/reports/tr35/tr35.html#unicode_locale_id">unicode_locale_id</a>. </td></tr>
+    <tr><td class="paramname">tag</td><td>the language tag, defined as IETF BCP 47 language tag. </td></tr>
   </table>
   </dd>
 </dl>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 69.1: uobject.h Source File</title>
+<title>ICU 70.1: uobject.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 69.1
-   &#160;<span id="projectnumber">69.1</span>
+   <div id="projectname">ICU 70.1
+   &#160;<span id="projectnumber">70.1</span>
    </div>
   </td>
  </tr>
@@ -179,8 +179,8 @@ $(function() {
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="comment">// UObject &amp;operator=(const UObject &amp;other) { return *this; }</span></div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="comment">// comparison operators</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> <a class="code" href="classicu_1_1UObject.html">UObject</a> &amp;other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">this</span>==&amp;other; }</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keyword">inline</span> <a class="code" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code" href="namespaceicu.html#ae44c6e373e08014d12f6a4d51ca96b0e">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classicu_1_1UObject.html">UObject</a> &amp;other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> !<a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(other); }</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(<span class="keyword">const</span> <a class="code" href="classicu_1_1UObject.html">UObject</a> &amp;other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">this</span>==&amp;other; }</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceicu.html#a8d8f68e93f4a83a227b82cec7745dff6">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classicu_1_1UObject.html">UObject</a> &amp;other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> !<a class="code" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">operator==</a>(other); }</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="comment">// clone() commented out from the base class:</span></div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="comment">// some compilers do not support co-variant return types</span></div>
@@ -229,10 +229,9 @@ $(function() {
 <div class="ttc" id="aclassicu_1_1UObject_html_aca1169c4978c52ce2b76eda104e9a214"><div class="ttname"><a href="classicu_1_1UObject.html#aca1169c4978c52ce2b76eda104e9a214">icu::UObject::getDynamicClassID</a></div><div class="ttdeci">virtual UClassID getDynamicClassID() const</div><div class="ttdoc">ICU4C &quot;poor man's RTTI&quot;, returns a UClassID for the actual ICU class.</div></div>
 <div class="ttc" id="aclassicu_1_1UObject_html_af10026497704f510d3d1f2eff50acb18"><div class="ttname"><a href="classicu_1_1UObject.html#af10026497704f510d3d1f2eff50acb18">icu::UObject::~UObject</a></div><div class="ttdeci">virtual ~UObject()</div><div class="ttdoc">Destructor.</div></div>
 <div class="ttc" id="anamespaceicu_html_a1c2f6ca43e636f38d1a3291eb851e9f0"><div class="ttname"><a href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">icu::operator==</a></div><div class="ttdeci">U_EXPORT UBool operator==(const StringPiece &amp;x, const StringPiece &amp;y)</div><div class="ttdoc">Global operator == for StringPiece.</div></div>
-<div class="ttc" id="anamespaceicu_html_ae44c6e373e08014d12f6a4d51ca96b0e"><div class="ttname"><a href="namespaceicu.html#ae44c6e373e08014d12f6a4d51ca96b0e">icu::operator!=</a></div><div class="ttdeci">UBool operator!=(const StringPiece &amp;x, const StringPiece &amp;y)</div><div class="ttdoc">Global operator != for StringPiece.</div><div class="ttdef"><b>Definition:</b> <a href="stringpiece_8h_source.html#l00335">stringpiece.h:335</a></div></div>
+<div class="ttc" id="anamespaceicu_html_a8d8f68e93f4a83a227b82cec7745dff6"><div class="ttname"><a href="namespaceicu.html#a8d8f68e93f4a83a227b82cec7745dff6">icu::operator!=</a></div><div class="ttdeci">bool operator!=(const StringPiece &amp;x, const StringPiece &amp;y)</div><div class="ttdoc">Global operator != for StringPiece.</div><div class="ttdef"><b>Definition:</b> <a href="stringpiece_8h_source.html#l00335">stringpiece.h:335</a></div></div>
 <div class="ttc" id="aplatform_8h_html"><div class="ttname"><a href="platform_8h.html">platform.h</a></div><div class="ttdoc">Basic types for the platform.</div></div>
 <div class="ttc" id="aplatform_8h_html_a6e25fe50df36f1f6553f54e7e7ee3bb1"><div class="ttname"><a href="platform_8h.html#a6e25fe50df36f1f6553f54e7e7ee3bb1">U_NOEXCEPT</a></div><div class="ttdeci">#define U_NOEXCEPT</div><div class="ttdoc">&quot;noexcept&quot; if supported, otherwise empty.</div><div class="ttdef"><b>Definition:</b> <a href="platform_8h_source.html#l00529">platform.h:529</a></div></div>
-<div class="ttc" id="aumachine_8h_html_a349ef00011f20ccd1d3b424445681aa5"><div class="ttname"><a href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a></div><div class="ttdeci">int8_t UBool</div><div class="ttdoc">The ICU boolean type, a signed-byte integer.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00269">umachine.h:269</a></div></div>
 <div class="ttc" id="auobject_8h_html_a22af10545208a455a6e884008df48e9f"><div class="ttname"><a href="uobject_8h.html#a22af10545208a455a6e884008df48e9f">UClassID</a></div><div class="ttdeci">void * UClassID</div><div class="ttdoc">UClassID is used to identify classes without using the compiler's RTTI.</div><div class="ttdef"><b>Definition:</b> <a href="uobject_8h_source.html#l00096">uobject.h:96</a></div></div>
 <div class="ttc" id="autypes_8h_html"><div class="ttname"><a href="utypes_8h.html">utypes.h</a></div><div class="ttdoc">Basic definitions for ICU, for both C and C++ APIs.</div></div>
 <div class="ttc" id="autypes_8h_html_a559955ec3bc692657c5d8b1c6de8e334"><div class="ttname"><a href="utypes_8h.html#a559955ec3bc692657c5d8b1c6de8e334">U_COMMON_API</a></div><div class="ttdeci">#define U_COMMON_API</div><div class="ttdoc">Set to export library symbols from inside the common library, and to import them from outside.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00300">utypes.h:300</a></div></div>

@@ -2,7 +2,7 @@
 <tagfile doxygen_version="1.9.1">
   <compound kind="file">
     <name>alphaindex.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>alphaindex_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -53,7 +53,7 @@
   </compound>
   <compound kind="file">
     <name>appendable.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>appendable_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -63,7 +63,7 @@
   </compound>
   <compound kind="file">
     <name>basictz.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>basictz_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="timezone_8h" name="timezone.h" local="yes" imported="no">unicode/timezone.h</includes>
@@ -74,7 +74,7 @@
   </compound>
   <compound kind="file">
     <name>brkiter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>brkiter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -90,7 +90,7 @@
   </compound>
   <compound kind="file">
     <name>bytestream.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>bytestream_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -102,7 +102,7 @@
   </compound>
   <compound kind="file">
     <name>bytestrie.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>bytestrie_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringpiece_8h" name="stringpiece.h" local="yes" imported="no">unicode/stringpiece.h</includes>
@@ -115,7 +115,7 @@
   </compound>
   <compound kind="file">
     <name>bytestriebuilder.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>bytestriebuilder_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="bytestrie_8h" name="bytestrie.h" local="yes" imported="no">unicode/bytestrie.h</includes>
@@ -126,7 +126,7 @@
   </compound>
   <compound kind="file">
     <name>calendar.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>calendar_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -146,7 +146,7 @@
   </compound>
   <compound kind="file">
     <name>caniter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>caniter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -163,7 +163,7 @@
   </compound>
   <compound kind="file">
     <name>casemap.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>casemap_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringpiece_8h" name="stringpiece.h" local="yes" imported="no">unicode/stringpiece.h</includes>
@@ -173,7 +173,7 @@
   </compound>
   <compound kind="file">
     <name>char16ptr.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>char16ptr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="class">icu::Char16Ptr</class>
@@ -217,7 +217,7 @@
   </compound>
   <compound kind="file">
     <name>chariter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>chariter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -228,7 +228,7 @@
   </compound>
   <compound kind="file">
     <name>choicfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>choicfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="fieldpos_8h" name="fieldpos.h" local="yes" imported="no">unicode/fieldpos.h</includes>
@@ -241,7 +241,7 @@
   </compound>
   <compound kind="file">
     <name>coleitr.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>coleitr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -251,7 +251,7 @@
   </compound>
   <compound kind="file">
     <name>coll.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>coll_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -268,7 +268,7 @@
   </compound>
   <compound kind="file">
     <name>compactdecimalformat.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>compactdecimalformat_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="decimfmt_8h" name="decimfmt.h" local="yes" imported="no">unicode/decimfmt.h</includes>
@@ -277,7 +277,7 @@
   </compound>
   <compound kind="file">
     <name>curramt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>curramt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="measure_8h" name="measure.h" local="yes" imported="no">unicode/measure.h</includes>
@@ -287,7 +287,7 @@
   </compound>
   <compound kind="file">
     <name>currpinf.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>currpinf_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -296,7 +296,7 @@
   </compound>
   <compound kind="file">
     <name>currunit.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>currunit_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="measunit_8h" name="measunit.h" local="yes" imported="no">unicode/measunit.h</includes>
@@ -305,7 +305,7 @@
   </compound>
   <compound kind="file">
     <name>datefmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>datefmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="udat_8h" name="udat.h" local="yes" imported="no">unicode/udat.h</includes>
@@ -320,7 +320,7 @@
   </compound>
   <compound kind="file">
     <name>dbbi.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>dbbi_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="rbbi_8h" name="rbbi.h" local="yes" imported="no">unicode/rbbi.h</includes>
@@ -335,7 +335,7 @@
   </compound>
   <compound kind="file">
     <name>dcfmtsym.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>dcfmtsym_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uchar_8h" name="uchar.h" local="yes" imported="no">unicode/uchar.h</includes>
@@ -349,7 +349,7 @@
   </compound>
   <compound kind="file">
     <name>decimfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>decimfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="dcfmtsym_8h" name="dcfmtsym.h" local="yes" imported="no">unicode/dcfmtsym.h</includes>
@@ -364,12 +364,12 @@
   </compound>
   <compound kind="file">
     <name>docmain.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>docmain_8h.html</filename>
   </compound>
   <compound kind="file">
     <name>dtfmtsym.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtfmtsym_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">unicode/calendar.h</includes>
@@ -383,7 +383,7 @@
   </compound>
   <compound kind="file">
     <name>dtintrv.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>dtintrv_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -392,7 +392,7 @@
   </compound>
   <compound kind="file">
     <name>dtitvfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtitvfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucal_8h" name="ucal.h" local="yes" imported="no">unicode/ucal.h</includes>
@@ -408,7 +408,7 @@
   </compound>
   <compound kind="file">
     <name>dtitvinf.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtitvinf_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="udat_8h" name="udat.h" local="yes" imported="no">unicode/udat.h</includes>
@@ -420,7 +420,7 @@
   </compound>
   <compound kind="file">
     <name>dtptngen.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtptngen_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="datefmt_8h" name="datefmt.h" local="yes" imported="no">unicode/datefmt.h</includes>
@@ -433,7 +433,7 @@
   </compound>
   <compound kind="file">
     <name>dtrule.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtrule_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -442,7 +442,7 @@
   </compound>
   <compound kind="file">
     <name>edits.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>edits_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -452,14 +452,14 @@
   </compound>
   <compound kind="file">
     <name>enumset.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>enumset_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <namespace>icu</namespace>
   </compound>
   <compound kind="file">
     <name>errorcode.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>errorcode_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -468,7 +468,7 @@
   </compound>
   <compound kind="file">
     <name>fieldpos.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>fieldpos_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -477,7 +477,7 @@
   </compound>
   <compound kind="file">
     <name>filteredbrk.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>filteredbrk_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="brkiter_8h" name="brkiter.h" local="yes" imported="no">unicode/brkiter.h</includes>
@@ -486,7 +486,7 @@
   </compound>
   <compound kind="file">
     <name>fmtable.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>fmtable_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -497,7 +497,7 @@
   </compound>
   <compound kind="file">
     <name>format.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>format_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -512,7 +512,7 @@
   </compound>
   <compound kind="file">
     <name>formattedvalue.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>formattedvalue_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="appendable_8h" name="appendable.h" local="yes" imported="no">unicode/appendable.h</includes>
@@ -525,7 +525,7 @@
   </compound>
   <compound kind="file">
     <name>fpositer.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>fpositer_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -536,7 +536,7 @@
   </compound>
   <compound kind="file">
     <name>gender.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>gender_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
@@ -554,7 +554,7 @@
   </compound>
   <compound kind="file">
     <name>gregocal.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>gregocal_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">unicode/calendar.h</includes>
@@ -563,7 +563,7 @@
   </compound>
   <compound kind="file">
     <name>icudataver.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>icudataver_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -590,7 +590,7 @@
   </compound>
   <compound kind="file">
     <name>icuplug.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>icuplug_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -825,7 +825,7 @@
   </compound>
   <compound kind="file">
     <name>idna.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>idna_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="bytestream_8h" name="bytestream.h" local="yes" imported="no">unicode/bytestream.h</includes>
@@ -838,7 +838,7 @@
   </compound>
   <compound kind="file">
     <name>listformatter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>listformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -851,7 +851,7 @@
   </compound>
   <compound kind="file">
     <name>localebuilder.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>localebuilder_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
@@ -863,7 +863,7 @@
   </compound>
   <compound kind="file">
     <name>localematcher.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>localematcher_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
@@ -933,7 +933,7 @@
   </compound>
   <compound kind="file">
     <name>localpointer.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>localpointer_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="class">icu::LocalPointerBase</class>
@@ -950,7 +950,7 @@
   </compound>
   <compound kind="file">
     <name>locdspnm.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>locdspnm_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
@@ -963,7 +963,7 @@
   </compound>
   <compound kind="file">
     <name>locid.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>locid_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="bytestream_8h" name="bytestream.h" local="yes" imported="no">unicode/bytestream.h</includes>
@@ -988,7 +988,7 @@
   </compound>
   <compound kind="file">
     <name>measfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>measfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">unicode/format.h</includes>
@@ -1042,7 +1042,7 @@
   </compound>
   <compound kind="file">
     <name>measunit.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>measunit_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -1309,7 +1309,7 @@
   </compound>
   <compound kind="file">
     <name>measure.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>measure_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="fmtable_8h" name="fmtable.h" local="yes" imported="no">unicode/fmtable.h</includes>
@@ -1318,7 +1318,7 @@
   </compound>
   <compound kind="file">
     <name>messagepattern.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>messagepattern_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="parseerr_8h" name="parseerr.h" local="yes" imported="no">unicode/parseerr.h</includes>
@@ -1529,7 +1529,7 @@
   </compound>
   <compound kind="file">
     <name>msgfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>msgfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">unicode/format.h</includes>
@@ -1550,7 +1550,7 @@
   </compound>
   <compound kind="file">
     <name>normalizer2.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>normalizer2_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringpiece_8h" name="stringpiece.h" local="yes" imported="no">unicode/stringpiece.h</includes>
@@ -1563,7 +1563,7 @@
   </compound>
   <compound kind="file">
     <name>normlzr.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>normlzr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="chariter_8h" name="chariter.h" local="yes" imported="no">unicode/chariter.h</includes>
@@ -1576,7 +1576,7 @@
   </compound>
   <compound kind="file">
     <name>nounit.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>nounit_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="measunit_8h" name="measunit.h" local="yes" imported="no">unicode/measunit.h</includes>
@@ -1585,7 +1585,7 @@
   </compound>
   <compound kind="file">
     <name>numberformatter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>numberformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="appendable_8h" name="appendable.h" local="yes" imported="no">unicode/appendable.h</includes>
@@ -1663,7 +1663,7 @@
   </compound>
   <compound kind="file">
     <name>numberrangeformatter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>numberrangeformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="appendable_8h" name="appendable.h" local="yes" imported="no">unicode/appendable.h</includes>
@@ -1682,7 +1682,7 @@
   </compound>
   <compound kind="file">
     <name>numfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>numfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -1699,7 +1699,7 @@
   </compound>
   <compound kind="file">
     <name>numsys.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>numsys_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">unicode/format.h</includes>
@@ -1716,7 +1716,7 @@
   </compound>
   <compound kind="file">
     <name>ParagraphLayout.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/layoutex/layout/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/layoutex/layout/</path>
     <filename>ParagraphLayout_8h.html</filename>
     <includes id="uscript_8h" name="uscript.h" local="yes" imported="no">unicode/uscript.h</includes>
     <includes id="ubidi_8h" name="ubidi.h" local="yes" imported="no">unicode/ubidi.h</includes>
@@ -1729,7 +1729,7 @@
   </compound>
   <compound kind="file">
     <name>parseerr.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>parseerr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="struct">UParseError</class>
@@ -1743,7 +1743,7 @@
   </compound>
   <compound kind="file">
     <name>parsepos.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>parsepos_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -1752,7 +1752,7 @@
   </compound>
   <compound kind="file">
     <name>platform.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>platform_8h.html</filename>
     <includes id="uconfig_8h" name="uconfig.h" local="yes" imported="no">unicode/uconfig.h</includes>
     <includes id="uvernum_8h" name="uvernum.h" local="yes" imported="no">unicode/uvernum.h</includes>
@@ -2375,7 +2375,7 @@
   </compound>
   <compound kind="file">
     <name>playout.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/layoutex/layout/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/layoutex/layout/</path>
     <filename>playout_8h.html</filename>
     <includes id="ubidi_8h" name="ubidi.h" local="yes" imported="no">unicode/ubidi.h</includes>
     <includes id="plruns_8h" name="plruns.h" local="yes" imported="no">plruns.h</includes>
@@ -2585,7 +2585,7 @@
   </compound>
   <compound kind="file">
     <name>plruns.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/layoutex/layout/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/layoutex/layout/</path>
     <filename>plruns_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ubidi_8h" name="ubidi.h" local="yes" imported="no">unicode/ubidi.h</includes>
@@ -2802,7 +2802,7 @@
   </compound>
   <compound kind="file">
     <name>plurfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>plurfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="messagepattern_8h" name="messagepattern.h" local="yes" imported="no">unicode/messagepattern.h</includes>
@@ -2813,7 +2813,7 @@
   </compound>
   <compound kind="file">
     <name>plurrule.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>plurrule_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">unicode/format.h</includes>
@@ -2831,7 +2831,7 @@
   </compound>
   <compound kind="file">
     <name>ptypes.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ptypes_8h.html</filename>
     <includes id="platform_8h" name="platform.h" local="yes" imported="no">unicode/platform.h</includes>
     <member kind="define">
@@ -2844,7 +2844,7 @@
   </compound>
   <compound kind="file">
     <name>putil.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>putil_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -2976,7 +2976,7 @@
   </compound>
   <compound kind="file">
     <name>rbbi.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>rbbi_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="brkiter_8h" name="brkiter.h" local="yes" imported="no">unicode/brkiter.h</includes>
@@ -2988,7 +2988,7 @@
   </compound>
   <compound kind="file">
     <name>rbnf.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>rbnf_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="dcfmtsym_8h" name="dcfmtsym.h" local="yes" imported="no">unicode/dcfmtsym.h</includes>
@@ -3024,7 +3024,7 @@
   </compound>
   <compound kind="file">
     <name>rbtz.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>rbtz_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="basictz_8h" name="basictz.h" local="yes" imported="no">unicode/basictz.h</includes>
@@ -3034,7 +3034,7 @@
   </compound>
   <compound kind="file">
     <name>regex.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>regex_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3048,7 +3048,7 @@
   </compound>
   <compound kind="file">
     <name>region.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>region_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uregion_8h" name="uregion.h" local="yes" imported="no">unicode/uregion.h</includes>
@@ -3061,7 +3061,7 @@
   </compound>
   <compound kind="file">
     <name>reldatefmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>reldatefmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3303,7 +3303,7 @@
   </compound>
   <compound kind="file">
     <name>rep.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>rep_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3312,7 +3312,7 @@
   </compound>
   <compound kind="file">
     <name>resbund.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>resbund_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3324,7 +3324,7 @@
   </compound>
   <compound kind="file">
     <name>RunArrays.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/layoutex/layout/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/layoutex/layout/</path>
     <filename>RunArrays_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" imported="no">unicode/locid.h</includes>
@@ -3350,7 +3350,7 @@
   </compound>
   <compound kind="file">
     <name>schriter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>schriter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="chariter_8h" name="chariter.h" local="yes" imported="no">unicode/chariter.h</includes>
@@ -3360,7 +3360,7 @@
   </compound>
   <compound kind="file">
     <name>scientificnumberformatter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>scientificnumberformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -3369,7 +3369,7 @@
   </compound>
   <compound kind="file">
     <name>search.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>search_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3389,7 +3389,7 @@
   </compound>
   <compound kind="file">
     <name>selfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>selfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="messagepattern_8h" name="messagepattern.h" local="yes" imported="no">unicode/messagepattern.h</includes>
@@ -3399,7 +3399,7 @@
   </compound>
   <compound kind="file">
     <name>simpleformatter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>simpleformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -3408,7 +3408,7 @@
   </compound>
   <compound kind="file">
     <name>simpletz.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>simpletz_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="basictz_8h" name="basictz.h" local="yes" imported="no">unicode/basictz.h</includes>
@@ -3417,7 +3417,7 @@
   </compound>
   <compound kind="file">
     <name>smpdtfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>smpdtfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="datefmt_8h" name="datefmt.h" local="yes" imported="no">unicode/datefmt.h</includes>
@@ -3429,7 +3429,7 @@
   </compound>
   <compound kind="file">
     <name>sortkey.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>sortkey_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3440,13 +3440,13 @@
   </compound>
   <compound kind="file">
     <name>std_string.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>std__string_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
   </compound>
   <compound kind="file">
     <name>strenum.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>strenum_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3456,7 +3456,7 @@
   </compound>
   <compound kind="file">
     <name>stringoptions.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>stringoptions_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -3546,7 +3546,7 @@
   </compound>
   <compound kind="file">
     <name>stringpiece.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>stringpiece_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3570,7 +3570,7 @@
   </compound>
   <compound kind="file">
     <name>stringtriebuilder.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>stringtriebuilder_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3596,7 +3596,7 @@
   </compound>
   <compound kind="file">
     <name>stsearch.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>stsearch_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="tblcoll_8h" name="tblcoll.h" local="yes" imported="no">unicode/tblcoll.h</includes>
@@ -3607,7 +3607,7 @@
   </compound>
   <compound kind="file">
     <name>symtable.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>symtable_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3616,7 +3616,7 @@
   </compound>
   <compound kind="file">
     <name>tblcoll.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>tblcoll_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="coll_8h" name="coll.h" local="yes" imported="no">unicode/coll.h</includes>
@@ -3628,7 +3628,7 @@
   </compound>
   <compound kind="file">
     <name>timezone.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>timezone_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3640,7 +3640,7 @@
   </compound>
   <compound kind="file">
     <name>tmunit.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>tmunit_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="measunit_8h" name="measunit.h" local="yes" imported="no">unicode/measunit.h</includes>
@@ -3649,7 +3649,7 @@
   </compound>
   <compound kind="file">
     <name>tmutamt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>tmutamt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="measure_8h" name="measure.h" local="yes" imported="no">unicode/measure.h</includes>
@@ -3659,7 +3659,7 @@
   </compound>
   <compound kind="file">
     <name>tmutfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>tmutfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -3705,7 +3705,7 @@
   </compound>
   <compound kind="file">
     <name>translit.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>translit_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -3719,7 +3719,7 @@
   </compound>
   <compound kind="file">
     <name>tzfmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>tzfmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">unicode/format.h</includes>
@@ -3984,7 +3984,7 @@
   </compound>
   <compound kind="file">
     <name>tznames.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>tznames_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -4057,7 +4057,7 @@
   </compound>
   <compound kind="file">
     <name>tzrule.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>tzrule_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -4071,7 +4071,7 @@
   </compound>
   <compound kind="file">
     <name>tztrans.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>tztrans_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -4080,7 +4080,7 @@
   </compound>
   <compound kind="file">
     <name>ubidi.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ubidi_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uchar_8h" name="uchar.h" local="yes" imported="no">unicode/uchar.h</includes>
@@ -4612,7 +4612,7 @@
   </compound>
   <compound kind="file">
     <name>ubiditransform.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ubiditransform_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ubidi_8h" name="ubidi.h" local="yes" imported="no">unicode/ubidi.h</includes>
@@ -4688,7 +4688,7 @@
   </compound>
   <compound kind="file">
     <name>ubrk.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ubrk_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -4946,10 +4946,10 @@
       <arglist>(const uint8_t *binaryRules, int32_t rulesLength, const UChar *text, int32_t textLength, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
-      <type>UBreakIterator *</type>
+      <type>U_CAPI UBreakIterator *</type>
       <name>ubrk_safeClone</name>
       <anchorfile>ubrk_8h.html</anchorfile>
-      <anchor>a6901f59d9c74bc8e16b9994cb1be7679</anchor>
+      <anchor>ad1917029dcd00164d18e9d77b73be195</anchor>
       <arglist>(const UBreakIterator *bi, void *stackBuffer, int32_t *pBufferSize, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -5088,7 +5088,7 @@
   </compound>
   <compound kind="file">
     <name>ucal.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>ucal_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -6133,7 +6133,7 @@
   </compound>
   <compound kind="file">
     <name>ucasemap.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucasemap_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringoptions_8h" name="stringoptions.h" local="yes" imported="no">unicode/stringoptions.h</includes>
@@ -6241,7 +6241,7 @@
   </compound>
   <compound kind="file">
     <name>ucat.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucat_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ures_8h" name="ures.h" local="yes" imported="no">unicode/ures.h</includes>
@@ -6276,7 +6276,7 @@
   </compound>
   <compound kind="file">
     <name>uchar.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uchar_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringoptions_8h" name="stringoptions.h" local="yes" imported="no">unicode/stringoptions.h</includes>
@@ -11369,7 +11369,7 @@
   </compound>
   <compound kind="file">
     <name>ucharstrie.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucharstrie_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -11382,7 +11382,7 @@
   </compound>
   <compound kind="file">
     <name>ucharstriebuilder.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucharstriebuilder_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringtriebuilder_8h" name="stringtriebuilder.h" local="yes" imported="no">unicode/stringtriebuilder.h</includes>
@@ -11393,7 +11393,7 @@
   </compound>
   <compound kind="file">
     <name>uchriter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uchriter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="chariter_8h" name="chariter.h" local="yes" imported="no">unicode/chariter.h</includes>
@@ -11402,7 +11402,7 @@
   </compound>
   <compound kind="file">
     <name>uclean.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uclean_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="typedef">
@@ -11492,7 +11492,7 @@
   </compound>
   <compound kind="file">
     <name>ucnv.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucnv_8h.html</filename>
     <includes id="ucnv__err_8h" name="ucnv_err.h" local="yes" imported="no">unicode/ucnv_err.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -11902,16 +11902,9 @@
     </member>
     <member kind="function">
       <type>U_CAPI UConverter *</type>
-      <name>ucnv_clone</name>
-      <anchorfile>ucnv_8h.html</anchorfile>
-      <anchor>a25ae0b75cbb6136f7a0c398d8b0089c6</anchor>
-      <arglist>(const UConverter *cnv, UErrorCode *status)</arglist>
-    </member>
-    <member kind="function">
-      <type>UConverter *</type>
       <name>ucnv_safeClone</name>
       <anchorfile>ucnv_8h.html</anchorfile>
-      <anchor>a11a66c267dce12a78dac2690d983d69e</anchor>
+      <anchor>a52caee4c5ebd05f4bcafa0c248fa11c2</anchor>
       <arglist>(const UConverter *cnv, void *stackBuffer, int32_t *pBufferSize, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -12288,7 +12281,7 @@
   </compound>
   <compound kind="file">
     <name>ucnv_cb.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucnv__cb_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucnv_8h" name="ucnv.h" local="yes" imported="no">unicode/ucnv.h</includes>
@@ -12331,7 +12324,7 @@
   </compound>
   <compound kind="file">
     <name>ucnv_err.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucnv__err_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="struct">UConverterFromUnicodeArgs</class>
@@ -12508,7 +12501,7 @@
   </compound>
   <compound kind="file">
     <name>ucnvsel.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucnvsel_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uset_8h" name="uset.h" local="yes" imported="no">unicode/uset.h</includes>
@@ -12576,7 +12569,7 @@
   </compound>
   <compound kind="file">
     <name>ucol.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>ucol_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unorm_8h" name="unorm.h" local="yes" imported="no">unicode/unorm.h</includes>
@@ -13196,16 +13189,9 @@
     </member>
     <member kind="function">
       <type>U_CAPI UCollator *</type>
-      <name>ucol_clone</name>
-      <anchorfile>ucol_8h.html</anchorfile>
-      <anchor>ab760f8551d0eaaaa59585e9e08bbed82</anchor>
-      <arglist>(const UCollator *coll, UErrorCode *status)</arglist>
-    </member>
-    <member kind="function">
-      <type>UCollator *</type>
       <name>ucol_safeClone</name>
       <anchorfile>ucol_8h.html</anchorfile>
-      <anchor>a917cd8e16df3b35bbe97dd96d881f227</anchor>
+      <anchor>aa557ce4f188d5a12bb53bd32bff6a951</anchor>
       <arglist>(const UCollator *coll, void *stackBuffer, int32_t *pBufferSize, UErrorCode *status)</arglist>
     </member>
     <member kind="function">
@@ -13267,7 +13253,7 @@
   </compound>
   <compound kind="file">
     <name>ucoleitr.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>ucoleitr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucol_8h" name="ucol.h" local="yes" imported="no">unicode/ucol.h</includes>
@@ -13379,7 +13365,7 @@
   </compound>
   <compound kind="file">
     <name>uconfig.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uconfig_8h.html</filename>
     <member kind="define">
       <type>#define</type>
@@ -13587,7 +13573,7 @@
   </compound>
   <compound kind="file">
     <name>ucpmap.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucpmap_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="typedef">
@@ -13646,7 +13632,7 @@
   </compound>
   <compound kind="file">
     <name>ucptrie.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucptrie_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucpmap_8h" name="ucpmap.h" local="yes" imported="no">unicode/ucpmap.h</includes>
@@ -13846,7 +13832,7 @@
   </compound>
   <compound kind="file">
     <name>ucsdet.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>ucsdet_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -13974,7 +13960,7 @@
   </compound>
   <compound kind="file">
     <name>ucurr.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ucurr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -14213,7 +14199,7 @@
   </compound>
   <compound kind="file">
     <name>udat.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>udat_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucal_8h" name="ucal.h" local="yes" imported="no">unicode/ucal.h</includes>
@@ -15437,7 +15423,7 @@
   </compound>
   <compound kind="file">
     <name>udata.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>udata_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -15601,7 +15587,7 @@
   </compound>
   <compound kind="file">
     <name>udateintervalformat.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>udateintervalformat_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucal_8h" name="ucal.h" local="yes" imported="no">unicode/ucal.h</includes>
@@ -15697,7 +15683,7 @@
   </compound>
   <compound kind="file">
     <name>udatpg.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>udatpg_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="udat_8h" name="udat.h" local="yes" imported="no">unicode/udat.h</includes>
@@ -16055,20 +16041,6 @@
     </member>
     <member kind="function">
       <type>U_CAPI void</type>
-      <name>udatpg_setDateTimeFormatForStyle</name>
-      <anchorfile>udatpg_8h.html</anchorfile>
-      <anchor>aaa7ca99148fd5191caa0ef483bcec512</anchor>
-      <arglist>(UDateTimePatternGenerator *udtpg, UDateFormatStyle style, const UChar *dateTimeFormat, int32_t length, UErrorCode *pErrorCode)</arglist>
-    </member>
-    <member kind="function">
-      <type>U_CAPI const UChar *</type>
-      <name>udatpg_getDateTimeFormatForStyle</name>
-      <anchorfile>udatpg_8h.html</anchorfile>
-      <anchor>a27cd12af646f94091305cd718bef5d6e</anchor>
-      <arglist>(const UDateTimePatternGenerator *udtpg, UDateFormatStyle style, int32_t *pLength, UErrorCode *pErrorCode)</arglist>
-    </member>
-    <member kind="function">
-      <type>U_CAPI void</type>
       <name>udatpg_setDecimal</name>
       <anchorfile>udatpg_8h.html</anchorfile>
       <anchor>a5fa9fc7a62d029becc7845211e883728</anchor>
@@ -16126,7 +16098,7 @@
   </compound>
   <compound kind="file">
     <name>udisplaycontext.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>udisplaycontext_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="typedef">
@@ -16250,7 +16222,7 @@
   </compound>
   <compound kind="file">
     <name>uenum.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uenum_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -16321,7 +16293,7 @@
   </compound>
   <compound kind="file">
     <name>ufieldpositer.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>ufieldpositer_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -16357,7 +16329,7 @@
   </compound>
   <compound kind="file">
     <name>uformattable.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>uformattable_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -16525,7 +16497,7 @@
   </compound>
   <compound kind="file">
     <name>uformattedvalue.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>uformattedvalue_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ufieldpositer_8h" name="ufieldpositer.h" local="yes" imported="no">unicode/ufieldpositer.h</includes>
@@ -16719,7 +16691,7 @@
   </compound>
   <compound kind="file">
     <name>ugender.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>ugender_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -16779,7 +16751,7 @@
   </compound>
   <compound kind="file">
     <name>uidna.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uidna_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="parseerr_8h" name="parseerr.h" local="yes" imported="no">unicode/parseerr.h</includes>
@@ -17053,7 +17025,7 @@
   </compound>
   <compound kind="file">
     <name>uiter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uiter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="struct">UCharIterator</class>
@@ -17235,7 +17207,7 @@
   </compound>
   <compound kind="file">
     <name>uldnames.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uldnames_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uscript_8h" name="uscript.h" local="yes" imported="no">unicode/uscript.h</includes>
@@ -17369,7 +17341,7 @@
   </compound>
   <compound kind="file">
     <name>ulistformatter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>ulistformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uformattedvalue_8h" name="uformattedvalue.h" local="yes" imported="no">unicode/uformattedvalue.h</includes>
@@ -17538,7 +17510,7 @@
   </compound>
   <compound kind="file">
     <name>uloc.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uloc_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -18171,7 +18143,7 @@
   </compound>
   <compound kind="file">
     <name>ulocdata.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>ulocdata_8h.html</filename>
     <includes id="ures_8h" name="ures.h" local="yes" imported="no">unicode/ures.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -18391,7 +18363,7 @@
   </compound>
   <compound kind="file">
     <name>umachine.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>umachine_8h.html</filename>
     <includes id="ptypes_8h" name="ptypes.h" local="yes" imported="no">unicode/ptypes.h</includes>
     <member kind="define">
@@ -18663,7 +18635,7 @@
   </compound>
   <compound kind="file">
     <name>umisc.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>umisc_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="struct">UFieldPosition</class>
@@ -18684,7 +18656,7 @@
   </compound>
   <compound kind="file">
     <name>umsg.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>umsg_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -18841,7 +18813,7 @@
   </compound>
   <compound kind="file">
     <name>umutablecptrie.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>umutablecptrie_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucpmap_8h" name="ucpmap.h" local="yes" imported="no">unicode/ucpmap.h</includes>
@@ -18929,7 +18901,7 @@
   </compound>
   <compound kind="file">
     <name>unifilt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>unifilt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unifunct_8h" name="unifunct.h" local="yes" imported="no">unicode/unifunct.h</includes>
@@ -18946,7 +18918,7 @@
   </compound>
   <compound kind="file">
     <name>unifunct.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>unifunct_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -18955,7 +18927,7 @@
   </compound>
   <compound kind="file">
     <name>unimatch.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>unimatch_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="class">icu::UnicodeMatcher</class>
@@ -18988,7 +18960,7 @@
   </compound>
   <compound kind="file">
     <name>unirepl.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>unirepl_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="class">icu::UnicodeReplacer</class>
@@ -18996,7 +18968,7 @@
   </compound>
   <compound kind="file">
     <name>uniset.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uniset_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucpmap_8h" name="ucpmap.h" local="yes" imported="no">unicode/ucpmap.h</includes>
@@ -19008,7 +18980,7 @@
   </compound>
   <compound kind="file">
     <name>unistr.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>unistr_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="char16ptr_8h" name="char16ptr.h" local="yes" imported="no">unicode/char16ptr.h</includes>
@@ -19084,7 +19056,7 @@
   </compound>
   <compound kind="file">
     <name>unorm.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>unorm_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uiter_8h" name="uiter.h" local="yes" imported="no">unicode/uiter.h</includes>
@@ -19216,7 +19188,7 @@
   </compound>
   <compound kind="file">
     <name>unorm2.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>unorm2_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="stringoptions_8h" name="stringoptions.h" local="yes" imported="no">unicode/stringoptions.h</includes>
@@ -19450,7 +19422,7 @@
   </compound>
   <compound kind="file">
     <name>unum.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>unum_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -19849,12 +19821,6 @@
       <name>UNUM_COMPACT_FIELD</name>
       <anchorfile>unum_8h.html</anchorfile>
       <anchor>ad43f2cbfe30924e0adf5f33aece7c8d2a2f09b6a09fc7e11dbbac3cd38be55687</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>UNUM_APPROXIMATELY_SIGN_FIELD</name>
-      <anchorfile>unum_8h.html</anchorfile>
-      <anchor>ad43f2cbfe30924e0adf5f33aece7c8d2a947d85a37ab86199c321c7206ab83879</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
@@ -20531,7 +20497,7 @@
   </compound>
   <compound kind="file">
     <name>unumberformatter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>unumberformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="parseerr_8h" name="parseerr.h" local="yes" imported="no">unicode/parseerr.h</includes>
@@ -20917,7 +20883,7 @@
   </compound>
   <compound kind="file">
     <name>unumberrangeformatter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>unumberrangeformatter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="parseerr_8h" name="parseerr.h" local="yes" imported="no">unicode/parseerr.h</includes>
@@ -21127,7 +21093,7 @@
   </compound>
   <compound kind="file">
     <name>unumsys.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>unumsys_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -21199,7 +21165,7 @@
   </compound>
   <compound kind="file">
     <name>uobject.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uobject_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="platform_8h" name="platform.h" local="yes" imported="no">unicode/platform.h</includes>
@@ -21237,7 +21203,7 @@
   </compound>
   <compound kind="file">
     <name>upluralrules.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>upluralrules_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -21342,7 +21308,7 @@
   </compound>
   <compound kind="file">
     <name>uregex.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>uregex_8h.html</filename>
     <includes id="utext_8h" name="utext.h" local="yes" imported="no">unicode/utext.h</includes>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
@@ -21875,7 +21841,7 @@
   </compound>
   <compound kind="file">
     <name>uregion.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>uregion_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uenum_8h" name="uenum.h" local="yes" imported="no">unicode/uenum.h</includes>
@@ -22042,7 +22008,7 @@
   </compound>
   <compound kind="file">
     <name>ureldatefmt.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>ureldatefmt_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unum_8h" name="unum.h" local="yes" imported="no">unicode/unum.h</includes>
@@ -22311,7 +22277,7 @@
   </compound>
   <compound kind="file">
     <name>urep.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>urep_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <class kind="struct">UReplaceableCallbacks</class>
@@ -22332,7 +22298,7 @@
   </compound>
   <compound kind="file">
     <name>ures.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ures_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uloc_8h" name="uloc.h" local="yes" imported="no">unicode/uloc.h</includes>
@@ -22702,7 +22668,7 @@
   </compound>
   <compound kind="file">
     <name>uscript.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uscript_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <namespace>icu</namespace>
@@ -24093,7 +24059,7 @@
   </compound>
   <compound kind="file">
     <name>usearch.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>usearch_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucol_8h" name="ucol.h" local="yes" imported="no">unicode/ucol.h</includes>
@@ -24387,7 +24353,7 @@
   </compound>
   <compound kind="file">
     <name>uset.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uset_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uchar_8h" name="uchar.h" local="yes" imported="no">unicode/uchar.h</includes>
@@ -24921,7 +24887,7 @@
   </compound>
   <compound kind="file">
     <name>usetiter.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>usetiter_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -24931,7 +24897,7 @@
   </compound>
   <compound kind="file">
     <name>ushape.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ushape_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -25294,7 +25260,7 @@
   </compound>
   <compound kind="file">
     <name>uspoof.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>uspoof_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uset_8h" name="uset.h" local="yes" imported="no">unicode/uset.h</includes>
@@ -25732,7 +25698,7 @@
   </compound>
   <compound kind="file">
     <name>usprep.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>usprep_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" imported="no">unicode/localpointer.h</includes>
@@ -25888,7 +25854,7 @@
   </compound>
   <compound kind="file">
     <name>ustdio.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/io/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/io/unicode/</path>
     <filename>ustdio_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="ucnv_8h" name="ucnv.h" local="yes" imported="no">unicode/ucnv.h</includes>
@@ -26256,7 +26222,7 @@
   </compound>
   <compound kind="file">
     <name>ustream.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/io/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/io/unicode/</path>
     <filename>ustream_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="unistr_8h" name="unistr.h" local="yes" imported="no">unicode/unistr.h</includes>
@@ -26278,7 +26244,7 @@
   </compound>
   <compound kind="file">
     <name>ustring.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ustring_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="putil_8h" name="putil.h" local="yes" imported="no">unicode/putil.h</includes>
@@ -26748,7 +26714,7 @@
   </compound>
   <compound kind="file">
     <name>ustringtrie.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>ustringtrie_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="define">
@@ -26806,7 +26772,7 @@
   </compound>
   <compound kind="file">
     <name>utext.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>utext_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="uchar_8h" name="uchar.h" local="yes" imported="no">unicode/uchar.h</includes>
@@ -27165,7 +27131,7 @@
   </compound>
   <compound kind="file">
     <name>utf.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>utf_8h.html</filename>
     <includes id="umachine_8h" name="umachine.h" local="yes" imported="no">unicode/umachine.h</includes>
     <includes id="utf8_8h" name="utf8.h" local="yes" imported="no">unicode/utf8.h</includes>
@@ -27237,7 +27203,7 @@
   </compound>
   <compound kind="file">
     <name>utf16.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>utf16_8h.html</filename>
     <includes id="umachine_8h" name="umachine.h" local="yes" imported="no">unicode/umachine.h</includes>
     <includes id="utf_8h" name="utf.h" local="yes" imported="no">unicode/utf.h</includes>
@@ -27489,12 +27455,12 @@
   </compound>
   <compound kind="file">
     <name>utf32.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>utf32_8h.html</filename>
   </compound>
   <compound kind="file">
     <name>utf8.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>utf8_8h.html</filename>
     <includes id="umachine_8h" name="umachine.h" local="yes" imported="no">unicode/umachine.h</includes>
     <includes id="utf_8h" name="utf.h" local="yes" imported="no">unicode/utf.h</includes>
@@ -27788,7 +27754,7 @@
   </compound>
   <compound kind="file">
     <name>utf_old.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>utf__old_8h.html</filename>
     <includes id="utf_8h" name="utf.h" local="yes" imported="no">unicode/utf.h</includes>
     <includes id="utf8_8h" name="utf8.h" local="yes" imported="no">unicode/utf8.h</includes>
@@ -28790,7 +28756,7 @@
   </compound>
   <compound kind="file">
     <name>utmscale.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>utmscale_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="typedef">
@@ -28983,7 +28949,7 @@
   </compound>
   <compound kind="file">
     <name>utrace.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>utrace_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <member kind="typedef">
@@ -29231,7 +29197,7 @@
   </compound>
   <compound kind="file">
     <name>utrans.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>utrans_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="urep_8h" name="urep.h" local="yes" imported="no">unicode/urep.h</includes>
@@ -29424,7 +29390,7 @@
   </compound>
   <compound kind="file">
     <name>utypes.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>utypes_8h.html</filename>
     <includes id="umachine_8h" name="umachine.h" local="yes" imported="no">unicode/umachine.h</includes>
     <includes id="uversion_8h" name="uversion.h" local="yes" imported="no">unicode/uversion.h</includes>
@@ -30550,7 +30516,7 @@
   </compound>
   <compound kind="file">
     <name>uvernum.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uvernum_8h.html</filename>
     <member kind="define">
       <type>#define</type>
@@ -30667,7 +30633,7 @@
   </compound>
   <compound kind="file">
     <name>uversion.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/common/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/common/unicode/</path>
     <filename>uversion_8h.html</filename>
     <includes id="umachine_8h" name="umachine.h" local="yes" imported="no">unicode/umachine.h</includes>
     <includes id="uvernum_8h" name="uvernum.h" local="yes" imported="no">unicode/uvernum.h</includes>
@@ -30737,7 +30703,7 @@
   </compound>
   <compound kind="file">
     <name>vtzone.h</name>
-    <path>/usr/local/google/home/ccornelius/ICU71/icu/icu4c/source/i18n/unicode/</path>
+    <path>/usr/local/google/home/ccornelius/ICU70/icu/icu4c/source/i18n/unicode/</path>
     <filename>vtzone_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="basictz_8h" name="basictz.h" local="yes" imported="no">unicode/basictz.h</includes>
@@ -31692,8 +31658,8 @@
       <type>Builder &amp;</type>
       <name>setDirection</name>
       <anchorfile>classicu_1_1LocaleMatcher_1_1Builder.html</anchorfile>
-      <anchor>a60edd55a4625fe082813bf05ccfda3d3</anchor>
-      <arglist>(ULocMatchDirection matchDirection)</arglist>
+      <anchor>a0477952a68ebb616bc7aac54f440c86b</anchor>
+      <arglist>(ULocMatchDirection direction)</arglist>
     </member>
     <member kind="function">
       <type>Builder &amp;</type>
@@ -36549,20 +36515,6 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>setDateTimeFormat</name>
-      <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a5888b1fc7e6ceb868ffaad02c300c21f</anchor>
-      <arglist>(UDateFormatStyle style, const UnicodeString &amp;dateTimeFormat, UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function">
-      <type>const UnicodeString &amp;</type>
-      <name>getDateTimeFormat</name>
-      <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a08f8ec6d451a942547b5bf90ef2cd275</anchor>
-      <arglist>(UDateFormatStyle style, UErrorCode &amp;status) const</arglist>
-    </member>
-    <member kind="function">
       <type>UnicodeString</type>
       <name>getBestPattern</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
@@ -39893,10 +39845,10 @@
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>NounClass</type>
-      <name>getNounClass</name>
+      <type>const char *</type>
+      <name>getGender</name>
       <anchorfile>classicu_1_1number_1_1FormattedNumber.html</anchorfile>
-      <anchor>a4a5b37dd1f85d8e97308d5591d51df0d</anchor>
+      <anchor>a414fb7b4141ee2fff78ef58d26a24d6c</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
@@ -39912,13 +39864,6 @@
       <anchorfile>classicu_1_1number_1_1FormattedNumber.html</anchorfile>
       <anchor>a2efb37597ceac15e5db853df24583777</anchor>
       <arglist>(FieldPositionIteratorHandler &amp;fpih, UErrorCode &amp;status) const</arglist>
-    </member>
-    <member kind="function">
-      <type>const char *</type>
-      <name>getGender</name>
-      <anchorfile>classicu_1_1number_1_1FormattedNumber.html</anchorfile>
-      <anchor>a414fb7b4141ee2fff78ef58d26a24d6c</anchor>
-      <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -40270,13 +40215,6 @@
       <name>fPriority</name>
       <anchorfile>structicu_1_1number_1_1Precision_1_1PrecisionUnion_1_1FractionSignificantSettings.html</anchorfile>
       <anchor>aa6a817084236b82fee06c9303663cd80</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>fRetain</name>
-      <anchorfile>structicu_1_1number_1_1Precision_1_1PrecisionUnion_1_1FractionSignificantSettings.html</anchorfile>
-      <anchor>a61156cd1db8665b668852482a121da2a</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -40844,17 +40782,10 @@
     <name>icu::number::Precision::PrecisionUnion::IncrementSettings</name>
     <filename>structicu_1_1number_1_1Precision_1_1PrecisionUnion_1_1IncrementSettings.html</filename>
     <member kind="variable">
-      <type>uint64_t</type>
+      <type>double</type>
       <name>fIncrement</name>
       <anchorfile>structicu_1_1number_1_1Precision_1_1PrecisionUnion_1_1IncrementSettings.html</anchorfile>
-      <anchor>a34a3a7b1caba29afdcb4c54fbd0a7fd4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>impl::digits_t</type>
-      <name>fIncrementMagnitude</name>
-      <anchorfile>structicu_1_1number_1_1Precision_1_1PrecisionUnion_1_1IncrementSettings.html</anchorfile>
-      <anchor>a2f6b3481ab0d673f230f8f9f613e8f13</anchor>
+      <anchor>a5019bbd4cb70523185928ccb391a83ee</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -40862,6 +40793,13 @@
       <name>fMinFrac</name>
       <anchorfile>structicu_1_1number_1_1Precision_1_1PrecisionUnion_1_1IncrementSettings.html</anchorfile>
       <anchor>ac22ee3947d7be07f8e167eb0db3d62fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>impl::digits_t</type>
+      <name>fMaxFrac</name>
+      <anchorfile>structicu_1_1number_1_1Precision_1_1PrecisionUnion_1_1IncrementSettings.html</anchorfile>
+      <anchor>a2f7a418c832616d4c71d8eaeb6145e03</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -50598,13 +50536,6 @@
       <arglist>(double roundingIncrement)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static IncrementPrecision</type>
-      <name>incrementExact</name>
-      <anchorfile>classicu_1_1number_1_1Precision.html</anchorfile>
-      <anchor>aedfb413e5a37c69868594c870a87134b</anchor>
-      <arglist>(uint64_t mantissa, int16_t magnitude)</arglist>
-    </member>
-    <member kind="function" static="yes">
       <type>static CurrencyPrecision</type>
       <name>currency</name>
       <anchorfile>classicu_1_1number_1_1Precision.html</anchorfile>
@@ -55264,13 +55195,6 @@
     <base>icu::UMemory</base>
     <member kind="function">
       <type></type>
-      <name>~StringProp</name>
-      <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
-      <anchor>a6f5c8657ae57b29f4b027261595f3363</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
       <name>StringProp</name>
       <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
       <anchor>a3509b51dffe3e6b732d4d809aa29e3f1</anchor>
@@ -55296,6 +55220,13 @@
       <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
       <anchor>a13a04467c0585b291fef1dd29760ee9f</anchor>
       <arglist>(StringProp &amp;&amp;src) U_NOEXCEPT</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~StringProp</name>
+      <anchorfile>classicu_1_1number_1_1impl_1_1StringProp.html</anchorfile>
+      <anchor>a6f5c8657ae57b29f4b027261595f3363</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>int16_t</type>
@@ -62062,13 +61993,6 @@
       <name>URBNF_COUNT</name>
       <anchorfile>namespaceicu.html</anchorfile>
       <anchor>a55dbbbdd4946251c23988013e06e695ea06b71f59f2333fcab71d097a9e0c84eb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>NounClass</name>
-      <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>a4e63b861230dcccb24a88b9e0566e2c0</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">

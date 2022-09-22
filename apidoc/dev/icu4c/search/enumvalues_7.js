@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nullorder_10915',['NULLORDER',['../classicu_1_1CollationElementIterator.html#a510275dbb6004c2ee695c4dc45f98bf5afaf65cb7bafb29756fdaaec42cb7ab21',1,'icu::CollationElementIterator']]]
+  ['nullorder_0',['NULLORDER',['../classicu_1_1CollationElementIterator.html#ad8e27546f57f9394aceae16eeacfb3d0afaf65cb7bafb29756fdaaec42cb7ab21',1,'icu::CollationElementIterator']]]
 ];

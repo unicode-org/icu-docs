@@ -72,7 +72,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>C UConverter functions to aid the writers of callbacks.  
+<p>C API: UConverter functions to aid the writers of callbacks.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="utypes_8h_source.html">unicode/utypes.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ucnv_8h_source.html">unicode/ucnv.h</a>&quot;</code><br />
@@ -99,9 +99,9 @@ Functions</h2></td></tr>
 <tr class="separator:a4ee640167db7ff2521cd0d8bf15a8175"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >C UConverter functions to aid the writers of callbacks. </p>
+<div class="textblock"><p >C API: UConverter functions to aid the writers of callbacks. </p>
 <h2>Callback API for UConverter </h2>
-<p >These functions are provided here for the convenience of the callback writer. If you are just looking for callback functions to use, please see <a class="el" href="ucnv__err_8h.html" title="C UConverter predefined error callbacks.">ucnv_err.h</a>. DO NOT call these functions directly when you are working with converters, unless your code has been called as a callback via ucnv_setFromUCallback or ucnv_setToUCallback !!</p>
+<p >These functions are provided here for the convenience of the callback writer. If you are just looking for callback functions to use, please see <a class="el" href="ucnv__err_8h.html" title="C API: UConverter predefined error callbacks.">ucnv_err.h</a>. DO NOT call these functions directly when you are working with converters, unless your code has been called as a callback via ucnv_setFromUCallback or ucnv_setToUCallback !!</p>
 <p >A note about error codes and overflow. Unlike other ICU functions, these functions do not expect the error status to be U_ZERO_ERROR. Callbacks must be much more careful about their error codes. The error codes used here are in/out parameters, which should be passed back in the callback's error parameter.</p>
 <p >For example, if you call ucnv_cbfromUWriteBytes to write data out to the output codepage, it may return U_BUFFER_OVERFLOW_ERROR if the data did not fit in the target. But this isn't a failing error, in fact, ucnv_cbfromUWriteBytes may be called AGAIN with the error status still U_BUFFER_OVERFLOW_ERROR to attempt to write further bytes, which will also go into the internal overflow buffers.</p>
 <p >Concerning offsets, the 'offset' parameters here are relative to the start of SOURCE. For example, Suppose the string "ABCD" was being converted from Unicode into a codepage which doesn't have a mapping for 'B'. 'A' will be written out correctly, but The FromU Callback will be called on an unassigned character for 'B'. At this point, this is the state of the world: Target: A [..] [points after A] Source: A B [C] D [points to C - B has been consumed] 0 1 2 3 codePoint = "B" [the unassigned codepoint]</p>

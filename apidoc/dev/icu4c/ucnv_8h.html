@@ -396,7 +396,7 @@ Functions</h2></td></tr>
 <h2>Character Conversion C API</h2>
 <p >This API is used to convert codepage or character encoded data to and from UTF-16. You can open a converter with <code><a class="el" href="ucnv_8h.html#a7734ec97739b82c8ad9aa39c0cf2489b">ucnv_open()</a></code>. With that converter, you can get its properties, set options, convert your data and close the converter.</p>
 <p >Since many software programs recognize different converter names for different types of converters, there are other functions in this API to iterate over the converter aliases. The functions <code><a class="el" href="ucnv_8h.html#aa5fd71229b40eb27885167d912ad6564">ucnv_getAvailableName()</a></code>, <code><a class="el" href="ucnv_8h.html#a38188925c5fded18b809425925862a1f">ucnv_getAlias()</a></code> and <code><a class="el" href="ucnv_8h.html#a3ad7312b24ecd366d3f00f48ed406c7c">ucnv_getStandardName()</a></code> are some of the more frequently used alias functions to get this information.</p>
-<p >When a converter encounters an illegal, irregular, invalid or unmappable character its default behavior is to use a substitution character to replace the bad byte sequence. This behavior can be changed by using <code><a class="el" href="ucnv_8h.html#a2975b51ae20ae5302a83cbfd926ebb86">ucnv_setFromUCallBack()</a></code> or <code><a class="el" href="ucnv_8h.html#acf5d877019d10500135f3baa95aa94b4">ucnv_setToUCallBack()</a></code> on the converter. The header <a class="el" href="ucnv__err_8h.html" title="C UConverter predefined error callbacks.">ucnv_err.h</a> defines many other callback actions that can be used instead of a character substitution.</p>
+<p >When a converter encounters an illegal, irregular, invalid or unmappable character its default behavior is to use a substitution character to replace the bad byte sequence. This behavior can be changed by using <code><a class="el" href="ucnv_8h.html#a2975b51ae20ae5302a83cbfd926ebb86">ucnv_setFromUCallBack()</a></code> or <code><a class="el" href="ucnv_8h.html#acf5d877019d10500135f3baa95aa94b4">ucnv_setToUCallBack()</a></code> on the converter. The header <a class="el" href="ucnv__err_8h.html" title="C API: UConverter predefined error callbacks.">ucnv_err.h</a> defines many other callback actions that can be used instead of a character substitution.</p>
 <p >More information about this API can be found in our <a href="https://unicode-org.github.io/icu/userguide/conversion/">User Guide</a>.</p>
 
 <p class="definition">Definition in file <a class="el" href="ucnv_8h_source.html">ucnv.h</a>.</p>
@@ -3541,7 +3541,7 @@ Codepages like SCSU and LMBCS (and UTF-16) provide direct representations only f
 </div><div class="memdoc">
 
 <p>Changes the current callback function used by the converter when an illegal or invalid sequence is found. </p>
-<p >Context pointers are always owned by the caller. Predefined actions and contexts can be found in the <a class="el" href="ucnv__err_8h.html" title="C UConverter predefined error callbacks.">ucnv_err.h</a> header.</p>
+<p >Context pointers are always owned by the caller. Predefined actions and contexts can be found in the <a class="el" href="ucnv__err_8h.html" title="C API: UConverter predefined error callbacks.">ucnv_err.h</a> header.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">converter</td><td>the unicode converter </td></tr>
@@ -3723,7 +3723,7 @@ Codepages like SCSU and LMBCS (and UTF-16) provide direct representations only f
 </div><div class="memdoc">
 
 <p>Changes the callback function used by the converter when an illegal or invalid sequence is found. </p>
-<p >Context pointers are always owned by the caller. Predefined actions and contexts can be found in the <a class="el" href="ucnv__err_8h.html" title="C UConverter predefined error callbacks.">ucnv_err.h</a> header.</p>
+<p >Context pointers are always owned by the caller. Predefined actions and contexts can be found in the <a class="el" href="ucnv__err_8h.html" title="C API: UConverter predefined error callbacks.">ucnv_err.h</a> header.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">converter</td><td>the unicode converter </td></tr>

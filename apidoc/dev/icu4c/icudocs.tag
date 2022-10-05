@@ -19726,6 +19726,14 @@
     <namespace>icu</namespace>
   </compound>
   <compound kind="file">
+    <name>displayoptions.h</name>
+    <path>/usr/local/google/home/ccornelius/ICU72_RC/icu/icu4c/source/i18n/unicode/</path>
+    <filename>displayoptions_8h.html</filename>
+    <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
+    <includes id="udisplayoptions_8h" name="udisplayoptions.h" local="yes" imported="no">unicode/udisplayoptions.h</includes>
+    <includes id="uversion_8h" name="uversion.h" local="yes" imported="no">unicode/uversion.h</includes>
+  </compound>
+  <compound kind="file">
     <name>dtfmtsym.h</name>
     <path>/usr/local/google/home/ccornelius/ICU72_RC/icu/icu4c/source/i18n/unicode/</path>
     <filename>dtfmtsym_8h.html</filename>
@@ -20257,6 +20265,7 @@
     <includes id="bytestream_8h" name="bytestream.h" local="yes" imported="no">unicode/bytestream.h</includes>
     <includes id="currunit_8h" name="currunit.h" local="yes" imported="no">unicode/currunit.h</includes>
     <includes id="dcfmtsym_8h" name="dcfmtsym.h" local="yes" imported="no">unicode/dcfmtsym.h</includes>
+    <includes id="displayoptions_8h" name="displayoptions.h" local="yes" imported="no">unicode/displayoptions.h</includes>
     <includes id="fieldpos_8h" name="fieldpos.h" local="yes" imported="no">unicode/fieldpos.h</includes>
     <includes id="formattedvalue_8h" name="formattedvalue.h" local="yes" imported="no">unicode/formattedvalue.h</includes>
     <includes id="fpositer_8h" name="fpositer.h" local="yes" imported="no">unicode/fpositer.h</includes>
@@ -20265,6 +20274,7 @@
     <includes id="parseerr_8h" name="parseerr.h" local="yes" imported="no">unicode/parseerr.h</includes>
     <includes id="plurrule_8h" name="plurrule.h" local="yes" imported="no">unicode/plurrule.h</includes>
     <includes id="ucurr_8h" name="ucurr.h" local="yes" imported="no">unicode/ucurr.h</includes>
+    <includes id="udisplayoptions_8h" name="udisplayoptions.h" local="yes" imported="no">unicode/udisplayoptions.h</includes>
     <includes id="unum_8h" name="unum.h" local="yes" imported="no">unicode/unum.h</includes>
     <includes id="unumberformatter_8h" name="unumberformatter.h" local="yes" imported="no">unicode/unumberformatter.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" imported="no">unicode/uobject.h</includes>
@@ -25016,6 +25026,423 @@
       <anchorfile>udatpg_8h.html</anchorfile>
       <anchor>ab54aa78112bb4605378c0e2c2ba04771</anchor>
       <arglist>(const UDateTimePatternGenerator *dtpg, UErrorCode *pErrorCode)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>udisplayoptions.h</name>
+    <path>/usr/local/google/home/ccornelius/ICU72_RC/icu/icu4c/source/i18n/unicode/</path>
+    <filename>udisplayoptions_8h.html</filename>
+    <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
+    <includes id="uversion_8h" name="uversion.h" local="yes" imported="no">unicode/uversion.h</includes>
+    <member kind="typedef">
+      <type>enum UDisplayOptionsGrammaticalCase</type>
+      <name>UDisplayOptionsGrammaticalCase</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab0302a7129d0ab71a8fb9fcc55e39fb8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum UDisplayOptionsPluralCategory</type>
+      <name>UDisplayOptionsPluralCategory</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a079d4ad59b7ed07eafb223a852951c14</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum UDisplayOptionsNounClass</type>
+      <name>UDisplayOptionsNounClass</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a536ccb57e5d428b58dad9148578f638b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum UDisplayOptionsCapitalization</type>
+      <name>UDisplayOptionsCapitalization</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a6495029f9c9284869c21548d225d442a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum UDisplayOptionsNameStyle</type>
+      <name>UDisplayOptionsNameStyle</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa5ff91b26cf11d3ce7c4a677e0d5b457</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum UDisplayOptionsDisplayLength</type>
+      <name>UDisplayOptionsDisplayLength</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ae918338b2d7145a7ea402885349ea727</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum UDisplayOptionsSubstituteHandling</type>
+      <name>UDisplayOptionsSubstituteHandling</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a6bc2db86ba4e1ef2eee9b563354c2345</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UDisplayOptionsGrammaticalCase</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_UNDEFINED</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da5a90c7c89f029ca4bbd5c74fcd52f61c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_ABLATIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712dad5213e627e98b5203937a972dc75c8ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_ACCUSATIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da0084764900b6c0d128f5506ec5632794</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_COMITATIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da2d2b77ec4fd373918c82e6519de2de88</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_DATIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712dab909a93ba15bd3973aa7e6e72d8d37ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_ERGATIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da23652307f608abc2b6ddcad97f985837</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_GENITIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da4e09cd5de12fbbce497019eb64a45b1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_INSTRUMENTAL</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da72c50ea64dc6424cef26a6c8984e86ef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_LOCATIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da9edb9e585b729ef3756ab1183d66ec50</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_LOCATIVE_COPULATIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da0911e540d4ddbd6f8e4bf9e42b70182b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_NOMINATIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da34e41f77b33b468399931042378d1cff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_OBLIQUE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da130dadea1ac18f867412951345be4b7a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_PREPOSITIONAL</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da098dc90947affcde15c8b7d53effa687</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_SOCIATIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712da6abf310669b595c0778196d618738e2a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_GRAMMATICAL_CASE_VOCATIVE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ab891fb674a1c59507d77be3abc85712daf2d81c5f619314dc717d9c17b65aea11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UDisplayOptionsPluralCategory</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa3dddc47d0e0a5074fcb29736769f52c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_PLURAL_CATEGORY_UNDEFINED</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa3dddc47d0e0a5074fcb29736769f52cad06d431c3dc4aecb81415eea98c19800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_PLURAL_CATEGORY_ZERO</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa3dddc47d0e0a5074fcb29736769f52ca585b20d852329acd655f27472782262d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_PLURAL_CATEGORY_ONE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa3dddc47d0e0a5074fcb29736769f52ca5f18d0cb67d9790bd705bcbaf944d2c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_PLURAL_CATEGORY_TWO</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa3dddc47d0e0a5074fcb29736769f52caecd4964518d3f1ded34cb80acbba4fa1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_PLURAL_CATEGORY_FEW</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa3dddc47d0e0a5074fcb29736769f52ca118aeaa88718127e4cc38ef77def1042</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_PLURAL_CATEGORY_MANY</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa3dddc47d0e0a5074fcb29736769f52ca7b946847f2c409575a77ae747b7c8719</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_PLURAL_CATEGORY_OTHER</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa3dddc47d0e0a5074fcb29736769f52caa0dd579f8ef3b5bdeb1f222529df67aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UDisplayOptionsNounClass</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac9b087ab3678f10263f318293c755b4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NOUN_CLASS_UNDEFINED</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac9b087ab3678f10263f318293c755b4ba72f3b2bb965b1ef65e0c078b3524a2a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NOUN_CLASS_OTHER</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac9b087ab3678f10263f318293c755b4baab2e136b79346f4cdb34184befc99101</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NOUN_CLASS_NEUTER</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac9b087ab3678f10263f318293c755b4ba68ebc037050d688d05b1a1189c4a6ea5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NOUN_CLASS_FEMININE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac9b087ab3678f10263f318293c755b4ba7f9ce1563d813e17fd7f9ead7f4192f6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NOUN_CLASS_MASCULINE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac9b087ab3678f10263f318293c755b4ba3f43ea02f938d2897d40d87a2bddd707</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NOUN_CLASS_ANIMATE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac9b087ab3678f10263f318293c755b4badd90f4830acdfb67c84ad07964aa1f2a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NOUN_CLASS_INANIMATE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac9b087ab3678f10263f318293c755b4bac7d76a57e1087ea9a58a1192fd51585c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NOUN_CLASS_PERSONAL</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac9b087ab3678f10263f318293c755b4bac82c33c92408be3d5f65ebaae6676de9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NOUN_CLASS_COMMON</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac9b087ab3678f10263f318293c755b4ba0aae46fa0bb9a90a605bf21d75d662ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UDisplayOptionsCapitalization</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a3937de6c9e8517bb32cd901f7b67928c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_CAPITALIZATION_UNDEFINED</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a3937de6c9e8517bb32cd901f7b67928ca95a1ad64723d58fdef102c72fe2a6e5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_CAPITALIZATION_BEGINNING_OF_SENTENCE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a3937de6c9e8517bb32cd901f7b67928cad322e933a74d11306664bf7c1b8a19d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_CAPITALIZATION_MIDDLE_OF_SENTENCE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a3937de6c9e8517bb32cd901f7b67928caefadd771df3a56b57430bb7121db99af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_CAPITALIZATION_STANDALONE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a3937de6c9e8517bb32cd901f7b67928caaf70cf25f4c4fcbe8890b4abb1239d49</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_CAPITALIZATION_UI_LIST_OR_MENU</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a3937de6c9e8517bb32cd901f7b67928ca8e9e51c0c7fb1f42d64dad14fb20433b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UDisplayOptionsNameStyle</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac1ccce289fc4e55d50b95acb18e2d89d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NAME_STYLE_UNDEFINED</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac1ccce289fc4e55d50b95acb18e2d89dac5e668da494dfe73448f2c2a36767d2c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NAME_STYLE_STANDARD_NAMES</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac1ccce289fc4e55d50b95acb18e2d89daa2e967f25a43243301c09a7bf7ecdd37</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_NAME_STYLE_DIALECT_NAMES</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>ac1ccce289fc4e55d50b95acb18e2d89dadecf2e582c32061aa27a27421a0835b6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UDisplayOptionsDisplayLength</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>adc940ce1af5ff0792a68ba2d9f7500aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_DISPLAY_LENGTH_UNDEFINED</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>adc940ce1af5ff0792a68ba2d9f7500aaa2d01753c4b15ceadc5a9e6491811b098</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_DISPLAY_LENGTH_FULL</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>adc940ce1af5ff0792a68ba2d9f7500aaa5515bf554c8b89bd329dfa2bd7c43b3d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_DISPLAY_LENGTH_SHORT</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>adc940ce1af5ff0792a68ba2d9f7500aaa01dd37fccc01062a91c39a209d04a5f6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UDisplayOptionsSubstituteHandling</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a964d5f9daf9c1afbac94c625ee78888c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_SUBSTITUTE_HANDLING_UNDEFINED</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a964d5f9daf9c1afbac94c625ee78888ca827d32bb0545a43bf30d83460594533b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_SUBSTITUTE_HANDLING_SUBSTITUTE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a964d5f9daf9c1afbac94c625ee78888ca4a5f851a1d5cff93e6682c6a874722e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDISPOPT_SUBSTITUTE_HANDLING_NO_SUBSTITUTE</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a964d5f9daf9c1afbac94c625ee78888ca22628bad907550053b1aa37561eec5f4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI const char *</type>
+      <name>udispopt_getGrammaticalCaseIdentifier</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa75523cc634e4b77e6d77e6d06eb9c34</anchor>
+      <arglist>(UDisplayOptionsGrammaticalCase grammaticalCase)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI UDisplayOptionsGrammaticalCase</type>
+      <name>udispopt_fromGrammaticalCaseIdentifier</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a73c693363445166e7caf718df765ad8e</anchor>
+      <arglist>(const char *identifier)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI const char *</type>
+      <name>udispopt_getPluralCategoryIdentifier</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a397d09a583152202962c9d35ca0f0e6e</anchor>
+      <arglist>(UDisplayOptionsPluralCategory pluralCategory)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI UDisplayOptionsPluralCategory</type>
+      <name>udispopt_fromPluralCategoryIdentifier</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>aa9e71a44af358d37d2e0cfde32bee09e</anchor>
+      <arglist>(const char *identifier)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI const char *</type>
+      <name>udispopt_getNounClassIdentifier</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a36f6a8ea8c8f61ec5a3cee646c0169c6</anchor>
+      <arglist>(UDisplayOptionsNounClass nounClass)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI UDisplayOptionsNounClass</type>
+      <name>udispopt_fromNounClassIdentifier</name>
+      <anchorfile>udisplayoptions_8h.html</anchorfile>
+      <anchor>a2ec2f60435939dd4d3501dae7332e640</anchor>
+      <arglist>(const char *identifier)</arglist>
     </member>
   </compound>
   <compound kind="file">

@@ -19732,6 +19732,9 @@
     <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
     <includes id="udisplayoptions_8h" name="udisplayoptions.h" local="yes" imported="no">unicode/udisplayoptions.h</includes>
     <includes id="uversion_8h" name="uversion.h" local="yes" imported="no">unicode/uversion.h</includes>
+    <class kind="class">icu::DisplayOptions</class>
+    <class kind="class">icu::DisplayOptions::Builder</class>
+    <namespace>icu</namespace>
   </compound>
   <compound kind="file">
     <name>dtfmtsym.h</name>
@@ -32135,6 +32138,66 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>icu::DisplayOptions::Builder</name>
+    <filename>classicu_1_1DisplayOptions_1_1Builder.html</filename>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>setGrammaticalCase</name>
+      <anchorfile>classicu_1_1DisplayOptions_1_1Builder.html</anchorfile>
+      <anchor>aa46bf0309d7508f71e8e5c4f3a30151c</anchor>
+      <arglist>(UDisplayOptionsGrammaticalCase grammaticalCase)</arglist>
+    </member>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>setNounClass</name>
+      <anchorfile>classicu_1_1DisplayOptions_1_1Builder.html</anchorfile>
+      <anchor>a71bd51008f38ef75aa03d4be543f3329</anchor>
+      <arglist>(UDisplayOptionsNounClass nounClass)</arglist>
+    </member>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>setPluralCategory</name>
+      <anchorfile>classicu_1_1DisplayOptions_1_1Builder.html</anchorfile>
+      <anchor>aa9cc88f7e265ef1b9679d9284c583c81</anchor>
+      <arglist>(UDisplayOptionsPluralCategory pluralCategory)</arglist>
+    </member>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>setCapitalization</name>
+      <anchorfile>classicu_1_1DisplayOptions_1_1Builder.html</anchorfile>
+      <anchor>a280c64e9e5ef27dd7920e1111b7c0b97</anchor>
+      <arglist>(UDisplayOptionsCapitalization capitalization)</arglist>
+    </member>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>setNameStyle</name>
+      <anchorfile>classicu_1_1DisplayOptions_1_1Builder.html</anchorfile>
+      <anchor>a0c4cabbb9a8d92b1bd7fd108f3b5acb5</anchor>
+      <arglist>(UDisplayOptionsNameStyle nameStyle)</arglist>
+    </member>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>setDisplayLength</name>
+      <anchorfile>classicu_1_1DisplayOptions_1_1Builder.html</anchorfile>
+      <anchor>aac4fb926da1cd121f5c55d56174ecc51</anchor>
+      <arglist>(UDisplayOptionsDisplayLength displayLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>setSubstituteHandling</name>
+      <anchorfile>classicu_1_1DisplayOptions_1_1Builder.html</anchorfile>
+      <anchor>a186b3f7ce964298a6eb2260c573b7fd0</anchor>
+      <arglist>(UDisplayOptionsSubstituteHandling substituteHandling)</arglist>
+    </member>
+    <member kind="function">
+      <type>DisplayOptions</type>
+      <name>build</name>
+      <anchorfile>classicu_1_1DisplayOptions_1_1Builder.html</anchorfile>
+      <anchor>aa922cb1c71fe62100565cd269da29ce6</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>icu::LocaleMatcher::Builder</name>
     <filename>classicu_1_1LocaleMatcher_1_1Builder.html</filename>
     <base>icu::UMemory</base>
@@ -38847,6 +38910,95 @@
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
       <anchor>a5e3f33df081095a7d0d6b86f8d09e8ec</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>icu::DisplayOptions</name>
+    <filename>classicu_1_1DisplayOptions.html</filename>
+    <class kind="class">icu::DisplayOptions::Builder</class>
+    <member kind="function">
+      <type>Builder</type>
+      <name>copyToBuilder</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>ad6dbb3e70afed2a4dc3b9b4d23c1444b</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>UDisplayOptionsGrammaticalCase</type>
+      <name>getGrammaticalCase</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>aa860de257811fea583266f57b7347825</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>UDisplayOptionsNounClass</type>
+      <name>getNounClass</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>ac1d78d7c1454be91d75a5526225a8f98</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>UDisplayOptionsPluralCategory</type>
+      <name>getPluralCategory</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>ae12988935415abf62dfc4b73c825463a</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>UDisplayOptionsCapitalization</type>
+      <name>getCapitalization</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>a9ed4cf571c6aa0b9af670faf1861f913</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>UDisplayOptionsNameStyle</type>
+      <name>getNameStyle</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>a7531b3476b191abc4650488031c825f1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>UDisplayOptionsDisplayLength</type>
+      <name>getDisplayLength</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>acb25bfe19702239203ed712b82c6c031</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>UDisplayOptionsSubstituteHandling</type>
+      <name>getSubstituteHandling</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>a55d93281697f89dc73ca8bdc6ff27094</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>DisplayOptions &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>a00837a9bbec0a2813c7dfb60f848e87b</anchor>
+      <arglist>(const DisplayOptions &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>DisplayOptions &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>ae1d7d863f4d36404e686d6a55234f2a9</anchor>
+      <arglist>(DisplayOptions &amp;&amp;other) noexcept=default</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DisplayOptions</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>a3dd2855b57a86617817ed1f4835fe32e</anchor>
+      <arglist>(const DisplayOptions &amp;other)=default</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Builder</type>
+      <name>builder</name>
+      <anchorfile>classicu_1_1DisplayOptions.html</anchorfile>
+      <anchor>a982b4fbff72c41c72180de9bd5f4ede5</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -61245,6 +61397,7 @@
     <class kind="class">icu::DateTimeRule</class>
     <class kind="class">icu::DecimalFormat</class>
     <class kind="class">icu::DecimalFormatSymbols</class>
+    <class kind="class">icu::DisplayOptions</class>
     <class kind="class">icu::Edits</class>
     <class kind="class">icu::ErrorCode</class>
     <class kind="class">icu::FieldPosition</class>

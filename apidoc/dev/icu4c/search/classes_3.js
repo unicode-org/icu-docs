@@ -8,5 +8,6 @@ var searchData=
   ['datetimepatterngenerator_5',['DateTimePatternGenerator',['../classicu_1_1DateTimePatternGenerator.html',1,'icu']]],
   ['datetimerule_6',['DateTimeRule',['../classicu_1_1DateTimeRule.html',1,'icu']]],
   ['decimalformat_7',['DecimalFormat',['../classicu_1_1DecimalFormat.html',1,'icu']]],
-  ['decimalformatsymbols_8',['DecimalFormatSymbols',['../classicu_1_1DecimalFormatSymbols.html',1,'icu']]]
+  ['decimalformatsymbols_8',['DecimalFormatSymbols',['../classicu_1_1DecimalFormatSymbols.html',1,'icu']]],
+  ['displayoptions_9',['DisplayOptions',['../classicu_1_1DisplayOptions.html',1,'icu']]]
 ];

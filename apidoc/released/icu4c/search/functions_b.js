@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['keydisplayname_8326',['keyDisplayName',['../classicu_1_1LocaleDisplayNames.html#a23c4a188d96c9dca9194ba2fab281727',1,'icu::LocaleDisplayNames']]],
-  ['keyvaluedisplayname_8327',['keyValueDisplayName',['../classicu_1_1LocaleDisplayNames.html#a8badb15f3eb893793d9f9aa5b6f8a750',1,'icu::LocaleDisplayNames']]]
+  ['keydisplayname_0',['keyDisplayName',['../classicu_1_1LocaleDisplayNames.html#a4e807ada6476617abc4688a799618951',1,'icu::LocaleDisplayNames']]],
+  ['keyvaluedisplayname_1',['keyValueDisplayName',['../classicu_1_1LocaleDisplayNames.html#a392a34171e5dea3e9e3956e5ba5b73b5',1,'icu::LocaleDisplayNames']]]
 ];

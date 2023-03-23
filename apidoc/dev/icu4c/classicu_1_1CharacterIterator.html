@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: icu::CharacterIterator Class Reference</title>
+<title>ICU 73.1: icu::CharacterIterator Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -293,7 +293,7 @@ There are new functions for setting and moving the current position without retu
 <div class="ttc" id="aclassicu_1_1CharacterIterator_html_ac6e8c16981c7481256c50ab7145185aa"><div class="ttname"><a href="classicu_1_1CharacterIterator.html#ac6e8c16981c7481256c50ab7145185aa">icu::CharacterIterator::setToStart</a></div><div class="ttdeci">int32_t setToStart()</div><div class="ttdoc">Sets the iterator to refer to the first code unit or code point in its iteration range.</div><div class="ttdef"><b>Definition:</b> <a href="chariter_8h_source.html#l00701">chariter.h:701</a></div></div>
 <div class="ttc" id="aclassicu_1_1ForwardCharacterIterator_html_abf876be6f80694afeeb5086524d249df"><div class="ttname"><a href="classicu_1_1ForwardCharacterIterator.html#abf876be6f80694afeeb5086524d249df">icu::ForwardCharacterIterator::hasNext</a></div><div class="ttdeci">virtual UBool hasNext()=0</div><div class="ttdoc">Returns false if there are no more code units or code points at or after the current position in the ...</div></div>
 <div class="ttc" id="aclassicu_1_1ForwardCharacterIterator_html_acccb6c5e433ff1cbaa5830130b569e97"><div class="ttname"><a href="classicu_1_1ForwardCharacterIterator.html#acccb6c5e433ff1cbaa5830130b569e97">icu::ForwardCharacterIterator::next32PostInc</a></div><div class="ttdeci">virtual UChar32 next32PostInc(void)=0</div><div class="ttdoc">Gets the current code point for returning and advances to the next code point in the iteration range ...</div></div>
-<div class="ttc" id="aumachine_8h_html_a09fff5c3b5a5b015324dc3ec3cf92809"><div class="ttname"><a href="umachine_8h.html#a09fff5c3b5a5b015324dc3ec3cf92809">UChar32</a></div><div class="ttdeci">int32_t UChar32</div><div class="ttdoc">Define UChar32 as a type for single Unicode code points.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00461">umachine.h:461</a></div></div>
+<div class="ttc" id="aumachine_8h_html_a09fff5c3b5a5b015324dc3ec3cf92809"><div class="ttname"><a href="umachine_8h.html#a09fff5c3b5a5b015324dc3ec3cf92809">UChar32</a></div><div class="ttdeci">int32_t UChar32</div><div class="ttdoc">Define UChar32 as a type for single Unicode code points.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00435">umachine.h:435</a></div></div>
 </div><!-- fragment --><p> Forward iteration more similar to loops with the old forward iteration, showing a way to convert simple for() loops: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> forward2(<a class="code hl_class" href="classicu_1_1CharacterIterator.html">CharacterIterator</a> &amp;it) {</div>
 <div class="line">    <span class="keywordtype">char16_t</span> c;</div>
 <div class="line">    <span class="keywordflow">for</span>(c=it.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a6f68230f51dc9d02647dfa6a9f2e79ce">firstPostInc</a>(); c!=CharacterIterator::DONE; c=it.<a class="code hl_function" href="classicu_1_1ForwardCharacterIterator.html#ac0adb7d361dcf2f03a2234773401b570">nextPostInc</a>()) {</div>
@@ -354,7 +354,7 @@ There are new functions for setting and moving the current position without retu
 </pre><p> Traverse the text from start to finish </p><pre> 
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> traverseForward(<a class="code hl_class" href="classicu_1_1CharacterIterator.html">CharacterIterator</a>&amp; iter)</div>
 <div class="line">{</div>
-<div class="line">    <span class="keywordflow">for</span>(<span class="keywordtype">char16_t</span> c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a239bb6a42f08760fa50ffa4aa9022adc">first</a>(); c != <a class="code hl_class" href="classicu_1_1CharacterIterator.html">CharacterIterator</a>.DONE; c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a880ae519d23192c93934c7da1cb4252a">next</a>()) {</div>
+<div class="line">    <span class="keywordflow">for</span>(<span class="keywordtype">char16_t</span> c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a239bb6a42f08760fa50ffa4aa9022adc">first</a>(); c != CharacterIterator::DONE; c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a880ae519d23192c93934c7da1cb4252a">next</a>()) {</div>
 <div class="line">        processChar(c);</div>
 <div class="line">    }</div>
 <div class="line">}</div>
@@ -364,7 +364,7 @@ There are new functions for setting and moving the current position without retu
 </pre><p> Traverse the text backwards, from end to start </p><pre>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> traverseBackward(<a class="code hl_class" href="classicu_1_1CharacterIterator.html">CharacterIterator</a>&amp; iter)</div>
 <div class="line">{</div>
-<div class="line">    <span class="keywordflow">for</span>(<span class="keywordtype">char16_t</span> c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#aee514541776ea1aa345dbc57d672ca4b">last</a>(); c != <a class="code hl_class" href="classicu_1_1CharacterIterator.html">CharacterIterator</a>.DONE; c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a8738a4c0854a6c29dfb6de9313f78107">previous</a>()) {</div>
+<div class="line">    <span class="keywordflow">for</span>(<span class="keywordtype">char16_t</span> c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#aee514541776ea1aa345dbc57d672ca4b">last</a>(); c != CharacterIterator::DONE; c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a8738a4c0854a6c29dfb6de9313f78107">previous</a>()) {</div>
 <div class="line">        processChar(c);</div>
 <div class="line">    }</div>
 <div class="line">}</div>
@@ -374,11 +374,11 @@ There are new functions for setting and moving the current position without retu
 <div class="line">{</div>
 <div class="line">     <span class="keywordtype">char16_t</span> c;</div>
 <div class="line">     <span class="keywordflow">for</span> (c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#ade1384a90f7290121ac40f851aac4f82">setIndex</a>(<a class="code hl_variable" href="classicu_1_1CharacterIterator.html#a974c6d9bbf0ae1a74688ffdbfc08ad17">pos</a>);</div>
-<div class="line">     c != <a class="code hl_class" href="classicu_1_1CharacterIterator.html">CharacterIterator</a>.DONE &amp;&amp; (Unicode::isLetter(c) || Unicode::isDigit(c));</div>
+<div class="line">     c != CharacterIterator::DONE &amp;&amp; (Unicode::isLetter(c) || Unicode::isDigit(c));</div>
 <div class="line">         c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a880ae519d23192c93934c7da1cb4252a">next</a>()) {}</div>
 <div class="line">     int32_t <a class="code hl_variable" href="classicu_1_1CharacterIterator.html#aa3722479f3191d6bcad48a24bd6c8f3e">end</a> = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a6d1674edfb18fe904a8fe189e0dd5dc1">getIndex</a>();</div>
 <div class="line">     <span class="keywordflow">for</span> (c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#ade1384a90f7290121ac40f851aac4f82">setIndex</a>(<a class="code hl_variable" href="classicu_1_1CharacterIterator.html#a974c6d9bbf0ae1a74688ffdbfc08ad17">pos</a>);</div>
-<div class="line">         c != <a class="code hl_class" href="classicu_1_1CharacterIterator.html">CharacterIterator</a>.DONE &amp;&amp; (Unicode::isLetter(c) || Unicode::isDigit(c));</div>
+<div class="line">         c != CharacterIterator::DONE &amp;&amp; (Unicode::isLetter(c) || Unicode::isDigit(c));</div>
 <div class="line">         c = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a8738a4c0854a6c29dfb6de9313f78107">previous</a>()) {}</div>
 <div class="line">     int32_t start = iter.<a class="code hl_function" href="classicu_1_1CharacterIterator.html#a6d1674edfb18fe904a8fe189e0dd5dc1">getIndex</a>() + 1;</div>
 <div class="line"> </div>

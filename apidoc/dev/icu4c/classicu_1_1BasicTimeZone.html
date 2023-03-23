@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: icu::BasicTimeZone Class Reference</title>
+<title>ICU 73.1: icu::BasicTimeZone Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -335,7 +335,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a09239f955bfdcf91ef7612483783c74a inherit pub_static_methods_classicu_1_1TimeZone"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the region code associated with the given system time zone ID.  <a href="classicu_1_1TimeZone.html#a09239f955bfdcf91ef7612483783c74a">More...</a><br /></td></tr>
 <tr class="separator:a09239f955bfdcf91ef7612483783c74a inherit pub_static_methods_classicu_1_1TimeZone"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4535a517d1bd0c9c141b903b11a7284 inherit pub_static_methods_classicu_1_1TimeZone"><td class="memItemLeft" align="right" valign="top">static const char16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1TimeZone.html#ac4535a517d1bd0c9c141b903b11a7284">getRegion</a> (const <a class="el" href="classicu_1_1UnicodeString.html">UnicodeString</a> &amp;id, <a class="el" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> &amp;status)</td></tr>
-<tr class="memdesc:ac4535a517d1bd0c9c141b903b11a7284 inherit pub_static_methods_classicu_1_1TimeZone"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the region code associated with the given zone, or NULL if the zone is not known.  <a href="classicu_1_1TimeZone.html#ac4535a517d1bd0c9c141b903b11a7284">More...</a><br /></td></tr>
+<tr class="memdesc:ac4535a517d1bd0c9c141b903b11a7284 inherit pub_static_methods_classicu_1_1TimeZone"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the region code associated with the given zone, or nullptr if the zone is not known.  <a href="classicu_1_1TimeZone.html#ac4535a517d1bd0c9c141b903b11a7284">More...</a><br /></td></tr>
 <tr class="separator:ac4535a517d1bd0c9c141b903b11a7284 inherit pub_static_methods_classicu_1_1TimeZone"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_methods_classicu_1_1TimeZone"><td colspan="2" onclick="javascript:toggleInherit('pro_static_methods_classicu_1_1TimeZone')"><img src="closed.png" alt="-"/>&#160;Static Protected Member Functions inherited from <a class="el" href="classicu_1_1TimeZone.html">icu::TimeZone</a></td></tr>
 <tr class="memitem:a05aa3a171ec6a329b54eaa2a1f735a60 inherit pro_static_methods_classicu_1_1TimeZone"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="ures_8h.html#a7391119e9274be9ba2e6892b48a2bbbe">UResourceBundle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1TimeZone.html#a05aa3a171ec6a329b54eaa2a1f735a60">loadRule</a> (const <a class="el" href="ures_8h.html#a7391119e9274be9ba2e6892b48a2bbbe">UResourceBundle</a> *top, const <a class="el" href="classicu_1_1UnicodeString.html">UnicodeString</a> &amp;ruleid, <a class="el" href="ures_8h.html#a7391119e9274be9ba2e6892b48a2bbbe">UResourceBundle</a> *oldbundle, <a class="el" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> &amp;status)</td></tr>
@@ -673,7 +673,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get time zone offsets from local wall time. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000193">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000191">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -854,9 +854,9 @@ Additional Inherited Members</h2></td></tr>
 <p >Some known external time zone implementations are not capable to handle historic time zone rule changes. Also some implementations can only handle certain type of rule definitions. If this time zone does not use any daylight saving time within about 1 year from the specified time, only the <code>InitialTimeZone</code> is returned. Otherwise, the rule for standard time and daylight saving time transitions are returned in addition to the <code><a class="el" href="classicu_1_1InitialTimeZoneRule.html" title="InitialTimeZoneRule represents a time zone rule representing a time zone effective from the beginning...">InitialTimeZoneRule</a></code>. The standard and daylight saving time transition rules are represented by <code><a class="el" href="classicu_1_1AnnualTimeZoneRule.html" title="AnnualTimeZoneRule is a class used for representing a time zone rule which takes effect annually.">AnnualTimeZoneRule</a></code> with <code><a class="el" href="classicu_1_1DateTimeRule.html#a4a365842d3fd933ce09de5e648220cc3a134e0c54be0b33a5207a76e635bf338e" title="The Nth occurrence of the day of week, for example, 2nd Sunday in March.">DateTimeRule::DOW</a></code> for its date rule and <code><a class="el" href="classicu_1_1DateTimeRule.html#ab59dacda2669ddd8bbb276867daad27cae6945d7b414b56cf4bc00dc690a6bc47" title="The local wall clock time.">DateTimeRule::WALL_TIME</a></code> for its time rule. Because daylight saving time rule is changing time to time in many time zones and also mapping a transition time rule to different type is lossy transformation, the set of rules returned by this method may be valid for short period of time. The time zone rule objects returned by this method is owned by the caller, so the caller is responsible for deleting them after use. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">date</td><td>The date used for extracting time zone rules. </td></tr>
-    <tr><td class="paramname">initial</td><td>Receives the <code>InitialTimeZone</code>, always not NULL. </td></tr>
-    <tr><td class="paramname">std</td><td>Receives the <code><a class="el" href="classicu_1_1AnnualTimeZoneRule.html" title="AnnualTimeZoneRule is a class used for representing a time zone rule which takes effect annually.">AnnualTimeZoneRule</a></code> for standard time transitions. When this time time zone does not observe daylight saving times around the specified date, NULL is set. </td></tr>
-    <tr><td class="paramname">dst</td><td>Receives the <code><a class="el" href="classicu_1_1AnnualTimeZoneRule.html" title="AnnualTimeZoneRule is a class used for representing a time zone rule which takes effect annually.">AnnualTimeZoneRule</a></code> for daylight saving time transitions. When this time zone does not observer daylight saving times around the specified date, NULL is set. </td></tr>
+    <tr><td class="paramname">initial</td><td>Receives the <code>InitialTimeZone</code>, always not nullptr. </td></tr>
+    <tr><td class="paramname">std</td><td>Receives the <code><a class="el" href="classicu_1_1AnnualTimeZoneRule.html" title="AnnualTimeZoneRule is a class used for representing a time zone rule which takes effect annually.">AnnualTimeZoneRule</a></code> for standard time transitions. When this time time zone does not observe daylight saving times around the specified date, nullptr is set. </td></tr>
+    <tr><td class="paramname">dst</td><td>Receives the <code><a class="el" href="classicu_1_1AnnualTimeZoneRule.html" title="AnnualTimeZoneRule is a class used for representing a time zone rule which takes effect annually.">AnnualTimeZoneRule</a></code> for daylight saving time transitions. When this time zone does not observer daylight saving times around the specified date, nullptr is set. </td></tr>
     <tr><td class="paramname">status</td><td>Receives error status code. </td></tr>
   </table>
   </dd>
@@ -912,7 +912,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the <code><a class="el" href="classicu_1_1InitialTimeZoneRule.html" title="InitialTimeZoneRule represents a time zone rule representing a time zone effective from the beginning...">InitialTimeZoneRule</a></code> and the set of <code><a class="el" href="classicu_1_1TimeZoneRule.html" title="TimeZoneRule is a class representing a rule for time zone.">TimeZoneRule</a></code> which represent time transitions for this time zone. </p>
-<p >On successful return, the argument initial points to non-NULL <code><a class="el" href="classicu_1_1InitialTimeZoneRule.html" title="InitialTimeZoneRule represents a time zone rule representing a time zone effective from the beginning...">InitialTimeZoneRule</a></code> and the array trsrules is filled with 0 or multiple <code><a class="el" href="classicu_1_1TimeZoneRule.html" title="TimeZoneRule is a class representing a rule for time zone.">TimeZoneRule</a></code> instances up to the size specified by trscount. The results are referencing the rule instance held by this time zone instance. Therefore, after this time zone is destructed, they are no longer available. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >On successful return, the argument initial points to non-nullptr <code><a class="el" href="classicu_1_1InitialTimeZoneRule.html" title="InitialTimeZoneRule represents a time zone rule representing a time zone effective from the beginning...">InitialTimeZoneRule</a></code> and the array trsrules is filled with 0 or multiple <code><a class="el" href="classicu_1_1TimeZoneRule.html" title="TimeZoneRule is a class representing a rule for time zone.">TimeZoneRule</a></code> instances up to the size specified by trscount. The results are referencing the rule instance held by this time zone instance. Therefore, after this time zone is destructed, they are no longer available. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">initial</td><td>Receives the initial timezone rule </td></tr>
     <tr><td class="paramname">trsrules</td><td>Receives the timezone transition rules </td></tr>
@@ -1105,7 +1105,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A time type option bit mask used by getOffsetFromLocal. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000195">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000193">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="basictz_8h_source.html#l00197">197</a> of file <a class="el" href="basictz_8h_source.html">basictz.h</a>.</p>
 
@@ -1132,7 +1132,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A time type option bit mask used by getOffsetFromLocal. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000194">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000192">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="basictz_8h_source.html#l00192">192</a> of file <a class="el" href="basictz_8h_source.html">basictz.h</a>.</p>
 

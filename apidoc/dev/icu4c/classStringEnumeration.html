@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: icu::StringEnumeration Class Reference</title>
+<title>ICU 73.1: icu::StringEnumeration Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -240,7 +240,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Clone this object, an instance of a subclass of <a class="el" href="classicu_1_1StringEnumeration.html" title="Base class for &#39;pure&#39; C++ implementations of uenum api.">StringEnumeration</a>. </p>
-<p >Clones can be used concurrently in multiple threads. If a subclass does not implement <a class="el" href="classicu_1_1StringEnumeration.html#ac9c81e6a83fce5250fa928ad934e2e66" title="Clone this object, an instance of a subclass of StringEnumeration.">clone()</a>, or if an error occurs, then NULL is returned. The caller must delete the clone.</p>
+<p >Clones can be used concurrently in multiple threads. If a subclass does not implement <a class="el" href="classicu_1_1StringEnumeration.html#ac9c81e6a83fce5250fa928ad934e2e66" title="Clone this object, an instance of a subclass of StringEnumeration.">clone()</a>, or if an error occurs, then nullptr is returned. The caller must delete the clone.</p>
 <dl class="section return"><dt>Returns</dt><dd>a clone of this object</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classicu_1_1UObject.html#aca1169c4978c52ce2b76eda104e9a214" title="ICU4C &quot;poor man&#39;s RTTI&quot;, returns a UClassID for the actual ICU class.">getDynamicClassID</a> </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000764">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
@@ -364,19 +364,19 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Returns the next element as a NUL-terminated char*. If there are no more elements, returns NULL. If the resultLength pointer is not NULL, the length of the string (not counting the terminating NUL) is returned at that address. If an error status is returned, the value at resultLength is undefined.</p>
+<p >Returns the next element as a NUL-terminated char*. If there are no more elements, returns nullptr. If the resultLength pointer is not nullptr, the length of the string (not counting the terminating NUL) is returned at that address. If an error status is returned, the value at resultLength is undefined.</p>
 <p >The returned pointer is owned by this iterator and must not be deleted by the caller. The pointer is valid until the next call to next, unext, snext, reset, or the enumerator's destructor.</p>
-<p >If the iterator is out of sync with its service, status is set to U_ENUM_OUT_OF_SYNC_ERROR and NULL is returned.</p>
-<p >If the native service string is a char16_t* string, it is converted to char* with the invariant converter. If the conversion fails (because a character cannot be converted) then status is set to U_INVARIANT_CONVERSION_ERROR and the return value is undefined (though not NULL).</p>
+<p >If the iterator is out of sync with its service, status is set to U_ENUM_OUT_OF_SYNC_ERROR and nullptr is returned.</p>
+<p >If the native service string is a char16_t* string, it is converted to char* with the invariant converter. If the conversion fails (because a character cannot be converted) then status is set to U_INVARIANT_CONVERSION_ERROR and the return value is undefined (though not nullptr).</p>
 <p >Starting with ICU 2.8, the default implementation calls <a class="el" href="classicu_1_1StringEnumeration.html#a11ed9a279cce36a54f5997f7e91efcc1">snext()</a> and handles the conversion. Either <a class="el" href="classicu_1_1StringEnumeration.html#a1060bbf97ec107ed3e3482ebe646c529">next()</a> or <a class="el" href="classicu_1_1StringEnumeration.html#a11ed9a279cce36a54f5997f7e91efcc1">snext()</a> must be implemented differently by a subclass.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">status</td><td>the error code. </td></tr>
-    <tr><td class="paramname">resultLength</td><td>a pointer to receive the length, can be NULL. </td></tr>
+    <tr><td class="paramname">resultLength</td><td>a pointer to receive the length, can be nullptr. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the string, or NULL.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the string, or nullptr.</dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000766">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
@@ -576,9 +576,9 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Returns the next element a UnicodeString*. If there are no more elements, returns NULL.</p>
+<p >Returns the next element a UnicodeString*. If there are no more elements, returns nullptr.</p>
 <p >The returned pointer is owned by this iterator and must not be deleted by the caller. The pointer is valid until the next call to next, unext, snext, reset, or the enumerator's destructor.</p>
-<p >If the iterator is out of sync with its service, status is set to U_ENUM_OUT_OF_SYNC_ERROR and NULL is returned.</p>
+<p >If the iterator is out of sync with its service, status is set to U_ENUM_OUT_OF_SYNC_ERROR and nullptr is returned.</p>
 <p >Starting with ICU 2.8, the default implementation calls <a class="el" href="classicu_1_1StringEnumeration.html#a1060bbf97ec107ed3e3482ebe646c529">next()</a> and handles the conversion. Either <a class="el" href="classicu_1_1StringEnumeration.html#a1060bbf97ec107ed3e3482ebe646c529">next()</a> or <a class="el" href="classicu_1_1StringEnumeration.html#a11ed9a279cce36a54f5997f7e91efcc1">snext()</a> must be implemented differently by a subclass.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -586,7 +586,7 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the string, or NULL.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the string, or nullptr.</dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000768">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>
@@ -624,18 +624,18 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Returns the next element as a NUL-terminated char16_t*. If there are no more elements, returns NULL. If the resultLength pointer is not NULL, the length of the string (not counting the terminating NUL) is returned at that address. If an error status is returned, the value at resultLength is undefined.</p>
+<p >Returns the next element as a NUL-terminated char16_t*. If there are no more elements, returns nullptr. If the resultLength pointer is not nullptr, the length of the string (not counting the terminating NUL) is returned at that address. If an error status is returned, the value at resultLength is undefined.</p>
 <p >The returned pointer is owned by this iterator and must not be deleted by the caller. The pointer is valid until the next call to next, unext, snext, reset, or the enumerator's destructor.</p>
-<p >If the iterator is out of sync with its service, status is set to U_ENUM_OUT_OF_SYNC_ERROR and NULL is returned.</p>
+<p >If the iterator is out of sync with its service, status is set to U_ENUM_OUT_OF_SYNC_ERROR and nullptr is returned.</p>
 <p >Starting with ICU 2.8, the default implementation calls <a class="el" href="classicu_1_1StringEnumeration.html#a11ed9a279cce36a54f5997f7e91efcc1">snext()</a> and handles the conversion.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">status</td><td>the error code. </td></tr>
-    <tr><td class="paramname">resultLength</td><td>a pointer to receive the length, can be NULL. </td></tr>
+    <tr><td class="paramname">resultLength</td><td>a pointer to receive the length, can be nullptr. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the string, or NULL.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the string, or nullptr.</dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000767">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 </div>

@@ -8,7 +8,7 @@ var searchData=
   ['edatefields_5',['EDateFields',['../classicu_1_1Calendar.html#a4d834504c309b2c84831390db2664520',1,'icu::Calendar']]],
   ['edaysofweek_6',['EDaysOfWeek',['../classicu_1_1Calendar.html#a3ca774e0e17548d6818ff549529346ab',1,'icu::Calendar']]],
   ['edisplaytype_7',['EDisplayType',['../classicu_1_1TimeZone.html#a07cc5464421c1ae84f55ada930cf03df',1,'icu::TimeZone']]],
-  ['edits_8',['Edits',['../classicu_1_1Edits.html#abf292b452dbf790260467055d1f6474d',1,'icu::Edits::Edits(Edits &amp;&amp;src) U_NOEXCEPT'],['../classicu_1_1Edits.html#a0e4831e132be3727d0a76f5e54713f19',1,'icu::Edits::Edits(const Edits &amp;other)'],['../classicu_1_1Edits.html#aad73a1e766d550fc5649cee129d9c4f5',1,'icu::Edits::Edits()'],['../classicu_1_1Edits.html',1,'icu::Edits']]],
+  ['edits_8',['Edits',['../classicu_1_1Edits.html#aa704c3cdba620e8b22de9909b6a2023f',1,'icu::Edits::Edits(Edits &amp;&amp;src) noexcept'],['../classicu_1_1Edits.html#a0e4831e132be3727d0a76f5e54713f19',1,'icu::Edits::Edits(const Edits &amp;other)'],['../classicu_1_1Edits.html#aad73a1e766d550fc5649cee129d9c4f5',1,'icu::Edits::Edits()'],['../classicu_1_1Edits.html',1,'icu::Edits']]],
   ['edits_2eh_9',['edits.h',['../edits_8h.html',1,'']]],
   ['eeras_10',['EEras',['../classicu_1_1GregorianCalendar.html#a30f60dc1d2caf1549a14662ded77ad0e',1,'icu::GregorianCalendar']]],
   ['efield_11',['EField',['../classicu_1_1DateFormat.html#ad13e430a9697228c96ca1f350b3d9317',1,'icu::DateFormat']]],

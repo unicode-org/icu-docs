@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: uset.h File Reference</title>
+<title>ICU 73.1: uset.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -113,6 +113,7 @@ Enumerations</h2></td></tr>
 <tr class="memitem:a16af7b253440dadd46a80a4b9fddba4d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="uset_8h.html#a16af7b253440dadd46a80a4b9fddba4da0273be77d90674cbb82a37f9edb504ff">USET_IGNORE_SPACE</a> = 1
 , <a class="el" href="uset_8h.html#a16af7b253440dadd46a80a4b9fddba4da740685a55f610ca84868b60aef83db7b">USET_CASE_INSENSITIVE</a> = 2
 , <a class="el" href="uset_8h.html#a16af7b253440dadd46a80a4b9fddba4da68133c690985f92d95996e4cf9abd80d">USET_ADD_CASE_MAPPINGS</a> = 4
+, <a class="el" href="uset_8h.html#a16af7b253440dadd46a80a4b9fddba4da8a393a738dc4fc7478797c4056effcc8">USET_SIMPLE_CASE_INSENSITIVE</a> = 6
  }</td></tr>
 <tr class="memdesc:a16af7b253440dadd46a80a4b9fddba4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bitmask values to be passed to <a class="el" href="uset_8h.html#a504872cd3036f8da9ec72ee1acd16cef" title="Creates a set from the given pattern.">uset_openPatternOptions()</a> or <a class="el" href="uset_8h.html#acdb38cfbb0a3b99dcff49aeff7c1e3a6" title="Modifies the set to represent the set specified by the given pattern.">uset_applyPattern()</a> taking an option parameter.  <a href="uset_8h.html#a16af7b253440dadd46a80a4b9fddba4d">More...</a><br /></td></tr>
 <tr class="separator:a16af7b253440dadd46a80a4b9fddba4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -408,24 +409,33 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Bitmask values to be passed to <a class="el" href="uset_8h.html#a504872cd3036f8da9ec72ee1acd16cef" title="Creates a set from the given pattern.">uset_openPatternOptions()</a> or <a class="el" href="uset_8h.html#acdb38cfbb0a3b99dcff49aeff7c1e3a6" title="Modifies the set to represent the set specified by the given pattern.">uset_applyPattern()</a> taking an option parameter. </p>
+<p >Use at most one of USET_CASE_INSENSITIVE, USET_ADD_CASE_MAPPINGS, USET_SIMPLE_CASE_INSENSITIVE. These case options are mutually exclusive.</p>
+<p >Undefined options bits are ignored, and reserved for future use.</p>
 <dl class="stable"><dt><b>Stable:</b></dt><dd>ICU 2.4 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da0273be77d90674cbb82a37f9edb504ff" name="a16af7b253440dadd46a80a4b9fddba4da0273be77d90674cbb82a37f9edb504ff"></a>USET_IGNORE_SPACE&#160;</td><td class="fielddoc"><p >Ignore white space within patterns unless quoted or escaped. </p>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable003074">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da740685a55f610ca84868b60aef83db7b" name="a16af7b253440dadd46a80a4b9fddba4da740685a55f610ca84868b60aef83db7b"></a>USET_CASE_INSENSITIVE&#160;</td><td class="fielddoc"><p >Enable case insensitive matching. </p>
-<p >E.g., "[ab]" with this flag will match 'a', 'A', 'b', and 'B'. "[^ab]" with this flag will match all except 'a', 'A', 'b', and 'B'. This performs a full closure over case mappings, e.g. U+017F for s.</p>
+<p >E.g., "[ab]" with this flag will match 'a', 'A', 'b', and 'B'. "[^ab]" with this flag will match all except 'a', 'A', 'b', and 'B'. This performs a full closure over case mappings, e.g. 'ſ' (U+017F long s) for 's'.</p>
 <p >The resulting set is a superset of the input for the code points but not for the strings. It performs a case mapping closure of the code points and adds full case folding strings for the code points, and reduces strings of the original set to their full case folding equivalents.</p>
 <p >This is designed for case-insensitive matches, for example in regular expressions. The full code point case closure allows checking of an input character directly against the closure set. Strings are matched by comparing the case-folded form from the closure set with an incremental case folding of the string in question.</p>
 <p >The closure set will also contain single code points if the original set contained case-equivalent strings (like U+00DF for "ss" or "Ss" etc.). This is not necessary (that is, redundant) for the above matching method but results in the same closure sets regardless of whether the original set contained the code point or a string.</p>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable003075">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 </td></tr>
-<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da68133c690985f92d95996e4cf9abd80d" name="a16af7b253440dadd46a80a4b9fddba4da68133c690985f92d95996e4cf9abd80d"></a>USET_ADD_CASE_MAPPINGS&#160;</td><td class="fielddoc"><p >Enable case insensitive matching. </p>
-<p >E.g., "[ab]" with this flag will match 'a', 'A', 'b', and 'B'. "[^ab]" with this flag will match all except 'a', 'A', 'b', and 'B'. This adds the lower-, title-, and uppercase mappings as well as the case folding of each existing element in the set. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003076">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da68133c690985f92d95996e4cf9abd80d" name="a16af7b253440dadd46a80a4b9fddba4da68133c690985f92d95996e4cf9abd80d"></a>USET_ADD_CASE_MAPPINGS&#160;</td><td class="fielddoc"><p >Adds all case mappings for each element in the set. </p>
+<p >This adds the full lower-, title-, and uppercase mappings as well as the full case folding of each existing element in the set.</p>
+<p >Unlike the “case insensitive” options, this does not perform a closure. For example, it does not add 'ſ' (U+017F long s) for 's', 'K' (U+212A Kelvin sign) for 'k', or replace set strings by their case-folded versions.</p>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003076">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da8a393a738dc4fc7478797c4056effcc8" name="a16af7b253440dadd46a80a4b9fddba4da8a393a738dc4fc7478797c4056effcc8"></a>USET_SIMPLE_CASE_INSENSITIVE&#160;</td><td class="fielddoc"><p >Enable case insensitive matching. </p>
+<p >Same as USET_CASE_INSENSITIVE but using only Simple_Case_Folding (scf) mappings, which map each code point to one code point, not full Case_Folding (cf) mappings, which map some code points to multiple code points.</p>
+<p >This is designed for case-insensitive matches, for example in certain regular expression implementations where only Simple_Case_Folding mappings are used, such as in ECMAScript (JavaScript) regular expressions.</p>
+<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000001">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 73 </dd></dl>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="uset_8h_source.html#l00058">58</a> of file <a class="el" href="uset_8h_source.html">uset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="uset_8h_source.html#l00064">64</a> of file <a class="el" href="uset_8h_source.html">uset.h</a>.</p>
 
 </div>
 </div>
@@ -446,7 +456,7 @@ Functions</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="uset_8h_source.html#l00217">217</a> of file <a class="el" href="uset_8h_source.html">uset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="uset_8h_source.html#l00242">242</a> of file <a class="el" href="uset_8h_source.html">uset.h</a>.</p>
 
 </div>
 </div>
@@ -504,7 +514,7 @@ Functions</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="uset_8h_source.html#l00159">159</a> of file <a class="el" href="uset_8h_source.html">uset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="uset_8h_source.html#l00184">184</a> of file <a class="el" href="uset_8h_source.html">uset.h</a>.</p>
 
 </div>
 </div>
@@ -824,7 +834,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">set</td><td>The set to which the pattern is to be applied. </td></tr>
     <tr><td class="paramname">pattern</td><td>A pointer to UChar string specifying what characters are in the set. The character at pattern[0] must be a '['. </td></tr>
     <tr><td class="paramname">patternLength</td><td>The length of the UChar string. -1 if NUL terminated. </td></tr>
-    <tr><td class="paramname">options</td><td>A bitmask for options to apply to the pattern. Valid options are USET_IGNORE_SPACE and USET_CASE_INSENSITIVE. </td></tr>
+    <tr><td class="paramname">options</td><td>A bitmask for options to apply to the pattern. Valid options are USET_IGNORE_SPACE and at most one of USET_CASE_INSENSITIVE, USET_ADD_CASE_MAPPINGS, USET_SIMPLE_CASE_INSENSITIVE. These case options are mutually exclusive. </td></tr>
     <tr><td class="paramname">status</td><td>Returns an error if the pattern cannot be parsed. </td></tr>
   </table>
   </dd>
@@ -1091,7 +1101,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Close this set over the given attribute. </p>
-<p >For the attribute USET_CASE, the result is to modify this set so that:</p>
+<p >For the attribute USET_CASE_INSENSITIVE, the result is to modify this set so that:</p>
 <ol type="1">
 <li>For each character or string 'a' in this set, all strings or characters 'b' such that foldCase(a) == foldCase(b) are added to this set.</li>
 <li>For each string 'e' in the resulting set, if e != foldCase(e), 'e' will be removed.</li>
@@ -1102,7 +1112,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">set</td><td>the set</td></tr>
-    <tr><td class="paramname">attributes</td><td>bitmask for attributes to close over. Currently only the USET_CASE bit is supported. Any undefined bits are ignored. </td></tr>
+    <tr><td class="paramname">attributes</td><td>bitmask for attributes to close over. Valid options: At most one of USET_CASE_INSENSITIVE, USET_ADD_CASE_MAPPINGS, USET_SIMPLE_CASE_INSENSITIVE. These case options are mutually exclusive. Unrelated options bits are ignored. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2245,7 +2255,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">pattern</td><td>a string specifying what characters are in the set </td></tr>
     <tr><td class="paramname">patternLength</td><td>the length of the pattern, or -1 if null terminated </td></tr>
-    <tr><td class="paramname">options</td><td>bitmask for options to apply to the pattern. Valid options are USET_IGNORE_SPACE and USET_CASE_INSENSITIVE. </td></tr>
+    <tr><td class="paramname">options</td><td>bitmask for options to apply to the pattern. Valid options are USET_IGNORE_SPACE and at most one of USET_CASE_INSENSITIVE, USET_ADD_CASE_MAPPINGS, USET_SIMPLE_CASE_INSENSITIVE. These case options are mutually exclusive. </td></tr>
     <tr><td class="paramname">ec</td><td>the error code </td></tr>
   </table>
   </dd>

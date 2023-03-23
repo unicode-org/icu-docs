@@ -24,5 +24,6 @@ var searchData=
   ['monthlength_21',['monthLength',['../classicu_1_1GregorianCalendar.html#a2ef070f2652de6a2cee03bd1c67d1886',1,'icu::GregorianCalendar::monthLength(int32_t month) const'],['../classicu_1_1GregorianCalendar.html#a5b8bb1d2adc874afaf13b9837b75aa0c',1,'icu::GregorianCalendar::monthLength(int32_t month, int32_t year) const']]],
   ['move_22',['move',['../classicu_1_1CharacterIterator.html#a37e9b91a0bd0e9dde2761b603560da9d',1,'icu::CharacterIterator::move()'],['../classicu_1_1UCharCharacterIterator.html#a125fbe05e41a75b19169c14fb81c047c',1,'icu::UCharCharacterIterator::move()']]],
   ['move32_23',['move32',['../classicu_1_1CharacterIterator.html#aac9a417f50cd4d741da7fac3429dad0d',1,'icu::CharacterIterator::move32()'],['../classicu_1_1UCharCharacterIterator.html#a6eab368600af357d14e0e995078176f0',1,'icu::UCharCharacterIterator::move32()']]],
-  ['moveindex32_24',['moveIndex32',['../classicu_1_1UnicodeString.html#a7ccbafda9a80e30486f049673cad5a25',1,'icu::UnicodeString']]]
+  ['moveindex32_24',['moveIndex32',['../classicu_1_1UnicodeString.html#a7ccbafda9a80e30486f049673cad5a25',1,'icu::UnicodeString']]],
+  ['multiplybypoweroften_25',['multiplyByPowerOfTen',['../classicu_1_1number_1_1SimpleNumber.html#acff08a0f0b9f5aa0c047835b4cc923aa',1,'icu::number::SimpleNumber']]]
 ];

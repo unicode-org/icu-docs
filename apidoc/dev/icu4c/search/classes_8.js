@@ -51,10 +51,12 @@ var searchData=
   ['localurelativedatetimeformatterpointer_48',['LocalURelativeDateTimeFormatterPointer',['../classLocalURelativeDateTimeFormatterPointer.html',1,'']]],
   ['localuresourcebundlepointer_49',['LocalUResourceBundlePointer',['../classLocalUResourceBundlePointer.html',1,'']]],
   ['localusetpointer_50',['LocalUSetPointer',['../classLocalUSetPointer.html',1,'']]],
-  ['localuspoofcheckerpointer_51',['LocalUSpoofCheckerPointer',['../classLocalUSpoofCheckerPointer.html',1,'']]],
-  ['localuspoofcheckresultpointer_52',['LocalUSpoofCheckResultPointer',['../classLocalUSpoofCheckResultPointer.html',1,'']]],
-  ['localustringprepprofilepointer_53',['LocalUStringPrepProfilePointer',['../classLocalUStringPrepProfilePointer.html',1,'']]],
-  ['localustringsearchpointer_54',['LocalUStringSearchPointer',['../classLocalUStringSearchPointer.html',1,'']]],
-  ['localutextpointer_55',['LocalUTextPointer',['../classLocalUTextPointer.html',1,'']]],
-  ['localutransliteratorpointer_56',['LocalUTransliteratorPointer',['../classLocalUTransliteratorPointer.html',1,'']]]
+  ['localusimplenumberformatterpointer_51',['LocalUSimpleNumberFormatterPointer',['../classLocalUSimpleNumberFormatterPointer.html',1,'']]],
+  ['localusimplenumberpointer_52',['LocalUSimpleNumberPointer',['../classLocalUSimpleNumberPointer.html',1,'']]],
+  ['localuspoofcheckerpointer_53',['LocalUSpoofCheckerPointer',['../classLocalUSpoofCheckerPointer.html',1,'']]],
+  ['localuspoofcheckresultpointer_54',['LocalUSpoofCheckResultPointer',['../classLocalUSpoofCheckResultPointer.html',1,'']]],
+  ['localustringprepprofilepointer_55',['LocalUStringPrepProfilePointer',['../classLocalUStringPrepProfilePointer.html',1,'']]],
+  ['localustringsearchpointer_56',['LocalUStringSearchPointer',['../classLocalUStringSearchPointer.html',1,'']]],
+  ['localutextpointer_57',['LocalUTextPointer',['../classLocalUTextPointer.html',1,'']]],
+  ['localutransliteratorpointer_58',['LocalUTransliteratorPointer',['../classLocalUTransliteratorPointer.html',1,'']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: ucharstrie.h Source File</title>
+<title>ICU 73.1: ucharstrie.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -105,13 +105,13 @@ $(function() {
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie.html">   53</a></span><span class="keyword">class </span><a class="code hl_define" href="utypes_8h.html#a559955ec3bc692657c5d8b1c6de8e334">U_COMMON_API</a> <a class="code hl_class" href="classicu_1_1UCharsTrie.html">UCharsTrie</a> : <span class="keyword">public</span> <a class="code hl_class" href="classicu_1_1UMemory.html">UMemory</a> {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie.html#a1015b8eaf4706395dc5223aa83a8cf28">   69</a></span>    <a class="code hl_function" href="classicu_1_1UCharsTrie.html#a1015b8eaf4706395dc5223aa83a8cf28">UCharsTrie</a>(<a class="code hl_class" href="classicu_1_1ConstChar16Ptr.html">ConstChar16Ptr</a> trieUChars)</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            : ownedArray_(<a class="code hl_define" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), uchars_(trieUChars),</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            : ownedArray_(nullptr), uchars_(trieUChars),</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>              pos_(uchars_), remainingMatchLength_(-1) {}</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie.html#af18ce47c0f52d6b0fc88a254073315a6">   77</a></span>    <a class="code hl_function" href="classicu_1_1UCharsTrie.html#af18ce47c0f52d6b0fc88a254073315a6">~UCharsTrie</a>();</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie.html#a108d7560b38bb0c161aaa94cd3f9aaf3">   85</a></span>    <a class="code hl_function" href="classicu_1_1UCharsTrie.html#a108d7560b38bb0c161aaa94cd3f9aaf3">UCharsTrie</a>(<span class="keyword">const</span> <a class="code hl_class" href="classicu_1_1UCharsTrie.html">UCharsTrie</a> &amp;other)</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            : ownedArray_(<a class="code hl_define" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), uchars_(other.uchars_),</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            : ownedArray_(nullptr), uchars_(other.uchars_),</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>              pos_(other.pos_), remainingMatchLength_(other.remainingMatchLength_) {}</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie.html#a32b4a867cc09cf8f263507b26a1198ed">   94</a></span>    <a class="code hl_class" href="classicu_1_1UCharsTrie.html">UCharsTrie</a> &amp;<a class="code hl_function" href="classicu_1_1UCharsTrie.html#a32b4a867cc09cf8f263507b26a1198ed">reset</a>() {</div>
@@ -133,7 +133,7 @@ $(function() {
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie_1_1State.html">  138</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classicu_1_1UCharsTrie_1_1State.html">State</a> : <span class="keyword">public</span> <a class="code hl_class" href="classicu_1_1UMemory.html">UMemory</a> {</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie_1_1State.html#ae46fc1a4c94ea978cafdf8080cd1dc20">  144</a></span>        <a class="code hl_function" href="classicu_1_1UCharsTrie_1_1State.html#ae46fc1a4c94ea978cafdf8080cd1dc20">State</a>() { uchars=<a class="code hl_define" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>; }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie_1_1State.html#ae46fc1a4c94ea978cafdf8080cd1dc20">  144</a></span>        <a class="code hl_function" href="classicu_1_1UCharsTrie_1_1State.html#ae46fc1a4c94ea978cafdf8080cd1dc20">State</a>() { uchars=<span class="keyword">nullptr</span>; }</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classicu_1_1UCharsTrie.html">UCharsTrie</a>;</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
@@ -150,7 +150,7 @@ $(function() {
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie.html#a4755b7c4564f4e00de708733af367134">  177</a></span>    <a class="code hl_class" href="classicu_1_1UCharsTrie.html">UCharsTrie</a> &amp;<a class="code hl_function" href="classicu_1_1UCharsTrie.html#a4755b7c4564f4e00de708733af367134">resetToState</a>(<span class="keyword">const</span> <a class="code hl_class" href="classicu_1_1UCharsTrie_1_1State.html">State</a> &amp;state) {</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        <span class="keywordflow">if</span>(uchars_==state.uchars &amp;&amp; uchars_!=<a class="code hl_define" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>) {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        <span class="keywordflow">if</span>(uchars_==state.uchars &amp;&amp; uchars_!=<span class="keyword">nullptr</span>) {</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            pos_=state.pos;</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>            remainingMatchLength_=state.remainingMatchLength;</div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        }</div>
@@ -183,7 +183,7 @@ $(function() {
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie.html#a18d18bc61acbef5bc3e3ba52c65cb8ea">  275</a></span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> <a class="code hl_function" href="classicu_1_1UCharsTrie.html#a18d18bc61acbef5bc3e3ba52c65cb8ea">hasUniqueValue</a>(int32_t &amp;uniqueValue)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        <span class="keyword">const</span> <span class="keywordtype">char16_t</span> *pos=pos_;</div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        <span class="comment">// Skip the rest of a pending linear-match node.</span></div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        <span class="keywordflow">return</span> pos!=<a class="code hl_define" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> &amp;&amp; findUniqueValue(pos+remainingMatchLength_+1, <span class="keyword">false</span>, uniqueValue);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        <span class="keywordflow">return</span> pos!=<span class="keyword">nullptr</span> &amp;&amp; findUniqueValue(pos+remainingMatchLength_+1, <span class="keyword">false</span>, uniqueValue);</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    }</div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno"><a class="line" href="classicu_1_1UCharsTrie.html#afec229dd9ab38bf25b7a1048d4b2bffb">  288</a></span>    int32_t <a class="code hl_function" href="classicu_1_1UCharsTrie.html#afec229dd9ab38bf25b7a1048d4b2bffb">getNextUChars</a>(<a class="code hl_class" href="classicu_1_1Appendable.html">Appendable</a> &amp;out) <span class="keyword">const</span>;</div>
@@ -207,7 +207,7 @@ $(function() {
 <div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
 <div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        <a class="code hl_typedef" href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a> truncateAndStop() {</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>            pos_=<a class="code hl_define" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>            pos_=<span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>            value_=-1;  <span class="comment">// no real value for str</span></div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>        }</div>
@@ -246,7 +246,7 @@ $(function() {
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    UCharsTrie &amp;operator=(<span class="keyword">const</span> UCharsTrie &amp;other) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
 <div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> stop() {</div>
-<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>        pos_=<a class="code hl_define" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>        pos_=<span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    }</div>
 <div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
 <div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    <span class="comment">// Reads a compact 32-bit integer.</span></div>
@@ -444,7 +444,7 @@ $(function() {
 <div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span> </div>
 <div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>    <span class="comment">// Iterator variables.</span></div>
 <div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span> </div>
-<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>    <span class="comment">// Pointer to next trie unit to read. NULL if no more matches.</span></div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>    <span class="comment">// Pointer to next trie unit to read. nullptr if no more matches.</span></div>
 <div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span>    <span class="keyword">const</span> <span class="keywordtype">char16_t</span> *pos_;</div>
 <div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>    <span class="comment">// Remaining length of a linear-match node, minus 1. Negative if not in such a node.</span></div>
 <div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>    int32_t remainingMatchLength_;</div>
@@ -488,16 +488,15 @@ $(function() {
 <div class="ttc" id="aclassicu_1_1UCharsTrie_html_afec229dd9ab38bf25b7a1048d4b2bffb"><div class="ttname"><a href="classicu_1_1UCharsTrie.html#afec229dd9ab38bf25b7a1048d4b2bffb">icu::UCharsTrie::getNextUChars</a></div><div class="ttdeci">int32_t getNextUChars(Appendable &amp;out) const</div><div class="ttdoc">Finds each char16_t which continues the string from the current state.</div></div>
 <div class="ttc" id="aclassicu_1_1UMemory_html"><div class="ttname"><a href="classicu_1_1UMemory.html">icu::UMemory</a></div><div class="ttdoc">UMemory is the common ICU base class.</div><div class="ttdef"><b>Definition:</b> <a href="uobject_8h_source.html#l00115">uobject.h:115</a></div></div>
 <div class="ttc" id="aclassicu_1_1UnicodeString_html"><div class="ttname"><a href="classicu_1_1UnicodeString.html">icu::UnicodeString</a></div><div class="ttdoc">UnicodeString is a string class that stores Unicode characters directly and provides similar function...</div><div class="ttdef"><b>Definition:</b> <a href="unistr_8h_source.html#l00295">unistr.h:296</a></div></div>
-<div class="ttc" id="aumachine_8h_html_a09fff5c3b5a5b015324dc3ec3cf92809"><div class="ttname"><a href="umachine_8h.html#a09fff5c3b5a5b015324dc3ec3cf92809">UChar32</a></div><div class="ttdeci">int32_t UChar32</div><div class="ttdoc">Define UChar32 as a type for single Unicode code points.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00461">umachine.h:461</a></div></div>
-<div class="ttc" id="aumachine_8h_html_a26a7bac63d90ef61175acb9f6fc4f2ca"><div class="ttname"><a href="umachine_8h.html#a26a7bac63d90ef61175acb9f6fc4f2ca">UINT64_C</a></div><div class="ttdeci">#define UINT64_C(c)</div><div class="ttdoc">Provides a platform independent way to specify an unsigned 64-bit integer constant.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00241">umachine.h:241</a></div></div>
-<div class="ttc" id="aumachine_8h_html_a349ef00011f20ccd1d3b424445681aa5"><div class="ttname"><a href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a></div><div class="ttdeci">int8_t UBool</div><div class="ttdoc">The ICU boolean type, a signed-byte integer.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00269">umachine.h:269</a></div></div>
+<div class="ttc" id="aumachine_8h_html_a09fff5c3b5a5b015324dc3ec3cf92809"><div class="ttname"><a href="umachine_8h.html#a09fff5c3b5a5b015324dc3ec3cf92809">UChar32</a></div><div class="ttdeci">int32_t UChar32</div><div class="ttdoc">Define UChar32 as a type for single Unicode code points.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00435">umachine.h:435</a></div></div>
+<div class="ttc" id="aumachine_8h_html_a26a7bac63d90ef61175acb9f6fc4f2ca"><div class="ttname"><a href="umachine_8h.html#a26a7bac63d90ef61175acb9f6fc4f2ca">UINT64_C</a></div><div class="ttdeci">#define UINT64_C(c)</div><div class="ttdoc">Provides a platform independent way to specify an unsigned 64-bit integer constant.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00219">umachine.h:219</a></div></div>
+<div class="ttc" id="aumachine_8h_html_a349ef00011f20ccd1d3b424445681aa5"><div class="ttname"><a href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a></div><div class="ttdeci">int8_t UBool</div><div class="ttdoc">The ICU boolean type, a signed-byte integer.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00247">umachine.h:247</a></div></div>
 <div class="ttc" id="aunistr_8h_html"><div class="ttname"><a href="unistr_8h.html">unistr.h</a></div><div class="ttdoc">C++ API: Unicode String.</div></div>
 <div class="ttc" id="auobject_8h_html"><div class="ttname"><a href="uobject_8h.html">uobject.h</a></div><div class="ttdoc">C++ API: Common ICU base class UObject.</div></div>
 <div class="ttc" id="austringtrie_8h_html"><div class="ttname"><a href="ustringtrie_8h.html">ustringtrie.h</a></div><div class="ttdoc">C API: Helper definitions for dictionary trie APIs.</div></div>
 <div class="ttc" id="austringtrie_8h_html_a760046451d48a1551ba71162a31365bd"><div class="ttname"><a href="ustringtrie_8h.html#a760046451d48a1551ba71162a31365bd">UStringTrieResult</a></div><div class="ttdeci">UStringTrieResult</div><div class="ttdoc">Return values for BytesTrie::next(), UCharsTrie::next() and similar methods.</div><div class="ttdef"><b>Definition:</b> <a href="ustringtrie_8h_source.html#l00035">ustringtrie.h:35</a></div></div>
 <div class="ttc" id="austringtrie_8h_html_a760046451d48a1551ba71162a31365bda62f2fef78e07bab5f68fa803b581504f"><div class="ttname"><a href="ustringtrie_8h.html#a760046451d48a1551ba71162a31365bda62f2fef78e07bab5f68fa803b581504f">USTRINGTRIE_INTERMEDIATE_VALUE</a></div><div class="ttdeci">@ USTRINGTRIE_INTERMEDIATE_VALUE</div><div class="ttdoc">The input unit(s) continued a matching string and there is a value for the string so far.</div><div class="ttdef"><b>Definition:</b> <a href="ustringtrie_8h_source.html#l00067">ustringtrie.h:66</a></div></div>
 <div class="ttc" id="autypes_8h_html"><div class="ttname"><a href="utypes_8h.html">utypes.h</a></div><div class="ttdoc">Basic definitions for ICU, for both C and C++ APIs.</div></div>
-<div class="ttc" id="autypes_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Define NULL if necessary, to nullptr for C++ and to ((void *)0) for C.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00188">utypes.h:188</a></div></div>
 <div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00415">utypes.h:415</a></div></div>
 <div class="ttc" id="autypes_8h_html_a559955ec3bc692657c5d8b1c6de8e334"><div class="ttname"><a href="utypes_8h.html#a559955ec3bc692657c5d8b1c6de8e334">U_COMMON_API</a></div><div class="ttdeci">#define U_COMMON_API</div><div class="ttdoc">Set to export library symbols from inside the common library, and to import them from outside.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00300">utypes.h:300</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

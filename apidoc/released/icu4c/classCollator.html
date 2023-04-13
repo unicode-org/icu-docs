@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: icu::Collator Class Reference</title>
+<title>ICU 73.1: icu::Collator Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -1231,7 +1231,7 @@ ResourceLoader </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000255">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000256">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="coll_8h_source.html#l01188">1188</a> of file <a class="el" href="coll_8h_source.html">coll.h</a>.</p>
 
@@ -1260,7 +1260,7 @@ ResourceLoader </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000254">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000255">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="coll_8h_source.html#l01184">1184</a> of file <a class="el" href="coll_8h_source.html">coll.h</a>.</p>
 
@@ -1785,7 +1785,7 @@ ResourceLoader </dd></dl>
   <table class="params">
     <tr><td class="paramname">reorderCode</td><td>The reorder code to determine equivalence for. </td></tr>
     <tr><td class="paramname">dest</td><td>The array to fill with the script equivalence reordering codes. </td></tr>
-    <tr><td class="paramname">destCapacity</td><td>The length of dest. If it is 0, then dest may be NULL and the function will only return the length of the result without writing any codes (pre-flighting). </td></tr>
+    <tr><td class="paramname">destCapacity</td><td>The length of dest. If it is 0, then dest may be nullptr and the function will only return the length of the result without writing any codes (pre-flighting). </td></tr>
     <tr><td class="paramname">status</td><td>A reference to an error code value, which must not indicate a failure before the function call. </td></tr>
   </table>
   </dd>
@@ -1943,7 +1943,7 @@ ResourceLoader </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a string enumeration over collation keyword values, or NULL upon error. The caller is responsible for deleting the result. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string enumeration over collation keyword values, or nullptr upon error. The caller is responsible for deleting the result. </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable003674">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
@@ -2134,7 +2134,7 @@ ResourceLoader </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dest</td><td>The array to fill with the script ordering. </td></tr>
-    <tr><td class="paramname">destCapacity</td><td>The length of dest. If it is 0, then dest may be NULL and the function will only return the length of the result without writing any codes (pre-flighting). </td></tr>
+    <tr><td class="paramname">destCapacity</td><td>The length of dest. If it is 0, then dest may be nullptr and the function will only return the length of the result without writing any codes (pre-flighting). </td></tr>
     <tr><td class="paramname">status</td><td>A reference to an error code value, which must not indicate a failure before the function call. </td></tr>
   </table>
   </dd>
@@ -2208,7 +2208,7 @@ ResourceLoader </dd></dl>
   <table class="params">
     <tr><td class="paramname">source</td><td>string to be processed. </td></tr>
     <tr><td class="paramname">sourceLength</td><td>length of string to be processed. If -1, the string is 0 terminated and length will be decided by the function. </td></tr>
-    <tr><td class="paramname">result</td><td>buffer to store result in. If NULL, number of bytes needed will be returned. </td></tr>
+    <tr><td class="paramname">result</td><td>buffer to store result in. If nullptr, number of bytes needed will be returned. </td></tr>
     <tr><td class="paramname">resultLength</td><td>length of the result buffer. If if not enough the buffer will be filled to capacity. </td></tr>
   </table>
   </dd>
@@ -2266,7 +2266,7 @@ ResourceLoader </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">source</td><td>string to be processed. </td></tr>
-    <tr><td class="paramname">result</td><td>buffer to store result in. If NULL, number of bytes needed will be returned. </td></tr>
+    <tr><td class="paramname">result</td><td>buffer to store result in. If nullptr, number of bytes needed will be returned. </td></tr>
     <tr><td class="paramname">resultLength</td><td>length of the result buffer. If if not enough the buffer will be filled to capacity. </td></tr>
   </table>
   </dd>
@@ -2588,7 +2588,7 @@ ResourceLoader </dd></dl>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="ucol_8h.html#a85ed590f640f6339d5c9447177e93864" title="Compare two strings in UTF-8.">ucol_strcollUTF8()</a>. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000252">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000253">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classicu_1_1RuleBasedCollator.html#a09e4c7e9f2e99a27833df56853e74275">icu::RuleBasedCollator</a>.</p>
 
@@ -2645,7 +2645,7 @@ ResourceLoader </dd></dl>
 <p >This is internal, and intended to be used with delegate converters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">locale</td><td>a locale that will appear as a collators locale in the resulting short string definition. If NULL, the locale will be harvested from the collator. </td></tr>
+    <tr><td class="paramname">locale</td><td>a locale that will appear as a collators locale in the resulting short string definition. If nullptr, the locale will be harvested from the collator. </td></tr>
     <tr><td class="paramname">buffer</td><td>space to hold the resulting string </td></tr>
     <tr><td class="paramname">capacity</td><td>capacity of the buffer </td></tr>
     <tr><td class="paramname">status</td><td>for returning errors. All the preflighting errors are featured </td></tr>
@@ -2658,7 +2658,7 @@ ResourceLoader </dd></dl>
 <a class="el" href="ucol_8h.html#a4527a9eefdd7e071fff9d87b2e418cfa" title="Verifies and normalizes short definition string.">ucol_normalizeShortDefinitionString</a> </dd>
 <dd>
 <a class="el" href="ucol_8h.html#a762daeafd0df7cc65fd120a1e802cbbe" title="Get the short definition string for a collator.">ucol_getShortDefinitionString</a> </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000251">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000252">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classicu_1_1RuleBasedCollator.html#aa2069d0a87f3c972ea2661989e7137f3">icu::RuleBasedCollator</a>.</p>
 
@@ -2717,7 +2717,7 @@ ResourceLoader </dd></dl>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="ucol_8h.html#a9335659ec3bb470905b4b87059998743" title="Gets the next count bytes of a sort key.">ucol_nextSortKeyPart()</a>. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000253">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000254">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classicu_1_1RuleBasedCollator.html#a927620c85fcbdc2879e23264e499c05a">icu::RuleBasedCollator</a>.</p>
 
@@ -3038,7 +3038,7 @@ const MyCollator &amp;o = (const MyCollator&amp;)other;
   </table>
   </dd>
 </dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000250">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000251">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classicu_1_1RuleBasedCollator.html#a2effd2b9fcd4555ca87657e3fa093ace">icu::RuleBasedCollator</a>.</p>
 
@@ -3138,7 +3138,7 @@ const MyCollator &amp;o = (const MyCollator&amp;)other;
 <p>Sets the ordering of scripts for this collator. </p>
 <p >The reordering codes are a combination of script codes and reorder codes. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">reorderCodes</td><td>An array of script codes in the new order. This can be NULL if the length is also set to 0. An empty array will clear any reordering codes on the collator. </td></tr>
+    <tr><td class="paramname">reorderCodes</td><td>An array of script codes in the new order. This can be nullptr if the length is also set to 0. An empty array will clear any reordering codes on the collator. </td></tr>
     <tr><td class="paramname">reorderCodesLength</td><td>The length of reorderCodes. </td></tr>
     <tr><td class="paramname">status</td><td>error code </td></tr>
   </table>
@@ -3384,7 +3384,7 @@ const MyCollator &amp;o = (const MyCollator&amp;)other;
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000256">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000257">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="coll_8h_source.html#l01192">1192</a> of file <a class="el" href="coll_8h_source.html">coll.h</a>.</p>
 
@@ -3412,7 +3412,7 @@ const MyCollator &amp;o = (const MyCollator&amp;)other;
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000257">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000258">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="coll_8h_source.html#l01196">1196</a> of file <a class="el" href="coll_8h_source.html">coll.h</a>.</p>
 

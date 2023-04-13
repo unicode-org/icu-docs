@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: icu::BreakIterator Class Reference</title>
+<title>ICU 73.1: icu::BreakIterator Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -505,7 +505,7 @@ Friends</h2></td></tr>
 <p >Use <a class="el" href="classicu_1_1BreakIterator.html#a3217be81995a3be45093453d64268233" title="Return a polymorphic copy of this object.">clone()</a> instead.</p>
 <p >Thread safe client-buffer-based cloning operation Do NOT call delete on a safeclone, since 'new' is not used to create it. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stackBuffer</td><td>user allocated space for the new clone. If NULL new memory will be allocated. If buffer is not large enough, new memory will be allocated. </td></tr>
+    <tr><td class="paramname">stackBuffer</td><td>user allocated space for the new clone. If nullptr new memory will be allocated. If buffer is not large enough, new memory will be allocated. </td></tr>
     <tr><td class="paramname">BufferSize</td><td>reference to size of allocated space. If BufferSize == 0, a sufficient size for use in cloning will be returned ('pre-flighting') If BufferSize is not enough for a stack-based safe clone, new memory will be allocated. </td></tr>
     <tr><td class="paramname">status</td><td>to indicate whether the operation went on smoothly or there were errors An informational status value, U_SAFECLONE_ALLOCATED_ERROR, is used if any allocations were necessary. </td></tr>
   </table>
@@ -1291,7 +1291,7 @@ Friends</h2></td></tr>
 <p >The returned <a class="el" href="structUText.html" title="UText struct.">UText</a> is a shallow clone of the <a class="el" href="structUText.html" title="UText struct.">UText</a> used internally by the break iterator implementation. It can safely be used to access the text without impacting any break iterator operations, but the underlying text itself must not be altered.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fillIn</td><td>A <a class="el" href="structUText.html" title="UText struct.">UText</a> to be filled in. If NULL, a new <a class="el" href="structUText.html" title="UText struct.">UText</a> will be allocated to hold the result. </td></tr>
+    <tr><td class="paramname">fillIn</td><td>A <a class="el" href="structUText.html" title="UText struct.">UText</a> to be filled in. If nullptr, a new <a class="el" href="structUText.html" title="UText struct.">UText</a> will be allocated to hold the result. </td></tr>
     <tr><td class="paramname">status</td><td>receives any error codes. </td></tr>
   </table>
   </dd>
@@ -1570,6 +1570,8 @@ Friends</h2></td></tr>
 <p >Return true if this <a class="el" href="classicu_1_1BreakIterator.html" title="The BreakIterator class implements methods for finding the location of boundaries in text.">BreakIterator</a> is at the same position in the same text, and is the same class and type (word, line, etc.) of <a class="el" href="classicu_1_1BreakIterator.html" title="The BreakIterator class implements methods for finding the location of boundaries in text.">BreakIterator</a>, as the argument. Text is considered the same if it contains the same characters, it need not be the same object, and styles are not considered. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000017">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p>Implemented in <a class="el" href="classicu_1_1RuleBasedBreakIterator.html#a266522728258632298ee1bb97922a439">icu::RuleBasedBreakIterator</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="rbbi_8h_source.html#l00307">icu::RuleBasedBreakIterator::operator!=()</a>.</p>
 
 </div>
 </div>

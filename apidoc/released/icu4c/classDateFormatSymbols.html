@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: icu::DateFormatSymbols Class Reference</title>
+<title>ICU 73.1: icu::DateFormatSymbols Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -325,7 +325,7 @@ Friends</h2></td></tr>
 <p >If clients decide to create a date-time formatter with a particular format pattern and locale, they can do so with new SimpleDateFormat(aPattern,
 new DateFormatSymbols(aLocale)). This will load the appropriate date-time formatting data from the locale. </p>
 <p ><a class="el" href="classicu_1_1DateFormatSymbols.html" title="DateFormatSymbols is a public class for encapsulating localizable date-time formatting data – includi...">DateFormatSymbols</a> objects are clonable. When clients obtain a <a class="el" href="classicu_1_1DateFormatSymbols.html" title="DateFormatSymbols is a public class for encapsulating localizable date-time formatting data – includi...">DateFormatSymbols</a> object, they can feel free to modify the date-time formatting data as necessary. For instance, clients can replace the localized date-time format pattern characters with the ones that they feel easy to remember. Or they can change the representative cities originally picked by default to using their favorite ones. </p>
-<p ><a class="el" href="classicu_1_1DateFormatSymbols.html" title="DateFormatSymbols is a public class for encapsulating localizable date-time formatting data – includi...">DateFormatSymbols</a> are not expected to be subclassed. Data for a calendar is loaded out of resource bundles. The 'type' parameter indicates the type of calendar, for example, "gregorian" or "japanese". If the type is not gregorian (or NULL, or an empty string) then the type is appended to the resource name, for example, 'Eras_japanese' instead of 'Eras'. If the resource 'Eras_japanese' did not exist (even in root), then this class will fall back to just 'Eras', that is, Gregorian data. Therefore, the calendar implementor MUST ensure that the root locale at least contains any resources that are to be particularized for the calendar type. </p>
+<p ><a class="el" href="classicu_1_1DateFormatSymbols.html" title="DateFormatSymbols is a public class for encapsulating localizable date-time formatting data – includi...">DateFormatSymbols</a> are not expected to be subclassed. Data for a calendar is loaded out of resource bundles. The 'type' parameter indicates the type of calendar, for example, "gregorian" or "japanese". If the type is not gregorian (or nullptr, or an empty string) then the type is appended to the resource name, for example, 'Eras_japanese' instead of 'Eras'. If the resource 'Eras_japanese' did not exist (even in root), then this class will fall back to just 'Eras', that is, Gregorian data. Therefore, the calendar implementor MUST ensure that the root locale at least contains any resources that are to be particularized for the calendar type. </p>
 
 <p class="definition">Definition at line <a class="el" href="dtfmtsym_8h_source.html#l00084">84</a> of file <a class="el" href="dtfmtsym_8h_source.html">dtfmtsym.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
@@ -393,7 +393,7 @@ new DateFormatSymbols(aLocale)). This will load the appropriate date-time format
 </div><div class="memdoc">
 
 <p>Constants for capitalization context usage types. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000284">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000286">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="dtfmtsym_8h_source.html#l00605">605</a> of file <a class="el" href="dtfmtsym_8h_source.html">dtfmtsym.h</a>.</p>
 
@@ -412,7 +412,7 @@ new DateFormatSymbols(aLocale)). This will load the appropriate date-time format
 </div><div class="memdoc">
 
 <p>Somewhat temporary constants for leap month pattern types, adequate for supporting just leap month patterns as needed for Chinese lunar calendar. </p>
-<p >Eventually we will add full support for different month pattern types (needed for other calendars such as Hindu) at which point this approach will be replaced by a more complete approach. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000282">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p >Eventually we will add full support for different month pattern types (needed for other calendars such as Hindu) at which point this approach will be replaced by a more complete approach. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000284">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="dtfmtsym_8h_source.html#l00513">513</a> of file <a class="el" href="dtfmtsym_8h_source.html">dtfmtsym.h</a>.</p>
 
@@ -515,12 +515,12 @@ new DateFormatSymbols(aLocale)). This will load the appropriate date-time format
 <p >NOTE: This constructor will never fail; if it cannot get resource data for the default locale, it will return a last-resort object based on hard-coded strings.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>Type of calendar (as returned by <a class="el" href="classicu_1_1Calendar.html#a78f40e9e43157796b9b7b32456c98daf" title="Returns the calendar type name string for this Calendar object.">Calendar::getType</a>). Will be used to access the correct set of strings. (NULL or empty string defaults to "gregorian".) </td></tr>
+    <tr><td class="paramname">type</td><td>Type of calendar (as returned by <a class="el" href="classicu_1_1Calendar.html#a78f40e9e43157796b9b7b32456c98daf" title="Returns the calendar type name string for this Calendar object.">Calendar::getType</a>). Will be used to access the correct set of strings. (nullptr or empty string defaults to "gregorian".) </td></tr>
     <tr><td class="paramname">status</td><td>Status code. Failure results if the resources for the default cannot be found or cannot be loaded </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000276">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000278">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -560,12 +560,12 @@ new DateFormatSymbols(aLocale)). This will load the appropriate date-time format
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">locale</td><td><a class="el" href="classicu_1_1Locale.html" title="A Locale object represents a specific geographical, political, or cultural region.">Locale</a> to load format data from. </td></tr>
-    <tr><td class="paramname">type</td><td>Type of calendar (as returned by <a class="el" href="classicu_1_1Calendar.html#a78f40e9e43157796b9b7b32456c98daf" title="Returns the calendar type name string for this Calendar object.">Calendar::getType</a>). Will be used to access the correct set of strings. (NULL or empty string defaults to "gregorian".) </td></tr>
+    <tr><td class="paramname">type</td><td>Type of calendar (as returned by <a class="el" href="classicu_1_1Calendar.html#a78f40e9e43157796b9b7b32456c98daf" title="Returns the calendar type name string for this Calendar object.">Calendar::getType</a>). Will be used to access the correct set of strings. (nullptr or empty string defaults to "gregorian".) </td></tr>
     <tr><td class="paramname">status</td><td>Status code. Failure results if the resources for the locale cannot be found or cannot be loaded </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000277">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000279">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -662,7 +662,7 @@ new DateFormatSymbols(aLocale)). This will load the appropriate date-time format
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the new <a class="el" href="classicu_1_1DateFormatSymbols.html" title="DateFormatSymbols is a public class for encapsulating localizable date-time formatting data – includi...">DateFormatSymbols</a> which the caller owns. </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000285">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. For ICU use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000287">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. For ICU use only. </dd></dl>
 
 </div>
 </div>
@@ -799,14 +799,14 @@ new DateFormatSymbols(aLocale)). This will load the appropriate date-time format
 </div><div class="memdoc">
 
 <p>Somewhat temporary function for getting complete set of leap month patterns for all contexts &amp; widths, indexed by EMonthPatternType values. </p>
-<p >Returns NULL if calendar does not have leap month patterns. Note, there is currently no setter for this. Eventually we will add full support for different month pattern types (needed for other calendars such as Hindu) at which point this approach will be replaced by a more complete approach. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Returns nullptr if calendar does not have leap month patterns. Note, there is currently no setter for this. Eventually we will add full support for different month pattern types (needed for other calendars such as Hindu) at which point this approach will be replaced by a more complete approach. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">count</td><td>Filled in with length of the array (may be 0). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The leap month patterns (<a class="el" href="classicu_1_1DateFormatSymbols.html" title="DateFormatSymbols is a public class for encapsulating localizable date-time formatting data – includi...">DateFormatSymbols</a> retains ownership). May be NULL if there are no leap month patterns for this calendar. </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000283">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The leap month patterns (<a class="el" href="classicu_1_1DateFormatSymbols.html" title="DateFormatSymbols is a public class for encapsulating localizable date-time formatting data – includi...">DateFormatSymbols</a> retains ownership). May be nullptr if there are no leap month patterns for this calendar. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000285">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -1158,7 +1158,7 @@ new DateFormatSymbols(aLocale)). This will load the appropriate date-time format
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to 'result'. </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000280">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000282">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -1879,7 +1879,7 @@ new DateFormatSymbols(aLocale)). This will load the appropriate date-time format
   </table>
   </dd>
 </dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000281">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000283">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -2196,7 +2196,7 @@ new DateFormatSymbols(aLocale)). This will load the appropriate date-time format
 </div><div class="memdoc">
 
 <p>This alternate time separator is always recognized when parsing. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000279">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000281">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="dtfmtsym_8h_source.html#l00436">436</a> of file <a class="el" href="dtfmtsym_8h_source.html">dtfmtsym.h</a>.</p>
 
@@ -2223,7 +2223,7 @@ new DateFormatSymbols(aLocale)). This will load the appropriate date-time format
 </div><div class="memdoc">
 
 <p>This default time separator is used for formatting when the locale doesn't specify any time separator, and always recognized when parsing. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000278">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000280">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="dtfmtsym_8h_source.html#l00430">430</a> of file <a class="el" href="dtfmtsym_8h_source.html">dtfmtsym.h</a>.</p>
 

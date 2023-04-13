@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: ucnv.h File Reference</title>
+<title>ICU 73.1: ucnv.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -1465,18 +1465,18 @@ Functions</h2></td></tr>
 <div class="line">  <span class="keywordtype">char</span> input[] = { <span class="stringliteral">&#39;\xEF&#39;</span>,<span class="stringliteral">&#39;\xBB&#39;</span>, <span class="stringliteral">&#39;\xBF&#39;</span>,<span class="stringliteral">&#39;\x41&#39;</span>,<span class="stringliteral">&#39;\x42&#39;</span>,<span class="stringliteral">&#39;\x43&#39;</span> };</div>
 <div class="line">  int32_t signatureLength = 0;</div>
 <div class="line">  <span class="keyword">const</span> <span class="keywordtype">char</span> *encoding = <a class="code hl_function" href="ucnv_8h.html#a7867cee6468426b9c385a938ca23edb6">ucnv_detectUnicodeSignature</a>(input,<span class="keyword">sizeof</span>(input),&amp;signatureLength,&amp;err);</div>
-<div class="line">  <a class="code hl_typedef" href="ucnv__err_8h.html#a0c2dcfbf71ad577f5285869e1ceb26b1">UConverter</a> *conv = <a class="code hl_define" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
-<div class="line">  <a class="code hl_typedef" href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a> output[100];</div>
-<div class="line">  <a class="code hl_typedef" href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a> *target = output, *out;</div>
+<div class="line">  <a class="code hl_typedef" href="ucnv__err_8h.html#a0c2dcfbf71ad577f5285869e1ceb26b1">UConverter</a> *conv = <span class="keyword">nullptr</span>;</div>
+<div class="line">  <span class="keywordtype">char16_t</span> output[100];</div>
+<div class="line">  <span class="keywordtype">char16_t</span> *target = output, *out;</div>
 <div class="line">  <span class="keyword">const</span> <span class="keywordtype">char</span> *source = input;</div>
-<div class="line">  <span class="keywordflow">if</span>(encoding!=<a class="code hl_define" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> &amp;&amp; <a class="code hl_define" href="utypes_8h.html#a527f2c69e6b2e3b2c53ad8a99fb36711">U_SUCCESS</a>(err)){</div>
+<div class="line">  <span class="keywordflow">if</span>(encoding!=<span class="keyword">nullptr</span> &amp;&amp; <a class="code hl_define" href="utypes_8h.html#a527f2c69e6b2e3b2c53ad8a99fb36711">U_SUCCESS</a>(err)){</div>
 <div class="line">    <span class="comment">// should signature be discarded ?</span></div>
 <div class="line">    conv = <a class="code hl_function" href="ucnv_8h.html#a7734ec97739b82c8ad9aa39c0cf2489b">ucnv_open</a>(encoding, &amp;err);</div>
 <div class="line">    <span class="comment">// do the conversion</span></div>
 <div class="line">    <a class="code hl_function" href="ucnv_8h.html#a9451f05be7b1b75832d5ec55b4e6d67f">ucnv_toUnicode</a>(conv,</div>
 <div class="line">                   &amp;target, output + UPRV_LENGTHOF(output),</div>
 <div class="line">                   &amp;source, input + <span class="keyword">sizeof</span>(input),</div>
-<div class="line">                   <a class="code hl_define" href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <span class="keyword">true</span>, &amp;err);</div>
+<div class="line">                   <span class="keyword">nullptr</span>, <span class="keyword">true</span>, &amp;err);</div>
 <div class="line">    out = output;</div>
 <div class="line">    <span class="keywordflow">if</span> (discardSignature){</div>
 <div class="line">      ++out; <span class="comment">// ignore initial U+FEFF</span></div>
@@ -1488,8 +1488,7 @@ Functions</h2></td></tr>
 <div class="line">  }</div>
 <div class="ttc" id="aucnv_8h_html_a7867cee6468426b9c385a938ca23edb6"><div class="ttname"><a href="ucnv_8h.html#a7867cee6468426b9c385a938ca23edb6">ucnv_detectUnicodeSignature</a></div><div class="ttdeci">U_CAPI const char * ucnv_detectUnicodeSignature(const char *source, int32_t sourceLength, int32_t *signatureLength, UErrorCode *pErrorCode)</div><div class="ttdoc">Detects Unicode signature byte sequences at the start of the byte stream and returns the charset name...</div></div>
 <div class="ttc" id="aucnv_8h_html_a9451f05be7b1b75832d5ec55b4e6d67f"><div class="ttname"><a href="ucnv_8h.html#a9451f05be7b1b75832d5ec55b4e6d67f">ucnv_toUnicode</a></div><div class="ttdeci">U_CAPI void ucnv_toUnicode(UConverter *converter, UChar **target, const UChar *targetLimit, const char **source, const char *sourceLimit, int32_t *offsets, UBool flush, UErrorCode *err)</div><div class="ttdoc">Converts a buffer of codepage bytes into an array of unicode UChars characters.</div></div>
-<div class="ttc" id="aumachine_8h_html_a349ef00011f20ccd1d3b424445681aa5"><div class="ttname"><a href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a></div><div class="ttdeci">int8_t UBool</div><div class="ttdoc">The ICU boolean type, a signed-byte integer.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00269">umachine.h:269</a></div></div>
-<div class="ttc" id="aumachine_8h_html_a6bb9fad572d65b305324ef288165e2ac"><div class="ttname"><a href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a></div><div class="ttdeci">char16_t UChar</div><div class="ttdoc">The base type for UTF-16 code units and pointers.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00412">umachine.h:412</a></div></div>
+<div class="ttc" id="aumachine_8h_html_a349ef00011f20ccd1d3b424445681aa5"><div class="ttname"><a href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a></div><div class="ttdeci">int8_t UBool</div><div class="ttdoc">The ICU boolean type, a signed-byte integer.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00247">umachine.h:247</a></div></div>
 <div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a></div><div class="ttdeci">@ U_ZERO_ERROR</div><div class="ttdoc">No error, no warning.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00449">utypes.h:449</a></div></div>
 <div class="ttc" id="autypes_8h_html_a527f2c69e6b2e3b2c53ad8a99fb36711"><div class="ttname"><a href="utypes_8h.html#a527f2c69e6b2e3b2c53ad8a99fb36711">U_SUCCESS</a></div><div class="ttdeci">#define U_SUCCESS(x)</div><div class="ttdoc">Does the error code indicate success?</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00712">utypes.h:712</a></div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>

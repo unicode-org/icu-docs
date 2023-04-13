@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: icu::RuleBasedBreakIterator Class Reference</title>
+<title>ICU 73.1: icu::RuleBasedBreakIterator Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -323,7 +323,7 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a2ad6052587787523f902a4503693dbe6"><td class="memItemLeft" align="right" valign="top">RBBIDataWrapper *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1RuleBasedBreakIterator.html#a2ad6052587787523f902a4503693dbe6">fData</a></td></tr>
+<tr class="memitem:a2ad6052587787523f902a4503693dbe6"><td class="memItemLeft" align="right" valign="top">RBBIDataWrapper *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1RuleBasedBreakIterator.html#a2ad6052587787523f902a4503693dbe6">fData</a> = nullptr</td></tr>
 <tr class="memdesc:a2ad6052587787523f902a4503693dbe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The rule data for this <a class="el" href="classicu_1_1BreakIterator.html" title="The BreakIterator class implements methods for finding the location of boundaries in text.">BreakIterator</a> instance.  <a href="classicu_1_1RuleBasedBreakIterator.html#a2ad6052587787523f902a4503693dbe6">More...</a><br /></td></tr>
 <tr class="separator:a2ad6052587787523f902a4503693dbe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -374,7 +374,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Default constructor. </p>
-<p >Creates an empty shell of an iterator, with no rules or text to iterate over. Object can subsequently be assigned to. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000653">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
+<p >Creates an empty shell of an iterator, with no rules or text to iterate over. Object can subsequently be assigned to, but is otherwise unusable. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000653">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
 
 </div>
 </div>
@@ -682,7 +682,7 @@ Additional Inherited Members</h2></td></tr>
 <p >Create a clone (copy) of this break iterator in memory provided by the caller. The idea is to increase performance by avoiding a storage allocation. Use of this function is NOT RECOMMENDED. Performance gains are minimal, and correct buffer management is tricky. Use <a class="el" href="classicu_1_1RuleBasedBreakIterator.html#a38cc5566ba23cded3e151374466c7026" title="Returns a newly-constructed RuleBasedBreakIterator with the same behavior, and iterating over the sam...">clone()</a> instead.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stackBuffer</td><td>The pointer to the memory into which the cloned object should be placed. If NULL, allocate heap memory for the cloned object. </td></tr>
+    <tr><td class="paramname">stackBuffer</td><td>The pointer to the memory into which the cloned object should be placed. If nullptr, allocate heap memory for the cloned object. </td></tr>
     <tr><td class="paramname">BufferSize</td><td>The size of the buffer. If zero, return the required buffer size, but do not clone the object. If the size was too small (but not zero), allocate heap storage for the cloned object.</td></tr>
     <tr><td class="paramname">status</td><td>Error status. U_SAFECLONE_ALLOCATED_WARNING will be returned if the provided buffer was too small, and the clone was therefore put on the heap.</td></tr>
   </table>
@@ -743,7 +743,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Debugging function only. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000106">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000105">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -763,7 +763,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Debugging function only. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000107">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000106">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -1091,7 +1091,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Return a <a class="el" href="classicu_1_1CharacterIterator.html" title="Abstract class that defines an API for iteration on text objects.">CharacterIterator</a> over the text being analyzed. The returned character iterator is owned by the break iterator, and must not be deleted by the caller. Repeated calls to this function may return the same <a class="el" href="classicu_1_1CharacterIterator.html" title="Abstract class that defines an API for iteration on text objects.">CharacterIterator</a>. </p>
 <p >The returned character iterator must not be used concurrently with the break iterator. If concurrent operation is needed, clone the returned character iterator first and operate on the clone. </p>
-<p >When the break iterator is operating on text supplied via a <a class="el" href="structUText.html" title="UText struct.">UText</a>, this function will fail. Lacking any way to signal failures, it returns an <a class="el" href="classicu_1_1CharacterIterator.html" title="Abstract class that defines an API for iteration on text objects.">CharacterIterator</a> containing no text. The function <a class="el" href="classicu_1_1RuleBasedBreakIterator.html#a7d5cde052bcd274706b6fd01bf42f7f3" title="Get a UText for the text being analyzed.">getUText()</a> provides similar functionality, is reliable, and is more efficient. </p>
+<p >When the break iterator is operating on text supplied via a <a class="el" href="structUText.html" title="UText struct.">UText</a>, this function will fail, returning a <a class="el" href="classicu_1_1CharacterIterator.html" title="Abstract class that defines an API for iteration on text objects.">CharacterIterator</a> containing no text. The function <a class="el" href="classicu_1_1RuleBasedBreakIterator.html#a7d5cde052bcd274706b6fd01bf42f7f3" title="Get a UText for the text being analyzed.">getUText()</a> provides similar functionality, is reliable, and is more efficient. </p>
 <p >TODO: deprecate this function?</p>
 <dl class="section return"><dt>Returns</dt><dd>An iterator over the text being analyzed. </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000665">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
@@ -1138,7 +1138,7 @@ Additional Inherited Members</h2></td></tr>
 <p >The returned <a class="el" href="structUText.html" title="UText struct.">UText</a> is a shallow clone of the <a class="el" href="structUText.html" title="UText struct.">UText</a> used internally by the break iterator implementation. It can safely be used to access the text without impacting any break iterator operations, but the underlying text itself must not be altered.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fillIn</td><td>A <a class="el" href="structUText.html" title="UText struct.">UText</a> to be filled in. If NULL, a new <a class="el" href="structUText.html" title="UText struct.">UText</a> will be allocated to hold the result. </td></tr>
+    <tr><td class="paramname">fillIn</td><td>A <a class="el" href="structUText.html" title="UText struct.">UText</a> to be filled in. If nullptr, a new <a class="el" href="structUText.html" title="UText struct.">UText</a> will be allocated to hold the result. </td></tr>
     <tr><td class="paramname">status</td><td>receives any error codes. </td></tr>
   </table>
   </dd>
@@ -1354,9 +1354,9 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true if both BreakIterators are not same. </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000661">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="rbbi_8h_source.html#l00735">735</a> of file <a class="el" href="rbbi_8h_source.html">rbbi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rbbi_8h_source.html#l00307">307</a> of file <a class="el" href="rbbi_8h_source.html">rbbi.h</a>.</p>
 
-<p class="reference">References <a class="el" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">icu::operator==()</a>.</p>
+<p class="reference">References <a class="el" href="classicu_1_1BreakIterator.html#a0045fc272df09804974fc767bc5340fc">icu::BreakIterator::operator==()</a>.</p>
 
 </div>
 </div>
@@ -1658,9 +1658,9 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000101">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000100">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="rbbi_8h_source.html#l00189">189</a> of file <a class="el" href="rbbi_8h_source.html">rbbi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rbbi_8h_source.html#l00195">195</a> of file <a class="el" href="rbbi_8h_source.html">rbbi.h</a>.</p>
 
 </div>
 </div>
@@ -1683,9 +1683,9 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000100">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000099">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="rbbi_8h_source.html#l00187">187</a> of file <a class="el" href="rbbi_8h_source.html">rbbi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rbbi_8h_source.html#l00193">193</a> of file <a class="el" href="rbbi_8h_source.html">rbbi.h</a>.</p>
 
 </div>
 </div>
@@ -1697,13 +1697,13 @@ Additional Inherited Members</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">RBBIDataWrapper* icu::RuleBasedBreakIterator::fData</td>
+          <td class="memname">RBBIDataWrapper* icu::RuleBasedBreakIterator::fData = nullptr</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The rule data for this <a class="el" href="classicu_1_1BreakIterator.html" title="The BreakIterator class implements methods for finding the location of boundaries in text.">BreakIterator</a> instance. </p>
-<p >Not for general use; Public only for testing purposes. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000094">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p >Not for general use; Public only for testing purposes. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000093">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="rbbi_8h_source.html#l00074">74</a> of file <a class="el" href="rbbi_8h_source.html">rbbi.h</a>.</p>
 

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['edits_0',['Edits',['../classicu_1_1Edits.html#a0e4831e132be3727d0a76f5e54713f19',1,'icu::Edits::Edits(const Edits &amp;other)'],['../classicu_1_1Edits.html#aad73a1e766d550fc5649cee129d9c4f5',1,'icu::Edits::Edits()'],['../classicu_1_1Edits.html#abf292b452dbf790260467055d1f6474d',1,'icu::Edits::Edits(Edits &amp;&amp;src) U_NOEXCEPT']]],
+  ['edits_0',['Edits',['../classicu_1_1Edits.html#a0e4831e132be3727d0a76f5e54713f19',1,'icu::Edits::Edits(const Edits &amp;other)'],['../classicu_1_1Edits.html#aad73a1e766d550fc5649cee129d9c4f5',1,'icu::Edits::Edits()'],['../classicu_1_1Edits.html#aa704c3cdba620e8b22de9909b6a2023f',1,'icu::Edits::Edits(Edits &amp;&amp;src) noexcept']]],
   ['empty_1',['empty',['../classicu_1_1StringPiece.html#a0513410ed8444fcbe3d8cb9c7fb1ebd6',1,'icu::StringPiece']]],
   ['end_2',['end',['../classicu_1_1RegexMatcher.html#a10c0c98cfc58227c111e0a0da812ab32',1,'icu::RegexMatcher::end(UErrorCode &amp;status) const'],['../classicu_1_1RegexMatcher.html#abc142ee9f00e235e39fcd61b5274b262',1,'icu::RegexMatcher::end(int32_t group, UErrorCode &amp;status) const']]],
   ['end64_3',['end64',['../classicu_1_1RegexMatcher.html#accfa9396cc9b156deab7e90f5f96ddc2',1,'icu::RegexMatcher::end64(UErrorCode &amp;status) const'],['../classicu_1_1RegexMatcher.html#a00d338777daa4586d0c1b9f0b2bf3b56',1,'icu::RegexMatcher::end64(int32_t group, UErrorCode &amp;status) const']]],

@@ -39,5 +39,6 @@ var searchData=
   ['move_36',['move',['../structUCharIterator.html#a085355b29925cbf9170e364e9aef7bc5',1,'UCharIterator::move()'],['../classicu_1_1CharacterIterator.html#a37e9b91a0bd0e9dde2761b603560da9d',1,'icu::CharacterIterator::move()'],['../classicu_1_1UCharCharacterIterator.html#a125fbe05e41a75b19169c14fb81c047c',1,'icu::UCharCharacterIterator::move()']]],
   ['move32_37',['move32',['../classicu_1_1CharacterIterator.html#aac9a417f50cd4d741da7fac3429dad0d',1,'icu::CharacterIterator::move32()'],['../classicu_1_1UCharCharacterIterator.html#a6eab368600af357d14e0e995078176f0',1,'icu::UCharCharacterIterator::move32()']]],
   ['moveindex32_38',['moveIndex32',['../classicu_1_1UnicodeString.html#a7ccbafda9a80e30486f049673cad5a25',1,'icu::UnicodeString']]],
-  ['msgfmt_2eh_39',['msgfmt.h',['../msgfmt_8h.html',1,'']]]
+  ['msgfmt_2eh_39',['msgfmt.h',['../msgfmt_8h.html',1,'']]],
+  ['multiplybypoweroften_40',['multiplyByPowerOfTen',['../classicu_1_1number_1_1SimpleNumber.html#acff08a0f0b9f5aa0c047835b4cc923aa',1,'icu::number::SimpleNumber']]]
 ];

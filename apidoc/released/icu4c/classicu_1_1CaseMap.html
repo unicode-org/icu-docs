@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: icu::CaseMap Class Reference</title>
+<title>ICU 73.1: icu::CaseMap Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -204,8 +204,8 @@ Static Public Member Functions</h2></td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">srcLength</td><td>The length of the original string. If -1, then src must be NUL-terminated. </td></tr>
     <tr><td class="paramname">dest</td><td>A buffer for the result string. The result will be NUL-terminated if the buffer is large enough. The contents is undefined in case of failure. </td></tr>
-    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of char16_ts). If it is 0, then dest may be NULL and the function will only return the length of the result without writing any of the result string. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of char16_ts). If it is 0, then dest may be nullptr and the function will only return the length of the result without writing any of the result string. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call. </td></tr>
   </table>
   </dd>
@@ -290,13 +290,13 @@ Static Public Member Functions</h2></td></tr>
 <p >Casing is locale-dependent and context-sensitive. The result may be longer or shorter than the original. The source string and the destination buffer must not overlap.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, NULL = default locale.) </td></tr>
+    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, nullptr = default locale.) </td></tr>
     <tr><td class="paramname">options</td><td>Options bit set, usually 0. See U_OMIT_UNCHANGED_TEXT and U_EDITS_NO_RESET. </td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">srcLength</td><td>The length of the original string. If -1, then src must be NUL-terminated. </td></tr>
     <tr><td class="paramname">dest</td><td>A buffer for the result string. The result will be NUL-terminated if the buffer is large enough. The contents is undefined in case of failure. </td></tr>
-    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of char16_ts). If it is 0, then dest may be NULL and the function will only return the length of the result without writing any of the result string. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of char16_ts). If it is 0, then dest may be nullptr and the function will only return the length of the result without writing any of the result string. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call. </td></tr>
   </table>
   </dd>
@@ -388,14 +388,14 @@ Static Public Member Functions</h2></td></tr>
 <p >Titlecasing uses a break iterator to find the first characters of words that are to be titlecased. It titlecases those characters and lowercases all others. (This can be modified with options bits.)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, NULL = default locale.) </td></tr>
+    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, nullptr = default locale.) </td></tr>
     <tr><td class="paramname">options</td><td>Options bit set, usually 0. See U_OMIT_UNCHANGED_TEXT, U_EDITS_NO_RESET, U_TITLECASE_NO_LOWERCASE, U_TITLECASE_NO_BREAK_ADJUSTMENT, U_TITLECASE_ADJUST_TO_CASED, U_TITLECASE_WHOLE_STRING, U_TITLECASE_SENTENCES. </td></tr>
-    <tr><td class="paramname">iter</td><td>A break iterator to find the first characters of words that are to be titlecased. It is set to the source string (setText()) and used one or more times for iteration (first() and next()). If NULL, then a word break iterator for the locale is used (or something equivalent). </td></tr>
+    <tr><td class="paramname">iter</td><td>A break iterator to find the first characters of words that are to be titlecased. It is set to the source string (setText()) and used one or more times for iteration (first() and next()). If nullptr, then a word break iterator for the locale is used (or something equivalent). </td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">srcLength</td><td>The length of the original string. If -1, then src must be NUL-terminated. </td></tr>
     <tr><td class="paramname">dest</td><td>A buffer for the result string. The result will be NUL-terminated if the buffer is large enough. The contents is undefined in case of failure. </td></tr>
-    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of char16_ts). If it is 0, then dest may be NULL and the function will only return the length of the result without writing any of the result string. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of char16_ts). If it is 0, then dest may be nullptr and the function will only return the length of the result without writing any of the result string. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call. </td></tr>
   </table>
   </dd>
@@ -482,13 +482,13 @@ Static Public Member Functions</h2></td></tr>
 <p >Casing is locale-dependent and context-sensitive. The result may be longer or shorter than the original. The source string and the destination buffer must not overlap.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, NULL = default locale.) </td></tr>
+    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, nullptr = default locale.) </td></tr>
     <tr><td class="paramname">options</td><td>Options bit set, usually 0. See U_OMIT_UNCHANGED_TEXT and U_EDITS_NO_RESET. </td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">srcLength</td><td>The length of the original string. If -1, then src must be NUL-terminated. </td></tr>
     <tr><td class="paramname">dest</td><td>A buffer for the result string. The result will be NUL-terminated if the buffer is large enough. The contents is undefined in case of failure. </td></tr>
-    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of char16_ts). If it is 0, then dest may be NULL and the function will only return the length of the result without writing any of the result string. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of char16_ts). If it is 0, then dest may be nullptr and the function will only return the length of the result without writing any of the result string. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call. </td></tr>
   </table>
   </dd>
@@ -572,8 +572,8 @@ Static Public Member Functions</h2></td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">srcLength</td><td>The length of the original string. If -1, then src must be NUL-terminated. </td></tr>
     <tr><td class="paramname">dest</td><td>A buffer for the result string. The result will be NUL-terminated if the buffer is large enough. The contents is undefined in case of failure. </td></tr>
-    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of bytes). If it is 0, then dest may be NULL and the function will only return the length of the result without writing any of the result string. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of bytes). If it is 0, then dest may be nullptr and the function will only return the length of the result without writing any of the result string. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call. </td></tr>
   </table>
   </dd>
@@ -644,7 +644,7 @@ Static Public Member Functions</h2></td></tr>
     <tr><td class="paramname">options</td><td>Options bit set, usually 0. See U_OMIT_UNCHANGED_TEXT and U_EDITS_NO_RESET. </td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">sink</td><td>A <a class="el" href="classicu_1_1ByteSink.html" title="A ByteSink can be filled with bytes.">ByteSink</a> to which the result string is written. sink.Flush() is called at the end. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call.</td></tr>
   </table>
   </dd>
@@ -728,13 +728,13 @@ Static Public Member Functions</h2></td></tr>
 <p >Casing is locale-dependent and context-sensitive. The result may be longer or shorter than the original. The source string and the destination buffer must not overlap.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, NULL = default locale.) </td></tr>
+    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, nullptr = default locale.) </td></tr>
     <tr><td class="paramname">options</td><td>Options bit set, usually 0. See U_OMIT_UNCHANGED_TEXT and U_EDITS_NO_RESET. </td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">srcLength</td><td>The length of the original string. If -1, then src must be NUL-terminated. </td></tr>
     <tr><td class="paramname">dest</td><td>A buffer for the result string. The result will be NUL-terminated if the buffer is large enough. The contents is undefined in case of failure. </td></tr>
-    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of bytes). If it is 0, then dest may be NULL and the function will only return the length of the result without writing any of the result string. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of bytes). If it is 0, then dest may be nullptr and the function will only return the length of the result without writing any of the result string. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call. </td></tr>
   </table>
   </dd>
@@ -807,11 +807,11 @@ Static Public Member Functions</h2></td></tr>
 <p >Casing is locale-dependent and context-sensitive. The result may be longer or shorter than the original.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, NULL = default locale.) </td></tr>
+    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, nullptr = default locale.) </td></tr>
     <tr><td class="paramname">options</td><td>Options bit set, usually 0. See U_OMIT_UNCHANGED_TEXT and U_EDITS_NO_RESET. </td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">sink</td><td>A <a class="el" href="classicu_1_1ByteSink.html" title="A ByteSink can be filled with bytes.">ByteSink</a> to which the result string is written. sink.Flush() is called at the end. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call.</td></tr>
   </table>
   </dd>
@@ -902,14 +902,14 @@ Static Public Member Functions</h2></td></tr>
 <p >Titlecasing uses a break iterator to find the first characters of words that are to be titlecased. It titlecases those characters and lowercases all others. (This can be modified with options bits.)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, NULL = default locale.) </td></tr>
+    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, nullptr = default locale.) </td></tr>
     <tr><td class="paramname">options</td><td>Options bit set, usually 0. See U_OMIT_UNCHANGED_TEXT, U_EDITS_NO_RESET, U_TITLECASE_NO_LOWERCASE, U_TITLECASE_NO_BREAK_ADJUSTMENT, U_TITLECASE_ADJUST_TO_CASED, U_TITLECASE_WHOLE_STRING, U_TITLECASE_SENTENCES. </td></tr>
-    <tr><td class="paramname">iter</td><td>A break iterator to find the first characters of words that are to be titlecased. It is set to the source string (setUText()) and used one or more times for iteration (first() and next()). If NULL, then a word break iterator for the locale is used (or something equivalent). </td></tr>
+    <tr><td class="paramname">iter</td><td>A break iterator to find the first characters of words that are to be titlecased. It is set to the source string (setUText()) and used one or more times for iteration (first() and next()). If nullptr, then a word break iterator for the locale is used (or something equivalent). </td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">srcLength</td><td>The length of the original string. If -1, then src must be NUL-terminated. </td></tr>
     <tr><td class="paramname">dest</td><td>A buffer for the result string. The result will be NUL-terminated if the buffer is large enough. The contents is undefined in case of failure. </td></tr>
-    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of bytes). If it is 0, then dest may be NULL and the function will only return the length of the result without writing any of the result string. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of bytes). If it is 0, then dest may be nullptr and the function will only return the length of the result without writing any of the result string. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call. </td></tr>
   </table>
   </dd>
@@ -989,12 +989,12 @@ Static Public Member Functions</h2></td></tr>
 <p >Titlecasing uses a break iterator to find the first characters of words that are to be titlecased. It titlecases those characters and lowercases all others. (This can be modified with options bits.)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, NULL = default locale.) </td></tr>
+    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, nullptr = default locale.) </td></tr>
     <tr><td class="paramname">options</td><td>Options bit set, usually 0. See U_OMIT_UNCHANGED_TEXT, U_EDITS_NO_RESET, U_TITLECASE_NO_LOWERCASE, U_TITLECASE_NO_BREAK_ADJUSTMENT, U_TITLECASE_ADJUST_TO_CASED, U_TITLECASE_WHOLE_STRING, U_TITLECASE_SENTENCES. </td></tr>
-    <tr><td class="paramname">iter</td><td>A break iterator to find the first characters of words that are to be titlecased. It is set to the source string (setUText()) and used one or more times for iteration (first() and next()). If NULL, then a word break iterator for the locale is used (or something equivalent). </td></tr>
+    <tr><td class="paramname">iter</td><td>A break iterator to find the first characters of words that are to be titlecased. It is set to the source string (setUText()) and used one or more times for iteration (first() and next()). If nullptr, then a word break iterator for the locale is used (or something equivalent). </td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">sink</td><td>A <a class="el" href="classicu_1_1ByteSink.html" title="A ByteSink can be filled with bytes.">ByteSink</a> to which the result string is written. sink.Flush() is called at the end. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call.</td></tr>
   </table>
   </dd>
@@ -1078,13 +1078,13 @@ Static Public Member Functions</h2></td></tr>
 <p >Casing is locale-dependent and context-sensitive. The result may be longer or shorter than the original. The source string and the destination buffer must not overlap.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, NULL = default locale.) </td></tr>
+    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, nullptr = default locale.) </td></tr>
     <tr><td class="paramname">options</td><td>Options bit set, usually 0. See U_OMIT_UNCHANGED_TEXT and U_EDITS_NO_RESET. </td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">srcLength</td><td>The length of the original string. If -1, then src must be NUL-terminated. </td></tr>
     <tr><td class="paramname">dest</td><td>A buffer for the result string. The result will be NUL-terminated if the buffer is large enough. The contents is undefined in case of failure. </td></tr>
-    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of bytes). If it is 0, then dest may be NULL and the function will only return the length of the result without writing any of the result string. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">destCapacity</td><td>The size of the buffer (number of bytes). If it is 0, then dest may be nullptr and the function will only return the length of the result without writing any of the result string. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call. </td></tr>
   </table>
   </dd>
@@ -1157,11 +1157,11 @@ Static Public Member Functions</h2></td></tr>
 <p >Casing is locale-dependent and context-sensitive. The result may be longer or shorter than the original.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, NULL = default locale.) </td></tr>
+    <tr><td class="paramname">locale</td><td>The locale ID. ("" = root locale, nullptr = default locale.) </td></tr>
     <tr><td class="paramname">options</td><td>Options bit set, usually 0. See U_OMIT_UNCHANGED_TEXT and U_EDITS_NO_RESET. </td></tr>
     <tr><td class="paramname">src</td><td>The original string. </td></tr>
     <tr><td class="paramname">sink</td><td>A <a class="el" href="classicu_1_1ByteSink.html" title="A ByteSink can be filled with bytes.">ByteSink</a> to which the result string is written. sink.Flush() is called at the end. </td></tr>
-    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be NULL. </td></tr>
+    <tr><td class="paramname">edits</td><td>Records edits for index mapping, working with styled text, and getting only changes (if any). The <a class="el" href="classicu_1_1Edits.html" title="Records lengths of string edits but not replacement text.">Edits</a> contents is undefined if any error occurs. This function calls edits-&gt;reset() first unless options includes U_EDITS_NO_RESET. edits can be nullptr. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Reference to an in/out error code value which must not indicate a failure before the function call.</td></tr>
   </table>
   </dd>

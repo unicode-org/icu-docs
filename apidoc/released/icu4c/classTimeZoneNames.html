@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 72.1: icu::TimeZoneNames Class Reference</title>
+<title>ICU 73.1: icu::TimeZoneNames Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 72.1<span id="projectnumber">&#160;72.1</span>
+   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
    </div>
   </td>
  </tr>
@@ -168,7 +168,7 @@ Static Public Member Functions</h2></td></tr>
 <p >For example, time zone "Europe/London" has English long name for standard time "Greenwich Mean Time", which is also shared with other time zones. However, the long name for daylight saving time is "British Summer Time", which is only used for "Europe/London".</p>
 <p ><code><a class="el" href="classicu_1_1TimeZoneNames.html#abd170ba93e78a4593c66ffff5de2a5f2">getTimeZoneDisplayName</a></code> is designed for accessing a name only used by a single time zone. But is not necessarily mean that a subclass implementation use the same model with CLDR. A subclass implementation may provide time zone names only through <code><a class="el" href="classicu_1_1TimeZoneNames.html#abd170ba93e78a4593c66ffff5de2a5f2">getTimeZoneDisplayName</a></code>, or only through <code><a class="el" href="classicu_1_1TimeZoneNames.html#ac5e10b0799efcf68045fe7fa64686a85">getMetaZoneDisplayName</a></code>, or both.</p>
 <p >The default <code><a class="el" href="classicu_1_1TimeZoneNames.html" title="TimeZoneNames is an abstract class representing the time zone display name data model defined by UTS#...">TimeZoneNames</a></code> implementation returned by <code><a class="el" href="classicu_1_1TimeZoneNames.html#a3ab066b13c7cd6229ab66f88e26ee758">createInstance</a></code> uses the locale data imported from CLDR. In CLDR, set of meta zone IDs and mappings between zone IDs and meta zone IDs are shared by all locales. Therefore, the behavior of <code><a class="el" href="classicu_1_1TimeZoneNames.html#ad827a65cbb6da8ebad929ffff98c2503">getAvailableMetaZoneIDs</a></code>, <code><a class="el" href="classicu_1_1TimeZoneNames.html#a6fc1f6732be39e0c29b2f87efbd78a03">getMetaZoneID</a></code>, and <code><a class="el" href="classicu_1_1TimeZoneNames.html#ab742c731346e4dcb0289ca3dbdfd0aa9">getReferenceZoneID</a></code> won't be changed no matter what locale is used for getting an instance of <code><a class="el" href="classicu_1_1TimeZoneNames.html" title="TimeZoneNames is an abstract class representing the time zone display name data model defined by UTS#...">TimeZoneNames</a></code>.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005705">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005707">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="tznames_8h_source.html#l00131">131</a> of file <a class="el" href="tznames_8h_source.html">tznames.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -196,7 +196,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Destructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005706">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005708">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -226,7 +226,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Clone this object polymorphically. </p>
 <p >The caller is responsible for deleting the result when done. </p><dl class="section return"><dt>Returns</dt><dd>A copy of the object </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005709">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005711">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -273,7 +273,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An instance of <code><a class="el" href="classicu_1_1TimeZoneNames.html" title="TimeZoneNames is an abstract class representing the time zone display name data model defined by UTS#...">TimeZoneNames</a></code> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005710">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005712">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -313,7 +313,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Returns an instance of <code><a class="el" href="classicu_1_1TimeZoneNames.html" title="TimeZoneNames is an abstract class representing the time zone display name data model defined by UTS#...">TimeZoneNames</a></code> containing only short specific zone names (SHORT_STANDARD and SHORT_DAYLIGHT), compatible with the IANA tz database's zone abbreviations (not localized). </p>
 <p ><br  />
- Note: The input locale is used for resolving ambiguous names (e.g. "IST" is parsed as Israel Standard Time for Israel, while it is parsed as India Standard Time for all other regions). The zone names returned by this instance are not localized. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005711">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+ Note: The input locale is used for resolving ambiguous names (e.g. "IST" is parsed as Israel Standard Time for Israel, while it is parsed as India Standard Time for all other regions). The zone names returned by this instance are not localized. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable005713">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 
 </div>
 </div>
@@ -373,11 +373,11 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A collection of matches (owned by the caller), or NULL if no matches are found. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A collection of matches (owned by the caller), or nullptr if no matches are found. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="tznames_8h.html#a79341f90fe29f15990243a2d940659d3" title="Constants for time zone display name types.">UTimeZoneNameType</a> </dd>
 <dd>
 <a class="el" href="classicu_1_1TimeZoneNames_1_1MatchInfoCollection.html" title="MatchInfoCollection represents a collection of time zone name matches used by TimeZoneNames#find.">MatchInfoCollection</a> </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000511">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000514">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -424,7 +424,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an enumeration object, owned by the caller. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005713">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005715">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -460,7 +460,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an enumeration object, owned by the caller. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005712">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005714">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -522,7 +522,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the result. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005719">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005721">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -583,7 +583,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000509">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU internal only, for specific users only until proposed publicly. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000512">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU internal only, for specific users only until proposed publicly. </dd></dl>
 
 </div>
 </div>
@@ -641,7 +641,7 @@ Replace "_" with " ". </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the result. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005718">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005720">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -695,7 +695,7 @@ Replace "_" with " ". </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the result. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005716">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005718">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -749,7 +749,7 @@ Replace "_" with " ". </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the result. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005714">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005716">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -804,7 +804,7 @@ Replace "_" with " ". </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the result. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005715">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005717">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -858,7 +858,7 @@ Replace "_" with " ". </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the result. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005717">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005719">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -885,7 +885,7 @@ Replace "_" with " ". </li>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000508">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU internal only, for specific users only until proposed publicly. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000511">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU internal only, for specific users only until proposed publicly. </dd></dl>
 
 </div>
 </div>
@@ -921,7 +921,7 @@ Replace "_" with " ". </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return true if the given <a class="el" href="classicu_1_1Format.html" title="Base class for all formats.">Format</a> objects are not semantically equal. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005708">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005710">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="tznames_8h_source.html#l00154">154</a> of file <a class="el" href="tznames_8h_source.html">tznames.h</a>.</p>
 
@@ -961,7 +961,7 @@ Replace "_" with " ". </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return true if the given <a class="el" href="classicu_1_1Format.html" title="Base class for all formats.">Format</a> objects are semantically equal. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005707">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005709">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>

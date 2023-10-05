@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 73.1: unorm2.h File Reference</title>
+<title>ICU 74.1: common/unicode/unorm2.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
+   <div id="projectname">ICU 74.1<span id="projectnumber">&#160;74.1</span>
    </div>
   </td>
  </tr>
@@ -130,8 +130,11 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa0efed52244ced40b257887dd94e236b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a UNormalizer2 instance for Unicode NFKD normalization.  <a href="unorm2_8h.html#aa0efed52244ced40b257887dd94e236b">More...</a><br /></td></tr>
 <tr class="separator:aa0efed52244ced40b257887dd94e236b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d5ee32541b9565775b49584c33ef47b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="umachine_8h.html#a676114b1a64bb7c2de15c919a00b28df">U_CAPI</a> const <a class="el" href="unorm2_8h.html#af6cec882b8db0db15e33e6f21c51919e">UNormalizer2</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unorm2_8h.html#a2d5ee32541b9565775b49584c33ef47b">unorm2_getNFKCCasefoldInstance</a> (<a class="el" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> *pErrorCode)</td></tr>
-<tr class="memdesc:a2d5ee32541b9565775b49584c33ef47b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a UNormalizer2 instance for Unicode NFKC_Casefold normalization.  <a href="unorm2_8h.html#a2d5ee32541b9565775b49584c33ef47b">More...</a><br /></td></tr>
+<tr class="memdesc:a2d5ee32541b9565775b49584c33ef47b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a UNormalizer2 instance for Unicode toNFKC_Casefold() normalization which is equivalent to applying the NFKC_Casefold mappings and then NFC.  <a href="unorm2_8h.html#a2d5ee32541b9565775b49584c33ef47b">More...</a><br /></td></tr>
 <tr class="separator:a2d5ee32541b9565775b49584c33ef47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90a7cb71a339f6bd03cd353adef708c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="umachine_8h.html#a676114b1a64bb7c2de15c919a00b28df">U_CAPI</a> const <a class="el" href="unorm2_8h.html#af6cec882b8db0db15e33e6f21c51919e">UNormalizer2</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unorm2_8h.html#a90a7cb71a339f6bd03cd353adef708c3">unorm2_getNFKCSimpleCasefoldInstance</a> (<a class="el" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> *pErrorCode)</td></tr>
+<tr class="memdesc:a90a7cb71a339f6bd03cd353adef708c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a UNormalizer2 instance for a variant of Unicode toNFKC_Casefold() normalization which is equivalent to applying the NFKC_Simple_Casefold mappings and then NFC.  <a href="unorm2_8h.html#a90a7cb71a339f6bd03cd353adef708c3">More...</a><br /></td></tr>
+<tr class="separator:a90a7cb71a339f6bd03cd353adef708c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7380e270cf0a2411e32b6cc71f87e19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="umachine_8h.html#a676114b1a64bb7c2de15c919a00b28df">U_CAPI</a> const <a class="el" href="unorm2_8h.html#af6cec882b8db0db15e33e6f21c51919e">UNormalizer2</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unorm2_8h.html#ae7380e270cf0a2411e32b6cc71f87e19">unorm2_getInstance</a> (const char *packageName, const char *name, <a class="el" href="unorm2_8h.html#a3cf189b046fe90ca167d2294275f4ab5">UNormalization2Mode</a> mode, <a class="el" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> *pErrorCode)</td></tr>
 <tr class="memdesc:ae7380e270cf0a2411e32b6cc71f87e19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a UNormalizer2 instance which uses the specified data file (packageName/name similar to <a class="el" href="ucnv_8h.html#a196e593ce4e49ec4afc62813bcc28567">ucnv_openPackage()</a> and <a class="el" href="ures_8h.html#a1b2a9505dd420ec59e85f36b661f179a" title="Opens a UResourceBundle, from which users can extract strings by using their corresponding keys.">ures_open()</a>/ResourceBundle) and which composes or decomposes text according to the specified mode.  <a href="unorm2_8h.html#ae7380e270cf0a2411e32b6cc71f87e19">More...</a><br /></td></tr>
 <tr class="separator:ae7380e270cf0a2411e32b6cc71f87e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,7 +206,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Result values for normalization quick check functions. </p>
-<p >For details see <a href="http://www.unicode.org/reports/tr15/#Detecting_Normalization_Forms">http://www.unicode.org/reports/tr15/#Detecting_Normalization_Forms</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002691">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p >For details see <a href="http://www.unicode.org/reports/tr15/#Detecting_Normalization_Forms">http://www.unicode.org/reports/tr15/#Detecting_Normalization_Forms</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002697">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -220,7 +223,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>C typedef for struct UNormalizer2. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002693">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002699">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unorm2_8h_source.html#l00123">123</a> of file <a class="el" href="unorm2_8h_source.html">unorm2.h</a>.</p>
 
@@ -240,19 +243,19 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constants for normalization modes. </p>
-<p >For details about standard Unicode normalization forms and about the algorithms which are also used with custom mapping tables see <a href="http://www.unicode.org/unicode/reports/tr15/">http://www.unicode.org/unicode/reports/tr15/</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002690">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<p >For details about standard Unicode normalization forms and about the algorithms which are also used with custom mapping tables see <a href="http://www.unicode.org/unicode/reports/tr15/">http://www.unicode.org/unicode/reports/tr15/</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002696">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3cf189b046fe90ca167d2294275f4ab5a4038a316229eef7d76901b704b0148bf" name="a3cf189b046fe90ca167d2294275f4ab5a4038a316229eef7d76901b704b0148bf"></a>UNORM2_COMPOSE&#160;</td><td class="fielddoc"><p >Decomposition followed by composition. </p>
-<p >Same as standard NFC when using an "nfc" instance. Same as standard NFKC when using an "nfkc" instance. For details about standard Unicode normalization forms see <a href="http://www.unicode.org/unicode/reports/tr15/">http://www.unicode.org/unicode/reports/tr15/</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002716">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<p >Same as standard NFC when using an "nfc" instance. Same as standard NFKC when using an "nfkc" instance. For details about standard Unicode normalization forms see <a href="http://www.unicode.org/unicode/reports/tr15/">http://www.unicode.org/unicode/reports/tr15/</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002722">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a3cf189b046fe90ca167d2294275f4ab5ab176fcf0362623fb45b1b0f1ae22e7ac" name="a3cf189b046fe90ca167d2294275f4ab5ab176fcf0362623fb45b1b0f1ae22e7ac"></a>UNORM2_DECOMPOSE&#160;</td><td class="fielddoc"><p >Map, and reorder canonically. </p>
-<p >Same as standard NFD when using an "nfc" instance. Same as standard NFKD when using an "nfkc" instance. For details about standard Unicode normalization forms see <a href="http://www.unicode.org/unicode/reports/tr15/">http://www.unicode.org/unicode/reports/tr15/</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002717">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<p >Same as standard NFD when using an "nfc" instance. Same as standard NFKD when using an "nfkc" instance. For details about standard Unicode normalization forms see <a href="http://www.unicode.org/unicode/reports/tr15/">http://www.unicode.org/unicode/reports/tr15/</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002723">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a3cf189b046fe90ca167d2294275f4ab5a6dbe9da1d7d77d2902d7ef197cb1619b" name="a3cf189b046fe90ca167d2294275f4ab5a6dbe9da1d7d77d2902d7ef197cb1619b"></a>UNORM2_FCD&#160;</td><td class="fielddoc"><p >"Fast C or D" form. </p>
-<p >If a string is in this form, then further decomposition <em>without reordering</em> would yield the same form as DECOMPOSE. Text in "Fast C or D" form can be processed efficiently with data tables that are "canonically closed", that is, that provide equivalent data for equivalent text, without having to be fully normalized. Not a standard Unicode normalization form. Not a unique form: Different FCD strings can be canonically equivalent. For details see <a href="http://www.unicode.org/notes/tn5/#FCD">http://www.unicode.org/notes/tn5/#FCD</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002718">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<p >If a string is in this form, then further decomposition <em>without reordering</em> would yield the same form as DECOMPOSE. Text in "Fast C or D" form can be processed efficiently with data tables that are "canonically closed", that is, that provide equivalent data for equivalent text, without having to be fully normalized. Not a standard Unicode normalization form. Not a unique form: Different FCD strings can be canonically equivalent. For details see <a href="http://www.unicode.org/notes/tn5/#FCD">http://www.unicode.org/notes/tn5/#FCD</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002724">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a3cf189b046fe90ca167d2294275f4ab5aa8a0f3c152f66297036c8fbfd955f9b8" name="a3cf189b046fe90ca167d2294275f4ab5aa8a0f3c152f66297036c8fbfd955f9b8"></a>UNORM2_COMPOSE_CONTIGUOUS&#160;</td><td class="fielddoc"><p >Compose only contiguously. </p>
-<p >Also known as "FCC" or "Fast C Contiguous". The result will often but not always be in NFC. The result will conform to FCD which is useful for processing. Not a standard Unicode normalization form. For details see <a href="http://www.unicode.org/notes/tn5/#FCC">http://www.unicode.org/notes/tn5/#FCC</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002719">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<p >Also known as "FCC" or "Fast C Contiguous". The result will often but not always be in NFC. The result will conform to FCD which is useful for processing. Not a standard Unicode normalization form. For details see <a href="http://www.unicode.org/notes/tn5/#FCC">http://www.unicode.org/notes/tn5/#FCC</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002725">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 </td></tr>
 </table>
 
@@ -273,16 +276,16 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Result values for normalization quick check functions. </p>
-<p >For details see <a href="http://www.unicode.org/reports/tr15/#Detecting_Normalization_Forms">http://www.unicode.org/reports/tr15/#Detecting_Normalization_Forms</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002691">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p >For details see <a href="http://www.unicode.org/reports/tr15/#Detecting_Normalization_Forms">http://www.unicode.org/reports/tr15/#Detecting_Normalization_Forms</a> </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002697">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a01b7464189aef5dae63c0c759e84becea17a2e3aec6aef936136f04cf8af29de3" name="a01b7464189aef5dae63c0c759e84becea17a2e3aec6aef936136f04cf8af29de3"></a>UNORM_NO&#160;</td><td class="fielddoc"><p >The input string is not in the normalization form. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002720">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002726">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a01b7464189aef5dae63c0c759e84becea055e9208c9a15913ed2849243fb617c4" name="a01b7464189aef5dae63c0c759e84becea055e9208c9a15913ed2849243fb617c4"></a>UNORM_YES&#160;</td><td class="fielddoc"><p >The input string is in the normalization form. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002721">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002727">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a01b7464189aef5dae63c0c759e84becea05c9a1f19c022c5399e64ff8cb852558" name="a01b7464189aef5dae63c0c759e84becea05c9a1f19c022c5399e64ff8cb852558"></a>UNORM_MAYBE&#160;</td><td class="fielddoc"><p >The input string may or may not be in the normalization form. </p>
-<p >This value is only returned for composition forms like NFC and FCC, when a backward-combining character is found for which the surrounding text would have to be analyzed further. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002722">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p >This value is only returned for composition forms like NFC and FCC, when a backward-combining character is found for which the surrounding text would have to be analyzed further. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002728">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 </td></tr>
 </table>
 
@@ -361,7 +364,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>first </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002704">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002710">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -388,7 +391,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002701">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002707">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -435,7 +438,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The non-negative composite code point if there is one; otherwise a negative value. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002707">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002713">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 </div>
 </div>
@@ -474,7 +477,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>c's combining class </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002708">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002714">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 </div>
 </div>
@@ -534,7 +537,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the non-negative length of c's decomposition, if there is one; otherwise a negative value </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002705">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002711">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
 
 </div>
 </div>
@@ -582,14 +585,14 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">packageName</td><td>NULL for ICU built-in data, otherwise application data package name </td></tr>
-    <tr><td class="paramname">name</td><td>"nfc" or "nfkc" or "nfkc_cf" or name of custom data file </td></tr>
+    <tr><td class="paramname">name</td><td>"nfc" or "nfkc" or "nfkc_cf" or "nfkc_scf" or name of custom data file </td></tr>
     <tr><td class="paramname">mode</td><td>normalization mode (compose or decompose etc.) </td></tr>
     <tr><td class="paramname">pErrorCode</td><td>Standard ICU error code. Its input value must pass the <a class="el" href="utypes_8h.html#a527f2c69e6b2e3b2c53ad8a99fb36711" title="Does the error code indicate success?">U_SUCCESS()</a> test, or else the function returns immediately. Check for <a class="el" href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f" title="Does the error code indicate a failure?">U_FAILURE()</a> on output or use with function chaining. (See User Guide for details.) </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the requested UNormalizer2, if successful </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002699">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002705">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -617,7 +620,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the requested Normalizer2, if successful </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002694">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002700">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 </div>
 </div>
@@ -645,7 +648,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the requested Normalizer2, if successful </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002695">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002701">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 </div>
 </div>
@@ -665,7 +668,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns a UNormalizer2 instance for Unicode NFKC_Casefold normalization. </p>
+<p>Returns a UNormalizer2 instance for Unicode toNFKC_Casefold() normalization which is equivalent to applying the NFKC_Casefold mappings and then NFC. </p>
+<p >See <a href="https://www.unicode.org/reports/tr44/#NFKC_Casefold">https://www.unicode.org/reports/tr44/#NFKC_Casefold</a></p>
 <p >Same as unorm2_getInstance(NULL, "nfkc_cf", UNORM2_COMPOSE, pErrorCode). Returns an unmodifiable singleton instance. Do not delete it. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pErrorCode</td><td>Standard ICU error code. Its input value must pass the <a class="el" href="utypes_8h.html#a527f2c69e6b2e3b2c53ad8a99fb36711" title="Does the error code indicate success?">U_SUCCESS()</a> test, or else the function returns immediately. Check for <a class="el" href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f" title="Does the error code indicate a failure?">U_FAILURE()</a> on output or use with function chaining. (See User Guide for details.) </td></tr>
@@ -673,7 +677,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the requested Normalizer2, if successful </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002698">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002704">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 </div>
 </div>
@@ -701,7 +705,36 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the requested Normalizer2, if successful </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002696">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002702">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+
+</div>
+</div>
+<a id="a90a7cb71a339f6bd03cd353adef708c3" name="a90a7cb71a339f6bd03cd353adef708c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90a7cb71a339f6bd03cd353adef708c3">&#9670;&nbsp;</a></span>unorm2_getNFKCSimpleCasefoldInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="umachine_8h.html#a676114b1a64bb7c2de15c919a00b28df">U_CAPI</a> const <a class="el" href="unorm2_8h.html#af6cec882b8db0db15e33e6f21c51919e">UNormalizer2</a> * unorm2_getNFKCSimpleCasefoldInstance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> *&#160;</td>
+          <td class="paramname"><em>pErrorCode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a UNormalizer2 instance for a variant of Unicode toNFKC_Casefold() normalization which is equivalent to applying the NFKC_Simple_Casefold mappings and then NFC. </p>
+<p >See <a href="https://www.unicode.org/reports/tr44/#NFKC_Simple_Casefold">https://www.unicode.org/reports/tr44/#NFKC_Simple_Casefold</a></p>
+<p >Same as unorm2_getInstance(NULL, "nfkc_scf", UNORM2_COMPOSE, pErrorCode). Returns an unmodifiable singleton instance. Do not delete it. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pErrorCode</td><td>Standard ICU error code. Its input value must pass the <a class="el" href="utypes_8h.html#a527f2c69e6b2e3b2c53ad8a99fb36711" title="Does the error code indicate success?">U_SUCCESS()</a> test, or else the function returns immediately. Check for <a class="el" href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f" title="Does the error code indicate a failure?">U_FAILURE()</a> on output or use with function chaining. (See User Guide for details.) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the requested Normalizer2, if successful </dd></dl>
+<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000045">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 74 </dd></dl>
 
 </div>
 </div>
@@ -729,7 +762,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the requested Normalizer2, if successful </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002697">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002703">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 </div>
 </div>
@@ -792,7 +825,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the non-negative length of c's raw decomposition, if there is one; otherwise a negative value </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002706">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002712">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 </div>
 </div>
@@ -831,7 +864,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if c has a normalization boundary after it </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002713">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002719">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -870,7 +903,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if c has a normalization boundary before it </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002712">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002718">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -909,7 +942,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if c is normalization-inert </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002714">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002720">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -962,7 +995,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if s is normalized </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002709">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002715">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -1029,7 +1062,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>dest </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002702">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002708">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -1103,7 +1136,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>first </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002703">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002709">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -1149,7 +1182,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the requested UNormalizer2, if successful </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002700">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002706">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -1202,7 +1235,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>UNormalizationCheckResult </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002710">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002716">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -1257,7 +1290,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>"yes" span end index </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002711">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002717">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -1345,7 +1378,7 @@ Functions</h2></td></tr>
 <a class="el" href="ustring_8h.html#accbd3a9f5f9460298a81bc0bc27cc912" title="Compare two Unicode strings (binary order).">u_strCompare</a> </dd>
 <dd>
 <a class="el" href="ustring_8h.html#af5e41e4910e6934a47c91dcfb5d4b9c1" title="Compare two strings case-insensitively using full case folding.">u_strCaseCompare</a></dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002715">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002721">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="normlzr_8h_source.html#l00800">icu::Normalizer::compare()</a>.</p>
 

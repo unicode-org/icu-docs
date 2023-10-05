@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 73.1: icu::Locale Class Reference</title>
+<title>ICU 74.1: icu::Locale Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
+   <div id="projectname">ICU 74.1<span id="projectnumber">&#160;74.1</span>
    </div>
   </td>
  </tr>
@@ -361,7 +361,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad06f6321e5bbc0c02c1027433ac55644"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a list of all available 2-letter country codes defined in ISO 3166.  <a href="classicu_1_1Locale.html#ad06f6321e5bbc0c02c1027433ac55644">More...</a><br /></td></tr>
 <tr class="separator:ad06f6321e5bbc0c02c1027433ac55644"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f49c351187900d0824e722f1051a90f"><td class="memItemLeft" align="right" valign="top">static const char *const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1Locale.html#a0f49c351187900d0824e722f1051a90f">getISOLanguages</a> ()</td></tr>
-<tr class="memdesc:a0f49c351187900d0824e722f1051a90f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a list of all available language codes defined in ISO 639.  <a href="classicu_1_1Locale.html#a0f49c351187900d0824e722f1051a90f">More...</a><br /></td></tr>
+<tr class="memdesc:a0f49c351187900d0824e722f1051a90f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all unique language codes defined in ISO 639.  <a href="classicu_1_1Locale.html#a0f49c351187900d0824e722f1051a90f">More...</a><br /></td></tr>
 <tr class="separator:a0f49c351187900d0824e722f1051a90f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a262572b67b518c07034b3f386a41bf76"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="uobject_8h.html#a22af10545208a455a6e884008df48e9f">UClassID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1Locale.html#a262572b67b518c07034b3f386a41bf76">getStaticClassID</a> ()</td></tr>
 <tr class="memdesc:a262572b67b518c07034b3f386a41bf76"><td class="mdescLeft">&#160;</td><td class="mdescRight">ICU "poor man's RTTI", returns a UClassID for this class.  <a href="classicu_1_1Locale.html#a262572b67b518c07034b3f386a41bf76">More...</a><br /></td></tr>
@@ -372,6 +372,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ae42b6a9c1bae0656ba4a6703c1cafc81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1Locale.html#ae42b6a9c1bae0656ba4a6703c1cafc81">setFromPOSIXID</a> (const char *posixID)</td></tr>
 <tr class="memdesc:ae42b6a9c1bae0656ba4a6703c1cafc81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set this from a single POSIX style locale string.  <a href="classicu_1_1Locale.html#ae42b6a9c1bae0656ba4a6703c1cafc81">More...</a><br /></td></tr>
 <tr class="separator:ae42b6a9c1bae0656ba4a6703c1cafc81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a088d207ccac532fa09322311432aa8e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classicu_1_1Locale.html#a088d207ccac532fa09322311432aa8e3">minimizeSubtags</a> (bool favorScript, <a class="el" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> &amp;status)</td></tr>
+<tr class="memdesc:a088d207ccac532fa09322311432aa8e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimize the subtags for this <a class="el" href="classicu_1_1Locale.html" title="A Locale object represents a specific geographical, political, or cultural region.">Locale</a>, per the algorithm described.  <a href="classicu_1_1Locale.html#a088d207ccac532fa09322311432aa8e3">More...</a><br /></td></tr>
+<tr class="separator:a088d207ccac532fa09322311432aa8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -1068,7 +1071,7 @@ Friends</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>An alias to the code </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000448">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01182">1182</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01194">1194</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 </div>
 </div>
@@ -1710,8 +1713,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets a list of all available language codes defined in ISO 639. </p>
-<p >This is a pointer to an array of pointers to arrays of char. All of these pointers are owned by ICU&ndash; do not delete them, and do not write through them. The array is terminated with a null pointer. </p><dl class="section return"><dt>Returns</dt><dd>a list of all available language codes </dd></dl>
+<p>Returns a list of all unique language codes defined in ISO 639. </p>
+<p >They can be 2 or 3 letter codes, as defined by <a href="https://www.ietf.org/rfc/bcp/bcp47.html#section-2.2.1">BCP 47, section 2.2.1</a>. This is a pointer to an array of pointers to arrays of char. All of these pointers are owned by ICU&ndash; do not delete them, and do not write through them. The array is terminated with a null pointer. </p><dl class="section return"><dt>Returns</dt><dd>a list of all available language codes </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000486">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
@@ -1879,7 +1882,7 @@ template&lt;typename StringClass , typename OutputIterator &gt; </div>
 </dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000457">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01212">1212</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01224">1224</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 <p class="reference">References <a class="el" href="localpointer_8h_source.html#l00094">icu::LocalPointerBase&lt; T &gt;::isNull()</a>, and <a class="el" href="utypes_8h_source.html#l00717">U_FAILURE</a>.</p>
 
@@ -2036,7 +2039,7 @@ template&lt;typename StringClass &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>the keyword value. </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000461">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01246">1246</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01258">1258</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 </div>
 </div>
@@ -2125,7 +2128,7 @@ template&lt;typename StringClass &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>An alias to the code </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000446">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01188">1188</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01200">1200</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 </div>
 </div>
@@ -2177,7 +2180,7 @@ template&lt;typename StringClass &gt; </div>
 <p >If a field is missing, up to two leading underbars will occur. Example: "en", "de_DE", "en_US_WIN", "de__POSIX", "fr__MAC", "__MAC", "_MT", "_FR_EURO" </p><dl class="section return"><dt>Returns</dt><dd>A pointer to "name". </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000450">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01206">1206</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01218">1218</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 </div>
 </div>
@@ -2269,7 +2272,7 @@ template&lt;typename StringClass &gt; </div>
 <a class="el" href="uscript_8h.html#a14b7a17b1eb0e7ca9395cc505fb9c0ca" title="Gets the script codes associated with the given locale or ISO 15924 abbreviation or name.">uscript_getCode</a> </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000447">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01194">1194</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01206">1206</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 </div>
 </div>
@@ -2464,7 +2467,7 @@ template&lt;typename StringClass , typename OutputIterator &gt; </div>
 </dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000458">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01229">1229</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01241">1241</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 <p class="reference">References <a class="el" href="localpointer_8h_source.html#l00094">icu::LocalPointerBase&lt; T &gt;::isNull()</a>, and <a class="el" href="utypes_8h_source.html#l00717">U_FAILURE</a>.</p>
 
@@ -2566,7 +2569,7 @@ template&lt;typename StringClass &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>the keyword value. </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000463">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01255">1255</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01267">1267</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 </div>
 </div>
@@ -2626,7 +2629,7 @@ template&lt;typename StringClass &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>An alias to the code </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000449">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01200">1200</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01212">1212</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 </div>
 </div>
@@ -2679,7 +2682,7 @@ template&lt;typename StringClass &gt; </div>
 <p ><a class="el" href="classicu_1_1Locale.html" title="A Locale object represents a specific geographical, political, or cultural region.">Locale</a> object can be bogus if it doesn't exist </p><dl class="section return"><dt>Returns</dt><dd>false if it is a real locale, true if it is a bogus locale </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000483">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01264">1264</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01276">1276</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 </div>
 </div>
@@ -2707,8 +2710,54 @@ template&lt;typename StringClass &gt; </div>
 
 </div>
 </div>
+<a id="a088d207ccac532fa09322311432aa8e3" name="a088d207ccac532fa09322311432aa8e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a088d207ccac532fa09322311432aa8e3">&#9670;&nbsp;</a></span>minimizeSubtags() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void icu::Locale::minimizeSubtags </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>favorScript</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> &amp;&#160;</td>
+          <td class="paramname"><em>status</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Minimize the subtags for this <a class="el" href="classicu_1_1Locale.html" title="A Locale object represents a specific geographical, political, or cultural region.">Locale</a>, per the algorithm described. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">favorScript</td><td>favor to keep script if true, to keep region if false. </td></tr>
+    <tr><td class="paramname">status</td><td>error information if maximizing this <a class="el" href="classicu_1_1Locale.html" title="A Locale object represents a specific geographical, political, or cultural region.">Locale</a> failed. If this <a class="el" href="classicu_1_1Locale.html" title="A Locale object represents a specific geographical, political, or cultural region.">Locale</a> is not well-formed, the error code is U_ILLEGAL_ARGUMENT_ERROR. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000045">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+
+</div>
+</div>
 <a id="a0638620f0b0c25aad55539f14f739244" name="a0638620f0b0c25aad55539f14f739244"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0638620f0b0c25aad55539f14f739244">&#9670;&nbsp;</a></span>minimizeSubtags()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0638620f0b0c25aad55539f14f739244">&#9670;&nbsp;</a></span>minimizeSubtags() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2776,7 +2825,7 @@ template&lt;typename StringClass &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>true if the two locale keys are not the same, false otherwise. </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000437">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01167">1167</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01179">1179</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 <p class="reference">References <a class="el" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">icu::operator==()</a>.</p>
 
@@ -3194,7 +3243,7 @@ template&lt;typename StringClass &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>the BCP47 language tag for this <a class="el" href="classicu_1_1Locale.html" title="A Locale object represents a specific geographical, political, or cultural region.">Locale</a>. </dd></dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000443">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01173">1173</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="locid_8h_source.html#l01185">1185</a> of file <a class="el" href="locid_8h_source.html">locid.h</a>.</p>
 
 </div>
 </div>
@@ -3221,7 +3270,7 @@ template&lt;typename StringClass &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000046">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. (private) </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000047">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. (private) </dd></dl>
 <dl class="internal"><dt><b><a class="el" href="internal.html#_internal000043">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
@@ -3261,12 +3310,12 @@ template&lt;typename StringClass &gt; </div>
 </div><div class="memdoc">
 
 <p>A friend to allow the default locale to be set by either the C or C++ API. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000045">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. (private) </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000046">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. (private) </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="locid_8h_source.html">locid.h</a></li>
+<li>common/unicode/<a class="el" href="locid_8h_source.html">locid.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 73.1: numberformatter.h File Reference</title>
+<title>ICU 74.1: i18n/unicode/numberformatter.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 73.1<span id="projectnumber">&#160;73.1</span>
+   <div id="projectname">ICU 74.1<span id="projectnumber">&#160;74.1</span>
    </div>
   </td>
  </tr>
@@ -217,6 +217,7 @@ UnlocalizedNumberFormatter formatter = UnlocalizedNumberFormatter::with().notati
 formatter.precision(Precision.maxFraction(2)); // does nothing!
 formatter.locale(Locale.getEnglish()).format(9.8765).toString(); // prints "9.8765E0", not "9.88E0"
 </pre><p >This API is based on the <em>fluent</em> design pattern popularized by libraries such as Google's Guava. For extensive details on the design of this API, read <a href="https://goo.gl/szi5VB">the design doc</a>.</p>
+<p >Note: To format monetary/currency values, specify the currency in the <code>.unit()</code> function.</p>
 <dl class="section author"><dt>Author</dt><dd>Shane Carr </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="numberformatter_8h_source.html">numberformatter.h</a>.</p>
@@ -234,9 +235,9 @@ formatter.locale(Locale.getEnglish()).format(9.8765).toString(); // prints "9.87
 </div><div class="memdoc">
 
 <p>Extra name reserved in case it is needed in the future. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004752">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004785">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="numberformatter_8h_source.html#l00188">188</a> of file <a class="el" href="numberformatter_8h_source.html">numberformatter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="numberformatter_8h_source.html#l00191">191</a> of file <a class="el" href="numberformatter_8h_source.html">numberformatter.h</a>.</p>
 
 </div>
 </div>
@@ -254,9 +255,9 @@ formatter.locale(Locale.getEnglish()).format(9.8765).toString(); // prints "9.87
 
 <p>Datatype for minimum/maximum fraction digits. </p>
 <p >Must be able to hold kMaxIntFracSig.</p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000347">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000352">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="numberformatter_8h_source.html#l00133">133</a> of file <a class="el" href="numberformatter_8h_source.html">numberformatter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="numberformatter_8h_source.html#l00136">136</a> of file <a class="el" href="numberformatter_8h_source.html">numberformatter.h</a>.</p>
 
 </div>
 </div>
@@ -273,9 +274,9 @@ formatter.locale(Locale.getEnglish()).format(9.8765).toString(); // prints "9.87
 </div><div class="memdoc">
 
 <p>Extra name reserved in case it is needed in the future. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004756">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004789">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="numberformatter_8h_source.html#l00463">463</a> of file <a class="el" href="numberformatter_8h_source.html">numberformatter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="numberformatter_8h_source.html#l00466">466</a> of file <a class="el" href="numberformatter_8h_source.html">numberformatter.h</a>.</p>
 
 </div>
 </div>
@@ -292,9 +293,9 @@ formatter.locale(Locale.getEnglish()).format(9.8765).toString(); // prints "9.87
 </div><div class="memdoc">
 
 <p>Extra name reserved in case it is needed in the future. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004753">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004786">Stable:</a></b></dt><dd>ICU 63 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="numberformatter_8h_source.html#l00195">195</a> of file <a class="el" href="numberformatter_8h_source.html">numberformatter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="numberformatter_8h_source.html#l00198">198</a> of file <a class="el" href="numberformatter_8h_source.html">numberformatter.h</a>.</p>
 
 </div>
 </div>
@@ -317,7 +318,7 @@ formatter.locale(Locale.getEnglish()).format(9.8765).toString(); // prints "9.87
 
 <p>Used for NumberRangeFormatter and implemented in numrange_fluent.cpp. </p>
 <p >Declared here so it can be friended.</p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000349">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000354">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="reference">References <a class="el" href="numberformatter_8h.html#afde2e5e3780ba74b1b4c7cf86f0baf55">icu::number::impl::touchRangeLocales()</a>.</p>
 

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['stable_20list_0',['Stable List',['../stable.html',1,'']]],
-  ['system_20list_1',['System List',['../system.html',1,'']]]
+  ['icu_2075_201_0',['ICU 75.1',['../index.html',1,'']]],
+  ['internal_20list_1',['Internal List',['../internal.html',1,'']]]
 ];

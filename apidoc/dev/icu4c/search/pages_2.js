@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['obsolete_20list_0',['Obsolete List',['../obsolete.html',1,'']]]
+  ['deprecated_20list_0',['Deprecated List',['../deprecated.html',1,'']]],
+  ['draft_20list_1',['Draft List',['../draft.html',1,'']]]
 ];

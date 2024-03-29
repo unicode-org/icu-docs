@@ -15,10 +15,10 @@ var searchData=
   ['clone_12',['clone',['../structUTextFuncs.html#aec491b54b67bc848006b04e4ebce0009',1,'UTextFuncs']]],
   ['close_13',['close',['../structUTextFuncs.html#aea81a263f231930c5b9e7213b92b1d0d',1,'UTextFuncs']]],
   ['collapse_14',['collapse',['../structicu_1_1number_1_1impl_1_1RangeMacroProps.html#ac361f140365cd669ba26aa6520e2a806',1,'icu::number::impl::RangeMacroProps']]],
-  ['context_15',['context',['../structUCharIterator.html#a33f323cfae0faa809f047874d2021fe6',1,'UCharIterator::context()'],['../structUText.html#aeb9fa867f4b29378c34f5841d32db672',1,'UText::context()']]],
+  ['context_15',['context',['../structUCharIterator.html#a33f323cfae0faa809f047874d2021fe6',1,'UCharIterator::context'],['../structUText.html#aeb9fa867f4b29378c34f5841d32db672',1,'UText::context']]],
   ['contextlimit_16',['contextLimit',['../structUTransPosition.html#a78d09b71320d0b9a1e7720bda8420372',1,'UTransPosition']]],
   ['contextstart_17',['contextStart',['../structUTransPosition.html#ac0b101b915a80d9cad00974c66e28c40',1,'UTransPosition']]],
-  ['converter_18',['converter',['../structUConverterFromUnicodeArgs.html#aea5978dddd82f0ff25569e0894b77d5a',1,'UConverterFromUnicodeArgs::converter()'],['../structUConverterToUnicodeArgs.html#abcfd7707780ca177dd662f365e8631c0',1,'UConverterToUnicodeArgs::converter()']]],
-  ['copy_19',['copy',['../structUReplaceableCallbacks.html#a7affba31f6d3e5a31f8cd33358420fc6',1,'UReplaceableCallbacks::copy()'],['../structUTextFuncs.html#acd589b6a5bc19d33777cbd72dbaa80cc',1,'UTextFuncs::copy()']]],
+  ['converter_18',['converter',['../structUConverterFromUnicodeArgs.html#aea5978dddd82f0ff25569e0894b77d5a',1,'UConverterFromUnicodeArgs::converter'],['../structUConverterToUnicodeArgs.html#abcfd7707780ca177dd662f365e8631c0',1,'UConverterToUnicodeArgs::converter']]],
+  ['copy_19',['copy',['../structUReplaceableCallbacks.html#a7affba31f6d3e5a31f8cd33358420fc6',1,'UReplaceableCallbacks::copy'],['../structUTextFuncs.html#acd589b6a5bc19d33777cbd72dbaa80cc',1,'UTextFuncs::copy']]],
   ['current_20',['current',['../structUCharIterator.html#ac247dee1b3e3e6fec6688f9dcb5bc1c6',1,'UCharIterator']]]
 ];

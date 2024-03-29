@@ -4,6 +4,6 @@ var searchData=
   ['endindex_1',['endIndex',['../structUFieldPosition.html#a76188e4f36fc98fef71e7f374d0d1e57',1,'UFieldPosition']]],
   ['errorcode_2',['errorCode',['../classicu_1_1ErrorCode.html#a541d64c42a846715e2c345e813672a2b',1,'icu::ErrorCode']]],
   ['errors_3',['errors',['../structUIDNAInfo.html#a2ea60f82939e17d1f64babfcbe354082',1,'UIDNAInfo']]],
-  ['extract_4',['extract',['../structUReplaceableCallbacks.html#a423aefebaa21d2194334a795f7ae1809',1,'UReplaceableCallbacks::extract()'],['../structUTextFuncs.html#a6fd73fbd4bf4e4e87d2589b43ef9b7e1',1,'UTextFuncs::extract()']]],
+  ['extract_4',['extract',['../structUReplaceableCallbacks.html#a423aefebaa21d2194334a795f7ae1809',1,'UReplaceableCallbacks::extract'],['../structUTextFuncs.html#a6fd73fbd4bf4e4e87d2589b43ef9b7e1',1,'UTextFuncs::extract']]],
   ['extrasize_5',['extraSize',['../structUText.html#a265765aa476617b1b0a9b2f245d6c3f3',1,'UText']]]
 ];

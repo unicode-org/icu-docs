@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['rbbirulebuilder_0',['RBBIRuleBuilder',['../classicu_1_1RuleBasedBreakIterator.html#a17ce03f12f5fa8688859b25e2bf60938',1,'icu::RuleBasedBreakIterator']]],
-  ['rulebasedcollator_1',['RuleBasedCollator',['../classicu_1_1CollationKey.html#a1918e53ed4bb8208fdd6df3ed4ec2548',1,'icu::CollationKey']]]
+  ['operator_21_3d_0',['operator!=',['../structicu_1_1message2_1_1data__model_1_1Pattern_1_1Iterator.html#a27aed9f3ea67a677964fa51de28a5824',1,'icu::message2::data_model::Pattern::Iterator']]]
 ];

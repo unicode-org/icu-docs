@@ -25,7 +25,7 @@
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
 {text:"Related Pages",url:"pages.html"},
-{text:"Modules",url:"modules.html"},
+{text:"Topics",url:"topics.html"},
 {text:"Namespaces",url:"namespaces.html",children:[
 {text:"Namespace List",url:"namespaces.html"},
 {text:"Namespace Members",url:"namespacemembers.html",children:[
@@ -140,13 +140,14 @@ var menudata={children:[
 {text:"s",url:"functions_eval.html#index_s"},
 {text:"u",url:"functions_eval.html#index_u"},
 {text:"w",url:"functions_eval.html#index_w"}]},
-{text:"Related Functions",url:"functions_rela.html"}]}]},
+{text:"Related Symbols",url:"functions_rela.html"}]}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"},
 {text:"Globals",url:"globals.html",children:[
 {text:"All",url:"globals.html",children:[
 {text:"_",url:"globals.html#index__5F"},
 {text:"c",url:"globals_c.html#index_c"},
+{text:"d",url:"globals_d.html#index_d"},
 {text:"f",url:"globals_f.html#index_f"},
 {text:"i",url:"globals_i.html#index_i"},
 {text:"j",url:"globals_j.html#index_j"},
@@ -172,6 +173,7 @@ var menudata={children:[
 {text:"Macros",url:"globals_defs.html",children:[
 {text:"_",url:"globals_defs.html#index__5F"},
 {text:"c",url:"globals_defs_c.html#index_c"},
+{text:"d",url:"globals_defs_d.html#index_d"},
 {text:"f",url:"globals_defs_f.html#index_f"},
 {text:"i",url:"globals_defs_i.html#index_i"},
 {text:"j",url:"globals_defs_j.html#index_j"},

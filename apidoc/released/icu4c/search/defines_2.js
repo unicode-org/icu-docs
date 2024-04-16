@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['false_0',['FALSE',['../umachine_8h.html#aa93f0eb578d23995850d61f7d61c55c1',1,'umachine.h']]]
+  ['declare_5foverride_5fsystem_5fdefault_5fcentury_0',['DECLARE_OVERRIDE_SYSTEM_DEFAULT_CENTURY',['../calendar_8h.html#a06124aeedc9617528311428f68299c3b',1,'calendar.h']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 75.1: common/unicode/unistr.h File Reference</title>
+<title>ICU 76.1: common/unicode/unistr.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 75.1<span id="projectnumber">&#160;75.1</span>
+   <div id="projectname">ICU 76.1<span id="projectnumber">&#160;76.1</span>
    </div>
   </td>
  </tr>
@@ -87,6 +87,7 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="utypes_8h_source.html">unicode/utypes.h</a>&quot;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
 <code>#include &quot;<a class="el" href="char16ptr_8h_source.html">unicode/char16ptr.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="rep_8h_source.html">unicode/rep.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="std__string_8h_source.html">unicode/std_string.h</a>&quot;</code><br />
@@ -113,7 +114,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:a308c066384b8560030fb3482bcb13381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant to be used in the UnicodeString(char *, int32_t, EInvariant) constructor which constructs a Unicode string from an invariant-character char * string.  <br /></td></tr>
 <tr class="separator:a308c066384b8560030fb3482bcb13381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeab1ff09f666cf5fce35fc88cf37d714" id="r_aeab1ff09f666cf5fce35fc88cf37d714"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unistr_8h.html#aeab1ff09f666cf5fce35fc88cf37d714">UNICODE_STRING</a>(cs,  _length)&#160;&#160;&#160;<a class="el" href="classicu_1_1UnicodeString.html">icu::UnicodeString</a>(true, u ## cs, _length)</td></tr>
-<tr class="memdesc:aeab1ff09f666cf5fce35fc88cf37d714"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unicode String literals in C++.  <br /></td></tr>
+<tr class="memdesc:aeab1ff09f666cf5fce35fc88cf37d714"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obsolete macro approximating UnicodeString literals.  <br /></td></tr>
 <tr class="separator:aeab1ff09f666cf5fce35fc88cf37d714"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cd56429cbf4fe567a97c9d1a46e96ae" id="r_a6cd56429cbf4fe567a97c9d1a46e96ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unistr_8h.html#a6cd56429cbf4fe567a97c9d1a46e96ae">UNICODE_STRING_SIMPLE</a>(cs)&#160;&#160;&#160;<a class="el" href="unistr_8h.html#aeab1ff09f666cf5fce35fc88cf37d714">UNICODE_STRING</a>(cs, -1)</td></tr>
 <tr class="memdesc:a6cd56429cbf4fe567a97c9d1a46e96ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unicode String literals in C++.  <br /></td></tr>
@@ -139,8 +140,14 @@ Functions</h2></td></tr>
 <tr class="memitem:ga43199ed47f7c008e6baceccb5f66914a" id="r_ga43199ed47f7c008e6baceccb5f66914a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="umachine_8h.html#a676114b1a64bb7c2de15c919a00b28df">U_CAPI</a> int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ustring__ustrlen.html#ga43199ed47f7c008e6baceccb5f66914a">u_strlen</a> (const <a class="el" href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a> *s)</td></tr>
 <tr class="separator:ga43199ed47f7c008e6baceccb5f66914a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba07a6dabd3ae5f5ee729f556a9cb960" id="r_aba07a6dabd3ae5f5ee729f556a9cb960"><td class="memItemLeft" align="right" valign="top"><a class="el" href="utypes_8h.html#a559955ec3bc692657c5d8b1c6de8e334">U_COMMON_API</a> <a class="el" href="classicu_1_1UnicodeString.html">UnicodeString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceicu.html#aba07a6dabd3ae5f5ee729f556a9cb960">icu::operator+</a> (<a class="el" href="classicu_1_1LocalPointerBase.html">const</a> <a class="el" href="classicu_1_1UnicodeString.html">UnicodeString</a> &amp;<a class="el" href="classicu_1_1LocalPointerBase.html">s1</a>, <a class="el" href="classicu_1_1LocalPointerBase.html">const</a> <a class="el" href="classicu_1_1UnicodeString.html">UnicodeString</a> &amp;<a class="el" href="classicu_1_1LocalPointerBase.html">s2</a>)</td></tr>
-<tr class="memdesc:aba07a6dabd3ae5f5ee729f556a9cb960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new <a class="el" href="classicu_1_1UnicodeString.html" title="UnicodeString is a string class that stores Unicode characters directly and provides similar function...">UnicodeString</a> with the concatenation of two others.  <br /></td></tr>
+<tr class="memdesc:aba07a6dabd3ae5f5ee729f556a9cb960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classicu_1_1UnicodeString.html" title="UnicodeString is a string class that stores Unicode characters directly and provides similar function...">UnicodeString</a> from the concatenation of two others.  <br /></td></tr>
 <tr class="separator:aba07a6dabd3ae5f5ee729f556a9cb960"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0415b6d64978e4bb1d6af50cfeb6473" id="r_ab0415b6d64978e4bb1d6af50cfeb6473"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classicu_1_1LocalPointerBase.html">typename</a> <a class="el" href="classicu_1_1LocalPointerBase.html">S</a> , <a class="el" href="classicu_1_1LocalPointerBase.html">typename</a>  = std::enable_if_t&lt;ConvertibleToU16StringView&lt;S&gt;&gt;&gt; </td></tr>
+<tr class="memitem:ab0415b6d64978e4bb1d6af50cfeb6473"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classicu_1_1UnicodeString.html">UnicodeString</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceicu.html#ab0415b6d64978e4bb1d6af50cfeb6473">icu::operator+</a> (<a class="el" href="classicu_1_1LocalPointerBase.html">const</a> <a class="el" href="classicu_1_1UnicodeString.html">UnicodeString</a> &amp;<a class="el" href="classicu_1_1LocalPointerBase.html">s1</a>, <a class="el" href="classicu_1_1LocalPointerBase.html">const</a> <a class="el" href="classicu_1_1LocalPointerBase.html">S</a> &amp;<a class="el" href="classicu_1_1LocalPointerBase.html">s2</a>)</td></tr>
+<tr class="memdesc:ab0415b6d64978e4bb1d6af50cfeb6473"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classicu_1_1UnicodeString.html" title="UnicodeString is a string class that stores Unicode characters directly and provides similar function...">UnicodeString</a> from the concatenation of a <a class="el" href="classicu_1_1UnicodeString.html" title="UnicodeString is a string class that stores Unicode characters directly and provides similar function...">UnicodeString</a> and <code>s2</code> which is, or which is implicitly convertible to, a std::u16string_view or (if U_SIZEOF_WCHAR_T==2) std::wstring_view.  <br /></td></tr>
+<tr class="separator:ab0415b6d64978e4bb1d6af50cfeb6473"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20a9acddd623816474bf8fa9feeba9b1" id="r_a20a9acddd623816474bf8fa9feeba9b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="utypes_8h.html#a559955ec3bc692657c5d8b1c6de8e334">U_COMMON_API</a> <a class="el" href="classicu_1_1UnicodeString.html">UnicodeString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceicu.html#a20a9acddd623816474bf8fa9feeba9b1">icu::unistr_internalConcat</a> (<a class="el" href="classicu_1_1LocalPointerBase.html">const</a> <a class="el" href="classicu_1_1UnicodeString.html">UnicodeString</a> &amp;<a class="el" href="classicu_1_1LocalPointerBase.html">s1</a>, std::u16string_view <a class="el" href="classicu_1_1LocalPointerBase.html">s2</a>)</td></tr>
+<tr class="separator:a20a9acddd623816474bf8fa9feeba9b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>C++ API: Unicode String. </p>
@@ -173,12 +180,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unicode String literals in C++. </p>
-<p>Note: these macros are not recommended for new code. Prior to the availability of C++11 and u"unicode string literals", these macros were provided for portability and efficiency when initializing UnicodeStrings from literals.</p>
-<p>They work only for strings that contain "invariant characters", i.e., only latin letters, digits, and some punctuation. See <a class="el" href="utypes_8h.html" title="Basic definitions for ICU, for both C and C++ APIs.">utypes.h</a> for details.</p>
-<p>The string parameter must be a C string literal. The length of the string, not including the terminating <code>NUL</code>, must be specified as a constant. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002492">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Obsolete macro approximating UnicodeString literals. </p>
+<p>Prior to the availability of C++11 and u"UTF-16 string literals", this macro was provided for portability and efficiency when initializing UnicodeStrings from literals.</p>
+<p>Since C++17 and ICU 76, you can use UTF-16 string literals with compile-time length determination: </p><div class="fragment"><div class="line">UnicodeString str(u<span class="stringliteral">&quot;literal&quot;</span>);</div>
+<div class="line"><span class="keywordflow">if</span> (str == u<span class="stringliteral">&quot;other literal&quot;</span>) { ... }</div>
+</div><!-- fragment --><p>The string parameter must be a C string literal. The length of the string, not including the terminating <code>NUL</code>, must be specified as a constant. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002548">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00117">117</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00121">121</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
 </div>
 </div>
@@ -199,8 +207,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Unicode String literals in C++. </p>
-<p>Dependent on the platform properties, different UnicodeString constructors should be used to create a UnicodeString object from a string literal. The macros are defined for improved performance. They work only for strings that contain "invariant characters", i.e., only latin letters, digits, and some punctuation. See <a class="el" href="utypes_8h.html" title="Basic definitions for ICU, for both C and C++ APIs.">utypes.h</a> for details.</p>
-<p>The string parameter must be a C string literal. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002493">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Obsolete macro approximating UnicodeString literals. See UNICODE_STRING.</p>
+<p>The string parameter must be a C string literal. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002549">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="unistr_8h.html#aeab1ff09f666cf5fce35fc88cf37d714" title="Obsolete macro approximating UnicodeString literals.">UNICODE_STRING</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00135">135</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
@@ -219,7 +228,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This can be defined to be empty or "explicit". </p>
-<p>If explicit, then the UnicodeString(char16_t) and UnicodeString(UChar32) constructors are marked as explicit, preventing their inadvertent use. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002494">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<p>If explicit, then the UnicodeString(char16_t) and UnicodeString(UChar32) constructors are marked as explicit, preventing their inadvertent use. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002550">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00150">150</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
@@ -239,7 +248,7 @@ Functions</h2></td></tr>
 
 <p>This can be defined to be empty or "explicit". </p>
 <p>If explicit, then the UnicodeString(const char *) and UnicodeString(const char16_t *) constructors are marked as explicit, preventing their inadvertent use.</p>
-<p>In particular, this helps prevent accidentally depending on ICU conversion code by passing a string literal into an API with a const UnicodeString &amp; parameter. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002495">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<p>In particular, this helps prevent accidentally depending on ICU conversion code by passing a string literal into an API with a const UnicodeString &amp; parameter. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002551">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00170">170</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
@@ -265,7 +274,7 @@ Functions</h2></td></tr>
 <p>For example, on a 64-bit machine where sizeof(vtable pointer) is 8, sizeof(UnicodeString) = 64 would leave space for (64 - sizeof(vtable pointer) - 2) / U_SIZEOF_UCHAR = (64 - 8 - 2) / 2 = 27 char16_ts stored inside the object.</p>
 <p>The minimum object size on a 64-bit machine would be 4 * sizeof(pointer) = 4 * 8 = 32 bytes, and the internal buffer would hold up to 11 char16_ts in that case.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf16_8h.html#ab14454ab71a81f0cf86e523e50690eee" title="The maximum number of 16-bit code units per Unicode code point (U+0000..U+10ffff).">U16_MAX_LENGTH</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002496">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002552">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00208">208</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
@@ -285,9 +294,9 @@ Functions</h2></td></tr>
 
 <p>Constant to be used in the UnicodeString(char *, int32_t, EInvariant) constructor which constructs a Unicode string from an invariant-character char * string. </p>
 <p>About invariant characters see <a class="el" href="utypes_8h.html" title="Basic definitions for ICU, for both C and C++ APIs.">utypes.h</a>. This constructor has no runtime dependency on conversion code and is therefore recommended over ones taking a charset name string (where the empty string "" indicates invariant-character conversion).</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002491">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002547">Stable:</a></b></dt><dd>ICU 3.2 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00097">97</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00098">98</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
 </div>
 </div>
@@ -305,9 +314,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Internal string case mapping function type. </p>
-<p>All error checking must be done. src and dest must not overlap. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000149">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>All error checking must be done. src and dest must not overlap. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000156">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00070">70</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unistr_8h_source.html#l00071">71</a> of file <a class="el" href="unistr_8h_source.html">unistr.h</a>.</p>
 
 </div>
 </div>

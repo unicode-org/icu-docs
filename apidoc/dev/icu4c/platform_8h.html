@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 75.1: common/unicode/platform.h File Reference</title>
+<title>ICU 76.1: common/unicode/platform.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 75.1<span id="projectnumber">&#160;75.1</span>
+   <div id="projectname">ICU 76.1<span id="projectnumber">&#160;76.1</span>
    </div>
   </td>
  </tr>
@@ -148,6 +148,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a86b1787f48a38a5d3f7e31dd4acd5898" id="r_a86b1787f48a38a5d3f7e31dd4acd5898"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8h.html#a86b1787f48a38a5d3f7e31dd4acd5898">U_PLATFORM</a>&#160;&#160;&#160;<a class="el" href="platform_8h.html#af14cb940c842e4d284f4d77ab79d49e8">U_PF_UNKNOWN</a></td></tr>
 <tr class="memdesc:a86b1787f48a38a5d3f7e31dd4acd5898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define some things so that they can be documented.  <br /></td></tr>
 <tr class="separator:a86b1787f48a38a5d3f7e31dd4acd5898"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b0b54922d8dd3af71697b49c4952ac4" id="r_a4b0b54922d8dd3af71697b49c4952ac4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8h.html#a4b0b54922d8dd3af71697b49c4952ac4">U_REAL_MSVC</a></td></tr>
+<tr class="memdesc:a4b0b54922d8dd3af71697b49c4952ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defined if the compiler is the real MSVC compiler (and not something like Clang setting _MSC_VER in order to compile Windows code that requires it).  <br /></td></tr>
+<tr class="separator:a4b0b54922d8dd3af71697b49c4952ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1cf453287f1923cd5f2e80e70c306355" id="r_a1cf453287f1923cd5f2e80e70c306355"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8h.html#a1cf453287f1923cd5f2e80e70c306355">CYGWINMSVC</a></td></tr>
 <tr class="memdesc:a1cf453287f1923cd5f2e80e70c306355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defined if this is Windows with Cygwin, but using MSVC rather than gcc.  <br /></td></tr>
 <tr class="separator:a1cf453287f1923cd5f2e80e70c306355"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,7 +172,7 @@ Macros</h2></td></tr>
 <tr class="memitem:aeb1752be0ba20e855d9469cbe4c1c52d" id="r_aeb1752be0ba20e855d9469cbe4c1c52d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8h.html#aeb1752be0ba20e855d9469cbe4c1c52d">U_PLATFORM_IS_DARWIN_BASED</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:aeb1752be0ba20e855d9469cbe4c1c52d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines whether the platform is Darwin or one of its derivatives.  <br /></td></tr>
 <tr class="separator:aeb1752be0ba20e855d9469cbe4c1c52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae243c42a965d92c2f52ce91d3ce332ab" id="r_ae243c42a965d92c2f52ce91d3ce332ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8h.html#ae243c42a965d92c2f52ce91d3ce332ab">U_HAVE_CHAR16_T</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:ae243c42a965d92c2f52ce91d3ce332ab" id="r_ae243c42a965d92c2f52ce91d3ce332ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8h.html#ae243c42a965d92c2f52ce91d3ce332ab">U_HAVE_CHAR16_T</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:ae243c42a965d92c2f52ce91d3ce332ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines whether the char16_t type is available for UTF-16 and u"abc" UTF-16 string literals are supported.  <br /></td></tr>
 <tr class="separator:ae243c42a965d92c2f52ce91d3ce332ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
@@ -288,9 +291,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defined if this is Windows with Cygwin, but using MSVC rather than gcc. </p>
-<p>Otherwise undefined. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000070">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Otherwise undefined. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000076">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00221">221</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00234">234</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -311,9 +314,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Attribute to specify the size of the allocated buffer for malloc-like functions. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000080">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000086">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00447">447</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00460">460</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -346,9 +349,9 @@ Macros</h2></td></tr>
 <p>Indicates whether the compiler is gcc (test for != 0), and if so, contains its major (times 100) and minor version numbers. </p>
 <p>Compiler and environment features <br  />
  If the compiler is not gcc, then U_GCC_MAJOR_MINOR == 0.</p>
-<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00448">448</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00461">461</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -366,9 +369,9 @@ Macros</h2></td></tr>
 
 <p>U_CHARSET_FAMILY is equal to this value when the platform is an ASCII based platform. </p>
 <p>Character data types <br  />
- </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000641">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+ </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000642">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00512">512</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00525">525</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -388,9 +391,9 @@ Macros</h2></td></tr>
 <p>This is only used for non-ICU-API functions. When a function is a public ICU API, you must use the U_CAPI and U_EXPORT2 qualifiers.</p>
 <p>Please note, you need to use U_CALLCONV after the *.</p>
 <p>NO : "static const char U_CALLCONV *func( . . . )" YES: "static const char* U_CALLCONV func( . . . )"</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000647">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000648">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00823">823</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00842">842</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -407,9 +410,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Similar to U_CALLCONV, but only used on function pointers. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000086">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000092">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00834">834</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00853">853</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -445,9 +448,9 @@ Macros</h2></td></tr>
 <div class="line"><span class="charliteral">&#39;$&#39;</span> &lt;dollar sign&gt;</div>
 <div class="line"><span class="charliteral">&#39;@&#39;</span> &lt;commercial at&gt;</div>
 <div class="line"><span class="charliteral">&#39;`&#39;</span> &lt;grave accent&gt;</div>
-</div><!-- fragment --> <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000643">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+</div><!-- fragment --> <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000644">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00565">565</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00578">578</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -472,12 +475,12 @@ Macros</h2></td></tr>
 <li>static builds of ICU are smaller</li>
 <li>more functionality is available with the UCONFIG_NO_CONVERSION build-time configuration option (see <a class="el" href="uconfig_8h.html" title="User-configurable settings.">unicode/uconfig.h</a>)</li>
 <li><p class="startli">the UCONFIG_NO_CONVERSION build option in <a class="el" href="uconfig_8h.html" title="User-configurable settings.">uconfig.h</a> is more usable</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000644">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000645">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uconfig_8h.html#aaf41571c9594c26947640add578d9b98" title="ICU will not completely build (compiling the tools fails) with this switch turned on.">UCONFIG_NO_CONVERSION</a> </dd></dl>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00596">596</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00609">609</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -494,9 +497,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>0 if no C++; 1, 11, 14, ... if C++. </p>
-<p>Support for specific features cannot always be determined by the C++ version alone. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000081">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Support for specific features cannot always be determined by the C++ version alone. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000087">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00460">460</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00473">473</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -517,9 +520,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Do not use this macro because it is not defined on all platforms. </p>
-<p>Use the UNICODE_STRING or U_STRING_DECL macros instead. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000084">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>In C++, use std::u16string_view literals, see the UNICODE_STRING docs. In C, use u"UTF-16 literals". See also the public U_STRING_DECL macro. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000090">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00737">737</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00756">756</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -536,9 +539,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>U_CHARSET_FAMILY is equal to this value when the platform is an EBCDIC based platform. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000642">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000643">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00518">518</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00531">531</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -556,7 +559,7 @@ Macros</h2></td></tr>
 <p>Symbol import-export control <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00766">766</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00785">785</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -573,9 +576,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Annotate intentional fall-through between switch labels. </p>
-<p><a href="http://clang.llvm.org/docs/AttributeReference.html#fallthrough-clang-fallthrough">http://clang.llvm.org/docs/AttributeReference.html#fallthrough-clang-fallthrough</a> </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000082">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p><a href="http://clang.llvm.org/docs/AttributeReference.html#fallthrough-clang-fallthrough">http://clang.llvm.org/docs/AttributeReference.html#fallthrough-clang-fallthrough</a> </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000088">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00499">499</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00512">512</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -594,9 +597,9 @@ Macros</h2></td></tr>
 <p>Indicates whether the compiler is gcc (test for != 0), and if so, contains its major (times 100) and minor version numbers. </p>
 <p>Compiler and environment features <br  />
  If the compiler is not gcc, then U_GCC_MAJOR_MINOR == 0.</p>
-<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00322">322</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00335">335</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -607,15 +610,15 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define U_HAVE_CHAR16_T&#160;&#160;&#160;1</td>
+          <td class="memname">#define U_HAVE_CHAR16_T&#160;&#160;&#160;0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Defines whether the char16_t type is available for UTF-16 and u"abc" UTF-16 string literals are supported. </p>
-<p>This is a new standard type and standard string literal syntax in C++11 but has been available in some compilers before. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>This is a new standard type and standard string literal syntax in C++11 but has been available in some compilers before. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000089">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00717">717</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00733">733</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -632,9 +635,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Define this to define the MFC debug version of the operator new. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000640">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000641">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00378">378</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00391">391</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -651,9 +654,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Determines whether to override placement new and delete for STL. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000639">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000640">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00364">364</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00377">377</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -672,9 +675,9 @@ Macros</h2></td></tr>
 <p>Indicates whether &lt;wchar.h&gt; is available (1) or not (0). </p>
 <p>Information about wchar support <br  />
  Set to 1 by default.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000645">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000646">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00621">621</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00634">634</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -693,9 +696,9 @@ Macros</h2></td></tr>
 <p>Indicates whether &lt;wchar.h&gt; is available (1) or not (0). </p>
 <p>Information about wchar support <br  />
  Set to 1 by default.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000645">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000646">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00695">695</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00708">708</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -712,9 +715,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This is used to mark internal structs declared within external classes, to prevent the internal structs from having the same visibility as the class within which they are declared. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000085">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000091">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00800">800</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00819">819</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -732,7 +735,7 @@ Macros</h2></td></tr>
 <p>Symbol import-export control <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00785">785</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00804">804</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -749,9 +752,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Determines the endianness of the platform. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000078">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000084">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00343">343</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00356">356</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -768,9 +771,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Attribute to mark functions as malloc-like. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000079">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000085">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00433">433</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00446">446</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -787,7 +790,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>AIX is based on UNIX System V Releases and 4.3 BSD. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000058">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000063">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00108">108</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -806,7 +809,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Android is based on Linux. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000065">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000070">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00134">134</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -825,7 +828,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Native Client is pretty close to Linux. </p>
-<p>See <a href="https://developer.chrome.com/native-client">https://developer.chrome.com/native-client</a> and <a href="http://www.chromium.org/nativeclient">http://www.chromium.org/nativeclient</a> </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000064">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>See <a href="https://developer.chrome.com/native-client">https://developer.chrome.com/native-client</a> and <a href="http://www.chromium.org/nativeclient">http://www.chromium.org/nativeclient</a> </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000069">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00132">132</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -844,7 +847,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>BSD is a UNIX operating system derivative. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000057">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000062">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00106">106</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -863,7 +866,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Cygwin. </p>
-<p>Windows, calls to cygwin1.dll for Posix functions, using MSVC or GNU gcc and binutils. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000054">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Windows, calls to cygwin1.dll for Posix functions, using MSVC or GNU gcc and binutils. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000059">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00099">99</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -882,7 +885,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Darwin is a POSIX-compliant operating system, composed of code developed by Apple, as well as code derived from NeXTSTEP, BSD, and other projects, built around the Mach kernel. </p>
-<p>Darwin forms the core set of components upon which Mac OS X, Apple TV, and iOS are based. (Original description modified from WikiPedia.) </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000060">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Darwin forms the core set of components upon which Mac OS X, Apple TV, and iOS are based. (Original description modified from WikiPedia.) </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000065">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00119">119</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -901,7 +904,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Emscripten is a C++ transpiler for the Web that can target asm.js or WebAssembly. </p>
-<p>It provides some POSIX-compatible wrappers and stubs and some Linux-like functionality, but is not fully compatible with either. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000067">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>It provides some POSIX-compatible wrappers and stubs and some Linux-like functionality, but is not fully compatible with either. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000072">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00145">145</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -920,7 +923,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Fuchsia is a POSIX-ish platform. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000066">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000071">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00136">136</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -939,7 +942,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>HP-UX is based on UNIX System V. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000055">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000060">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00102">102</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -958,7 +961,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>iPhone OS (iOS) is a derivative of Mac OS X. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000061">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000066">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00121">121</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -977,7 +980,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>IRIX is based on UNIX System V with BSD extensions. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000059">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000064">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00110">110</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -996,7 +999,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Linux is a Unix-like operating system. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000063">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000068">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00125">125</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -1015,7 +1018,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>MinGW. </p>
-<p>Windows, calls to Win32 API, but using GNU gcc and binutils. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000053">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Windows, calls to Win32 API, but using GNU gcc and binutils. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000058">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00093">93</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -1034,7 +1037,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>z/OS is the successor to OS/390 which was the successor to MVS. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000068">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000073">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00147">147</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -1053,7 +1056,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>"IBM i" is the current name of what used to be i5/OS and earlier OS/400. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000069">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000074">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00149">149</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -1072,7 +1075,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>QNX is a commercial Unix-like real-time operating system related to BSD. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000062">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000067">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00123">123</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -1091,7 +1094,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Solaris is a Unix operating system based on SVR4. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000056">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000061">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00104">104</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -1110,7 +1113,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Unknown platform. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000051">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000056">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00089">89</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -1129,7 +1132,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Windows. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000052">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000057">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00091">91</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
@@ -1148,14 +1151,14 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Define some things so that they can be documented. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000049">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000054">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 <p>The U_PLATFORM macro defines the platform we're on.</p>
 <p>We used to define one different, value-less macro per platform. That made it hard to know the set of relevant platforms and macros, and hard to deal with variants of platforms.</p>
 <p>Starting with ICU 49, we define platforms as numeric macros, with ranges of values for related platforms and their variants. The U_PLATFORM macro is set to one of these values.</p>
 <p>Historical note from the Solaris Wikipedia article: AT&amp;T and Sun collaborated on a project to merge the most popular Unix variants on the market at that time: BSD, System V, and Xenix. This became Unix System V Release 4 (SVR4).</p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000050">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000055">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00206">206</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00208">208</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1172,9 +1175,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defines whether the Win32 API is available on the platform. </p>
-<p>Set to 1 for Windows/MSVC, MinGW and Cygwin. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000072">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Set to 1 for Windows/MSVC, ClangCL, MinGW and Cygwin. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000078">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00248">248</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00261">261</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1191,9 +1194,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defines whether target is intended for Universal Windows Platform API Set to 1 for Windows10 Release Solution Configuration. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000073">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000079">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00262">262</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00275">275</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1210,9 +1213,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defines whether the platform implements (most of) the POSIX API. </p>
-<p>Set to 1 for Cygwin and most other platforms. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000074">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Set to 1 for Cygwin and most other platforms. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000080">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00276">276</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00289">289</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1229,9 +1232,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defines whether the platform is Darwin or one of its derivatives. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000076">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000082">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00300">300</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00313">313</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1248,9 +1251,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defines whether the platform is Linux or one of its derivatives. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000075">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000081">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00287">287</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00300">300</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1267,9 +1270,28 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defines whether the platform uses only the Win32 API. </p>
-<p>Set to 1 for Windows/MSVC and MinGW but not Cygwin. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000071">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Set to 1 for Windows/MSVC, ClangCL and MinGW but not Cygwin. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00233">233</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00246">246</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+
+</div>
+</div>
+<a id="a4b0b54922d8dd3af71697b49c4952ac4" name="a4b0b54922d8dd3af71697b49c4952ac4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b0b54922d8dd3af71697b49c4952ac4">&#9670;&#160;</a></span>U_REAL_MSVC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U_REAL_MSVC</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defined if the compiler is the real MSVC compiler (and not something like Clang setting _MSC_VER in order to compile Windows code that requires it). </p>
+<p>Otherwise undefined. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000075">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00219">219</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1286,9 +1308,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>U_SIZEOF_WCHAR_T==sizeof(wchar_t) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000646">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable000647">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00639">639</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00652">652</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1311,9 +1333,9 @@ Macros</h2></td></tr>
 <p>Indicates whether the compiler is gcc (test for != 0), and if so, contains its major (times 100) and minor version numbers. </p>
 <p>Compiler and environment features <br  />
  If the compiler is not gcc, then U_GCC_MAJOR_MINOR == 0.</p>
-<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00385">385</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00398">398</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1336,9 +1358,9 @@ Macros</h2></td></tr>
 <p>Indicates whether the compiler is gcc (test for != 0), and if so, contains its major (times 100) and minor version numbers. </p>
 <p>Compiler and environment features <br  />
  If the compiler is not gcc, then U_GCC_MAJOR_MINOR == 0.</p>
-<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00400">400</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00413">413</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1361,9 +1383,9 @@ Macros</h2></td></tr>
 <p>Indicates whether the compiler is gcc (test for != 0), and if so, contains its major (times 100) and minor version numbers. </p>
 <p>Compiler and environment features <br  />
  If the compiler is not gcc, then U_GCC_MAJOR_MINOR == 0.</p>
-<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00390">390</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00403">403</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1386,9 +1408,9 @@ Macros</h2></td></tr>
 <p>Indicates whether the compiler is gcc (test for != 0), and if so, contains its major (times 100) and minor version numbers. </p>
 <p>Compiler and environment features <br  />
  If the compiler is not gcc, then U_GCC_MAJOR_MINOR == 0.</p>
-<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00395">395</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00408">408</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1411,9 +1433,9 @@ Macros</h2></td></tr>
 <p>Indicates whether the compiler is gcc (test for != 0), and if so, contains its major (times 100) and minor version numbers. </p>
 <p>Compiler and environment features <br  />
  If the compiler is not gcc, then U_GCC_MAJOR_MINOR == 0.</p>
-<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00410">410</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00423">423</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1436,9 +1458,9 @@ Macros</h2></td></tr>
 <p>Indicates whether the compiler is gcc (test for != 0), and if so, contains its major (times 100) and minor version numbers. </p>
 <p>Compiler and environment features <br  />
  If the compiler is not gcc, then U_GCC_MAJOR_MINOR == 0.</p>
-<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00405">405</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00418">418</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1461,9 +1483,9 @@ Macros</h2></td></tr>
 <p>Indicates whether the compiler is gcc (test for != 0), and if so, contains its major (times 100) and minor version numbers. </p>
 <p>Compiler and environment features <br  />
  If the compiler is not gcc, then U_GCC_MAJOR_MINOR == 0.</p>
-<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00415">415</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00428">428</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>
@@ -1482,9 +1504,9 @@ Macros</h2></td></tr>
 <p>Indicates whether the compiler is gcc (test for != 0), and if so, contains its major (times 100) and minor version numbers. </p>
 <p>Compiler and environment features <br  />
  If the compiler is not gcc, then U_GCC_MAJOR_MINOR == 0.</p>
-<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000077">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>For example, for testing for whether we have gcc, and whether it's 4.6 or higher, use "#if U_GCC_MAJOR_MINOR &gt;= 406". </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000083">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00422">422</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00435">435</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
 
 </div>
 </div>

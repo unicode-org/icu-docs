@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 75.1: icu::IDNA Class Reference</title>
+<title>ICU 76.1: icu::IDNA Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 75.1<span id="projectnumber">&#160;75.1</span>
+   <div id="projectname">ICU 76.1<span id="projectnumber">&#160;76.1</span>
    </div>
   </td>
  </tr>
@@ -204,13 +204,13 @@ Static Public Member Functions</h2></td></tr>
 <p>Returns an <a class="el" href="classicu_1_1IDNA.html" title="Abstract base class for IDNA processing.">IDNA</a> instance which implements UTS #46. </p>
 <p>Returns an unmodifiable instance, owned by the caller. Cache it for multiple operations, and delete it when done. The instance is thread-safe, that is, it can be used concurrently.</p>
 <p>UTS #46 defines Unicode <a class="el" href="classicu_1_1IDNA.html" title="Abstract base class for IDNA processing.">IDNA</a> Compatibility Processing, updated to the latest version of Unicode and compatible with both IDNA2003 and IDNA2008.</p>
-<p>The worker functions use transitional processing, including deviation mappings, unless UIDNA_NONTRANSITIONAL_TO_ASCII or UIDNA_NONTRANSITIONAL_TO_UNICODE is used in which case the deviation characters are passed through without change.</p>
+<p>The worker functions use transitional processing, including deviation mappings, unless UIDNA_NONTRANSITIONAL_TO_ASCII or UIDNA_NONTRANSITIONAL_TO_UNICODE is used in which case the deviation characters are passed through without change. <b>Unicode 15.1 UTS #46 deprecated transitional processing.</b></p>
 <p>Disallowed characters are mapped to U+FFFD.</p>
 <p>For available options see the <a class="el" href="uidna_8h.html" title="C API: Internationalizing Domain Names in Applications (IDNA)">uidna.h</a> header. Operations with the UTS #46 instance do not support the UIDNA_ALLOW_UNASSIGNED option.</p>
 <p>By default, the UTS #46 implementation allows all ASCII characters (as valid or mapped). When the UIDNA_USE_STD3_RULES option is used, ASCII characters other than letters, digits, hyphen (LDH) and dot/full stop are disallowed and mapped to U+FFFD.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">options</td><td>Bit set to modify the processing and error checking. See option bit set values in <a class="el" href="uidna_8h.html" title="C API: Internationalizing Domain Names in Applications (IDNA)">uidna.h</a>. </td></tr>
+    <tr><td class="paramname">options</td><td>Bit set to modify the processing and error checking. These should include UIDNA_DEFAULT, or UIDNA_NONTRANSITIONAL_TO_ASCII | UIDNA_NONTRANSITIONAL_TO_UNICODE. See option bit set values in <a class="el" href="uidna_8h.html" title="C API: Internationalizing Domain Names in Applications (IDNA)">uidna.h</a>. </td></tr>
     <tr><td class="paramname">errorCode</td><td>Standard ICU error code. Its input value must pass the <a class="el" href="utypes_8h.html#a527f2c69e6b2e3b2c53ad8a99fb36711" title="Does the error code indicate success?">U_SUCCESS()</a> test, or else the function returns immediately. Check for <a class="el" href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f" title="Does the error code indicate a failure?">U_FAILURE()</a> on output or use with function chaining. (See User Guide for details.) </td></tr>
   </table>
   </dd>

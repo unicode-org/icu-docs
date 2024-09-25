@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['olduchar_0',['OldUChar',['../umachine_8h.html#a85b92f7aa77a10e854b4cbff55a7a88c',1,'umachine.h']]]
+  ['factory_0',['Factory',['../classicu_1_1Transliterator.html#a945b27406a40b9da26b44818d0919fe4',1,'icu::Transliterator']]]
 ];

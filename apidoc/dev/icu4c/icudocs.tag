@@ -986,6 +986,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>U_REAL_MSVC</name>
+      <anchorfile>platform_8h.html</anchorfile>
+      <anchor>a4b0b54922d8dd3af71697b49c4952ac4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>CYGWINMSVC</name>
       <anchorfile>platform_8h.html</anchorfile>
       <anchor>a1cf453287f1923cd5f2e80e70c306355</anchor>
@@ -3410,6 +3417,13 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>enum UIndicConjunctBreak</type>
+      <name>UIndicConjunctBreak</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>abd09c02b87c5b9fac6776cd5a430e250</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>enum UVerticalOrientation</type>
       <name>UVerticalOrientation</name>
       <anchorfile>uchar_8h.html</anchorfile>
@@ -3908,6 +3922,12 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>UCHAR_MODIFIER_COMBINING_MARK</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>ae40d616419e74ecc7c80a9febab03199a930d362dbef45e023c24cc5661f4594f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>UCHAR_BINARY_LIMIT</name>
       <anchorfile>uchar_8h.html</anchorfile>
       <anchor>ae40d616419e74ecc7c80a9febab03199ac62c7e6245ad64ea6b662c9b93831273</anchor>
@@ -4073,6 +4093,12 @@
       <name>UCHAR_IDENTIFIER_STATUS</name>
       <anchorfile>uchar_8h.html</anchorfile>
       <anchor>ae40d616419e74ecc7c80a9febab03199aec66729dc466a6c942fd92a321e127d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UCHAR_INDIC_CONJUNCT_BREAK</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>ae40d616419e74ecc7c80a9febab03199a5033c314b05a85756eaeb0b732b15604</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
@@ -6618,6 +6644,66 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>UBLOCK_EGYPTIAN_HIEROGLYPHS_EXTENDED_A</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901ac37a445e50ff6cc1d5e7103dd1bc72b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_GARAY</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a3ee6bfe6052eae565331ead5b56c41c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_GURUNG_KHEMA</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a86a36b5f439cf36cc8a8f212b45b2f65</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_KIRAT_RAI</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901ab7582c1f880be2af81fef02a0552d7a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_MYANMAR_EXTENDED_C</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901ac6a7740cc3b0f1eaff68c2c217402d19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_OL_ONAL</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a626067fe5afd057280e604f0db3c91db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_SUNUWAR</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a272ef8a85c4f2a7d8312ff1b0e361624</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_SYMBOLS_FOR_LEGACY_COMPUTING_SUPPLEMENT</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a188e42aa081b0e8b4d08318a5be50660</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_TODHRI</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901ae13a09931f2a7e01ab96ad5b00e5ea64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_TULU_TIGALARI</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a18e4a4905b20a85fb0933cfd7680c69e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>UBLOCK_COUNT</name>
       <anchorfile>uchar_8h.html</anchorfile>
       <anchor>a19f1662c9c33c31593612d05777ea901a04e4577a8946c1c6b032ee1a17728eff</anchor>
@@ -7047,6 +7133,12 @@
       <name>U_JG_VERTICAL_TAIL</name>
       <anchorfile>uchar_8h.html</anchorfile>
       <anchor>a7887844ec0872e6e9a283e0825fcae65a3fa41f5654f8611a83cf08cd0aeee8de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_JG_KASHMIRI_YEH</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a7887844ec0872e6e9a283e0825fcae65af0ebbde314182917ceb69b0d83b623ee</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
@@ -7715,6 +7807,43 @@
       <name>U_INSC_VOWEL_INDEPENDENT</name>
       <anchorfile>uchar_8h.html</anchorfile>
       <anchor>af6072b38a481e1a54950fa5629d2842aa85575765d1cdfcf8eeeb8317bcde536b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_INSC_REORDERING_KILLER</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>af6072b38a481e1a54950fa5629d2842aa2c2309cab585f7aac1262fd8e79017f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UIndicConjunctBreak</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>ae0994cbbbba3224b1f270fba60763eaf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_INCB_NONE</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>ae0994cbbbba3224b1f270fba60763eafa46ffb96692ad58e248f7d1c8b4c0ec64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_INCB_CONSONANT</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>ae0994cbbbba3224b1f270fba60763eafa60ec3ce7d0705e9fb1bac8a63b2131ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_INCB_EXTEND</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>ae0994cbbbba3224b1f270fba60763eafa3148f4e265112cb15f6fbae014b13da5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_INCB_LINKER</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>ae0994cbbbba3224b1f270fba60763eafa2d5d5f5cc26b639acf6a5b5c965132ba</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -14593,6 +14722,48 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>USCRIPT_GARAY</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a5b41ce4c287ea26d1f3afc3fb490c454</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_GURUNG_KHEMA</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a620b2d1c989f4d7e64795d182ee9dbb4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_KIRAT_RAI</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0abcca4059a35eeec3db5c90a502ce9de9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_OL_ONAL</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a1bc825abf5a2e2858afa44b5900ceb4e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_SUNUWAR</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0ace5ee7c501e06dbe90f250b53d1f5d24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_TODHRI</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a0125bed57c5e155fd227cc2d0e1bb0fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_TULU_TIGALARI</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a07a0aa0394a6e0a1589deef42852580b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>USCRIPT_CODE_LIMIT</name>
       <anchorfile>uscript_8h.html</anchorfile>
       <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a12e18aa66866154e14fd0f1cb19e7150</anchor>
@@ -14732,8 +14903,20 @@
     <filename>uset_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" import="no" module="no" objc="no">unicode/utypes.h</includes>
     <includes id="uchar_8h" name="uchar.h" local="yes" import="no" module="no" objc="no">unicode/uchar.h</includes>
+    <includes id="char16ptr_8h" name="char16ptr.h" local="yes" import="no" module="no" objc="no">unicode/char16ptr.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" import="no" module="no" objc="no">unicode/localpointer.h</includes>
+    <includes id="unistr_8h" name="unistr.h" local="yes" import="no" module="no" objc="no">unicode/unistr.h</includes>
     <class kind="struct">USerializedSet</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::USetCodePointIterator</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::USetCodePoints</class>
+    <class kind="struct">U_HEADER_ONLY_NAMESPACE::CodePointRange</class>
+    <class kind="struct">U_HEADER_ONLY_NAMESPACE::CodePointRange::iterator</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::USetRangeIterator</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::USetRanges</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::USetStringIterator</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::USetStrings</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::USetElementIterator</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::USetElements</class>
     <namespace>icu</namespace>
     <member kind="typedef">
       <type>struct USet</type>
@@ -15145,6 +15328,20 @@
       <anchorfile>uset_8h.html</anchorfile>
       <anchor>a88e8b8c9c05b44ed1dacd3fc54c0c293</anchor>
       <arglist>(const USet *set)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI int32_t</type>
+      <name>uset_getStringCount</name>
+      <anchorfile>uset_8h.html</anchorfile>
+      <anchor>a097afe45feaede9c3b509ff8b592e83f</anchor>
+      <arglist>(const USet *set)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_CAPI const UChar *</type>
+      <name>uset_getString</name>
+      <anchorfile>uset_8h.html</anchorfile>
+      <anchor>ae73b6161467f354272118e33d0ced669</anchor>
+      <arglist>(const USet *set, int32_t index, int32_t *pLength)</arglist>
     </member>
     <member kind="function">
       <type>U_CAPI int32_t</type>
@@ -18565,13 +18762,6 @@
     <includes id="utf_8h" name="utf.h" local="yes" import="no" module="no" objc="no">unicode/utf.h</includes>
     <member kind="define">
       <type>#define</type>
-      <name>U_SHOW_CPLUSPLUS_API</name>
-      <anchorfile>utypes_8h.html</anchorfile>
-      <anchor>ad8fa5bb3076c4f8cdb9ba547089f2ca6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>U_ICUDATA_TYPE_LETTER</name>
       <anchorfile>utypes_8h.html</anchorfile>
       <anchor>a5ffc2b3a9a3b3e33c35e8b9f1d5b5055</anchor>
@@ -18723,6 +18913,20 @@
       <anchorfile>utypes_8h.html</anchorfile>
       <anchor>a4d202200b6aa6f3c965ea370e0c8155f</anchor>
       <arglist>(x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_SHOW_CPLUSPLUS_API</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>ad8fa5bb3076c4f8cdb9ba547089f2ca6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_SHOW_CPLUSPLUS_HEADER_API</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>acbbbb2a3ffe91600895c08d2c6a39cc5</anchor>
+      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -19444,15 +19648,9 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
-      <name>U_MF_UNSUPPORTED_STATEMENT_ERROR</name>
+      <name>U_MF_DUPLICATE_VARIANT_ERROR</name>
       <anchorfile>utypes_8h.html</anchorfile>
-      <anchor>a3343c1c8a8377277046774691c98d78ca7673c9265397fb04a8eb6b1168ce1575</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>U_MF_UNSUPPORTED_EXPRESSION_ERROR</name>
-      <anchorfile>utypes_8h.html</anchorfile>
-      <anchor>a3343c1c8a8377277046774691c98d78cac9f40bc01723f503b104acbbd0184b19</anchor>
+      <anchor>a3343c1c8a8377277046774691c98d78ca4b4c6b6bde26ba977a2afe48460422df</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
@@ -19743,6 +19941,20 @@
       <anchorfile>utypes_8h.html</anchorfile>
       <anchor>a01765f8834f9eebbbe66d5f4e2afe431</anchor>
       <arglist>(UErrorCode code)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_SHOW_CPLUSPLUS_API</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>ad8fa5bb3076c4f8cdb9ba547089f2ca6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_SHOW_CPLUSPLUS_HEADER_API</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>acbbbb2a3ffe91600895c08d2c6a39cc5</anchor>
+      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -20056,12 +20268,14 @@
     <path>i18n/unicode/</path>
     <filename>coll_8h.html</filename>
     <includes id="utypes_8h" name="utypes.h" local="yes" import="no" module="no" objc="no">unicode/utypes.h</includes>
+    <includes id="char16ptr_8h" name="char16ptr.h" local="yes" import="no" module="no" objc="no">unicode/char16ptr.h</includes>
     <includes id="uobject_8h" name="uobject.h" local="yes" import="no" module="no" objc="no">unicode/uobject.h</includes>
     <includes id="ucol_8h" name="ucol.h" local="yes" import="no" module="no" objc="no">unicode/ucol.h</includes>
     <includes id="unorm_8h" name="unorm.h" local="yes" import="no" module="no" objc="no">unicode/unorm.h</includes>
     <includes id="locid_8h" name="locid.h" local="yes" import="no" module="no" objc="no">unicode/locid.h</includes>
     <includes id="uniset_8h" name="uniset.h" local="yes" import="no" module="no" objc="no">unicode/uniset.h</includes>
     <includes id="umisc_8h" name="umisc.h" local="yes" import="no" module="no" objc="no">unicode/umisc.h</includes>
+    <includes id="unistr_8h" name="unistr.h" local="yes" import="no" module="no" objc="no">unicode/unistr.h</includes>
     <includes id="uiter_8h" name="uiter.h" local="yes" import="no" module="no" objc="no">unicode/uiter.h</includes>
     <includes id="stringpiece_8h" name="stringpiece.h" local="yes" import="no" module="no" objc="no">unicode/stringpiece.h</includes>
     <class kind="class">icu::Collator</class>
@@ -22494,6 +22708,10 @@
     <includes id="uset_8h" name="uset.h" local="yes" import="no" module="no" objc="no">unicode/uset.h</includes>
     <includes id="uscript_8h" name="uscript.h" local="yes" import="no" module="no" objc="no">unicode/uscript.h</includes>
     <includes id="localpointer_8h" name="localpointer.h" local="yes" import="no" module="no" objc="no">unicode/localpointer.h</includes>
+    <includes id="char16ptr_8h" name="char16ptr.h" local="yes" import="no" module="no" objc="no">unicode/char16ptr.h</includes>
+    <includes id="stringpiece_8h" name="stringpiece.h" local="yes" import="no" module="no" objc="no">unicode/stringpiece.h</includes>
+    <includes id="unistr_8h" name="unistr.h" local="yes" import="no" module="no" objc="no">unicode/unistr.h</includes>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::collator::internal::Predicate</class>
     <namespace>icu</namespace>
     <member kind="define">
       <type>#define</type>
@@ -29837,13 +30055,6 @@
     </member>
     <member kind="function">
       <type>U_CAPI void</type>
-      <name>usnum_truncateStart</name>
-      <anchorfile>usimplenumberformatter_8h.html</anchorfile>
-      <anchor>a389db2c7270074f42a1bdfbd9c66ea91</anchor>
-      <arglist>(USimpleNumber *unumber, int32_t maximumIntegerDigits, UErrorCode *ec)</arglist>
-    </member>
-    <member kind="function">
-      <type>U_CAPI void</type>
       <name>usnum_setSign</name>
       <anchorfile>usimplenumberformatter_8h.html</anchorfile>
       <anchor>a19ab4072dd452b0d3559b9ff024fc8b7</anchor>
@@ -32741,15 +32952,15 @@
       <type>Builder &amp;</type>
       <name>addOption</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Markup_1_1Builder.html</anchorfile>
-      <anchor>a47a16d247570e0860c5d444936d79d38</anchor>
-      <arglist>(const UnicodeString &amp;key, Operand &amp;&amp;value, UErrorCode &amp;status) noexcept</arglist>
+      <anchor>a03b15e14852833dc65dcb14e15946b1e</anchor>
+      <arglist>(const UnicodeString &amp;key, Operand &amp;&amp;value, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
       <type>Builder &amp;</type>
       <name>addAttribute</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Markup_1_1Builder.html</anchorfile>
-      <anchor>aaae6a8b1a61e29a7777cc83b1b178eee</anchor>
-      <arglist>(const UnicodeString &amp;key, Operand &amp;&amp;value, UErrorCode &amp;status) noexcept</arglist>
+      <anchor>a34c99d43943f0d1f26f36fd623357ffc</anchor>
+      <arglist>(const UnicodeString &amp;key, Operand &amp;&amp;value, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
       <type>Markup</type>
@@ -32777,13 +32988,6 @@
     <name>icu::message2::data_model::Operator::Builder</name>
     <filename>classicu_1_1message2_1_1data__model_1_1Operator_1_1Builder.html</filename>
     <base>icu::UMemory</base>
-    <member kind="function">
-      <type>Builder &amp;</type>
-      <name>setReserved</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Operator_1_1Builder.html</anchorfile>
-      <anchor>ade8e73824ed00ea54a305d7c51b9a61b</anchor>
-      <arglist>(Reserved &amp;&amp;reserved)</arglist>
-    </member>
     <member kind="function">
       <type>Builder &amp;</type>
       <name>setFunctionName</name>
@@ -32868,39 +33072,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>icu::message2::data_model::Reserved::Builder</name>
-    <filename>classicu_1_1message2_1_1data__model_1_1Reserved_1_1Builder.html</filename>
-    <base>icu::UMemory</base>
-    <member kind="function">
-      <type>Builder &amp;</type>
-      <name>add</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved_1_1Builder.html</anchorfile>
-      <anchor>ab7de08b387544252830e3fbfed509717</anchor>
-      <arglist>(Literal &amp;&amp;part, UErrorCode &amp;status) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>Reserved</type>
-      <name>build</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved_1_1Builder.html</anchorfile>
-      <anchor>a1b10c8b2253a6733f2bc9a89c286dd1b</anchor>
-      <arglist>(UErrorCode &amp;status) const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Builder</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved_1_1Builder.html</anchorfile>
-      <anchor>ad2afd271ee900cbaef0240eb1b6ec7aa</anchor>
-      <arglist>(UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~Builder</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved_1_1Builder.html</anchorfile>
-      <anchor>a3c8a7f17e041dbfadb367d283966e5db</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>icu::message2::data_model::SelectorKeys::Builder</name>
     <filename>classicu_1_1message2_1_1data__model_1_1SelectorKeys_1_1Builder.html</filename>
     <base>icu::UMemory</base>
@@ -32930,53 +33101,6 @@
       <name>~Builder</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1SelectorKeys_1_1Builder.html</anchorfile>
       <anchor>a5172743897b19afd12605dcb8777b564</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>icu::message2::data_model::UnsupportedStatement::Builder</name>
-    <filename>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement_1_1Builder.html</filename>
-    <base>icu::UMemory</base>
-    <member kind="function">
-      <type>Builder &amp;</type>
-      <name>setKeyword</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement_1_1Builder.html</anchorfile>
-      <anchor>a0f795118c11a12adc554cd58b7dfeea2</anchor>
-      <arglist>(const UnicodeString &amp;k)</arglist>
-    </member>
-    <member kind="function">
-      <type>Builder &amp;</type>
-      <name>setBody</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement_1_1Builder.html</anchorfile>
-      <anchor>aef3f2da2b39ef89392eb7d3d7382ba75</anchor>
-      <arglist>(Reserved &amp;&amp;r)</arglist>
-    </member>
-    <member kind="function">
-      <type>Builder &amp;</type>
-      <name>addExpression</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement_1_1Builder.html</anchorfile>
-      <anchor>a7079e2199288eb4baff35d8d7979e4cb</anchor>
-      <arglist>(Expression &amp;&amp;e, UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function">
-      <type>UnsupportedStatement</type>
-      <name>build</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement_1_1Builder.html</anchorfile>
-      <anchor>ae4a7a5bcabb4334c0a81e23ddb557e80</anchor>
-      <arglist>(UErrorCode &amp;status) const</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Builder</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement_1_1Builder.html</anchorfile>
-      <anchor>a4080d5f489096f62c3e6dd86facd55d8</anchor>
-      <arglist>(UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~Builder</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement_1_1Builder.html</anchorfile>
-      <anchor>ab495212f817dc523b365b90916de9e44</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -33013,6 +33137,13 @@
       <arglist>(MFDataModel &amp;&amp;dataModel)</arglist>
     </member>
     <member kind="function">
+      <type>Builder &amp;</type>
+      <name>setErrorHandlingBehavior</name>
+      <anchorfile>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</anchorfile>
+      <anchor>a561538c73e2eba08d2b33132a57691cf</anchor>
+      <arglist>(UMFErrorHandlingBehavior type)</arglist>
+    </member>
+    <member kind="function">
       <type>MessageFormatter</type>
       <name>build</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</anchorfile>
@@ -33044,13 +33175,6 @@
       <anchorfile>classicu_1_1message2_1_1MFDataModel_1_1Builder.html</anchorfile>
       <anchor>a3386f7aef20c362504dd597efa2cd363</anchor>
       <arglist>(Binding &amp;&amp;b, UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function">
-      <type>Builder &amp;</type>
-      <name>addUnsupportedStatement</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel_1_1Builder.html</anchorfile>
-      <anchor>a204aa3cea90c972e7bb2aeb9933293af</anchor>
-      <arglist>(UnsupportedStatement &amp;&amp;s, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
       <type>Builder &amp;</type>
@@ -34279,8 +34403,8 @@
       <type>virtual int32_t</type>
       <name>getDefaultDayInMonth</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a7659141c1a3856909f2c95f2908b25ee</anchor>
-      <arglist>(int32_t eyear, int32_t month)</arglist>
+      <anchor>a9e0b89fbef44eee9fb1f1246dac198f5</anchor>
+      <arglist>(int32_t eyear, int32_t month, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
@@ -35271,6 +35395,60 @@
       <arglist>()</arglist>
     </member>
   </compound>
+  <compound kind="struct">
+    <name>U_HEADER_ONLY_NAMESPACE::CodePointRange</name>
+    <filename>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange.html</filename>
+    <class kind="struct">U_HEADER_ONLY_NAMESPACE::CodePointRange::iterator</class>
+    <member kind="function">
+      <type></type>
+      <name>CodePointRange</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange.html</anchorfile>
+      <anchor>a711657bbfd4977f64e9659bdc0f37cef</anchor>
+      <arglist>(UChar32 start, UChar32 end)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>CodePointRange</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange.html</anchorfile>
+      <anchor>aacd4f815dc7a6e501cdc2aa87f9238ee</anchor>
+      <arglist>(const CodePointRange &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>size_t</type>
+      <name>size</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange.html</anchorfile>
+      <anchor>a976f0556466afc858f56540c7c57321c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>iterator</type>
+      <name>begin</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange.html</anchorfile>
+      <anchor>a2271d6d04f507761863a5b22deeee6bb</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>iterator</type>
+      <name>end</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange.html</anchorfile>
+      <anchor>a9c8e94401c89b082d127f1139cf8ca63</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable">
+      <type>UChar32</type>
+      <name>rangeStart</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange.html</anchorfile>
+      <anchor>af7289370c39993b7edf5d1266f8e7bbf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>UChar32</type>
+      <name>rangeEnd</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange.html</anchorfile>
+      <anchor>aac1e1bad2d9facd73a76db75b0a48e4e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
   <compound kind="class">
     <name>icu::CollationElementIterator</name>
     <filename>classicu_1_1CollationElementIterator.html</filename>
@@ -35709,6 +35887,48 @@
       <anchorfile>classicu_1_1Collator.html</anchorfile>
       <anchor>a15592eaf91149799427277796524ab8b</anchor>
       <arglist>(const UnicodeString &amp;source, const UnicodeString &amp;target) const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>equal_to</name>
+      <anchorfile>classicu_1_1Collator.html</anchorfile>
+      <anchor>a60187e0af85f518f04b860ca90bd50a9</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>greater</name>
+      <anchorfile>classicu_1_1Collator.html</anchorfile>
+      <anchor>ab7c0a745cd22297bdd114d07d8a7f8ac</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>less</name>
+      <anchorfile>classicu_1_1Collator.html</anchorfile>
+      <anchor>a2ee0f430e0e7148c2fc02694835cbae0</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>not_equal_to</name>
+      <anchorfile>classicu_1_1Collator.html</anchorfile>
+      <anchor>a8f630c159289f6e647e05e59adee088b</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>greater_equal</name>
+      <anchorfile>classicu_1_1Collator.html</anchorfile>
+      <anchor>a8f1bafef43b28c1d4dad95107b201498</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>less_equal</name>
+      <anchorfile>classicu_1_1Collator.html</anchorfile>
+      <anchor>a4234e84deac5a1ead9354c02af5451d1</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual ECollationStrength</type>
@@ -40127,13 +40347,6 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
-      <name>isReserved</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>a91c5d2683556d605d7997a64490470c0</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
       <type>const Operator *</type>
       <name>getOperator</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
@@ -40618,12 +40831,12 @@
       <anchor>ad32380c21694653b03391f2fd9518f13</anchor>
       <arglist>(const LEFontInstance *font, le_int32 limit)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+    <member kind="function">
+      <type>UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1FontRuns.html</anchorfile>
-      <anchor>a6828c63f49265ce5b1a9034fee1f6525</anchor>
-      <arglist>() const</arglist>
+      <anchor>a994c02ddf524495c241b29b53f0a62f8</anchor>
+      <arglist>() const override</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static UClassID</type>
@@ -40632,19 +40845,19 @@
       <anchor>ae919adb17c8e91788955af3da4de7ada</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function" protection="protected">
+      <type>void</type>
       <name>init</name>
       <anchorfile>classicu_1_1FontRuns.html</anchorfile>
-      <anchor>a64edd1b1a5c631f4bd775d8a43dda00c</anchor>
-      <arglist>(le_int32 capacity)</arglist>
+      <anchor>ab875cf350e4957af10cd2cd5634eb014</anchor>
+      <arglist>(le_int32 capacity) override</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function" protection="protected">
+      <type>void</type>
       <name>grow</name>
       <anchorfile>classicu_1_1FontRuns.html</anchorfile>
-      <anchor>afb58b7f865ea1cd0a5d45de954d503b4</anchor>
-      <arglist>(le_int32 capacity)</arglist>
+      <anchor>a271a30b778fc5d7b6ab5035d884a1be4</anchor>
+      <arglist>(le_int32 capacity) override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -43353,6 +43566,59 @@
       <arglist>() const</arglist>
     </member>
   </compound>
+  <compound kind="struct">
+    <name>U_HEADER_ONLY_NAMESPACE::CodePointRange::iterator</name>
+    <filename>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange_1_1iterator.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>iterator</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange_1_1iterator.html</anchorfile>
+      <anchor>a5443d027d31cbd0f56511cbad0e989cc</anchor>
+      <arglist>(UChar32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange_1_1iterator.html</anchorfile>
+      <anchor>ad134dd92d316b7eea517448c73fc0586</anchor>
+      <arglist>(const iterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange_1_1iterator.html</anchorfile>
+      <anchor>a00c7ef6baa645962507e86eae8667b48</anchor>
+      <arglist>(const iterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>UChar32</type>
+      <name>operator*</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange_1_1iterator.html</anchorfile>
+      <anchor>a28790ff5f780f3dca7b8990f54bbd89f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>iterator &amp;</type>
+      <name>operator++</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange_1_1iterator.html</anchorfile>
+      <anchor>a7707669a1e7f3d4ec82a6c36adee3d38</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>iterator</type>
+      <name>operator++</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange_1_1iterator.html</anchorfile>
+      <anchor>aa07af6fa14283985f5f3a5eb550f55db</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="variable">
+      <type>UChar32</type>
+      <name>c</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange_1_1iterator.html</anchorfile>
+      <anchor>a4236fcf65fffda338af86f39855e613d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
   <compound kind="class">
     <name>icu::ParagraphLayout::Line</name>
     <filename>classicu_1_1ParagraphLayout_1_1Line.html</filename>
@@ -43406,12 +43672,12 @@
       <anchor>a496bfe5009d97907f92f708ace32a6f9</anchor>
       <arglist>(le_int32 runIndex) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+    <member kind="function">
+      <type>UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1ParagraphLayout_1_1Line.html</anchorfile>
-      <anchor>a827a48ffb385ea082292fc3f17617401</anchor>
-      <arglist>() const</arglist>
+      <anchor>a173485e092002126700c04c07b5670c4</anchor>
+      <arglist>() const override</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static UClassID</type>
@@ -44642,12 +44908,12 @@
       <anchor>a9429010e600c037c3d80a39906128134</anchor>
       <arglist>(const Locale *locale, le_int32 limit)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+    <member kind="function">
+      <type>UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1LocaleRuns.html</anchorfile>
-      <anchor>a0338af15656c6478d6759c49a60d601e</anchor>
-      <arglist>() const</arglist>
+      <anchor>a4cdf2cb6fae39d71efc3f5cba3bc7f9f</anchor>
+      <arglist>() const override</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static UClassID</type>
@@ -44656,19 +44922,19 @@
       <anchor>a34ee5b84f481821c268447088edd52eb</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function" protection="protected">
+      <type>void</type>
       <name>init</name>
       <anchorfile>classicu_1_1LocaleRuns.html</anchorfile>
-      <anchor>a6e3c9ba34cb41d02d73408234f9d8502</anchor>
-      <arglist>(le_int32 capacity)</arglist>
+      <anchor>a1c7a88a369eb9781ae8bcb82afa825e2</anchor>
+      <arglist>(le_int32 capacity) override</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function" protection="protected">
+      <type>void</type>
       <name>grow</name>
       <anchorfile>classicu_1_1LocaleRuns.html</anchorfile>
-      <anchor>a12777b7f8618ca0496613db2b189b04f</anchor>
-      <arglist>(le_int32 capacity)</arglist>
+      <anchor>a835b3d3b933e7a484b569c8c5df2d4d0</anchor>
+      <arglist>(le_int32 capacity) override</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>const Locale **</type>
@@ -48921,6 +49187,44 @@
     <filename>classicu_1_1message2_1_1MessageFormatter.html</filename>
     <base>icu::UObject</base>
     <class kind="class">icu::message2::MessageFormatter::Builder</class>
+    <member kind="enumeration">
+      <type></type>
+      <name>UMFErrorHandlingBehavior</name>
+      <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
+      <anchor>ac42a491e2951f153208833aedac4cf65</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_MF_BEST_EFFORT</name>
+      <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
+      <anchor>ac42a491e2951f153208833aedac4cf65a0eee3d85184d15d619674c437bf64992</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_MF_STRICT</name>
+      <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
+      <anchor>ac42a491e2951f153208833aedac4cf65ad8b472b43c32a187ff5267363dd0749e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enum icu::message2::MessageFormatter::UMFErrorHandlingBehavior</type>
+      <name>UMFErrorHandlingBehavior</name>
+      <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
+      <anchor>a020287d6d0bcc3f7b3b1e3f24fba3ae1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_MF_BEST_EFFORT</name>
+      <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
+      <anchor>ac42a491e2951f153208833aedac4cf65a0eee3d85184d15d619674c437bf64992</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_MF_STRICT</name>
+      <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
+      <anchor>ac42a491e2951f153208833aedac4cf65ad8b472b43c32a187ff5267363dd0749e</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>MessageFormatter &amp;</type>
       <name>operator=</name>
@@ -51377,12 +51681,12 @@
       <anchor>aaa79d495a56263ec35fc4d0d2d7168a3</anchor>
       <arglist>(float width)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+    <member kind="function">
+      <type>UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1ParagraphLayout.html</anchorfile>
-      <anchor>ae7327073f040102e776eb40d2a30d124</anchor>
-      <arglist>() const</arglist>
+      <anchor>a71162eaa9edc1cb10e258cdb35bd5466</anchor>
+      <arglist>() const override</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static le_bool</type>
@@ -52225,6 +52529,33 @@
       <anchorfile>classicu_1_1number_1_1Precision.html</anchorfile>
       <anchor>a6b41206896df6745110d391c5ee8b3a5</anchor>
       <arglist>(UCurrencyUsage currencyUsage)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::collator::internal::Predicate</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html</filename>
+    <templarg>template&lt; typename... &gt; typename Compare</templarg>
+    <templarg>UCollationResult result</templarg>
+    <member kind="function">
+      <type></type>
+      <name>Predicate</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html</anchorfile>
+      <anchor>af759a6154649fe80da0e300025ba5087</anchor>
+      <arglist>(const UCollator *ucol)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html</anchorfile>
+      <anchor>ac656b41c0cda5b067b394d8a9673ba2a</anchor>
+      <arglist>(const T &amp;lhs, const U &amp;rhs) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html</anchorfile>
+      <anchor>a56081b6bb70a57b64fb8b15ce723f5df</anchor>
+      <arglist>(std::string_view lhs, std::string_view rhs) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -53333,61 +53664,6 @@
       <anchorfile>classicu_1_1Replaceable.html</anchorfile>
       <anchor>a24f0ef0c8ee51cadfd83490347e2d24c</anchor>
       <arglist>(int32_t offset) const =0</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>icu::message2::data_model::Reserved</name>
-    <filename>classicu_1_1message2_1_1data__model_1_1Reserved.html</filename>
-    <base>icu::UMemory</base>
-    <class kind="class">icu::message2::data_model::Reserved::Builder</class>
-    <member kind="function">
-      <type>int32_t</type>
-      <name>numParts</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved.html</anchorfile>
-      <anchor>a76fe546a11f1857a02d41bcc821a5476</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>const Literal &amp;</type>
-      <name>getPart</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved.html</anchorfile>
-      <anchor>afaf17589c3be9129ce87ed6b37b3ef4c</anchor>
-      <arglist>(int32_t i) const</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Reserved</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved.html</anchorfile>
-      <anchor>ab3a06f1422209252943eca5a32866d34</anchor>
-      <arglist>(const Reserved &amp;other)</arglist>
-    </member>
-    <member kind="function">
-      <type>Reserved &amp;</type>
-      <name>operator=</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved.html</anchorfile>
-      <anchor>a29df6b11503cdb87d3671eb04fd0966a</anchor>
-      <arglist>(Reserved) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Reserved</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved.html</anchorfile>
-      <anchor>ae0280edb92b85b12bfc5d849efac6371</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~Reserved</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved.html</anchorfile>
-      <anchor>a524093f02e650c7bcf965e62a4f9d69d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="friend">
-      <type>friend void</type>
-      <name>swap</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1Reserved.html</anchorfile>
-      <anchor>addc8d730ee10708b98411aba22b3e42f</anchor>
-      <arglist>(Reserved &amp;r1, Reserved &amp;r2) noexcept</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -55055,12 +55331,12 @@
       <anchor>af4f1936b597968e113d2c5da438f96b1</anchor>
       <arglist>(le_int32 limit)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+    <member kind="function">
+      <type>UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1RunArray.html</anchorfile>
-      <anchor>ad98ee9cf89f23a61c437a2b4907e2c53</anchor>
-      <arglist>() const</arglist>
+      <anchor>a685c8d8eb5b8be46fbd110623978f9a3</anchor>
+      <arglist>() const override</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static UClassID</type>
@@ -56203,13 +56479,6 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>truncateStart</name>
-      <anchorfile>classicu_1_1number_1_1SimpleNumber.html</anchorfile>
-      <anchor>aa55f61fb713ebcc8c384cd89fab24f30</anchor>
-      <arglist>(uint32_t maximumIntegerDigits, UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
       <name>setMinimumIntegerDigits</name>
       <anchorfile>classicu_1_1number_1_1SimpleNumber.html</anchorfile>
       <anchor>a3d082c77dde9c182dd94bc8993e4d38d</anchor>
@@ -57030,6 +57299,13 @@
       <anchorfile>classicu_1_1StringPiece.html</anchorfile>
       <anchor>a1b793f69feffef74ea5027095c64aab2</anchor>
       <arglist>(const StringPiece &amp;x, int32_t pos, int32_t len)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator std::string_view</name>
+      <anchorfile>classicu_1_1StringPiece.html</anchorfile>
+      <anchor>a06058dc9deb6a25dc147a3a3e6e56a6c</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>const char *</type>
@@ -60639,6 +60915,41 @@
       <anchor>a8629e7f0321bce9d6b17098f543ad179</anchor>
       <arglist>(int32_t index) const</arglist>
     </member>
+    <member kind="function">
+      <type>U_HEADER_NESTED_NAMESPACE::USetCodePoints</type>
+      <name>codePoints</name>
+      <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
+      <anchor>a537a13a1b3adcaebc140f715876aca63</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_HEADER_NESTED_NAMESPACE::USetRanges</type>
+      <name>ranges</name>
+      <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
+      <anchor>a689385fcc1e2e9e05996e9e19229ea3f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_HEADER_NESTED_NAMESPACE::USetStrings</type>
+      <name>strings</name>
+      <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
+      <anchor>a054e7d9e1c1476acd1a9f3d9113395bd</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_HEADER_NESTED_NAMESPACE::USetElementIterator</type>
+      <name>begin</name>
+      <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
+      <anchor>a5fa614db3126d486342773afb5979e56</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_HEADER_NESTED_NAMESPACE::USetElementIterator</type>
+      <name>end</name>
+      <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
+      <anchor>a5806e04261e1fc150f9e177090697f0f</anchor>
+      <arglist>() const</arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual UnicodeSet &amp;</type>
       <name>add</name>
@@ -61027,10 +61338,24 @@
     </member>
     <member kind="function">
       <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a04d7b793075a1bb912cac9d9edaef357</anchor>
+      <arglist>(const S &amp;text) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
       <name>operator!=</name>
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>a650c21510e3ce1f0c20a566a6518c713</anchor>
       <arglist>(const UnicodeString &amp;text) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a30d403cb0fac28af8563c1ad3cb5706f</anchor>
+      <arglist>(const S &amp;text) const</arglist>
     </member>
     <member kind="function">
       <type>UBool</type>
@@ -61659,6 +61984,13 @@
       <type>UnicodeString &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a100ff8430f801bda2d0c37e4c8ea70ce</anchor>
+      <arglist>(const S &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>UnicodeString &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>a14a6aab83cf4990c12d89c83dc5191d8</anchor>
       <arglist>(UnicodeString &amp;&amp;src) noexcept</arglist>
     </member>
@@ -61776,6 +62108,13 @@
     </member>
     <member kind="function">
       <type>UnicodeString &amp;</type>
+      <name>operator+=</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a3f8eea061f52aa95d18cfe035c50fd67</anchor>
+      <arglist>(const S &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>UnicodeString &amp;</type>
       <name>append</name>
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>ad02ab4e43b74ce3b0bf2ede78a75c383</anchor>
@@ -61801,6 +62140,13 @@
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>ab4ac335e8ab6f2524ff236971e6561de</anchor>
       <arglist>(ConstChar16Ptr srcChars, int32_t srcLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>UnicodeString &amp;</type>
+      <name>append</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a5e7b92cbf9715e470e4a0eb90e1571f7</anchor>
+      <arglist>(const S &amp;src)</arglist>
     </member>
     <member kind="function">
       <type>UnicodeString &amp;</type>
@@ -61967,15 +62313,15 @@
       <type>UnicodeString &amp;</type>
       <name>remove</name>
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
-      <anchor>a34ae600e239146bdd03706ca04e53791</anchor>
-      <arglist>(int32_t start, int32_t length=(int32_t) INT32_MAX)</arglist>
+      <anchor>a3fb3aa9b14d4185d81caa429ec0e8e65</anchor>
+      <arglist>(int32_t start, int32_t length=static_cast&lt; int32_t &gt;(INT32_MAX))</arglist>
     </member>
     <member kind="function">
       <type>UnicodeString &amp;</type>
       <name>removeBetween</name>
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
-      <anchor>a3dd60e4a4a7cb5179379d34f9fa38b52</anchor>
-      <arglist>(int32_t start, int32_t limit=(int32_t) INT32_MAX)</arglist>
+      <anchor>ad4140c966a1e3c8fb74c34787d41a276</anchor>
+      <arglist>(int32_t start, int32_t limit=static_cast&lt; int32_t &gt;(INT32_MAX))</arglist>
     </member>
     <member kind="function">
       <type>UnicodeString &amp;</type>
@@ -62112,6 +62458,20 @@
     </member>
     <member kind="function">
       <type></type>
+      <name>operator std::u16string_view</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a4ae9f53fe0c55399175d342fa7799250</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator std::wstring_view</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>ae2af02ecc4fa871a40edad073a162316</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
       <name>UnicodeString</name>
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>ac2a78127b312aa8782a5c94033af2021</anchor>
@@ -62137,27 +62497,6 @@
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>a8cba7d9b1942864c841751d62ebf70af</anchor>
       <arglist>(UChar32 ch)</arglist>
-    </member>
-    <member kind="function">
-      <type>UNISTR_FROM_STRING_EXPLICIT</type>
-      <name>UnicodeString</name>
-      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
-      <anchor>ac9e0a14008972dc1bd00466339a4a944</anchor>
-      <arglist>(const char16_t *text)</arglist>
-    </member>
-    <member kind="function">
-      <type>UNISTR_FROM_STRING_EXPLICIT</type>
-      <name>UnicodeString</name>
-      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
-      <anchor>a3dfb12d47237b6cd2b805a260ceceb09</anchor>
-      <arglist>(const uint16_t *text)</arglist>
-    </member>
-    <member kind="function">
-      <type>UNISTR_FROM_STRING_EXPLICIT</type>
-      <name>UnicodeString</name>
-      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
-      <anchor>ad207684eda109f23b5484a7a037e7327</anchor>
-      <arglist>(const wchar_t *text)</arglist>
     </member>
     <member kind="function">
       <type>UNISTR_FROM_STRING_EXPLICIT</type>
@@ -62193,6 +62532,13 @@
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>a9a54f1b3af6cb6b8f423b07470896851</anchor>
       <arglist>(const std::nullptr_t text, int32_t textLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>UNISTR_FROM_STRING_EXPLICIT</type>
+      <name>UnicodeString</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a844f740f0a7f540daa03fa3236fea589</anchor>
+      <arglist>(const S &amp;text)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -62333,6 +62679,20 @@
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>ad0e701433ec7a917c3a2c15ad7b469c2</anchor>
       <arglist>() const override</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static UnicodeString</type>
+      <name>readOnlyAlias</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a8fa68576a7fc08be9124a74496a26054</anchor>
+      <arglist>(const S &amp;text)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static UnicodeString</type>
+      <name>readOnlyAlias</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a2a81c6cbe22d4f873effbbdd6a0395f5</anchor>
+      <arglist>(const UnicodeString &amp;text)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static UnicodeString</type>
@@ -62549,68 +62909,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>icu::message2::data_model::UnsupportedStatement</name>
-    <filename>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement.html</filename>
-    <base>icu::UObject</base>
-    <class kind="class">icu::message2::data_model::UnsupportedStatement::Builder</class>
-    <member kind="function">
-      <type>const UnicodeString &amp;</type>
-      <name>getKeyword</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement.html</anchorfile>
-      <anchor>a5d070090cfdb00c5983929281283f9e6</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>const Reserved *</type>
-      <name>getBody</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement.html</anchorfile>
-      <anchor>a5ff8d7e23054ee9d9fee2133633b0f48</anchor>
-      <arglist>(UErrorCode &amp;status) const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::vector&lt; Expression &gt;</type>
-      <name>getExpressions</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement.html</anchorfile>
-      <anchor>a7c1e0d5efee8bd6cc42ccc8d7551c6f9</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>UnsupportedStatement</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement.html</anchorfile>
-      <anchor>aa3e636724382c795501b30dd048210c0</anchor>
-      <arglist>(const UnsupportedStatement &amp;other)</arglist>
-    </member>
-    <member kind="function">
-      <type>UnsupportedStatement &amp;</type>
-      <name>operator=</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement.html</anchorfile>
-      <anchor>a4711d95b02f1d01a9675356b3a233148</anchor>
-      <arglist>(UnsupportedStatement) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>UnsupportedStatement</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement.html</anchorfile>
-      <anchor>a91578991847ecccd260a19dae8cba8c8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~UnsupportedStatement</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement.html</anchorfile>
-      <anchor>a1b4589a24052394d6e6b209157100356</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="friend">
-      <type>friend void</type>
-      <name>swap</name>
-      <anchorfile>classicu_1_1message2_1_1data__model_1_1UnsupportedStatement.html</anchorfile>
-      <anchor>a8878db387cddb8aa4622788956e7e448</anchor>
-      <arglist>(UnsupportedStatement &amp;s1, UnsupportedStatement &amp;s2) noexcept</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>icu::UObject</name>
     <filename>classicu_1_1UObject.html</filename>
     <base>icu::UMemory</base>
@@ -62737,6 +63035,318 @@
       <anchorfile>structUSerializedSet.html</anchorfile>
       <anchor>a081a169f02575428ad27411aa5451bfc</anchor>
       <arglist>[USET_SERIALIZED_STATIC_ARRAY_CAPACITY]</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::USetCodePointIterator</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePointIterator.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>USetCodePointIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePointIterator.html</anchorfile>
+      <anchor>a7a3674e053cbe128a80ab75bded7607d</anchor>
+      <arglist>(const USetCodePointIterator &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePointIterator.html</anchorfile>
+      <anchor>a1a930ca56cf70f934ea071696050d683</anchor>
+      <arglist>(const USetCodePointIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePointIterator.html</anchorfile>
+      <anchor>a34c7ef04c009a39e76eb432211a98a1b</anchor>
+      <arglist>(const USetCodePointIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>UChar32</type>
+      <name>operator*</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePointIterator.html</anchorfile>
+      <anchor>a33beed0172658069172dfd8600555e1c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>USetCodePointIterator &amp;</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePointIterator.html</anchorfile>
+      <anchor>a30debf63edeab887d37c4876579a17d1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>USetCodePointIterator</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePointIterator.html</anchorfile>
+      <anchor>a667ff20cbe134de21c1a9d4c0df6e4a7</anchor>
+      <arglist>(int)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::USetCodePoints</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePoints.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>USetCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePoints.html</anchorfile>
+      <anchor>a95ff00df2947aa7598c2efe9695dc554</anchor>
+      <arglist>(const USet *uset)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>USetCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePoints.html</anchorfile>
+      <anchor>a3348700ede21c35813abf7db603f76c8</anchor>
+      <arglist>(const USetCodePoints &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>USetCodePointIterator</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePoints.html</anchorfile>
+      <anchor>aa7f1d929f66b4a7406efebc2363a430e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>USetCodePointIterator</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetCodePoints.html</anchorfile>
+      <anchor>a83c7c43edc81375a026ebdd26a6cd54c</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::USetElementIterator</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1USetElementIterator.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>USetElementIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetElementIterator.html</anchorfile>
+      <anchor>a802507bdbb4cb42d83784e59c19e3b2a</anchor>
+      <arglist>(const USetElementIterator &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetElementIterator.html</anchorfile>
+      <anchor>a24478e38d228db637607fd6cc607efa2</anchor>
+      <arglist>(const USetElementIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetElementIterator.html</anchorfile>
+      <anchor>a2e2e32823a24a4a182c2a8e6b9178e18</anchor>
+      <arglist>(const USetElementIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>UnicodeString</type>
+      <name>operator*</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetElementIterator.html</anchorfile>
+      <anchor>a2547377b3b7ebce2b4de43005b0580b6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>USetElementIterator &amp;</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetElementIterator.html</anchorfile>
+      <anchor>a5beef7053319b08259bfbb58a62954af</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>USetElementIterator</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetElementIterator.html</anchorfile>
+      <anchor>a1700108d004701ea9834a946a661c304</anchor>
+      <arglist>(int)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::USetElements</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1USetElements.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>USetElements</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetElements.html</anchorfile>
+      <anchor>adf7fd388df755a0a7d36d80aabab03a3</anchor>
+      <arglist>(const USet *uset)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>USetElements</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetElements.html</anchorfile>
+      <anchor>a732da73cb0ff0fa770d3d851b7959460</anchor>
+      <arglist>(const USetElements &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>USetElementIterator</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetElements.html</anchorfile>
+      <anchor>ad8493f55de75d6712135e03ee351be82</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>USetElementIterator</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetElements.html</anchorfile>
+      <anchor>a9ad1068f91fe973fe5ffbe3340828790</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::USetRangeIterator</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1USetRangeIterator.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>USetRangeIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetRangeIterator.html</anchorfile>
+      <anchor>a8e797ce23593719be7fa8450f9fbe11d</anchor>
+      <arglist>(const USetRangeIterator &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetRangeIterator.html</anchorfile>
+      <anchor>a2e8905c2da132c1d8232f0c08cd10c5a</anchor>
+      <arglist>(const USetRangeIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetRangeIterator.html</anchorfile>
+      <anchor>a529299b23c99c5d64eb247fe9a035ef0</anchor>
+      <arglist>(const USetRangeIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>CodePointRange</type>
+      <name>operator*</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetRangeIterator.html</anchorfile>
+      <anchor>a2582db5a03b55e7798be6f29107c79dc</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>USetRangeIterator &amp;</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetRangeIterator.html</anchorfile>
+      <anchor>a19bb9b36231eeacfe3fd159d44952477</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>USetRangeIterator</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetRangeIterator.html</anchorfile>
+      <anchor>a34ad8954908234451562e6fc014914a3</anchor>
+      <arglist>(int)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::USetRanges</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1USetRanges.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>USetRanges</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetRanges.html</anchorfile>
+      <anchor>a258ea644303c01a60ca318db3e9c410b</anchor>
+      <arglist>(const USet *uset)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>USetRanges</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetRanges.html</anchorfile>
+      <anchor>ace2ba14a5c6e2221285144cfa19d1d47</anchor>
+      <arglist>(const USetRanges &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>USetRangeIterator</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetRanges.html</anchorfile>
+      <anchor>a224b6c183396da1deff4edda80bb6a62</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>USetRangeIterator</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetRanges.html</anchorfile>
+      <anchor>a0c4e3e9e8e1c3524ad51eb7c8e3f57d1</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::USetStringIterator</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1USetStringIterator.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>USetStringIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetStringIterator.html</anchorfile>
+      <anchor>a25a32413941d2d3c21b82c87148963b9</anchor>
+      <arglist>(const USetStringIterator &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetStringIterator.html</anchorfile>
+      <anchor>af99f642a93cb6ae2946502afbb02de2a</anchor>
+      <arglist>(const USetStringIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetStringIterator.html</anchorfile>
+      <anchor>a61932940112a84c05f1dd3b4edf99682</anchor>
+      <arglist>(const USetStringIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::u16string_view</type>
+      <name>operator*</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetStringIterator.html</anchorfile>
+      <anchor>a6ec181feda705c363c9323bcd3f39b42</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>USetStringIterator &amp;</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetStringIterator.html</anchorfile>
+      <anchor>a150154fba2a85e48a97b4ee8172b0321</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>USetStringIterator</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetStringIterator.html</anchorfile>
+      <anchor>a8b06fdf98e19b3712fda886a1db3808b</anchor>
+      <arglist>(int)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::USetStrings</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1USetStrings.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>USetStrings</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetStrings.html</anchorfile>
+      <anchor>aa7f48ae5af8cb2cca186ca30474a3735</anchor>
+      <arglist>(const USet *uset)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>USetStrings</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetStrings.html</anchorfile>
+      <anchor>a0e19deaa20b1e820bd196ca06e8d0ea3</anchor>
+      <arglist>(const USetStrings &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>USetStringIterator</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetStrings.html</anchorfile>
+      <anchor>a244a96ac9a7786ef25b237e02611d296</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>USetStringIterator</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1USetStrings.html</anchorfile>
+      <anchor>a4a56d3132e4eea54be998a4bd370aef6</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -63098,12 +63708,12 @@
       <anchor>a4620a7e6c17766444af7d44068d10d8d</anchor>
       <arglist>(le_int32 value, le_int32 limit)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+    <member kind="function">
+      <type>UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1ValueRuns.html</anchorfile>
-      <anchor>ae205053dc8847308fb879173626c7f5b</anchor>
-      <arglist>() const</arglist>
+      <anchor>a30ce3d61d0a0816d002f813eddbddbde</anchor>
+      <arglist>() const override</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static UClassID</type>
@@ -63112,19 +63722,19 @@
       <anchor>ac79f25f6f67ae31b2ac906b321b0bfa9</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function" protection="protected">
+      <type>void</type>
       <name>init</name>
       <anchorfile>classicu_1_1ValueRuns.html</anchorfile>
-      <anchor>a1da4c49de740a4e706a4e8cc91358498</anchor>
-      <arglist>(le_int32 capacity)</arglist>
+      <anchor>a1ad1c6a102586ca74549dabbd65b57ff</anchor>
+      <arglist>(le_int32 capacity) override</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function" protection="protected">
+      <type>void</type>
       <name>grow</name>
       <anchorfile>classicu_1_1ValueRuns.html</anchorfile>
-      <anchor>ad35d58df8884b8c4edac483a01327711</anchor>
-      <arglist>(le_int32 capacity)</arglist>
+      <anchor>a67c1f4cec097f1dcb4e872ac70086ead</anchor>
+      <arglist>(le_int32 capacity) override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -63194,12 +63804,12 @@
       <anchor>acbdf69251cc240d2d9d754b20f6eeb84</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+    <member kind="function">
+      <type>UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1ParagraphLayout_1_1VisualRun.html</anchorfile>
-      <anchor>a20cfdb6424e14617a0f680dc38ded7c8</anchor>
-      <arglist>() const</arglist>
+      <anchor>aff4622af33501e1307b4e799ae75ab0a</anchor>
+      <arglist>() const override</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static UClassID</type>
@@ -63963,6 +64573,20 @@
     </member>
     <member kind="function">
       <type>UnicodeString</type>
+      <name>operator+</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>ab0415b6d64978e4bb1d6af50cfeb6473</anchor>
+      <arglist>(const UnicodeString &amp;s1, const S &amp;s2)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_COMMON_API UnicodeString</type>
+      <name>unistr_internalConcat</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a20a9acddd623816474bf8fa9feeba9b1</anchor>
+      <arglist>(const UnicodeString &amp;s1, std::u16string_view s2)</arglist>
+    </member>
+    <member kind="function">
+      <type>UnicodeString</type>
       <name>ures_getUnicodeString</name>
       <anchorfile>namespaceicu.html</anchorfile>
       <anchor>a185e4edd9f514a6db6f0eb2c4d79ae45</anchor>
@@ -64025,6 +64649,13 @@
       <arglist>(std::istream &amp;stream, UnicodeString &amp;s)</arglist>
     </member>
     <member kind="variable">
+      <type>constexpr bool</type>
+      <name>ConvertibleToU16StringView</name>
+      <anchorfile>namespaceicu.html</anchorfile>
+      <anchor>a3e1905e1863961f252aa7e523d825f44</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>constexpr const size_t</type>
       <name>kInternalNumSysNameCapacity</name>
       <anchorfile>namespaceicu.html</anchorfile>
@@ -64050,7 +64681,7 @@
   </compound>
   <compound kind="page">
     <name>index</name>
-    <title>ICU 75.1</title>
+    <title>ICU 76.1</title>
     <filename>index.html</filename>
     <docanchor file="index.html" title="API Reference Usage">API</docanchor>
   </compound>

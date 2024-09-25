@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['factory_0',['Factory',['../classicu_1_1Transliterator.html#a945b27406a40b9da26b44818d0919fe4',1,'icu::Transliterator']]]
+  ['equal_5fto_0',['equal_to',['../ucol_8h.html#a77325a7bef4ab6321b3d96ef288415b1',1,'U_HEADER_ONLY_NAMESPACE::collator']]]
 ];

@@ -951,6 +951,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>U_PF_HAIKU</name>
+      <anchorfile>platform_8h.html</anchorfile>
+      <anchor>a33f1899bbc771502d55e3507fdb487fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>U_PF_FUCHSIA</name>
       <anchorfile>platform_8h.html</anchorfile>
       <anchor>add8a82d371de7defd99c863e9747e0fe</anchor>
@@ -46898,6 +46905,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createNight</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a56764b5e4f5e9d515a6dbda619d5afd3</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getNight</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a07adcb1267accfa3033fda4e48f61b24</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createQuarter</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a29bcffbb681c48ce16a156b656f2d5bc</anchor>
@@ -47822,20 +47843,6 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
-      <name>createMetricTon</name>
-      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
-      <anchor>a96c6b42e040f6ea1782bf275500083ff</anchor>
-      <arglist>(UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static MeasureUnit</type>
-      <name>getMetricTon</name>
-      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
-      <anchor>af569bcf9ffdec500ec07083bef927062</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static MeasureUnit *</type>
       <name>createMicrogram</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>ae6897cf945fb6ae3b7fb17a7c7847bcf</anchor>
@@ -47958,6 +47965,20 @@
       <name>getTonne</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>ab0aaf1c5710f1baf9f78faf352d79fdb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createMetricTon</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a96c6b42e040f6ea1782bf275500083ff</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getMetricTon</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>af569bcf9ffdec500ec07083bef927062</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -48238,6 +48259,20 @@
       <name>getKnot</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>ae73d425a53d2672618ddf03471c98975</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createLightSpeed</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a077bbf9920e7eea680a7d2faaf1aaf87</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getLightSpeed</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a1180b4739f7ad60c928115bca05489a0</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">

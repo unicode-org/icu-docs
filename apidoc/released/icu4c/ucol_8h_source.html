@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 75.1: i18n/unicode/ucol.h Source File</title>
+<title>ICU 76.1: i18n/unicode/ucol.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 75.1<span id="projectnumber">&#160;75.1</span>
+   <div id="projectname">ICU 76.1<span id="projectnumber">&#160;76.1</span>
    </div>
   </td>
  </tr>
@@ -481,14 +481,112 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l01519" name="l01519"></a><span class="lineno"> 1519</span>                <span class="keyword">const</span> <a class="code hl_typedef" href="ucol_8h.html#a3c4eeb412a5fd72762e6245aa75ca081">UCollator</a> *base, </div>
 <div class="line"><a id="l01520" name="l01520"></a><span class="lineno"> 1520</span>                <a class="code hl_enumeration" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> *status);</div>
 <div class="line"><a id="l01521" name="l01521"></a><span class="lineno"> 1521</span> </div>
-<div class="line"><a id="l01522" name="l01522"></a><span class="lineno"> 1522</span> </div>
-<div class="line"><a id="l01523" name="l01523"></a><span class="lineno"> 1523</span><span class="preprocessor">#endif </span><span class="comment">/* #if !UCONFIG_NO_COLLATION */</span><span class="preprocessor"></span></div>
-<div class="line"><a id="l01524" name="l01524"></a><span class="lineno"> 1524</span> </div>
-<div class="line"><a id="l01525" name="l01525"></a><span class="lineno"> 1525</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01522" name="l01522"></a><span class="lineno"> 1522</span><span class="preprocessor">#if U_SHOW_CPLUSPLUS_API || U_SHOW_CPLUSPLUS_HEADER_API</span></div>
+<div class="line"><a id="l01523" name="l01523"></a><span class="lineno"> 1523</span> </div>
+<div class="line"><a id="l01524" name="l01524"></a><span class="lineno"> 1524</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l01525" name="l01525"></a><span class="lineno"> 1525</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l01526" name="l01526"></a><span class="lineno"> 1526</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l01527" name="l01527"></a><span class="lineno"> 1527</span> </div>
+<div class="line"><a id="l01528" name="l01528"></a><span class="lineno"> 1528</span><span class="preprocessor">#include &quot;<a class="code" href="char16ptr_8h.html">unicode/char16ptr.h</a>&quot;</span></div>
+<div class="line"><a id="l01529" name="l01529"></a><span class="lineno"> 1529</span><span class="preprocessor">#include &quot;<a class="code" href="stringpiece_8h.html">unicode/stringpiece.h</a>&quot;</span></div>
+<div class="line"><a id="l01530" name="l01530"></a><span class="lineno"> 1530</span><span class="preprocessor">#include &quot;<a class="code" href="unistr_8h.html">unicode/unistr.h</a>&quot;</span></div>
+<div class="line"><a id="l01531" name="l01531"></a><span class="lineno"> 1531</span> </div>
+<div class="line"><a id="l01532" name="l01532"></a><span class="lineno"> 1532</span><span class="keyword">namespace </span>U_HEADER_ONLY_NAMESPACE {</div>
+<div class="line"><a id="l01533" name="l01533"></a><span class="lineno"> 1533</span> </div>
+<div class="line"><a id="l01534" name="l01534"></a><span class="lineno"> 1534</span><span class="preprocessor">#ifndef U_HIDE_DRAFT_API</span></div>
+<div class="line"><a id="l01535" name="l01535"></a><span class="lineno"> 1535</span> </div>
+<div class="line"><a id="l01536" name="l01536"></a><span class="lineno"> 1536</span><span class="keyword">namespace </span>collator {</div>
+<div class="line"><a id="l01537" name="l01537"></a><span class="lineno"> 1537</span> </div>
+<div class="line"><a id="l01538" name="l01538"></a><span class="lineno"> 1538</span><span class="keyword">namespace </span>internal {</div>
+<div class="line"><a id="l01539" name="l01539"></a><span class="lineno"> 1539</span> </div>
+<div class="line"><a id="l01544" name="l01544"></a><span class="lineno"> 1544</span><span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">typename</span> Compare, <a class="code hl_enumeration" href="ucol_8h.html#a8b4e71db8109af87f84ac1576e2b245d">UCollationResult</a> result&gt;</div>
+<div class="foldopen" id="foldopen01545" data-start="{" data-end="};">
+<div class="line"><a id="l01545" name="l01545"></a><span class="lineno"><a class="line" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html"> 1545</a></span><span class="keyword">class </span><a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">Predicate</a> {</div>
+<div class="line"><a id="l01546" name="l01546"></a><span class="lineno"> 1546</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l01548" name="l01548"></a><span class="lineno"><a class="line" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html#af759a6154649fe80da0e300025ba5087"> 1548</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html#af759a6154649fe80da0e300025ba5087">Predicate</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="ucol_8h.html#a3c4eeb412a5fd72762e6245aa75ca081">UCollator</a>* ucol) : collator(ucol) {}</div>
+<div class="line"><a id="l01549" name="l01549"></a><span class="lineno"> 1549</span> </div>
+<div class="line"><a id="l01551" name="l01551"></a><span class="lineno"> 1551</span>    <span class="keyword">template</span> &lt;</div>
+<div class="line"><a id="l01552" name="l01552"></a><span class="lineno"> 1552</span>        <span class="keyword">typename</span> T, <span class="keyword">typename</span> U,</div>
+<div class="line"><a id="l01553" name="l01553"></a><span class="lineno"> 1553</span>        <span class="keyword">typename</span> = std::enable_if_t&lt;ConvertibleToU16StringView&lt;T&gt; &amp;&amp; ConvertibleToU16StringView&lt;U&gt;&gt;&gt;</div>
+<div class="foldopen" id="foldopen01554" data-start="{" data-end="}">
+<div class="line"><a id="l01554" name="l01554"></a><span class="lineno"><a class="line" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html#ac656b41c0cda5b067b394d8a9673ba2a"> 1554</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html#ac656b41c0cda5b067b394d8a9673ba2a">operator()</a>(<span class="keyword">const</span> T&amp; lhs, <span class="keyword">const</span> U&amp; rhs)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01555" name="l01555"></a><span class="lineno"> 1555</span>        <span class="keywordflow">return</span> match(UnicodeString::readOnlyAlias(lhs), UnicodeString::readOnlyAlias(rhs));</div>
+<div class="line"><a id="l01556" name="l01556"></a><span class="lineno"> 1556</span>    }</div>
+</div>
+<div class="line"><a id="l01557" name="l01557"></a><span class="lineno"> 1557</span> </div>
+<div class="foldopen" id="foldopen01559" data-start="{" data-end="}">
+<div class="line"><a id="l01559" name="l01559"></a><span class="lineno"><a class="line" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html#a56081b6bb70a57b64fb8b15ce723f5df"> 1559</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html#a56081b6bb70a57b64fb8b15ce723f5df">operator()</a>(std::string_view lhs, std::string_view rhs)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01560" name="l01560"></a><span class="lineno"> 1560</span>        <span class="keywordflow">return</span> match(lhs, rhs);</div>
+<div class="line"><a id="l01561" name="l01561"></a><span class="lineno"> 1561</span>    }</div>
+</div>
+<div class="line"><a id="l01562" name="l01562"></a><span class="lineno"> 1562</span> </div>
+<div class="line"><a id="l01563" name="l01563"></a><span class="lineno"> 1563</span><span class="preprocessor">#if defined(__cpp_char8_t)</span></div>
+<div class="line"><a id="l01565" name="l01565"></a><span class="lineno"> 1565</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html#ac656b41c0cda5b067b394d8a9673ba2a">operator()</a>(std::u8string_view lhs, std::u8string_view rhs)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01566" name="l01566"></a><span class="lineno"> 1566</span>        <span class="keywordflow">return</span> match(lhs, rhs);</div>
+<div class="line"><a id="l01567" name="l01567"></a><span class="lineno"> 1567</span>    }</div>
+<div class="line"><a id="l01568" name="l01568"></a><span class="lineno"> 1568</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01569" name="l01569"></a><span class="lineno"> 1569</span> </div>
+<div class="line"><a id="l01570" name="l01570"></a><span class="lineno"> 1570</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l01571" name="l01571"></a><span class="lineno"> 1571</span>    <span class="keywordtype">bool</span> match(UnicodeString lhs, UnicodeString rhs)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01572" name="l01572"></a><span class="lineno"> 1572</span>        <span class="keywordflow">return</span> compare(</div>
+<div class="line"><a id="l01573" name="l01573"></a><span class="lineno"> 1573</span>            <a class="code hl_function" href="ucol_8h.html#a6a7c9e0e58b825b240ccb3005951247a">ucol_strcoll</a>(</div>
+<div class="line"><a id="l01574" name="l01574"></a><span class="lineno"> 1574</span>                collator,</div>
+<div class="line"><a id="l01575" name="l01575"></a><span class="lineno"> 1575</span>                toUCharPtr(lhs.getBuffer()), lhs.length(),</div>
+<div class="line"><a id="l01576" name="l01576"></a><span class="lineno"> 1576</span>                toUCharPtr(rhs.getBuffer()), rhs.length()),</div>
+<div class="line"><a id="l01577" name="l01577"></a><span class="lineno"> 1577</span>            result);</div>
+<div class="line"><a id="l01578" name="l01578"></a><span class="lineno"> 1578</span>    }</div>
+<div class="line"><a id="l01579" name="l01579"></a><span class="lineno"> 1579</span> </div>
+<div class="line"><a id="l01580" name="l01580"></a><span class="lineno"> 1580</span>    <span class="keywordtype">bool</span> match(StringPiece lhs, StringPiece rhs)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01581" name="l01581"></a><span class="lineno"> 1581</span>        <a class="code hl_enumeration" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> status = <a class="code hl_enumvalue" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a>;</div>
+<div class="line"><a id="l01582" name="l01582"></a><span class="lineno"> 1582</span>        <span class="keywordflow">return</span> compare(</div>
+<div class="line"><a id="l01583" name="l01583"></a><span class="lineno"> 1583</span>            <a class="code hl_function" href="ucol_8h.html#a85ed590f640f6339d5c9447177e93864">ucol_strcollUTF8</a>(</div>
+<div class="line"><a id="l01584" name="l01584"></a><span class="lineno"> 1584</span>                collator,</div>
+<div class="line"><a id="l01585" name="l01585"></a><span class="lineno"> 1585</span>                lhs.data(), lhs.length(),</div>
+<div class="line"><a id="l01586" name="l01586"></a><span class="lineno"> 1586</span>                rhs.data(), rhs.length(),</div>
+<div class="line"><a id="l01587" name="l01587"></a><span class="lineno"> 1587</span>                &amp;status),</div>
+<div class="line"><a id="l01588" name="l01588"></a><span class="lineno"> 1588</span>            result);</div>
+<div class="line"><a id="l01589" name="l01589"></a><span class="lineno"> 1589</span>    }</div>
+<div class="line"><a id="l01590" name="l01590"></a><span class="lineno"> 1590</span> </div>
+<div class="line"><a id="l01591" name="l01591"></a><span class="lineno"> 1591</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="ucol_8h.html#a3c4eeb412a5fd72762e6245aa75ca081">UCollator</a>* <span class="keyword">const</span> collator;</div>
+<div class="line"><a id="l01592" name="l01592"></a><span class="lineno"> 1592</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> Compare&lt;UCollationResult&gt; compare{};</div>
+<div class="line"><a id="l01593" name="l01593"></a><span class="lineno"> 1593</span>};</div>
+</div>
+<div class="line"><a id="l01594" name="l01594"></a><span class="lineno"> 1594</span> </div>
+<div class="line"><a id="l01595" name="l01595"></a><span class="lineno"> 1595</span>}  <span class="comment">// namespace internal</span></div>
+<div class="line"><a id="l01596" name="l01596"></a><span class="lineno"> 1596</span> </div>
+<div class="line"><a id="l01602" name="l01602"></a><span class="lineno"><a class="line" href="ucol_8h.html#a77325a7bef4ab6321b3d96ef288415b1"> 1602</a></span><span class="keyword">using </span><a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">equal_to</a> = <a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">internal::Predicate&lt;std::equal_to, UCOL_EQUAL&gt;</a>;</div>
+<div class="line"><a id="l01603" name="l01603"></a><span class="lineno"> 1603</span> </div>
+<div class="line"><a id="l01609" name="l01609"></a><span class="lineno"><a class="line" href="ucol_8h.html#ae2812bd9af78356bc0bfa25711b0fe1a"> 1609</a></span><span class="keyword">using </span><a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">greater</a> = <a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">internal::Predicate&lt;std::equal_to, UCOL_GREATER&gt;</a>;</div>
+<div class="line"><a id="l01610" name="l01610"></a><span class="lineno"> 1610</span> </div>
+<div class="line"><a id="l01616" name="l01616"></a><span class="lineno"><a class="line" href="ucol_8h.html#a242f290e5d3c8f8a5b1340570cb908c5"> 1616</a></span><span class="keyword">using </span><a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">less</a> = <a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">internal::Predicate&lt;std::equal_to, UCOL_LESS&gt;</a>;</div>
+<div class="line"><a id="l01617" name="l01617"></a><span class="lineno"> 1617</span> </div>
+<div class="line"><a id="l01623" name="l01623"></a><span class="lineno"><a class="line" href="ucol_8h.html#a667063163d40769429f6aea8489adb15"> 1623</a></span><span class="keyword">using </span><a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">not_equal_to</a> = <a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">internal::Predicate&lt;std::not_equal_to, UCOL_EQUAL&gt;</a>;</div>
+<div class="line"><a id="l01624" name="l01624"></a><span class="lineno"> 1624</span> </div>
+<div class="line"><a id="l01630" name="l01630"></a><span class="lineno"><a class="line" href="ucol_8h.html#ada31acf4bbefd97112a6c1a0e093140b"> 1630</a></span><span class="keyword">using </span><a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">greater_equal</a> = <a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">internal::Predicate&lt;std::not_equal_to, UCOL_LESS&gt;</a>;</div>
+<div class="line"><a id="l01631" name="l01631"></a><span class="lineno"> 1631</span> </div>
+<div class="line"><a id="l01637" name="l01637"></a><span class="lineno"><a class="line" href="ucol_8h.html#aaba43ebf6513b75d64d1a9c33cb85700"> 1637</a></span><span class="keyword">using </span><a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">less_equal</a> = <a class="code hl_class" href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">internal::Predicate&lt;std::not_equal_to, UCOL_GREATER&gt;</a>;</div>
+<div class="line"><a id="l01638" name="l01638"></a><span class="lineno"> 1638</span> </div>
+<div class="line"><a id="l01639" name="l01639"></a><span class="lineno"> 1639</span>}  <span class="comment">// namespace collator</span></div>
+<div class="line"><a id="l01640" name="l01640"></a><span class="lineno"> 1640</span> </div>
+<div class="line"><a id="l01641" name="l01641"></a><span class="lineno"> 1641</span><span class="preprocessor">#endif  </span><span class="comment">// U_HIDE_DRAFT_API</span></div>
+<div class="line"><a id="l01642" name="l01642"></a><span class="lineno"> 1642</span> </div>
+<div class="line"><a id="l01643" name="l01643"></a><span class="lineno"> 1643</span>}  <span class="comment">// namespace U_HEADER_ONLY_NAMESPACE</span></div>
+<div class="line"><a id="l01644" name="l01644"></a><span class="lineno"> 1644</span> </div>
+<div class="line"><a id="l01645" name="l01645"></a><span class="lineno"> 1645</span><span class="preprocessor">#endif  </span><span class="comment">// U_SHOW_CPLUSPLUS_API || U_SHOW_CPLUSPLUS_HEADER_API</span></div>
+<div class="line"><a id="l01646" name="l01646"></a><span class="lineno"> 1646</span> </div>
+<div class="line"><a id="l01647" name="l01647"></a><span class="lineno"> 1647</span><span class="preprocessor">#endif </span><span class="comment">/* #if !UCONFIG_NO_COLLATION */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01648" name="l01648"></a><span class="lineno"> 1648</span> </div>
+<div class="line"><a id="l01649" name="l01649"></a><span class="lineno"> 1649</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="achar16ptr_8h_html"><div class="ttname"><a href="char16ptr_8h.html">char16ptr.h</a></div><div class="ttdoc">C++ API: char16_t pointer wrappers with implicit conversion from bit-compatible raw pointer types.</div></div>
 <div class="ttc" id="aclassLocalUCollatorPointer_html"><div class="ttname"><a href="classLocalUCollatorPointer.html">LocalUCollatorPointer</a></div><div class="ttdoc">&quot;Smart pointer&quot; class, closes a UCollator via ucol_close().</div></div>
+<div class="ttc" id="aclassU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate_html"><div class="ttname"><a href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html">U_HEADER_ONLY_NAMESPACE::collator::internal::Predicate</a></div><div class="ttdoc">Function object for performing comparisons using a UCollator.</div><div class="ttdef"><b>Definition</b> <a href="ucol_8h_source.html#l01545">ucol.h:1545</a></div></div>
+<div class="ttc" id="aclassU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate_html_a56081b6bb70a57b64fb8b15ce723f5df"><div class="ttname"><a href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html#a56081b6bb70a57b64fb8b15ce723f5df">U_HEADER_ONLY_NAMESPACE::collator::internal::Predicate::operator()</a></div><div class="ttdeci">bool operator()(std::string_view lhs, std::string_view rhs) const</div><div class="ttdef"><b>Definition</b> <a href="ucol_8h_source.html#l01559">ucol.h:1559</a></div></div>
+<div class="ttc" id="aclassU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate_html_ac656b41c0cda5b067b394d8a9673ba2a"><div class="ttname"><a href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html#ac656b41c0cda5b067b394d8a9673ba2a">U_HEADER_ONLY_NAMESPACE::collator::internal::Predicate::operator()</a></div><div class="ttdeci">bool operator()(const T &amp;lhs, const U &amp;rhs) const</div><div class="ttdef"><b>Definition</b> <a href="ucol_8h_source.html#l01554">ucol.h:1554</a></div></div>
+<div class="ttc" id="aclassU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate_html_af759a6154649fe80da0e300025ba5087"><div class="ttname"><a href="classU__HEADER__ONLY__NAMESPACE_1_1collator_1_1internal_1_1Predicate.html#af759a6154649fe80da0e300025ba5087">U_HEADER_ONLY_NAMESPACE::collator::internal::Predicate::Predicate</a></div><div class="ttdeci">Predicate(const UCollator *ucol)</div><div class="ttdef"><b>Definition</b> <a href="ucol_8h_source.html#l01548">ucol.h:1548</a></div></div>
 <div class="ttc" id="alocalpointer_8h_html"><div class="ttname"><a href="localpointer_8h.html">localpointer.h</a></div><div class="ttdoc">C++ API: &quot;Smart pointers&quot; for use with and in ICU4C C++ code.</div></div>
 <div class="ttc" id="alocalpointer_8h_html_a3030f841466c4bbbd465ac9c4b999549"><div class="ttname"><a href="localpointer_8h.html#a3030f841466c4bbbd465ac9c4b999549">U_DEFINE_LOCAL_OPEN_POINTER</a></div><div class="ttdeci">#define U_DEFINE_LOCAL_OPEN_POINTER(LocalPointerClassName, Type, closeFunction)</div><div class="ttdoc">&quot;Smart pointer&quot; definition macro, deletes objects via the closeFunction.</div><div class="ttdef"><b>Definition</b> <a href="localpointer_8h_source.html#l00550">localpointer.h:550</a></div></div>
 <div class="ttc" id="aparseerr_8h_html"><div class="ttname"><a href="parseerr_8h.html">parseerr.h</a></div><div class="ttdoc">C API: Parse Error Information.</div></div>
+<div class="ttc" id="astringpiece_8h_html"><div class="ttname"><a href="stringpiece_8h.html">stringpiece.h</a></div><div class="ttdoc">C++ API: StringPiece: Read-only byte string wrapper class.</div></div>
 <div class="ttc" id="astructUCharIterator_html"><div class="ttname"><a href="structUCharIterator.html">UCharIterator</a></div><div class="ttdoc">C API for code unit iteration.</div><div class="ttdef"><b>Definition</b> <a href="uiter_8h_source.html#l00341">uiter.h:341</a></div></div>
 <div class="ttc" id="astructUParseError_html"><div class="ttname"><a href="structUParseError.html">UParseError</a></div><div class="ttdoc">A UParseError struct is used to returned detailed information about parsing errors.</div><div class="ttdef"><b>Definition</b> <a href="parseerr_8h_source.html#l00058">parseerr.h:58</a></div></div>
 <div class="ttc" id="aucol_8h_html_a018a84aac9e5265e980902777960d0b4"><div class="ttname"><a href="ucol_8h.html#a018a84aac9e5265e980902777960d0b4">ucol_setMaxVariable</a></div><div class="ttdeci">U_CAPI void ucol_setMaxVariable(UCollator *coll, UColReorderCode group, UErrorCode *pErrorCode)</div><div class="ttdoc">Sets the variable top to the top of the specified reordering group.</div></div>
@@ -600,13 +698,15 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aumachine_8h_html_a349ef00011f20ccd1d3b424445681aa5"><div class="ttname"><a href="umachine_8h.html#a349ef00011f20ccd1d3b424445681aa5">UBool</a></div><div class="ttdeci">int8_t UBool</div><div class="ttdoc">The ICU boolean type, a signed-byte integer.</div><div class="ttdef"><b>Definition</b> <a href="umachine_8h_source.html#l00247">umachine.h:247</a></div></div>
 <div class="ttc" id="aumachine_8h_html_a676114b1a64bb7c2de15c919a00b28df"><div class="ttname"><a href="umachine_8h.html#a676114b1a64bb7c2de15c919a00b28df">U_CAPI</a></div><div class="ttdeci">#define U_CAPI</div><div class="ttdoc">This is used to declare a function as a public ICU C API.</div><div class="ttdef"><b>Definition</b> <a href="umachine_8h_source.html#l00110">umachine.h:110</a></div></div>
 <div class="ttc" id="aumachine_8h_html_a6bb9fad572d65b305324ef288165e2ac"><div class="ttname"><a href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a></div><div class="ttdeci">char16_t UChar</div><div class="ttdoc">The base type for UTF-16 code units and pointers.</div><div class="ttdef"><b>Definition</b> <a href="umachine_8h_source.html#l00378">umachine.h:378</a></div></div>
+<div class="ttc" id="aunistr_8h_html"><div class="ttname"><a href="unistr_8h.html">unistr.h</a></div><div class="ttdoc">C++ API: Unicode String.</div></div>
 <div class="ttc" id="aunorm_8h_html"><div class="ttname"><a href="unorm_8h.html">unorm.h</a></div><div class="ttdoc">C API: Unicode Normalization.</div></div>
 <div class="ttc" id="auscript_8h_html"><div class="ttname"><a href="uscript_8h.html">uscript.h</a></div><div class="ttdoc">C API: Unicode Script Information.</div></div>
 <div class="ttc" id="auscript_8h_html_a5036ff9ca2a7f1d2bde07875bb235df0ad3eeb56d42cbc2f8306614759f6cce8c"><div class="ttname"><a href="uscript_8h.html#a5036ff9ca2a7f1d2bde07875bb235df0ad3eeb56d42cbc2f8306614759f6cce8c">USCRIPT_UNKNOWN</a></div><div class="ttdeci">@ USCRIPT_UNKNOWN</div><div class="ttdef"><b>Definition</b> <a href="uscript_8h_source.html#l00287">uscript.h:287</a></div></div>
 <div class="ttc" id="auset_8h_html"><div class="ttname"><a href="uset_8h.html">uset.h</a></div><div class="ttdoc">C API: Unicode Set.</div></div>
-<div class="ttc" id="auset_8h_html_adce3fef7c15d7c78196bf977ac96ec9c"><div class="ttname"><a href="uset_8h.html#adce3fef7c15d7c78196bf977ac96ec9c">USet</a></div><div class="ttdeci">struct USet USet</div><div class="ttdoc">USet is the C API type corresponding to C++ class UnicodeSet.</div><div class="ttdef"><b>Definition</b> <a href="uset_8h_source.html#l00050">uset.h:50</a></div></div>
+<div class="ttc" id="auset_8h_html_adce3fef7c15d7c78196bf977ac96ec9c"><div class="ttname"><a href="uset_8h.html#adce3fef7c15d7c78196bf977ac96ec9c">USet</a></div><div class="ttdeci">struct USet USet</div><div class="ttdoc">USet is the C API type corresponding to C++ class UnicodeSet.</div><div class="ttdef"><b>Definition</b> <a href="uset_8h_source.html#l00053">uset.h:53</a></div></div>
 <div class="ttc" id="autypes_8h_html"><div class="ttname"><a href="utypes_8h.html">utypes.h</a></div><div class="ttdoc">Basic definitions for ICU, for both C and C++ APIs.</div></div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00415">utypes.h:415</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00430">utypes.h:430</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a></div><div class="ttdeci">@ U_ZERO_ERROR</div><div class="ttdoc">No error, no warning.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00465">utypes.h:465</a></div></div>
 <div class="ttc" id="auversion_8h_html_a61caef96ba86d8e86a4031925ea44e94"><div class="ttname"><a href="uversion_8h.html#a61caef96ba86d8e86a4031925ea44e94">UVersionInfo</a></div><div class="ttdeci">uint8_t UVersionInfo[U_MAX_VERSION_LENGTH]</div><div class="ttdoc">The binary form of a version on ICU APIs is an array of 4 uint8_t.</div><div class="ttdef"><b>Definition</b> <a href="uversion_8h_source.html#l00059">uversion.h:59</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

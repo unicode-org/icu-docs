@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 75.1: icu::UnicodeFilter Class Reference</title>
+<title>ICU 76.1: icu::UnicodeFilter Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 75.1<span id="projectnumber">&#160;75.1</span>
+   <div id="projectname">ICU 76.1<span id="projectnumber">&#160;76.1</span>
    </div>
   </td>
  </tr>
@@ -162,7 +162,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Note: <a class="el" href="classicu_1_1UnicodeFilter.html" title="UnicodeFilter defines a protocol for selecting a subset of the full range (U+0000 to U+10FFFF) of Uni...">UnicodeFilter</a> currently stubs out two pure virtual methods of its base class, <a class="el" href="classicu_1_1UnicodeMatcher.html" title="UnicodeMatcher defines a protocol for objects that can match a range of characters in a Replaceable s...">UnicodeMatcher</a>. These methods are <a class="el" href="classicu_1_1UnicodeMatcher.html#afea8760efc9ff36180b2df8639f1933f" title="Returns a string representation of this matcher.">toPattern()</a> and <a class="el" href="classicu_1_1UnicodeMatcher.html#ae6c02c180dcb3332a4b2ece814ce9f9a" title="Returns true if this matcher will match a character c, where c &amp; 0xFF == v, at offset,...">matchesIndexValue()</a>. This is done so that filter classes that are not actually used as matchers &ndash; specifically, those in the UnicodeFilterLogic component, and those in tests &ndash; can continue to work without defining these methods. As long as a filter is not used in an RBT during real transliteration, these methods will not be called. However, this breaks the <a class="el" href="classicu_1_1UnicodeMatcher.html" title="UnicodeMatcher defines a protocol for objects that can match a range of characters in a Replaceable s...">UnicodeMatcher</a> base class protocol, and it is not a correct solution.</p>
 <p>In the future we may revisit the <a class="el" href="classicu_1_1UnicodeMatcher.html" title="UnicodeMatcher defines a protocol for objects that can match a range of characters in a Replaceable s...">UnicodeMatcher</a> / <a class="el" href="classicu_1_1UnicodeFilter.html" title="UnicodeFilter defines a protocol for selecting a subset of the full range (U+0000 to U+10FFFF) of Uni...">UnicodeFilter</a> hierarchy and either redesign it, or simply remove the stubs in <a class="el" href="classicu_1_1UnicodeFilter.html" title="UnicodeFilter defines a protocol for selecting a subset of the full range (U+0000 to U+10FFFF) of Uni...">UnicodeFilter</a> and force subclasses to implement the full <a class="el" href="classicu_1_1UnicodeMatcher.html" title="UnicodeMatcher defines a protocol for objects that can match a range of characters in a Replaceable s...">UnicodeMatcher</a> protocol.</p>
 <dl class="section see"><dt>See also</dt><dd>UnicodeFilterLogic </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002378">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002434">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unifilt_8h_source.html#l00065">65</a> of file <a class="el" href="unifilt_8h_source.html">unifilt.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -190,7 +190,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Destructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002379">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002435">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -220,7 +220,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Clones this object polymorphically. </p>
 <p>The caller owns the result and should delete it when done. </p><dl class="section return"><dt>Returns</dt><dd>clone, or nullptr if an error occurred </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002380">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002436">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1UnicodeFunctor.html#a47c424e72f9279e45d6758773b274264">icu::UnicodeFunctor</a>.</p>
 
@@ -253,7 +253,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns <code>true</code> for characters that are in the selected subset. </p>
-<p>In other words, if a character is <b>to be filtered</b>, then <code><a class="el" href="classicu_1_1UnicodeFilter.html#afdf2d8d579f6904de6115e3ade299848" title="Returns true for characters that are in the selected subset.">contains()</a></code> returns <b><code>false</code></b>. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002381">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>In other words, if a character is <b>to be filtered</b>, then <code><a class="el" href="classicu_1_1UnicodeFilter.html#afdf2d8d579f6904de6115e3ade299848" title="Returns true for characters that are in the selected subset.">contains()</a></code> returns <b><code>false</code></b>. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002437">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p>Implemented in <a class="el" href="classicu_1_1UnicodeSet.html#ae05f407a70aa961e282655898882f5a4">icu::UnicodeSet</a>.</p>
 
@@ -283,7 +283,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>ICU "poor man's RTTI", returns a UClassID for this class. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002385">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002441">Stable:</a></b></dt><dd>ICU 2.2 </dd></dl>
 
 </div>
 </div>
@@ -334,7 +334,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implement <a class="el" href="classicu_1_1UnicodeMatcher.html" title="UnicodeMatcher defines a protocol for objects that can match a range of characters in a Replaceable s...">UnicodeMatcher</a> API. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002383">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable002439">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1UnicodeMatcher.html#ab1d65bb8ecea90bb500c8cbaf4d9f0ae">icu::UnicodeMatcher</a>.</p>
 
@@ -367,7 +367,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classicu_1_1UnicodeFunctor.html" title="UnicodeFunctor is an abstract base class for objects that perform match and/or replace operations on ...">UnicodeFunctor</a> API. </p>
-<p>Nothing to do. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002384">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<p>Nothing to do. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002440">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1UnicodeFunctor.html#abb6d8317d16a1ed627fd7b705fc7b831">icu::UnicodeFunctor</a>.</p>
 
@@ -397,7 +397,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classicu_1_1UnicodeFunctor.html" title="UnicodeFunctor is an abstract base class for objects that perform match and/or replace operations on ...">UnicodeFunctor</a> API. </p>
-<p>Cast 'this' to a UnicodeMatcher* pointer and return the pointer. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002382">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<p>Cast 'this' to a UnicodeMatcher* pointer and return the pointer. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable002438">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classicu_1_1UnicodeFunctor.html#adb3232f1db7fbdbc8b250c335d3927c1">icu::UnicodeFunctor</a>.</p>
 

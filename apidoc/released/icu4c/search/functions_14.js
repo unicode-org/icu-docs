@@ -45,6 +45,5 @@ var searchData=
   ['transliterator_42',['transliterator',['../classicu_1_1Transliterator.html#aadc84e004209e8bd7cf504326d198ad4',1,'icu::Transliterator::Transliterator(const UnicodeString &amp;ID, UnicodeFilter *adoptedFilter)'],['../classicu_1_1Transliterator.html#ac07961d020a69219af9901a869ac81ab',1,'icu::Transliterator::Transliterator(const Transliterator &amp;)']]],
   ['trim_43',['trim',['../classicu_1_1UnicodeString.html#a90ef0c0a866a7d432f334fe04900252a',1,'icu::UnicodeString']]],
   ['truncate_44',['truncate',['../classicu_1_1UnicodeString.html#a997ebff99599d9fb0cb517eb315046e2',1,'icu::UnicodeString']]],
-  ['truncateat_45',['truncateAt',['../classicu_1_1number_1_1IntegerWidth.html#ab45179b7fcda697977650ec0f5f4a7c5',1,'icu::number::IntegerWidth']]],
-  ['truncatestart_46',['truncateStart',['../classicu_1_1number_1_1SimpleNumber.html#aa55f61fb713ebcc8c384cd89fab24f30',1,'icu::number::SimpleNumber']]]
+  ['truncateat_45',['truncateAt',['../classicu_1_1number_1_1IntegerWidth.html#ab45179b7fcda697977650ec0f5f4a7c5',1,'icu::number::IntegerWidth']]]
 ];

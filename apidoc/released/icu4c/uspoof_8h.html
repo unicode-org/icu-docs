@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 75.1: i18n/unicode/uspoof.h File Reference</title>
+<title>ICU 76.1: i18n/unicode/uspoof.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 75.1<span id="projectnumber">&#160;75.1</span>
+   <div id="projectname">ICU 76.1<span id="projectnumber">&#160;76.1</span>
    </div>
   </td>
  </tr>
@@ -318,8 +318,8 @@ Checking whether an individual string is likely to be an attempt at confusing th
 <div class="ttc" id="auspoof_8h_html_ae06db66272aa217c7dfda170b6b25c8b"><div class="ttname"><a href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b">uspoof_areConfusable</a></div><div class="ttdeci">U_CAPI int32_t uspoof_areConfusable(const USpoofChecker *sc, const UChar *id1, int32_t length1, const UChar *id2, int32_t length2, UErrorCode *status)</div><div class="ttdoc">Check whether two specified strings are visually confusable.</div></div>
 <div class="ttc" id="auspoof_8h_html_aee0250407820c6207570800b539c1115"><div class="ttname"><a href="uspoof_8h.html#aee0250407820c6207570800b539c1115">uspoof_close</a></div><div class="ttdeci">U_CAPI void uspoof_close(USpoofChecker *sc)</div><div class="ttdoc">Close a Spoof Checker, freeing any memory that was being held by its implementation.</div></div>
 <div class="ttc" id="autypes_8h_html_a01765f8834f9eebbbe66d5f4e2afe431"><div class="ttname"><a href="utypes_8h.html#a01765f8834f9eebbbe66d5f4e2afe431">u_errorName</a></div><div class="ttdeci">U_CAPI const char * u_errorName(UErrorCode code)</div><div class="ttdoc">Return a string for a UErrorCode value.</div></div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00415">utypes.h:415</a></div></div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a></div><div class="ttdeci">@ U_ZERO_ERROR</div><div class="ttdoc">No error, no warning.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00450">utypes.h:450</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00430">utypes.h:430</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a></div><div class="ttdeci">@ U_ZERO_ERROR</div><div class="ttdoc">No error, no warning.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00465">utypes.h:465</a></div></div>
 </div><!-- fragment --><p>The call to <code><a class="el" href="uspoof_8h.html#aad63fde2466d928ea4fceb51517a1a4b">uspoof_open</a></code> creates a <code>USpoofChecker</code> object; the call to <code><a class="el" href="uspoof_8h.html#a08ff3b7953cbc081413390670dfbf207">uspoof_setChecks</a></code> enables confusable checking and disables all other checks; the call to <code><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b">uspoof_areConfusable</a></code> performs the confusability test; and the following line extracts the result out of the return value. For best performance, the instance should be created once (e.g., upon application startup), and the efficient <code><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b">uspoof_areConfusable</a></code> method can be used at runtime.</p>
 <p>If the paragraph direction used to display the strings is known, the bidi function should be used instead:</p>
 <div class="fragment"><div class="line"><a class="code hl_enumeration" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> status = <a class="code hl_enumvalue" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a>;</div>
@@ -373,7 +373,7 @@ Checking whether an individual string is likely to be an attempt at confusing th
 <div class="line">free(skel2);</div>
 <div class="ttc" id="auspoof_8h_html_ad6b777ebb1702c449ea3ea9cb04c0fd2"><div class="ttname"><a href="uspoof_8h.html#ad6b777ebb1702c449ea3ea9cb04c0fd2">uspoof_getSkeleton</a></div><div class="ttdeci">U_CAPI int32_t uspoof_getSkeleton(const USpoofChecker *sc, uint32_t type, const UChar *id, int32_t length, UChar *dest, int32_t destCapacity, UErrorCode *status)</div><div class="ttdoc">Get the &quot;skeleton&quot; for an identifier.</div></div>
 <div class="ttc" id="austring_8h_html_a0643e0e0d84fe03508a7a3b17ace2c13"><div class="ttname"><a href="ustring_8h.html#a0643e0e0d84fe03508a7a3b17ace2c13">u_strcmp</a></div><div class="ttdeci">U_CAPI int32_t u_strcmp(const UChar *s1, const UChar *s2)</div><div class="ttdoc">Compare two Unicode strings for bitwise equality (code unit order).</div></div>
-<div class="ttc" id="autypes_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Define NULL if necessary, to nullptr for C++ and to ((void *)0) for C.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00188">utypes.h:188</a></div></div>
+<div class="ttc" id="autypes_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Define NULL if necessary, to nullptr for C++ and to ((void *)0) for C.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00203">utypes.h:203</a></div></div>
 </div><!-- fragment --><p>If you need to check if a string is confusable with any string in a dictionary of many strings, rather than calling <code><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b">uspoof_areConfusable</a></code> many times in a loop, <code><a class="el" href="uspoof_8h.html#ad6b777ebb1702c449ea3ea9cb04c0fd2">uspoof_getSkeleton</a></code> can be used instead, as shown below:</p>
 <div class="fragment"><div class="line"><a class="code hl_enumeration" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> status = <a class="code hl_enumvalue" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a>;</div>
 <div class="line"><span class="preprocessor">#define DICTIONARY_LENGTH 2</span></div>
@@ -435,7 +435,7 @@ Checking whether an individual string is likely to be an attempt at confusing th
 <div class="line"><a class="code hl_function" href="uset_8h.html#ad726338f0dfb8e3e80eafd6319d78e22">uset_close</a>(allowed);</div>
 <div class="ttc" id="auset_8h_html_a678b726e1cbec3282a543c772c59d61b"><div class="ttname"><a href="uset_8h.html#a678b726e1cbec3282a543c772c59d61b">uset_openEmpty</a></div><div class="ttdeci">U_CAPI USet * uset_openEmpty(void)</div><div class="ttdoc">Create an empty USet object.</div></div>
 <div class="ttc" id="auset_8h_html_ad726338f0dfb8e3e80eafd6319d78e22"><div class="ttname"><a href="uset_8h.html#ad726338f0dfb8e3e80eafd6319d78e22">uset_close</a></div><div class="ttdeci">U_CAPI void uset_close(USet *set)</div><div class="ttdoc">Disposes of the storage used by a USet object.</div></div>
-<div class="ttc" id="auset_8h_html_adce3fef7c15d7c78196bf977ac96ec9c"><div class="ttname"><a href="uset_8h.html#adce3fef7c15d7c78196bf977ac96ec9c">USet</a></div><div class="ttdeci">struct USet USet</div><div class="ttdoc">USet is the C API type corresponding to C++ class UnicodeSet.</div><div class="ttdef"><b>Definition</b> <a href="uset_8h_source.html#l00050">uset.h:50</a></div></div>
+<div class="ttc" id="auset_8h_html_adce3fef7c15d7c78196bf977ac96ec9c"><div class="ttname"><a href="uset_8h.html#adce3fef7c15d7c78196bf977ac96ec9c">USet</a></div><div class="ttdeci">struct USet USet</div><div class="ttdoc">USet is the C API type corresponding to C++ class UnicodeSet.</div><div class="ttdef"><b>Definition</b> <a href="uset_8h_source.html#l00053">uset.h:53</a></div></div>
 <div class="ttc" id="auset_8h_html_aed0f0f035c1b275fc0c5402e4359ee0e"><div class="ttname"><a href="uset_8h.html#aed0f0f035c1b275fc0c5402e4359ee0e">uset_addAll</a></div><div class="ttdeci">U_CAPI void uset_addAll(USet *set, const USet *additionalSet)</div><div class="ttdoc">Adds all of the elements in the specified set to this set if they're not already present.</div></div>
 <div class="ttc" id="auspoof_8h_html_a038620e8d025d5183dcba2fe6a5d5b13"><div class="ttname"><a href="uspoof_8h.html#a038620e8d025d5183dcba2fe6a5d5b13">uspoof_getRecommendedSet</a></div><div class="ttdeci">U_CAPI const USet * uspoof_getRecommendedSet(UErrorCode *status)</div><div class="ttdoc">Get the set of characters from Recommended Scripts for Inclusion in Identifiers, as defined in http:/...</div></div>
 <div class="ttc" id="auspoof_8h_html_a151c4e8ad5de9fbb4ead9add5d667c4c"><div class="ttname"><a href="uspoof_8h.html#a151c4e8ad5de9fbb4ead9add5d667c4c">uspoof_setAllowedChars</a></div><div class="ttdeci">U_CAPI void uspoof_setAllowedChars(USpoofChecker *sc, const USet *chars, UErrorCode *status)</div><div class="ttdoc">Limit the acceptable characters to those specified by a Unicode Set.</div></div>
@@ -577,7 +577,7 @@ The username "Mark_" would not be considered confusable with the username "_Mark
 <p>A <code>USpoofChecker</code> instance may be used repeatedly to perform checks on any number of identifiers.</p>
 <p><b>Thread Safety:</b> The test functions for checking a single identifier, or for testing whether two identifiers are possible confusable, are thread safe. They may called concurrently, from multiple threads, using the same USpoofChecker instance.</p>
 <p>More generally, the standard ICU thread safety rules apply: functions that take a const USpoofChecker parameter are thread safe. Those that take a non-const USpoofChecker are not thread safe..</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006923">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006989">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="uspoof_8h_source.html">uspoof.h</a>.</p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
@@ -594,7 +594,7 @@ The username "Mark_" would not be considered confusable with the username "_Mark
 </div><div class="memdoc">
 
 <p>Constants from UTS #39 for use in <code><a class="el" href="uspoof_8h.html#aee4048d5a9e2ac92c0bfceb4ca14e42e">uspoof_setRestrictionLevel</a></code>, and for returned identifier restriction levels in check results. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006927">Stable:</a></b></dt><dd>ICU 51</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006993">Stable:</a></b></dt><dd>ICU 51</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#aee4048d5a9e2ac92c0bfceb4ca14e42e" title="Set the loosest restriction level allowed for strings.">uspoof_setRestrictionLevel</a> </dd>
 <dd>
 <a class="el" href="uspoof_8h.html#a9a3ccedc70bea465e966611bb87c73c4" title="Check the specified string for possible security issues.">uspoof_check</a> </dd></dl>
@@ -614,7 +614,7 @@ The username "Mark_" would not be considered confusable with the username "_Mark
 </div><div class="memdoc">
 
 <p>typedef for C of USpoofChecker </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006924">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006990">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uspoof_8h_source.html#l00427">427</a> of file <a class="el" href="uspoof_8h_source.html">uspoof.h</a>.</p>
 
@@ -632,7 +632,7 @@ The username "Mark_" would not be considered confusable with the username "_Mark
       </table>
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#a34d0dcf5af0f335e787be6893708986a" title="Create a USpoofCheckResult, used by the uspoof_check2 class of functions to return information about ...">uspoof_openCheckResult</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006925">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006991">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="uspoof_8h_source.html#l00434">434</a> of file <a class="el" href="uspoof_8h_source.html">uspoof.h</a>.</p>
 
@@ -652,7 +652,7 @@ The username "Mark_" would not be considered confusable with the username "_Mark
 
 <p>Enum for the kinds of checks that USpoofChecker can perform. </p>
 <p>These enum values are used both to select the set of checks that will be performed, and to report results from the check function.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006926">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006992">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -670,16 +670,16 @@ The username "Mark_" would not be considered confusable with the username "_Mark
 </div><div class="memdoc">
 
 <p>Constants from UTS #39 for use in <code><a class="el" href="uspoof_8h.html#aee4048d5a9e2ac92c0bfceb4ca14e42e">uspoof_setRestrictionLevel</a></code>, and for returned identifier restriction levels in check results. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006927">Stable:</a></b></dt><dd>ICU 51</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006993">Stable:</a></b></dt><dd>ICU 51</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#aee4048d5a9e2ac92c0bfceb4ca14e42e" title="Set the loosest restriction level allowed for strings.">uspoof_setRestrictionLevel</a> </dd>
 <dd>
 <a class="el" href="uspoof_8h.html#a9a3ccedc70bea465e966611bb87c73c4" title="Check the specified string for possible security issues.">uspoof_check</a> </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a566eea7ea15156355085eb7ff5013852a262982208b89a2649d0f31ea48e46765" name="a566eea7ea15156355085eb7ff5013852a262982208b89a2649d0f31ea48e46765"></a>USPOOF_ASCII&#160;</td><td class="fielddoc"><p>All characters in the string are in the identifier profile and all characters in the string are in the ASCII range. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006974">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007046">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a566eea7ea15156355085eb7ff5013852a0488c3736f11d8808ac55f72a3c6bde2" name="a566eea7ea15156355085eb7ff5013852a0488c3736f11d8808ac55f72a3c6bde2"></a>USPOOF_SINGLE_SCRIPT_RESTRICTIVE&#160;</td><td class="fielddoc"><p>The string classifies as ASCII-Only, or all characters in the string are in the identifier profile and the string is single-script, according to the definition in UTS 39 section 5.1. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006975">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007047">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a566eea7ea15156355085eb7ff5013852af6dda9229dc422d3e8e41a23a1251060" name="a566eea7ea15156355085eb7ff5013852af6dda9229dc422d3e8e41a23a1251060"></a>USPOOF_HIGHLY_RESTRICTIVE&#160;</td><td class="fielddoc"><p>The string classifies as Single Script, or all characters in the string are in the identifier profile and the string is covered by any of the following sets of scripts, according to the definition in UTS 39 section 5.1: </p>
 <ul>
@@ -691,23 +691,23 @@ Latin + Han + Hiragana + Katakana (or equivalently: Latn + Jpan) </li>
 Latin + Han + Hangul (or equivalently: Latn +Kore) </li>
 </ul>
 <p>This is the default restriction in ICU.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006976">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007048">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a566eea7ea15156355085eb7ff5013852a06d4bf8b1c05dca9a9ec69a0e926e117" name="a566eea7ea15156355085eb7ff5013852a06d4bf8b1c05dca9a9ec69a0e926e117"></a>USPOOF_MODERATELY_RESTRICTIVE&#160;</td><td class="fielddoc"><p>The string classifies as Highly Restrictive, or all characters in the string are in the identifier profile and the string is covered by Latin and any one other Recommended or Aspirational script, except Cyrillic, Greek, and Cherokee. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006977">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007049">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a566eea7ea15156355085eb7ff5013852af1e2132b4067af2aec3460c679f7e598" name="a566eea7ea15156355085eb7ff5013852af1e2132b4067af2aec3460c679f7e598"></a>USPOOF_MINIMALLY_RESTRICTIVE&#160;</td><td class="fielddoc"><p>All characters in the string are in the identifier profile. </p>
 <p>Allow arbitrary mixtures of scripts.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006978">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007050">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a566eea7ea15156355085eb7ff5013852af8c3d86392c0d18d51b05390483a036e" name="a566eea7ea15156355085eb7ff5013852af8c3d86392c0d18d51b05390483a036e"></a>USPOOF_UNRESTRICTIVE&#160;</td><td class="fielddoc"><p>Any valid identifiers, including characters outside of the Identifier Profile. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006979">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007051">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a566eea7ea15156355085eb7ff5013852a900ac32a2451a70f42c424445f0f3b6f" name="a566eea7ea15156355085eb7ff5013852a900ac32a2451a70f42c424445f0f3b6f"></a>USPOOF_RESTRICTION_LEVEL_MASK&#160;</td><td class="fielddoc"><p>Mask for selecting the Restriction Level bits from the return value of <code><a class="el" href="uspoof_8h.html#a9a3ccedc70bea465e966611bb87c73c4">uspoof_check</a></code>. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006980">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007052">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a566eea7ea15156355085eb7ff5013852a3744a1ffbcb1b9c30f484034d0843025" name="a566eea7ea15156355085eb7ff5013852a3744a1ffbcb1b9c30f484034d0843025"></a>USPOOF_UNDEFINED_RESTRICTIVE&#160;</td><td class="fielddoc"><p>An undefined restriction level. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000916">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000898">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 </td></tr>
 </table>
 
@@ -729,29 +729,29 @@ Latin + Han + Hangul (or equivalently: Latn +Kore) </li>
 
 <p>Enum for the kinds of checks that USpoofChecker can perform. </p>
 <p>These enum values are used both to select the set of checks that will be performed, and to report results from the check function.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006926">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006992">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155adc4588fd7ff74c3a6e5cc91d3a6f5d60" name="a0dbd60e53a571689baf65c63f4de8155adc4588fd7ff74c3a6e5cc91d3a6f5d60"></a>USPOOF_SINGLE_SCRIPT_CONFUSABLE&#160;</td><td class="fielddoc"><p>When performing the two-string <code><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b">uspoof_areConfusable</a></code> test, this flag in the return value indicates that the two strings are visually confusable and that they are from the same script, according to UTS 39 section 4. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b" title="Check whether two specified strings are visually confusable.">uspoof_areConfusable</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006965">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007037">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155a76a60327ab14a68342242aae60340106" name="a0dbd60e53a571689baf65c63f4de8155a76a60327ab14a68342242aae60340106"></a>USPOOF_MIXED_SCRIPT_CONFUSABLE&#160;</td><td class="fielddoc"><p>When performing the two-string <code><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b">uspoof_areConfusable</a></code> test, this flag in the return value indicates that the two strings are visually confusable and that they are <b>not</b> from the same script, according to UTS 39 section 4. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b" title="Check whether two specified strings are visually confusable.">uspoof_areConfusable</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006966">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007038">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155abfc834ae8c881e54a7922648d5fecead" name="a0dbd60e53a571689baf65c63f4de8155abfc834ae8c881e54a7922648d5fecead"></a>USPOOF_WHOLE_SCRIPT_CONFUSABLE&#160;</td><td class="fielddoc"><p>When performing the two-string <code><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b">uspoof_areConfusable</a></code> test, this flag in the return value indicates that the two strings are visually confusable and that they are not from the same script but both of them are single-script strings, according to UTS 39 section 4. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b" title="Check whether two specified strings are visually confusable.">uspoof_areConfusable</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006967">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007039">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155a42d6035a2e66bfcf39b0e838168afdba" name="a0dbd60e53a571689baf65c63f4de8155a42d6035a2e66bfcf39b0e838168afdba"></a>USPOOF_CONFUSABLE&#160;</td><td class="fielddoc"><p>Enable this flag in <code><a class="el" href="uspoof_8h.html#a08ff3b7953cbc081413390670dfbf207">uspoof_setChecks</a></code> to turn on all types of confusables. </p>
 <p>You may set the checks to some subset of SINGLE_SCRIPT_CONFUSABLE, MIXED_SCRIPT_CONFUSABLE, or WHOLE_SCRIPT_CONFUSABLE to make <code><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b">uspoof_areConfusable</a></code> return only those types of confusables.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b" title="Check whether two specified strings are visually confusable.">uspoof_areConfusable</a> </dd>
 <dd>
 <a class="el" href="uspoof_8h.html#ad6b777ebb1702c449ea3ea9cb04c0fd2" title="Get the &quot;skeleton&quot; for an identifier.">uspoof_getSkeleton</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006968">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007040">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155ae65a72b384e76f7ac1cc4df1decd8057" name="a0dbd60e53a571689baf65c63f4de8155ae65a72b384e76f7ac1cc4df1decd8057"></a>USPOOF_ANY_CASE&#160;</td><td class="fielddoc"><p>This flag is deprecated and no longer affects the behavior of SpoofChecker. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000793">Deprecated:</a></b></dt><dd>ICU 58 Any case confusable mappings were removed from UTS 39; the corresponding ICU API was deprecated. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000759">Deprecated:</a></b></dt><dd>ICU 58 Any case confusable mappings were removed from UTS 39; the corresponding ICU API was deprecated. </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155a1977848d7ccac6f3640fa684b452f69a" name="a0dbd60e53a571689baf65c63f4de8155a1977848d7ccac6f3640fa684b452f69a"></a>USPOOF_RESTRICTION_LEVEL&#160;</td><td class="fielddoc"><p>Check that an identifier is no looser than the specified RestrictionLevel. </p>
 <p>The default if <code><a class="el" href="uspoof_8h.html#aee4048d5a9e2ac92c0bfceb4ca14e42e">uspoof_setRestrictionLevel</a></code> is not called is HIGHLY_RESTRICTIVE.</p>
@@ -761,10 +761,10 @@ Latin + Han + Hangul (or equivalently: Latn +Kore) </li>
 <a class="el" href="uspoof_8h.html#aee4048d5a9e2ac92c0bfceb4ca14e42e" title="Set the loosest restriction level allowed for strings.">uspoof_setRestrictionLevel</a> </dd>
 <dd>
 <a class="el" href="uspoof_8h.html#a0dbd60e53a571689baf65c63f4de8155aa7307e5bdc933ceba391fbbc22b382ab" title="Enable the return of auxiliary (non-error) information in the upper bits of the check results value.">USPOOF_AUX_INFO</a></dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006969">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007041">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155a68b7d294c1566c1f4a74e2b3a952a138" name="a0dbd60e53a571689baf65c63f4de8155a68b7d294c1566c1f4a74e2b3a952a138"></a>USPOOF_SINGLE_SCRIPT&#160;</td><td class="fielddoc"><p>Check that an identifier contains only characters from a single script (plus chars from the common and inherited scripts.) Applies to checks of a single identifier check only. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000794">Deprecated:</a></b></dt><dd>ICU 51 Use RESTRICTION_LEVEL instead.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000760">Deprecated:</a></b></dt><dd>ICU 51 Use RESTRICTION_LEVEL instead.</dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155a7324a51073ca18279da8706d8c21ee0c" name="a0dbd60e53a571689baf65c63f4de8155a7324a51073ca18279da8706d8c21ee0c"></a>USPOOF_INVISIBLE&#160;</td><td class="fielddoc"><p>Check an identifier for the presence of invisible characters, such as zero-width spaces, or character sequences that are likely not to display, such as multiple occurrences of the same non-spacing mark. </p>
 <p>This check does not test the input string as a whole for conformance to any particular syntax for identifiers. </p>
@@ -774,7 +774,7 @@ Latin + Han + Hangul (or equivalently: Latn +Kore) </li>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155a0fbfe4596de0672faf4f0d4f01a823f6" name="a0dbd60e53a571689baf65c63f4de8155a0fbfe4596de0672faf4f0d4f01a823f6"></a>USPOOF_MIXED_NUMBERS&#160;</td><td class="fielddoc"><p>Check that an identifier does not mix numbers from different numbering systems. </p>
 <p>For more information, see UTS 39 section 5.3.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006970">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007042">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155a712c656490431b94f8345f887c6b192f" name="a0dbd60e53a571689baf65c63f4de8155a712c656490431b94f8345f887c6b192f"></a>USPOOF_HIDDEN_OVERLAY&#160;</td><td class="fielddoc"><p>Check that an identifier does not have a combining character following a character in which that combining character would be hidden; for example 'i' followed by a U+0307 combining dot. </p>
 <p>More specifically, the following characters are forbidden from preceding a U+0307: </p><ul>
@@ -789,15 +789,15 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 </ul>
 <p>In addition, combining characters are allowed between the above characters and U+0307 except those with combining class 0 or combining class "Above" (230, same class as U+0307).</p>
 <p>This list and the number of combing characters considered by this check may grow over time.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006971">Stable:</a></b></dt><dd>ICU 62 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007043">Stable:</a></b></dt><dd>ICU 62 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155a4450adc366e2178c451d89b2ea244123" name="a0dbd60e53a571689baf65c63f4de8155a4450adc366e2178c451d89b2ea244123"></a>USPOOF_ALL_CHECKS&#160;</td><td class="fielddoc"><p>Enable all spoof checks. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006972">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007044">Stable:</a></b></dt><dd>ICU 4.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a0dbd60e53a571689baf65c63f4de8155aa7307e5bdc933ceba391fbbc22b382ab" name="a0dbd60e53a571689baf65c63f4de8155aa7307e5bdc933ceba391fbbc22b382ab"></a>USPOOF_AUX_INFO&#160;</td><td class="fielddoc"><p>Enable the return of auxiliary (non-error) information in the upper bits of the check results value. </p>
 <p>If this "check" is not enabled, the results of <code><a class="el" href="uspoof_8h.html#a9a3ccedc70bea465e966611bb87c73c4">uspoof_check</a></code> will be zero when an identifier passes all of the enabled checks.</p>
 <p>If this "check" is enabled, (<a class="el" href="uspoof_8h.html#a9a3ccedc70bea465e966611bb87c73c4" title="Check the specified string for possible security issues.">uspoof_check()</a> &amp; <code><a class="el" href="uspoof_8h.html#a0dbd60e53a571689baf65c63f4de8155a4450adc366e2178c451d89b2ea244123">USPOOF_ALL_CHECKS</a></code>) will be zero when an identifier passes all checks.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006973">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007045">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 </table>
 
@@ -887,7 +887,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value with bit(s) set corresponding to the type of confusability found, as defined by enum USpoofChecks. Zero is returned if the identifiers are not confusable.</dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000083">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 74 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007017">Stable:</a></b></dt><dd>ICU 74 </dd></dl>
 
 </div>
 </div>
@@ -947,7 +947,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value with bit(s) set corresponding to the type of confusability found, as defined by enum USpoofChecks. Zero is returned if the identifiers are not confusable.</dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000087">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 74</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007032">Stable:</a></b></dt><dd>ICU 74</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#a36783a2c52d127090e5976e4bc2ce8e9" title="Check whether two specified strings are visually confusable when displayed in a context with the give...">uspoof_areBidiConfusable</a> </dd></dl>
 
 </div>
@@ -1022,7 +1022,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value with bit(s) set corresponding to the type of confusability found, as defined by enum USpoofChecks. Zero is returned if the strings are not confusable.</dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000084">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 74</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007019">Stable:</a></b></dt><dd>ICU 74</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#a36783a2c52d127090e5976e4bc2ce8e9" title="Check whether two specified strings are visually confusable when displayed in a context with the give...">uspoof_areBidiConfusable</a> </dd></dl>
 
 </div>
@@ -1101,7 +1101,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value with bit(s) set corresponding to the type of confusability found, as defined by enum USpoofChecks. Zero is returned if the identifiers are not confusable.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006950">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007016">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1154,7 +1154,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value with bit(s) set corresponding to the type of confusability found, as defined by enum USpoofChecks. Zero is returned if the identifiers are not confusable.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006961">Stable:</a></b></dt><dd>ICU 4.2</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007031">Stable:</a></b></dt><dd>ICU 4.2</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b" title="Check whether two specified strings are visually confusable.">uspoof_areConfusable</a> </dd></dl>
 
 </div>
@@ -1222,7 +1222,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value with bit(s) set corresponding to the type of confusability found, as defined by enum USpoofChecks. Zero is returned if the strings are not confusable.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006951">Stable:</a></b></dt><dd>ICU 4.2</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007018">Stable:</a></b></dt><dd>ICU 4.2</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b" title="Check whether two specified strings are visually confusable.">uspoof_areConfusable</a> </dd></dl>
 
 </div>
@@ -1286,7 +1286,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value with bits set for any potential security or spoofing issues detected. The bits are defined by enum USpoofChecks. (returned_value &amp; USPOOF_ALL_CHECKS) will be zero if the input string passes all of the enabled checks. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#a75d711fab16853cbc134c89c0f2314b4" title="Check the specified string for possible security issues.">uspoof_check2</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006941">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007007">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1352,7 +1352,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 <a class="el" href="uspoof_8h.html#ad8245e84506b59e86c789b8012c5319e" title="Check the specified string for possible security issues.">uspoof_check2UTF8</a> </dd>
 <dd>
 <a class="el" href="uspoof_8h.html#ab4e3843a6ae1ec79271ca9272572af38" title="Check the specified string for possible security issues.">uspoof_check2UnicodeString</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006943">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007009">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
 
 </div>
 </div>
@@ -1411,7 +1411,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 <a class="el" href="uspoof_8h.html#a75d711fab16853cbc134c89c0f2314b4" title="Check the specified string for possible security issues.">uspoof_check2</a> </dd>
 <dd>
 <a class="el" href="uspoof_8h.html#ad8245e84506b59e86c789b8012c5319e" title="Check the specified string for possible security issues.">uspoof_check2UTF8</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006960">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007030">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
 
 </div>
 </div>
@@ -1478,7 +1478,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 <a class="el" href="uspoof_8h.html#a75d711fab16853cbc134c89c0f2314b4" title="Check the specified string for possible security issues.">uspoof_check2</a> </dd>
 <dd>
 <a class="el" href="uspoof_8h.html#ab4e3843a6ae1ec79271ca9272572af38" title="Check the specified string for possible security issues.">uspoof_check2UnicodeString</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006944">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007010">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
 
 </div>
 </div>
@@ -1534,7 +1534,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value with bits set for any potential security or spoofing issues detected. The bits are defined by enum USpoofChecks. (returned_value &amp; USPOOF_ALL_CHECKS) will be zero if the input string passes all of the enabled checks. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#ab4e3843a6ae1ec79271ca9272572af38" title="Check the specified string for possible security issues.">uspoof_check2UnicodeString</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006959">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007029">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1597,7 +1597,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value with bits set for any potential security or spoofing issues detected. The bits are defined by enum USpoofChecks. (returned_value &amp; USPOOF_ALL_CHECKS) will be zero if the input string passes all of the enabled checks. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#ad8245e84506b59e86c789b8012c5319e" title="Check the specified string for possible security issues.">uspoof_check2UTF8</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006942">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007008">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1637,7 +1637,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006932">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006998">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1658,7 +1658,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 </div><div class="memdoc">
 
 <p>Close a Spoof Checker, freeing any memory that was being held by its implementation. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006931">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006997">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1685,7 +1685,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006946">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007012">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
 
 </div>
 </div>
@@ -1727,7 +1727,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A USet containing the characters that are permitted by the USPOOF_CHAR_LIMIT test. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006940">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007006">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1769,7 +1769,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A string containing a list of locales corresponding to the acceptable scripts, formatted like an HTTP Accept Language value.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006938">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007004">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1811,7 +1811,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A UnicodeSet containing the characters that are permitted by the USPOOF_CHAR_LIMIT test. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006958">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007028">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -1887,7 +1887,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the skeleton string. The returned length is always that of the complete skeleton, even when the supplied buffer is too small (or of zero length)</dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000085">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 74 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007021">Stable:</a></b></dt><dd>ICU 74 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#a36783a2c52d127090e5976e4bc2ce8e9" title="Check whether two specified strings are visually confusable when displayed in a context with the give...">uspoof_areBidiConfusable</a> </dd></dl>
 
 </div>
@@ -1950,7 +1950,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the destination (skeleton) string.</dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000088">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 74 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007034">Stable:</a></b></dt><dd>ICU 74 </dd></dl>
 
 </div>
 </div>
@@ -2026,7 +2026,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the skeleton string, in bytes. The returned length is always that of the complete skeleton, even when the supplied buffer is too small (or of zero length)</dd></dl>
-<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000086">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 74 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007023">Stable:</a></b></dt><dd>ICU 74 </dd></dl>
 
 </div>
 </div>
@@ -2067,7 +2067,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value with bits set for any potential security or spoofing issues detected. The bits are defined by enum USpoofChecks. (returned_value &amp; USPOOF_ALL_CHECKS) will be zero if the input string passes all of the enabled checks. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#a08ff3b7953cbc081413390670dfbf207" title="Specify the bitmask of checks that will be performed by uspoof_check.">uspoof_setChecks</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006947">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007013">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
 
 </div>
 </div>
@@ -2112,7 +2112,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006949">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007015">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
 
 </div>
 </div>
@@ -2152,7 +2152,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The restriction level contained in the USpoofCheckResult </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#aee4048d5a9e2ac92c0bfceb4ca14e42e" title="Set the loosest restriction level allowed for strings.">uspoof_setRestrictionLevel</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006948">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007014">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
 
 </div>
 </div>
@@ -2191,7 +2191,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The set of checks that this spoof checker will perform. The value is a bit set, obtained by OR-ing together values from enum USpoofChecks. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006934">Stable:</a></b></dt><dd>ICU 4.2</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007000">Stable:</a></b></dt><dd>ICU 4.2</dd></dl>
 
 </div>
 </div>
@@ -2219,7 +2219,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006954">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007024">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -2247,7 +2247,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006963">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007035">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -2275,7 +2275,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006955">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007025">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -2303,7 +2303,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006964">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007036">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -2326,7 +2326,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
 <p>Get the Restriction Level that will be tested if the checks include <code><a class="el" href="uspoof_8h.html#a0dbd60e53a571689baf65c63f4de8155a1977848d7ccac6f3640fa684b452f69a">USPOOF_RESTRICTION_LEVEL</a></code>. </p>
 <dl class="section return"><dt>Returns</dt><dd>The restriction level </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#a566eea7ea15156355085eb7ff5013852" title="Constants from UTS #39 for use in uspoof_setRestrictionLevel, and for returned identifier restriction...">URestrictionLevel</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006936">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007002">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -2402,7 +2402,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the skeleton string. The returned length is always that of the complete skeleton, even when the supplied buffer is too small (or of zero length)</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006952">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007020">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#ae06db66272aa217c7dfda170b6b25c8b" title="Check whether two specified strings are visually confusable.">uspoof_areConfusable</a> </dd></dl>
 
 </div>
@@ -2465,7 +2465,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the destination (skeleton) string.</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006962">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007033">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -2541,7 +2541,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the skeleton string, in bytes. The returned length is always that of the complete skeleton, even when the supplied buffer is too small (or of zero length)</dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006953">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007022">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -2570,7 +2570,7 @@ Any character whose confusable prototype ends with such a character (Soft_Dotted
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the newly created Spoof Checker </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006928">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006994">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -2612,7 +2612,7 @@ The set of numerics in the string (UTS 39 section 5.3) </li>
 <a class="el" href="uspoof_8h.html#ad8245e84506b59e86c789b8012c5319e" title="Check the specified string for possible security issues.">uspoof_check2UTF8</a> </dd>
 <dd>
 <a class="el" href="uspoof_8h.html#ab4e3843a6ae1ec79271ca9272572af38" title="Check the specified string for possible security issues.">uspoof_check2UnicodeString</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006945">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007011">Stable:</a></b></dt><dd>ICU 58 </dd></dl>
 
 </div>
 </div>
@@ -2669,7 +2669,7 @@ The set of numerics in the string (UTS 39 section 5.3) </li>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#aad63fde2466d928ea4fceb51517a1a4b" title="Create a Unicode Spoof Checker, configured to perform all checks except for USPOOF_LOCALE_LIMIT and U...">uspoof_open</a> </dd>
 <dd>
 <a class="el" href="uspoof_8h.html#a0fc8fb61fee3c75c6db54770abeb240d" title="Serialize the data for a spoof detector into a chunk of memory.">uspoof_serialize</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006929">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006995">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -2745,7 +2745,7 @@ The set of numerics in the string (UTS 39 section 5.3) </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A spoof checker that uses the rules from the input files. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006930">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006996">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -2805,7 +2805,7 @@ The set of numerics in the string (UTS 39 section 5.3) </li>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the number of bytes written or needed for the spoof data</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>utrie2_openFromSerialized() </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006956">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007026">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -2852,7 +2852,7 @@ The set of numerics in the string (UTS 39 section 5.3) </li>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006939">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007005">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -2903,7 +2903,7 @@ The set of numerics in the string (UTS 39 section 5.3) </li>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006937">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007003">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -2950,7 +2950,7 @@ The set of numerics in the string (UTS 39 section 5.3) </li>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006957">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007027">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
 </div>
 </div>
@@ -3007,7 +3007,7 @@ uspoof_setChecks(USPOOF_ALL_CHECKS &amp; ~USPOOF_CONFUSABLE);<br/>
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006933">Stable:</a></b></dt><dd>ICU 4.2</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006999">Stable:</a></b></dt><dd>ICU 4.2</dd></dl>
 
 </div>
 </div>
@@ -3047,7 +3047,7 @@ uspoof_setChecks(USPOOF_ALL_CHECKS &amp; ~USPOOF_CONFUSABLE);<br/>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="uspoof_8h.html#a566eea7ea15156355085eb7ff5013852" title="Constants from UTS #39 for use in uspoof_setRestrictionLevel, and for returned identifier restriction...">URestrictionLevel</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006935">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable007001">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>

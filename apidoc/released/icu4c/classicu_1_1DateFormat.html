@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 75.1: icu::DateFormat Class Reference</title>
+<title>ICU 76.1: icu::DateFormat Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 75.1<span id="projectnumber">&#160;75.1</span>
+   <div id="projectname">ICU 76.1<span id="projectnumber">&#160;76.1</span>
    </div>
   </td>
  </tr>
@@ -410,7 +410,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassicu_1_1DateFormat_html_a251191326a412d2da5345325dcde5c8b"><div class="ttname"><a href="classicu_1_1DateFormat.html#a251191326a412d2da5345325dcde5c8b">icu::DateFormat::createDateInstance</a></div><div class="ttdeci">static DateFormat * createDateInstance(EStyle style=kDefault, const Locale &amp;aLocale=Locale::getDefault())</div><div class="ttdoc">Creates a date formatter with the given formatting style for the given const locale.</div></div>
 <div class="ttc" id="aclassicu_1_1LocalPointerBase_html"><div class="ttname"><a href="classicu_1_1LocalPointerBase.html">icu::LocalPointerBase</a></div><div class="ttdoc">&quot;Smart pointer&quot; base class; do not use directly: use LocalPointer etc.</div><div class="ttdef"><b>Definition</b> <a href="localpointer_8h_source.html#l00068">localpointer.h:68</a></div></div>
 <div class="ttc" id="aclassicu_1_1UnicodeString_html"><div class="ttname"><a href="classicu_1_1UnicodeString.html">icu::UnicodeString</a></div><div class="ttdoc">UnicodeString is a string class that stores Unicode characters directly and provides similar function...</div><div class="ttdef"><b>Definition</b> <a href="unistr_8h_source.html#l00295">unistr.h:296</a></div></div>
-<div class="ttc" id="autypes_8h_html_ace1704e9e77d407d1eaaa2e73ec0c039"><div class="ttname"><a href="utypes_8h.html#ace1704e9e77d407d1eaaa2e73ec0c039">UDate</a></div><div class="ttdeci">double UDate</div><div class="ttdoc">Date and Time data type.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00203">utypes.h:203</a></div></div>
+<div class="ttc" id="autypes_8h_html_ace1704e9e77d407d1eaaa2e73ec0c039"><div class="ttname"><a href="utypes_8h.html#ace1704e9e77d407d1eaaa2e73ec0c039">UDate</a></div><div class="ttdeci">double UDate</div><div class="ttdoc">Date and Time data type.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00218">utypes.h:218</a></div></div>
 </div><!-- fragment -->
 </pre><p> If you are formatting multiple numbers, it is more efficient to get the format and use it multiple times so that the system doesn't have to fetch the information about the local language and country conventions multiple times. </p><pre>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classicu_1_1DateFormat.html">DateFormat</a>* <a class="code hl_class" href="classicu_1_1LocalPointerBase.html">df</a> = <a class="code hl_function" href="classicu_1_1DateFormat.html#a251191326a412d2da5345325dcde5c8b">DateFormat::createDateInstance</a>();</div>
@@ -438,8 +438,8 @@ Additional Inherited Members</h2></td></tr>
 </pre><p> You can use a <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a> to parse also. </p><pre>
 <div class="fragment"><div class="line"><a class="code hl_enumeration" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> <a class="code hl_class" href="classicu_1_1LocalPointerBase.html">status</a> = <a class="code hl_enumvalue" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a>;</div>
 <div class="line"><a class="code hl_typedef" href="utypes_8h.html#ace1704e9e77d407d1eaaa2e73ec0c039">UDate</a> <a class="code hl_class" href="classicu_1_1LocalPointerBase.html">myDate</a> = <a class="code hl_class" href="classicu_1_1LocalPointerBase.html">df</a>-&gt;parse(<a class="code hl_class" href="classicu_1_1LocalPointerBase.html">myString</a>, <a class="code hl_class" href="classicu_1_1LocalPointerBase.html">status</a>);</div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00415">utypes.h:415</a></div></div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a></div><div class="ttdeci">@ U_ZERO_ERROR</div><div class="ttdoc">No error, no warning.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00450">utypes.h:450</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00430">utypes.h:430</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a></div><div class="ttdeci">@ U_ZERO_ERROR</div><div class="ttdoc">No error, no warning.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00465">utypes.h:465</a></div></div>
 </div><!-- fragment -->
 </pre><p> Use <a class="el" href="classicu_1_1DateFormat.html#a251191326a412d2da5345325dcde5c8b" title="Creates a date formatter with the given formatting style for the given const locale.">createDateInstance()</a> to produce the normal date format for that country. There are other static factory methods available. Use <a class="el" href="classicu_1_1DateFormat.html#afcd185ba0b4159d30e3130c2987a174f" title="Creates a time formatter with the given formatting style for the given locale.">createTimeInstance()</a> to produce the normal time format for that country. Use <a class="el" href="classicu_1_1DateFormat.html#aa794841c943fc9353fd7b2853afdaaf5" title="Creates a date/time formatter with the given formatting styles for the given locale.">createDateTimeInstance()</a> to produce a <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a> that formats both date and time. You can pass in different options to these factory methods to control the length of the result; from SHORT to MEDIUM to LONG to FULL. The exact result depends on the locale, but generally: </p><ul type="round">
 <li>
@@ -494,7 +494,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constants for various style patterns. </p>
-<p>These reflect the order of items in the DateTimePatterns resource. There are 4 time patterns, 4 date patterns, the default date-time pattern, and 4 date-time patterns. Each block of 4 values in the resource occurs in the order full, long, medium, short. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003759">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<p>These reflect the order of items in the DateTimePatterns resource. There are 4 time patterns, 4 date patterns, the default date-time pattern, and 4 date-time patterns. Each block of 4 values in the resource occurs in the order full, long, medium, short. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003820">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac24ea2d479ab818437dedb3470800dc7ab4dbd844bad9434716ae812fc012784e" name="ac24ea2d479ab818437dedb3470800dc7ab4dbd844bad9434716ae812fc012784e"></a>FULL&#160;</td><td class="fielddoc"><p>These constants are provided for backwards compatibility only. </p>
 <p>Please use the C++ style constants defined above. </p>
@@ -530,7 +530,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Destructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003760">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003821">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -558,7 +558,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Default constructor. </p>
-<p>Creates a <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a> with no <a class="el" href="classicu_1_1Calendar.html" title="Calendar is an abstract base class for converting between a UDate object and a set of integer fields ...">Calendar</a> or <a class="el" href="classicu_1_1NumberFormat.html">NumberFormat</a> associated with it. This constructor depends on the subclasses to fill in the calendar and numberFormat fields. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003799">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Creates a <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a> with no <a class="el" href="classicu_1_1Calendar.html" title="Calendar is an abstract base class for converting between a UDate object and a set of integer fields ...">Calendar</a> or <a class="el" href="classicu_1_1NumberFormat.html">NumberFormat</a> associated with it. This constructor depends on the subclasses to fill in the calendar and numberFormat fields. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003860">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -587,7 +587,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Copy constructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003800">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003861">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -624,7 +624,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003787">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003848">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classicu_1_1SimpleDateFormat.html#aa516e475dd1bd93dafb165ca51ecc7ea">icu::SimpleDateFormat</a>.</p>
 
@@ -661,7 +661,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003790">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003851">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classicu_1_1SimpleDateFormat.html#a6aa9212004cc17d5ee28ff916d0a3e73">icu::SimpleDateFormat</a>.</p>
 
@@ -698,7 +698,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003793">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003854">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -727,7 +727,7 @@ Align any particular field, or find out where it is for selection on the screen.
 
 <p>Clones this object polymorphically. </p>
 <p>The caller owns the result and should delete it when done. </p><dl class="section return"><dt>Returns</dt><dd>clone, or nullptr if an error occurred </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003761">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003822">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1Format.html#affce5425b443762badff429591f18ad3">icu::Format</a>.</p>
 
@@ -778,7 +778,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A date formatter which the caller owns. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003776">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003837">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -832,7 +832,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A date/time formatter which the caller owns. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003777">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003838">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -861,7 +861,7 @@ Align any particular field, or find out where it is for selection on the screen.
 
 <p>Create a default date/time formatter that uses the SHORT style for both the date and the time. </p>
 <dl class="section return"><dt>Returns</dt><dd>A date/time formatter which the caller owns. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003774">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003835">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -922,7 +922,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A date/time formatter which the caller owns. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003780">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003841">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -976,7 +976,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A date/time formatter which the caller owns. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003779">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003840">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -1023,7 +1023,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A date/time formatter which the caller owns. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003778">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003839">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -1070,7 +1070,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A time formatter which the caller owns. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003775">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003836">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1128,7 +1128,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003765">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003826">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p>Implemented in <a class="el" href="classicu_1_1SimpleDateFormat.html#a3c5e51dc64522f61801891e8136f2feb">icu::SimpleDateFormat</a>, and <a class="el" href="classicu_1_1SimpleDateFormat.html#a34ba1702eb49f8a07f996c45bb410024">icu::SimpleDateFormat</a>.</p>
 
@@ -1192,7 +1192,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003766">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003827">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classicu_1_1SimpleDateFormat.html#a272e5d18b28fb38064e0969b2b5c3160">icu::SimpleDateFormat</a>, and <a class="el" href="classicu_1_1SimpleDateFormat.html#aed720f5f54225abb31a7ae43983b9f34">icu::SimpleDateFormat</a>.</p>
 
@@ -1256,7 +1256,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003763">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003824">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1Format.html#a53f8ed9170d8df729b4ed64514c281ba">icu::Format</a>.</p>
 
@@ -1322,7 +1322,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004183">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004244">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1Format.html#a53f8ed9170d8df729b4ed64514c281ba">icu::Format</a>.</p>
 
@@ -1388,7 +1388,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004184">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004245">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classicu_1_1Format.html#a04c0b274f048825e08296cd22d0dd4fb">icu::Format</a>.</p>
 
@@ -1454,7 +1454,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003764">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003825">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classicu_1_1Format.html#a04c0b274f048825e08296cd22d0dd4fb">icu::Format</a>.</p>
 
@@ -1504,7 +1504,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004182">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable004243">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1544,7 +1544,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003769">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003830">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1593,7 +1593,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003767">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003828">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1646,7 +1646,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to 'appendTo' parameter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003768">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003829">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -1682,7 +1682,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the set of locales for which DateFormats are installed. The caller does NOT own this list and must not delete it. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003781">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003842">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1736,7 +1736,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the best pattern. </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000282">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. For ICU use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000291">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. For ICU use only. </dd></dl>
 
 </div>
 </div>
@@ -1783,7 +1783,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the attribute value. Undefined if there is an error. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003798">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003859">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -1812,7 +1812,7 @@ Align any particular field, or find out where it is for selection on the screen.
 
 <p>Gets the calendar associated with this date/time formatter. </p>
 <p>The calendar is owned by the formatter and must not be modified. Also, the calendar does not reflect the results of a parse operation. To parse to a calendar, use <code><a class="el" href="classicu_1_1DateFormat.html#a82a10d2a3b70277bd983a638477bf154">parse(const UnicodeString&amp;, Calendar&amp; cal, ParsePosition&amp;)</a></code> </p><dl class="section return"><dt>Returns</dt><dd>the calendar associated with this date/time formatter. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003786">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003847">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1859,7 +1859,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The UDisplayContextValue for the specified type. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003796">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003857">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -1888,7 +1888,7 @@ Align any particular field, or find out where it is for selection on the screen.
 
 <p>Gets the number formatter which this date/time formatter uses to format and parse the numeric portions of the pattern. </p>
 <dl class="section return"><dt>Returns</dt><dd>the number formatter which this date/time formatter uses. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003789">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003850">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1917,7 +1917,7 @@ Align any particular field, or find out where it is for selection on the screen.
 
 <p>Returns a reference to the <a class="el" href="classicu_1_1TimeZone.html" title="TimeZone represents a time zone offset, and also figures out daylight savings.">TimeZone</a> used by this <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a>'s calendar. </p>
 <dl class="section return"><dt>Returns</dt><dd>the time zone associated with the calendar of <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a>. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003792">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003853">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -1945,7 +1945,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Returns whether date/time parsing in the encapsulated <a class="el" href="classicu_1_1Calendar.html" title="Calendar is an abstract base class for converting between a UDate object and a set of integer fields ...">Calendar</a> object processing is lenient. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003784">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003845">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -1973,7 +1973,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Returns whether both date/time parsing in the encapsulated <a class="el" href="classicu_1_1Calendar.html" title="Calendar is an abstract base class for converting between a UDate object and a set of integer fields ...">Calendar</a> object and <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a> whitespace &amp; numeric processing is lenient. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003782">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003843">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2002,7 +2002,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Default assignment operator. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003801">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003862">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2031,7 +2031,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Equality operator. </p>
-<p>Returns true if the two formats have the same behavior. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003762">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<p>Returns true if the two formats have the same behavior. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003823">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1Format.html#ae1e8e16cd0803127ac506d8de257ec4f">icu::Format</a>.</p>
 
@@ -2090,7 +2090,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003771">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003832">Stable:</a></b></dt><dd>ICU 2.1 </dd></dl>
 
 <p>Implemented in <a class="el" href="classicu_1_1SimpleDateFormat.html#a128664f3ee0336ff02f928abd0ddba39">icu::SimpleDateFormat</a>, and <a class="el" href="classicu_1_1SimpleDateFormat.html#a6d1cfd08ea9238eafee56e9b80849df2">icu::SimpleDateFormat</a>.</p>
 
@@ -2134,7 +2134,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A valid UDate if the input could be parsed. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003772">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003833">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2184,7 +2184,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The parsed UDate value, if successful. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003770">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003831">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classicu_1_1SimpleDateFormat.html#a088aa13d607c682cc435d4152613cfc1">icu::SimpleDateFormat</a>.</p>
 
@@ -2243,7 +2243,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003773">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003834">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 <p>Implements <a class="el" href="classicu_1_1Format.html#a292d797eb9d3bc8a42d8d8efba119a83">icu::Format</a>.</p>
 
@@ -2299,7 +2299,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>*this - for chaining (example: format.setAttribute(...).setAttribute(...) ) </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003797">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003858">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -2335,7 +2335,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003788">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003849">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2371,7 +2371,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>com.ibm.icu.util.Calendar::setLenient </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003785">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003846">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -2417,7 +2417,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003795">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003856">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classicu_1_1SimpleDateFormat.html#a5789d365715c59e7d1d06a7b563de6d9">icu::SimpleDateFormat</a>.</p>
 
@@ -2458,7 +2458,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classicu_1_1Calendar.html#a29c0974167c4d5b3570a87a55935224b" title="Specifies whether or not date/time interpretation is to be lenient.">Calendar::setLenient</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003783">Stable:</a></b></dt><dd>ICU 2.0 <br  />
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003844">Stable:</a></b></dt><dd>ICU 2.0 <br  />
  </dd></dl>
 
 </div>
@@ -2494,7 +2494,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003791">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003852">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2529,7 +2529,7 @@ Align any particular field, or find out where it is for selection on the screen.
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003794">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003855">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2580,7 +2580,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>The calendar that <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a> uses to produce the time field values needed to implement date/time formatting. </p>
-<p>Subclasses should generally initialize this to the default calendar for the locale associated with this <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a>. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003802">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<p>Subclasses should generally initialize this to the default calendar for the locale associated with this <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a>. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003863">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="datefmt_8h_source.html#l00871">871</a> of file <a class="el" href="datefmt_8h_source.html">datefmt.h</a>.</p>
 
@@ -2607,7 +2607,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>The number formatter that <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a> uses to format numbers in dates and times. </p>
-<p>Subclasses should generally initialize this to the default number format for the locale associated with this <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a>. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003803">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<p>Subclasses should generally initialize this to the default number format for the locale associated with this <a class="el" href="classicu_1_1DateFormat.html" title="DateFormat is an abstract class for a family of classes that convert dates and times from their inter...">DateFormat</a>. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable003864">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="datefmt_8h_source.html#l00879">879</a> of file <a class="el" href="datefmt_8h_source.html">datefmt.h</a>.</p>
 

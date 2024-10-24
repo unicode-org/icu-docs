@@ -7,12 +7,11 @@ var searchData=
   ['region_4',['Region',['../classicu_1_1Region.html',1,'icu']]],
   ['relativedatetimeformatter_5',['RelativeDateTimeFormatter',['../classicu_1_1RelativeDateTimeFormatter.html',1,'icu']]],
   ['replaceable_6',['Replaceable',['../classicu_1_1Replaceable.html',1,'icu']]],
-  ['reserved_7',['Reserved',['../classicu_1_1message2_1_1data__model_1_1Reserved.html',1,'icu::message2::data_model']]],
-  ['resourcebundle_8',['ResourceBundle',['../classicu_1_1ResourceBundle.html',1,'icu']]],
-  ['result_9',['Result',['../classicu_1_1LocaleMatcher_1_1Result.html',1,'icu::LocaleMatcher']]],
-  ['rulebasedbreakiterator_10',['RuleBasedBreakIterator',['../classicu_1_1RuleBasedBreakIterator.html',1,'icu']]],
-  ['rulebasedcollator_11',['RuleBasedCollator',['../classicu_1_1RuleBasedCollator.html',1,'icu']]],
-  ['rulebasednumberformat_12',['RuleBasedNumberFormat',['../classicu_1_1RuleBasedNumberFormat.html',1,'icu']]],
-  ['rulebasedtimezone_13',['RuleBasedTimeZone',['../classicu_1_1RuleBasedTimeZone.html',1,'icu']]],
-  ['runarray_14',['RunArray',['../classicu_1_1RunArray.html',1,'icu']]]
+  ['resourcebundle_7',['ResourceBundle',['../classicu_1_1ResourceBundle.html',1,'icu']]],
+  ['result_8',['Result',['../classicu_1_1LocaleMatcher_1_1Result.html',1,'icu::LocaleMatcher']]],
+  ['rulebasedbreakiterator_9',['RuleBasedBreakIterator',['../classicu_1_1RuleBasedBreakIterator.html',1,'icu']]],
+  ['rulebasedcollator_10',['RuleBasedCollator',['../classicu_1_1RuleBasedCollator.html',1,'icu']]],
+  ['rulebasednumberformat_11',['RuleBasedNumberFormat',['../classicu_1_1RuleBasedNumberFormat.html',1,'icu']]],
+  ['rulebasedtimezone_12',['RuleBasedTimeZone',['../classicu_1_1RuleBasedTimeZone.html',1,'icu']]],
+  ['runarray_13',['RunArray',['../classicu_1_1RunArray.html',1,'icu']]]
 ];

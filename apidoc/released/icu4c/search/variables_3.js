@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['c_0',['c',['../structUText.html#af3da19dd26083eaa72169c30b5397d35',1,'UText']]],
+  ['c_0',['c',['../structUText.html#af3da19dd26083eaa72169c30b5397d35',1,'UText::c'],['../structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange_1_1iterator.html#a4236fcf65fffda338af86f39855e613d',1,'U_HEADER_ONLY_NAMESPACE::CodePointRange::iterator::c']]],
   ['char32at_1',['char32At',['../structUReplaceableCallbacks.html#abeff06f74d058735c8ca083f034daa0f',1,'UReplaceableCallbacks']]],
   ['charat_2',['charAt',['../structUReplaceableCallbacks.html#acde97b3ed22a24127c66ecf38c698a72',1,'UReplaceableCallbacks']]],
   ['chars_3',['chars',['../classicu_1_1StringEnumeration.html#a5a35d9a6d36d0be9229ebba50348ad89',1,'icu::StringEnumeration']]],
@@ -19,6 +19,7 @@ var searchData=
   ['contextlimit_16',['contextLimit',['../structUTransPosition.html#a78d09b71320d0b9a1e7720bda8420372',1,'UTransPosition']]],
   ['contextstart_17',['contextStart',['../structUTransPosition.html#ac0b101b915a80d9cad00974c66e28c40',1,'UTransPosition']]],
   ['converter_18',['converter',['../structUConverterFromUnicodeArgs.html#aea5978dddd82f0ff25569e0894b77d5a',1,'UConverterFromUnicodeArgs::converter'],['../structUConverterToUnicodeArgs.html#abcfd7707780ca177dd662f365e8631c0',1,'UConverterToUnicodeArgs::converter']]],
-  ['copy_19',['copy',['../structUReplaceableCallbacks.html#a7affba31f6d3e5a31f8cd33358420fc6',1,'UReplaceableCallbacks::copy'],['../structUTextFuncs.html#acd589b6a5bc19d33777cbd72dbaa80cc',1,'UTextFuncs::copy']]],
-  ['current_20',['current',['../structUCharIterator.html#ac247dee1b3e3e6fec6688f9dcb5bc1c6',1,'UCharIterator']]]
+  ['convertibletou16stringview_19',['ConvertibleToU16StringView',['../namespaceicu.html#a3e1905e1863961f252aa7e523d825f44',1,'icu']]],
+  ['copy_20',['copy',['../structUReplaceableCallbacks.html#a7affba31f6d3e5a31f8cd33358420fc6',1,'UReplaceableCallbacks::copy'],['../structUTextFuncs.html#acd589b6a5bc19d33777cbd72dbaa80cc',1,'UTextFuncs::copy']]],
+  ['current_21',['current',['../structUCharIterator.html#ac247dee1b3e3e6fec6688f9dcb5bc1c6',1,'UCharIterator']]]
 ];

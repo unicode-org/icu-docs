@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 75.1: i18n/unicode/translit.h Source File</title>
+<title>ICU 76.1: i18n/unicode/translit.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ICU 75.1<span id="projectnumber">&#160;75.1</span>
+   <div id="projectname">ICU 76.1<span id="projectnumber">&#160;76.1</span>
    </div>
   </td>
  </tr>
@@ -372,7 +372,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l01566" name="l01566"></a><span class="lineno"><a class="line" href="classicu_1_1Transliterator.html#a566ce517aa30abced9e3a6ec551ded9c"> 1566</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> Transliterator::setID(<span class="keyword">const</span> <a class="code hl_class" href="classicu_1_1UnicodeString.html">UnicodeString</a>&amp; <span class="keywordtype">id</span>) {</div>
 <div class="line"><a id="l01567" name="l01567"></a><span class="lineno"> 1567</span>    ID = id;</div>
 <div class="line"><a id="l01568" name="l01568"></a><span class="lineno"> 1568</span>    <span class="comment">// NUL-terminate the ID string, which is a non-aliased copy.</span></div>
-<div class="line"><a id="l01569" name="l01569"></a><span class="lineno"> 1569</span>    ID.<a class="code hl_function" href="classicu_1_1UnicodeString.html#ad02ab4e43b74ce3b0bf2ede78a75c383">append</a>((<span class="keywordtype">char16_t</span>)0);</div>
+<div class="line"><a id="l01569" name="l01569"></a><span class="lineno"> 1569</span>    ID.<a class="code hl_function" href="classicu_1_1UnicodeString.html#ad02ab4e43b74ce3b0bf2ede78a75c383">append</a>(<span class="keyword">static_cast&lt;</span><span class="keywordtype">char16_t</span><span class="keyword">&gt;</span>(0));</div>
 <div class="line"><a id="l01570" name="l01570"></a><span class="lineno"> 1570</span>    ID.<a class="code hl_function" href="classicu_1_1UnicodeString.html#a997ebff99599d9fb0cb517eb315046e2">truncate</a>(ID.length()-1);</div>
 <div class="line"><a id="l01571" name="l01571"></a><span class="lineno"> 1571</span>}</div>
 </div>
@@ -468,8 +468,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassicu_1_1UnicodeFilter_html"><div class="ttname"><a href="classicu_1_1UnicodeFilter.html">icu::UnicodeFilter</a></div><div class="ttdoc">UnicodeFilter defines a protocol for selecting a subset of the full range (U+0000 to U+10FFFF) of Uni...</div><div class="ttdef"><b>Definition</b> <a href="unifilt_8h_source.html#l00065">unifilt.h:65</a></div></div>
 <div class="ttc" id="aclassicu_1_1UnicodeSet_html"><div class="ttname"><a href="classicu_1_1UnicodeSet.html">icu::UnicodeSet</a></div><div class="ttdoc">A mutable set of Unicode characters and multicharacter strings.</div><div class="ttdef"><b>Definition</b> <a href="uniset_8h_source.html#l00285">uniset.h:285</a></div></div>
 <div class="ttc" id="aclassicu_1_1UnicodeString_html"><div class="ttname"><a href="classicu_1_1UnicodeString.html">icu::UnicodeString</a></div><div class="ttdoc">UnicodeString is a string class that stores Unicode characters directly and provides similar function...</div><div class="ttdef"><b>Definition</b> <a href="unistr_8h_source.html#l00295">unistr.h:296</a></div></div>
-<div class="ttc" id="aclassicu_1_1UnicodeString_html_a997ebff99599d9fb0cb517eb315046e2"><div class="ttname"><a href="classicu_1_1UnicodeString.html#a997ebff99599d9fb0cb517eb315046e2">icu::UnicodeString::truncate</a></div><div class="ttdeci">UBool truncate(int32_t targetLength)</div><div class="ttdoc">Truncate this UnicodeString to the targetLength.</div><div class="ttdef"><b>Definition</b> <a href="unistr_8h_source.html#l04755">unistr.h:4755</a></div></div>
-<div class="ttc" id="aclassicu_1_1UnicodeString_html_ad02ab4e43b74ce3b0bf2ede78a75c383"><div class="ttname"><a href="classicu_1_1UnicodeString.html#ad02ab4e43b74ce3b0bf2ede78a75c383">icu::UnicodeString::append</a></div><div class="ttdeci">UnicodeString &amp; append(const UnicodeString &amp;srcText, int32_t srcStart, int32_t srcLength)</div><div class="ttdoc">Append the characters in srcText in the range [srcStart, srcStart + srcLength) to the UnicodeString o...</div><div class="ttdef"><b>Definition</b> <a href="unistr_8h_source.html#l04647">unistr.h:4647</a></div></div>
+<div class="ttc" id="aclassicu_1_1UnicodeString_html_a997ebff99599d9fb0cb517eb315046e2"><div class="ttname"><a href="classicu_1_1UnicodeString.html#a997ebff99599d9fb0cb517eb315046e2">icu::UnicodeString::truncate</a></div><div class="ttdeci">UBool truncate(int32_t targetLength)</div><div class="ttdoc">Truncate this UnicodeString to the targetLength.</div><div class="ttdef"><b>Definition</b> <a href="unistr_8h_source.html#l05068">unistr.h:5068</a></div></div>
+<div class="ttc" id="aclassicu_1_1UnicodeString_html_ad02ab4e43b74ce3b0bf2ede78a75c383"><div class="ttname"><a href="classicu_1_1UnicodeString.html#ad02ab4e43b74ce3b0bf2ede78a75c383">icu::UnicodeString::append</a></div><div class="ttdeci">UnicodeString &amp; append(const UnicodeString &amp;srcText, int32_t srcStart, int32_t srcLength)</div><div class="ttdoc">Append the characters in srcText in the range [srcStart, srcStart + srcLength) to the UnicodeString o...</div><div class="ttdef"><b>Definition</b> <a href="unistr_8h_source.html#l04960">unistr.h:4960</a></div></div>
 <div class="ttc" id="aparseerr_8h_html"><div class="ttname"><a href="parseerr_8h.html">parseerr.h</a></div><div class="ttdoc">C API: Parse Error Information.</div></div>
 <div class="ttc" id="astrenum_8h_html"><div class="ttname"><a href="strenum_8h.html">strenum.h</a></div><div class="ttdoc">C++ API: String Enumeration.</div></div>
 <div class="ttc" id="astructUParseError_html"><div class="ttname"><a href="structUParseError.html">UParseError</a></div><div class="ttdoc">A UParseError struct is used to returned detailed information about parsing errors.</div><div class="ttdef"><b>Definition</b> <a href="parseerr_8h_source.html#l00058">parseerr.h:58</a></div></div>
@@ -485,8 +485,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="autrans_8h_html"><div class="ttname"><a href="utrans_8h.html">utrans.h</a></div><div class="ttdoc">C API: Transliterator.</div></div>
 <div class="ttc" id="autrans_8h_html_a04f480e9e8e40f0d8067521668dc06ec"><div class="ttname"><a href="utrans_8h.html#a04f480e9e8e40f0d8067521668dc06ec">UTransDirection</a></div><div class="ttdeci">UTransDirection</div><div class="ttdoc">Direction constant indicating the direction in a transliterator, e.g., the forward or reverse rules o...</div><div class="ttdef"><b>Definition</b> <a href="utrans_8h_source.html#l00083">utrans.h:83</a></div></div>
 <div class="ttc" id="autypes_8h_html"><div class="ttname"><a href="utypes_8h.html">utypes.h</a></div><div class="ttdoc">Basic definitions for ICU, for both C and C++ APIs.</div></div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00415">utypes.h:415</a></div></div>
-<div class="ttc" id="autypes_8h_html_ab9d90a30137b6ec046fe59e79b09745a"><div class="ttname"><a href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a></div><div class="ttdeci">#define U_I18N_API</div><div class="ttdoc">Set to export library symbols from inside the i18n library, and to import them from outside.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00301">utypes.h:301</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00430">utypes.h:430</a></div></div>
+<div class="ttc" id="autypes_8h_html_ab9d90a30137b6ec046fe59e79b09745a"><div class="ttname"><a href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a></div><div class="ttdeci">#define U_I18N_API</div><div class="ttdoc">Set to export library symbols from inside the i18n library, and to import them from outside.</div><div class="ttdef"><b>Definition</b> <a href="utypes_8h_source.html#l00316">utypes.h:316</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

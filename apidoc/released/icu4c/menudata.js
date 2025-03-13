@@ -25,7 +25,7 @@
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
 {text:"Related Pages",url:"pages.html"},
-{text:"Topics",url:"topics.html"},
+{text:"Modules",url:"modules.html"},
 {text:"Namespaces",url:"namespaces.html",children:[
 {text:"Namespace List",url:"namespaces.html"},
 {text:"Namespace Members",url:"namespacemembers.html",children:[
@@ -36,7 +36,6 @@ var menudata={children:[
 {text:"k",url:"namespacemembers.html#index_k"},
 {text:"l",url:"namespacemembers.html#index_l"},
 {text:"o",url:"namespacemembers.html#index_o"},
-{text:"t",url:"namespacemembers.html#index_t"},
 {text:"u",url:"namespacemembers.html#index_u"}]},
 {text:"Functions",url:"namespacemembers_func.html"},
 {text:"Variables",url:"namespacemembers_vars.html"},
@@ -141,7 +140,7 @@ var menudata={children:[
 {text:"s",url:"functions_eval.html#index_s"},
 {text:"u",url:"functions_eval.html#index_u"},
 {text:"w",url:"functions_eval.html#index_w"}]},
-{text:"Related Symbols",url:"functions_rela.html"}]}]},
+{text:"Related Functions",url:"functions_rela.html"}]}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"},
 {text:"Globals",url:"globals.html",children:[

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 77.1: common/unicode/utf8.h File Reference</title>
+<title>ICU 78.1: common/unicode/utf8.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 77.1
-   &#160;<span id="projectnumber">77.1</span>
+   <div id="projectname">ICU 78.1
+   &#160;<span id="projectnumber">78.1</span>
    </div>
   </td>
  </tr>
@@ -105,7 +105,7 @@ Macros</h2></td></tr>
 <tr class="memitem:a5525576b42e8b7b4240153d9403c47a2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf8_8h.html#a5525576b42e8b7b4240153d9403c47a2">U8_IS_VALID_LEAD4_AND_T1</a>(lead,  t1)&#160;&#160;&#160;(<a class="el" href="utf8_8h.html#ab7b00ab82ca3e89d24c4088b2b4e9416">U8_LEAD4_T1_BITS</a>[(uint8_t)(t1)&gt;&gt;4]&amp;(1&lt;&lt;((lead)&amp;7)))</td></tr>
 <tr class="memdesc:a5525576b42e8b7b4240153d9403c47a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal 4-byte UTF-8 validity check.  <a href="utf8_8h.html#a5525576b42e8b7b4240153d9403c47a2">More...</a><br /></td></tr>
 <tr class="separator:a5525576b42e8b7b4240153d9403c47a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f3a9427d880458a9fa6b169a3cc1b3c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf8_8h.html#a8f3a9427d880458a9fa6b169a3cc1b3c">U8_IS_SINGLE</a>(c)&#160;&#160;&#160;(((c)&amp;0x80)==0)</td></tr>
+<tr class="memitem:a8f3a9427d880458a9fa6b169a3cc1b3c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf8_8h.html#a8f3a9427d880458a9fa6b169a3cc1b3c">U8_IS_SINGLE</a>(c)&#160;&#160;&#160;((int8_t)(c)&gt;=0)</td></tr>
 <tr class="memdesc:a8f3a9427d880458a9fa6b169a3cc1b3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this code unit (byte) encode a code point by itself (US-ASCII 0..0x7f)?  <a href="utf8_8h.html#a8f3a9427d880458a9fa6b169a3cc1b3c">More...</a><br /></td></tr>
 <tr class="separator:a8f3a9427d880458a9fa6b169a3cc1b3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb9837ea38dd811524a5b761ddc2a2ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf8_8h.html#adb9837ea38dd811524a5b761ddc2a2ca">U8_IS_LEAD</a>(c)&#160;&#160;&#160;((uint8_t)((c)-0xc2)&lt;=0x32)</td></tr>
@@ -120,6 +120,12 @@ Macros</h2></td></tr>
 <tr class="memitem:aa2298b48749d9f45772c8f5a6885464a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf8_8h.html#aa2298b48749d9f45772c8f5a6885464a">U8_MAX_LENGTH</a>&#160;&#160;&#160;4</td></tr>
 <tr class="memdesc:aa2298b48749d9f45772c8f5a6885464a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of UTF-8 code units (bytes) per Unicode code point (U+0000..U+10ffff).  <a href="utf8_8h.html#aa2298b48749d9f45772c8f5a6885464a">More...</a><br /></td></tr>
 <tr class="separator:aa2298b48749d9f45772c8f5a6885464a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44822ffa347b3b403b5579e2dc00307b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf8_8h.html#a44822ffa347b3b403b5579e2dc00307b">U8_LENGTH_FROM_LEAD_BYTE</a>(leadByte)&#160;&#160;&#160;(<a class="el" href="utf8_8h.html#ae534bfef078b4f5d09e8da543a779db7">U8_COUNT_TRAIL_BYTES</a>(leadByte) + 1)</td></tr>
+<tr class="memdesc:a44822ffa347b3b403b5579e2dc00307b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the length of a well-formed UTF-8 byte sequence according to its lead byte.  <a href="utf8_8h.html#a44822ffa347b3b403b5579e2dc00307b">More...</a><br /></td></tr>
+<tr class="separator:a44822ffa347b3b403b5579e2dc00307b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4725d444cca8ffc1d97a16dc4823b55f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf8_8h.html#a4725d444cca8ffc1d97a16dc4823b55f">U8_LENGTH_FROM_LEAD_BYTE_UNSAFE</a>(leadByte)&#160;&#160;&#160;(<a class="el" href="utf8_8h.html#a32281421a1d07ef0de83e7f44c5d7ba2">U8_COUNT_TRAIL_BYTES_UNSAFE</a>(leadByte) + 1)</td></tr>
+<tr class="memdesc:a4725d444cca8ffc1d97a16dc4823b55f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the length of a well-formed UTF-8 byte sequence according to its lead byte.  <a href="utf8_8h.html#a4725d444cca8ffc1d97a16dc4823b55f">More...</a><br /></td></tr>
+<tr class="separator:a4725d444cca8ffc1d97a16dc4823b55f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a125e5e7a4ef2f3f57b078f706b2b67f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf8_8h.html#a125e5e7a4ef2f3f57b078f706b2b67f8">U8_GET_UNSAFE</a>(s,  i,  c)</td></tr>
 <tr class="memdesc:a125e5e7a4ef2f3f57b078f706b2b67f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a code point from a string at a random-access offset, without changing the offset.  <a href="utf8_8h.html#a125e5e7a4ef2f3f57b078f706b2b67f8">More...</a><br /></td></tr>
 <tr class="separator:a125e5e7a4ef2f3f57b078f706b2b67f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -281,8 +287,8 @@ Functions</h2></td></tr>
 <div class="line">        (isError)=<span class="keyword">true</span>; \</div>
 <div class="line">    } \</div>
 <div class="line">} <a class="code" href="umachine_8h.html#a983e6cc57f8c1b0c5b9ad9ceb290418a">UPRV_BLOCK_MACRO_END</a></div>
-<div class="ttc" id="aumachine_8h_html_a983e6cc57f8c1b0c5b9ad9ceb290418a"><div class="ttname"><a href="umachine_8h.html#a983e6cc57f8c1b0c5b9ad9ceb290418a">UPRV_BLOCK_MACRO_END</a></div><div class="ttdeci">#define UPRV_BLOCK_MACRO_END</div><div class="ttdoc">Defined as &quot;while (false)&quot; by default.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00156">umachine.h:156</a></div></div>
-<div class="ttc" id="aumachine_8h_html_abfdc26d020b4fab3ed5ca2b98fe5df43"><div class="ttname"><a href="umachine_8h.html#abfdc26d020b4fab3ed5ca2b98fe5df43">UPRV_BLOCK_MACRO_BEGIN</a></div><div class="ttdeci">#define UPRV_BLOCK_MACRO_BEGIN</div><div class="ttdoc">Defined as the &quot;do&quot; keyword by default.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00147">umachine.h:147</a></div></div>
+<div class="ttc" id="aumachine_8h_html_a983e6cc57f8c1b0c5b9ad9ceb290418a"><div class="ttname"><a href="umachine_8h.html#a983e6cc57f8c1b0c5b9ad9ceb290418a">UPRV_BLOCK_MACRO_END</a></div><div class="ttdeci">#define UPRV_BLOCK_MACRO_END</div><div class="ttdoc">Defined as &quot;while (false)&quot; by default.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00178">umachine.h:178</a></div></div>
+<div class="ttc" id="aumachine_8h_html_abfdc26d020b4fab3ed5ca2b98fe5df43"><div class="ttname"><a href="umachine_8h.html#abfdc26d020b4fab3ed5ca2b98fe5df43">UPRV_BLOCK_MACRO_BEGIN</a></div><div class="ttdeci">#define UPRV_BLOCK_MACRO_BEGIN</div><div class="ttdoc">Defined as the &quot;do&quot; keyword by default.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00169">umachine.h:169</a></div></div>
 </div><!-- fragment -->
 <p>Append a code point to a string, overwriting 1 to 4 bytes. </p>
 <p>The offset points to the current end of the string contents and is advanced (post-increment). "Safe" macro, checks for a valid code point. If a non-ASCII code point is written, checks for sufficient space in the string. If the code point is not valid or trail bytes do not fit, then isError is set to true.</p>
@@ -297,9 +303,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a154f04764da5af41729c4df6bf9e09f3" title="Append a code point to a string, overwriting 1 to 4 bytes.">U8_APPEND_UNSAFE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003473">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003562">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00459">459</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00485">485</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -365,9 +371,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a8a013997e3d13c501ce73bc45e662881" title="Append a code point to a string, overwriting 1 to 4 bytes.">U8_APPEND</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003472">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003561">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00422">422</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00448">448</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -421,9 +427,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a3969beb6252f8605ab678990c8af2f48" title="Move the string offset from one code point boundary to the previous one.">U8_BACK_1_UNSAFE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003485">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003574">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00791">791</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00817">817</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -466,9 +472,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#adac4ee359e6233cb2990b1047fd5be3c" title="Move the string offset from one code point boundary to the previous one.">U8_BACK_1</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003484">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003573">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00775">775</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00801">801</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -529,9 +535,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#aa36f62ea4ac87362e376e4cbea10098d" title="Move the string offset from one code point boundary to the n-th one before it, i.e....">U8_BACK_N_UNSAFE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003487">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003576">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00832">832</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00858">858</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -585,9 +591,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#ab0ce585952c8ba4b103fb6b7aea801ba" title="Move the string offset from one code point boundary to the n-th one before it, i.e....">U8_BACK_N</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003486">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003575">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00810">810</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00836">836</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -619,7 +625,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000182">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000165">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00056">56</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -650,7 +656,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000183">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000166">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00071">71</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -700,7 +706,7 @@ Functions</h2></td></tr>
 <div class="line">            if(<a class="code" href="utf8_8h.html#afed9fc9bf480bf15a2e6051774f2d80e">U8_IS_TRAIL</a>(__t1)) { \</div>
 <div class="line">                ++(i); \</div>
 <div class="line">            } \</div>
-<div class="line">        } <span class="keywordflow">else</span> <span class="comment">/* c&gt;=0xf0 */</span> { \</div>
+<div class="line">        } <span class="keywordflow">else</span> <span class="comment">/* b&gt;=0xf0 */</span> { \</div>
 <div class="line">            if(<a class="code" href="utf8_8h.html#a5525576b42e8b7b4240153d9403c47a2">U8_IS_VALID_LEAD4_AND_T1</a>(__b, __t1) &amp;&amp; \</div>
 <div class="line">                    ++(i)!=(length) &amp;&amp; <a class="code" href="utf8_8h.html#afed9fc9bf480bf15a2e6051774f2d80e">U8_IS_TRAIL</a>((s)[i]) &amp;&amp; \</div>
 <div class="line">                    ++(i)!=(length) &amp;&amp; <a class="code" href="utf8_8h.html#afed9fc9bf480bf15a2e6051774f2d80e">U8_IS_TRAIL</a>((s)[i])) { \</div>
@@ -724,9 +730,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a64a8113aea2125f806cbf5d77294b3cd" title="Advance the string offset from one code point boundary to the next.">U8_FWD_1_UNSAFE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003475">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003564">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00507">507</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00533">533</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -770,9 +776,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a6d4c94e845b059fddba0c51e9bad87fd" title="Advance the string offset from one code point boundary to the next.">U8_FWD_1</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003474">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003563">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00490">490</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00516">516</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -834,9 +840,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a8e8b4218834110431798cc84a0a664ae" title="Advance the string offset from one code point boundary to the n-th next one, i.e.,...">U8_FWD_N_UNSAFE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003477">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003566">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00565">565</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00591">591</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -890,9 +896,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a9a311dc48b8aa1050345b886adabf213" title="Advance the string offset from one code point boundary to the n-th next one, i.e.,...">U8_FWD_N</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003476">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003565">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00542">542</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00568">568</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -960,9 +966,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a125e5e7a4ef2f3f57b078f706b2b67f8" title="Get a code point from a string at a random-access offset, without changing the offset.">U8_GET_UNSAFE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003467">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003556">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00260">260</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00286">286</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1031,9 +1037,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a10a57a084d75604c4a81fb5eec46ae6a" title="Get a code point from a string at a random-access offset, without changing the offset.">U8_GET</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003468">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003557">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00291">291</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00317">317</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1085,9 +1091,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a10a57a084d75604c4a81fb5eec46ae6a" title="Get a code point from a string at a random-access offset, without changing the offset.">U8_GET</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003466">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003555">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00233">233</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00259">259</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1164,10 +1170,10 @@ Functions</h2></td></tr>
 <div class="ttc" id="autf8_8h_html_a8f3a9427d880458a9fa6b169a3cc1b3c"><div class="ttname"><a href="utf8_8h.html#a8f3a9427d880458a9fa6b169a3cc1b3c">U8_IS_SINGLE</a></div><div class="ttdeci">#define U8_IS_SINGLE(c)</div><div class="ttdoc">Does this code unit (byte) encode a code point by itself (US-ASCII 0..0x7f)?</div><div class="ttdef"><b>Definition:</b> <a href="utf8_8h_source.html#l00173">utf8.h:173</a></div></div>
 <div class="ttc" id="autf8_8h_html_aabfe8ee746b8025ec80ed1977e8ae3c6"><div class="ttname"><a href="utf8_8h.html#aabfe8ee746b8025ec80ed1977e8ae3c6">U8_LEAD3_T1_BITS</a></div><div class="ttdeci">#define U8_LEAD3_T1_BITS</div><div class="ttdoc">Internal bit vector for 3-byte UTF-8 validity check, for use in U8_IS_VALID_LEAD3_AND_T1.</div><div class="ttdef"><b>Definition:</b> <a href="utf8_8h_source.html#l00091">utf8.h:91</a></div></div>
 <div class="ttc" id="autf8_8h_html_ab7b00ab82ca3e89d24c4088b2b4e9416"><div class="ttname"><a href="utf8_8h.html#ab7b00ab82ca3e89d24c4088b2b4e9416">U8_LEAD4_T1_BITS</a></div><div class="ttdeci">#define U8_LEAD4_T1_BITS</div><div class="ttdoc">Internal bit vector for 4-byte UTF-8 validity check, for use in U8_IS_VALID_LEAD4_AND_T1.</div><div class="ttdef"><b>Definition:</b> <a href="utf8_8h_source.html#l00108">utf8.h:108</a></div></div>
-</div><!-- fragment --><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000193">Internal:</a></b></dt><dd>Do not use.</dd></dl>
+</div><!-- fragment --><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000176">Internal:</a></b></dt><dd>Do not use.</dd></dl>
 <p>This API is for internal use only. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00381">381</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00407">407</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1195,7 +1201,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003462">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003551">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00181">181</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -1212,7 +1218,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">c</td><td>)</td>
-          <td>&#160;&#160;&#160;(((c)&amp;0x80)==0)</td>
+          <td>&#160;&#160;&#160;((int8_t)(c)&gt;=0)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1225,7 +1231,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003461">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003550">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00173">173</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -1255,7 +1261,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003463">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003552">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00190">190</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -1288,7 +1294,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Internal 3-byte UTF-8 validity check. </p>
-<p>Non-zero if lead byte E0..EF and first trail byte 00..FF start a valid sequence. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000186">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Non-zero if lead byte E0..EF and first trail byte 00..FF start a valid sequence. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000169">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00098">98</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -1321,7 +1327,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Internal 4-byte UTF-8 validity check. </p>
-<p>Non-zero if lead byte F0..F4 and first trail byte 00..FF start a valid sequence. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000188">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Non-zero if lead byte F0..F4 and first trail byte 00..FF start a valid sequence. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000171">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00115">115</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -1341,7 +1347,7 @@ Functions</h2></td></tr>
 
 <p>Internal bit vector for 3-byte UTF-8 validity check, for use in U8_IS_VALID_LEAD3_AND_T1. </p>
 <p>Each bit indicates whether one lead byte + first trail byte pair starts a valid sequence. Lead byte E0..EF bits 3..0 are used as byte index, first trail byte bits 7..5 are used as bit index into that byte. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a3a06eab6584d228ea835b424e0591aec" title="Internal 3-byte UTF-8 validity check.">U8_IS_VALID_LEAD3_AND_T1</a> </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000185">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000168">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00091">91</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -1361,7 +1367,7 @@ Functions</h2></td></tr>
 
 <p>Internal bit vector for 4-byte UTF-8 validity check, for use in U8_IS_VALID_LEAD4_AND_T1. </p>
 <p>Each bit indicates whether one lead byte + first trail byte pair starts a valid sequence. First trail byte bits 7..4 are used as byte index, lead byte F0..F4 bits 2..0 are used as bit index into that byte. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a5525576b42e8b7b4240153d9403c47a2" title="Internal 4-byte UTF-8 validity check.">U8_IS_VALID_LEAD4_AND_T1</a> </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000187">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000170">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00108">108</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -1400,9 +1406,71 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1..4, or 0 if c is a surrogate or not a Unicode code point </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003464">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003553">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00199">199</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a44822ffa347b3b403b5579e2dc00307b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44822ffa347b3b403b5579e2dc00307b">&#9670;&nbsp;</a></span>U8_LENGTH_FROM_LEAD_BYTE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U8_LENGTH_FROM_LEAD_BYTE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">leadByte</td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="utf8_8h.html#ae534bfef078b4f5d09e8da543a779db7">U8_COUNT_TRAIL_BYTES</a>(leadByte) + 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the length of a well-formed UTF-8 byte sequence according to its lead byte. </p>
+<p>Returns 1 for 0..0xc1 as well as for 0xf5..0xff. leadByte might be evaluated multiple times.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">leadByte</td><td>The first byte of a UTF-8 sequence. Must be 0..0xff. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1..4 </dd></dl>
+<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000023">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 78 </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00228">228</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a4725d444cca8ffc1d97a16dc4823b55f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4725d444cca8ffc1d97a16dc4823b55f">&#9670;&nbsp;</a></span>U8_LENGTH_FROM_LEAD_BYTE_UNSAFE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U8_LENGTH_FROM_LEAD_BYTE_UNSAFE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">leadByte</td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="utf8_8h.html#a32281421a1d07ef0de83e7f44c5d7ba2">U8_COUNT_TRAIL_BYTES_UNSAFE</a>(leadByte) + 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the length of a well-formed UTF-8 byte sequence according to its lead byte. </p>
+<p>Returns 1 for 0..0xc1. Undefined for 0xf5..0xff. leadByte might be evaluated multiple times.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">leadByte</td><td>The first byte of a UTF-8 sequence. Must be 0..0xff. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1..4 </dd></dl>
+<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000024">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 78 </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00239">239</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1433,7 +1501,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Mask a UTF-8 lead byte, leave only the lower bits that form part of the code point value. </p>
-<p>This is internal since it is not meant to be called directly by external clients; however it is called by public macros in this file and thus must remain stable. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000184">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>This is internal since it is not meant to be called directly by external clients; however it is called by public macros in this file and thus must remain stable. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000167">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00081">81</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -1453,7 +1521,7 @@ Functions</h2></td></tr>
 
 <p>The maximum number of UTF-8 code units (bytes) per Unicode code point (U+0000..U+10ffff). </p>
 <dl class="section return"><dt>Returns</dt><dd>4 </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003465">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003554">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00215">215</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
@@ -1511,9 +1579,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a28ecdb4233301285fc4ce7f9ea1ed644" title="Get a code point from a string at a code point boundary offset, and advance the offset to the next co...">U8_NEXT_UNSAFE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003470">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003559">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00352">352</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00378">378</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1570,9 +1638,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a57f3e5429ae4edb27a42367c627aa482" title="Get a code point from a string at a code point boundary offset, and advance the offset to the next co...">U8_NEXT</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003471">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003560">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00378">378</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00404">404</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1622,7 +1690,7 @@ Functions</h2></td></tr>
 <div class="line">        } \</div>
 <div class="line">    } \</div>
 <div class="line">} <a class="code" href="umachine_8h.html#a983e6cc57f8c1b0c5b9ad9ceb290418a">UPRV_BLOCK_MACRO_END</a></div>
-<div class="ttc" id="aumachine_8h_html_a6bb9fad572d65b305324ef288165e2ac"><div class="ttname"><a href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a></div><div class="ttdeci">char16_t UChar</div><div class="ttdoc">The base type for UTF-16 code units and pointers.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00378">umachine.h:378</a></div></div>
+<div class="ttc" id="aumachine_8h_html_a6bb9fad572d65b305324ef288165e2ac"><div class="ttname"><a href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a></div><div class="ttdeci">char16_t UChar</div><div class="ttdoc">The base type for UTF-16 code units and pointers.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00400">umachine.h:400</a></div></div>
 </div><!-- fragment -->
 <p>Get a code point from a string at a code point boundary offset, and advance the offset to the next code point boundary. </p>
 <p>(Post-incrementing forward iteration.) "Unsafe" macro, assumes well-formed UTF-8.</p>
@@ -1636,9 +1704,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a57f3e5429ae4edb27a42367c627aa482" title="Get a code point from a string at a code point boundary offset, and advance the offset to the next co...">U8_NEXT</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003469">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003558">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00316">316</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00342">342</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1700,9 +1768,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a5f78eb19a6b25f61dccbae45d6ecf955" title="Move the string offset from one code point boundary to the previous one and get the code point betwee...">U8_PREV_UNSAFE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003482">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003571">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00726">726</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00752">752</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1764,9 +1832,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a17287c1f01ce84fdf8852a756643b076" title="Move the string offset from one code point boundary to the previous one and get the code point betwee...">U8_PREV</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003483">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003572">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00757">757</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00783">783</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1803,7 +1871,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="umachine_8h.html#abfdc26d020b4fab3ed5ca2b98fe5df43">UPRV_BLOCK_MACRO_BEGIN</a> { \</div>
 <div class="line">    (c)=(uint8_t)(s)[--(i)]; \</div>
-<div class="line">    if(<a class="code" href="utf8_8h.html#afed9fc9bf480bf15a2e6051774f2d80e">U8_IS_TRAIL</a>(c)) { \</div>
+<div class="line">    if(!<a class="code" href="utf8_8h.html#a8f3a9427d880458a9fa6b169a3cc1b3c">U8_IS_SINGLE</a>(c)) { \</div>
 <div class="line">        uint8_t __b, __count=1, __shift=6; \</div>
 <div class="line">\</div>
 <div class="line">        <span class="comment">/* c is a trail byte */</span> \</div>
@@ -1822,7 +1890,7 @@ Functions</h2></td></tr>
 <div class="line">        } \</div>
 <div class="line">    } \</div>
 <div class="line">} <a class="code" href="umachine_8h.html#a983e6cc57f8c1b0c5b9ad9ceb290418a">UPRV_BLOCK_MACRO_END</a></div>
-<div class="ttc" id="aumachine_8h_html_a09fff5c3b5a5b015324dc3ec3cf92809"><div class="ttname"><a href="umachine_8h.html#a09fff5c3b5a5b015324dc3ec3cf92809">UChar32</a></div><div class="ttdeci">int32_t UChar32</div><div class="ttdoc">Define UChar32 as a type for single Unicode code points.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00427">umachine.h:427</a></div></div>
+<div class="ttc" id="aumachine_8h_html_a09fff5c3b5a5b015324dc3ec3cf92809"><div class="ttname"><a href="umachine_8h.html#a09fff5c3b5a5b015324dc3ec3cf92809">UChar32</a></div><div class="ttdeci">int32_t UChar32</div><div class="ttdoc">Define UChar32 as a type for single Unicode code points.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00449">umachine.h:449</a></div></div>
 </div><!-- fragment -->
 <p>Move the string offset from one code point boundary to the previous one and get the code point between them. </p>
 <p>(Pre-decrementing backward iteration.) "Unsafe" macro, assumes well-formed UTF-8.</p>
@@ -1836,9 +1904,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a17287c1f01ce84fdf8852a756643b076" title="Move the string offset from one code point boundary to the previous one and get the code point betwee...">U8_PREV</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003481">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003570">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00684">684</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00710">710</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1899,9 +1967,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a910ba47de6d82fafc25b5e12f3a68588" title="Adjust a random-access offset to a code point boundary after a code point.">U8_SET_CP_LIMIT_UNSAFE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003489">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003578">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00875">875</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00901">901</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1945,9 +2013,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#a40fe523809a3a4e647e47513336b81d9" title="Adjust a random-access offset to a code point boundary after a code point.">U8_SET_CP_LIMIT</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003488">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003577">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00853">853</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00879">879</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -2002,9 +2070,9 @@ Functions</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#ac46a385dbf64c97337522e1d1875a57e" title="Adjust a random-access offset to a code point boundary at the start of a code point.">U8_SET_CP_START_UNSAFE</a> </dd>
 <dd>
 <a class="el" href="utf8_8h.html#a47528ebb663f83216167be4d28b59230" title="If the string ends with a UTF-8 byte sequence that is valid so far but incomplete,...">U8_TRUNCATE_IF_INCOMPLETE</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003479">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003568">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00607">607</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00633">633</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -2047,9 +2115,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#aa6d33627a8a5420a8f61e50da2aeca2a" title="Adjust a random-access offset to a code point boundary at the start of a code point.">U8_SET_CP_START</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003478">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003567">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00586">586</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00612">612</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -2123,9 +2191,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="utf8_8h.html#aa6d33627a8a5420a8f61e50da2aeca2a" title="Adjust a random-access offset to a code point boundary at the start of a code point.">U8_SET_CP_START</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003480">Stable:</a></b></dt><dd>ICU 61 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003569">Stable:</a></b></dt><dd>ICU 61 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00639">639</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00665">665</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -2175,7 +2243,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Function for handling "append code point" with error-checking. </p>
-<p>This is internal since it is not meant to be called directly by external clients; however it is called by public macros in this file and thus must remain stable, and should not be hidden when other internal functions are hidden (otherwise public macros would fail to compile). </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000190">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>This is internal since it is not meant to be called directly by external clients; however it is called by public macros in this file and thus must remain stable, and should not be hidden when other internal functions are hidden (otherwise public macros would fail to compile). </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000173">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -2212,7 +2280,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Function for handling "skip backward one code point" with error-checking. </p>
-<p>This is internal since it is not meant to be called directly by external clients; however it is called by public macros in this file and thus must remain stable, and should not be hidden when other internal functions are hidden (otherwise public macros would fail to compile). </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000192">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>This is internal since it is not meant to be called directly by external clients; however it is called by public macros in this file and thus must remain stable, and should not be hidden when other internal functions are hidden (otherwise public macros would fail to compile). </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000175">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -2261,7 +2329,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Function for handling "next code point" with error-checking. </p>
-<p>This is internal since it is not meant to be called directly by external clients; however it is called by public macros in this file and thus must remain stable, and should not be hidden when other internal functions are hidden (otherwise public macros would fail to compile). </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000189">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>This is internal since it is not meant to be called directly by external clients; however it is called by public macros in this file and thus must remain stable, and should not be hidden when other internal functions are hidden (otherwise public macros would fail to compile). </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000172">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -2310,7 +2378,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Function for handling "previous code point" with error-checking. </p>
-<p>This is internal since it is not meant to be called directly by external clients; however it is called by public macros in this file and thus must remain stable, and should not be hidden when other internal functions are hidden (otherwise public macros would fail to compile). </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000191">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>This is internal since it is not meant to be called directly by external clients; however it is called by public macros in this file and thus must remain stable, and should not be hidden when other internal functions are hidden (otherwise public macros would fail to compile). </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000174">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>

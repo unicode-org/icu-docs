@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 77.1: common/unicode/uversion.h Source File</title>
+<title>ICU 78.1: common/unicode/uversion.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 77.1
-   &#160;<span id="projectnumber">77.1</span>
+   <div id="projectname">ICU 78.1
+   &#160;<span id="projectnumber">78.1</span>
    </div>
   </td>
  </tr>
@@ -144,28 +144,29 @@ $(function() {
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        U_NAMESPACE_USE</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#   endif</span></div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#ifndef U_FORCE_HIDE_DRAFT_API</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment">// The first test is the same as for defining U_EXPORT for Windows.</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#if defined(_MSC_VER) || (UPRV_HAS_DECLSPEC_ATTRIBUTE(__dllexport__) &amp;&amp; \</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">                          UPRV_HAS_DECLSPEC_ATTRIBUTE(__dllimport__))</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">#   define U_HEADER_NESTED_NAMESPACE header</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#   define U_ICU_NAMESPACE_OR_INTERNAL U_ICU_NAMESPACE</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#elif defined(U_COMBINED_IMPLEMENTATION) || defined(U_COMMON_IMPLEMENTATION) || \</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor">        defined(U_I18N_IMPLEMENTATION) || defined(U_IO_IMPLEMENTATION) || \</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">        defined(U_LAYOUTEX_IMPLEMENTATION) || defined(U_TOOLUTIL_IMPLEMENTATION)</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor">#   define U_HEADER_NESTED_NAMESPACE internal</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor">#   define U_ICU_NAMESPACE_OR_INTERNAL U_ICU_NAMESPACE::internal</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keyword">namespace </span>U_ICU_NAMESPACE_OR_INTERNAL {}</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keyword">using namespace </span>U_ICU_NAMESPACE_OR_INTERNAL;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="preprocessor">#   define U_HEADER_NESTED_NAMESPACE header</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#   define U_ICU_NAMESPACE_OR_INTERNAL U_ICU_NAMESPACE</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor">#define U_HEADER_ONLY_NAMESPACE U_ICU_NAMESPACE::U_HEADER_NESTED_NAMESPACE</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="keyword">namespace </span>U_HEADER_ONLY_NAMESPACE {}</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// U_FORCE_HIDE_DRAFT_API</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">#ifndef U_FORCE_HIDE_DRAFT_API</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// U_FORCE_HIDE_DRAFT_API</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">// The first test is the same as for defining U_EXPORT for Windows.</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#if defined(_MSC_VER) || (UPRV_HAS_DECLSPEC_ATTRIBUTE(__dllexport__) &amp;&amp; \</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">                          UPRV_HAS_DECLSPEC_ATTRIBUTE(__dllimport__))</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#   define U_HEADER_NESTED_NAMESPACE header</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#   define U_ICU_NAMESPACE_OR_INTERNAL U_ICU_NAMESPACE</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor">#elif defined(U_COMBINED_IMPLEMENTATION) || defined(U_COMMON_IMPLEMENTATION) || \</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">        defined(U_I18N_IMPLEMENTATION) || defined(U_IO_IMPLEMENTATION) || \</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor">        defined(U_LAYOUTEX_IMPLEMENTATION) || defined(U_TOOLUTIL_IMPLEMENTATION)</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor">#   define U_HEADER_NESTED_NAMESPACE internal</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#   define U_ICU_NAMESPACE_OR_INTERNAL U_ICU_NAMESPACE::internal</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keyword">namespace </span>U_ICU_NAMESPACE_OR_INTERNAL {}</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keyword">using namespace </span>U_ICU_NAMESPACE_OR_INTERNAL;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#   define U_HEADER_NESTED_NAMESPACE header</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor">#   define U_ICU_NAMESPACE_OR_INTERNAL U_ICU_NAMESPACE</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="preprocessor">#define U_HEADER_ONLY_NAMESPACE U_ICU_NAMESPACE::U_HEADER_NESTED_NAMESPACE</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="keyword">namespace </span>U_HEADER_ONLY_NAMESPACE {}</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
@@ -189,7 +190,7 @@ $(function() {
 <div class="ttc" id="anamespaceicu_html"><div class="ttname"><a href="namespaceicu.html">icu</a></div><div class="ttdoc">File coll.h.</div><div class="ttdef"><b>Definition:</b> <a href="appendable_8h_source.html#l00031">appendable.h:31</a></div></div>
 <div class="ttc" id="aumachine_8h_html"><div class="ttname"><a href="umachine_8h.html">umachine.h</a></div><div class="ttdoc">Basic types and constants for UTF.</div></div>
 <div class="ttc" id="aumachine_8h_html_a676114b1a64bb7c2de15c919a00b28df"><div class="ttname"><a href="umachine_8h.html#a676114b1a64bb7c2de15c919a00b28df">U_CAPI</a></div><div class="ttdeci">#define U_CAPI</div><div class="ttdoc">This is used to declare a function as a public ICU C API.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00110">umachine.h:110</a></div></div>
-<div class="ttc" id="aumachine_8h_html_a6bb9fad572d65b305324ef288165e2ac"><div class="ttname"><a href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a></div><div class="ttdeci">char16_t UChar</div><div class="ttdoc">The base type for UTF-16 code units and pointers.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00378">umachine.h:378</a></div></div>
+<div class="ttc" id="aumachine_8h_html_a6bb9fad572d65b305324ef288165e2ac"><div class="ttname"><a href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a></div><div class="ttdeci">char16_t UChar</div><div class="ttdoc">The base type for UTF-16 code units and pointers.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00400">umachine.h:400</a></div></div>
 <div class="ttc" id="auvernum_8h_html"><div class="ttname"><a href="uvernum_8h.html">uvernum.h</a></div><div class="ttdoc">C API: definitions of ICU version numbers.</div></div>
 <div class="ttc" id="auversion_8h_html_a1fc92f0d26dc92035320b0c5923dab0c"><div class="ttname"><a href="uversion_8h.html#a1fc92f0d26dc92035320b0c5923dab0c">u_versionFromUString</a></div><div class="ttdeci">U_CAPI void u_versionFromUString(UVersionInfo versionArray, const UChar *versionString)</div><div class="ttdoc">Parse a Unicode string with dotted-decimal version information and fill in a UVersionInfo structure w...</div></div>
 <div class="ttc" id="auversion_8h_html_a38380427d3e56aeae74fab2602565ada"><div class="ttname"><a href="uversion_8h.html#a38380427d3e56aeae74fab2602565ada">u_versionToString</a></div><div class="ttdeci">U_CAPI void u_versionToString(const UVersionInfo versionArray, char *versionString)</div><div class="ttdoc">Write a string with dotted-decimal version information according to the input UVersionInfo.</div></div>

@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['end_11041',['end',['../classicu_1_1CharacterIterator.html#aa3722479f3191d6bcad48a24bd6c8f3e',1,'icu::CharacterIterator']]],
-  ['endindex_11042',['endIndex',['../structUFieldPosition.html#a76188e4f36fc98fef71e7f374d0d1e57',1,'UFieldPosition']]],
-  ['errorcode_11043',['errorCode',['../classicu_1_1ErrorCode.html#a541d64c42a846715e2c345e813672a2b',1,'icu::ErrorCode']]],
-  ['errors_11044',['errors',['../structUIDNAInfo.html#a2ea60f82939e17d1f64babfcbe354082',1,'UIDNAInfo']]],
-  ['extract_11045',['extract',['../structUReplaceableCallbacks.html#a423aefebaa21d2194334a795f7ae1809',1,'UReplaceableCallbacks::extract()'],['../structUTextFuncs.html#a6fd73fbd4bf4e4e87d2589b43ef9b7e1',1,'UTextFuncs::extract()']]],
-  ['extrasize_11046',['extraSize',['../structUText.html#a265765aa476617b1b0a9b2f245d6c3f3',1,'UText']]]
+  ['end_11333',['end',['../classicu_1_1CharacterIterator.html#aa3722479f3191d6bcad48a24bd6c8f3e',1,'icu::CharacterIterator']]],
+  ['endindex_11334',['endIndex',['../structUFieldPosition.html#a76188e4f36fc98fef71e7f374d0d1e57',1,'UFieldPosition']]],
+  ['errorcode_11335',['errorCode',['../classicu_1_1ErrorCode.html#a541d64c42a846715e2c345e813672a2b',1,'icu::ErrorCode']]],
+  ['errors_11336',['errors',['../structUIDNAInfo.html#a2ea60f82939e17d1f64babfcbe354082',1,'UIDNAInfo']]],
+  ['extract_11337',['extract',['../structUReplaceableCallbacks.html#a423aefebaa21d2194334a795f7ae1809',1,'UReplaceableCallbacks::extract()'],['../structUTextFuncs.html#a6fd73fbd4bf4e4e87d2589b43ef9b7e1',1,'UTextFuncs::extract()']]],
+  ['extrasize_11338',['extraSize',['../structUText.html#a265765aa476617b1b0a9b2f245d6c3f3',1,'UText']]]
 ];

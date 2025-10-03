@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['olduchar_11183',['OldUChar',['../umachine_8h.html#a85b92f7aa77a10e854b4cbff55a7a88c',1,'umachine.h']]]
+  ['not_5fequal_5fto_11483',['not_equal_to',['../ucol_8h.html#a667063163d40769429f6aea8489adb15',1,'U_HEADER_ONLY_NAMESPACE::collator']]]
 ];

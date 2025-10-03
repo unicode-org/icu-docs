@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.ibm.icu.charset"},{"l":"com.ibm.icu.lang"},{"l":"com.ibm.icu.math"},{"l":"com.ibm.icu.message2"},{"l":"com.ibm.icu.number"},{"l":"com.ibm.icu.segmenter"},{"l":"com.ibm.icu.text"},{"l":"com.ibm.icu.util"}]

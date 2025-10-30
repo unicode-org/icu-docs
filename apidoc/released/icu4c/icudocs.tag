@@ -35,8 +35,17 @@
     <includes id="std__string_8h" name="std_string.h" local="yes" imported="no">unicode/std_string.h</includes>
     <class kind="class">icu::ByteSink</class>
     <class kind="class">icu::CheckedArrayByteSink</class>
+    <class kind="struct">icu::prv::value_type_or_char</class>
+    <class kind="struct">icu::prv::value_type_or_char&lt; StringClass, std::void_t&lt; typename StringClass::value_type &gt; &gt;</class>
     <class kind="class">icu::StringByteSink</class>
     <namespace>icu</namespace>
+    <member kind="typedef">
+      <type>typename value_type_or_char&lt; StringClass &gt;::type</type>
+      <name>value_type_or_char_t</name>
+      <anchorfile>bytestream_8h.html</anchorfile>
+      <anchor>afd86308dd24952c989d59ff8b5f7846a</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>bytestrie.h</name>
@@ -1161,13 +1170,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>U_HAVE_PLACEMENT_NEW</name>
-      <anchorfile>platform_8h.html</anchorfile>
-      <anchor>a0f8af19e82b45be1de86ad402c164541</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>U_HAVE_DEBUG_LOCATION_NEW</name>
       <anchorfile>platform_8h.html</anchorfile>
       <anchor>a80b308fe1f841cb450772f58197ef018</anchor>
@@ -1367,13 +1369,6 @@
       <name>U_IS_BIG_ENDIAN</name>
       <anchorfile>platform_8h.html</anchorfile>
       <anchor>a427930203a10fd614e4c8bb3809c01ca</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>U_HAVE_PLACEMENT_NEW</name>
-      <anchorfile>platform_8h.html</anchorfile>
-      <anchor>a0f8af19e82b45be1de86ad402c164541</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -1880,10 +1875,10 @@
     <class kind="class">icu::StringPiece</class>
     <namespace>icu</namespace>
     <member kind="function">
-      <type>U_EXPORT UBool</type>
+      <type>U_COMMON_API UBool</type>
       <name>operator==</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>a1c2f6ca43e636f38d1a3291eb851e9f0</anchor>
+      <anchor>a5e840c3254f3b18f2b2f2662b8495d52</anchor>
       <arglist>(const StringPiece &amp;x, const StringPiece &amp;y)</arglist>
     </member>
     <member kind="function">
@@ -6816,6 +6811,54 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>UBLOCK_BERIA_ERFE</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901acaeb1289a2c40df0f5b169cc1ad8dcb4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_J</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a3cc1ebdd0b476aed41c9f6fbb83f6e33</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_MISCELLANEOUS_SYMBOLS_SUPPLEMENT</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901ae0b95fe12d9b1a7c607b6b339793b4ae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_SHARADA_SUPPLEMENT</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a5e0381a1dd4968ce206806a7e401053d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_SIDETIC</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a896696f29d9400d2b9d3e7564d93f236</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_TAI_YO</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901afaca8f221a69c957ef027ddd030e9bb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_TANGUT_COMPONENTS_SUPPLEMENT</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a188599f8d4199f5bfd7c3430b78cfe90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UBLOCK_TOLONG_SIKI</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a19f1662c9c33c31593612d05777ea901a71f5f85718535df2ba4e3e0b50a6635e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>UBLOCK_COUNT</name>
       <anchorfile>uchar_8h.html</anchorfile>
       <anchor>a19f1662c9c33c31593612d05777ea901a04e4577a8946c1c6b032ee1a17728eff</anchor>
@@ -7254,6 +7297,12 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>U_JG_THIN_NOON</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a7887844ec0872e6e9a283e0825fcae65a736ff40e49033d3eb6c4ab3461b260f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>U_JG_COUNT</name>
       <anchorfile>uchar_8h.html</anchorfile>
       <anchor>a7887844ec0872e6e9a283e0825fcae65a7648db1669553a81be3079a51f8c0165</anchor>
@@ -7561,6 +7610,12 @@
       <name>U_LB_VIRAMA</name>
       <anchorfile>uchar_8h.html</anchorfile>
       <anchor>a5d1abdf05be22cb9599f804a8506277ca476e2c3d9d8542418f48b0c7350e80a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>U_LB_UNAMBIGUOUS_HYPHEN</name>
+      <anchorfile>uchar_8h.html</anchorfile>
+      <anchor>a5d1abdf05be22cb9599f804a8506277ca8b4a08ae832aef613a2141a601f94360</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
@@ -12378,6 +12433,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>U_FORCE_INLINE</name>
+      <anchorfile>umachine_8h.html</anchorfile>
+      <anchor>af0ffb820f5dac7f2fee1a716424ef6bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>UPRV_BLOCK_MACRO_BEGIN</name>
       <anchorfile>umachine_8h.html</anchorfile>
       <anchor>abfdc26d020b4fab3ed5ca2b98fe5df43</anchor>
@@ -14950,6 +15012,36 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>USCRIPT_BERIA_ERFE</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a46c0b117cb660cc2ce464445b955bda6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_SIDETIC</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a3ff5b949f7a86fddd46b93a003e31ee9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_TAI_YO</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a822ec00299245df24bcf169156f09233</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_TOLONG_SIKI</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a856b11ae1dc4826153d70037c7ecfe5b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>USCRIPT_TRADITIONAL_HAN_WITH_LATIN</name>
+      <anchorfile>uscript_8h.html</anchorfile>
+      <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a91ef5a14562f3bb23d386b426a7be5ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>USCRIPT_CODE_LIMIT</name>
       <anchorfile>uscript_8h.html</anchorfile>
       <anchor>a5036ff9ca2a7f1d2bde07875bb235df0a12e18aa66866154e14fd0f1cb19e7150</anchor>
@@ -17075,6 +17167,20 @@
     <includes id="utf__old_8h" name="utf_old.h" local="yes" imported="no">unicode/utf_old.h</includes>
     <member kind="define">
       <type>#define</type>
+      <name>U_IS_CODE_POINT</name>
+      <anchorfile>utf_8h.html</anchorfile>
+      <anchor>a96111ace4e49f68025274c6febc5ec73</anchor>
+      <arglist>(c)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_IS_SCALAR_VALUE</name>
+      <anchorfile>utf_8h.html</anchorfile>
+      <anchor>a11496302e8ef16918b5d3f34ec5ab7c2</anchor>
+      <arglist>(c)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>U_IS_UNICODE_NONCHAR</name>
       <anchorfile>utf_8h.html</anchorfile>
       <anchor>a7d794df2276384e748f2836b25b58f7d</anchor>
@@ -17483,6 +17589,20 @@
       <anchorfile>utf8_8h.html</anchorfile>
       <anchor>aa2298b48749d9f45772c8f5a6885464a</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U8_LENGTH_FROM_LEAD_BYTE</name>
+      <anchorfile>utf8_8h.html</anchorfile>
+      <anchor>a44822ffa347b3b403b5579e2dc00307b</anchor>
+      <arglist>(leadByte)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U8_LENGTH_FROM_LEAD_BYTE_UNSAFE</name>
+      <anchorfile>utf8_8h.html</anchorfile>
+      <anchor>a4725d444cca8ffc1d97a16dc4823b55f</anchor>
+      <arglist>(leadByte)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -18691,6 +18811,181 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>utfiterator.h</name>
+    <path>/home/runner/work/icu/icu/icu4c/source/common/unicode/</path>
+    <filename>utfiterator_8h.html</filename>
+    <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
+    <includes id="utf16_8h" name="utf16.h" local="yes" imported="no">unicode/utf16.h</includes>
+    <includes id="utf8_8h" name="utf8.h" local="yes" imported="no">unicode/utf8.h</includes>
+    <includes id="uversion_8h" name="uversion.h" local="yes" imported="no">unicode/uversion.h</includes>
+    <class kind="struct">U_HEADER_ONLY_NAMESPACE::prv::range_type</class>
+    <class kind="struct">U_HEADER_ONLY_NAMESPACE::prv::range_type&lt; Range, std::void_t&lt; decltype(std::declval&lt; Range &gt;().begin()), decltype(std::declval&lt; Range &gt;().end())&gt; &gt;</class>
+    <class kind="struct">U_HEADER_ONLY_NAMESPACE::prv::is_basic_string_view</class>
+    <class kind="struct">U_HEADER_ONLY_NAMESPACE::prv::is_basic_string_view&lt; std::basic_string_view&lt; Args... &gt; &gt;</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::prv::CodePointsIterator</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::AllCodePoints</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::AllScalarValues</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::UnsafeCodeUnits</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::CodeUnits</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::UTFIterator</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::UTFStringCodePoints</class>
+    <class kind="struct">U_HEADER_ONLY_NAMESPACE::UTFStringCodePointsAdaptor</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::UnsafeUTFIterator</class>
+    <class kind="class">U_HEADER_ONLY_NAMESPACE::UnsafeUTFStringCodePoints</class>
+    <class kind="struct">U_HEADER_ONLY_NAMESPACE::UnsafeUTFStringCodePointsAdaptor</class>
+    <member kind="typedef">
+      <type>enum UTFIllFormedBehavior</type>
+      <name>UTFIllFormedBehavior</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>a7daace1c43cc0065782d91e98b5c6e00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>typename std::iterator_traits&lt; Iter &gt;::value_type</type>
+      <name>iter_value_t</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>ac94512354a3c3757bd51504e17c42675</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>typename std::iterator_traits&lt; Iter &gt;::difference_type</type>
+      <name>iter_difference_t</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>a379c0d1e14b3a9a7e7ca33899d8fda6b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>UTFIllFormedBehavior</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>ae96b61b479fe4d7b8e525787353d1d46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UTF_BEHAVIOR_NEGATIVE</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>ae96b61b479fe4d7b8e525787353d1d46a3a3ec2a3f0723ec5bc20765b895509f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UTF_BEHAVIOR_FFFD</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>ae96b61b479fe4d7b8e525787353d1d46a2e9b1ff0326a69017ff1ea55c9d7137d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UTF_BEHAVIOR_SURROGATE</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>ae96b61b479fe4d7b8e525787353d1d46a36d5d4b43747b3b7230fcd82daf8fb56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>utfIterator</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>a81f9f64c82a3b29389483be3c65c581d</anchor>
+      <arglist>(UnitIter start, UnitIter p, LimitIter limit)</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>utfIterator</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>a70b94948e46469f2252eace654ad2737</anchor>
+      <arglist>(UnitIter p, LimitIter limit)</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>utfIterator</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>a29e66074fd42156e7cd1928ba3e88860</anchor>
+      <arglist>(UnitIter p)</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>unsafeUTFIterator</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>a0173fdd0ff9c634956e829eaa5794465</anchor>
+      <arglist>(UnitIter iter)</arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr bool</type>
+      <name>forward_iterator</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>a603cf1c4c624736f3965c0dae31a5c79</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr bool</type>
+      <name>bidirectional_iterator</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>ae75399e99d2481183124f5f96b19b9e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr bool</type>
+      <name>range</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>afb839c10d925301c6dad1daeb23be6d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr bool</type>
+      <name>is_basic_string_view_v</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>a5296d8e44f40e0d0971832c9897437cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr UTFStringCodePointsAdaptor&lt; CP32, behavior &gt;</type>
+      <name>utfStringCodePoints</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>a984a43b6a404be5a37425475b5992285</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr UnsafeUTFStringCodePointsAdaptor&lt; CP32 &gt;</type>
+      <name>unsafeUTFStringCodePoints</name>
+      <anchorfile>utfiterator_8h.html</anchorfile>
+      <anchor>ae761307fb6f808f749d159a0203a7316</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>utfstring.h</name>
+    <path>/home/runner/work/icu/icu/icu4c/source/common/unicode/</path>
+    <filename>utfstring_8h.html</filename>
+    <includes id="utypes_8h" name="utypes.h" local="yes" imported="no">unicode/utypes.h</includes>
+    <includes id="utf16_8h" name="utf16.h" local="yes" imported="no">unicode/utf16.h</includes>
+    <member kind="function">
+      <type>StringClass &amp;</type>
+      <name>appendOrFFFD</name>
+      <anchorfile>utfstring_8h.html</anchorfile>
+      <anchor>a939617d77e1adccdd59ef9d6c016865c</anchor>
+      <arglist>(StringClass &amp;s, UChar32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>StringClass &amp;</type>
+      <name>appendUnsafe</name>
+      <anchorfile>utfstring_8h.html</anchorfile>
+      <anchor>ac21d4b0e1daf039bd1450d0a62bc7f5e</anchor>
+      <arglist>(StringClass &amp;s, UChar32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>StringClass</type>
+      <name>encodeOrFFFD</name>
+      <anchorfile>utfstring_8h.html</anchorfile>
+      <anchor>ad2a1e27be01385029eae08c20cbc27c7</anchor>
+      <arglist>(UChar32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>StringClass</type>
+      <name>encodeUnsafe</name>
+      <anchorfile>utfstring_8h.html</anchorfile>
+      <anchor>a4f483c0eb1c2ebb4c9736a5a8efd8694</anchor>
+      <arglist>(UChar32 c)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>utrace.h</name>
     <path>/home/runner/work/icu/icu/icu4c/source/common/unicode/</path>
     <filename>utrace_8h.html</filename>
@@ -19077,6 +19372,55 @@
       <name>U_TOOLUTIL_API</name>
       <anchorfile>utypes_8h.html</anchorfile>
       <anchor>aa03f48d3ba4dd985dcde4d6c0e5b2d07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_DATA_API_CLASS</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>af2f1c568586b3cd3aaf4188937a8bb29</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_COMMON_API_CLASS</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>a9da47f4be1afd5f9ae5f997364cba916</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_I18N_API_CLASS</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>aab9c32f472a54ec81629b5b031f5741c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_LAYOUT_API_CLASS</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>ac8893d320bfa8f311d33622be420a6b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_LAYOUTEX_API_CLASS</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>a497bd398166bb976beaa8a9776a21c25</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_IO_API_CLASS</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>a0a4b6fd6da55a8cd611ad85fa1769ed7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>U_TOOLUTIL_API_CLASS</name>
+      <anchorfile>utypes_8h.html</anchorfile>
+      <anchor>ac2a5f8c8b711c7bee1cee2c3670830a1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -25200,6 +25544,18 @@
       <name>UDAT_STANDALONE_NARROW_QUARTERS</name>
       <anchorfile>udat_8h.html</anchorfile>
       <anchor>a5eefb511a1a2cdc12bcbd06ed29880f4a35f957d6327a5c0df79ab2144688d654</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDAT_AM_PMS_NARROW</name>
+      <anchorfile>udat_8h.html</anchorfile>
+      <anchor>a5eefb511a1a2cdc12bcbd06ed29880f4ade0018d442c458ec5d43cb608f7da89b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>UDAT_AM_PMS_WIDE</name>
+      <anchorfile>udat_8h.html</anchorfile>
+      <anchor>a5eefb511a1a2cdc12bcbd06ed29880f4a9a2f5374fc02212d227d9c5bf02ebd9b</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -32449,6 +32805,58 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::AllCodePoints</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1AllCodePoints.html</filename>
+    <templarg></templarg>
+    <member kind="function">
+      <type></type>
+      <name>AllCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1AllCodePoints.html</anchorfile>
+      <anchor>a91420451bc04e2d51e228a982b7701ff</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1AllCodePoints.html</anchorfile>
+      <anchor>a1a65524403cc16fe608a5a70a84216ab</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1AllCodePoints.html</anchorfile>
+      <anchor>afae16d4e58f0fb76a9a98cb43939ebca</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::AllScalarValues</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1AllScalarValues.html</filename>
+    <templarg></templarg>
+    <member kind="function">
+      <type></type>
+      <name>AllScalarValues</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1AllScalarValues.html</anchorfile>
+      <anchor>adfbed7e57bd31f2fe76b21100fbf1a9c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1AllScalarValues.html</anchorfile>
+      <anchor>a968bba6c052a579970d2d7938b4ef4d6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1AllScalarValues.html</anchorfile>
+      <anchor>ae4b896b78551bb1a937e3ac3acf5c279</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>icu::AlphabeticIndex</name>
     <filename>classicu_1_1AlphabeticIndex.html</filename>
     <base>icu::UObject</base>
@@ -33073,290 +33481,290 @@
       <arglist></arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_COMMON_API</type>
       <name>~BreakIterator</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a026e38276ffa6c40d8953b4e3bc4bc01</anchor>
+      <anchor>a974704cc225b0128d3a61734b2354d9e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual bool</type>
+      <type>virtual U_COMMON_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a0045fc272df09804974fc767bc5340fc</anchor>
+      <anchor>a65a07e9bd87958c328b0a5f1d057b53a</anchor>
       <arglist>(const BreakIterator &amp;) const =0</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_COMMON_API bool</type>
       <name>operator!=</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a7a51e36f8952adf078b9b73865b5319e</anchor>
+      <anchor>a4f24d8977c298a8259ae54402a286c61</anchor>
       <arglist>(const BreakIterator &amp;rhs) const</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual BreakIterator *</type>
+      <type>virtual U_COMMON_API BreakIterator *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a1e2694eb976e034f1287a1eb4899cf33</anchor>
+      <anchor>a91377b4643772dbc295aabb026250176</anchor>
       <arglist>() const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual UClassID</type>
+      <type>virtual U_COMMON_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>ab09e6978cda13ec6caeddfbe9c016b0f</anchor>
+      <anchor>ae180ee7a2d78f164321145e3a571b995</anchor>
       <arglist>() const override=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual CharacterIterator &amp;</type>
+      <type>virtual U_COMMON_API CharacterIterator &amp;</type>
       <name>getText</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a9d2bf1376d01f41b4cc01f0bca45fe0b</anchor>
+      <anchor>a093d20c39e5fee2117961f79040956f7</anchor>
       <arglist>() const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual UText *</type>
+      <type>virtual U_COMMON_API UText *</type>
       <name>getUText</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>af57b33540abfb9c41e9f1e54974d0559</anchor>
+      <anchor>a63b2b5705a781e0cd2c0c48b2b3c2a75</anchor>
       <arglist>(UText *fillIn, UErrorCode &amp;status) const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual void</type>
+      <type>virtual U_COMMON_API void</type>
       <name>setText</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a8b894129fb567fded3ed85a7e8ead942</anchor>
+      <anchor>aaeda5bd245bd9d3cf093731484f5ea8c</anchor>
       <arglist>(const UnicodeString &amp;text)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual void</type>
+      <type>virtual U_COMMON_API void</type>
       <name>setText</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a3110dd5111286cd514ea6896ddd8c5bd</anchor>
+      <anchor>a615a40ff53341af642fe1e1a9209bbb9</anchor>
       <arglist>(UText *text, UErrorCode &amp;status)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual void</type>
+      <type>virtual U_COMMON_API void</type>
       <name>adoptText</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a1fd72184b59936bb62b07af071e2b0c1</anchor>
+      <anchor>a0a3de4868b1420a5ec77129adccc9aab</anchor>
       <arglist>(CharacterIterator *it)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_COMMON_API int32_t</type>
       <name>first</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a5e05547b9c99a23eea7ddc3d412ee212</anchor>
+      <anchor>aa2325d663a7f3afffc15e0937a4d1724</anchor>
       <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_COMMON_API int32_t</type>
       <name>last</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a3141dfce167220d07ec8b1c24332e9ba</anchor>
+      <anchor>ac545f95ac173f7ae750fb67392cbf17c</anchor>
       <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_COMMON_API int32_t</type>
       <name>previous</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a0fdd481522592ec64a5ecd291129e28c</anchor>
+      <anchor>a8485ea48350a7a49524766a362c3ab79</anchor>
       <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_COMMON_API int32_t</type>
       <name>next</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a48a7f41620707d76a05d4b11c3fc64e9</anchor>
+      <anchor>accab59fabb902b54a5bf632b567f2ad7</anchor>
       <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_COMMON_API int32_t</type>
       <name>current</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a9ff274cbd0eab7d6502389a28a290145</anchor>
+      <anchor>a19958b5b92e8512491dad3185d82d96a</anchor>
       <arglist>() const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_COMMON_API int32_t</type>
       <name>following</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>ae4178f880af4875ae5e30a716331fbaf</anchor>
+      <anchor>a157dbbc79eb03a3e8e28576b2c2991c3</anchor>
       <arglist>(int32_t offset)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_COMMON_API int32_t</type>
       <name>preceding</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a980f8e8fbe1d37827cacc24f9606399f</anchor>
+      <anchor>a96615b1370f0deac65972613bd2c53fb</anchor>
       <arglist>(int32_t offset)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual UBool</type>
+      <type>virtual U_COMMON_API UBool</type>
       <name>isBoundary</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>aaf997425386eae9c50cd5c208dbef214</anchor>
+      <anchor>a0c7549d21f1000695ea736593a99114c</anchor>
       <arglist>(int32_t offset)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_COMMON_API int32_t</type>
       <name>next</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a971257b3ed9676ec02890187025caf1b</anchor>
+      <anchor>acfce48e6715119fed4301e530d4f1d1a</anchor>
       <arglist>(int32_t n)=0</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_COMMON_API int32_t</type>
       <name>getRuleStatus</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a1920d04ad1b7d0966b2ff7863df77a74</anchor>
+      <anchor>a2f94f50a23a2e3c23c385661bf6ac38e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_COMMON_API int32_t</type>
       <name>getRuleStatusVec</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>af3bf12df7434e65041447bef51264e13</anchor>
+      <anchor>aadf11abea3b50285afd9add379dbc09b</anchor>
       <arglist>(int32_t *fillInVec, int32_t capacity, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual BreakIterator *</type>
+      <type>virtual U_COMMON_API BreakIterator *</type>
       <name>createBufferClone</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>ac0b126946521a209ec2c6d490b7db86e</anchor>
+      <anchor>a8bb5838936c784c3e004f94e3938a2cc</anchor>
       <arglist>(void *stackBuffer, int32_t &amp;BufferSize, UErrorCode &amp;status)=0</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_COMMON_API UBool</type>
       <name>isBufferClone</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
       <anchor>abab3efbfd6b3ae9190914aca4cac3897</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>Locale</type>
+      <type>U_COMMON_API Locale</type>
       <name>getLocale</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a771866e07e8c3396d98218a2073c0dc2</anchor>
+      <anchor>a153e9740dc3b742ca40ec1a8c5b8ea9e</anchor>
       <arglist>(ULocDataLocaleType type, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_COMMON_API const char *</type>
       <name>getLocaleID</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a5f041a2b8725d4d3e0bae29dce765eaa</anchor>
+      <anchor>a1a23d1cf037e21213ff62755e0350346</anchor>
       <arglist>(ULocDataLocaleType type, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual BreakIterator &amp;</type>
+      <type>virtual U_COMMON_API BreakIterator &amp;</type>
       <name>refreshInputText</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a88ac5ff907f98e814783267b7fe082a5</anchor>
+      <anchor>a463524dd38af76a689b5d3e1f87237ff</anchor>
       <arglist>(UText *input, UErrorCode &amp;status)=0</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static BreakIterator *</type>
+      <type>static U_COMMON_API BreakIterator *</type>
       <name>createWordInstance</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a1266dc4f44f0d8614b3060ece504f786</anchor>
+      <anchor>a6aa1459cc086397bdb85ccd1bb3c5500</anchor>
       <arglist>(const Locale &amp;where, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static BreakIterator *</type>
+      <type>static U_COMMON_API BreakIterator *</type>
       <name>createLineInstance</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>ace3d9612593db8fe5ec25c5c5210daea</anchor>
+      <anchor>aae588706df064825f1bccb2a9165169e</anchor>
       <arglist>(const Locale &amp;where, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static BreakIterator *</type>
+      <type>static U_COMMON_API BreakIterator *</type>
       <name>createCharacterInstance</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>adffa57ea9131c4a9e0cf8226c17d459a</anchor>
+      <anchor>afffc1125b180a61857f698e147b1a668</anchor>
       <arglist>(const Locale &amp;where, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static BreakIterator *</type>
+      <type>static U_COMMON_API BreakIterator *</type>
       <name>createSentenceInstance</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a0cfe6e08f720030beb29ff395066c3d8</anchor>
+      <anchor>ae161880c561882dad879112e15fde42b</anchor>
       <arglist>(const Locale &amp;where, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static BreakIterator *</type>
+      <type>static U_COMMON_API BreakIterator *</type>
       <name>createTitleInstance</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a46067034b6b72745e816589d6692c716</anchor>
+      <anchor>a749bd540aefa78212db180f8dcaaea9c</anchor>
       <arglist>(const Locale &amp;where, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale *</type>
+      <type>static U_COMMON_API const Locale *</type>
       <name>getAvailableLocales</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a1ececc0263be6fb1d2cec4a47eaad154</anchor>
+      <anchor>aa33a3d6f2f817b83288c4a945ea3fefc</anchor>
       <arglist>(int32_t &amp;count)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UnicodeString &amp;</type>
+      <type>static U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayName</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>ab06789c46f4b192aced3b4ee568b6ea8</anchor>
+      <anchor>afb35a87e148b3837374f1216572eb967</anchor>
       <arglist>(const Locale &amp;objectLocale, const Locale &amp;displayLocale, UnicodeString &amp;name)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UnicodeString &amp;</type>
+      <type>static U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayName</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a0280f649fca63ddc353e0d17ab9bb4a8</anchor>
+      <anchor>acd29143732d484c997913c0f66c42c1f</anchor>
       <arglist>(const Locale &amp;objectLocale, UnicodeString &amp;name)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static URegistryKey</type>
+      <type>static U_COMMON_API URegistryKey</type>
       <name>registerInstance</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>af03207fda29e7eab8adf59fb1788b2cf</anchor>
+      <anchor>ab9e0c5fad7551d191615be5184087624</anchor>
       <arglist>(BreakIterator *toAdopt, const Locale &amp;locale, UBreakIteratorType kind, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UBool</type>
+      <type>static U_COMMON_API UBool</type>
       <name>unregister</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>ac89b591636b40ec7a1037d02bfe8d832</anchor>
+      <anchor>a15349f991d1031068ed4f3ddcad97f6a</anchor>
       <arglist>(URegistryKey key, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static StringEnumeration *</type>
+      <type>static U_COMMON_API StringEnumeration *</type>
       <name>getAvailableLocales</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>ae14ad31d5b212d5fe3f386e3493400b8</anchor>
+      <anchor>a1fe26c0805c1bfb2a10f81844a66da35</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_COMMON_API</type>
       <name>BreakIterator</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a151b3d5496d7ca586c331f8521446755</anchor>
+      <anchor>a5901b6506fa5eb097c5528f409ff6b84</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_COMMON_API</type>
       <name>BreakIterator</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a0a44745041bbe7e3ec41bc1e2a880c80</anchor>
+      <anchor>ac636bfc4d77f9883251ebe4549354703</anchor>
       <arglist>(const BreakIterator &amp;other)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_COMMON_API</type>
       <name>BreakIterator</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a094580dacf6cc3f251fb4844278a61ce</anchor>
+      <anchor>aba0186a66dae7388f8c1778a56b9475b</anchor>
       <arglist>(const Locale &amp;valid, const Locale &amp;actual)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>BreakIterator &amp;</type>
+      <type>U_COMMON_API BreakIterator &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1BreakIterator.html</anchorfile>
-      <anchor>a029005b4e479e5fc90bf11e74eb6c0d4</anchor>
+      <anchor>aaa89e086b273875b2d21ce72760763c1</anchor>
       <arglist>(const BreakIterator &amp;other)</arglist>
     </member>
   </compound>
@@ -33686,6 +34094,60 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>icu::message2::data_model::MFDataModel::Builder</name>
+    <filename>classicu_1_1message2_1_1data__model_1_1MFDataModel_1_1Builder.html</filename>
+    <base>icu::UMemory</base>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>addBinding</name>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel_1_1Builder.html</anchorfile>
+      <anchor>a0ee3d50ce398c4bca291eb30c62bcac4</anchor>
+      <arglist>(Binding &amp;&amp;b, UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>addSelector</name>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel_1_1Builder.html</anchorfile>
+      <anchor>aa502b7a9112c257436154e7d03ffcf0d</anchor>
+      <arglist>(VariableName &amp;&amp;selector, UErrorCode &amp;errorCode)</arglist>
+    </member>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>addVariant</name>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel_1_1Builder.html</anchorfile>
+      <anchor>adc832473e3d0ef5c0cfc1caf2ecc2861</anchor>
+      <arglist>(SelectorKeys &amp;&amp;keys, Pattern &amp;&amp;pattern, UErrorCode &amp;errorCode) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>Builder &amp;</type>
+      <name>setPattern</name>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel_1_1Builder.html</anchorfile>
+      <anchor>afd7c5e4e66e77dcbceca35eb9eba876b</anchor>
+      <arglist>(Pattern &amp;&amp;pattern)</arglist>
+    </member>
+    <member kind="function">
+      <type>MFDataModel</type>
+      <name>build</name>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel_1_1Builder.html</anchorfile>
+      <anchor>aa8b348447c2bffcf9f50dd8b1ca13773</anchor>
+      <arglist>(UErrorCode &amp;status) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Builder</name>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel_1_1Builder.html</anchorfile>
+      <anchor>a3534f82b5ced2850c07b0e1dd708dc04</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~Builder</name>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel_1_1Builder.html</anchorfile>
+      <anchor>af88287dc9ba60c42c76820ef2beb7110</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>icu::message2::data_model::Operator::Builder</name>
     <filename>classicu_1_1message2_1_1data__model_1_1Operator_1_1Builder.html</filename>
     <base>icu::UMemory</base>
@@ -33810,113 +34272,59 @@
     <filename>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</filename>
     <base>icu::UObject</base>
     <member kind="function">
-      <type>Builder &amp;</type>
+      <type>U_I18N_API Builder &amp;</type>
       <name>setLocale</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</anchorfile>
-      <anchor>adab363196355458019d6281daa92cb2a</anchor>
+      <anchor>aafc43242f0688fb13ee74acf4b2416ac</anchor>
       <arglist>(const Locale &amp;locale)</arglist>
     </member>
     <member kind="function">
-      <type>Builder &amp;</type>
+      <type>U_I18N_API Builder &amp;</type>
       <name>setPattern</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</anchorfile>
-      <anchor>a1e70e0f438578f5a6f7eb6d46f573c7f</anchor>
+      <anchor>a22b3e1009be01a39618f381bccb9c1d8</anchor>
       <arglist>(const UnicodeString &amp;pattern, UParseError &amp;parseError, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>Builder &amp;</type>
+      <type>U_I18N_API Builder &amp;</type>
       <name>setFunctionRegistry</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</anchorfile>
-      <anchor>a92247342c666f97a446fe7e978e0e8fb</anchor>
+      <anchor>a8a8daa1b0dc091d921625d411ee89d13</anchor>
       <arglist>(const MFFunctionRegistry &amp;functionRegistry)</arglist>
     </member>
     <member kind="function">
-      <type>Builder &amp;</type>
+      <type>U_I18N_API Builder &amp;</type>
       <name>setDataModel</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</anchorfile>
-      <anchor>a70290d256ba0c3d0b9675084e67d2961</anchor>
+      <anchor>aa8d98d52994269533dc5a499e4baf908</anchor>
       <arglist>(MFDataModel &amp;&amp;dataModel)</arglist>
     </member>
     <member kind="function">
-      <type>Builder &amp;</type>
+      <type>U_I18N_API Builder &amp;</type>
       <name>setErrorHandlingBehavior</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</anchorfile>
-      <anchor>aa0ea29eb2bd0e44d5177763698d3a550</anchor>
+      <anchor>a7659483d1e7111e020076c7ccc437b57</anchor>
       <arglist>(UMFErrorHandlingBehavior type)</arglist>
     </member>
     <member kind="function">
-      <type>MessageFormatter</type>
+      <type>U_I18N_API MessageFormatter</type>
       <name>build</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</anchorfile>
-      <anchor>a4329bb3f8cdeeadbc7a15d4590ece46b</anchor>
+      <anchor>af8b356780efd364cc6042f2dc3a5df6e</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Builder</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</anchorfile>
-      <anchor>a4fc90bc1ffae5b2df3444b8a65126cc2</anchor>
+      <anchor>adbda40b366cb1b9ebf2bfed7a2025294</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~Builder</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter_1_1Builder.html</anchorfile>
-      <anchor>a11147e6b9f200fef1b20aadf6fa22723</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>icu::message2::MFDataModel::Builder</name>
-    <filename>classicu_1_1message2_1_1MFDataModel_1_1Builder.html</filename>
-    <base>icu::UMemory</base>
-    <member kind="function">
-      <type>Builder &amp;</type>
-      <name>addBinding</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel_1_1Builder.html</anchorfile>
-      <anchor>afd5508768754d6441ad8fd192fbd8411</anchor>
-      <arglist>(Binding &amp;&amp;b, UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function">
-      <type>Builder &amp;</type>
-      <name>addSelector</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel_1_1Builder.html</anchorfile>
-      <anchor>ab1d82297ffb48a90220aa6a4f6e0631a</anchor>
-      <arglist>(VariableName &amp;&amp;selector, UErrorCode &amp;errorCode)</arglist>
-    </member>
-    <member kind="function">
-      <type>Builder &amp;</type>
-      <name>addVariant</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel_1_1Builder.html</anchorfile>
-      <anchor>a4d39429c94532033b120eb29e60f0deb</anchor>
-      <arglist>(SelectorKeys &amp;&amp;keys, Pattern &amp;&amp;pattern, UErrorCode &amp;errorCode) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>Builder &amp;</type>
-      <name>setPattern</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel_1_1Builder.html</anchorfile>
-      <anchor>a3810784e918e9bae30193d8efbd5f65c</anchor>
-      <arglist>(Pattern &amp;&amp;pattern)</arglist>
-    </member>
-    <member kind="function">
-      <type>MFDataModel</type>
-      <name>build</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel_1_1Builder.html</anchorfile>
-      <anchor>a8165460255b74cf1b1b34b065177dbda</anchor>
-      <arglist>(UErrorCode &amp;status) const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Builder</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel_1_1Builder.html</anchorfile>
-      <anchor>a02bcc50a6f0637f552887696ef83c502</anchor>
-      <arglist>(UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~Builder</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel_1_1Builder.html</anchorfile>
-      <anchor>aef2ffef335b7d14f060ae8b237332841</anchor>
+      <anchor>ad9b3ee77f6808abb7f8b936827cc98af</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -34212,584 +34620,584 @@
       <arglist></arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~Calendar</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a4575ea61fb04e8276d36854f4b3b8d1d</anchor>
+      <anchor>a9a605ff9a2e657132f9b4a212d21dd37</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual Calendar *</type>
+      <type>virtual U_I18N_API Calendar *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a196ff8ba963f0fe667e2d801bebff6c5</anchor>
+      <anchor>a6a9bab86f72b1e80b3efd3c37a30114b</anchor>
       <arglist>() const =0</arglist>
     </member>
     <member kind="function">
-      <type>UDate</type>
+      <type>U_I18N_API UDate</type>
       <name>getTime</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a9b5a6f6255101c08f0fd49c0a7063fc2</anchor>
+      <anchor>a181a29ab3306a6951f3d404fee57a1a4</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setTime</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a0892d30c6780218d801d55e64d642a4f</anchor>
+      <anchor>ab7530ba54ab1390592c4bc3a65681f54</anchor>
       <arglist>(UDate date, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a4f51948446448972c10234db92b4a7ae</anchor>
+      <anchor>a1a26b80c49c5a403e99bfe505c78b2ab</anchor>
       <arglist>(const Calendar &amp;that) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator!=</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a56a3ac21241725f100250e7ae186c8bc</anchor>
+      <anchor>a69df9b920e42257d8b81e112530db871</anchor>
       <arglist>(const Calendar &amp;that) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+      <type>virtual U_I18N_API UBool</type>
       <name>isEquivalentTo</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aa5ec83250e124d7a714afbe17d54b54c</anchor>
+      <anchor>a97a6b56fed5090d82bf2ad88dfc5c972</anchor>
       <arglist>(const Calendar &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>equals</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a562de6cb545f1ffed6910677976cc051</anchor>
+      <anchor>ab01eb2ab6be1708515d816db841da655</anchor>
       <arglist>(const Calendar &amp;when, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>before</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a88835aa482481df5726c90830d75dec6</anchor>
+      <anchor>a26eb6a3d98ed3879977124fde0445119</anchor>
       <arglist>(const Calendar &amp;when, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>after</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a0091a2582092f43469f44c0b44d372d9</anchor>
+      <anchor>ac2d5c527cc4bb7eca41932a3267ddfa9</anchor>
       <arglist>(const Calendar &amp;when, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>add</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>af1fbbede5bcd4ea879c2a7573379b5d9</anchor>
+      <anchor>aa6e19a88ca2225eddcbbe82313c9c095</anchor>
       <arglist>(EDateFields field, int32_t amount, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>add</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aedff97cf3cb3d7b8515e721e289f31af</anchor>
+      <anchor>a600238fae8c7a76ded2f8492f04e0d06</anchor>
       <arglist>(UCalendarDateFields field, int32_t amount, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>roll</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
       <anchor>a91e030cdb98538b5010510dbce783624</anchor>
       <arglist>(EDateFields field, UBool up, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>roll</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
       <anchor>acdc73fcdbc01d47d4fe3821d19e7edcc</anchor>
       <arglist>(UCalendarDateFields field, UBool up, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>roll</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a4fdb47e33f3733c251ec685b91dc15f5</anchor>
+      <anchor>a2baef7da41da8b2ab6e423eb6aecf7e5</anchor>
       <arglist>(EDateFields field, int32_t amount, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>roll</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a1bce39d5b53eeacc9b014f9bf64a30a1</anchor>
+      <anchor>a244f458639006d0233e8f367dd23cd3e</anchor>
       <arglist>(UCalendarDateFields field, int32_t amount, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>fieldDifference</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>afe1ff7b373368d4b6393db2e9d1e892b</anchor>
+      <anchor>aab667ad40e27f76d7606ed8d9a641040</anchor>
       <arglist>(UDate when, EDateFields field, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>fieldDifference</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a1dc3ed6a2c8ebaf833dc022023208b88</anchor>
+      <anchor>a594b640f9a0ecc3194b6048eff975826</anchor>
       <arglist>(UDate when, UCalendarDateFields field, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>adoptTimeZone</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a8797da617df1ac9c424eb4e0c2ad5608</anchor>
+      <anchor>a069c1abb52e2b67f4caeb8e93a3e3fa7</anchor>
       <arglist>(TimeZone *value)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setTimeZone</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aafc842cd79cf0a1c653c543def4893eb</anchor>
+      <anchor>ac688031e700dddb615020ef86ce8538b</anchor>
       <arglist>(const TimeZone &amp;zone)</arglist>
     </member>
     <member kind="function">
-      <type>const TimeZone &amp;</type>
+      <type>U_I18N_API const TimeZone &amp;</type>
       <name>getTimeZone</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a8c00323db5e00dfe9412f45c00fa513d</anchor>
+      <anchor>aa70909563e06315a7a29d3cd7a824e07</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>TimeZone *</type>
+      <type>U_I18N_API TimeZone *</type>
       <name>orphanTimeZone</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a88d211a7650c0d734a9c480ab83bb412</anchor>
+      <anchor>a46a3c1430bf02c90289d74c26f46fe99</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+      <type>virtual U_I18N_API UBool</type>
       <name>inDaylightTime</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a8f8b379ee4819a26640cf58cdbefe81a</anchor>
+      <anchor>a7ce4e616236fd202127dba1465fec7d5</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setLenient</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a29c0974167c4d5b3570a87a55935224b</anchor>
+      <anchor>a42920e6caabf773135c1bd013d776d39</anchor>
       <arglist>(UBool lenient)</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isLenient</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a46a8059929f40eb881e806340a30e2da</anchor>
+      <anchor>a27f4e822ef9fc260f4c9f59a243ac0fd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setRepeatedWallTimeOption</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>acc9fae6a9d2844aad73aa12f8a841eb6</anchor>
+      <anchor>a11547bf5ad318a9465a5e4ccbf096d0d</anchor>
       <arglist>(UCalendarWallTimeOption option)</arglist>
     </member>
     <member kind="function">
-      <type>UCalendarWallTimeOption</type>
+      <type>U_I18N_API UCalendarWallTimeOption</type>
       <name>getRepeatedWallTimeOption</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a1d891856049554504f36b915b5731e85</anchor>
+      <anchor>a86b47d67a1454900dd1b70690f41f23b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setSkippedWallTimeOption</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a09676ec794b4a18247d7daae5f746ce6</anchor>
+      <anchor>ab0d8f4e24507e876b0e34d1b220d00d8</anchor>
       <arglist>(UCalendarWallTimeOption option)</arglist>
     </member>
     <member kind="function">
-      <type>UCalendarWallTimeOption</type>
+      <type>U_I18N_API UCalendarWallTimeOption</type>
       <name>getSkippedWallTimeOption</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aec4c0329c24203e9391e9fb9518d55ed</anchor>
+      <anchor>a5aa965d97ef126a802501bcb30ea4e37</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setFirstDayOfWeek</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>acf7a6d09860c37daa75906824bbd94c4</anchor>
+      <anchor>a4fda69598206b25d112fa3ed6206b4c4</anchor>
       <arglist>(UCalendarDaysOfWeek value)</arglist>
     </member>
     <member kind="function">
-      <type>EDaysOfWeek</type>
+      <type>U_I18N_API EDaysOfWeek</type>
       <name>getFirstDayOfWeek</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a4e0f7c868856a33935b31fabc06e36a8</anchor>
+      <anchor>ac55af550911dcec8bdc2123891242a9b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UCalendarDaysOfWeek</type>
+      <type>U_I18N_API UCalendarDaysOfWeek</type>
       <name>getFirstDayOfWeek</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a68a9175211dff181faed3ca7ea9d0248</anchor>
+      <anchor>a91a1af9c3e01f9aac5240dd0397cea48</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setMinimalDaysInFirstWeek</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a8b667a3b107b4269d57fdd58e76f37c1</anchor>
+      <anchor>aa697913ddeccf434b2a09a888dcd8845</anchor>
       <arglist>(uint8_t value)</arglist>
     </member>
     <member kind="function">
-      <type>uint8_t</type>
+      <type>U_I18N_API uint8_t</type>
       <name>getMinimalDaysInFirstWeek</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>af5225b5f00516382678b6d424e081f9a</anchor>
+      <anchor>aaeabdb836507e473c21685c273bff548</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getMinimum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a1a75a6ed6500cf7e36977ada0cc4412f</anchor>
+      <anchor>a9e722edc80174b90e497bd03ba65a07b</anchor>
       <arglist>(EDateFields field) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getMinimum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ac122e49e249e227422d8af57a636f241</anchor>
+      <anchor>a6a3313144a6ba8728a18aa2f04d2ba5b</anchor>
       <arglist>(UCalendarDateFields field) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getMaximum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ae972d0fec1b796c2071503a8dfa64991</anchor>
+      <anchor>ae667aa122e5a353ea1ad8ff7e9ebbe11</anchor>
       <arglist>(EDateFields field) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getMaximum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a93452c50ce5812eed88fc9dced7bdd98</anchor>
+      <anchor>a25a22cace455683726e7c7ab051c2b11</anchor>
       <arglist>(UCalendarDateFields field) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getGreatestMinimum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a03311976955b27d0ba49d31059619fb6</anchor>
+      <anchor>aaf7bcf753e85f6b14ef7cd979545c446</anchor>
       <arglist>(EDateFields field) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getGreatestMinimum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aac505628079402f5ad807d233814e690</anchor>
+      <anchor>ab940d2cbd94f555ad6c521d8e60f9327</anchor>
       <arglist>(UCalendarDateFields field) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getLeastMaximum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a433445e91d92609ca1cb33c9094e69e8</anchor>
+      <anchor>a0ff7263533f8abe4ea3ee549c25c8410</anchor>
       <arglist>(EDateFields field) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getLeastMaximum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a2298af6a34214e0f4428d49545bb689a</anchor>
+      <anchor>a6bdb2201cdbf47123df88aee07f8259d</anchor>
       <arglist>(UCalendarDateFields field) const</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>getActualMinimum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aa1ebed39b3711fafc29259bfeb849607</anchor>
+      <anchor>a43d660132f3886283ca6a53f71f95d11</anchor>
       <arglist>(EDateFields field, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getActualMinimum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a997caf9a17af28cb2418eb25dbbca0aa</anchor>
+      <anchor>a2c1c869863acce446507974883d74f67</anchor>
       <arglist>(UCalendarDateFields field, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getActualMaximum</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a8088cbf7f7447daa9c8d58916f6781d8</anchor>
+      <anchor>abd0736dc817be1587944b033034b431e</anchor>
       <arglist>(UCalendarDateFields field, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>get</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a0f6f515398ee6a9c95d69fc2da33bd61</anchor>
+      <anchor>af6ebc7d4caadcf929b87a750e40b7359</anchor>
       <arglist>(UCalendarDateFields field, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isSet</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a2965160eb8f038aab15467c05e257777</anchor>
+      <anchor>a7c117ffad2bd2ab14977b2343541b613</anchor>
       <arglist>(UCalendarDateFields field) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>set</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a0a52feb5d2013966f72d4c24405badae</anchor>
+      <anchor>ab4dbcaa842849f1d6019b2e99617dde2</anchor>
       <arglist>(UCalendarDateFields field, int32_t value)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>set</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>afb3dbfabf06d5cc6f6b0127061c09b61</anchor>
+      <anchor>a6d533b8810803272693dcb37b8748e3b</anchor>
       <arglist>(int32_t year, int32_t month, int32_t date)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>set</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>afc9dfcf97750cd6aee5c1e39fce60ae7</anchor>
+      <anchor>a28e28767445c9c33a7c32c5fa007ba7e</anchor>
       <arglist>(int32_t year, int32_t month, int32_t date, int32_t hour, int32_t minute)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>set</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ad93748f69bf8c427cbe97714de1ca443</anchor>
+      <anchor>a1261dbee09c6aa7308214bbfa2811e89</anchor>
       <arglist>(int32_t year, int32_t month, int32_t date, int32_t hour, int32_t minute, int32_t second)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>clear</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a2da715c4a6b5ed46d7cff9bc66fb6cda</anchor>
+      <anchor>a5e801f3af280d02aa34934ecb7497298</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>clear</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a5d8926a23cef3bd938aae2df1483b132</anchor>
+      <anchor>aaa7a6ab8dd298a144f3d9e6ad28e4178</anchor>
       <arglist>(UCalendarDateFields field)</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a20d35c3617994bf70cd4673c0bf438b2</anchor>
+      <anchor>a03260d18744f87b549384dcf0eee29ba</anchor>
       <arglist>() const override=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual const char *</type>
+      <type>virtual U_I18N_API const char *</type>
       <name>getType</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a5c0404ab571a529fefbf4708affcceca</anchor>
+      <anchor>a273254919ef6594883d834cab29e8a33</anchor>
       <arglist>() const =0</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UCalendarWeekdayType</type>
+      <type>virtual U_I18N_API UCalendarWeekdayType</type>
       <name>getDayOfWeekType</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>adc18b432f868737e115ece5f6e3c95ab</anchor>
+      <anchor>a679b8fcd62f87f88d31e58fb8daaa348</anchor>
       <arglist>(UCalendarDaysOfWeek dayOfWeek, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getWeekendTransition</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a9d58b4c3e0caa209900f872755672792</anchor>
+      <anchor>affd3990a0a0f172ec544f6105dc3658d</anchor>
       <arglist>(UCalendarDaysOfWeek dayOfWeek, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+      <type>virtual U_I18N_API UBool</type>
       <name>isWeekend</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ae75398aa8d9735f5ce7411f01f441df4</anchor>
+      <anchor>af6a954e219935303304076536c028c4e</anchor>
       <arglist>(UDate date, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+      <type>virtual U_I18N_API UBool</type>
       <name>isWeekend</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ad42aa5ad6f68fe78fa2974461becc549</anchor>
+      <anchor>a8d7f629b4d2ef51a1e65b59b737e488b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>inTemporalLeapYear</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ad76ab247f273feb762280ef3c32a1198</anchor>
+      <anchor>aa5e7be6316d54f7a53da158d75b61ff4</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual const char *</type>
+      <type>virtual U_I18N_API const char *</type>
       <name>getTemporalMonthCode</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a017d1db82a48ebab52dd2af443f2f022</anchor>
+      <anchor>a4ccd6d1041b90132a82422ca83af678d</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setTemporalMonthCode</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a5f96e7643f64c417094bbb898856d376</anchor>
+      <anchor>af04967de82dec78634e292f3eb641bc2</anchor>
       <arglist>(const char *temporalMonth, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual UBool</type>
+      <type>virtual U_I18N_API UBool</type>
       <name>haveDefaultCentury</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a3a9e76d81d84c2a59db1c28c2001abdd</anchor>
+      <anchor>a97cf56699df0ffb62ca4e8c846c2d375</anchor>
       <arglist>() const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual UDate</type>
+      <type>virtual U_I18N_API UDate</type>
       <name>defaultCenturyStart</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a927dd35081247fd9f35bc27eea46c827</anchor>
+      <anchor>aa91763d7ce519bfebab0731751f924bb</anchor>
       <arglist>() const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>defaultCenturyStartYear</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a8a8dc87f0d3189ca23f0a37dae3fcef5</anchor>
+      <anchor>a7b70101c73fb63ac21ace3df2b1eca94</anchor>
       <arglist>() const =0</arglist>
     </member>
     <member kind="function">
-      <type>Locale</type>
+      <type>U_I18N_API Locale</type>
       <name>getLocale</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a0c15c267902a13bfd29a7bd27f08befc</anchor>
+      <anchor>a082ed6cc6eb00307f839d3bcd23d848e</anchor>
       <arglist>(ULocDataLocaleType type, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getRelatedYear</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a59ce7c1ce7b7fe87acd75097ae951c07</anchor>
+      <anchor>a8cc1b1512f259a7f67f8a0cca82dd8ef</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setRelatedYear</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>abd3f0ea4ab623eac9e53572981c2f88e</anchor>
+      <anchor>a7cc107838f1e54897b2f1cf48037c56f</anchor>
       <arglist>(int32_t year)</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_I18N_API const char *</type>
       <name>getLocaleID</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aad69a16fd91fdae0f357f0ace1069337</anchor>
+      <anchor>afe4d2acaa8a9e2611b4c74e783f2ec40</anchor>
       <arglist>(ULocDataLocaleType type, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Calendar *</type>
+      <type>static U_I18N_API Calendar *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ad2d72d348ce478cf1715dd79b7262c89</anchor>
+      <anchor>ab1f9e0ff5291173a300e96e7a95637e4</anchor>
       <arglist>(UErrorCode &amp;success)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Calendar *</type>
+      <type>static U_I18N_API Calendar *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
       <anchor>a8f19a556c0ab4efe6fcc10ddbc44959d</anchor>
       <arglist>(TimeZone *zoneToAdopt, UErrorCode &amp;success)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Calendar *</type>
+      <type>static U_I18N_API Calendar *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a82736eeccb849d64de70a3b5592be2b8</anchor>
+      <anchor>a2353f05d3ad3df36c197779e9f79eb4d</anchor>
       <arglist>(const TimeZone &amp;zone, UErrorCode &amp;success)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Calendar *</type>
+      <type>static U_I18N_API Calendar *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>abb1c63dd184db6621361612913359c47</anchor>
+      <anchor>a5beeb853945c5c6a092ff59b0955e29b</anchor>
       <arglist>(const Locale &amp;aLocale, UErrorCode &amp;success)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Calendar *</type>
+      <type>static U_I18N_API Calendar *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>af99f52dab94a3d1a20bbf74c6b4a0b39</anchor>
+      <anchor>a819528d6b1228cf83e36c5c21afb5599</anchor>
       <arglist>(TimeZone *zoneToAdopt, const Locale &amp;aLocale, UErrorCode &amp;success)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Calendar *</type>
+      <type>static U_I18N_API Calendar *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>abb4d90176180fe00de45956b023ea436</anchor>
+      <anchor>a54e2d1ce63fb9bebfd486c0abd83a94b</anchor>
       <arglist>(const TimeZone &amp;zone, const Locale &amp;aLocale, UErrorCode &amp;success)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale *</type>
+      <type>static U_I18N_API const Locale *</type>
       <name>getAvailableLocales</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ad23c6f68b2facf85dc1365f7c1bac0bb</anchor>
+      <anchor>ac7adf33f7a87952e41956ff4eb9209e8</anchor>
       <arglist>(int32_t &amp;count)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static StringEnumeration *</type>
+      <type>static U_I18N_API StringEnumeration *</type>
       <name>getKeywordValuesForLocale</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a520dbe21940ea4c57febf1f8f5e4b341</anchor>
+      <anchor>a222a2e31332986b07730cbfe80388fce</anchor>
       <arglist>(const char *key, const Locale &amp;locale, UBool commonlyUsed, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UDate</type>
+      <type>static U_I18N_API UDate</type>
       <name>getNow</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a7f28d6f07dd55f0f9c3dfe4c4a7da592</anchor>
+      <anchor>af6d64c0511ec4b82b09bb88de57a4697</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static StringEnumeration *</type>
+      <type>static U_I18N_API StringEnumeration *</type>
       <name>getAvailableLocales</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a271b52933f58f3f2578c9df5ac8b3437</anchor>
+      <anchor>a15588e894ba717d383f0f6e7dd3237a9</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static URegistryKey</type>
+      <type>static U_I18N_API URegistryKey</type>
       <name>registerFactory</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a747e3d0cfec86b8286a237bce24e2c01</anchor>
+      <anchor>a0b9572be9295313baeb7346410f3b2e7</anchor>
       <arglist>(ICUServiceFactory *toAdopt, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UBool</type>
+      <type>static U_I18N_API UBool</type>
       <name>unregister</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aee69ee39f3838b40933c875c0623e205</anchor>
+      <anchor>a14014b0b6f1830be3cdb8dd11d0b9481</anchor>
       <arglist>(URegistryKey key, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Calendar *</type>
+      <type>static U_I18N_API Calendar *</type>
       <name>makeInstance</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a5623309bf9dc3046af213ca043d3734e</anchor>
+      <anchor>afe5f0635b6745b4c894715a6cc7de7dd</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static void</type>
+      <type>static U_I18N_API void</type>
       <name>getCalendarTypeFromLocale</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a2846233ad0aef278624293ccdbb1eedf</anchor>
+      <anchor>a060e66cdc32819632a5ad7e82d7b9e7c</anchor>
       <arglist>(const Locale &amp;locale, char *typeBuffer, int32_t typeBufferSize, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="enumeration" protection="protected">
@@ -34800,353 +35208,360 @@
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Calendar</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a56135034d6ce8faca1a989c0d049e9b9</anchor>
+      <anchor>acfd232cf80937f1c1b5392a3de06bb2e</anchor>
       <arglist>(UErrorCode &amp;success)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Calendar</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a7a8980c057ceb3e24ed8e3b9d2bd3e1d</anchor>
+      <anchor>ab2871096aa9522cff6006c7be01d32ca</anchor>
       <arglist>(const Calendar &amp;source)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>Calendar &amp;</type>
+      <type>U_I18N_API Calendar &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a14f16cc41eb7e9d80d48bc68b628aa80</anchor>
+      <anchor>aa0cffb9feb79f1a5243b256d2f7a521a</anchor>
       <arglist>(const Calendar &amp;right)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Calendar</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>af586dccfbdadc3104a6740d485664854</anchor>
+      <anchor>a251dd0a04c3d61fe1ccb3abc8c7d3f49</anchor>
       <arglist>(TimeZone *zone, const Locale &amp;aLocale, UErrorCode &amp;success)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Calendar</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aaeccfb9e1d93934c38d6716d62fd27a7</anchor>
+      <anchor>add991bdfe971cef40f8703f282cdee26</anchor>
       <arglist>(const TimeZone &amp;zone, const Locale &amp;aLocale, UErrorCode &amp;success)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>computeTime</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ae22e398ddd0c126424382957b1a1fc6e</anchor>
+      <anchor>a1d1d5b1e6206670fc6f7fd8d32c9f566</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>computeFields</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a7ac20a3fb98a6e4f6d1923f1035613f4</anchor>
+      <anchor>aa46814d73b2f86559c8bb860254e04c8</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>double</type>
+      <type>U_I18N_API double</type>
       <name>getTimeInMillis</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a66c06b6dd9825bc330f5ec56e5b2c086</anchor>
+      <anchor>a4ee290d7024c327a48dfd774b47f7e52</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setTimeInMillis</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a24e93f5a43e1bd057f13350fbe8b404b</anchor>
+      <anchor>a1bc0c53a82484e61b1dbfb2dfc952612</anchor>
       <arglist>(double millis, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>complete</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a27373fe01607ff3f183644512f2ca719</anchor>
+      <anchor>ab40e8723ec3a33ed45b299222c809fb0</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>internalGet</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a73ab16f56b0e45fc5ad7b5ec36f50090</anchor>
+      <anchor>a81c0b846276a2d4a412fd97877e2226c</anchor>
       <arglist>(EDateFields field) const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>internalGet</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a96a642fc801ecda073b54aaaa2796e45</anchor>
+      <anchor>a812eeea642e8016a9627a178f81ca565</anchor>
       <arglist>(UCalendarDateFields field, int32_t defaultValue) const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>internalGet</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a0977ea6eecc1dca87bddab2dd7fbb41e</anchor>
+      <anchor>a5c7d0f75828eb5b4fe4fdcab4dfea58c</anchor>
       <arglist>(UCalendarDateFields field) const</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>isEra0CountingBackward</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aaa834a7cbfca1e953fecfcc139f87fb4</anchor>
+      <anchor>a6e96ca4a119c59b369d05f96b9087cd4</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
+      <name>getRelatedYearDifference</name>
+      <anchorfile>classicu_1_1Calendar.html</anchorfile>
+      <anchor>af9ce07246e7e6580d58ff986f77e7bc3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual U_I18N_API int32_t</type>
       <name>internalGetMonth</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aa3cf89e5a37d9abac5305b3721b580b7</anchor>
+      <anchor>a955e8b45c491e98a4ec928eff5da90ab</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>internalGetMonth</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>acf136ac7f1ab43b8f44fca1294f05d88</anchor>
+      <anchor>a44784d10c32127b7853f4e094e0d3c46</anchor>
       <arglist>(int32_t defaultValue, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>internalSet</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ababfb7e1d1979a2bd9c949f657169733</anchor>
+      <anchor>a6b0bd7e3ed01bcc63990edb1ec17f439</anchor>
       <arglist>(EDateFields field, int32_t value)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>internalSet</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
       <anchor>a8f49776ebaca65739a2892701ef85113</anchor>
       <arglist>(UCalendarDateFields field, int32_t value)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>prepareGetActual</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a84a69797a48b17892f286d9cd3c99c83</anchor>
+      <anchor>a931c350e4dffcdb99fee8df9c00d5a0a</anchor>
       <arglist>(UCalendarDateFields field, UBool isMinimum, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>handleGetLimit</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a9d0a7cc3031edcbb5e55e7161767747a</anchor>
+      <anchor>a76b524a6a64820e8fa37372e23f572a3</anchor>
       <arglist>(UCalendarDateFields field, ELimitType limitType) const =0</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getLimit</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ae6ddd903befcb14bc43d7a00e08fa049</anchor>
+      <anchor>ab3f50f55f05041214d2ff91898164753</anchor>
       <arglist>(UCalendarDateFields field, ELimitType limitType) const</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
-      <type>virtual int64_t</type>
+      <type>virtual U_I18N_API int64_t</type>
       <name>handleComputeMonthStart</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a4eef53fa6a048969269569d33ea0a0e1</anchor>
+      <anchor>a9897f91e149d35f0af7700f89220af57</anchor>
       <arglist>(int32_t eyear, int32_t month, UBool useMonth, UErrorCode &amp;status) const =0</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>handleGetMonthLength</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>adb50c02ae34cde3ddcbcb30e0b5de91e</anchor>
+      <anchor>a66532a6437d482e302ba11639fde3da5</anchor>
       <arglist>(int32_t extendedYear, int32_t month, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>handleGetYearLength</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a4dc9238f966a7ebe6c10f51e0bdbe5b5</anchor>
+      <anchor>a937cb0f1f28e0c1b003f52ce275a298a</anchor>
       <arglist>(int32_t eyear, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>handleGetExtendedYear</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aec4b7238e760fd1691f3cfc5527b8ea4</anchor>
+      <anchor>a2a4e3c084d89d154fe611b5fbdd8d332</anchor>
       <arglist>(UErrorCode &amp;status)=0</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>handleComputeJulianDay</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ac9eab1b300e16bcff85e33d43a157441</anchor>
+      <anchor>a186640acf1e8075205d85f07b282c0c9</anchor>
       <arglist>(UCalendarDateFields bestField, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>handleGetExtendedYearFromWeekFields</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a2a2c29aa7bcb4571ef5ddfd68d6c9557</anchor>
+      <anchor>a368e76a5df96d03c5ee91daca52baa1a</anchor>
       <arglist>(int32_t yearWoy, int32_t woy, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>validateField</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aef18bfe4c0bf8c16d2bd643123e6c5ff</anchor>
+      <anchor>ad4f74a3879b8f67c4bbcc2e3dd4df323</anchor>
       <arglist>(UCalendarDateFields field, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>computeJulianDay</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a21574305ee96ddbe8e74a7f3c79c8d1b</anchor>
+      <anchor>a02bb1f12f0df5a04026cfbd7309f675e</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>double</type>
+      <type>U_I18N_API double</type>
       <name>computeMillisInDay</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aa9201062ca2677b1b777649101116109</anchor>
+      <anchor>a038d60b87ba06f9356739e682e2b7342</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>computeZoneOffset</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>af5ea8e3e64ae9881a5e45ec3ea10edcc</anchor>
+      <anchor>a3483e1d4d53c696f9103119c2753059e</anchor>
       <arglist>(double millis, double millisInDay, UErrorCode &amp;ec)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>newestStamp</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a0a2b6e85ae40f89999d3170c291f1d26</anchor>
+      <anchor>af64e5be040cba06dd2d48c9f2581e461</anchor>
       <arglist>(UCalendarDateFields start, UCalendarDateFields end, int32_t bestSoFar) const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>UCalendarDateFields</type>
+      <type>U_I18N_API UCalendarDateFields</type>
       <name>resolveFields</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>ac7b4419c4c7cfba3eca6514a5fb6aa41</anchor>
+      <anchor>a4527e3c1b419a5b15f2c5380bac7eb40</anchor>
       <arglist>(const UFieldResolutionTable *precedenceTable) const</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual const UFieldResolutionTable *</type>
+      <type>virtual U_I18N_API const UFieldResolutionTable *</type>
       <name>getFieldResolutionTable</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a621c3b645d87eccf46b57549b61ab5a7</anchor>
+      <anchor>a2b15aecbe29df2f8be368ad67b9ba5c9</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>UCalendarDateFields</type>
+      <type>U_I18N_API UCalendarDateFields</type>
       <name>newerField</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>aa53b73c4da0321e4567e8189b58c919f</anchor>
+      <anchor>a3ed605b7deead10ba44700bcedd9fdb6</anchor>
       <arglist>(UCalendarDateFields defaultField, UCalendarDateFields alternateField) const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>UDate</type>
+      <type>U_I18N_API UDate</type>
       <name>internalGetTime</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a1bc32eea84b30d3822c70e091f1cfec8</anchor>
+      <anchor>ab8b7c1f700265e6a1c457b23b0780ecf</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>internalSetTime</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a9799b65d6e79a954186a5ad542db071d</anchor>
+      <anchor>a50f521203aedc87996438b4bc8a7b44b</anchor>
       <arglist>(UDate time)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>handleComputeFields</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a5ea6299625a2c34432702081e2307ef1</anchor>
+      <anchor>ad91dceb06020f6e95192abeec044d41c</anchor>
       <arglist>(int32_t julianDay, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>getGregorianYear</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a95a428d20dfc603d1d0c91bf5dcdb8e0</anchor>
+      <anchor>a03ab6f46306143642e944268a0eebc67</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>getGregorianMonth</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a2cb327bc37c0843e0f8409e21f2297cf</anchor>
+      <anchor>a9dc331beb0a2bd53887e1e1c59a2b8f8</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>getGregorianDayOfYear</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a385708c132b87359ebfa12ef280e44a7</anchor>
+      <anchor>a94c8beba6743da3597f3907447fe5fa8</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>getGregorianDayOfMonth</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>af2d4138b9761fd2987f1b8eb6eeb46e4</anchor>
+      <anchor>abaa62afdfbd4b68cafe302abfb71f489</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getDefaultMonthInYear</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a751af9f2ec1be9c771bb050fa490755a</anchor>
+      <anchor>ac82019ce6ab52f2e1b339f38623bf5f1</anchor>
       <arglist>(int32_t eyear, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getDefaultDayInMonth</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a9e0b89fbef44eee9fb1f1246dac198f5</anchor>
+      <anchor>aa246a877386f7bad325b6084052672a3</anchor>
       <arglist>(int32_t eyear, int32_t month, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>pinField</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a957c2383b878f68ff3dc12afcdf6446d</anchor>
+      <anchor>a51d1e42f970f54272aabf8b6c8b8634d</anchor>
       <arglist>(UCalendarDateFields field, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>weekNumber</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a20a81041973cc96c73454164b5b82a1e</anchor>
+      <anchor>a6afeabd2e95f380bfa8aa09ce7251956</anchor>
       <arglist>(int32_t desiredDay, int32_t dayOfPeriod, int32_t dayOfWeek)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>weekNumber</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
       <anchor>a4f102d361784389e68604f300895885a</anchor>
       <arglist>(int32_t dayOfPeriod, int32_t dayOfWeek)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>getLocalDOW</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a191dd4a1fdb472ee65a10d7fe7745aae</anchor>
+      <anchor>ac24e0b633de1023349ac67b5d320eb0d</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>computeGregorianFields</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a2edf69d185164f3426f16e30e3e6ce7b</anchor>
+      <anchor>aee14aaca8260481739f356492c87af3d</anchor>
       <arglist>(int32_t julianDay, UErrorCode &amp;ec)</arglist>
     </member>
     <member kind="function" protection="protected" static="yes">
-      <type>static uint8_t</type>
+      <type>static U_I18N_API uint8_t</type>
       <name>julianDayToDayOfWeek</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a290718bc237951ca64078a86d1dc6fcd</anchor>
+      <anchor>a6a7c1aff807edcd4b3f799bf3962f31c</anchor>
       <arglist>(int32_t julian)</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -35157,45 +35572,45 @@
       <arglist>[UCAL_FIELD_COUNT]</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
-      <type>static constexpr int32_t</type>
+      <type>static constexpr U_I18N_API int32_t</type>
       <name>kResolveSTOP</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a926421246aa97200d25cd6e61f60e20c</anchor>
+      <anchor>ade2cbaebfca5bdab7863d73561cceef9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
-      <type>static constexpr int32_t</type>
+      <type>static constexpr U_I18N_API int32_t</type>
       <name>kResolveRemap</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a2b927bb67a8919a5292ab9a8d171412b</anchor>
+      <anchor>a3d76d63a608b788cda746b446dadc8ca</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
-      <type>static const UFieldResolutionTable</type>
+      <type>static U_I18N_API const UFieldResolutionTable</type>
       <name>kDatePrecedence</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a52d01a94775f8e90dcaba22fedfadebb</anchor>
+      <anchor>aabc215d4a26f0eeda181e81292af78de</anchor>
       <arglist>[]</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
-      <type>static const UFieldResolutionTable</type>
+      <type>static U_I18N_API const UFieldResolutionTable</type>
       <name>kYearPrecedence</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>acc8e1b75669aff79c2b762bba54e5c53</anchor>
+      <anchor>a51b7b776c2bc4ebe8b89779f7d20f0b7</anchor>
       <arglist>[]</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
-      <type>static const UFieldResolutionTable</type>
+      <type>static U_I18N_API const UFieldResolutionTable</type>
       <name>kDOWPrecedence</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>a1af5decf9b843bc3e55277ef71cdb47a</anchor>
+      <anchor>a0f9d386c24e512dc95beec016f40a11e</anchor>
       <arglist>[]</arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
-      <type>static const UFieldResolutionTable</type>
+      <type>static U_I18N_API const UFieldResolutionTable</type>
       <name>kMonthPrecedence</name>
       <anchorfile>classicu_1_1Calendar.html</anchorfile>
-      <anchor>af3be9a54eab82f21ab5822d645b7d866</anchor>
+      <anchor>a7266c0a1aea50df0742cc9797a30fba7</anchor>
       <arglist>[]</arglist>
     </member>
     <member kind="friend">
@@ -36106,6 +36521,125 @@
       <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1CodePointRange.html</anchorfile>
       <anchor>aac1e1bad2d9facd73a76db75b0a48e4e</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::prv::CodePointsIterator</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</filename>
+    <templarg></templarg>
+    <templarg>skipSurrogates</templarg>
+    <member kind="typedef">
+      <type>CP32</type>
+      <name>value_type</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>ab7f61b32d221876c2a30c14033f43900</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>value_type</type>
+      <name>reference</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>aa70b84fe2b967f700dc87970d0a9d95e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>CP32 *</type>
+      <name>pointer</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>af8278209cf3ab67425453d254e3e5e6e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>int32_t</type>
+      <name>difference_type</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>a631f701995e513bdd405a53d69a7c5b2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::forward_iterator_tag</type>
+      <name>iterator_category</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>aca3cdb7073d0401cc80bfe1e1710919e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>CodePointsIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>abaca95cc01fa7f8f557c30983d75dade</anchor>
+      <arglist>(CP32 c)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>a64f6da9ed7725cd46064a4a10279cd51</anchor>
+      <arglist>(const CodePointsIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>a7a3611aefc4ffc6aabb7dd127baff164</anchor>
+      <arglist>(const CodePointsIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>CP32</type>
+      <name>operator*</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>aa7246527f695058d8cd0b29a74d0e5ee</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>CodePointsIterator &amp;</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>ac13c7af05f6d185903ad18ea669fdfb4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>CodePointsIterator</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1prv_1_1CodePointsIterator.html</anchorfile>
+      <anchor>ad13250ea35651622d55c192832b3fe68</anchor>
+      <arglist>(int)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::CodeUnits</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1CodeUnits.html</filename>
+    <templarg></templarg>
+    <templarg></templarg>
+    <templarg></templarg>
+    <base>U_HEADER_ONLY_NAMESPACE::UnsafeCodeUnits</base>
+    <member kind="function">
+      <type></type>
+      <name>CodeUnits</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1CodeUnits.html</anchorfile>
+      <anchor>abfa83bc84657e36ec5efb73ed3182a62</anchor>
+      <arglist>(CP32 codePoint, uint8_t length, bool wellFormed, UnitIter start, UnitIter limit)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>CodeUnits</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1CodeUnits.html</anchorfile>
+      <anchor>a633a4c4ce40a6fc8e56b6d5517ac1568</anchor>
+      <arglist>(const CodeUnits &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>CodeUnits &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1CodeUnits.html</anchorfile>
+      <anchor>a3afb339a6b661fbf25dcef52c6fb1764</anchor>
+      <arglist>(const CodeUnits &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>wellFormed</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1CodeUnits.html</anchorfile>
+      <anchor>a103be5cb1976eec786eb787e7ecd0f0f</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -37592,325 +38126,325 @@
       <arglist></arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~DateFormat</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a1833e0e0e49a4bf63f35c4534afc20bd</anchor>
+      <anchor>a7003a1979f75eb8fe0096ee9223734ee</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual DateFormat *</type>
+      <type>virtual U_I18N_API DateFormat *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a13313c1084659d600ea0b9ad9a4e1abb</anchor>
+      <anchor>a37191750f681c2e8d4cd5d039e522947</anchor>
       <arglist>() const override=0</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a173ce490f43b19cab6c36ee1269e9209</anchor>
+      <anchor>aba86c2145f58e0ab4912576d7f3c6396</anchor>
       <arglist>(const Format &amp;) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a91c4a33a423eb451705e9f7d38374a0f</anchor>
+      <anchor>a9b2abe46c7e6eb9ae72dd55e86489f7c</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>acb58440c6556009e67a51356d0f67252</anchor>
+      <anchor>a31211b3be03d1451d162ce4a7ddbf62c</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a2b42f358d3a1d13c19463c759038d45d</anchor>
+      <anchor>ad8f1b8a5034399f8e9ab065a2f627f44</anchor>
       <arglist>(Calendar &amp;cal, UnicodeString &amp;appendTo, FieldPosition &amp;fieldPosition) const =0</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a8209455a5f5ae0b7971485710cecd5e1</anchor>
+      <anchor>a1345cc05a97cb29c44401ab8c6a5f863</anchor>
       <arglist>(Calendar &amp;cal, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a68e2e9020e3fa83d0096ff13197a3153</anchor>
+      <anchor>adb4794eb82da23a3ab461ef5da3e78ba</anchor>
       <arglist>(UDate date, UnicodeString &amp;appendTo, FieldPosition &amp;fieldPosition) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>aa4cedcaa4d77be3b3f3eeecdea2909a2</anchor>
+      <anchor>a0b46b23e56151885b9336e922ac2232c</anchor>
       <arglist>(UDate date, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a5940ccf5676d3fa043d8255c55b7ddd1</anchor>
+      <anchor>a183e703ac25c3d7d9dff10022de291bd</anchor>
       <arglist>(UDate date, UnicodeString &amp;appendTo) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UDate</type>
+      <type>virtual U_I18N_API UDate</type>
       <name>parse</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a088aa13d607c682cc435d4152613cfc1</anchor>
+      <anchor>a107ed9dfe1023156c53235db41056a78</anchor>
       <arglist>(const UnicodeString &amp;text, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parse</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a82a10d2a3b70277bd983a638477bf154</anchor>
+      <anchor>a9374058a4b5eaf43f99a61be48ce55c8</anchor>
       <arglist>(const UnicodeString &amp;text, Calendar &amp;cal, ParsePosition &amp;pos) const =0</arglist>
     </member>
     <member kind="function">
-      <type>UDate</type>
+      <type>U_I18N_API UDate</type>
       <name>parse</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>ac72fe5dee0f13c9e4d673d2f19bcad5e</anchor>
+      <anchor>ac87ec1be5140559cb84718bad8ffb9bc</anchor>
       <arglist>(const UnicodeString &amp;text, ParsePosition &amp;pos) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parseObject</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a408b919290c211566a17e596f1014e79</anchor>
+      <anchor>af3f0c090b3b4358997e56038e77cce7e</anchor>
       <arglist>(const UnicodeString &amp;source, Formattable &amp;result, ParsePosition &amp;parse_pos) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+      <type>virtual U_I18N_API UBool</type>
       <name>isLenient</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>afddf8ac868e4b622992386fca9a0ab68</anchor>
+      <anchor>ab4e4d3c1ea53e9a4afadd357bbbae9ce</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setLenient</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a5ed3fc3977aabeae6b0188642cad5d30</anchor>
+      <anchor>ad40f9728b98ea7e29f30030533261118</anchor>
       <arglist>(UBool lenient)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+      <type>virtual U_I18N_API UBool</type>
       <name>isCalendarLenient</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a627688accafb39af02677d2bf0c39d6e</anchor>
+      <anchor>ac9c243cd5781fe801500ca269c037c59</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setCalendarLenient</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a4b40d07638285a47689113a920bedf16</anchor>
+      <anchor>a60279f7c822def768a624abb50840a42</anchor>
       <arglist>(UBool lenient)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual const Calendar *</type>
+      <type>virtual U_I18N_API const Calendar *</type>
       <name>getCalendar</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a4741400190b83c396c88cdf0651089ad</anchor>
+      <anchor>ada32e57216cd184fb9090ca3512df59b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptCalendar</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>ad2b7aabafbfdc5661ff80bb29f1c5a6b</anchor>
+      <anchor>a896455044e006b47f247bc5a7a48cfb7</anchor>
       <arglist>(Calendar *calendarToAdopt)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setCalendar</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a7194b6b09c9022ca0fa5505a7139cfc8</anchor>
+      <anchor>a07fb8f1bfaa65f6b4f2b58df7a96469f</anchor>
       <arglist>(const Calendar &amp;newCalendar)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual const NumberFormat *</type>
+      <type>virtual U_I18N_API const NumberFormat *</type>
       <name>getNumberFormat</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a2e906ef3b10120bfadb1e27f2d56fb94</anchor>
+      <anchor>a887d7d3dad2ec56d21355d4fb8a86a78</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptNumberFormat</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a6ffd07d528e81bdafd6ca956ff1b2f1e</anchor>
+      <anchor>ac0f4b86c6fd6234d82c69b5d7ef28431</anchor>
       <arglist>(NumberFormat *formatToAdopt)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setNumberFormat</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>aaaf7de99af3a3c196c0e1790c97acd0d</anchor>
+      <anchor>aedb0bcb3a3e40b5d20e513e8f8d5dbdd</anchor>
       <arglist>(const NumberFormat &amp;newNumberFormat)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual const TimeZone &amp;</type>
+      <type>virtual U_I18N_API const TimeZone &amp;</type>
       <name>getTimeZone</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a793702e986fe23b90e336c25869a7bc6</anchor>
+      <anchor>a4b01c1ae2c2b3a0e966fc8e466d3a44d</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptTimeZone</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>ad9e9021ee3c6f771410d91fd0a323542</anchor>
+      <anchor>a4eb9e751554f082aa3c6fb4ddbf09c53</anchor>
       <arglist>(TimeZone *zoneToAdopt)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setTimeZone</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a6ce5ca3c47e69e0d14a632fe8afc9a91</anchor>
+      <anchor>a1f8ea9ecd3c078c088745b52d2b1868d</anchor>
       <arglist>(const TimeZone &amp;zone)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setContext</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>ab1c94e06970b2ea74fd1811cdd715576</anchor>
+      <anchor>af9f7d33bc21c089478ee32419953e72c</anchor>
       <arglist>(UDisplayContext value, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UDisplayContext</type>
+      <type>virtual U_I18N_API UDisplayContext</type>
       <name>getContext</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a589ba312a6e19ba3da5aad952f4c10e3</anchor>
+      <anchor>ab2fe25bdc28e5a582bcfce715dba1cb9</anchor>
       <arglist>(UDisplayContextType type, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual DateFormat &amp;</type>
+      <type>virtual U_I18N_API DateFormat &amp;</type>
       <name>setBooleanAttribute</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a5053113b0512fa35ece9fb3bae2115a8</anchor>
+      <anchor>a98d588c111e4b40a601adcb8c9badfe9</anchor>
       <arglist>(UDateFormatBooleanAttribute attr, UBool newvalue, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+      <type>virtual U_I18N_API UBool</type>
       <name>getBooleanAttribute</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a011d24d44de701a71315583d044f6742</anchor>
+      <anchor>a11b68c7726bccb57dbadf48367f7dbfa</anchor>
       <arglist>(UDateFormatBooleanAttribute attr, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a218d385a5aaf02005c0f7af9d4e00b74</anchor>
+      <anchor>af360df0f7c3db4ebaa9cf95c4e532f93</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const=0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateFormat *</type>
+      <type>static U_I18N_API DateFormat *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a1310b92ff52556ced1b61aa006826df8</anchor>
+      <anchor>a994d2cc0195694da2c14fc80df63c99c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateFormat *</type>
+      <type>static U_I18N_API DateFormat *</type>
       <name>createTimeInstance</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a99cb19962549ceff31e9bcbd674f3fd4</anchor>
+      <anchor>aeaa04f588d8756ba0a5643db96b85531</anchor>
       <arglist>(EStyle style=kDefault, const Locale &amp;aLocale=Locale::getDefault())</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateFormat *</type>
+      <type>static U_I18N_API DateFormat *</type>
       <name>createDateInstance</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>acaea49f85fe79989f1f2b2b121846499</anchor>
+      <anchor>a13ac959e1a2435fd0e867a210eecd3a4</anchor>
       <arglist>(EStyle style=kDefault, const Locale &amp;aLocale=Locale::getDefault())</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateFormat *</type>
+      <type>static U_I18N_API DateFormat *</type>
       <name>createDateTimeInstance</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a8832a3e2606c19ab5dc33db6345d4f5f</anchor>
+      <anchor>a7b662631b66f756abf6bd18bb813ff3e</anchor>
       <arglist>(EStyle dateStyle=kDefault, EStyle timeStyle=kDefault, const Locale &amp;aLocale=Locale::getDefault())</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UnicodeString</type>
+      <type>static U_I18N_API UnicodeString</type>
       <name>getBestPattern</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a241a8363d7dffba9856e15b75d2dcf01</anchor>
+      <anchor>af3d30acac4e9f6c47ab9fd8ad3c2dd79</anchor>
       <arglist>(const Locale &amp;locale, const UnicodeString &amp;skeleton, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateFormat *</type>
+      <type>static U_I18N_API DateFormat *</type>
       <name>createInstanceForSkeleton</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a461357d3a0a500aae3c508a64f1e2ff3</anchor>
+      <anchor>a78a6a2fc471a59f10a925a1346b88eaf</anchor>
       <arglist>(const UnicodeString &amp;skeleton, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateFormat *</type>
+      <type>static U_I18N_API DateFormat *</type>
       <name>createInstanceForSkeleton</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a7b6e85da2c6cef2d2f6eb8f8469b4bd9</anchor>
+      <anchor>ac03c6bdb0b2c9c99953316a504f9c0b5</anchor>
       <arglist>(const UnicodeString &amp;skeleton, const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateFormat *</type>
+      <type>static U_I18N_API DateFormat *</type>
       <name>createInstanceForSkeleton</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a00e6c6af4db15bc5a0ab31294eb4fce9</anchor>
+      <anchor>a0723242028d343acdb702ae7ad48a28b</anchor>
       <arglist>(Calendar *calendarToAdopt, const UnicodeString &amp;skeleton, const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale *</type>
+      <type>static U_I18N_API const Locale *</type>
       <name>getAvailableLocales</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a06d7ba5aa510615f34a56969218d0cb3</anchor>
+      <anchor>a4fd312069e245784c03cd2d053cf968b</anchor>
       <arglist>(int32_t &amp;count)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DateFormat</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a0c83b8d083a75bcfc72aa64da0e255e0</anchor>
+      <anchor>a09107599f3e896cb3fb246587c35ea72</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DateFormat</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>a4b8e2cc498126e569d9173ff637fa8f1</anchor>
+      <anchor>abf51c57348f9a7f019d3b71de283492d</anchor>
       <arglist>(const DateFormat &amp;)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>DateFormat &amp;</type>
+      <type>U_I18N_API DateFormat &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1DateFormat.html</anchorfile>
-      <anchor>ab4fbc1fe85b99a9702a659af76d84600</anchor>
+      <anchor>acb05bb370b5c95198ceff70a8a1c1fa9</anchor>
       <arglist>(const DateFormat &amp;)</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -37997,346 +38531,378 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DateFormatSymbols</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a5c4adf58d489814bf54ad6898b685eb3</anchor>
+      <anchor>abf84b768059eb010fb6ccb9e151fac27</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DateFormatSymbols</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>af25969ba2758492adc5801883cf816df</anchor>
+      <anchor>a21f67ab963804981854cc598d7cda7dd</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DateFormatSymbols</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a319701571d6c6294a472d2a9245fe5d9</anchor>
+      <anchor>afc29a34514a5091fb0aa7b8416ec5162</anchor>
       <arglist>(const char *type, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DateFormatSymbols</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a9b015fbde5bb9b9d7f9a879ee2d8ef0d</anchor>
+      <anchor>a06655c224678e558408d4fdeeb8c6fc4</anchor>
       <arglist>(const Locale &amp;locale, const char *type, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DateFormatSymbols</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>aafcf28ece0e7c3d9ffd7ed1ca575987b</anchor>
+      <anchor>abbf2cff3336d826f3b72f01c72b7d743</anchor>
       <arglist>(const DateFormatSymbols &amp;)</arglist>
     </member>
     <member kind="function">
-      <type>DateFormatSymbols &amp;</type>
+      <type>U_I18N_API DateFormatSymbols &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a663bd3076430dbb67490637d70381d85</anchor>
+      <anchor>a4be710fb7eccd07382d2fcec0c389cd3</anchor>
       <arglist>(const DateFormatSymbols &amp;)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~DateFormatSymbols</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>acb678c367aaf05b979f39b2d4c2067df</anchor>
+      <anchor>a430946270eec67b6528d7a9154e2d802</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>aaad56c492f959e61e1300ff641a8f8bf</anchor>
+      <anchor>a4071389b1d092d4273d0f80941eb2c26</anchor>
       <arglist>(const DateFormatSymbols &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator!=</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a5bf6890562aeeee23e6439d561418987</anchor>
+      <anchor>ad923c78a81167c554d7fb1345384b738</anchor>
       <arglist>(const DateFormatSymbols &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getEras</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a39c7527a34f74764a3b57feed35fe1dc</anchor>
+      <anchor>ac808b4f063c1362c2075b9182dfdc32a</anchor>
       <arglist>(int32_t &amp;count) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setEras</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a54a58bf7c8fa7e598c62a5038ba6b0b7</anchor>
+      <anchor>aa44ff3cf2cd855c2a7875932fa38bd30</anchor>
       <arglist>(const UnicodeString *eras, int32_t count)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getEraNames</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a5a854f199e8807539a4aa78b714c6db4</anchor>
+      <anchor>aa2e97798f1a4b9a4074f48632df7c84d</anchor>
       <arglist>(int32_t &amp;count) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setEraNames</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>ab2ec1be9849e1ff387c2b1d628f6cc0e</anchor>
+      <anchor>ab61cd398365f88f4cdaab59dcad80884</anchor>
       <arglist>(const UnicodeString *eraNames, int32_t count)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getNarrowEras</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a6b263cf6588ad875df700935959767d1</anchor>
+      <anchor>a3be20f46f6f5346d3eb32098abf67e24</anchor>
       <arglist>(int32_t &amp;count) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setNarrowEras</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>aa293ef753ff245e78279e8bfe13bf947</anchor>
+      <anchor>ae6ffa1ec6f3356d4af1eb4678e2871b5</anchor>
       <arglist>(const UnicodeString *narrowEras, int32_t count)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getMonths</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a917174426daa652536968b61a259f17d</anchor>
+      <anchor>a6d399ca2f62d2f7da294695cc4b8e113</anchor>
       <arglist>(int32_t &amp;count) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setMonths</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>ad688e477e7ea570dddcd48dceb5eeccf</anchor>
+      <anchor>a8ac69499bcf9bd2596f50d92f8306183</anchor>
       <arglist>(const UnicodeString *months, int32_t count)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getShortMonths</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>afd8344270397880098cc881375f547ba</anchor>
+      <anchor>a1113d361df3aaf42bfeabdf5919c6617</anchor>
       <arglist>(int32_t &amp;count) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setShortMonths</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a22e50f821a039f89921f1858439dae46</anchor>
+      <anchor>aa9c5bc42583e6b376121c11ec33dacb3</anchor>
       <arglist>(const UnicodeString *shortMonths, int32_t count)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getMonths</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a961239103aa7be4c22384c265333c19f</anchor>
+      <anchor>a041ec50e9ec95c92c217cc96767f4450</anchor>
       <arglist>(int32_t &amp;count, DtContextType context, DtWidthType width) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setMonths</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>ab8e6949b4b2aad4d46b35d18f99dffa8</anchor>
+      <anchor>a0611be225f9e1bf12c8c147a6737c743</anchor>
       <arglist>(const UnicodeString *months, int32_t count, DtContextType context, DtWidthType width)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getWeekdays</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a8f7ebdc9c4719373e8cc6a96c9171557</anchor>
+      <anchor>ab92b0626fc1f19a0dd2dc8bc81f38384</anchor>
       <arglist>(int32_t &amp;count) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setWeekdays</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a1fcc232dc64658ef712b809a5e4a4f36</anchor>
+      <anchor>aedd30bd004ec71cd22c82f3b36ad3383</anchor>
       <arglist>(const UnicodeString *weekdays, int32_t count)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getShortWeekdays</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a6c227911666299d4f9eb7bd1a40c78f9</anchor>
+      <anchor>a7038ba6ac3392ea2d8e9cb24d749f78c</anchor>
       <arglist>(int32_t &amp;count) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setShortWeekdays</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a71140d1fc12ca2912fdef3c9c3d2b2a4</anchor>
+      <anchor>a7fc78f1b8cd1e7041b554721f25234a2</anchor>
       <arglist>(const UnicodeString *abbrevWeekdays, int32_t count)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getWeekdays</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a4dd415f62c609b04c096976f6205dcf4</anchor>
+      <anchor>a857bdee4c48d6b0f5e3d042e1de91f35</anchor>
       <arglist>(int32_t &amp;count, DtContextType context, DtWidthType width) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setWeekdays</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>ad9e24624fcfb084cfbf372bc2ed2e284</anchor>
+      <anchor>a83b4ba0307215dbb6d39a1403e44c5ee</anchor>
       <arglist>(const UnicodeString *weekdays, int32_t count, DtContextType context, DtWidthType width)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getQuarters</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a215e8cd8e74be12d4d6a364cff81cd60</anchor>
+      <anchor>a5b151901a4579714a9dbddf712f3625b</anchor>
       <arglist>(int32_t &amp;count, DtContextType context, DtWidthType width) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setQuarters</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a598b333fcc15008e9f910d7bc0205edc</anchor>
+      <anchor>adff413972eebd90d42be473fa683bba6</anchor>
       <arglist>(const UnicodeString *quarters, int32_t count, DtContextType context, DtWidthType width)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getAmPmStrings</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a0c0f175ca835f5ff2dbd1275cde3db37</anchor>
+      <anchor>ac32e42deff3a00dc930b0788042490d8</anchor>
       <arglist>(int32_t &amp;count) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setAmPmStrings</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a61cb110df3b89aa7072be6578ca67bae</anchor>
+      <anchor>ac8d6617eeb9b25293747e96200294e7a</anchor>
       <arglist>(const UnicodeString *ampms, int32_t count)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString *</type>
+      <name>getAmPmStrings</name>
+      <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
+      <anchor>abcedd586f62b0614efa41102838dabf7</anchor>
+      <arglist>(int32_t &amp;count, DtContextType context, DtWidthType width) const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_I18N_API void</type>
+      <name>setAmPmStrings</name>
+      <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
+      <anchor>a2e8decdb90c672139e60ba3cc4464876</anchor>
+      <arglist>(const UnicodeString *ampms, int32_t count, DtContextType context, DtWidthType width)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>getTimeSeparatorString</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>ad5de555292aa7e40f88d5de9fb69b9dc</anchor>
+      <anchor>a9a204d757bf7f5f7d3bed62c2102a3db</anchor>
       <arglist>(UnicodeString &amp;result) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setTimeSeparatorString</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>ab99b016019eccd7725268fbe36bff7b4</anchor>
+      <anchor>a06f55f687a70a823abf831db4788691d</anchor>
       <arglist>(const UnicodeString &amp;newTimeSeparator)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getYearNames</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a73b0661f251b71746f7cc21b633da50c</anchor>
+      <anchor>a4f6032c7e5b2f97553a36b7c6f38bac1</anchor>
       <arglist>(int32_t &amp;count, DtContextType context, DtWidthType width) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setYearNames</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a135a801646d3c36a6875b5b393aff9a9</anchor>
+      <anchor>ab09b6f5f5d4bfdecf52759b34ebe0e16</anchor>
       <arglist>(const UnicodeString *yearNames, int32_t count, DtContextType context, DtWidthType width)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getZodiacNames</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>aa0f86de1743891aa28236f19b11898f2</anchor>
+      <anchor>acbbf98e013f580766c1187e2ce1d3ddc</anchor>
       <arglist>(int32_t &amp;count, DtContextType context, DtWidthType width) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setZodiacNames</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>abb059f467fd62aeb7fd57d675b5b52a2</anchor>
+      <anchor>afff3b085d5553a98f254f4681372f88f</anchor>
       <arglist>(const UnicodeString *zodiacNames, int32_t count, DtContextType context, DtWidthType width)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString *</type>
+      <type>U_I18N_API const UnicodeString *</type>
       <name>getLeapMonthPatterns</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>aaaf6e7b8044d616b47e621517f2153f9</anchor>
+      <anchor>a2a0d56b7f8e15b511af23a15ace1afbc</anchor>
       <arglist>(int32_t &amp;count) const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString **</type>
+      <type>U_I18N_API const UnicodeString **</type>
       <name>getZoneStrings</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>afe14b27d59ab521cb47e79327595ffe0</anchor>
+      <anchor>a2b2c923a3af114b135f8331318bdd6f5</anchor>
       <arglist>(int32_t &amp;rowCount, int32_t &amp;columnCount) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setZoneStrings</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>aa22fb003f9cb7b8557f5e35419cb4d9a</anchor>
+      <anchor>a4573d629fbb489b18ef80c7797831f80</anchor>
       <arglist>(const UnicodeString *const *strings, int32_t rowCount, int32_t columnCount)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>getLocalPatternChars</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a3926ac6957ff2e2530162ea7dd449fbb</anchor>
+      <anchor>ae63b97c4e414f5eb3f12e4220d06ec8d</anchor>
       <arglist>(UnicodeString &amp;result) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setLocalPatternChars</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a2355447b2c48dae6bee391d17d2b1550</anchor>
+      <anchor>a7000d152f81e958d1c9584735927c13b</anchor>
       <arglist>(const UnicodeString &amp;newLocalPatternChars)</arglist>
     </member>
     <member kind="function">
-      <type>Locale</type>
+      <type>U_I18N_API Locale</type>
       <name>getLocale</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a451cca86627fc7bca212ba8b0a0b659c</anchor>
+      <anchor>ab930fdff61a7dae01125438492b2b5b1</anchor>
       <arglist>(ULocDataLocaleType type, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>ab1ca7347c2efbc6e56b780c78b9beb1c</anchor>
+      <anchor>a93a374255490a2edece9751bd374c239</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const char16_t *</type>
+      <type>static U_I18N_API const char16_t *</type>
       <name>getPatternUChars</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a8bb13be3addecd6952670655911c6eb2</anchor>
+      <anchor>a7b4c1e28b8be78565583a525388de1a8</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_I18N_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>acc0c4d7fedc8bf1066d5879805fc86ad</anchor>
+      <anchor>a95243eed6c46f2329e3395d7d8a2c375</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateFormatSymbols *</type>
+      <type>static U_I18N_API DateFormatSymbols *</type>
       <name>createForLocale</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a36231502d53d98ddd9ee057ff12e6bd1</anchor>
+      <anchor>a9811e4c32e3782c34fc24ad898d94243</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static const char16_t</type>
+      <type>static U_I18N_API const char16_t</type>
       <name>DEFAULT_TIME_SEPARATOR</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>ad4f70697826689aec71c8f4acca062a9</anchor>
+      <anchor>ae700cd25006de98bd3a43f1d8847087f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static const char16_t</type>
+      <type>static U_I18N_API const char16_t</type>
       <name>ALTERNATE_TIME_SEPARATOR</name>
       <anchorfile>classicu_1_1DateFormatSymbols.html</anchorfile>
-      <anchor>a4b12c1cb005bc23fd1193c06fb4d1915</anchor>
+      <anchor>a2c11816082536a86212155917f0d9a00</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>icu::message2::DateInfo</name>
+    <filename>structicu_1_1message2_1_1DateInfo.html</filename>
+    <member kind="variable">
+      <type>UDate</type>
+      <name>date</name>
+      <anchorfile>structicu_1_1message2_1_1DateInfo.html</anchorfile>
+      <anchor>a43f6f3bca778f8e1900b52078c0e2992</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>UnicodeString</type>
+      <name>zoneId</name>
+      <anchorfile>structicu_1_1message2_1_1DateInfo.html</anchorfile>
+      <anchor>a45632211370fba1873121579fbac28c5</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -38427,192 +38993,192 @@
     <filename>classicu_1_1DateIntervalFormat.html</filename>
     <base>icu::Format</base>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~DateIntervalFormat</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a368d6b65d027aeb8d9ede0093e54925e</anchor>
+      <anchor>af6b129b6958ddee07461828c97643412</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual DateIntervalFormat *</type>
+      <type>virtual U_I18N_API DateIntervalFormat *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a1feebe42bf1b392e62e4857abc8385b3</anchor>
+      <anchor>a918180515a157380d489bbc6fd4199c7</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>abb961d1753e24ba9d0a64cf13e9eac6f</anchor>
+      <anchor>a5202a81d44f4a9bc6bff6caf1d77469f</anchor>
       <arglist>(const Format &amp;other) const override</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator!=</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
       <anchor>a1b3e482150ed6725e356fe089bb97677</anchor>
       <arglist>(const Format &amp;other) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a76071030e4b348f639e268bf5ec3c614</anchor>
+      <anchor>a1e41c289cf8786953b78390283f8dae3</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;fieldPosition, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a1f91c058e889be6df4328b5f8a33a12a</anchor>
+      <anchor>ada72b08b2a64370f8bf8c9330a892e6d</anchor>
       <arglist>(const DateInterval *dtInterval, UnicodeString &amp;appendTo, FieldPosition &amp;fieldPosition, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>FormattedDateInterval</type>
+      <type>U_I18N_API FormattedDateInterval</type>
       <name>formatToValue</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>af2e2287809364292c19724183e4cd7c1</anchor>
+      <anchor>ac973f931b0add850916f1da5d8fa1d41</anchor>
       <arglist>(const DateInterval &amp;dtInterval, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a040ddf7511c3636f8e38a17fd0df3716</anchor>
+      <anchor>a42fd34a6bc3b3be6db61dd6f994fc753</anchor>
       <arglist>(Calendar &amp;fromCalendar, Calendar &amp;toCalendar, UnicodeString &amp;appendTo, FieldPosition &amp;fieldPosition, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>FormattedDateInterval</type>
+      <type>U_I18N_API FormattedDateInterval</type>
       <name>formatToValue</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>ac6f7dde99d9d1446f46afc7da5ba64b8</anchor>
+      <anchor>a4973563892e4e3459f3e8625370965bf</anchor>
       <arglist>(Calendar &amp;fromCalendar, Calendar &amp;toCalendar, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parseObject</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a3558ad43fc3b4cb3d65e8cc16950cff8</anchor>
+      <anchor>aa9e7af484627ee6cd90dfb3ce0beca3e</anchor>
       <arglist>(const UnicodeString &amp;source, Formattable &amp;result, ParsePosition &amp;parse_pos) const override</arglist>
     </member>
     <member kind="function">
-      <type>const DateIntervalInfo *</type>
+      <type>U_I18N_API const DateIntervalInfo *</type>
       <name>getDateIntervalInfo</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>aefc898046399e253563c23120bd0aa27</anchor>
+      <anchor>aca657de21cd966787ffe07152a9af168</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setDateIntervalInfo</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>afa15e3dd8d0be0b0c8420dca92c79b63</anchor>
+      <anchor>a23ae633215e650f3adb41c5e81c68483</anchor>
       <arglist>(const DateIntervalInfo &amp;newIntervalPatterns, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>const DateFormat *</type>
+      <type>U_I18N_API const DateFormat *</type>
       <name>getDateFormat</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a0f9825650fb1f101e363986e1ab44464</anchor>
+      <anchor>a93d845c66e249483b3c37c913a35fa26</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual const TimeZone &amp;</type>
+      <type>virtual U_I18N_API const TimeZone &amp;</type>
       <name>getTimeZone</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>aa06a5f1706f9e20722638f39d8d5dcf6</anchor>
+      <anchor>a03e3894eded5e8c0f22f9b02cecd3eb9</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptTimeZone</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a93ef0556833394c4a69c0c3ad1202d15</anchor>
+      <anchor>ad2de077a077505157681eda82648ef79</anchor>
       <arglist>(TimeZone *zoneToAdopt)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setTimeZone</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a01ac0804b2cc1c1c111a3165ab75e48f</anchor>
+      <anchor>a8053117ce9b89d64a52fb95d8b99e5b2</anchor>
       <arglist>(const TimeZone &amp;zone)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setContext</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a4b33c7d44a203fa0cffd658aa01b6e61</anchor>
+      <anchor>a6ba779129c14006e969779083fe3b764</anchor>
       <arglist>(UDisplayContext value, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UDisplayContext</type>
+      <type>virtual U_I18N_API UDisplayContext</type>
       <name>getContext</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>ab869a59847a529e850288acb49e6d843</anchor>
+      <anchor>a8d10423180beb969d41614ee0fec524c</anchor>
       <arglist>(UDisplayContextType type, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>ac50d481800c88947b32709848b67c229</anchor>
+      <anchor>ae61e5d1006e573776b165d09722d8145</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a218d385a5aaf02005c0f7af9d4e00b74</anchor>
+      <anchor>af360df0f7c3db4ebaa9cf95c4e532f93</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const=0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateIntervalFormat *</type>
+      <type>static U_I18N_API DateIntervalFormat *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a84897fb6ea23efab339b1659985ad887</anchor>
+      <anchor>a208f1d407e82cc43dc254819382d7bf9</anchor>
       <arglist>(const UnicodeString &amp;skeleton, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateIntervalFormat *</type>
+      <type>static U_I18N_API DateIntervalFormat *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a1d81c40268e3e18187b0b8f7bac026d5</anchor>
+      <anchor>a336f7bccde21c9506c1b0fa821520aac</anchor>
       <arglist>(const UnicodeString &amp;skeleton, const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateIntervalFormat *</type>
+      <type>static U_I18N_API DateIntervalFormat *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>ad217fc705f3b6ac832dc8e3d68386021</anchor>
+      <anchor>a450610ad5cd6bf34275a1d9ac31c5c51</anchor>
       <arglist>(const UnicodeString &amp;skeleton, const DateIntervalInfo &amp;dtitvinf, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateIntervalFormat *</type>
+      <type>static U_I18N_API DateIntervalFormat *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>a684dc1d9f914fcd141da7ccf72b87b15</anchor>
+      <anchor>a8c30a195690133abf7a8add4e62810cf</anchor>
       <arglist>(const UnicodeString &amp;skeleton, const Locale &amp;locale, const DateIntervalInfo &amp;dtitvinf, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_I18N_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1DateIntervalFormat.html</anchorfile>
-      <anchor>af8ec02ee1fe0c6437262b4d6c5bc3788</anchor>
+      <anchor>a3b66082f029bbb78a04d981dc6eba42f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -38662,25 +39228,25 @@
       <anchor>a925e6162cdeb24089fc21dad0c72c9f2</anchor>
       <arglist>(const DateIntervalInfo &amp;)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual DateIntervalInfo *</type>
+    <member kind="function">
+      <type>DateIntervalInfo *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1DateIntervalInfo.html</anchorfile>
-      <anchor>a86463992df32b3f2be6b4092132eb10b</anchor>
+      <anchor>a04019c16a07280892c78d607cd9feaa9</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+    <member kind="function">
+      <type></type>
       <name>~DateIntervalInfo</name>
       <anchorfile>classicu_1_1DateIntervalInfo.html</anchorfile>
-      <anchor>a84e3c79d4164897f71faeb40743fcd21</anchor>
+      <anchor>ab32012d8080300e6b3430dba41126112</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+    <member kind="function">
+      <type>bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1DateIntervalInfo.html</anchorfile>
-      <anchor>af0d7cf0474265f03c99070dc43c8be23</anchor>
+      <anchor>a21d1e09e7b82e1142a1340980d2cc852</anchor>
       <arglist>(const DateIntervalInfo &amp;other) const</arglist>
     </member>
     <member kind="function">
@@ -38752,248 +39318,255 @@
     <filename>classicu_1_1DateTimePatternGenerator.html</filename>
     <base>icu::UObject</base>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~DateTimePatternGenerator</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>afbd704b381d3cf0cc314bcaab074d739</anchor>
+      <anchor>ac481041bf46927b8f11f798d5dd45faf</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>DateTimePatternGenerator *</type>
+      <type>U_I18N_API DateTimePatternGenerator *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a1dc037a10f5ac4ed4cc77050573d24b0</anchor>
+      <anchor>a6effad11dfb24da5b7e15dd12be06f43</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a256b509b9933e4f7281e27a3b38a91ad</anchor>
+      <anchor>a489a1b84b1fc088b1314e8640a4d92ca</anchor>
       <arglist>(const DateTimePatternGenerator &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator!=</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a1666368c34b343b88d8ad1a24db56057</anchor>
+      <anchor>a688fe0fc43bdb046356dbc9826988165</anchor>
       <arglist>(const DateTimePatternGenerator &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>getSkeleton</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>af59552a2922795b494f82ec230208e2e</anchor>
+      <anchor>ac27933661baec901aaf690b4e6db9159</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>getBaseSkeleton</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>ae5af28bb30466295ea811a1f1ddc34db</anchor>
+      <anchor>ae635530015fcad95a1bae9123b2f79f6</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UDateTimePatternConflict</type>
+      <type>U_I18N_API UDateTimePatternConflict</type>
       <name>addPattern</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>afc98d7549cd7b08e1aa20edceb33f2e8</anchor>
+      <anchor>ae43fe6a92b5edf46c33068cf87edd8e1</anchor>
       <arglist>(const UnicodeString &amp;pattern, UBool override, UnicodeString &amp;conflictingPattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API UDateTimePatternConflict</type>
+      <name>addPatternWithSkeleton</name>
+      <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
+      <anchor>a427b9afba09123cac929dfa58f6e4390</anchor>
+      <arglist>(const UnicodeString &amp;pattern, const UnicodeString &amp;skeletonToUse, UBool override, UnicodeString &amp;conflictingPattern, UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_I18N_API void</type>
       <name>setAppendItemFormat</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a3db420cb03760e47d23ebaa260b13d8e</anchor>
+      <anchor>afa9cf6adf068b559e2657b61f4b40bd3</anchor>
       <arglist>(UDateTimePatternField field, const UnicodeString &amp;value)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getAppendItemFormat</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a63ea62f802e5929b757341517e4b8070</anchor>
+      <anchor>a3b48d07bcdcc4a64bbeaedccd5f7a0ef</anchor>
       <arglist>(UDateTimePatternField field) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setAppendItemName</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a72964cc92a45ea94ff496eedebfaf8d7</anchor>
+      <anchor>ace54b04b5246673fd012a65ad5f5c3e2</anchor>
       <arglist>(UDateTimePatternField field, const UnicodeString &amp;value)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getAppendItemName</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a890ee9de435272cd9f9953428167ed44</anchor>
+      <anchor>ae3d30f4194d4886fcaafa22b02176d49</anchor>
       <arglist>(UDateTimePatternField field) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>getFieldDisplayName</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a68aeb75a0325a6d7d15ab3972b3cad9b</anchor>
+      <anchor>a56d6b41c7c3dbae65efe1265e0c3aeb0</anchor>
       <arglist>(UDateTimePatternField field, UDateTimePGDisplayWidth width) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setDateTimeFormat</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a78e11a2ff03e72dfe4374318df5934da</anchor>
+      <anchor>ae139a6640262824673e460372e102b89</anchor>
       <arglist>(const UnicodeString &amp;dateTimeFormat)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getDateTimeFormat</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a2e4a19d9e6f7e5b24db31b5618cab1e0</anchor>
+      <anchor>ab51128c3feb88d125e58d6fc44de7bf6</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setDateTimeFormat</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a5888b1fc7e6ceb868ffaad02c300c21f</anchor>
+      <anchor>ad45ad9d426298744af403c64b29775d8</anchor>
       <arglist>(UDateFormatStyle style, const UnicodeString &amp;dateTimeFormat, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getDateTimeFormat</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a08f8ec6d451a942547b5bf90ef2cd275</anchor>
+      <anchor>a5a5d82c012be139448724accc65dc3c5</anchor>
       <arglist>(UDateFormatStyle style, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>getBestPattern</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a41a97e72ded1cd3f8257946cfe01c222</anchor>
+      <anchor>ac5a80846e00b93b75df80440d81b1030</anchor>
       <arglist>(const UnicodeString &amp;skeleton, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>getBestPattern</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a06effc80460cbe74c73569ccac74b08e</anchor>
+      <anchor>aa44001be6841113ba045db5cccb838b7</anchor>
       <arglist>(const UnicodeString &amp;skeleton, UDateTimePatternMatchOptions options, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>replaceFieldTypes</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>ab006b56df1c25d07a8cef2eb58b00cde</anchor>
+      <anchor>a11d54f195317535ea6010e92e2a1371e</anchor>
       <arglist>(const UnicodeString &amp;pattern, const UnicodeString &amp;skeleton, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>replaceFieldTypes</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>ade12ee44ae01961f80020b992bdb4501</anchor>
+      <anchor>a3b2ffc2f57cc8d65089c48e99a9e508c</anchor>
       <arglist>(const UnicodeString &amp;pattern, const UnicodeString &amp;skeleton, UDateTimePatternMatchOptions options, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>StringEnumeration *</type>
+      <type>U_I18N_API StringEnumeration *</type>
       <name>getSkeletons</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a7a050c71ce4ac9b7dbb9577c83a9a97b</anchor>
+      <anchor>ae3e1aa2a71e8d10704c5529c51411e76</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getPatternForSkeleton</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a2c57ab916d01b073e9948b0f99c9fdf7</anchor>
+      <anchor>a88acf9509d4bf68a23b0a77139f17a98</anchor>
       <arglist>(const UnicodeString &amp;skeleton) const</arglist>
     </member>
     <member kind="function">
-      <type>StringEnumeration *</type>
+      <type>U_I18N_API StringEnumeration *</type>
       <name>getBaseSkeletons</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a772b122ac8358a9b48787c275c09e806</anchor>
+      <anchor>ad1f41d1c3ba9a9bba247704903c68054</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>StringEnumeration *</type>
+      <type>U_I18N_API StringEnumeration *</type>
       <name>getRedundants</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>ae61676bb6c56adadcbf1e1e1ed149cd3</anchor>
+      <anchor>a76b48324459204853b5fbfa1dbefe267</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setDecimal</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a11c05ff9155a86b8a0bac9ecf64ef662</anchor>
+      <anchor>a349ec86c0c881f94362bf91236660b5b</anchor>
       <arglist>(const UnicodeString &amp;decimal)</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getDecimal</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a1b9ddb9d99f2a501db54342127370ba3</anchor>
+      <anchor>a4b27972b17fa8aa70c6afbbde8d128bf</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UDateFormatHourCycle</type>
+      <type>U_I18N_API UDateFormatHourCycle</type>
       <name>getDefaultHourCycle</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>aac46d070eda087c888c7ca348abb8493</anchor>
+      <anchor>a35143afab8b8c1d7bf9719412d40f499</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a0c4f69624ee4e11934aa3a0d5f1b79db</anchor>
+      <anchor>af0fa77a2907d573156d46133b7687924</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateTimePatternGenerator *</type>
+      <type>static U_I18N_API DateTimePatternGenerator *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a8c88762bc7e4c479296975500088639d</anchor>
+      <anchor>a83d5e8953ac2a3d68f2fd0fe9a93bcf7</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateTimePatternGenerator *</type>
+      <type>static U_I18N_API DateTimePatternGenerator *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a6a942e14a8c150b88ca1ec32962ff66b</anchor>
+      <anchor>a1f3b983f81cf6ff60566f3f7e332807d</anchor>
       <arglist>(const Locale &amp;uLocale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateTimePatternGenerator *</type>
+      <type>static U_I18N_API DateTimePatternGenerator *</type>
       <name>createInstanceNoStdPat</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>abb07ba7595f612a27c23fb85ac4b6c0d</anchor>
+      <anchor>a221acd997db77757a167c0715bed20b8</anchor>
       <arglist>(const Locale &amp;uLocale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DateTimePatternGenerator *</type>
+      <type>static U_I18N_API DateTimePatternGenerator *</type>
       <name>createEmptyInstance</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a5a7e9dda31d77a2c40b43f36bce05eef</anchor>
+      <anchor>a05f5e276f3f93ce0d0714bd2ac80d9b7</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UnicodeString</type>
+      <type>static U_I18N_API UnicodeString</type>
       <name>staticGetSkeleton</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>ac8781b73a788132817514f2d3b61be88</anchor>
+      <anchor>a7111380d78a72482c0258b570c056475</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UnicodeString</type>
+      <type>static U_I18N_API UnicodeString</type>
       <name>staticGetBaseSkeleton</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a7670179c209dfc006a482c1a1e699cf8</anchor>
+      <anchor>a2f0345e032a1cf44360627d85316b332</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_I18N_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1DateTimePatternGenerator.html</anchorfile>
-      <anchor>a7ed40d96f68daba6ca0cb4a086417799</anchor>
+      <anchor>a80f25588528684ab52052eda2045bdb7</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -40492,178 +41065,178 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DecimalFormatSymbols</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a7c9383f0d93379436801a23dba25eee0</anchor>
+      <anchor>a804f2263a3cb39afd84e825ec5e6eace</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DecimalFormatSymbols</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>aea44141d6f91bc7618aa6ab2c89e1e34</anchor>
+      <anchor>ad90cae058b456ca8ad49f2d2157518d3</anchor>
       <arglist>(const Locale &amp;locale, const NumberingSystem &amp;ns, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DecimalFormatSymbols</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a6188e8a6310cfd6b13d1d40acf61c02e</anchor>
+      <anchor>a1ad984a82cad5bba10c77e48e41e54cb</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>DecimalFormatSymbols</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a87e05675e16e32e25c7f58934116df55</anchor>
+      <anchor>a692d40c4f37552e00be035c87d6a0d5e</anchor>
       <arglist>(const DecimalFormatSymbols &amp;)</arglist>
     </member>
     <member kind="function">
-      <type>DecimalFormatSymbols &amp;</type>
+      <type>U_I18N_API DecimalFormatSymbols &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>ae1781511b380f0238958f197dcf7e834</anchor>
+      <anchor>a7adaf70a9b9d3fb84bd23ab490d276f3</anchor>
       <arglist>(const DecimalFormatSymbols &amp;)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~DecimalFormatSymbols</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a285fb7c41123bf8d72368e60b3433204</anchor>
+      <anchor>a1e45b056ea77c5495cb68feabd113a0e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a24a076629d236caf1c488ace850adc26</anchor>
+      <anchor>a136e8bf38f5088796e9cde3566b41ba2</anchor>
       <arglist>(const DecimalFormatSymbols &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator!=</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a89ea98729f1b5b6e7ab119ab40adf8d6</anchor>
+      <anchor>afab3b278b776329ab0d6781acd919b56</anchor>
       <arglist>(const DecimalFormatSymbols &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>getSymbol</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
       <anchor>a930d23dc5a7d74f58efc5bcb273dbb20</anchor>
       <arglist>(ENumberFormatSymbol symbol) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setSymbol</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
       <anchor>af38713f05b45f6dffb2ba40fb75ec7a0</anchor>
       <arglist>(ENumberFormatSymbol symbol, const UnicodeString &amp;value, const UBool propagateDigits)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setCurrency</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a833b213d5ee2160a5d1767b2b936ba51</anchor>
+      <anchor>ace263910778c6c8752b93ef4004dc1ee</anchor>
       <arglist>(const char16_t *currency, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>Locale</type>
+      <type>U_I18N_API Locale</type>
       <name>getLocale</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
       <anchor>ad2613e8ef4b8d3b2f469fe3be0e42b58</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>Locale</type>
+      <type>U_I18N_API Locale</type>
       <name>getLocale</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a45f73c3bed7bcecdaa7e9cba27156a1f</anchor>
+      <anchor>a57d0ec420f9e92b28f30285f4b271fd3</anchor>
       <arglist>(ULocDataLocaleType type, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getPatternForCurrencySpacing</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a2a7cfed7742ded55032af8eb41737f3c</anchor>
+      <anchor>a1d1d3d628bf61a26d59a0ef15a538638</anchor>
       <arglist>(UCurrencySpacing type, UBool beforeCurrency, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setPatternForCurrencySpacing</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a235ab10ae57fd24825834003f2b541b2</anchor>
+      <anchor>a7b311a75964403d5f255e18f089ccdc6</anchor>
       <arglist>(UCurrencySpacing type, UBool beforeCurrency, const UnicodeString &amp;pattern)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a56929e21f6b406fefbb46b255937e429</anchor>
+      <anchor>a66edd8583f4e9d0689b260e75e23623e</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isCustomCurrencySymbol</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a23893d820541e2ecf2d202b4fa18407d</anchor>
+      <anchor>a8ed6439b890710c715a928760810becc</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isCustomIntlCurrencySymbol</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>aeda46153c73e8fc43b1baf4321adbca9</anchor>
+      <anchor>a2613d561c9db951c553f284f86ca3db2</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UChar32</type>
+      <type>U_I18N_API UChar32</type>
       <name>getCodePointZero</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>ad09e6e0601174c2fb953afc17163e4af</anchor>
+      <anchor>ad3c7e5d2e367b078ffc081b932cd0499</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getConstSymbol</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
       <anchor>a647bc2e452da3f4531ca41ade0246023</anchor>
       <arglist>(ENumberFormatSymbol symbol) const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getConstDigitSymbol</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
       <anchor>aabf642fa2bd684ab65e92bb60b9d0dc3</anchor>
       <arglist>(int32_t digit) const</arglist>
     </member>
     <member kind="function">
-      <type>const char16_t *</type>
+      <type>U_I18N_API const char16_t *</type>
       <name>getCurrencyPattern</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
       <anchor>a5e19df5e34af6cc8ed6a76d83226584a</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_I18N_API const char *</type>
       <name>getNumberingSystemName</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
       <anchor>a504ec7c606d9c9320e3bab97d3d03eff</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static DecimalFormatSymbols *</type>
+      <type>static U_I18N_API DecimalFormatSymbols *</type>
       <name>createWithLastResortData</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>aa9211effca64c3760896b32e6e9ceac7</anchor>
+      <anchor>a5d61d650d2a111911e03779eed11860e</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_I18N_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1DecimalFormatSymbols.html</anchorfile>
-      <anchor>a5e3f33df081095a7d0d6b86f8d09e8ec</anchor>
+      <anchor>aeeb128ea27351f8a369e39ede6a09a56</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -40990,73 +41563,73 @@
     <base>icu::UObject</base>
     <class kind="class">icu::message2::data_model::Expression::Builder</class>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isStandaloneAnnotation</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>a915a6e94b0886653ead32c1c90a918f8</anchor>
+      <anchor>ac6afa3ef046f8fd50bf49be9ccb536c8</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isFunctionCall</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>a5eab53bffd8b5c9d303750439ac52fa2</anchor>
+      <anchor>add52bae68c0d08fcd500bb33a3b5cfa7</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const Operator *</type>
+      <type>U_I18N_API const Operator *</type>
       <name>getOperator</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>a4dfb1c2bbd401c465c4645bc7357c439</anchor>
+      <anchor>ab94b9394b57673c107720e5d2dd39730</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>const Operand &amp;</type>
+      <type>U_I18N_API const Operand &amp;</type>
       <name>getOperand</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>a969bf2cd9cba7c798583721ee0953c5b</anchor>
+      <anchor>a173caf0a1018b4571b3a2bcfc3c7446f</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>std::vector&lt; Option &gt;</type>
+      <type>U_I18N_API std::vector&lt; Option &gt;</type>
       <name>getAttributes</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>a88eb7ba31fb58c1a4a04651c581e053a</anchor>
+      <anchor>a5995ce1f8ebad31913be5a7f09b0a8b9</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Expression</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>ac6b30a8b4d37dba9adc79253e02e3d08</anchor>
+      <anchor>afa5dc2d222ba1386e09084e6a5dd36bb</anchor>
       <arglist>(const Expression &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type>Expression &amp;</type>
+      <type>U_I18N_API Expression &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>a2d218663a6cdcadf1113e4d2d386d2c9</anchor>
+      <anchor>a6081b7ca70d2f65784e828327639baff</anchor>
       <arglist>(Expression) noexcept</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Expression</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>aa41a58d8157efeec9a2ecbfd9bc20d78</anchor>
+      <anchor>a162b1e71fdc17a70c5f5d18b1c8e5d41</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~Expression</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>aa0fd4ccfe9d836e386a55f506a2fd923</anchor>
+      <anchor>aac569cef71692ef21854d74124602176</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="friend">
-      <type>friend void</type>
+      <type>U_I18N_API friend void</type>
       <name>swap</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Expression.html</anchorfile>
-      <anchor>ae063e5c63f2a8a5d0950b9ef9c7fa913</anchor>
+      <anchor>a3d6057b60cbc12ea003c01ae783a2ad4</anchor>
       <arglist>(Expression &amp;e1, Expression &amp;e2) noexcept</arglist>
     </member>
   </compound>
@@ -41522,115 +42095,115 @@
     <filename>classicu_1_1Format.html</filename>
     <base>icu::UObject</base>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~Format</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>ab5b0d091d165c5576af62b3ee246058a</anchor>
+      <anchor>a29be5cc84ffbb77f41e6a097def018f2</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>ae1e8e16cd0803127ac506d8de257ec4f</anchor>
+      <anchor>a756d15f4806c08e8601d8b670ce10105</anchor>
       <arglist>(const Format &amp;other) const =0</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator!=</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>aedcfb084bd044486e9112d6bae06556d</anchor>
+      <anchor>a148a5d1e25839ac74fd22c51f927d367</anchor>
       <arglist>(const Format &amp;other) const</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual Format *</type>
+      <type>virtual U_I18N_API Format *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>ad606fa4ed45908fe4220085c6276c65a</anchor>
+      <anchor>acb80f01b7aa8b6718ce97e05b556ae61</anchor>
       <arglist>() const =0</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>a68fb0a8875645f7ab11bb5230c03c212</anchor>
+      <anchor>a967945dd6939921c80012a65b189c8ea</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const =0</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parseObject</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>a292d797eb9d3bc8a42d8d8efba119a83</anchor>
+      <anchor>a88ff56bba6bf69a134e7ef07a8d2094f</anchor>
       <arglist>(const UnicodeString &amp;source, Formattable &amp;result, ParsePosition &amp;parse_pos) const =0</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>parseObject</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>ac8854eba45f8c57f22ff994b8e8099ae</anchor>
+      <anchor>a02f66bf67217d0370f1068d10a393660</anchor>
       <arglist>(const UnicodeString &amp;source, Formattable &amp;result, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>Locale</type>
+      <type>U_I18N_API Locale</type>
       <name>getLocale</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>afb8661d3a5d713adc9845c6c76de2a09</anchor>
+      <anchor>a11d48034c8a3ebcbe8ba2fe8c6cdc1e8</anchor>
       <arglist>(ULocDataLocaleType type, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_I18N_API const char *</type>
       <name>getLocaleID</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>a7b0aa1422df718c60a6bc342f2de79cf</anchor>
+      <anchor>af6a8ad88a197d37f1b31b16017e1bd1a</anchor>
       <arglist>(ULocDataLocaleType type, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setLocaleIDs</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>a9c316525df8bdb422d3e73f0eb9a2a32</anchor>
+      <anchor>aa505228561edfd6c46c644f95af3df93</anchor>
       <arglist>(const char *valid, const char *actual)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Format</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>a0e673e9e040598bace20c25a2261b845</anchor>
+      <anchor>aa9ab507aca389576f85405ed9bd80a38</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Format</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>a2747bab62f7164f3c1556c044502df6e</anchor>
+      <anchor>a3bfcf9c59d57325baf115af595519346</anchor>
       <arglist>(const Format &amp;)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>Format &amp;</type>
+      <type>U_I18N_API Format &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>a6e4a4f6e5eedfe8d949e9307191a3afc</anchor>
+      <anchor>afb3d690951f760963f1d862d7b5a387a</anchor>
       <arglist>(const Format &amp;)</arglist>
     </member>
     <member kind="function" protection="protected" static="yes">
-      <type>static void</type>
+      <type>static U_I18N_API void</type>
       <name>syntaxError</name>
       <anchorfile>classicu_1_1Format.html</anchorfile>
-      <anchor>a4667230f833245c55ba081c163d8bb71</anchor>
+      <anchor>a8fc9dce6b125c38a7a540570f370fe22</anchor>
       <arglist>(const UnicodeString &amp;pattern, int32_t pos, UParseError &amp;parseError)</arglist>
     </member>
   </compound>
@@ -42122,10 +42695,10 @@
       <arglist>(number::impl::DecimalQuantity *dq)</arglist>
     </member>
     <member kind="function">
-      <type>CharString *</type>
-      <name>internalGetCharString</name>
+      <type>FixedString *</type>
+      <name>internalGetFixedString</name>
       <anchorfile>classicu_1_1Formattable.html</anchorfile>
-      <anchor>a81b5a35c295e22dcc1c702bd200b3608</anchor>
+      <anchor>a60beae06193698ce7326b278f43c5323</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
@@ -42155,164 +42728,164 @@
     <filename>classicu_1_1message2_1_1Formattable.html</filename>
     <base>icu::UObject</base>
     <member kind="function">
-      <type>UFormattableType</type>
+      <type>U_I18N_API UFormattableType</type>
       <name>getType</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>adeaf0bf6507ad94ff551bcdbac99f26f</anchor>
+      <anchor>aa3c8c977605e0b9ceaec1ef61c121a52</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>double</type>
+      <type>U_I18N_API double</type>
       <name>getDouble</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a4d7196aeb0dabedfc506435f2b8fe952</anchor>
+      <anchor>a9cd6e7952fc7e569970f3680cd7de05b</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>getLong</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>aa77b184d904ed3ec179b57cce967d80b</anchor>
+      <anchor>a26d8934297443260dc99bc6158a01068</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>int64_t</type>
+      <type>U_I18N_API int64_t</type>
       <name>getInt64Value</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>aba96e6e9b3fef68289fc555e7c5c9f5f</anchor>
+      <anchor>aa44f789a3ffc03a9e84453cefe0f3f70</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>int64_t</type>
+      <type>U_I18N_API int64_t</type>
       <name>getInt64</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a772715d838026e023ecbe6fd305e7c4b</anchor>
+      <anchor>a171249e1579dbb7f511b859b72760e3f</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getString</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a68f1e19c716ce70ce8b7291f1d4c6d76</anchor>
+      <anchor>af7e73531f1fd92c56bc000f69325a3b3</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UDate</type>
+      <type>U_I18N_API const DateInfo *</type>
       <name>getDate</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>aee52df65f4a336445dcef8276ec45d4b</anchor>
+      <anchor>a74b0a4476f6a4f5b0f6ebf7386522685</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isNumeric</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>ac8067aad082bf109162f831bfd6e045d</anchor>
+      <anchor>a45b610689b6e36b34bd6684a2d34f100</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const Formattable *</type>
+      <type>U_I18N_API const Formattable *</type>
       <name>getArray</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>abb1f6818d37cf2066f07d4ef01f7c686</anchor>
+      <anchor>a46ab650e987cfe7b7b01f4271e31ba9c</anchor>
       <arglist>(int32_t &amp;count, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>const FormattableObject *</type>
+      <type>U_I18N_API const FormattableObject *</type>
       <name>getObject</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a125355d543a1eb9268e7c2fa8dd662c9</anchor>
+      <anchor>af5c0ae9b4fc869c32fc1393fbd55e449</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Formattable</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>adcdbd6142b30f563f8aecf71cedc785c</anchor>
+      <anchor>ae0119566d109c43bad99dedd7965186b</anchor>
       <arglist>(const Formattable &amp;)</arglist>
     </member>
     <member kind="function">
-      <type>Formattable &amp;</type>
+      <type>U_I18N_API Formattable &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>afcb9f09193dc1f2f4725d3b7087dd467</anchor>
+      <anchor>a13a4e60ae138e8046f2930085959aae6</anchor>
       <arglist>(Formattable) noexcept</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Formattable</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a2549da2832ab3156e57c8398077455aa</anchor>
+      <anchor>a6dc114ad92dbaec61ef04bb4257419ab</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Formattable</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a0ca2d5041e07dc51c2da8d18c2a4ab20</anchor>
+      <anchor>a05f3429b1f35269b70f63313fc472f69</anchor>
       <arglist>(const UnicodeString &amp;s)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Formattable</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>ad104d2ba8d907746a61a6cb854da3081</anchor>
+      <anchor>a603d89df32223ffed27ce4fec480f2aa</anchor>
       <arglist>(double d)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Formattable</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a1f1274bbdff02863e33b20cd9e617572</anchor>
+      <anchor>aa413410e102a512bf7837e7a5b54a537</anchor>
       <arglist>(int64_t i)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Formattable</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a15b53cb7a432a97cefbc3d319ea6b783</anchor>
+      <anchor>acafccaf12f117903756d03dd2f8c7d1c</anchor>
+      <arglist>(DateInfo &amp;&amp;d)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_I18N_API</type>
+      <name>Formattable</name>
+      <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
+      <anchor>a7a52cec7f5b19df9bbb79e94c8802db0</anchor>
       <arglist>(const Formattable *arr, int32_t len)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Formattable</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a0bc2c7dcc24d436389cb10f0b9ed5dbb</anchor>
+      <anchor>a4f180f412b32f63c01aa81bf99bb483a</anchor>
       <arglist>(const FormattableObject *obj)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~Formattable</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a547f63da663dc7ff653977d5eeca9af2</anchor>
+      <anchor>ae87dd2f96d088b86ee031d8946664403</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>icu::Formattable</type>
+      <type>U_I18N_API icu::Formattable</type>
       <name>asICUFormattable</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a5296c98b067842e9077db7830fae1323</anchor>
+      <anchor>a272acae55c48afe1ef9d32353b7871cb</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Formattable</type>
-      <name>forDate</name>
-      <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>acfecb9a0f1931423a329d4d149dc9a26</anchor>
-      <arglist>(UDate d)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static Formattable</type>
+      <type>static U_I18N_API Formattable</type>
       <name>forDecimal</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>a25566860721eb54d1af5277360169d05</anchor>
+      <anchor>a6abe29289e1888efa4bacc284f3eaccb</anchor>
       <arglist>(std::string_view number, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="friend">
-      <type>friend void</type>
+      <type>U_I18N_API friend void</type>
       <name>swap</name>
       <anchorfile>classicu_1_1message2_1_1Formattable.html</anchorfile>
-      <anchor>ad2e6c7435d15b6d574cc73f2cd1e6ded</anchor>
+      <anchor>a059ad53964c51f809829c52129324a39</anchor>
       <arglist>(Formattable &amp;f1, Formattable &amp;f2) noexcept</arglist>
     </member>
   </compound>
@@ -42768,115 +43341,115 @@
     <filename>classicu_1_1message2_1_1FormattedPlaceholder.html</filename>
     <base>icu::UObject</base>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>FormattedPlaceholder</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>a1ce840af59fb5aefe63889f48adb7bc2</anchor>
+      <anchor>a2cc674d703d7229d1a4444e703585539</anchor>
       <arglist>(const UnicodeString &amp;s)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>FormattedPlaceholder</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>a796c295d95e0bb9f885134b29bc09b7d</anchor>
+      <anchor>ab6d58ccc79fda2ecb4f5289dc7c2021d</anchor>
       <arglist>(const FormattedPlaceholder &amp;input, FormattedValue &amp;&amp;output)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>FormattedPlaceholder</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>aca853938ba148c0744397e0f7fad9a92</anchor>
+      <anchor>a0510c3d85635422cddd89219fabdf7f3</anchor>
       <arglist>(const FormattedPlaceholder &amp;input, FunctionOptions &amp;&amp;opts, FormattedValue &amp;&amp;output)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>FormattedPlaceholder</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>abc2ac41ba937c582b4235baf12e077df</anchor>
+      <anchor>a986d3a21025cd80ea91c65c40103f500</anchor>
       <arglist>(const Formattable &amp;input, const UnicodeString &amp;fb)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>FormattedPlaceholder</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>a4c04b7275e2136a2612e9bc5f596b944</anchor>
+      <anchor>af68c252c8919eea7bba022230941eac9</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>const message2::Formattable &amp;</type>
+      <type>U_I18N_API const message2::Formattable &amp;</type>
       <name>asFormattable</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>afa644fb8bdd1ba876d278a6c38aba1d8</anchor>
+      <anchor>a462f61d5e436c28eb6d06ccf202f32dd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>isFallback</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>ab3f67d45cd645b7bf4f964717fde52b9</anchor>
+      <anchor>a69391bc5579f1a9325053fec4beb4e4c</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>isNullOperand</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>a62acf50b54e9bf10c4a16f2b59b8c21f</anchor>
+      <anchor>af3b3f05fd3521d51f28b824b2c05254a</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>isEvaluated</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>a5743101090c167d8f0c268929dd64851</anchor>
+      <anchor>a81bcf5d48296880dce7cd66b9a331c11</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>canFormat</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>ac69f080475f7c1aa9396e2576cfdf170</anchor>
+      <anchor>af36163ff4d5bac9636be52836ce9b948</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getFallback</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>a09268825b69185711ad15a61cf1722e1</anchor>
+      <anchor>ab79efbcd2af497652bfb9ff1524cda94</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const FunctionOptions &amp;</type>
+      <type>U_I18N_API const FunctionOptions &amp;</type>
       <name>options</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>ab69ff18b4544eee78c136482cdb599ca</anchor>
+      <anchor>a9d66891fa88d52cf2a04a2cbe82115a9</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const FormattedValue &amp;</type>
+      <type>U_I18N_API const FormattedValue &amp;</type>
       <name>output</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>adbc989706a26ba27a0d0417890f11692</anchor>
+      <anchor>ac473ceffac410d7e359a70bb94c0d5c1</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>FormattedPlaceholder &amp;</type>
+      <type>U_I18N_API FormattedPlaceholder &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>ab04b291dcfc982fbb668e4beb01aa502</anchor>
+      <anchor>a6d972a4873e46c66dd293b08ea230b50</anchor>
       <arglist>(FormattedPlaceholder &amp;&amp;) noexcept</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>FormattedPlaceholder</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>a2e38d185acff65e8a19eaf88ec2e7aca</anchor>
+      <anchor>a6c0fbe1c0ef21a0f54da894b63cd2f67</anchor>
       <arglist>(FormattedPlaceholder &amp;&amp;other)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>formatToString</name>
       <anchorfile>classicu_1_1message2_1_1FormattedPlaceholder.html</anchorfile>
-      <anchor>a4564118670262e7fa873ed315c20d6b0</anchor>
+      <anchor>a3694e93d05169270139dd857e6e72600</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;status) const</arglist>
     </member>
   </compound>
@@ -43981,6 +44554,16 @@
       <arglist>(int32_t minInt)</arglist>
     </member>
   </compound>
+  <compound kind="struct">
+    <name>U_HEADER_ONLY_NAMESPACE::prv::is_basic_string_view</name>
+    <filename>structU__HEADER__ONLY__NAMESPACE_1_1prv_1_1is__basic__string__view.html</filename>
+    <templarg></templarg>
+  </compound>
+  <compound kind="struct">
+    <name>U_HEADER_ONLY_NAMESPACE::prv::is_basic_string_view&lt; std::basic_string_view&lt; Args... &gt; &gt;</name>
+    <filename>structU__HEADER__ONLY__NAMESPACE_1_1prv_1_1is__basic__string__view_3_01std_1_1basic__string__view_3_01Args_8_8_8_01_4_01_4.html</filename>
+    <templarg>Args</templarg>
+  </compound>
   <compound kind="class">
     <name>icu::BytesTrie::Iterator</name>
     <filename>classicu_1_1BytesTrie_1_1Iterator.html</filename>
@@ -44321,73 +44904,73 @@
     <filename>classicu_1_1message2_1_1data__model_1_1Key.html</filename>
     <base>icu::UObject</base>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isWildcard</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Key.html</anchorfile>
-      <anchor>a3e0a0fcb4775e3324e9fa47fa3a09cfa</anchor>
+      <anchor>a60ccc18f447fcc427cbd7ec7332f4bb2</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const Literal &amp;</type>
+      <type>U_I18N_API const Literal &amp;</type>
       <name>asLiteral</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Key.html</anchorfile>
-      <anchor>a4c7c754023796897f24a13a86923fb03</anchor>
+      <anchor>a061694eede7627edc02a5a32aae5ca5e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Key</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Key.html</anchorfile>
-      <anchor>a2b3df131ace84d85284a2a5043829cd7</anchor>
+      <anchor>aabc99064ded10502a675d6d91ef2cf32</anchor>
       <arglist>(const Key &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Key</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Key.html</anchorfile>
-      <anchor>a610d2169401ac2ac6bab28782a4680b8</anchor>
+      <anchor>ad8324c38380ce975cd231e3474ed3e08</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Key</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Key.html</anchorfile>
-      <anchor>a60e110f93b433548c61f94b2638ab94e</anchor>
+      <anchor>a9f44246f87b7b042056d6e9dce2c0787</anchor>
       <arglist>(const Literal &amp;lit)</arglist>
     </member>
     <member kind="function">
-      <type>Key &amp;</type>
+      <type>U_I18N_API Key &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Key.html</anchorfile>
-      <anchor>a443c084bc5f33437a860bc4a1fe6e9a5</anchor>
+      <anchor>a4e98e381aba8137792feb46f0dc905de</anchor>
       <arglist>(Key) noexcept</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator&lt;</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Key.html</anchorfile>
-      <anchor>a6392f85b562b7659f5d5f01fbc4f1791</anchor>
+      <anchor>a4c11e28de4fdd8b0dc14a9e5b4b3f73b</anchor>
       <arglist>(const Key &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Key.html</anchorfile>
-      <anchor>a6cb9181ce79c0765249c5f5f953e3d63</anchor>
+      <anchor>a38ffdded7d246f6a816c91e9cdb80e3e</anchor>
       <arglist>(const Key &amp;other) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~Key</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Key.html</anchorfile>
-      <anchor>a510e66a80001308ce80e4f55cb2ab404</anchor>
+      <anchor>a51ac62750a2ed424cbfc4cb1d2cdf744</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="friend">
-      <type>friend void</type>
+      <type>U_I18N_API friend void</type>
       <name>swap</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Key.html</anchorfile>
-      <anchor>abe22260eb719343c6a277b39dc94d053</anchor>
+      <anchor>abff2cc9429eac65fc8078b86269a4f00</anchor>
       <arglist>(Key &amp;k1, Key &amp;k2) noexcept</arglist>
     </member>
   </compound>
@@ -45208,80 +45791,80 @@
     <class kind="class">icu::Locale::Iterator</class>
     <class kind="class">icu::Locale::RangeIterator</class>
     <member kind="function">
-      <type></type>
+      <type>U_COMMON_API</type>
       <name>Locale</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a2675e8918f9885a74649c4ff625f51bd</anchor>
+      <anchor>a4d6dba3eda267e0b0f8c2b97e5a4c3ca</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_COMMON_API</type>
       <name>Locale</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a51e8495355dee3744a3640dac36ce7fe</anchor>
+      <anchor>a39d41ac1a521ac96eb09ced3df4d8f0b</anchor>
       <arglist>(const char *language, const char *country=nullptr, const char *variant=nullptr, const char *keywordsAndValues=nullptr)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_COMMON_API</type>
       <name>Locale</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>abdbc24cada37a35c661a0264c140073e</anchor>
+      <anchor>ac538cd5411613313b9ce540a9a219656</anchor>
       <arglist>(const Locale &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_COMMON_API</type>
       <name>Locale</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>afd675b64153ba02e76dad8284be030a8</anchor>
+      <anchor>a818a4df5fc19689dc2ba46191c301cfb</anchor>
       <arglist>(Locale &amp;&amp;other) noexcept</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_COMMON_API</type>
       <name>~Locale</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a654d1c1020597b62a3347ef15fda00ef</anchor>
+      <anchor>ae46a2672d3c4ade53ad96a9973077628</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>Locale &amp;</type>
+      <type>U_COMMON_API Locale &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a9780c55dc1bb3a3e065b8e7c0a18d52f</anchor>
+      <anchor>a77c8e5aacdfe6dfdafd62c81aafc423f</anchor>
       <arglist>(const Locale &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type>Locale &amp;</type>
+      <type>U_COMMON_API Locale &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a49adc0a16aa6489f2edfdd74e3e65f81</anchor>
+      <anchor>aaa8165bb2ff5419e66172c66113f509a</anchor>
       <arglist>(Locale &amp;&amp;other) noexcept</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_COMMON_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a7fc7f59eed1990ed246c5b01e99ba9c0</anchor>
+      <anchor>a6e7bb6a509117e25fa435e3737b3982c</anchor>
       <arglist>(const Locale &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_COMMON_API bool</type>
       <name>operator!=</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a9423f4eb4b671eec3d98c26ec923351e</anchor>
+      <anchor>add43ed7e301af12e826e65b57e8e7a48</anchor>
       <arglist>(const Locale &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>Locale *</type>
+      <type>U_COMMON_API Locale *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a26e1b7a9f1377d52d2d78f5509afbfce</anchor>
+      <anchor>a15fb79aa89b3aaef0bec85ed711db45d</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>toLanguageTag</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a8f3be71ad2273a23d8ad237b77774bd9</anchor>
+      <anchor>a1d5e0cbd5bdcd57589c045bf60425a5f</anchor>
       <arglist>(ByteSink &amp;sink, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
@@ -45292,80 +45875,80 @@
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_COMMON_API const char *</type>
       <name>getLanguage</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>af2485515cb9df4e353da1727e02774f1</anchor>
+      <anchor>a071717bc3c35a0aa79aefbc1cbd6a79f</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_COMMON_API const char *</type>
       <name>getScript</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a5f3fc950f6d1315953427dac705272f4</anchor>
+      <anchor>af396f116bcbeb0eda5ca1d50a3e37bb4</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_COMMON_API const char *</type>
       <name>getCountry</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>ae0e34de2b43dbc5588fbfcd95ae94155</anchor>
+      <anchor>aeda39a47db1e3cf71620109d24566548</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_COMMON_API const char *</type>
       <name>getVariant</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a7a87accf553548ba91a68ef8037dddde</anchor>
+      <anchor>afa67e4fb1d177560fa7ec70952e7411e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_COMMON_API const char *</type>
       <name>getName</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a90270d1498b534f04d9eb4fbe307b647</anchor>
+      <anchor>a753e028aaf69b0594697568701b53726</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_COMMON_API const char *</type>
       <name>getBaseName</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a9162df9e38e589b286fc54512bf93454</anchor>
+      <anchor>a9e91c7ffb30d1c087df37893eb823cdf</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>addLikelySubtags</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a974d212572d7fc61a0579f820100a8f6</anchor>
+      <anchor>ad67a64a9e5e9ef55ffce593f07a50d56</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>minimizeSubtags</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a0638620f0b0c25aad55539f14f739244</anchor>
+      <anchor>a3b36d827045af029fe2e34e1bc207d18</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>canonicalize</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a9e8ce3f1e540a132e9f8c754839f8ded</anchor>
+      <anchor>aaaaa7982a4b1f4cdc0f3d21478b4ddaf</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>StringEnumeration *</type>
+      <type>U_COMMON_API StringEnumeration *</type>
       <name>createKeywords</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a820f8ff8c15f2b721f6974d376c24a07</anchor>
+      <anchor>a80952a9efc92cc93b4f83fd6617ad4b6</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>StringEnumeration *</type>
+      <type>U_COMMON_API StringEnumeration *</type>
       <name>createUnicodeKeywords</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a8ed0780b6792122c853de20e480e89b8</anchor>
+      <anchor>a285d1e6ba1b1a2ee7c2d7d2b50b53944</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
@@ -45383,17 +45966,17 @@
       <arglist>(OutputIterator iterator, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_COMMON_API int32_t</type>
       <name>getKeywordValue</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a6a504ee55c8f74fff0813921ae2e0330</anchor>
+      <anchor>a0c4e7cc016c6684500d74fa8be062f57</anchor>
       <arglist>(const char *keywordName, char *buffer, int32_t bufferCapacity, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>getKeywordValue</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>aef599483560e19d4f0ac8a65e0a4ddd4</anchor>
+      <anchor>a6c9da0816886adc3e9a3e97a1bcd623e</anchor>
       <arglist>(StringPiece keywordName, ByteSink &amp;sink, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
@@ -45404,10 +45987,10 @@
       <arglist>(StringPiece keywordName, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>getUnicodeKeywordValue</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>ac65d88cb93b7aa6d16c72cf5b1851a5c</anchor>
+      <anchor>a0e5cb8fd6914cb1a274df7dcd992db4b</anchor>
       <arglist>(StringPiece keywordName, ByteSink &amp;sink, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
@@ -45418,388 +46001,388 @@
       <arglist>(StringPiece keywordName, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>setKeywordValue</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a335e03772c44908f2d00dc6c23623bb6</anchor>
+      <anchor>ada51d0f85626352d6fcaaddfc38b92e9</anchor>
       <arglist>(const char *keywordName, const char *keywordValue, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>setKeywordValue</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a8bd41ffabf473aaebae57f968cbf62f8</anchor>
+      <anchor>a9550f3f5ba3c1674f203207f2cd391f6</anchor>
       <arglist>(StringPiece keywordName, StringPiece keywordValue, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>setUnicodeKeywordValue</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a8e93668bb15bf79777a0f7f2fff06c5a</anchor>
+      <anchor>ae9f53718b63b72be84ce96aa3a0b0abd</anchor>
       <arglist>(StringPiece keywordName, StringPiece keywordValue, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_COMMON_API const char *</type>
       <name>getISO3Language</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>ac625290b3457d3e3f820c38fbbf67d23</anchor>
+      <anchor>a31365cb3e8f5a0e4c4c43453d9c3908c</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_COMMON_API const char *</type>
       <name>getISO3Country</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a5b22c149844f507a2c5e08a57cfa0cb5</anchor>
+      <anchor>a55eda06ef471b74dc407415ae2674dcd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>uint32_t</type>
+      <type>U_COMMON_API uint32_t</type>
       <name>getLCID</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>aac8ba427a69dca3618bd8a334860b98d</anchor>
+      <anchor>a7f55f3be3bb382bd9d852cb19154961a</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_COMMON_API UBool</type>
       <name>isRightToLeft</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>add806eb089dba37d5d7de725886b841b</anchor>
+      <anchor>ad395bc4094049e00bd213b260209cd10</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayLanguage</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a8bb01ec355f3b49aa0ce2d846f9b7373</anchor>
+      <anchor>a6847111339fb2228dabdfcc43c353274</anchor>
       <arglist>(UnicodeString &amp;dispLang) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayLanguage</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a4b0dd369e9ff8c743d4cf3c06073b06f</anchor>
+      <anchor>a98a97467d2fd60758bd5db4bef0d6405</anchor>
       <arglist>(const Locale &amp;displayLocale, UnicodeString &amp;dispLang) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayScript</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>ad2b0f13f18073c1bfa81399b04df18a5</anchor>
+      <anchor>a5ab4455134a10338bef3bf970c51968e</anchor>
       <arglist>(UnicodeString &amp;dispScript) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayScript</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>ac74d9797fd3ac9404b56d9bb41dba89d</anchor>
+      <anchor>a80f819e0bde43b3da1535b4fbc3b2cfb</anchor>
       <arglist>(const Locale &amp;displayLocale, UnicodeString &amp;dispScript) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayCountry</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a37c7c7d02f01941e66f079b047bffa11</anchor>
+      <anchor>a8cad06f199baa154baac878d7269f173</anchor>
       <arglist>(UnicodeString &amp;dispCountry) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayCountry</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a20b57681f1027f32c8db20f81ccd0afa</anchor>
+      <anchor>a555a9765298d8d64a31a1da0565fcc85</anchor>
       <arglist>(const Locale &amp;displayLocale, UnicodeString &amp;dispCountry) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayVariant</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>ac5bafbf7ecc3f3910434baaf92de39d4</anchor>
+      <anchor>a27fe404d2b1f42d91bc03c3e986ab0e8</anchor>
       <arglist>(UnicodeString &amp;dispVar) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayVariant</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>aef67f43c27f58c9768ea0a6efec4f433</anchor>
+      <anchor>a90de46f5c8f1383479012ed3e60eb8b4</anchor>
       <arglist>(const Locale &amp;displayLocale, UnicodeString &amp;dispVar) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayName</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a61def321a9cfd9904b59e3f1897f835e</anchor>
+      <anchor>a1198b6da1923c027ad237c4dc1d06e69</anchor>
       <arglist>(UnicodeString &amp;name) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_COMMON_API UnicodeString &amp;</type>
       <name>getDisplayName</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a9255df735dfbc5af6b2883edc4ca4f15</anchor>
+      <anchor>adcc7f94e0566afe45de56453d1505ae9</anchor>
       <arglist>(const Locale &amp;displayLocale, UnicodeString &amp;name) const</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_COMMON_API int32_t</type>
       <name>hashCode</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>aaa0f4a15762d8d82702c855bc94fcaaf</anchor>
+      <anchor>a38704daca7fdab0d25f2605681fb1ec2</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>setToBogus</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a96f224077ded97bc3e778e79adaa7662</anchor>
+      <anchor>aaf90ec088bd8d0bc8f7f2c63f3cb108b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_COMMON_API UBool</type>
       <name>isBogus</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>afdb109f19bab35f861cd62a2d0eb7269</anchor>
+      <anchor>a0b08551a30cd1580025c08047562f704</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_COMMON_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>af41aa151b9f96d468621e7d2842f51ff</anchor>
+      <anchor>ad4e662bf8b45bfd356f43bbedf6a47d7</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getRoot</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a88bd0745b94c7c7609a97637984b87fb</anchor>
+      <anchor>a7a1189e9f9765c4bba2054222591a8ec</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getEnglish</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a6cda88d259f1d221037b2dc7aaf19930</anchor>
+      <anchor>a79ad986c15410b4db14e575ac3679fc8</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getFrench</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a3eec7180cfb740a6f1fbd57195104fb0</anchor>
+      <anchor>a66d0ef92e931fc57e8683c15fb80d802</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getGerman</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a055a30dfa48613be29f21249db70cfb8</anchor>
+      <anchor>a4030055056c980617b2fcaa8707c7992</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getItalian</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a59e6dba94882c6e3da59216d392cf201</anchor>
+      <anchor>a25fc5a3e2557b6b32e60e8179b533810</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getJapanese</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a9a794ca3a134bf6e7b85c912b765a130</anchor>
+      <anchor>a25efa1dbfd67e55cb182cd7e83422d46</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getKorean</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a9f4365fbf7299d2e645597d9ae3dfc29</anchor>
+      <anchor>afc2d6fbc015f9893ab4b5249d14692c3</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getChinese</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a52cd2e203f93fe6c86bfd25986286a53</anchor>
+      <anchor>a35b22205b9f5e4490fa0a24fcfd01925</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getSimplifiedChinese</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>ad7f3c86a9397a1c0cbf5a739b1a56a83</anchor>
+      <anchor>abd2c01574f1929b369057496b1b08418</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getTraditionalChinese</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a6bb7d475375670f5fb61b1f148d95794</anchor>
+      <anchor>a9cd566d7ca33f5819225990e4e3d382c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getFrance</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>af2b1782e846bdad555d140467df524bf</anchor>
+      <anchor>a3d42202adb55c8b0faa31320b71a3c53</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getGermany</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>abfd503aeaeed719902cb3242dbe06ad0</anchor>
+      <anchor>a907f9e469cdc33894b82cce36c0bf8e4</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getItaly</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a881432e327ba92e13649f3ac96d96451</anchor>
+      <anchor>a29394d7f1a69a6857dad3e0f4c587576</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getJapan</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>aa99cc19ab45b06a8cae216191c2c2285</anchor>
+      <anchor>a05cbdb57bb474e70850da2573f02ab61</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getKorea</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a8aa0b4eeb4beb7105e86366327002d58</anchor>
+      <anchor>ace509b468a0e6bab8e2660ecbb298c14</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getChina</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a168f00a77e2b854d1ac36d8d7278cb92</anchor>
+      <anchor>ab1fb7d10bb951923329c171756dcbac8</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getPRC</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a61c4e3c78f8034bd550c1a38d939dc25</anchor>
+      <anchor>a2b69190d88d621964be0cad353236b5b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getTaiwan</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>af71e303d13a07ea852492e2a53c06e81</anchor>
+      <anchor>ad1dcc51dfde4d0a912c0ef418b327b1e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getUK</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a9b47729bfbc72f6c409ef6e5e3bae7ed</anchor>
+      <anchor>a7efc41aa866b886136bccb5de3c97a8f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getUS</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a5b699f949d81ee94ff5f10cb10fcff3e</anchor>
+      <anchor>a0bc64c6ce80b19b423688f95a430fb59</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getCanada</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>ad960cd1a8424e9056c297c6388cb7549</anchor>
+      <anchor>a89887659d5e04d15dd8e5ffe8127d39a</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getCanadaFrench</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a85b79b52195008a20881db39acb75710</anchor>
+      <anchor>a15fcdc61a41a7638bc05736c57042a5b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale &amp;</type>
+      <type>static U_COMMON_API const Locale &amp;</type>
       <name>getDefault</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>aecbcfddec8afb937d1a0254c77c85018</anchor>
+      <anchor>a972d222527dd3e6b1f02f86440522c20</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static void</type>
+      <type>static U_COMMON_API void</type>
       <name>setDefault</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a6a9edf0b1deb14ecbc8cedaae82a07ce</anchor>
+      <anchor>ace1627569ce3fd842a270812c7b66801</anchor>
       <arglist>(const Locale &amp;newLocale, UErrorCode &amp;success)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Locale</type>
+      <type>static U_COMMON_API Locale</type>
       <name>forLanguageTag</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>af76028775e37fd75a30209aaede551e2</anchor>
+      <anchor>a09236d5fcfd74e81c91ba4d3ed1c0d09</anchor>
       <arglist>(StringPiece tag, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Locale</type>
+      <type>static U_COMMON_API Locale</type>
       <name>createFromName</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a11f078bd549698d012be82654925614a</anchor>
+      <anchor>af66bcc0dc01f1bdbfbabdbd205d6d14c</anchor>
       <arglist>(const char *name)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Locale</type>
+      <type>static U_COMMON_API Locale</type>
       <name>createFromName</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a73f65a28ec1ef4a5e7a5189889207f9a</anchor>
+      <anchor>a182a5be32f45999bb3ed9857b723d049</anchor>
       <arglist>(StringPiece name)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static Locale</type>
+      <type>static U_COMMON_API Locale</type>
       <name>createCanonical</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a1e27231da1d9e7bdf0a2f106599e8e79</anchor>
+      <anchor>a343b6dbfe24084058359ac070f92f9c3</anchor>
       <arglist>(const char *name)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const Locale *</type>
+      <type>static U_COMMON_API const Locale *</type>
       <name>getAvailableLocales</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a073d70df8c9c8d119c0d42d70de24137</anchor>
+      <anchor>a491d7a03540f86f38e65826b3b749210</anchor>
       <arglist>(int32_t &amp;count)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const char *const  *</type>
+      <type>static U_COMMON_API const char *const  *</type>
       <name>getISOCountries</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a0d7ad0dea54a784cefd1ff35be55c648</anchor>
+      <anchor>a230b45dd99d29b5c1af140d8d628ac46</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static const char *const  *</type>
+      <type>static U_COMMON_API const char *const  *</type>
       <name>getISOLanguages</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a571cdf49b45b8f219de26749b9c7be18</anchor>
+      <anchor>a322958fa5bfa9b955a276253e1423bab</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_COMMON_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a262572b67b518c07034b3f386a41bf76</anchor>
+      <anchor>a4fd085a68af9dfc74554709a7c44d504</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>setFromPOSIXID</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>ae42b6a9c1bae0656ba4a6703c1cafc81</anchor>
+      <anchor>a6a84183ec8935eadd59382584c1c0c67</anchor>
       <arglist>(const char *posixID)</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
+      <type>U_COMMON_API void</type>
       <name>minimizeSubtags</name>
       <anchorfile>classicu_1_1Locale.html</anchorfile>
-      <anchor>a088d207ccac532fa09322311432aa8e3</anchor>
+      <anchor>a11e94e139d50c923b2eb044bc662eab9</anchor>
       <arglist>(bool favorScript, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="friend" protection="private">
@@ -46341,73 +46924,73 @@
     <base>NumberRangeFormatterSettings&lt; LocalizedNumberRangeFormatter &gt;</base>
     <base>icu::UMemory</base>
     <member kind="function">
-      <type>FormattedNumberRange</type>
+      <type>U_I18N_API FormattedNumberRange</type>
       <name>formatFormattableRange</name>
       <anchorfile>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</anchorfile>
-      <anchor>a17b0fa2a850e1ca3f29beb4d05c254f7</anchor>
+      <anchor>abda843e03ef9b01ce644509dedaba26b</anchor>
       <arglist>(const Formattable &amp;first, const Formattable &amp;second, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnlocalizedNumberRangeFormatter</type>
+      <type>U_I18N_API UnlocalizedNumberRangeFormatter</type>
       <name>withoutLocale</name>
       <anchorfile>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</anchorfile>
-      <anchor>aff595727deb5f3b12ddbce9c171bc4c9</anchor>
+      <anchor>ac6ba4fa8d407bb2624afa90cbe2cc762</anchor>
       <arglist>() const &amp;</arglist>
     </member>
     <member kind="function">
-      <type>UnlocalizedNumberRangeFormatter</type>
+      <type>U_I18N_API UnlocalizedNumberRangeFormatter</type>
       <name>withoutLocale</name>
       <anchorfile>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</anchorfile>
-      <anchor>a9f854fab3f331c6a36fa30a50c638de9</anchor>
+      <anchor>a0bbd3dddcdd53b79a5bf24f8f595d594</anchor>
       <arglist>() &amp;&amp;</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>LocalizedNumberRangeFormatter</name>
       <anchorfile>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</anchorfile>
-      <anchor>a710b2f77320564f320f4fdcf1e3f2653</anchor>
+      <anchor>ad7cf8b11f168e0496a33bfdd92f9aabb</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>LocalizedNumberRangeFormatter</name>
       <anchorfile>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</anchorfile>
-      <anchor>a7bcea3e4609a0f8caf6449d5adb98a47</anchor>
+      <anchor>ac2ec8ef30633fe119db057fe39080643</anchor>
       <arglist>(const LocalizedNumberRangeFormatter &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>LocalizedNumberRangeFormatter</name>
       <anchorfile>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</anchorfile>
-      <anchor>af54b8641aabc7898a422619af5410469</anchor>
+      <anchor>a442e790a7ef76e1f97b2511bda3d77d7</anchor>
       <arglist>(LocalizedNumberRangeFormatter &amp;&amp;src) noexcept</arglist>
     </member>
     <member kind="function">
-      <type>LocalizedNumberRangeFormatter &amp;</type>
+      <type>U_I18N_API LocalizedNumberRangeFormatter &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</anchorfile>
-      <anchor>a472f9c687fd8942be7b3aad124850ce8</anchor>
+      <anchor>ac1c7ba2da540b16f5e91e4b070c65903</anchor>
       <arglist>(const LocalizedNumberRangeFormatter &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type>LocalizedNumberRangeFormatter &amp;</type>
+      <type>U_I18N_API LocalizedNumberRangeFormatter &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</anchorfile>
-      <anchor>a7d4a9f093adcac336c568d9316603d9d</anchor>
+      <anchor>ae62a452c8a9c1051ae84f6b70e070051</anchor>
       <arglist>(LocalizedNumberRangeFormatter &amp;&amp;src) noexcept</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>formatImpl</name>
       <anchorfile>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</anchorfile>
-      <anchor>ab88a15d97b6825286682a669fe295b54</anchor>
+      <anchor>ac36d92794f19e1227b155bc97720e63e</anchor>
       <arglist>(impl::UFormattedNumberRangeData &amp;results, bool equalBeforeRounding, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>~LocalizedNumberRangeFormatter</name>
       <anchorfile>classicu_1_1number_1_1LocalizedNumberRangeFormatter.html</anchorfile>
-      <anchor>ad8fb48969915e303c1df19a223a14f6e</anchor>
+      <anchor>abecc1c64929f178734d4f4cf96e01c00</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -46791,10 +47374,10 @@
     <filename>structicu_1_1number_1_1impl_1_1MacroProps.html</filename>
     <base>icu::UMemory</base>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>copyErrorTo</name>
       <anchorfile>structicu_1_1number_1_1impl_1_1MacroProps.html</anchorfile>
-      <anchor>a0857bd93bd2fff0e854069da84ac5426</anchor>
+      <anchor>a344fdc91bc09de1762a4626470da8f34</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="variable">
@@ -47253,38 +47836,38 @@
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parseObject</name>
       <anchorfile>classicu_1_1MeasureFormat.html</anchorfile>
-      <anchor>a0cd9182a39df7f2d26efc51b19517d1f</anchor>
+      <anchor>a13421d536051a8b88387db9e05598ab2</anchor>
       <arglist>(const UnicodeString &amp;source, Formattable &amp;result, ParsePosition &amp;parse_pos) const=0</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>parseObject</name>
       <anchorfile>classicu_1_1MeasureFormat.html</anchorfile>
-      <anchor>ac8854eba45f8c57f22ff994b8e8099ae</anchor>
+      <anchor>a02f66bf67217d0370f1068d10a393660</anchor>
       <arglist>(const UnicodeString &amp;source, Formattable &amp;result, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1MeasureFormat.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1MeasureFormat.html</anchorfile>
-      <anchor>a218d385a5aaf02005c0f7af9d4e00b74</anchor>
+      <anchor>af360df0f7c3db4ebaa9cf95c4e532f93</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const=0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1MeasureFormat.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
@@ -47679,6 +48262,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createSteradian</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a2a83fc5b946ff089f66c1be87a633bbc</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getSteradian</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aba2f8b31aeff44c0ba97fb58ed388719</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createAcre</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a8d336c2ed6ec8e61a4e515ecf7710530</anchor>
@@ -47689,6 +48286,34 @@
       <name>getAcre</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>ae8e054b0a907194e619d603541d15f55</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createBuJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>afccf5befca907b08d38bb3b2a9dbf639</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getBuJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a41abeb43ae664564d54ed83b9b56877d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createCho</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aa57560fb88c63e15d10a3f2a5b518b03</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getCho</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a105f644cb8e93909f12d72c3e97b4f1c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -47717,6 +48342,20 @@
       <name>getHectare</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a43a71f13d210ab8010272bb7bf7f34d5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createSeJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a46891fd8727a398999945895fab7faef</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getSeJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>af816d5879456995c717d85b4969346eb</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -47847,6 +48486,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createKatal</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a5203d4f194b070ed5ef1dd84445acb2d</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getKatal</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a0b5fb2f78f18ae0fb0dcffdd387cd753</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createMilligramOfglucosePerDeciliter</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a2ed977e7789be4bb024df475f376414d</anchor>
@@ -47903,6 +48556,76 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createOfglucose</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a7842d1bd913cdf31b45bb4fe535ff57b</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getOfglucose</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aa3a76b64c753033ee241275468f493f9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createPart</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>af1999c5bc68334ed72d06efa7cd95dbb</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getPart</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a10ede57841360f0f6f0c349b24914145</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createPartPer1E6</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a61e67aea48ad309bd597db56f51954c4</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getPartPer1E6</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a3f67dad7b5c3c79ce33001b57eec0b91</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createPartPerMillion</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a69ce9ded6dc1fa5af9cc48fd76bb0fb9</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getPartPerMillion</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a50d49d0564a4253d6dc7f5ad2cc5f163</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createPartPer1E9</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a97199fd24d0005843847c9419405b912</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getPartPer1E9</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a4aacb8ae9f8c6b6158387658afd029c0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createPercent</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a349a06f1e79447caf1ed7aa612a76478</anchor>
@@ -47931,20 +48654,6 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
-      <name>createPartPerMillion</name>
-      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
-      <anchor>a69ce9ded6dc1fa5af9cc48fd76bb0fb9</anchor>
-      <arglist>(UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static MeasureUnit</type>
-      <name>getPartPerMillion</name>
-      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
-      <anchor>a50d49d0564a4253d6dc7f5ad2cc5f163</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static MeasureUnit *</type>
       <name>createPermyriad</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>acf83c01b3624747d72e1b6d3b355a506</anchor>
@@ -47955,20 +48664,6 @@
       <name>getPermyriad</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a185d9740a8fe6db9dcf0870e8a1e5af9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static MeasureUnit *</type>
-      <name>createPortionPer1E9</name>
-      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
-      <anchor>a238fc381056b1a1816f82b66a5a1c6fe</anchor>
-      <arglist>(UErrorCode &amp;status)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static MeasureUnit</type>
-      <name>getPortionPer1E9</name>
-      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
-      <anchor>a5cf15b8aaaa973d8dc20f8c80e413be2</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -48239,6 +48934,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createFortnight</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a580952fc06ad538b0bb783cb0616fb0a</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getFortnight</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a055f1ff3374d710e569a06df97103567</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createHour</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a4532d7e7e7fc00946b0623eb7ad1c771</anchor>
@@ -48449,6 +49158,48 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createCoulomb</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a2aae322cab9ade04d5170a0cc14f155b</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getCoulomb</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a86ae2ea76f4587bec0fb93af66bd084d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createFarad</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a705f4e5db0cd5ceda5286a9d1df90bbf</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getFarad</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a34e221064ee016c9656dae73d4f6402a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createHenry</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a9e63d4911fe462d31bf93a4a3bfad377</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getHenry</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a5b3c76325f80b1bd545ec52ee53c9335</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createMilliampere</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>ac0c8cf713ab0da1455f5b6572a0a4cbd</anchor>
@@ -48477,6 +49228,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createSiemens</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ac2af5776a2178d49e18f13fa52a6d82c</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getSiemens</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a1e0ef54e0be9b659bc24751e3bee8985</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createVolt</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>ae88584641b4e7ced9134c1482759ba06</anchor>
@@ -48487,6 +49252,20 @@
       <name>getVolt</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a3f4ce53c96b64895ea1e788173139b1f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createBecquerel</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a625f7341e3bab434fd4d8634381f6fc6</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getBecquerel</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a5a5e394c693ded14bd0c46c4b79166e3</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -48505,6 +49284,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createBritishThermalUnitIt</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a5dd912370339b91db0e1ff7c8bcc09b1</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getBritishThermalUnitIt</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a6e28ec97812d950dd6362d9fe587817e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createCalorie</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>ac33a5571d901d308019000798d2c5938</anchor>
@@ -48515,6 +49308,20 @@
       <name>getCalorie</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a22f916e359d58925ced586baf2f6b2da</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createCalorieIt</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a2b8a04ab4177f06348b3b92dbbbf1d1c</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getCalorieIt</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a28ce073d838bd10f6e59ad5873d41359</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -48543,6 +49350,20 @@
       <name>getFoodcalorie</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a29ba4ca8c1d83dc3f1769a3b875a2832</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createGray</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a8d575cb3dbf705723cb968fb72c1ba18</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getGray</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a57ac9bb0d2098db3ff63091b3c8b85c9</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -48603,6 +49424,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createSievert</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a247c8c9e024e873f34508455cb24cebc</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getSievert</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a02cc124e27ace75245f4c1dbdd27f389</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createThermUs</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a365876028e03a3b58b6ca810a0383834</anchor>
@@ -48613,6 +49448,20 @@
       <name>getThermUs</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>af6daa19b67f2f525fedcc7597036660e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createKilogramForce</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a32b5d57ebf2de6c59493c38a116faf57</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getKilogramForce</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a03aea1986ce88b6ceb1ce8a240f210b9</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -48855,6 +49704,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createChain</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ac687a8e1a0cd4c4797369b54270c70b9</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getChain</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a6fddb0e639fd379bad0d8ce183f38692</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createDecimeter</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a778459b0e219cbd006cd87fcd55d6096</anchor>
@@ -48935,6 +49798,34 @@
       <name>getInch</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a00a82e1023e57e4904100e12df6801bc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createJoJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ab525396f644012c3e4f441aacf0544db</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getJoJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a5b57c860f9fbdb18728381be795c894a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createKen</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ac5a4150f365fc4ef3e6370f9937c1fb7</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getKen</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a160078d6ba52fa81d030783bf943990d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -49107,6 +49998,76 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createRiJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aae48b86110b14671c34390778713bac9</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getRiJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aa6ef0a6327815a700235e49c7135a668</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createRin</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a6a6b3d808a6f3f04991ffde07bb1c993</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getRin</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>abb589ab7e151ed81af00b56609ba05aa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createRod</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a2d64a47a9d12538bead49dcab00fdca1</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getRod</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>adbdbc00fb79a9fe6afc52b8b6e5f7a7a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createShakuCloth</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a4c36962b611f3ea8769078d00390009b</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getShakuCloth</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a546438c482deca9ca6461b641c51a7a6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createShakuLength</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a614b09797723044cde4e44ddd120c9b9</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getShakuLength</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ae1b851b1c83d877a5870d328ed4bd105</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createSolarRadius</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>afea93956857b7af512b3812fc5dd7988</anchor>
@@ -49117,6 +50078,20 @@
       <name>getSolarRadius</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a6ea6320158557ff7088c77fc41f6c17a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createSun</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>adf13acb8aafb32d2288bf4547826d6b4</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getSun</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a6e6b98fc53d8be23c03a99ce9f432fac</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -49191,6 +50166,34 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createTesla</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a59971e9a98023b35cf478ca4b8293b23</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getTesla</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ab1c5e268e8070b0b37ae143da6254360</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createWeber</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a15e0d75486738339a83e0e4cda2230dd</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getWeber</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>af65533f143c37ac97b3046b09de67c64</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createCarat</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a3e9e983116a7e8e213c42cf131ded51b</anchor>
@@ -49229,6 +50232,20 @@
       <name>getEarthMass</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a455aac4239053a7e80c664b9277bea04</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createFun</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ad510e9f23de40b50830960512a61c13f</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getFun</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a2f31610867f451341da85fa1e828a840</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -49341,6 +50358,20 @@
       <name>getPound</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>abb5293977b0d1fb49edfafa4a2e65321</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createSlug</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ae6b489243d8427a1dd73a8b49f979872</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getSlug</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aeba19d2b1434f09221a664260d1dec19</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -49625,6 +50656,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createOfhg</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aca7fc0db2c67b29559fcec24c2692d98</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getOfhg</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>af45b878704957d2341a9ff1318137b51</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createPascal</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>ae62f092c7853da8a0cf66e4eaa68a797</anchor>
@@ -49789,6 +50834,20 @@
       <name>getKelvin</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>adcab1d49cfd887a408eb9f0100448fea</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createRankine</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ad9721cb8751b82d0b4606d1ec5ab861e</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getRankine</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ac5a9705c3d744ba0922fc9c0968cd1d6</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -49989,6 +51048,34 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createCupImperial</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>afda67b69e8e24f20f6c79175065d123d</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getCupImperial</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ac8def13dfcc2c77913295a4631d0cc68</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createCupJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a1b72031f7f40ffe1e152a974f90a180c</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getCupJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a26ee69fc59eab670a81ded35cff16417</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createCupMetric</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a6aa5bc7e04cc45f00a0e9d25e566bd0d</anchor>
@@ -50101,6 +51188,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createFluidOunceMetric</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a66160e903828db6af9550e71e5934534</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getFluidOunceMetric</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aa4a6e4da8488a72ebf7dde8aadfc1abb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createGallon</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a9af6d26e4054bc24b9d0da56a59bae89</anchor>
@@ -50157,6 +51258,34 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createKoku</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ad662b8ecbb38b4cd5b21d8e9c143ba5e</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getKoku</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a7afd49729bb62c41ec42f5ff2a4d95d4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createKosaji</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a0b259add664ef2da97d4d2ad9841c535</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getKosaji</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a29f1a95e22c8c8f00ad615febc0d141f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createLiter</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a226c219342b99474aa852144d23e4cb0</anchor>
@@ -50199,6 +51328,20 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createOsaji</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ac5d28c266f426b73b5249d7bf849075b</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getOsaji</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aa30776b05130783213b34f32a6f1a633</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createPinch</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>ac77613c721bd261efe5cf3996b94d29a</anchor>
@@ -50223,6 +51366,20 @@
       <name>getPint</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>aee693a2342a0bd50ecd6d651d85e2d12</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createPintImperial</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aff321b538fefa7ce35a06d8a30dce244</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getPintImperial</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aa6440e1153463c3c77e4ad077627f81d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -50269,6 +51426,34 @@
     </member>
     <member kind="function" static="yes">
       <type>static MeasureUnit *</type>
+      <name>createSai</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a6e9c416d35cdede20d1ad8c1b75ddf8f</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getSai</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ad6b22a3e65e8841b97898c9f9d0f348f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createShaku</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>ae2789e839c9517975faada14c6e7ec89</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getShaku</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>a147f34d3558902893d8bbd0f671a6e62</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
       <name>createTablespoon</name>
       <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
       <anchor>a37050de733f333d77c534b1bfc39259b</anchor>
@@ -50295,6 +51480,20 @@
       <anchor>a5bc55388190f8036c9c37b97ddb3475e</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit *</type>
+      <name>createToJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aff916e5ff9c5d0cb2cd44742df6905d0</anchor>
+      <arglist>(UErrorCode &amp;status)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MeasureUnit</type>
+      <name>getToJp</name>
+      <anchorfile>classicu_1_1MeasureUnit.html</anchorfile>
+      <anchor>aaca197a0ba6de6fdb8d8e7a4f0e77b6c</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>initTime</name>
@@ -50315,31 +51514,31 @@
     <filename>classicu_1_1message2_1_1MessageArguments.html</filename>
     <base>icu::UObject</base>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>MessageArguments</name>
       <anchorfile>classicu_1_1message2_1_1MessageArguments.html</anchorfile>
-      <anchor>a37e01172efda0e213eb4fe93947b351f</anchor>
+      <anchor>a56db8342cfdd965a2606786f1579f681</anchor>
       <arglist>(const std::map&lt; UnicodeString, Formattable &gt; &amp;args, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>MessageArguments &amp;</type>
+      <type>U_I18N_API MessageArguments &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1message2_1_1MessageArguments.html</anchorfile>
-      <anchor>ae96848c85db9de3e27f9ccb1a2b45f36</anchor>
+      <anchor>a687925adac65272049c0d25d015a79aa</anchor>
       <arglist>(MessageArguments &amp;&amp;) noexcept</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>MessageArguments</name>
       <anchorfile>classicu_1_1message2_1_1MessageArguments.html</anchorfile>
-      <anchor>aa1753f45d1937c2fae1734be93cf9299</anchor>
+      <anchor>ac0df3386d9f421f17d8cb7cd7b5d564b</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~MessageArguments</name>
       <anchorfile>classicu_1_1message2_1_1MessageArguments.html</anchorfile>
-      <anchor>af048ac48280667da054fb38a51774dc8</anchor>
+      <anchor>ad9d62ef0b73f3167bb85ba04518730f8</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -50367,283 +51566,283 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>MessageFormat</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a48d1dcf631420d444632a18fbec549ea</anchor>
+      <anchor>a55fab767c30ca642443aa45dea190010</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>MessageFormat</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>ade1d7ec2841bee8b9f534633417868f2</anchor>
+      <anchor>a1ac1c068965952079ccba36cdcc733b2</anchor>
       <arglist>(const UnicodeString &amp;pattern, const Locale &amp;newLocale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>MessageFormat</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a4ee2e09d6b34ace52e58d6a2c9db99ed</anchor>
+      <anchor>ad0892c1364d5ebf39a302511a9a3c8fe</anchor>
       <arglist>(const UnicodeString &amp;pattern, const Locale &amp;newLocale, UParseError &amp;parseError, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>MessageFormat</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a71b1acd983209f1b9756d4d365d2a21f</anchor>
+      <anchor>aa39a3187719da29c098bcf3dee09fcd3</anchor>
       <arglist>(const MessageFormat &amp;)</arglist>
     </member>
     <member kind="function">
-      <type>const MessageFormat &amp;</type>
+      <type>U_I18N_API const MessageFormat &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a8d7fbf952089eb83eb61623564b83a74</anchor>
+      <anchor>ab715cb038ef31b07f0ec71ed42f4eafd</anchor>
       <arglist>(const MessageFormat &amp;)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~MessageFormat</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a7d229f822f9889aeb02c7c2b77470676</anchor>
+      <anchor>acdf1e5712a53d4df69a9dcf4abbe7aa9</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual MessageFormat *</type>
+      <type>virtual U_I18N_API MessageFormat *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a7b71aa1712a225205c647f00636e8ef5</anchor>
+      <anchor>a98de62dd3ebf5061dd47f43130c600b9</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a9600037852aeec412eee1c660f6b003c</anchor>
+      <anchor>a6064d00db579464f581ecb641eb8e249</anchor>
       <arglist>(const Format &amp;other) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setLocale</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a79c2fab22fbd865890002fbb254be3a8</anchor>
+      <anchor>ad1ec5bc6e52aaf92cd302cceac8ecc24</anchor>
       <arglist>(const Locale &amp;theLocale)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual const Locale &amp;</type>
+      <type>virtual U_I18N_API const Locale &amp;</type>
       <name>getLocale</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a5343e219da98e956dcaefce58d049a1f</anchor>
+      <anchor>aae38a73dd49669d4224a808d17c25897</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>applyPattern</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>afd0150beeea80ff8baecfa4923d16062</anchor>
+      <anchor>ace33169b308b8fb80e76e381a3f4faea</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>applyPattern</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>aea2e46c754d11a4b43b8dd9b28a48641</anchor>
+      <anchor>a9fda29f12ad247f609a7397becf85efc</anchor>
       <arglist>(const UnicodeString &amp;pattern, UParseError &amp;parseError, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>applyPattern</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a126cd4c5bf45eff292c1f8c1e838295c</anchor>
+      <anchor>adb8181ad2286eb4dd59454e86068350a</anchor>
       <arglist>(const UnicodeString &amp;pattern, UMessagePatternApostropheMode aposMode, UParseError *parseError, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UMessagePatternApostropheMode</type>
+      <type>U_I18N_API UMessagePatternApostropheMode</type>
       <name>getApostropheMode</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a5960cf8a23f16609cbf1814c4339ce57</anchor>
+      <anchor>ad6ba1a45de729ba1a9063edb58c42089</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>toPattern</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a7aea518817f142e8e918439ff1e08763</anchor>
+      <anchor>a2a485490054bfac938436981feb8b943</anchor>
       <arglist>(UnicodeString &amp;appendTo) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptFormats</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>af976a0cdbcc895b2b1070fbaf0a1d87d</anchor>
+      <anchor>a056d4eef425f4a74d4f694b06e99893e</anchor>
       <arglist>(Format **formatsToAdopt, int32_t count)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setFormats</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a55f6290d5957ae918422ec69bc998be2</anchor>
+      <anchor>a524e1b49e20c5bebd0aaf145afbd0ed0</anchor>
       <arglist>(const Format **newFormats, int32_t cnt)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptFormat</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>ac668f3151bc1f2ffe520bca31fba54dc</anchor>
+      <anchor>a6bbce9b1282d2b442909d3d641760389</anchor>
       <arglist>(int32_t formatNumber, Format *formatToAdopt)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setFormat</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a58b8e85067b73e4784eaaa5bd56a13ae</anchor>
+      <anchor>af5e88e2e09e6b3f34f1dbf97df4e0cef</anchor>
       <arglist>(int32_t formatNumber, const Format &amp;format)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual StringEnumeration *</type>
+      <type>virtual U_I18N_API StringEnumeration *</type>
       <name>getFormatNames</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a69ecc0f1e97fbeabda70c37e2b47c191</anchor>
+      <anchor>a2e1058e998efeb504b6d058af70ae706</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual Format *</type>
+      <type>virtual U_I18N_API Format *</type>
       <name>getFormat</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a227d9b60771076092f0acb979c51c8bd</anchor>
+      <anchor>ad19562b7f74defa49b96d0529377e57c</anchor>
       <arglist>(const UnicodeString &amp;formatName, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setFormat</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a93cc2e808ab0c128eaae5585384136e4</anchor>
+      <anchor>aa4bb65b0cb71bf153e3fe76da4b13932</anchor>
       <arglist>(const UnicodeString &amp;formatName, const Format &amp;format, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptFormat</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a340ad4cbe4127f11d70654b14759e701</anchor>
+      <anchor>a2c73396acc70cb08542622dabc506f13</anchor>
       <arglist>(const UnicodeString &amp;formatName, Format *formatToAdopt, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual const Format **</type>
+      <type>virtual U_I18N_API const Format **</type>
       <name>getFormats</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a90276889e2a17cbb4be50cddc7702402</anchor>
+      <anchor>a335a440d2d9199be678819278663d1bf</anchor>
       <arglist>(int32_t &amp;count) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>ab5fe9eb862b824aaa66d90e26d138106</anchor>
+      <anchor>a09980697997b06e69a216d7e51e7ee52</anchor>
       <arglist>(const Formattable *source, int32_t count, UnicodeString &amp;appendTo, FieldPosition &amp;ignore, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a14184a0c6b79555428a6b71b94e497e3</anchor>
+      <anchor>aab90b7cd616309930b9e32e21a0dccd3</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a15c5de3789496d9484638e08b4928554</anchor>
+      <anchor>ad2b9905a901297209f03a4e3120aecfd</anchor>
       <arglist>(const UnicodeString *argumentNames, const Formattable *arguments, int32_t count, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual Formattable *</type>
+      <type>virtual U_I18N_API Formattable *</type>
       <name>parse</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a28edfa53bbdfe83b95d65092d4e98541</anchor>
+      <anchor>af98856e527ee256e47beb932c8aed3d5</anchor>
       <arglist>(const UnicodeString &amp;source, ParsePosition &amp;pos, int32_t &amp;count) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual Formattable *</type>
+      <type>virtual U_I18N_API Formattable *</type>
       <name>parse</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a6c3b2ced750ebecbbfa691fe40f5eb3e</anchor>
+      <anchor>acd8f81ae7eb714a40a248aa0107007ed</anchor>
       <arglist>(const UnicodeString &amp;source, int32_t &amp;count, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parseObject</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a796d2472a16c5672283465c59ada09f8</anchor>
+      <anchor>a336b07677d9af5dd83892e666aa5d00c</anchor>
       <arglist>(const UnicodeString &amp;source, Formattable &amp;result, ParsePosition &amp;pos) const override</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>usesNamedArguments</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a853c1442e02d4a7ed5de7f524a335bfb</anchor>
+      <anchor>a3bbed51db8293ff806eed8b2016263b4</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>getArgTypeCount</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a5a45ce18875006fbd973b070fe6df40e</anchor>
+      <anchor>a0b9040fb424d3815add9b4a54c9d2524</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>ad6662a73f2c6c5febf40c13357eff237</anchor>
+      <anchor>a6759b5164330b93e14c068f89f9f483a</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a218d385a5aaf02005c0f7af9d4e00b74</anchor>
+      <anchor>af360df0f7c3db4ebaa9cf95c4e532f93</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const=0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UnicodeString &amp;</type>
+      <type>static U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a24ab7e1805afd64825fc3d444b7d7cc2</anchor>
+      <anchor>a7f640cc1d7d407981951b882c33afde7</anchor>
       <arglist>(const UnicodeString &amp;pattern, const Formattable *arguments, int32_t count, UnicodeString &amp;appendTo, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UnicodeString</type>
+      <type>static U_I18N_API UnicodeString</type>
       <name>autoQuoteApostrophe</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a573ce9e22886239fc7877ff1b6727c9a</anchor>
+      <anchor>acf3b5254076d711bc278d311f745149a</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_I18N_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>ae5828e9ef97855e26186c4208ec7c7ff</anchor>
+      <anchor>a34f445b23eda5326623fd21981a2b869</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UBool</type>
+      <type>static U_I18N_API UBool</type>
       <name>equalFormats</name>
       <anchorfile>classicu_1_1MessageFormat.html</anchorfile>
-      <anchor>a504b9c67758853ebfce923ad9a999797</anchor>
+      <anchor>af7e16424b19758312703f3dd77af6017</anchor>
       <arglist>(const void *left, const void *right)</arglist>
     </member>
   </compound>
@@ -50691,59 +51890,59 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>MessageFormatter &amp;</type>
+      <type>U_I18N_API MessageFormatter &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
-      <anchor>aff435b349c4b299996bdeba4db487c85</anchor>
+      <anchor>a5865714bcc9525125e7da43669581737</anchor>
       <arglist>(MessageFormatter &amp;&amp;) noexcept</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~MessageFormatter</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
-      <anchor>a53533b74d0cd2834432060d9c06534b4</anchor>
+      <anchor>aa8ee7fc4f4700ff1ed9e604a47b56588</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>formatToString</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
-      <anchor>abf47ee77a7a17051fd6bc03c0890b28d</anchor>
+      <anchor>a352d02c00fb0417800a75f201257e14b</anchor>
       <arglist>(const MessageArguments &amp;arguments, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>FormattedMessage</type>
+      <type>U_I18N_API FormattedMessage</type>
       <name>format</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
-      <anchor>a787d47b258c09456d958608f95dd5ab7</anchor>
+      <anchor>a69a23aec95b704fa7e18ca2b89177c6f</anchor>
       <arglist>(const MessageArguments &amp;arguments, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>const Locale &amp;</type>
+      <type>U_I18N_API const Locale &amp;</type>
       <name>getLocale</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
-      <anchor>a5679871cbb13cdccf3c5dfbc0fecf61d</anchor>
+      <anchor>ab43e9e009f426caba9fc0368fa0e9d98</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>getPattern</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
-      <anchor>a7d4f448b42b4af9104d6e9c2596ecded</anchor>
+      <anchor>ac3f80d6007be20a0d62f6121dda896a7</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const MFDataModel &amp;</type>
+      <type>U_I18N_API const MFDataModel &amp;</type>
       <name>getDataModel</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
-      <anchor>ab5169a6788d028bd823517cbc60c75df</anchor>
+      <anchor>a500981e569edff02a42f76e03bf006be</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getNormalizedPattern</name>
       <anchorfile>classicu_1_1message2_1_1MessageFormatter.html</anchorfile>
-      <anchor>a171b926328467ccbeaba8733f516299c</anchor>
+      <anchor>a3508c558f9f1c4b41933a46442b5b62c</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -50964,78 +52163,78 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>icu::message2::MFDataModel</name>
-    <filename>classicu_1_1message2_1_1MFDataModel.html</filename>
+    <name>icu::message2::data_model::MFDataModel</name>
+    <filename>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</filename>
     <base>icu::UMemory</base>
-    <class kind="class">icu::message2::MFDataModel::Builder</class>
+    <class kind="class">icu::message2::data_model::MFDataModel::Builder</class>
     <member kind="function">
-      <type>std::vector&lt; Binding &gt;</type>
+      <type>U_I18N_API std::vector&lt; Binding &gt;</type>
       <name>getLocalVariables</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel.html</anchorfile>
-      <anchor>ad372b4a79f2863330ee7db0150c15f08</anchor>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</anchorfile>
+      <anchor>ab11a18616dae9f2dd0ae58fef6107dcd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>std::vector&lt; VariableName &gt;</type>
+      <type>U_I18N_API std::vector&lt; VariableName &gt;</type>
       <name>getSelectors</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel.html</anchorfile>
-      <anchor>a10d1b944f18bb60e8ec8471e00b9ca9d</anchor>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</anchorfile>
+      <anchor>a4c5c98abd04a6dd1eedca3b8cb252d5f</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>std::vector&lt; Variant &gt;</type>
+      <type>U_I18N_API std::vector&lt; Variant &gt;</type>
       <name>getVariants</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel.html</anchorfile>
-      <anchor>a4ac934c4ca1e984f89f153fbdc9b3be1</anchor>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</anchorfile>
+      <anchor>a2f6c693b87511a6cecc70aa2dfc47888</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const Pattern &amp;</type>
+      <type>U_I18N_API const Pattern &amp;</type>
       <name>getPattern</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel.html</anchorfile>
-      <anchor>ad44cb77b4607b8ee36db6a7adb3cb5c0</anchor>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</anchorfile>
+      <anchor>aa10fabd15ce0b763e64b2b942ea0425a</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>MFDataModel</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel.html</anchorfile>
-      <anchor>a7f2d4ff0796af87705daf66af9d0dbdf</anchor>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</anchorfile>
+      <anchor>ad6e649c564bd01f476003478cbca381e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>MFDataModel &amp;</type>
+      <type>U_I18N_API MFDataModel &amp;</type>
       <name>operator=</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel.html</anchorfile>
-      <anchor>a564bc7f51b8c8803bc5ff509ecb62cf7</anchor>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</anchorfile>
+      <anchor>aeb826ec0311817dd48a78951779ad664</anchor>
       <arglist>(MFDataModel) noexcept</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>MFDataModel</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel.html</anchorfile>
-      <anchor>addbebd88c5ce92f95c7210fc696e9172</anchor>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</anchorfile>
+      <anchor>a61e7b861d40cea973989a94cefca0a51</anchor>
       <arglist>(const MFDataModel &amp;other)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~MFDataModel</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel.html</anchorfile>
-      <anchor>a2673020a74f36d25a847ba0a5ca9af1a</anchor>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</anchorfile>
+      <anchor>a74934c3fb996b67dc149efd86bd6c7bc</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable">
       <type>class U_I18N_API</type>
       <name>Builder</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel.html</anchorfile>
-      <anchor>accd6d3a444e697f991a181d459218ad4</anchor>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</anchorfile>
+      <anchor>a25763033ab4d19e6d14aa8b0478ac841</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend">
-      <type>friend void</type>
+      <type>U_I18N_API friend void</type>
       <name>swap</name>
-      <anchorfile>classicu_1_1message2_1_1MFDataModel.html</anchorfile>
-      <anchor>ab8c013009e2bd578da32f209233e725d</anchor>
+      <anchorfile>classicu_1_1message2_1_1data__model_1_1MFDataModel.html</anchorfile>
+      <anchor>aa501f02153a0935b6b9bbd258aa966bb</anchor>
       <arglist>(MFDataModel &amp;m1, MFDataModel &amp;m2) noexcept</arglist>
     </member>
   </compound>
@@ -52217,24 +53416,24 @@
       <arglist>() const override=0</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1NumberFormat.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1NumberFormat.html</anchorfile>
-      <anchor>a218d385a5aaf02005c0f7af9d4e00b74</anchor>
+      <anchor>af360df0f7c3db4ebaa9cf95c4e532f93</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const=0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1NumberFormat.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
@@ -54044,87 +55243,87 @@
     <filename>classicu_1_1message2_1_1data__model_1_1Operand.html</filename>
     <base>icu::UObject</base>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isVariable</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>ab25c163fce6bc648a1f43f7a1a582c2c</anchor>
+      <anchor>aa96e1461fedb9b49831d6b7c03bf3267</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isLiteral</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>abe59fb2d3dc4c4b19c9fc366106f8f17</anchor>
+      <anchor>a590c45cc5e4134b3912c11229fbd3c75</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+      <type>virtual U_I18N_API UBool</type>
       <name>isNull</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>a2a3ba2dc4a8459523474573d9b83bc47</anchor>
+      <anchor>a1c276f7e8f560bf77c0c653f0401992f</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>asVariable</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>a350fc16f47574a34e861e4cfbc1dcf0b</anchor>
+      <anchor>a2fd157822b8d4d0599ebf1e2af434f17</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const Literal &amp;</type>
+      <type>U_I18N_API const Literal &amp;</type>
       <name>asLiteral</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>a6610a98731066043b4fe02ad85b09320</anchor>
+      <anchor>acf05d261dca31f5de33d36a07b39bdd0</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Operand</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>ad9c5965c2ab254e8f805f4560a86f493</anchor>
+      <anchor>ad8daaa142455485c53ca4c823ad7fb61</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Operand</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>ac2487034fbdee4176b0becf4bafa6553</anchor>
+      <anchor>a8084811079976b369f6cee3413882466</anchor>
       <arglist>(const UnicodeString &amp;v)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Operand</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>aac4448d90520e35507b58660d627a4f8</anchor>
+      <anchor>aaca32721e173898d63df2647e6cdf441</anchor>
       <arglist>(const Literal &amp;l)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual Operand &amp;</type>
+      <type>virtual U_I18N_API Operand &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>afdcb45c241c1de307ff7c6fba0d42da6</anchor>
+      <anchor>aa1721ee182a48bf4f0f555604d292496</anchor>
       <arglist>(Operand) noexcept</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Operand</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>ac481802c6da87badf6b07eff0a2d0757</anchor>
+      <anchor>a400ff99636f4141dc69b9e500161000d</anchor>
       <arglist>(const Operand &amp;)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~Operand</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>ada570731b3e833609a807656c6d37fb9</anchor>
+      <anchor>ad3df8ac8fb3a98b60fb48a8f139db91c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="friend">
-      <type>friend void</type>
+      <type>U_I18N_API friend void</type>
       <name>swap</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Operand.html</anchorfile>
-      <anchor>a8355a0bdc62fa17350eb5363988d41e7</anchor>
+      <anchor>a6d2981d25e9e4f8d4fa90df733745877</anchor>
       <arglist>(Operand &amp;o1, Operand &amp;o2) noexcept</arglist>
     </member>
   </compound>
@@ -54560,52 +55759,52 @@
     <class kind="class">icu::message2::data_model::Pattern::Builder</class>
     <class kind="struct">icu::message2::data_model::Pattern::Iterator</class>
     <member kind="function">
-      <type>Iterator</type>
+      <type>U_I18N_API Iterator</type>
       <name>begin</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Pattern.html</anchorfile>
-      <anchor>ad94dddd151a9146a6d4848f24a479f74</anchor>
+      <anchor>a65a901e628854641d9a2abca4b531c55</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>Iterator</type>
+      <type>U_I18N_API Iterator</type>
       <name>end</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Pattern.html</anchorfile>
-      <anchor>a0c64899524687dd8068ccd9f3f8d1b2f</anchor>
+      <anchor>a86b434badbbad8c08a107e996a9d97f8</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Pattern</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Pattern.html</anchorfile>
-      <anchor>a8a5f728d83b2d3c4c5e34302bb18512b</anchor>
+      <anchor>aea8de3fc38fd279f4259d136c342d04f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>Pattern</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Pattern.html</anchorfile>
-      <anchor>a841b2ee37374bdf4fe59a83e5a503e4d</anchor>
+      <anchor>ab842ba7c49af9874a89c3e93413fd7a0</anchor>
       <arglist>(const Pattern &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type>Pattern &amp;</type>
+      <type>U_I18N_API Pattern &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Pattern.html</anchorfile>
-      <anchor>a7119fa42b0d2ec730e447108ccaaa472</anchor>
+      <anchor>a91d1792329447dc3be3258b160e5909f</anchor>
       <arglist>(Pattern) noexcept</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~Pattern</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Pattern.html</anchorfile>
-      <anchor>a7ea3567f021013385cebf03875534d3f</anchor>
+      <anchor>a7db85aa01917d7fba20174f474c58816</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="friend">
-      <type>friend void</type>
+      <type>U_I18N_API friend void</type>
       <name>swap</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1Pattern.html</anchorfile>
-      <anchor>ac6361b31d7467366b64e29f0f5868537</anchor>
+      <anchor>a6e61fc26e8315f9cccf916fcd4d8c443</anchor>
       <arglist>(Pattern &amp;p1, Pattern &amp;p2) noexcept</arglist>
     </member>
   </compound>
@@ -54614,101 +55813,101 @@
     <filename>classicu_1_1message2_1_1data__model_1_1PatternPart.html</filename>
     <base>icu::UObject</base>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isText</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a7d8020e3e2012a2b1c9671b553e1ec8b</anchor>
+      <anchor>acb693d8e775e8f847790f47a84b713f1</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isMarkup</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a6aa3e9f41a864257a3b9631ec18c4357</anchor>
+      <anchor>a14c4ba55797321bff375a4c80fc938dd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isExpression</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a0319364ae111c28db15b15d16308eda6</anchor>
+      <anchor>a433e4008b2cd3ef462c7e18c123ea15c</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const Expression &amp;</type>
+      <type>U_I18N_API const Expression &amp;</type>
       <name>contents</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a83b2a3f04e1e85d3afa8d3d4c5e91b5f</anchor>
+      <anchor>abdc6cc7b3ad1ada75670be179851f010</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const Markup &amp;</type>
+      <type>U_I18N_API const Markup &amp;</type>
       <name>asMarkup</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a807c4fd6474b3a1d80d98d4caf86dc1f</anchor>
+      <anchor>a7bf9052b16b55f5c8f6eef1b0b18eb55</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>asText</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a903951201b4955853d3367d46a1fdf28</anchor>
+      <anchor>a5e4e261cf9edaf713117824641396752</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PatternPart</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>ac0cc4051ced634da6707823688ee681b</anchor>
+      <anchor>a298cd3ee43210533ba264731a1d7f269</anchor>
       <arglist>(const PatternPart &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type>PatternPart &amp;</type>
+      <type>U_I18N_API PatternPart &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a56d8c30167a22f85161ab6fe69d3ca23</anchor>
+      <anchor>ae3f597c5024b4960853fd149882bb2e0</anchor>
       <arglist>(PatternPart) noexcept</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~PatternPart</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>afd57cd374a80a61eef69781a10c75bc8</anchor>
+      <anchor>a300db16d9529c6460862e9d26b94f2dd</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PatternPart</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a3223945c74c9034135e801cef62dd45c</anchor>
+      <anchor>a5d0d8f84b82af3081d48ea3b3289f027</anchor>
       <arglist>(const UnicodeString &amp;t)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PatternPart</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a4e33912e8415a055b6a99f87a4e22aab</anchor>
+      <anchor>ada38744a7a035f3ad9b6303702adf51d</anchor>
       <arglist>(Expression &amp;&amp;e)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PatternPart</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a614a6a3e9773cec9f1bc2b233068e148</anchor>
+      <anchor>ac1d1fb608f32ad86642c883ad61c0f7c</anchor>
       <arglist>(Markup &amp;&amp;m)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PatternPart</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>a56dcb5aa9d8fec4e4e4eb9ef04d6abea</anchor>
+      <anchor>acc58058ede59168a68d3f76a61f52b4c</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="friend">
-      <type>friend void</type>
+      <type>U_I18N_API friend void</type>
       <name>swap</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1PatternPart.html</anchorfile>
-      <anchor>aea57fc8a6d8adf84357db5796491ceb8</anchor>
+      <anchor>a8b7d2929ea90c271d9e48ff6e6bc2ac7</anchor>
       <arglist>(PatternPart &amp;p1, PatternPart &amp;p2) noexcept</arglist>
     </member>
   </compound>
@@ -54717,220 +55916,220 @@
     <filename>classicu_1_1PluralFormat.html</filename>
     <base>icu::Format</base>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a86d9ecf09311766e18c4fc410d6d93a1</anchor>
+      <anchor>ab9f4420733d861e2fe6ff513e1f85926</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>ac161ae3b79374c79c0446407031fc5b6</anchor>
+      <anchor>a0e0591bc20af29389af466ea91d50716</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a4f2f556acc24d4198f7035ccdf3af0a6</anchor>
+      <anchor>ac28ddf496f069e8ad6bd8d07e3c00c55</anchor>
       <arglist>(const PluralRules &amp;rules, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>addad4d8e8c029ad6991a72ee369088ed</anchor>
+      <anchor>aa0535ad8214a8ace38628312de67db38</anchor>
       <arglist>(const Locale &amp;locale, const PluralRules &amp;rules, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a64b9cbab9ea35dcd390a2864f0ff91c3</anchor>
+      <anchor>aa721cc38cbd8e7643074d419779cd9af</anchor>
       <arglist>(const Locale &amp;locale, UPluralType type, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a4183314946db447e862a4e73fb770b6c</anchor>
+      <anchor>af70876c7cddb402a08a4643bed9d24b4</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a16dd83785e540b0cebec2a830732f7e2</anchor>
+      <anchor>a3e7e0c6f881b1891f5a5943a5851829c</anchor>
       <arglist>(const Locale &amp;locale, const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a7913182ef967a8ba8b6353c5b5dfd512</anchor>
+      <anchor>a2a63149af836452e777b8c6859d655cf</anchor>
       <arglist>(const PluralRules &amp;rules, const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a9bbd2cfe5f22e7118e8e1a7fd91f0787</anchor>
+      <anchor>ac3d28cbac5edd85e250af8053d82fa54</anchor>
       <arglist>(const Locale &amp;locale, const PluralRules &amp;rules, const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a0ad527709ef855c4ce5f04c668b326a5</anchor>
+      <anchor>ad6888893f9ff477408083508dd13d6ec</anchor>
       <arglist>(const Locale &amp;locale, UPluralType type, const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>ab2d7c5e12b281b008b0a64b8c569c6a7</anchor>
+      <anchor>a94200da1dd95435248fbabe1e06db131</anchor>
       <arglist>(const PluralFormat &amp;other)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~PluralFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>aee2d3ee214c26aea688b3904e5e57e69</anchor>
+      <anchor>ad1f4d9b918cd3df6ec253ffa7cfa3a0a</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>applyPattern</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a4e32005a7a3bda8417d363dccf98811a</anchor>
+      <anchor>ad59a6241b47f965a2b7cf3cece3aa7c2</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>format</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>ab18bc2cd3d76af6037b9f3b9072adbd2</anchor>
+      <anchor>ac1fd20f0c01cee7cf0b2b87dc3723c42</anchor>
       <arglist>(int32_t number, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString</type>
+      <type>U_I18N_API UnicodeString</type>
       <name>format</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>aa8f3b8953633b930bb27156ecbeae094</anchor>
+      <anchor>aed8dbb5dd3bb64a593c6414975ced07d</anchor>
       <arglist>(double number, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a5e4f95f451abee04a9800f9d3ce820e0</anchor>
+      <anchor>afcfe963c5a236e9df19d855aa9fa68d5</anchor>
       <arglist>(int32_t number, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>acd7f3da555b869c9a17cfafdbde02403</anchor>
+      <anchor>a46b78f40b048c0a12bae37ec5727e6d1</anchor>
       <arglist>(double number, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setLocale</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>ab14888c39ca635edf280752a710abdc1</anchor>
+      <anchor>a311adf80ce8df8a105cf977a5dac96f3</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setNumberFormat</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a01dc06bd7b9ffadb8049a79069cea110</anchor>
+      <anchor>a532580a7fbd7b718207d5e72e7db62cb</anchor>
       <arglist>(const NumberFormat *format, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>PluralFormat &amp;</type>
+      <type>U_I18N_API PluralFormat &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a2df7d4b8b4b4d33b8c2919a4d0f561f0</anchor>
+      <anchor>ac7088761b7224097f1778cdc794e39c0</anchor>
       <arglist>(const PluralFormat &amp;other)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>ab6e77c0ddf96a15f41a438f071281e9c</anchor>
+      <anchor>a574225e929bd5a0a52d590264f51cd35</anchor>
       <arglist>(const Format &amp;other) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator!=</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a404cab982f889156bfcadfd8904dd1f0</anchor>
+      <anchor>a0cc5b267b9cc04b65ba9ca4f7680d258</anchor>
       <arglist>(const Format &amp;other) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual PluralFormat *</type>
+      <type>virtual U_I18N_API PluralFormat *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a9dad1860c4896ca06cc0fe6cf2386e4a</anchor>
+      <anchor>a249ebed96a851f1b1d29c93c173a3389</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a32aa71435c8938b0fbb742b89e1950af</anchor>
+      <anchor>afb95e29759acf56c20cd359afafe0d94</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>toPattern</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a9b5078565321a1b178bebb72845940b1</anchor>
+      <anchor>a92f321c60d6ec66de745dded52add998</anchor>
       <arglist>(UnicodeString &amp;appendTo)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parseObject</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a3c426f753c3737a826bda6eada470f47</anchor>
+      <anchor>abc42bbacda368f8b14417072d6a38ac5</anchor>
       <arglist>(const UnicodeString &amp;source, Formattable &amp;result, ParsePosition &amp;parse_pos) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a1ccd5dd1e83feec2299ffaa0db17320d</anchor>
+      <anchor>ac9b1974a3d941069800dd5013e22471b</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a218d385a5aaf02005c0f7af9d4e00b74</anchor>
+      <anchor>af360df0f7c3db4ebaa9cf95c4e532f93</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const=0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_I18N_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1PluralFormat.html</anchorfile>
-      <anchor>ae6bc7ea0c7f0d6168bfb81f984dadc5c</anchor>
+      <anchor>ae26f1ece15f5561856c4f637702d2f23</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -55279,6 +56478,17 @@
       <arglist>(std::string_view lhs, std::string_view rhs) const</arglist>
     </member>
   </compound>
+  <compound kind="struct">
+    <name>U_HEADER_ONLY_NAMESPACE::prv::range_type</name>
+    <filename>structU__HEADER__ONLY__NAMESPACE_1_1prv_1_1range__type.html</filename>
+    <templarg></templarg>
+    <templarg></templarg>
+  </compound>
+  <compound kind="struct">
+    <name>U_HEADER_ONLY_NAMESPACE::prv::range_type&lt; Range, std::void_t&lt; decltype(std::declval&lt; Range &gt;().begin()), decltype(std::declval&lt; Range &gt;().end())&gt; &gt;</name>
+    <filename>structU__HEADER__ONLY__NAMESPACE_1_1prv_1_1range__type_3_01Range_00_01std_1_1void__t_3_01decltypf5078535dbcf2fa34be202d612eb2ece.html</filename>
+    <templarg></templarg>
+  </compound>
   <compound kind="class">
     <name>icu::Locale::RangeIterator</name>
     <filename>classicu_1_1Locale_1_1RangeIterator.html</filename>
@@ -55400,417 +56610,417 @@
       <anchor>a8c09528fb1b417f2584d410c138daaa2</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>matches</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>aabdb58b9d53092be5f5d3554c204a657</anchor>
+      <anchor>a25ba5c18485e1e03483dd000792057a8</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>matches</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a4d037cc21198ce9c439671c73eb32920</anchor>
+      <anchor>a870416465a07aea6d15f13dfd7ca338e</anchor>
       <arglist>(int64_t startIndex, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>lookingAt</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a925fca0e51fa0e912a186a71ef6d6a46</anchor>
+      <anchor>a0780f013adf94cdbb7d47d970f2889e7</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>lookingAt</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a47dde8619d89b37be57ff447d384d129</anchor>
+      <anchor>ad71f200bdc0bad4000ddcf7634f7558b</anchor>
       <arglist>(int64_t startIndex, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>find</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a50cce379741d692b8a4edc95e3145305</anchor>
+      <anchor>adc85fcb1e952e86e021239237edc8dd6</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>find</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>aa31dd2acd711c1875b2402f5c940f67d</anchor>
+      <anchor>a482efaba639f3ecfab6585b6f9115fd9</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>find</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>af9763738f99d3b49888b69d31281f917</anchor>
+      <anchor>ab84b245ed39a6710a8ab3bc98c395425</anchor>
       <arglist>(int64_t start, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString</type>
+    <member kind="function">
+      <type>UnicodeString</type>
       <name>group</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a28961488c8cb5cf9ed78f6a6264a13c1</anchor>
+      <anchor>a8b7512f6e96c5fc5ca114171ff30c434</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString</type>
+    <member kind="function">
+      <type>UnicodeString</type>
       <name>group</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>afec636f70b0556b4a6b66008e858f0af</anchor>
+      <anchor>ac2ee01396ab3816d5a076ae5ae6ad147</anchor>
       <arglist>(int32_t groupNum, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>groupCount</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a2727c4e459158ebbb76f8bc99a938870</anchor>
+      <anchor>a4b7d3e0aa483dbdfc1b256e2c2a0a8f4</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UText *</type>
+    <member kind="function">
+      <type>UText *</type>
       <name>group</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>ac8a572d42b5438f97b2c5c6d373fc590</anchor>
+      <anchor>aaf9f17bb140a4cfa50eebcdb0f1fe1d1</anchor>
       <arglist>(UText *dest, int64_t &amp;group_len, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UText *</type>
+    <member kind="function">
+      <type>UText *</type>
       <name>group</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a6bccb9cc2b7f488c2d163656a9cc35b1</anchor>
+      <anchor>a3fada198a5df1d1cb21fd48aeb03893a</anchor>
       <arglist>(int32_t groupNum, UText *dest, int64_t &amp;group_len, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>start</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a501981cc57e5f20a9db4a4017d2baa97</anchor>
+      <anchor>a3cd2ff451c70508ee9ef1c26a173cda7</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int64_t</type>
+    <member kind="function">
+      <type>int64_t</type>
       <name>start64</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>acc1788915d20179e2afabf7241e09212</anchor>
+      <anchor>a2fba878aa3c6567c1e3411fc9587ae4b</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>start</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a81c1da41ab08dd715ccc7e63b6a2d696</anchor>
+      <anchor>a9467d2bf46743b05a23abe0bf79cf790</anchor>
       <arglist>(int32_t group, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int64_t</type>
+    <member kind="function">
+      <type>int64_t</type>
       <name>start64</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>adff83df340ceea5643fd62cd0db5ab0f</anchor>
+      <anchor>ae0654a209c8d5a45833ba0f22a009fc2</anchor>
       <arglist>(int32_t group, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>end</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a10c0c98cfc58227c111e0a0da812ab32</anchor>
+      <anchor>a732f6ad6e5ee1ddc131c9ea08ea63170</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int64_t</type>
+    <member kind="function">
+      <type>int64_t</type>
       <name>end64</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>accfa9396cc9b156deab7e90f5f96ddc2</anchor>
+      <anchor>a4316c4e1a6efa04689d4c8ec66fb707d</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>end</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>abc142ee9f00e235e39fcd61b5274b262</anchor>
+      <anchor>a4e2ff6dc861af3d4b5d87f932bf90b7a</anchor>
       <arglist>(int32_t group, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int64_t</type>
+    <member kind="function">
+      <type>int64_t</type>
       <name>end64</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a00d338777daa4586d0c1b9f0b2bf3b56</anchor>
+      <anchor>a570cc0dd7475afd484f19e1b3c66f8e8</anchor>
       <arglist>(int32_t group, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>reset</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a35df71c4bbc3c0ebb2249432cbad615a</anchor>
+      <anchor>aeaa323dde3898a537b8d093a6011869b</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>reset</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a9f3a9ca7dcf0ef68757aa0daec30adfd</anchor>
+      <anchor>af2db605c5758fbe18b6468b99123f867</anchor>
       <arglist>(int64_t index, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>reset</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a1359b5f397013d90b762a7ee00c1d6a5</anchor>
+      <anchor>a0cd6fcacdd408f97683670612b8d76de</anchor>
       <arglist>(const UnicodeString &amp;input)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>reset</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a87f21b8f6278372faab9e91e68433fe0</anchor>
+      <anchor>aba3c8e228abb4ff74c755f41e49eeaad</anchor>
       <arglist>(UText *input)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>refreshInputText</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a5a890f5bc97c6cfa520e60debd52480d</anchor>
+      <anchor>abb179c9a0495da542c66e3d5e3900d17</anchor>
       <arglist>(UText *input, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual const UnicodeString &amp;</type>
+    <member kind="function">
+      <type>const UnicodeString &amp;</type>
       <name>input</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a9771492d9a180edd3eeb5e704b45f455</anchor>
+      <anchor>a4e8631eed2e1f8c8012b09f8ca0d82a1</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UText *</type>
+    <member kind="function">
+      <type>UText *</type>
       <name>inputText</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>adc372f8a26c6d22ce5d764308de243ae</anchor>
+      <anchor>ad7cbcda28396fb844a099950b7b625ed</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UText *</type>
+    <member kind="function">
+      <type>UText *</type>
       <name>getInput</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a3f6886afbf144fa7c8ac13f9c1b455a8</anchor>
+      <anchor>a3fe44a9983b842981072c8d185cfdb63</anchor>
       <arglist>(UText *dest, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>region</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a556e40af5e725121ad23944b24e0fb1b</anchor>
+      <anchor>a7481d739e9f69421fc06d8562d9f7e12</anchor>
       <arglist>(int64_t start, int64_t limit, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>region</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a9de12106adfa647377b756195a06c3c5</anchor>
+      <anchor>a8fc8997a137ec0011a1b7896002201eb</anchor>
       <arglist>(int64_t regionStart, int64_t regionLimit, int64_t startIndex, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>regionStart</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>afa77cc2c2d7fc63f08edbb0d43a5a16c</anchor>
+      <anchor>a470cd284d39e532f4c8b454f16d7a26b</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int64_t</type>
+    <member kind="function">
+      <type>int64_t</type>
       <name>regionStart64</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a7c0830bf53025dbbb194d3ed02b52d02</anchor>
+      <anchor>a0f01e65ccc7cc42190f2bfbf6d0e962e</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>regionEnd</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>adb7517f8162640204dc8c6f1418f380f</anchor>
+      <anchor>ad246989b873a08b4cb9480c13c73b2f4</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int64_t</type>
+    <member kind="function">
+      <type>int64_t</type>
       <name>regionEnd64</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a9f58305c05c4942ae4c2a3127cb2e160</anchor>
+      <anchor>a756b2f5ff17af53ea7a4bfded9eaf046</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>hasTransparentBounds</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a09bd01f588c4954f763d1c98dc0c26a8</anchor>
+      <anchor>a03295ae319a113e6b18d5d787a83152e</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>useTransparentBounds</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>ab95501e00f15b7920f84ac3051a4a12a</anchor>
+      <anchor>a0de214cef49e8f6af11924315221f2b4</anchor>
       <arglist>(UBool b)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>hasAnchoringBounds</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a10ad5e17301be371ad7c98c3af541caf</anchor>
+      <anchor>a2d4cc5c94663dc49a6c2c0231382e4b0</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>useAnchoringBounds</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>aa92699729c82a6c9b86ce90831a9b557</anchor>
+      <anchor>a3ab70df38d24cbc7f235c307b95f67c9</anchor>
       <arglist>(UBool b)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>hitEnd</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>af19495125a74821ed12beabf9d4fd41c</anchor>
+      <anchor>a3b258fd1bade6e8dae157c67006bff73</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>requireEnd</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>af65550a49a77b3e6101b1bcadf805834</anchor>
+      <anchor>a3f70bdbd913f00d6ea78c2b178885220</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual const RegexPattern &amp;</type>
+    <member kind="function">
+      <type>const RegexPattern &amp;</type>
       <name>pattern</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a532e6db93b86264d60e6e9e009e50547</anchor>
+      <anchor>a0906522fc09139bb609ab5a6255f486d</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString</type>
+    <member kind="function">
+      <type>UnicodeString</type>
       <name>replaceAll</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a2e0194d10c2f28d8372f284dd4a5af19</anchor>
+      <anchor>a14f2427f16cb3a5f34af397fb3c65e26</anchor>
       <arglist>(const UnicodeString &amp;replacement, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UText *</type>
+    <member kind="function">
+      <type>UText *</type>
       <name>replaceAll</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a9855c6225fca0aed6a37242b73b558d6</anchor>
+      <anchor>a2b26bc3b46d57f009b31fc991ca3123b</anchor>
       <arglist>(UText *replacement, UText *dest, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString</type>
+    <member kind="function">
+      <type>UnicodeString</type>
       <name>replaceFirst</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a1672f514ae14aaddcc3e9ce16924f1b3</anchor>
+      <anchor>ab6bba603bc3acfb08ecf4edbbf631247</anchor>
       <arglist>(const UnicodeString &amp;replacement, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UText *</type>
+    <member kind="function">
+      <type>UText *</type>
       <name>replaceFirst</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>ad3efb07fcd5b4567f541c01e812e717b</anchor>
+      <anchor>ad986fdf1095e7e42ce62905daaadcd2f</anchor>
       <arglist>(UText *replacement, UText *dest, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>appendReplacement</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>aabebe4aff799cf5b07d23968634112f0</anchor>
+      <anchor>abc2f7ec181c296952c3b6af32d60bcec</anchor>
       <arglist>(UnicodeString &amp;dest, const UnicodeString &amp;replacement, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher &amp;</type>
+    <member kind="function">
+      <type>RegexMatcher &amp;</type>
       <name>appendReplacement</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>adccbff9c1f79a187f0be2a6e8be60773</anchor>
+      <anchor>a68cc99117dc4f43ec7e90e0bbb8adf47</anchor>
       <arglist>(UText *dest, UText *replacement, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+    <member kind="function">
+      <type>UnicodeString &amp;</type>
       <name>appendTail</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a851501b95f740f97740b5ad7f0118fd6</anchor>
+      <anchor>ac7056576a93b103e287254dc10b620dd</anchor>
       <arglist>(UnicodeString &amp;dest)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UText *</type>
+    <member kind="function">
+      <type>UText *</type>
       <name>appendTail</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>af1bcd8fde1c6475f3ad761a45eb307b4</anchor>
+      <anchor>a187e1e598ef8ec572b5921e695c8f11b</anchor>
       <arglist>(UText *dest, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>split</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a42f6bff3830b5db5fb08a7ee6437580e</anchor>
+      <anchor>a9f33994ef6939b0ba2d8f05785791024</anchor>
       <arglist>(const UnicodeString &amp;input, UnicodeString dest[], int32_t destCapacity, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>split</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>ab51727426a297eaefb84e90cc00bf5a1</anchor>
+      <anchor>a4777261977b057d6cd990da8ab83df8a</anchor>
       <arglist>(UText *input, UText *dest[], int32_t destCapacity, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function">
+      <type>void</type>
       <name>setTimeLimit</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a6ebcfcab4fe6a38678c0291643a03a00</anchor>
+      <anchor>a69afa2c31365fb576391acf207d3e1d9</anchor>
       <arglist>(int32_t limit, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>getTimeLimit</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a6b64eadba869696a3c34748fc26b77ee</anchor>
+      <anchor>a552917198f27f5d7625fabd03866c96c</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function">
+      <type>void</type>
       <name>setStackLimit</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>ad6fee6b970fec729961121929176f9c6</anchor>
+      <anchor>aa779c3b47282955aa8dfa958d315b096</anchor>
       <arglist>(int32_t limit, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>getStackLimit</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>ab985017df60490a00e1a3d90e994a190</anchor>
+      <anchor>a94ea617b32dc0e748e7a001251d09202</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function">
+      <type>void</type>
       <name>setMatchCallback</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a71eb790976078e7adf0053813420eade</anchor>
+      <anchor>a64796162b40f619a79c315f5a4c98057</anchor>
       <arglist>(URegexMatchCallback *callback, const void *context, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function">
+      <type>void</type>
       <name>getMatchCallback</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a199e05b2b59687b7755a06a9be6b9810</anchor>
+      <anchor>ae41c6701e8bbbb779f40ee2fc6c4f49a</anchor>
       <arglist>(URegexMatchCallback *&amp;callback, const void *&amp;context, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function">
+      <type>void</type>
       <name>setFindProgressCallback</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>a31a30016801e0bca6122c410dcc7864c</anchor>
+      <anchor>a65b8501cb065da676a81cd7bc106f477</anchor>
       <arglist>(URegexFindProgressCallback *callback, const void *context, UErrorCode &amp;status)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function">
+      <type>void</type>
       <name>getFindProgressCallback</name>
       <anchorfile>classicu_1_1RegexMatcher.html</anchorfile>
-      <anchor>ae04f337de0da92309eaa318dc1e806f6</anchor>
+      <anchor>a1ce57fae76ef46cdf490b51efc7c0efd</anchor>
       <arglist>(URegexFindProgressCallback *&amp;callback, const void *&amp;context, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
@@ -55888,74 +57098,74 @@
       <anchor>a68d50684423e46a41f7de049589c6cfe</anchor>
       <arglist>(const RegexPattern &amp;source)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexPattern *</type>
+    <member kind="function">
+      <type>RegexPattern *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1RegexPattern.html</anchorfile>
-      <anchor>a23d154e2cb9d4ebfe93f50c51d466449</anchor>
+      <anchor>af6c8eca28fed7a5e317e08c5df2e5653</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual uint32_t</type>
+    <member kind="function">
+      <type>uint32_t</type>
       <name>flags</name>
       <anchorfile>classicu_1_1RegexPattern.html</anchorfile>
-      <anchor>a0fd6d9cfeab773c8d9c94d29e5a565c4</anchor>
+      <anchor>aed434d7355fe976ed0fd1b173d769cd9</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher *</type>
+    <member kind="function">
+      <type>RegexMatcher *</type>
       <name>matcher</name>
       <anchorfile>classicu_1_1RegexPattern.html</anchorfile>
-      <anchor>a96b9ca1ca74ca5a83f230147420b5326</anchor>
+      <anchor>a48ae78959f75898f40d118af4dd4c8e2</anchor>
       <arglist>(const UnicodeString &amp;input, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual RegexMatcher *</type>
+    <member kind="function">
+      <type>RegexMatcher *</type>
       <name>matcher</name>
       <anchorfile>classicu_1_1RegexPattern.html</anchorfile>
-      <anchor>aea446822e97bfc27f66561807e8b1e29</anchor>
+      <anchor>a836f9432aa51c0a5a90fa958226f141b</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString</type>
+    <member kind="function">
+      <type>UnicodeString</type>
       <name>pattern</name>
       <anchorfile>classicu_1_1RegexPattern.html</anchorfile>
-      <anchor>ade9a9e1cd43c4235b02c77e28632556a</anchor>
+      <anchor>ade92d89179d464fa029e617f72334969</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UText *</type>
+    <member kind="function">
+      <type>UText *</type>
       <name>patternText</name>
       <anchorfile>classicu_1_1RegexPattern.html</anchorfile>
-      <anchor>a74c0b97ae465fefba480bfa182867662</anchor>
+      <anchor>ad748215fb3e3d0d2a450114b6399a86f</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>groupNumberFromName</name>
       <anchorfile>classicu_1_1RegexPattern.html</anchorfile>
-      <anchor>ac00c503a6e39fc968a33d2a33bf4c5e9</anchor>
+      <anchor>ad3d5e0df5cd6ec9ee9f485aef716cac4</anchor>
       <arglist>(const UnicodeString &amp;groupName, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>groupNumberFromName</name>
       <anchorfile>classicu_1_1RegexPattern.html</anchorfile>
-      <anchor>aff1460a6aef7f9a524ba4d7bbf9e9f6e</anchor>
+      <anchor>ad3e282de05d520a7c539ae017954b32d</anchor>
       <arglist>(const char *groupName, int32_t nameLength, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>split</name>
       <anchorfile>classicu_1_1RegexPattern.html</anchorfile>
-      <anchor>a830f27fe817dda7d153a6458d224ace4</anchor>
+      <anchor>a774f194ec81af48ea6ba0f22a1112bd7</anchor>
       <arglist>(const UnicodeString &amp;input, UnicodeString dest[], int32_t destCapacity, UErrorCode &amp;status) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>split</name>
       <anchorfile>classicu_1_1RegexPattern.html</anchorfile>
-      <anchor>a8df5b26ccda9b932e8acff0957e555a8</anchor>
+      <anchor>a02005131a127f20bc687753d2300dd5b</anchor>
       <arglist>(UText *input, UText *dest[], int32_t destCapacity, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
@@ -56158,136 +57368,136 @@
     <filename>classicu_1_1RelativeDateTimeFormatter.html</filename>
     <base>icu::UObject</base>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RelativeDateTimeFormatter</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a3d851dac0b614cb790547fad33e3ee33</anchor>
+      <anchor>a2a0863aa1ea50e3c0c9b1193c53cc352</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RelativeDateTimeFormatter</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>ae3cf7e87440adcdc028b7cb1807bbc60</anchor>
+      <anchor>a0df7696d688e4eacfc7c8857cb524f80</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RelativeDateTimeFormatter</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a6161f2631ed48c9151e5d312615a42a4</anchor>
+      <anchor>a6f20fa0e73072c1c7cfe6aef594fdae1</anchor>
       <arglist>(const Locale &amp;locale, NumberFormat *nfToAdopt, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RelativeDateTimeFormatter</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a4d32188d5ced8c095c9ce7a379841b4d</anchor>
+      <anchor>a7b6802efd681c0fde3a4131eb9bda9f3</anchor>
       <arglist>(const Locale &amp;locale, NumberFormat *nfToAdopt, UDateRelativeDateTimeFormatterStyle style, UDisplayContext capitalizationContext, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RelativeDateTimeFormatter</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a78ec674f3fa02ccfb8ef135d51aead19</anchor>
+      <anchor>afa45097f46b48f0f4a747031e4432b55</anchor>
       <arglist>(const RelativeDateTimeFormatter &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type>RelativeDateTimeFormatter &amp;</type>
+      <type>U_I18N_API RelativeDateTimeFormatter &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a542b94475d7186dd804438af75d6d7cd</anchor>
+      <anchor>aa86ccb4a4df58271e45f6e7ad61e47e9</anchor>
       <arglist>(const RelativeDateTimeFormatter &amp;other)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~RelativeDateTimeFormatter</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a01fd3f7c20b36dd799ae21de045d8f1c</anchor>
+      <anchor>a31d835e2cbc25e99638bef11d856a7ae</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>ab7558555bff7f52ba3f92650f71bdda5</anchor>
+      <anchor>a1938e2d46797c1033658b7b6a0e5ff79</anchor>
       <arglist>(double quantity, UDateDirection direction, UDateRelativeUnit unit, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>FormattedRelativeDateTime</type>
+      <type>U_I18N_API FormattedRelativeDateTime</type>
       <name>formatToValue</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a2fd72bb9a7f2594e56c113fa18e06ee2</anchor>
+      <anchor>a083321d7a438e0a8088b45b8d2eb2950</anchor>
       <arglist>(double quantity, UDateDirection direction, UDateRelativeUnit unit, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a09576b703776212ba1090da7934ffb07</anchor>
+      <anchor>a095731d35fdc42614b6bb05f7de80a37</anchor>
       <arglist>(UDateDirection direction, UDateAbsoluteUnit unit, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>FormattedRelativeDateTime</type>
+      <type>U_I18N_API FormattedRelativeDateTime</type>
       <name>formatToValue</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>aecf19d96f9bef9d8f7c4009ef7d1d2bb</anchor>
+      <anchor>a07e05e9ec5be39729238a9a538159cd4</anchor>
       <arglist>(UDateDirection direction, UDateAbsoluteUnit unit, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>formatNumeric</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a708d9ce01f532688102d8afffc50f146</anchor>
+      <anchor>a7a65ce3832be25a7b49bdd3765bf663f</anchor>
       <arglist>(double offset, URelativeDateTimeUnit unit, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>FormattedRelativeDateTime</type>
+      <type>U_I18N_API FormattedRelativeDateTime</type>
       <name>formatNumericToValue</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a06d8a3ebe79f56bf0a006a2e21e6030f</anchor>
+      <anchor>af3cd3b81e9fffbcd9629cb38697478bd</anchor>
       <arglist>(double offset, URelativeDateTimeUnit unit, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a2c17370d22d9df8b6e3510ddc551bd89</anchor>
+      <anchor>adc28289bbcecd1025dd8e3dfac068b70</anchor>
       <arglist>(double offset, URelativeDateTimeUnit unit, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>FormattedRelativeDateTime</type>
+      <type>U_I18N_API FormattedRelativeDateTime</type>
       <name>formatToValue</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>aa3e1104ffae738464ccb49cbb0812b24</anchor>
+      <anchor>a17ef7f39cd9d33b7ef36f28b491e0a68</anchor>
       <arglist>(double offset, URelativeDateTimeUnit unit, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>combineDateAndTime</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a5e1bb54bbc2a4fadad6ef8df15be4772</anchor>
+      <anchor>a7500fd87c85b0410c9d4b26322bd149c</anchor>
       <arglist>(const UnicodeString &amp;relativeDateString, const UnicodeString &amp;timeString, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>const NumberFormat &amp;</type>
+      <type>U_I18N_API const NumberFormat &amp;</type>
       <name>getNumberFormat</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a2f1d2557c64a6e8423cdfedb4d83e56f</anchor>
+      <anchor>a462e323c6dd83c3d05c9738c95507502</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UDisplayContext</type>
+      <type>U_I18N_API UDisplayContext</type>
       <name>getCapitalizationContext</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>ab4892579c07658ff92701230b258e4e9</anchor>
+      <anchor>ae35df2123665b3701e0f6efc50cd6347</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>UDateRelativeDateTimeFormatterStyle</type>
+      <type>U_I18N_API UDateRelativeDateTimeFormatterStyle</type>
       <name>getFormatStyle</name>
       <anchorfile>classicu_1_1RelativeDateTimeFormatter.html</anchorfile>
-      <anchor>a197e7e5f93609fc5df7848114b402c8b</anchor>
+      <anchor>aed215d264ff48b2ecb713e6ae2716590</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -56954,380 +58164,366 @@
       <anchor>a2ad6052587787523f902a4503693dbe6</anchor>
       <arglist></arglist>
     </member>
-    <member kind="friend" protection="private">
-      <type>friend class</type>
-      <name>RBBIRuleBuilder</name>
-      <anchorfile>classicu_1_1RuleBasedBreakIterator.html</anchorfile>
-      <anchor>a17ce03f12f5fa8688859b25e2bf60938</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend" protection="private">
-      <type>friend class</type>
-      <name>BreakIterator</name>
-      <anchorfile>classicu_1_1RuleBasedBreakIterator.html</anchorfile>
-      <anchor>a5fbb7407696454879cf016b20a0380f0</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="class">
     <name>icu::RuleBasedCollator</name>
     <filename>classicu_1_1RuleBasedCollator.html</filename>
     <base>icu::Collator</base>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedCollator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>ab26b8846a053c2def598ec7c957cfcc4</anchor>
+      <anchor>a9422d2f88baa8500b96dff89f7243230</anchor>
       <arglist>(const UnicodeString &amp;rules, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedCollator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>aaf9a00014372009c71cd36430da4f610</anchor>
+      <anchor>af2738a59d4b095bde3589801efbec7e6</anchor>
       <arglist>(const UnicodeString &amp;rules, ECollationStrength collationStrength, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedCollator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a07b23add8f39b6d2dd6d608ac9485b97</anchor>
+      <anchor>a45fe12dd2bafa42eea065c165e19ea41</anchor>
       <arglist>(const UnicodeString &amp;rules, UColAttributeValue decompositionMode, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedCollator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a29e95021c2a9acf1fced334f57c074ba</anchor>
+      <anchor>a02c109fce07a84609d40810162af7bfb</anchor>
       <arglist>(const UnicodeString &amp;rules, ECollationStrength collationStrength, UColAttributeValue decompositionMode, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedCollator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a4a8fcec445c513c2d32979b565b95528</anchor>
+      <anchor>afa0143f52d16df879ad88d8e5b84715d</anchor>
       <arglist>(const UnicodeString &amp;rules, UParseError &amp;parseError, UnicodeString &amp;reason, UErrorCode &amp;errorCode)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedCollator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>ad60f53ba1323a3516edf93154006d91c</anchor>
+      <anchor>a56376bf04282e84d0ba9c39fe4f34046</anchor>
       <arglist>(const RuleBasedCollator &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedCollator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a2f4c7eeaf020ad68e3bd9722dd272357</anchor>
+      <anchor>a9f88859825598ff6990d7a755b613017</anchor>
       <arglist>(const uint8_t *bin, int32_t length, const RuleBasedCollator *base, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~RuleBasedCollator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a7f0ee2464acb12f597680df69a69d97d</anchor>
+      <anchor>acaffe17ae1e519b643753859744661ae</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>RuleBasedCollator &amp;</type>
+      <type>U_I18N_API RuleBasedCollator &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a1a977c57fe95e8d7121fd899cefd1af8</anchor>
+      <anchor>a4376f4e797e41c085b75bfaf5651b65b</anchor>
       <arglist>(const RuleBasedCollator &amp;other)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a7a6fc19f906622cca51ecb5573ff43ce</anchor>
+      <anchor>af1b42b916e9a01fa4a4b6a0ecc65a0f1</anchor>
       <arglist>(const Collator &amp;other) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual RuleBasedCollator *</type>
+      <type>virtual U_I18N_API RuleBasedCollator *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a6c510da518ce8dbaff1bbc07c7469ec0</anchor>
+      <anchor>a9ba4c442045a8bf9461238993757c66c</anchor>
       <arglist>() const override</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual CollationElementIterator *</type>
+    <member kind="function">
+      <type>U_I18N_API CollationElementIterator *</type>
       <name>createCollationElementIterator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>aa506d09eeaa289fc600c69c6b53d2d45</anchor>
+      <anchor>ab497c34ddce95683bb205c6770e6c451</anchor>
       <arglist>(const UnicodeString &amp;source) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual CollationElementIterator *</type>
+    <member kind="function">
+      <type>U_I18N_API CollationElementIterator *</type>
       <name>createCollationElementIterator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a0b9e34bb7c3757d6454356674f9b4e5b</anchor>
+      <anchor>a5a6310886bd4071b64597d0480e46995</anchor>
       <arglist>(const CharacterIterator &amp;source) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UCollationResult</type>
+      <type>virtual U_I18N_API UCollationResult</type>
       <name>compare</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a6531f45f77f74c561e17240a2ed9aee7</anchor>
+      <anchor>aa4c0e2a695b78fb652277dd07c261524</anchor>
       <arglist>(const UnicodeString &amp;source, const UnicodeString &amp;target, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UCollationResult</type>
+      <type>virtual U_I18N_API UCollationResult</type>
       <name>compare</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a76620dd60d50b82af5ebe474ae41228c</anchor>
+      <anchor>a0fdd11d221e1f509c5441d25f6be29a8</anchor>
       <arglist>(const UnicodeString &amp;source, const UnicodeString &amp;target, int32_t length, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UCollationResult</type>
+      <type>virtual U_I18N_API UCollationResult</type>
       <name>compare</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>aaff5a52978b5bec6cebbbdaf4e915547</anchor>
+      <anchor>a68855a2df9d69728e955844a94e206dd</anchor>
       <arglist>(const char16_t *source, int32_t sourceLength, const char16_t *target, int32_t targetLength, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UCollationResult</type>
+      <type>virtual U_I18N_API UCollationResult</type>
       <name>compare</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>af4eaf724180c65c17f1e10b88213aa62</anchor>
+      <anchor>a1779c0f5ddc47286e6b9d9f233a9e9fc</anchor>
       <arglist>(UCharIterator &amp;sIter, UCharIterator &amp;tIter, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UCollationResult</type>
+      <type>virtual U_I18N_API UCollationResult</type>
       <name>compareUTF8</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>ae39fb8896ba5034d533e87717a1e4ca0</anchor>
+      <anchor>aa2a54c858034b5b365e1aa72f0907793</anchor>
       <arglist>(const StringPiece &amp;source, const StringPiece &amp;target, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual CollationKey &amp;</type>
+      <type>virtual U_I18N_API CollationKey &amp;</type>
       <name>getCollationKey</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>adb0e947073f346319415296533d9c88c</anchor>
+      <anchor>a5f61644ed76a09501ad75cbd3abb780b</anchor>
       <arglist>(const UnicodeString &amp;source, CollationKey &amp;key, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual CollationKey &amp;</type>
+      <type>virtual U_I18N_API CollationKey &amp;</type>
       <name>getCollationKey</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>ad00f17082375aeba45d9d6f83dda1cd2</anchor>
+      <anchor>a1bbe4487823cc46fa7d37563a63fd2ac</anchor>
       <arglist>(const char16_t *source, int32_t sourceLength, CollationKey &amp;key, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>hashCode</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a28830536284acc2682ce4bb595e3c89e</anchor>
+      <anchor>a1cc091dea8e6676f82c6dc9cdc0ee174</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual Locale</type>
+      <type>virtual U_I18N_API Locale</type>
       <name>getLocale</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a714adc2e9efff2f4286ba3b8c340381a</anchor>
+      <anchor>a6c183afd8e54193a7e433792189fe336</anchor>
       <arglist>(ULocDataLocaleType type, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function">
-      <type>const UnicodeString &amp;</type>
+      <type>U_I18N_API const UnicodeString &amp;</type>
       <name>getRules</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a7ef1149c88c6d9568ce38bd8ff38df22</anchor>
+      <anchor>aba9c878a5d62b5390a097438890fa564</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>getVersion</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a91be0fc1c81bf4521d8b346e61490700</anchor>
+      <anchor>aaae1c1deb4874638ee4976b0adc75ece</anchor>
       <arglist>(UVersionInfo info) const override</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>getMaxExpansion</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a9b78b0997f2473d446436b822230061f</anchor>
+      <anchor>a901aa416d38b319ad4394c1fe97a8b11</anchor>
       <arglist>(int32_t order) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a9d6f927333d75614c21494af5a934046</anchor>
+      <anchor>a2c5a0ba92ac2a8fbbdd96d7595d7fd7e</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>uint8_t *</type>
+      <type>U_I18N_API uint8_t *</type>
       <name>cloneRuleData</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>aac53f97c06ed99c9bb960606095dedc5</anchor>
+      <anchor>a674aa4beb393035bbe8d1bd254a575f6</anchor>
       <arglist>(int32_t &amp;length, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>cloneBinary</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a890d2eb9b1a9daa0ef9875806d327f1e</anchor>
+      <anchor>ade4aa234ad3c98474135e4326f0918e3</anchor>
       <arglist>(uint8_t *buffer, int32_t capacity, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>getRules</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>afdd629c4c2677431e003c5426ec3b613</anchor>
+      <anchor>adf8e7a43af02941b814e5df34274286e</anchor>
       <arglist>(UColRuleOption delta, UnicodeString &amp;buffer) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setAttribute</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>af43340dfe2c3fbb95f6ba319807f9caf</anchor>
+      <anchor>a28e0b5745723ec1179a956e416d0a5da</anchor>
       <arglist>(UColAttribute attr, UColAttributeValue value, UErrorCode &amp;status) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UColAttributeValue</type>
+      <type>virtual U_I18N_API UColAttributeValue</type>
       <name>getAttribute</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>ab2fd4581e8ae2afe313992d4e798a2b4</anchor>
+      <anchor>a1498f6c3917328be3fcb5ebbca66a7c8</anchor>
       <arglist>(UColAttribute attr, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual Collator &amp;</type>
+      <type>virtual U_I18N_API Collator &amp;</type>
       <name>setMaxVariable</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>af52cbe6d080a5f3670f0bd16f0731224</anchor>
+      <anchor>a4c7c9b95268667773b72f7ea00e9a3e7</anchor>
       <arglist>(UColReorderCode group, UErrorCode &amp;errorCode) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UColReorderCode</type>
+      <type>virtual U_I18N_API UColReorderCode</type>
       <name>getMaxVariable</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>af1437cef7b437702c4fdbcb74e6a6957</anchor>
+      <anchor>a7438a2b73db4f37454a742c0dce03a06</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual uint32_t</type>
+      <type>virtual U_I18N_API uint32_t</type>
       <name>setVariableTop</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a52657f3d6cbc31172ef7ddaac54c5faa</anchor>
+      <anchor>a2fe45212fe75206a071064912e686591</anchor>
       <arglist>(const char16_t *varTop, int32_t len, UErrorCode &amp;status) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual uint32_t</type>
+      <type>virtual U_I18N_API uint32_t</type>
       <name>setVariableTop</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a5c021c116f6241bac66c975d3705dab9</anchor>
+      <anchor>ab48a0cb5a4c6e7b2396b47de0ad5737f</anchor>
       <arglist>(const UnicodeString &amp;varTop, UErrorCode &amp;status) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setVariableTop</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a0731e13a58b5d07d1946bf53e2784e27</anchor>
+      <anchor>a795ee3122095cd7831144f71479cb24c</anchor>
       <arglist>(uint32_t varTop, UErrorCode &amp;status) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual uint32_t</type>
+      <type>virtual U_I18N_API uint32_t</type>
       <name>getVariableTop</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a29c53a46bd85a9d22f80b957bbe9cca1</anchor>
+      <anchor>a0837d8b8d2d28294bc61c8f2b9609af1</anchor>
       <arglist>(UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet *</type>
+      <type>virtual U_I18N_API UnicodeSet *</type>
       <name>getTailoredSet</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a64d1039b871922aaf103b23856cb68ef</anchor>
+      <anchor>ac5e5fb87ca295f76d3c7cdcae4c4c3c0</anchor>
       <arglist>(UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getSortKey</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a4022c4f0ff2e11844c8df66ff57192f4</anchor>
+      <anchor>a4430acf29ec5cf857ef9f80796356818</anchor>
       <arglist>(const UnicodeString &amp;source, uint8_t *result, int32_t resultLength) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getSortKey</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a16e8282fce29b5d8466dc64ee9208e42</anchor>
+      <anchor>a6ef088fb187054a762163e19ea13c7e8</anchor>
       <arglist>(const char16_t *source, int32_t sourceLength, uint8_t *result, int32_t resultLength) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getReorderCodes</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a5e52d1e2a03f747e76885fa049b0dc54</anchor>
+      <anchor>a6aa8ad4a722bd2a682493bda397e2c23</anchor>
       <arglist>(int32_t *dest, int32_t destCapacity, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setReorderCodes</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a8464677d2d97452898244e86dccb3dee</anchor>
+      <anchor>ae96218329380e74d7e3aca486141a650</anchor>
       <arglist>(const int32_t *reorderCodes, int32_t reorderCodesLength, UErrorCode &amp;status) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UCollationResult</type>
+      <type>virtual U_I18N_API UCollationResult</type>
       <name>internalCompareUTF8</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a09e4c7e9f2e99a27833df56853e74275</anchor>
+      <anchor>a680aa3cd43611e9fa6133fb816a6f257</anchor>
       <arglist>(const char *left, int32_t leftLength, const char *right, int32_t rightLength, UErrorCode &amp;errorCode) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>internalGetShortDefinitionString</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>aa2069d0a87f3c972ea2661989e7137f3</anchor>
+      <anchor>a7d0b9223419e9dfb53578b817e1435db</anchor>
       <arglist>(const char *locale, char *buffer, int32_t capacity, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>internalNextSortKeyPart</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a927620c85fcbdc2879e23264e499c05a</anchor>
+      <anchor>a313f24506c77f43e61b63e0a173f4bc2</anchor>
       <arglist>(UCharIterator *iter, uint32_t state[2], uint8_t *dest, int32_t count, UErrorCode &amp;errorCode) const override</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedCollator</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>ac584aec76ee794a86c8611236456b9fb</anchor>
+      <anchor>ab2e88aa66e4e1a415676b6bf8fe39ae7</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>const char *</type>
+      <type>U_I18N_API const char *</type>
       <name>internalGetLocaleID</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a87f75a9b9643497498de7a1d245a6c76</anchor>
+      <anchor>ae425c59796006360a5f5d86059bc4d92</anchor>
       <arglist>(ULocDataLocaleType type, UErrorCode &amp;errorCode) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>internalGetContractionsAndExpansions</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a766cafe2e3cb0016347285fe3cfbdda1</anchor>
+      <anchor>a9b9c5d2c9318b624c191f68021920c50</anchor>
       <arglist>(UnicodeSet *contractions, UnicodeSet *expansions, UBool addPrefixes, UErrorCode &amp;errorCode) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>internalAddContractions</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a70a09d357eade2dbe2717e45d7e485ac</anchor>
+      <anchor>ae7cccf52eeb71b8ff9b8af90b44f1a57</anchor>
       <arglist>(UChar32 c, UnicodeSet &amp;set, UErrorCode &amp;errorCode) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>internalBuildTailoring</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a6eb360c4a1a95bbb24a19090361b8923</anchor>
+      <anchor>a630d65e9673ccce85b91e5894345ce50</anchor>
       <arglist>(const UnicodeString &amp;rules, int32_t strength, UColAttributeValue decompositionMode, UParseError *outParseError, UnicodeString *outReason, UErrorCode &amp;errorCode)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>internalGetCEs</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>a970cfceba327c2c92f35c8f0dc3f7682</anchor>
+      <anchor>a41958687e78944f67a3f48ac965e8e92</anchor>
       <arglist>(const UnicodeString &amp;str, UVector64 &amp;ces, UErrorCode &amp;errorCode) const</arglist>
     </member>
     <member kind="function">
@@ -57380,10 +58576,10 @@
       <arglist>(UCharIterator &amp;sIter, UCharIterator &amp;tIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_I18N_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1RuleBasedCollator.html</anchorfile>
-      <anchor>ae354bd9f1d0d45b8a06802b75f471316</anchor>
+      <anchor>ad8654d0ff34e9a8aec02cadd311e60cc</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -57413,241 +58609,241 @@
     <filename>classicu_1_1RuleBasedNumberFormat.html</filename>
     <base>icu::NumberFormat</base>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedNumberFormat</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>af34454aa2626cc2abbe660bfb06a2cc1</anchor>
+      <anchor>aa1749633a2b29db81e2a8782f7ceb68b</anchor>
       <arglist>(const UnicodeString &amp;rules, UParseError &amp;perror, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedNumberFormat</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a2dbdf76f601724d263b25611fb119067</anchor>
+      <anchor>a171adc027c3c97e562915140059fbbe6</anchor>
       <arglist>(const UnicodeString &amp;rules, const UnicodeString &amp;localizations, UParseError &amp;perror, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedNumberFormat</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a4da220b5d2f7b1158e63ee14fc2fc7aa</anchor>
+      <anchor>ac19f37e6d97fc63200903f148f996f93</anchor>
       <arglist>(const UnicodeString &amp;rules, const Locale &amp;locale, UParseError &amp;perror, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedNumberFormat</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>ad3033211d966aa7b19e79cdefac68959</anchor>
+      <anchor>a4e36a58091c8c9135a98810449da56c5</anchor>
       <arglist>(const UnicodeString &amp;rules, const UnicodeString &amp;localizations, const Locale &amp;locale, UParseError &amp;perror, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedNumberFormat</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>ac371fc0364fe9fefa0d5406859bf6bfb</anchor>
+      <anchor>a8b70c3a5183ce4a5d4037e0575ed3808</anchor>
       <arglist>(URBNFRuleSetTag tag, const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>RuleBasedNumberFormat</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>ace45ecff83c0aeb5d1c4beb5666c8ea3</anchor>
+      <anchor>aff0d542631c25067304d5ad17f3c89ea</anchor>
       <arglist>(const RuleBasedNumberFormat &amp;rhs)</arglist>
     </member>
     <member kind="function">
-      <type>RuleBasedNumberFormat &amp;</type>
+      <type>U_I18N_API RuleBasedNumberFormat &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a1fb25a61ee8b3df5421c00dac1217f3b</anchor>
+      <anchor>ab1441fa4fc6885e002c1c7d9553d6df5</anchor>
       <arglist>(const RuleBasedNumberFormat &amp;rhs)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~RuleBasedNumberFormat</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a8d0596fcba3fffe70ae75a52106395f1</anchor>
+      <anchor>a6a025a8b122bc333d97481409a94ce1d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual RuleBasedNumberFormat *</type>
+      <type>virtual U_I18N_API RuleBasedNumberFormat *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>aaf4b53bcb03003aed01f049254a0d820</anchor>
+      <anchor>a8173d8ee6660446e5c9c337220f1dff2</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>adeea31f085945b56f4c97e052911ee37</anchor>
+      <anchor>a5a544cb9798303b15dab55d3807c8dfa</anchor>
       <arglist>(const Format &amp;other) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString</type>
+      <type>virtual U_I18N_API UnicodeString</type>
       <name>getRules</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a43fc57fcffd43e1e56dd0f5ab9cd6e85</anchor>
+      <anchor>aa55f4517a99968b44f92412c75539dc2</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getNumberOfRuleSetNames</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a509284c464972d74999c26c0bd8eec3b</anchor>
+      <anchor>a4fc9fcd5860d5c4fa6462c8b1aa65803</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString</type>
+      <type>virtual U_I18N_API UnicodeString</type>
       <name>getRuleSetName</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a27d29998eee5d40665f2099f4a6b0109</anchor>
+      <anchor>a1686b9ee4d36c4c2831734d0c8fa4899</anchor>
       <arglist>(int32_t index) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+      <type>virtual U_I18N_API int32_t</type>
       <name>getNumberOfRuleSetDisplayNameLocales</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a4a4a87f69635a065a3be399987bf2a13</anchor>
+      <anchor>a378304ce4ed9017df51dced23428f0a0</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual Locale</type>
+      <type>virtual U_I18N_API Locale</type>
       <name>getRuleSetDisplayNameLocale</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>ad727d8dc85711fdf93d7b70dbcfdae67</anchor>
+      <anchor>a94cf214b9c9e25133a068b7325be7db6</anchor>
       <arglist>(int32_t index, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString</type>
+      <type>virtual U_I18N_API UnicodeString</type>
       <name>getRuleSetDisplayName</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>ac7a1e2b4dcd3371b92af4b54805e112b</anchor>
+      <anchor>a53994f6cb908e5269488a533c5042092</anchor>
       <arglist>(int32_t index, const Locale &amp;locale=Locale::getDefault())</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString</type>
+      <type>virtual U_I18N_API UnicodeString</type>
       <name>getRuleSetDisplayName</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>ae39cd224c58cd688918c6cfe81a31410</anchor>
+      <anchor>a90e86f95e7190a6c1c099b657597f619</anchor>
       <arglist>(const UnicodeString &amp;ruleSetName, const Locale &amp;locale=Locale::getDefault())</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a39462ad1b630700924687513f854012f</anchor>
+      <anchor>a5f33b7a256de01f3a32c5354cac9cc3e</anchor>
       <arglist>(int32_t number, UnicodeString &amp;toAppendTo, FieldPosition &amp;pos) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a79f9d7105cb45571170eaa9e6bc6318a</anchor>
+      <anchor>a0f4bac9c6ef47f81404263ba86c050a9</anchor>
       <arglist>(int64_t number, UnicodeString &amp;toAppendTo, FieldPosition &amp;pos) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a2434ffc56279df0b1261bbe03df23096</anchor>
+      <anchor>a2cbd8e8e087103d414e5b33d27db9c34</anchor>
       <arglist>(double number, UnicodeString &amp;toAppendTo, FieldPosition &amp;pos) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>add263a373ee19e0e472222f5b4c6da25</anchor>
+      <anchor>a86b13e02738aff908e35f22f387ae787</anchor>
       <arglist>(int32_t number, const UnicodeString &amp;ruleSetName, UnicodeString &amp;toAppendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a89280fd89bfd6ead6b430f2589a6e300</anchor>
+      <anchor>a37e166298aaa34a00a858abcf6d1550b</anchor>
       <arglist>(int64_t number, const UnicodeString &amp;ruleSetName, UnicodeString &amp;toAppendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>abef849ffedcb16542eb0244fa23e2956</anchor>
+      <anchor>a9963acf6bd7d5fc8d00e764cf04ea244</anchor>
       <arglist>(double number, const UnicodeString &amp;ruleSetName, UnicodeString &amp;toAppendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parse</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a9156a8d22ddc5e6eb3c02d105243b73a</anchor>
+      <anchor>a98e6ee782deaa68b879e492fd50b4e43</anchor>
       <arglist>(const UnicodeString &amp;text, Formattable &amp;result, ParsePosition &amp;parsePosition) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setLenient</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a1d4b2394dbd9bca900528088c8d6c718</anchor>
+      <anchor>aa6af201cd3ca2d5d7dc81d95f6bb3bb4</anchor>
       <arglist>(UBool enabled) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+      <type>virtual U_I18N_API UBool</type>
       <name>isLenient</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
       <anchor>a03dda7606492c7df986926009b7bfbcd</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setDefaultRuleSet</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>aa0fbc19602d99cfcb550e2c11cb9ca91</anchor>
+      <anchor>a58e539ac52da8a2262731309859bdc1a</anchor>
       <arglist>(const UnicodeString &amp;ruleSetName, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString</type>
+      <type>virtual U_I18N_API UnicodeString</type>
       <name>getDefaultRuleSetName</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>ad0441402cce5e6dc80633acc89ddc5f0</anchor>
+      <anchor>a290e49e92b2c4c74549a4ac960c57c21</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setContext</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a80629dc1440b1a1d1b3c29c026c7cbda</anchor>
+      <anchor>a0b311c072be917f60a0e0fbb5af0db63</anchor>
       <arglist>(UDisplayContext value, UErrorCode &amp;status) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual ERoundingMode</type>
+      <type>virtual U_I18N_API ERoundingMode</type>
       <name>getRoundingMode</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a92266df8acc22756d135f075870b8fce</anchor>
+      <anchor>a88d8834a938d2a048d8add6bedd193fa</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setRoundingMode</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a991a86d10835ed2fe5784a49beb340a6</anchor>
+      <anchor>a4329fe46a7272339ecc14e42a805822e</anchor>
       <arglist>(ERoundingMode roundingMode) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>aaecd7f5f83443de3e317882751346626</anchor>
+      <anchor>a125ecd9245b2e0d81cd2d67b2c266c8d</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptDecimalFormatSymbols</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>aecedeca091176606c63a5ee38e6be662</anchor>
+      <anchor>acc71d5ea8dbba1cb69295a70b428127b</anchor>
       <arglist>(DecimalFormatSymbols *symbolsToAdopt)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setDecimalFormatSymbols</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a7e536e7a55b6e5e54d45e132de7a11e3</anchor>
+      <anchor>a8b185b7d5b83bf340c3b12793e64ead5</anchor>
       <arglist>(const DecimalFormatSymbols &amp;symbols)</arglist>
     </member>
     <member kind="function">
@@ -57770,24 +58966,24 @@
       <arglist>(const number::impl::DecimalQuantity &amp;number, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a68fb0a8875645f7ab11bb5230c03c212</anchor>
+      <anchor>a967945dd6939921c80012a65b189c8ea</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const =0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
@@ -57805,10 +59001,10 @@
       <arglist>(const UnicodeString &amp;text, Formattable &amp;result, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_I18N_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1RuleBasedNumberFormat.html</anchorfile>
-      <anchor>aafc816e642e523da1ba70d9a368f3744</anchor>
+      <anchor>a7d7783200369776d206b95bdcfed659a</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
@@ -58628,24 +59824,24 @@
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SelectFormat.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SelectFormat.html</anchorfile>
-      <anchor>a218d385a5aaf02005c0f7af9d4e00b74</anchor>
+      <anchor>af360df0f7c3db4ebaa9cf95c4e532f93</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const=0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SelectFormat.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
@@ -58707,52 +59903,52 @@
     <base>icu::UObject</base>
     <class kind="class">icu::message2::data_model::SelectorKeys::Builder</class>
     <member kind="function">
-      <type>std::vector&lt; Key &gt;</type>
+      <type>U_I18N_API std::vector&lt; Key &gt;</type>
       <name>getKeys</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1SelectorKeys.html</anchorfile>
-      <anchor>ae6e271c613108312f0a3fe251144b7e4</anchor>
+      <anchor>a26fba69effc62f1aab1d8155670c32be</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>U_I18N_API bool</type>
       <name>operator&lt;</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1SelectorKeys.html</anchorfile>
-      <anchor>a7c626f16b779043e7e8bda94b17aa923</anchor>
+      <anchor>a4b507277ffd78f653d58d1058aa4e4dd</anchor>
       <arglist>(const SelectorKeys &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>SelectorKeys</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1SelectorKeys.html</anchorfile>
-      <anchor>acd9fe54c48969f73a9ebde2afccf3cbc</anchor>
+      <anchor>a17d22bd885e7ec99ae79c47301c6087b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>SelectorKeys</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1SelectorKeys.html</anchorfile>
-      <anchor>afcb26fcd3303eb2f93a31d2131b8f89a</anchor>
+      <anchor>a09bdcdb49ac109736a3f4ae043d16a2e</anchor>
       <arglist>(const SelectorKeys &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type>SelectorKeys &amp;</type>
+      <type>U_I18N_API SelectorKeys &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1SelectorKeys.html</anchorfile>
-      <anchor>a3a22ea9e8446b9afb5282359055be2cc</anchor>
+      <anchor>aa1dbedb2837c1113938cc07cdf1cb4c0</anchor>
       <arglist>(SelectorKeys other) noexcept</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~SelectorKeys</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1SelectorKeys.html</anchorfile>
-      <anchor>a7dbdb4958ee77ecee8c27413926bb941</anchor>
+      <anchor>aab090cf298ba56a44a796f8f29b22868</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="friend">
-      <type>friend void</type>
+      <type>U_I18N_API friend void</type>
       <name>swap</name>
       <anchorfile>classicu_1_1message2_1_1data__model_1_1SelectorKeys.html</anchorfile>
-      <anchor>a366610831bc6059d72ecaca4e9f13ab3</anchor>
+      <anchor>a0cd29d94d3f44fa310510df48d837f0a</anchor>
       <arglist>(SelectorKeys &amp;s1, SelectorKeys &amp;s2) noexcept</arglist>
     </member>
   </compound>
@@ -58761,353 +59957,353 @@
     <filename>classicu_1_1SimpleDateFormat.html</filename>
     <base>icu::DateFormat</base>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>SimpleDateFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>abac138102ec26c6d80043111c2d20817</anchor>
+      <anchor>a7374c9ff14beeca5e3e47f53e81765bd</anchor>
       <arglist>(UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>SimpleDateFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a4c6fb4cda13384e3536360d7aff75428</anchor>
+      <anchor>a01baf37bd42d64931f6ed2cd511eb9be</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>SimpleDateFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a338722b13984ce66d7ec4cce7f2480ac</anchor>
+      <anchor>a852aa7ee2b70badb99ee4810bab4da12</anchor>
       <arglist>(const UnicodeString &amp;pattern, const UnicodeString &amp;override, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>SimpleDateFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>aea33520a89bb548165f7f3a3552d3617</anchor>
+      <anchor>a7cb6b839b4d7383bfa01d6d5b1ad0474</anchor>
       <arglist>(const UnicodeString &amp;pattern, const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>SimpleDateFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>adf45ef405007b0abdd9f840bf2a9473d</anchor>
+      <anchor>a7d0ff4be508718949b33eceac61650e3</anchor>
       <arglist>(const UnicodeString &amp;pattern, const UnicodeString &amp;override, const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>SimpleDateFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a431d86e0200818d8b6243ab11a76f84c</anchor>
+      <anchor>ade7a14cffdd6376ceb9a8e903d096136</anchor>
       <arglist>(const UnicodeString &amp;pattern, DateFormatSymbols *formatDataToAdopt, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>SimpleDateFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a83a094d8a8b900c56378e25e1bb6a126</anchor>
+      <anchor>a20000e7482f8410da4ca52f953f9dc7f</anchor>
       <arglist>(const UnicodeString &amp;pattern, const DateFormatSymbols &amp;formatData, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>SimpleDateFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a3d726e531132979f4f65f7b1df11bfcb</anchor>
+      <anchor>aff903bc1836d18381705de36ef8b6d5f</anchor>
       <arglist>(const SimpleDateFormat &amp;)</arglist>
     </member>
     <member kind="function">
-      <type>SimpleDateFormat &amp;</type>
+      <type>U_I18N_API SimpleDateFormat &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a9d89c9dace9a975079e0b5ecf58ca244</anchor>
+      <anchor>aab8c84f7f6cd20cbe71e842fb1beadd0</anchor>
       <arglist>(const SimpleDateFormat &amp;)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~SimpleDateFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>ad9ba3936fa488c69cb1ba3944c5eb474</anchor>
+      <anchor>ae55fa60b1dbc3f4029ac77a084321cbb</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual SimpleDateFormat *</type>
+      <type>virtual U_I18N_API SimpleDateFormat *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>aff4b5da3603e5e8bcc05ab5fdc37fda0</anchor>
+      <anchor>ad36bbc19b7eed998d4a4205140c6843b</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a116a55ec9e821800495020e33703c2a8</anchor>
+      <anchor>a2f6eff21c86fcbd4f5b17a8cc6f159e5</anchor>
       <arglist>(const Format &amp;other) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a00e9d340549bbcc46fe2a568605fd374</anchor>
+      <anchor>a64e3cef36335a17fc51172c2951cd795</anchor>
       <arglist>(Calendar &amp;cal, UnicodeString &amp;appendTo, FieldPosition &amp;pos) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>acad6782112de6b6918be98b4fc4f6d01</anchor>
+      <anchor>aa16528340af9d55c52f0707e7902b4cf</anchor>
       <arglist>(Calendar &amp;cal, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parse</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a128664f3ee0336ff02f928abd0ddba39</anchor>
+      <anchor>aa73be67e1c52bfffd86ee30f96970441</anchor>
       <arglist>(const UnicodeString &amp;text, Calendar &amp;cal, ParsePosition &amp;pos) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>set2DigitYearStart</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>ad2eb855b855a2aa72ed527a287916902</anchor>
+      <anchor>a50c61df722372a5730488b31e28eb0f1</anchor>
       <arglist>(UDate d, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UDate</type>
+      <type>U_I18N_API UDate</type>
       <name>get2DigitYearStart</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
       <anchor>a2a836c92242ff768000efb3b843dc3ba</anchor>
       <arglist>(UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>toPattern</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a4560cf35dfcc0a6d8af973e7061211bf</anchor>
+      <anchor>a324c9192764ecb6105d86f736da0b898</anchor>
       <arglist>(UnicodeString &amp;result) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>toLocalizedPattern</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a50aea0acf257d36dc96bf01828272088</anchor>
+      <anchor>aeb15cd93874665fee37b00d6e89841da</anchor>
       <arglist>(UnicodeString &amp;result, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>applyPattern</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a3ca36413f304aab5dab465af7f396cef</anchor>
+      <anchor>a67d6bdcdc667399e9308da538fd9c928</anchor>
       <arglist>(const UnicodeString &amp;pattern)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>applyLocalizedPattern</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>af9119de6f712398af99258078aff2ba1</anchor>
+      <anchor>af952da3d185fe4860155bde362cced9b</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual const DateFormatSymbols *</type>
+      <type>virtual U_I18N_API const DateFormatSymbols *</type>
       <name>getDateFormatSymbols</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>afd00404d7337082533fcd6c3d18d77b1</anchor>
+      <anchor>ae6641537b8130de0addb7ae61b7c3ac0</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptDateFormatSymbols</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a3fbc936e6e9ba6834c9a4b26a2a4af60</anchor>
+      <anchor>ab8d1afc7ef54f40611f9a15931c629ec</anchor>
       <arglist>(DateFormatSymbols *newFormatSymbols)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setDateFormatSymbols</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a449ebfea40ef3bc01a726d40d7b77444</anchor>
+      <anchor>a204f835138ddfaa780f9e7e3f5d2287e</anchor>
       <arglist>(const DateFormatSymbols &amp;newFormatSymbols)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a4e90b76050e1b10c02709f1f6495574f</anchor>
+      <anchor>a901d2e2e1ce3c63446c1728b05aa6ffc</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptCalendar</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>aa516e475dd1bd93dafb165ca51ecc7ea</anchor>
+      <anchor>a1b4151660486c2f027f09998673f9da7</anchor>
       <arglist>(Calendar *calendarToAdopt) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>adoptTimeZoneFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>aefb500fe70e83b09b312ce1e893129b4</anchor>
+      <anchor>a9412ef939d81e9ada0d95c2110c5d81e</anchor>
       <arglist>(TimeZoneFormat *timeZoneFormatToAdopt)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setTimeZoneFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a9a4dc5028f3977f3ba8ca4332a2b1a4e</anchor>
+      <anchor>a47c89287563eef457509786f3c3fa8c8</anchor>
       <arglist>(const TimeZoneFormat &amp;newTimeZoneFormat)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual const TimeZoneFormat *</type>
+      <type>virtual U_I18N_API const TimeZoneFormat *</type>
       <name>getTimeZoneFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a1e33680fea34d38ee093cdf906bb3566</anchor>
+      <anchor>a1e91da14b02a0fcbc77fdc2d105a71d9</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>setContext</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a5789d365715c59e7d1d06a7b563de6d9</anchor>
+      <anchor>a41dbb0c0349149d165b4ff8ca00fdcec</anchor>
       <arglist>(UDisplayContext value, UErrorCode &amp;status) override</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>adoptNumberFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a6aa9212004cc17d5ee28ff916d0a3e73</anchor>
+      <anchor>a83ae693c48418f66c9558dc458b56164</anchor>
       <arglist>(NumberFormat *formatToAdopt) override</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>adoptNumberFormat</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>ade14aa7a5dca5ebce627c2f10ad8c397</anchor>
+      <anchor>a61491ce2ae680c2b2ea666e2c7dae0df</anchor>
       <arglist>(const UnicodeString &amp;fields, NumberFormat *formatToAdopt, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>const NumberFormat *</type>
+      <type>U_I18N_API const NumberFormat *</type>
       <name>getNumberFormatForField</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a52b45f1ac03c9eead7ba6153d5c7fc61</anchor>
+      <anchor>ae5041e8c56fa49ba10345ccdb52145c4</anchor>
       <arglist>(char16_t field) const</arglist>
     </member>
     <member kind="function">
-      <type>UBool</type>
+      <type>U_I18N_API UBool</type>
       <name>isFieldUnitIgnored</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a7ddbbe72779002eb0e7a0c5333df3744</anchor>
+      <anchor>a7a680b3f975c8292920e1b7259d21c46</anchor>
       <arglist>(UCalendarDateFields field) const</arglist>
     </member>
     <member kind="function">
-      <type>const Locale &amp;</type>
+      <type>U_I18N_API const Locale &amp;</type>
       <name>getSmpFmtLocale</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>af1e6ddb37921ff9e7ed61e6ac28d6189</anchor>
+      <anchor>a6fe5bbb80c192af30ec020084b194f08</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a91c4a33a423eb451705e9f7d38374a0f</anchor>
+      <anchor>a9b2abe46c7e6eb9ae72dd55e86489f7c</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>acb58440c6556009e67a51356d0f67252</anchor>
+      <anchor>a31211b3be03d1451d162ce4a7ddbf62c</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>ab3b8cbf7a63987fe65bb24c74e34d07f</anchor>
+      <anchor>abf46bd057466a19c63fac79d05178da5</anchor>
       <arglist>(Calendar &amp;cal, UnicodeString &amp;appendTo, FieldPosition &amp;fieldPosition) const=0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a8209455a5f5ae0b7971485710cecd5e1</anchor>
+      <anchor>a1345cc05a97cb29c44401ab8c6a5f863</anchor>
       <arglist>(Calendar &amp;cal, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a68e2e9020e3fa83d0096ff13197a3153</anchor>
+      <anchor>adb4794eb82da23a3ab461ef5da3e78ba</anchor>
       <arglist>(UDate date, UnicodeString &amp;appendTo, FieldPosition &amp;fieldPosition) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>aa4cedcaa4d77be3b3f3eeecdea2909a2</anchor>
+      <anchor>a0b46b23e56151885b9336e922ac2232c</anchor>
       <arglist>(UDate date, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a5940ccf5676d3fa043d8255c55b7ddd1</anchor>
+      <anchor>a183e703ac25c3d7d9dff10022de291bd</anchor>
       <arglist>(UDate date, UnicodeString &amp;appendTo) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a68fb0a8875645f7ab11bb5230c03c212</anchor>
+      <anchor>a967945dd6939921c80012a65b189c8ea</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const =0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UDate</type>
+      <type>virtual U_I18N_API UDate</type>
       <name>parse</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a088aa13d607c682cc435d4152613cfc1</anchor>
+      <anchor>a107ed9dfe1023156c53235db41056a78</anchor>
       <arglist>(const UnicodeString &amp;text, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parse</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>a6d1cfd08ea9238eafee56e9b80849df2</anchor>
+      <anchor>afeec77995fc220b5e61fd60b60144cee</anchor>
       <arglist>(const UnicodeString &amp;text, Calendar &amp;cal, ParsePosition &amp;pos) const=0</arglist>
     </member>
     <member kind="function">
-      <type>UDate</type>
+      <type>U_I18N_API UDate</type>
       <name>parse</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>ac72fe5dee0f13c9e4d673d2f19bcad5e</anchor>
+      <anchor>ac87ec1be5140559cb84718bad8ffb9bc</anchor>
       <arglist>(const UnicodeString &amp;text, ParsePosition &amp;pos) const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_I18N_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>ac4e4592f12e7114d03b346ed9e43c862</anchor>
+      <anchor>aefdd04cb691333df9c658eece3374172</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UBool</type>
+      <type>static U_I18N_API UBool</type>
       <name>isFieldUnitIgnored</name>
       <anchorfile>classicu_1_1SimpleDateFormat.html</anchorfile>
-      <anchor>aeb04048b98e952c9fbef01dd277c585d</anchor>
+      <anchor>a1a23220f26f5e4cebdeaee80593dbea1</anchor>
       <arglist>(const UnicodeString &amp;pattern, UCalendarDateFields field)</arglist>
     </member>
   </compound>
@@ -61396,262 +62592,262 @@
     <filename>classicu_1_1TimeZoneFormat.html</filename>
     <base>icu::Format</base>
     <member kind="function">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>TimeZoneFormat</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a2eac5330b574e21024d977c8f41c7647</anchor>
+      <anchor>ae0dfb4d2cfee9afcabbcf80437933535</anchor>
       <arglist>(const TimeZoneFormat &amp;other)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual</type>
+      <type>virtual U_I18N_API</type>
       <name>~TimeZoneFormat</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a831f1d2fc45f9af032a870d412ed09c4</anchor>
+      <anchor>a0dd04abdf000f109c50d69c4c2f60dae</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>TimeZoneFormat &amp;</type>
+      <type>U_I18N_API TimeZoneFormat &amp;</type>
       <name>operator=</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>aee1de00e350d7a7128e558ca6938ccd2</anchor>
+      <anchor>a17c040737b50eab202f0960c44bc17ad</anchor>
       <arglist>(const TimeZoneFormat &amp;other)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+      <type>virtual U_I18N_API bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a977cfea9bfa938d437eb69d4ad0c899e</anchor>
+      <anchor>a76feb7a5699a39848df9aa6fde13e253</anchor>
       <arglist>(const Format &amp;other) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual TimeZoneFormat *</type>
+      <type>virtual U_I18N_API TimeZoneFormat *</type>
       <name>clone</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>ac144c7f804a791ccd40440ef6265072f</anchor>
+      <anchor>aa4b042c6aa00ee5eeec32c1891a204f1</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>const TimeZoneNames *</type>
+      <type>U_I18N_API const TimeZoneNames *</type>
       <name>getTimeZoneNames</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a0ca91ce74e5ba9b0dbbcde5e32fdd5c1</anchor>
+      <anchor>a607360acc7374ede5bc0397334152b99</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>adoptTimeZoneNames</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>ac425d3dbb490e857cf327915ee4edd92</anchor>
+      <anchor>a87375035ab9543be1b8b21ea82355c86</anchor>
       <arglist>(TimeZoneNames *tznames)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setTimeZoneNames</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>ad5c5cba52717e03773b0c1ca1f0d2346</anchor>
+      <anchor>aa8ca8d85728b9845a0949a102c969c50</anchor>
       <arglist>(const TimeZoneNames &amp;tznames)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>getGMTPattern</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>ad5d1a35a550f36fbc789ac72a3e48157</anchor>
+      <anchor>af9072a6f62557c7c75b37995ed8ea1d2</anchor>
       <arglist>(UnicodeString &amp;pattern) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setGMTPattern</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a6ae01285433839df56e524c2c3545172</anchor>
+      <anchor>a877fb6850e6e5bd2b0586689b0a9d731</anchor>
       <arglist>(const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>getGMTOffsetPattern</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>ada9be994a0ae2f20c1de6f26a273eb12</anchor>
+      <anchor>a5c14299c621e1191a5c5b4e1f2817eb7</anchor>
       <arglist>(UTimeZoneFormatGMTOffsetPatternType type, UnicodeString &amp;pattern) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setGMTOffsetPattern</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a634116ce782a4f4722b3370256df9ed3</anchor>
+      <anchor>a629d469af51038b2d1340a13d85d35c5</anchor>
       <arglist>(UTimeZoneFormatGMTOffsetPatternType type, const UnicodeString &amp;pattern, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>getGMTOffsetDigits</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>aa7fe0d7a668c7d6fa51443dcc7be5da2</anchor>
+      <anchor>a2802a52757a201a20befe43bedfebb8f</anchor>
       <arglist>(UnicodeString &amp;digits) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setGMTOffsetDigits</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a48f2770937765b48572c90d805a30456</anchor>
+      <anchor>af13b7b85363f2f6dda18eece3aa9713d</anchor>
       <arglist>(const UnicodeString &amp;digits, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>getGMTZeroFormat</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a09e2c6d7b5260a1421f3ec527ca36a4c</anchor>
+      <anchor>a560f3477b185962c4d6081cdb4e8a834</anchor>
       <arglist>(UnicodeString &amp;gmtZeroFormat) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setGMTZeroFormat</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a3926cc77a0abef814b7e1e51fd272801</anchor>
+      <anchor>a9984519847ec59be40462738ec314550</anchor>
       <arglist>(const UnicodeString &amp;gmtZeroFormat, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function">
-      <type>uint32_t</type>
+      <type>U_I18N_API uint32_t</type>
       <name>getDefaultParseOptions</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>ae94db80f27f8cab3f82801f27a15aa52</anchor>
+      <anchor>a3718c47a229101f137bc3733b91469e3</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>U_I18N_API void</type>
       <name>setDefaultParseOptions</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>af469b39aad4fb07ed632fc79fb4f5d51</anchor>
+      <anchor>a9501c1c8383a10db5467c53eb2b8537e</anchor>
       <arglist>(uint32_t flags)</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>formatOffsetISO8601Basic</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a7f01b7c13f9ffc3f8f5678f90b21028f</anchor>
+      <anchor>ae81022f1ec7a378fff1692ad1691957d</anchor>
       <arglist>(int32_t offset, UBool useUtcIndicator, UBool isShort, UBool ignoreSeconds, UnicodeString &amp;result, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>formatOffsetISO8601Extended</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a7edcf160017cd367fb7f42e584050fab</anchor>
+      <anchor>a6cf94f72358a9425ff6fa7b02a3c3a11</anchor>
       <arglist>(int32_t offset, UBool useUtcIndicator, UBool isShort, UBool ignoreSeconds, UnicodeString &amp;result, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>formatOffsetLocalizedGMT</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>af63dfe3aa004b91f2415203751bec4cc</anchor>
+      <anchor>a63b4cca0a120862b9d198adbd4918801</anchor>
       <arglist>(int32_t offset, UnicodeString &amp;result, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>formatOffsetShortLocalizedGMT</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a368d3293b8dc8d5df65a8006abed3013</anchor>
+      <anchor>a8c1e06dc8daaa315fe3311b83cb28349</anchor>
       <arglist>(int32_t offset, UnicodeString &amp;result, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a1986d2541fa4a16afcf3a9931325ba67</anchor>
+      <anchor>ab6acd7ab6215f5da3876e5eae465aad2</anchor>
       <arglist>(UTimeZoneFormatStyle style, const TimeZone &amp;tz, UDate date, UnicodeString &amp;name, UTimeZoneFormatTimeType *timeType=nullptr) const</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>parseOffsetISO8601</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>afeb1e4b86db663fe949f7db008a1f46a</anchor>
+      <anchor>ae5ed0f9cde0414f65203754e3fcfdb39</anchor>
       <arglist>(const UnicodeString &amp;text, ParsePosition &amp;pos) const</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>parseOffsetLocalizedGMT</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a7fe5962ba1e61f705354008a4fdb600d</anchor>
+      <anchor>a5c3abaa98bf39fbeff9596aa0a88832d</anchor>
       <arglist>(const UnicodeString &amp;text, ParsePosition &amp;pos) const</arglist>
     </member>
     <member kind="function">
-      <type>int32_t</type>
+      <type>U_I18N_API int32_t</type>
       <name>parseOffsetShortLocalizedGMT</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a930a30e8a7ef5e600f0ccc28cd9f64f9</anchor>
+      <anchor>ab5d6645b78035fc143c2c6b07bd01125</anchor>
       <arglist>(const UnicodeString &amp;text, ParsePosition &amp;pos) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual TimeZone *</type>
+      <type>virtual U_I18N_API TimeZone *</type>
       <name>parse</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>aa1442cd709966e2bba0d2f00bc10798c</anchor>
+      <anchor>ac6a3813f4d3a768aea5cf5273fb372a4</anchor>
       <arglist>(UTimeZoneFormatStyle style, const UnicodeString &amp;text, ParsePosition &amp;pos, int32_t parseOptions, UTimeZoneFormatTimeType *timeType=nullptr) const</arglist>
     </member>
     <member kind="function">
-      <type>TimeZone *</type>
+      <type>U_I18N_API TimeZone *</type>
       <name>parse</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a775933996215d5a45a93e4df81310d9c</anchor>
+      <anchor>a195f774e1be40195746790cabe840f7d</anchor>
       <arglist>(UTimeZoneFormatStyle style, const UnicodeString &amp;text, ParsePosition &amp;pos, UTimeZoneFormatTimeType *timeType=nullptr) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a6e59e5cc9dde7add69fed5605b472bd0</anchor>
+      <anchor>aeb81e1b24899f8f1ff17c0e7717c01e2</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual U_I18N_API void</type>
       <name>parseObject</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a46597b46201ffd32342a6759a06805ff</anchor>
+      <anchor>a98883ddd2dc7fb00e1f01634560904c3</anchor>
       <arglist>(const UnicodeString &amp;source, Formattable &amp;result, ParsePosition &amp;parse_pos) const override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual UClassID</type>
+      <type>virtual U_I18N_API UClassID</type>
       <name>getDynamicClassID</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>adbe531a028192f0a7f35187c018e3415</anchor>
+      <anchor>a013fae0d17235067f283c08023394cff</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>UnicodeString &amp;</type>
+      <type>U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>affaf0088c4eb9976223a327bdc4f1dd0</anchor>
+      <anchor>a1fba841a9a5db6f2a99da5998b542ac8</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a218d385a5aaf02005c0f7af9d4e00b74</anchor>
+      <anchor>af360df0f7c3db4ebaa9cf95c4e532f93</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPosition &amp;pos, UErrorCode &amp;status) const=0</arglist>
     </member>
     <member kind="function">
-      <type>virtual UnicodeString &amp;</type>
+      <type>virtual U_I18N_API UnicodeString &amp;</type>
       <name>format</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a6b5fe6a90f69376fe95caf2123239ccb</anchor>
+      <anchor>a564c462b7ea9dba89f0b6c49542a6779</anchor>
       <arglist>(const Formattable &amp;obj, UnicodeString &amp;appendTo, FieldPositionIterator *posIter, UErrorCode &amp;status) const</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static TimeZoneFormat *</type>
+      <type>static U_I18N_API TimeZoneFormat *</type>
       <name>createInstance</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>ad7a2fe7bf81bb8ead93197a02741e1d8</anchor>
+      <anchor>a5b4fb8261f3feebf9789f6fc9e239bce</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static UClassID</type>
+      <type>static U_I18N_API UClassID</type>
       <name>getStaticClassID</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a71bce02ce8edb8249f748a92c98d2ae3</anchor>
+      <anchor>a6f40dfed6dab06154128ce1cbb974cd8</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type></type>
+      <type>U_I18N_API</type>
       <name>TimeZoneFormat</name>
       <anchorfile>classicu_1_1TimeZoneFormat.html</anchorfile>
-      <anchor>a5d55ca04afd441a0a72f12017a4b0667</anchor>
+      <anchor>a9b025afcd9df950fdfc42b3b7f2c01ed</anchor>
       <arglist>(const Locale &amp;locale, UErrorCode &amp;status)</arglist>
     </member>
   </compound>
@@ -63568,11 +64764,11 @@
       <anchor>af62bf2daf632da70c40c0d144d50ec5f</anchor>
       <arglist>(const UnicodeSet &amp;o)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
+    <member kind="function">
+      <type>bool</type>
       <name>operator==</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>ab74775fdacd7b031edab7d8e72da32fc</anchor>
+      <anchor>ab152890ac8aade2e79ba4b5869530452</anchor>
       <arglist>(const UnicodeSet &amp;o) const</arglist>
     </member>
     <member kind="function">
@@ -63589,11 +64785,11 @@
       <anchor>ab25808c0d126956f1cd8bb13d800c640</anchor>
       <arglist>() const override</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>hashCode</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>ab2cf16c0dc276ffae3c9dc9caf0b9314</anchor>
+      <anchor>a3ab5f7bad14230a484a21e3379a25110</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -63680,18 +64876,18 @@
       <anchor>aef8af359c0184fec800dc2261a405180</anchor>
       <arglist>(const UnicodeString &amp;prop, const UnicodeString &amp;value, UErrorCode &amp;ec)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>size</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a3b7525b717aa17c531c2e3cfc84dfe00</anchor>
+      <anchor>a1e18c0e527a834e9296b0e873a98136e</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>isEmpty</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a2f83c9b1e68be7bccedef4981557b844</anchor>
+      <anchor>ac9904512a5e80404fb590944a37aaf31</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -63708,11 +64904,11 @@
       <anchor>ae05f407a70aa961e282655898882f5a4</anchor>
       <arglist>(UChar32 c) const override</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>contains</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a962122dc4ef08a350279bd34a46223c3</anchor>
+      <anchor>aef5bae8ae285effb9897b82f37ec1756</anchor>
       <arglist>(UChar32 start, UChar32 end) const</arglist>
     </member>
     <member kind="function">
@@ -63722,11 +64918,11 @@
       <anchor>aa273fd37f664f464c61bfa57eb8086a0</anchor>
       <arglist>(const UnicodeString &amp;s) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UBool</type>
+    <member kind="function">
+      <type>UBool</type>
       <name>containsAll</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a69e4af354f7ba37f9c9750f824402493</anchor>
+      <anchor>ad04f50e88ed175619b9229b8907e143f</anchor>
       <arglist>(const UnicodeSet &amp;c) const</arglist>
     </member>
     <member kind="function">
@@ -63820,11 +65016,11 @@
       <anchor>a191c082018c88b02d0cdc8ff8fbcf150</anchor>
       <arglist>(const char *s, int32_t length, USetSpanCondition spanCondition) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UMatchDegree</type>
+    <member kind="function">
+      <type>UMatchDegree</type>
       <name>matches</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>ad1644090d1f73b8396f7fc1a78838841</anchor>
+      <anchor>aa5ed358a5c5e746aa712a1363ea392a3</anchor>
       <arglist>(const Replaceable &amp;text, int32_t &amp;offset, int32_t limit, UBool incremental) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
@@ -63883,11 +65079,11 @@
       <anchor>a5806e04261e1fc150f9e177090697f0f</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>add</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>ad29d89f587aa3aee3749a236eadf0a2d</anchor>
+      <anchor>a8f4ff0d779c12b45dd83d4654774cb1c</anchor>
       <arglist>(UChar32 start, UChar32 end)</arglist>
     </member>
     <member kind="function">
@@ -63932,11 +65128,11 @@
       <anchor>ad1bf590e1440ba90c54b69f69c478d68</anchor>
       <arglist>(const UnicodeString &amp;s)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>retain</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a3eb41e0ae746fd32dace5ce3521e4ff7</anchor>
+      <anchor>a2b6972ffd54d95626dcaf41be1a254d2</anchor>
       <arglist>(UChar32 start, UChar32 end)</arglist>
     </member>
     <member kind="function">
@@ -63953,11 +65149,11 @@
       <anchor>a64b7a796758cc2100a5ba97c6edb10be</anchor>
       <arglist>(const UnicodeString &amp;s)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>remove</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>ae355939302168cff35929b48c37b9c96</anchor>
+      <anchor>a97400a59f69a530702820c66907b7c2c</anchor>
       <arglist>(UChar32 start, UChar32 end)</arglist>
     </member>
     <member kind="function">
@@ -63974,18 +65170,18 @@
       <anchor>a5127c5eb9b73a0c66568d891b059f478</anchor>
       <arglist>(const UnicodeString &amp;s)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>complement</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a60460749e20685e496e819b368496089</anchor>
+      <anchor>aa1e8fffba95130850b35b792c4b17b63</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>complement</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a1ba0c8470a04bb089f096a160aaf68f6</anchor>
+      <anchor>a641d88b3561f9c956dfcdb50d37b1c35</anchor>
       <arglist>(UChar32 start, UChar32 end)</arglist>
     </member>
     <member kind="function">
@@ -64002,39 +65198,39 @@
       <anchor>a4610c188a9d1d0ed5392aebe5c766f37</anchor>
       <arglist>(const UnicodeString &amp;s)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>addAll</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a5611fc8380576840c371a35a5911f502</anchor>
+      <anchor>a516e9a877e988aab4e9b579281f9093d</anchor>
       <arglist>(const UnicodeSet &amp;c)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>retainAll</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a700a62dfe11206316fe4d18897fd3ad1</anchor>
+      <anchor>ab608e1f2d8f412d3c2045bc4a49881f4</anchor>
       <arglist>(const UnicodeSet &amp;c)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>removeAll</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a0d4464a88e883981c3300e83f75c1731</anchor>
+      <anchor>a06984c4f096bc67665a285de4998971c</anchor>
       <arglist>(const UnicodeSet &amp;c)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>complementAll</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>ae81607cf3c992a487418a1cc04d194ea</anchor>
+      <anchor>a124d493010849ced043e78635a9d5531</anchor>
       <arglist>(const UnicodeSet &amp;c)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>clear</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>afea06e9c6e72378867d031f403f6ce96</anchor>
+      <anchor>a159bc4c6ba2797f75d55dba798b814f4</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -64044,32 +65240,32 @@
       <anchor>a8b1d7ab88eb1694fdae2d08d3ce76fd2</anchor>
       <arglist>(int32_t attribute)</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>removeAllStrings</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>aa9878a9ab9d3555d578abf0d9e7d509e</anchor>
+      <anchor>a7c66b1bcad09e1f5cae202902d3741cc</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int32_t</type>
+    <member kind="function">
+      <type>int32_t</type>
       <name>getRangeCount</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a9a344491f71ad4b17e369c95e746c552</anchor>
+      <anchor>abace5825568ab5c66e9a04894033fb3f</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UChar32</type>
+    <member kind="function">
+      <type>UChar32</type>
       <name>getRangeStart</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a42f9bd2746e3e40d82e84423d0c7259e</anchor>
+      <anchor>ac28b1537fe06ba59c2cd2c1988a35586</anchor>
       <arglist>(int32_t index) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UChar32</type>
+    <member kind="function">
+      <type>UChar32</type>
       <name>getRangeEnd</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>a0ecb77142af2060e41b90e8fa4722773</anchor>
+      <anchor>a1a014a7ed81dff0fb91a0706e1cba3b6</anchor>
       <arglist>(int32_t index) const</arglist>
     </member>
     <member kind="function">
@@ -64079,11 +65275,11 @@
       <anchor>a9d26697666c30ec74d5955ac735d04d7</anchor>
       <arglist>(uint16_t *dest, int32_t destCapacity, UErrorCode &amp;ec) const</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual UnicodeSet &amp;</type>
+    <member kind="function">
+      <type>UnicodeSet &amp;</type>
       <name>compact</name>
       <anchorfile>classicu_1_1UnicodeSet.html</anchorfile>
-      <anchor>acbe60405e3f96646693f8b189d380bc5</anchor>
+      <anchor>a43461eff5f855ed7095ee1dae5fe5d94</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
@@ -64254,6 +65450,13 @@
       <name>kInvariant</name>
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>a301902493406de453a439dfadfdd032fa050455dd0665a3c65d041ae02565f74b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>char16_t</type>
+      <name>value_type</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>aebaf4f1ec39dfb44107d50cf6e286227</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
@@ -64844,6 +66047,13 @@
       <arglist>(StringClass &amp;result) const</arglist>
     </member>
     <member kind="function">
+      <type>StringClass</type>
+      <name>toUTF8String</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a8908c65d0b918ec4b20e72b763d10098</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>int32_t</type>
       <name>toUTF32</name>
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
@@ -64897,6 +66107,34 @@
       <name>isBogus</name>
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>ab2c89616fe623638c2bab4d1346e2fc4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>unspecified_iterator</type>
+      <name>begin</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a91ba3d71891f11d49c0ee6b3c4c76ad4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>unspecified_iterator</type>
+      <name>end</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>aeda3836a6aa89bd6ae084871b3bbc705</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>unspecified_reverse_iterator</type>
+      <name>rbegin</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>aca4e391e0f716f3268555be8ef5adb01</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>unspecified_reverse_iterator</type>
+      <name>rend</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a6dbd286684a5e07bf14c824e44d0a76f</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -65094,6 +66332,13 @@
       <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
       <anchor>a63a20b07358283970202766775a36adc</anchor>
       <arglist>(UChar32 srcChar)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>push_back</name>
+      <anchorfile>classicu_1_1UnicodeString.html</anchorfile>
+      <anchor>a01ec8111e1cadfe241839f0d8d5e6912</anchor>
+      <arglist>(char16_t c)</arglist>
     </member>
     <member kind="function">
       <type>UnicodeString &amp;</type>
@@ -65842,6 +67087,332 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::UnsafeCodeUnits</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeCodeUnits.html</filename>
+    <templarg></templarg>
+    <templarg></templarg>
+    <templarg></templarg>
+    <member kind="function">
+      <type></type>
+      <name>UnsafeCodeUnits</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeCodeUnits.html</anchorfile>
+      <anchor>ab311f079480af0344112a49dd6b055de</anchor>
+      <arglist>(CP32 codePoint, uint8_t length, UnitIter start, UnitIter limit)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>UnsafeCodeUnits</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeCodeUnits.html</anchorfile>
+      <anchor>ae3a92cbe2823797ee9407ba67785c0a2</anchor>
+      <arglist>(const UnsafeCodeUnits &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>UnsafeCodeUnits &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeCodeUnits.html</anchorfile>
+      <anchor>ab2614effbec8d1c1ec64ae4ee40fa056</anchor>
+      <arglist>(const UnsafeCodeUnits &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>CP32</type>
+      <name>codePoint</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeCodeUnits.html</anchorfile>
+      <anchor>aa699c916010a5f04af4e14600cdcdbde</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>UnitIter</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeCodeUnits.html</anchorfile>
+      <anchor>a75374787c5ee548a7a9bc334b0632ef5</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>UnitIter</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeCodeUnits.html</anchorfile>
+      <anchor>aa510b2d851f688325057482bdcfbda3a</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>uint8_t</type>
+      <name>length</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeCodeUnits.html</anchorfile>
+      <anchor>ac93610fe9801bd44f674da0e20b41135</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::enable_if_t&lt; std::is_pointer_v&lt; Iter &gt;||std::is_same_v&lt; Iter, typename std::basic_string&lt; Unit &gt;::iterator &gt;||std::is_same_v&lt; Iter, typename std::basic_string&lt; Unit &gt;::const_iterator &gt;||std::is_same_v&lt; Iter, typename std::basic_string_view&lt; Unit &gt;::iterator &gt;||std::is_same_v&lt; Iter, typename std::basic_string_view&lt; Unit &gt;::const_iterator &gt;, std::basic_string_view&lt; Unit &gt; &gt;</type>
+      <name>stringView</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeCodeUnits.html</anchorfile>
+      <anchor>a126a1bacc34a290a079d2676031db019</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::UnsafeUTFIterator</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</filename>
+    <templarg></templarg>
+    <templarg></templarg>
+    <templarg></templarg>
+    <member kind="typedef">
+      <type>UnsafeCodeUnits&lt; CP32, UnitIter &gt;</type>
+      <name>value_type</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a08962fca97cf34b32f2fe94416a9cedf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>value_type</type>
+      <name>reference</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a2561ce55cd228df3188a6c5720ee2b01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>Proxy</type>
+      <name>pointer</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a5cab858a81dcba23db907c98bdbb5797</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>prv::iter_difference_t&lt; UnitIter &gt;</type>
+      <name>difference_type</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a6520a007dff4671d9e405e628e4f59e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::conditional_t&lt; prv::bidirectional_iterator&lt; UnitIter &gt;, std::bidirectional_iterator_tag, std::forward_iterator_tag &gt;</type>
+      <name>iterator_category</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a2ac94c1a5fcc6b187558fa284e46208b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE</type>
+      <name>UnsafeUTFIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>ac4b3686f14ab781f3b21cf9427135bd7</anchor>
+      <arglist>(UnitIter p)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE</type>
+      <name>UnsafeUTFIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a076c9200f66eda495570d16a0069cc7f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE</type>
+      <name>UnsafeUTFIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a85f4d4254c7226a0a4209aed932d786b</anchor>
+      <arglist>(UnsafeUTFIterator &amp;&amp;src) noexcept=default</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE UnsafeUTFIterator &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>ad7de01ae4c9a184a2c6d7d02f3cea3f4</anchor>
+      <arglist>(UnsafeUTFIterator &amp;&amp;src) noexcept=default</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE</type>
+      <name>UnsafeUTFIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>ab4bc2ef5e8e057c95563f991bff47972</anchor>
+      <arglist>(const UnsafeUTFIterator &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE UnsafeUTFIterator &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a14d7ff4ca850524b05420daf5809c3e4</anchor>
+      <arglist>(const UnsafeUTFIterator &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE bool</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>ace4fc3dea27bd52519e66e0c0cc4fd8f</anchor>
+      <arglist>(const UnsafeUTFIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE bool</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a0aafb811ad119e9badeb417d980483b0</anchor>
+      <arglist>(const UnsafeUTFIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE UnsafeCodeUnits&lt; CP32, UnitIter &gt;</type>
+      <name>operator*</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a2a9698ef338650ae5f8484de44b566f0</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE Proxy</type>
+      <name>operator-&gt;</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a84efe07c5b19f6bbfaf6902a30502a9f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE UnsafeUTFIterator &amp;</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>ac4a7fa17145953496a18d1ddecbaa31a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE UnsafeUTFIterator</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a8ed567739d14c82bcfa2563ea2d9b433</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE std::enable_if_t&lt; prv::bidirectional_iterator&lt; Iter &gt;, UnsafeUTFIterator &amp; &gt;</type>
+      <name>operator--</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a01201f10dbec79504ab159c87ec92096</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE std::enable_if_t&lt; prv::bidirectional_iterator&lt; Iter &gt;, UnsafeUTFIterator &gt;</type>
+      <name>operator--</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a7d0a3b431701d67f3ae8d9969f0411ef</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="friend">
+      <type>U_FORCE_INLINE friend std::enable_if_t&lt; !std::is_same_v&lt; Sentinel, UnsafeUTFIterator &gt; &amp;&amp;!std::is_same_v&lt; Sentinel, UnitIter &gt;, bool &gt;</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a32e210208304c554b478f57f4b6636e4</anchor>
+      <arglist>(const UnsafeUTFIterator &amp;iter, const Sentinel &amp;s)</arglist>
+    </member>
+    <member kind="friend">
+      <type>U_FORCE_INLINE friend std::enable_if_t&lt; !std::is_same_v&lt; Sentinel, UnsafeUTFIterator &gt; &amp;&amp;!std::is_same_v&lt; Sentinel, UnitIter &gt;, bool &gt;</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a05a8fa613ee2c918167c9b6f01ccf8c0</anchor>
+      <arglist>(const Sentinel &amp;s, const UnsafeUTFIterator &amp;iter)</arglist>
+    </member>
+    <member kind="friend">
+      <type>U_FORCE_INLINE friend std::enable_if_t&lt; !std::is_same_v&lt; Sentinel, UnsafeUTFIterator &gt; &amp;&amp;!std::is_same_v&lt; Sentinel, UnitIter &gt;, bool &gt;</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>a2685693ce7d99d1b3eb4b80fc4ef81ec</anchor>
+      <arglist>(const UnsafeUTFIterator &amp;iter, const Sentinel &amp;s)</arglist>
+    </member>
+    <member kind="friend">
+      <type>U_FORCE_INLINE friend std::enable_if_t&lt; !std::is_same_v&lt; Sentinel, UnsafeUTFIterator &gt; &amp;&amp;!std::is_same_v&lt; Sentinel, UnitIter &gt;, bool &gt;</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFIterator.html</anchorfile>
+      <anchor>ac91fe59003345bfc4b746b8d601da80d</anchor>
+      <arglist>(const Sentinel &amp;s, const UnsafeUTFIterator &amp;iter)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::UnsafeUTFStringCodePoints</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</filename>
+    <templarg></templarg>
+    <templarg></templarg>
+    <member kind="function">
+      <type></type>
+      <name>UnsafeUTFStringCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>aa600c9ab6d26f0f005de9b49300a21d5</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>UnsafeUTFStringCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>ac87cb4ff66ba9495a6ad4c75630cc0e6</anchor>
+      <arglist>(Range unitRange)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>UnsafeUTFStringCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>a61647c372561076f02aeb15b78161bd9</anchor>
+      <arglist>(Range unitRange)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>UnsafeUTFStringCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>a8c2f511696c69645c95c49b545f943e5</anchor>
+      <arglist>(const UnsafeUTFStringCodePoints &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>UnsafeUTFStringCodePoints &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>af3e7a9b7939a3ddf638d6868917a2c4b</anchor>
+      <arglist>(const UnsafeUTFStringCodePoints &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>ab8ea3c3a1f73a499fea4f6bbf871026c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>ab2a26ededc56064f8474619e4ae3f87b</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>a890b263fa86d948952ff06d0ea4fef5a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>aed2bb49df2e0289fd7444ff0bf942cb3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>rbegin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>aefda995f3082028d6b97a9f7e43d3756</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>rend</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePoints.html</anchorfile>
+      <anchor>a21dda9562d93d0beafc260ee112beece</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>U_HEADER_ONLY_NAMESPACE::UnsafeUTFStringCodePointsAdaptor</name>
+    <filename>structU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePointsAdaptor.html</filename>
+    <templarg></templarg>
+    <member kind="function">
+      <type>auto</type>
+      <name>operator()</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1UnsafeUTFStringCodePointsAdaptor.html</anchorfile>
+      <anchor>aa4d25256d05f9277032aca2732e8abb3</anchor>
+      <arglist>(Range &amp;&amp;unitRange) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>icu::UObject</name>
     <filename>classicu_1_1UObject.html</filename>
     <base>icu::UMemory</base>
@@ -66570,6 +68141,287 @@
       <arglist></arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::UTFIterator</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</filename>
+    <templarg></templarg>
+    <templarg>behavior</templarg>
+    <templarg></templarg>
+    <templarg></templarg>
+    <templarg></templarg>
+    <member kind="typedef">
+      <type>CodeUnits&lt; CP32, UnitIter &gt;</type>
+      <name>value_type</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a296417432d1a0f534691f61c42e82287</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>value_type</type>
+      <name>reference</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a23f9e0a7fe8610bae1ea89641d3da566</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>Proxy</type>
+      <name>pointer</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>ac072a8a799042be68af0e5bdfff2d5ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>prv::iter_difference_t&lt; UnitIter &gt;</type>
+      <name>difference_type</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>afd38b3b357996c6ca48f770d75f9e88e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::conditional_t&lt; prv::bidirectional_iterator&lt; UnitIter &gt;, std::bidirectional_iterator_tag, std::forward_iterator_tag &gt;</type>
+      <name>iterator_category</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a7c9f027fcb3bfa432508f4653fe2fc5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE</type>
+      <name>UTFIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>ac4dfa33735e8be9e85912602712015c3</anchor>
+      <arglist>(UnitIter start, UnitIter p, LimitIter limit)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE</type>
+      <name>UTFIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>aea325c59db112a20e4c3e66a1e22078c</anchor>
+      <arglist>(UnitIter p, LimitIter limit)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE</type>
+      <name>UTFIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a9f0ca4d36cadad862a78ca4ca18caae7</anchor>
+      <arglist>(UnitIter p)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE</type>
+      <name>UTFIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a01325fac209af7af47f40d2764cdab09</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE</type>
+      <name>UTFIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a38c1ee8f97bbe96e8c6303d9136cd311</anchor>
+      <arglist>(UTFIterator &amp;&amp;src) noexcept=default</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE UTFIterator &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a23fa36a3842fee500146570b36c08ee6</anchor>
+      <arglist>(UTFIterator &amp;&amp;src) noexcept=default</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE</type>
+      <name>UTFIterator</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>ad240bf7840c5c355dec8283bc62e23eb</anchor>
+      <arglist>(const UTFIterator &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE UTFIterator &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>adfeeff1e25dba6f054d270fbf0436f48</anchor>
+      <arglist>(const UTFIterator &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE bool</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>ae800bd103c0c1d1b08c4503faf5adc68</anchor>
+      <arglist>(const UTFIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE bool</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>abfee62ae5aa6425ad43507ece45d5aa1</anchor>
+      <arglist>(const UTFIterator &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE CodeUnits&lt; CP32, UnitIter &gt;</type>
+      <name>operator*</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>ad40050602994804e9ab9fc4ecea655ab</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE Proxy</type>
+      <name>operator-&gt;</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a1f3f5dfda3c2647d4c55c68cda916935</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE UTFIterator &amp;</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>ad8d25b256f2e2cc6c87f035baeeb80e9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE UTFIterator</type>
+      <name>operator++</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>ad6421355a9302ec59dad67d1a2b0ef81</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE std::enable_if_t&lt; prv::bidirectional_iterator&lt; Iter &gt;, UTFIterator &amp; &gt;</type>
+      <name>operator--</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>abde3a7ca743e5befec51d3befd7363be</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>U_FORCE_INLINE std::enable_if_t&lt; prv::bidirectional_iterator&lt; Iter &gt;, UTFIterator &gt;</type>
+      <name>operator--</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a12e65a84f22d47812f6aeeb53c09db2c</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="friend">
+      <type>U_FORCE_INLINE friend std::enable_if_t&lt; !std::is_same_v&lt; Sentinel, UTFIterator &gt; &amp;&amp;!std::is_same_v&lt; Sentinel, UnitIter &gt;, bool &gt;</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>ab53349a772a848214fa5f83cc74030e4</anchor>
+      <arglist>(const UTFIterator &amp;iter, const Sentinel &amp;s)</arglist>
+    </member>
+    <member kind="friend">
+      <type>U_FORCE_INLINE friend std::enable_if_t&lt; !std::is_same_v&lt; Sentinel, UTFIterator &gt; &amp;&amp;!std::is_same_v&lt; Sentinel, UnitIter &gt;, bool &gt;</type>
+      <name>operator==</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a0f87972c82d00bad66715546edddd501</anchor>
+      <arglist>(const Sentinel &amp;s, const UTFIterator &amp;iter)</arglist>
+    </member>
+    <member kind="friend">
+      <type>U_FORCE_INLINE friend std::enable_if_t&lt; !std::is_same_v&lt; Sentinel, UTFIterator &gt; &amp;&amp;!std::is_same_v&lt; Sentinel, UnitIter &gt;, bool &gt;</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>a5f9ce5ada172cc48285bb744578fed19</anchor>
+      <arglist>(const UTFIterator &amp;iter, const Sentinel &amp;s)</arglist>
+    </member>
+    <member kind="friend">
+      <type>U_FORCE_INLINE friend std::enable_if_t&lt; !std::is_same_v&lt; Sentinel, UTFIterator &gt; &amp;&amp;!std::is_same_v&lt; Sentinel, UnitIter &gt;, bool &gt;</type>
+      <name>operator!=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFIterator.html</anchorfile>
+      <anchor>ab36e2322d082d7d53bd91c1a9a3c4dbd</anchor>
+      <arglist>(const Sentinel &amp;s, const UTFIterator &amp;iter)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>U_HEADER_ONLY_NAMESPACE::UTFStringCodePoints</name>
+    <filename>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</filename>
+    <templarg></templarg>
+    <templarg>behavior</templarg>
+    <templarg></templarg>
+    <member kind="function">
+      <type></type>
+      <name>UTFStringCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>a38a8e605c0ba127da652dca32163be88</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>UTFStringCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>a8f374862db7701a9cf7683bf5a76e464</anchor>
+      <arglist>(Range unitRange)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>UTFStringCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>adce9b528fc416ae4cb952361b06dad81</anchor>
+      <arglist>(Range unitRange)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>UTFStringCodePoints</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>a94cf8c8071464e0c37de7ffe65f7089d</anchor>
+      <arglist>(const UTFStringCodePoints &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>UTFStringCodePoints &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>a8d24d3902f047ac09e5d720fdd28fbbb</anchor>
+      <arglist>(const UTFStringCodePoints &amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>a35839f3b250161748e6681dc79301fd9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>begin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>a2f65e0ed36ee6309ec77e35a865cd0aa</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>a93bef215aeb1aec47030f9882cca909f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>end</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>aeeac0ee59c91d65411130686cc9622af</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>rbegin</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>a6142c66a710573f593626da46f62270c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>rend</name>
+      <anchorfile>classU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePoints.html</anchorfile>
+      <anchor>a533834dbbfc4c2c82f8ee6d7fa04b182</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>U_HEADER_ONLY_NAMESPACE::UTFStringCodePointsAdaptor</name>
+    <filename>structU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePointsAdaptor.html</filename>
+    <templarg></templarg>
+    <templarg>behavior</templarg>
+    <member kind="function">
+      <type>auto</type>
+      <name>operator()</name>
+      <anchorfile>structU__HEADER__ONLY__NAMESPACE_1_1UTFStringCodePointsAdaptor.html</anchorfile>
+      <anchor>adb7e33cc0b4a4a6ad934e29a367e157d</anchor>
+      <arglist>(Range &amp;&amp;unitRange) const</arglist>
+    </member>
+  </compound>
   <compound kind="struct">
     <name>UTransPosition</name>
     <filename>structUTransPosition.html</filename>
@@ -66599,6 +68451,31 @@
       <name>limit</name>
       <anchorfile>structUTransPosition.html</anchorfile>
       <anchor>ace64783d9d1016f2960cda02b30dbd03</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>icu::prv::value_type_or_char</name>
+    <filename>structicu_1_1prv_1_1value__type__or__char.html</filename>
+    <templarg></templarg>
+    <templarg></templarg>
+    <member kind="typedef">
+      <type>char</type>
+      <name>type</name>
+      <anchorfile>structicu_1_1prv_1_1value__type__or__char.html</anchorfile>
+      <anchor>a420a9d1d433d81514a22061784e14e7b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>icu::prv::value_type_or_char&lt; StringClass, std::void_t&lt; typename StringClass::value_type &gt; &gt;</name>
+    <filename>structicu_1_1prv_1_1value__type__or__char_3_01StringClass_00_01std_1_1void__t_3_01typename_01Strd1ec91b8514a8d9aa620c096671dce73.html</filename>
+    <templarg></templarg>
+    <member kind="typedef">
+      <type>typename StringClass::value_type</type>
+      <name>type</name>
+      <anchorfile>structicu_1_1prv_1_1value__type__or__char_3_01StringClass_00_01std_1_1void__t_3_01typename_01Strd1ec91b8514a8d9aa620c096671dce73.html</anchorfile>
+      <anchor>a4cc546b8522140e3d21482ca2abc531e</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -67517,10 +69394,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>U_EXPORT UBool</type>
+      <type>U_COMMON_API UBool</type>
       <name>operator==</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>a1c2f6ca43e636f38d1a3291eb851e9f0</anchor>
+      <anchor>a5e840c3254f3b18f2b2f2662b8495d52</anchor>
       <arglist>(const StringPiece &amp;x, const StringPiece &amp;y)</arglist>
     </member>
     <member kind="function">

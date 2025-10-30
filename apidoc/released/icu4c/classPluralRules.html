@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 77.1: icu::PluralRules Class Reference</title>
+<title>ICU 78.1: icu::PluralRules Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 77.1
-   &#160;<span id="projectnumber">77.1</span>
+   <div id="projectname">ICU 78.1
+   &#160;<span id="projectnumber">78.1</span>
    </div>
   </td>
  </tr>
@@ -212,12 +212,13 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PluralRuleParser</b>
 <div class="line">relation      = is_relation | in_relation | within_relation | <span class="charliteral">&#39;n&#39;</span> &lt;EOL&gt;</div>
 <div class="line">is_relation   = expr <span class="stringliteral">&#39;is&#39;</span> (<span class="stringliteral">&#39;not&#39;</span>)? value</div>
 <div class="line">in_relation   = expr (<span class="stringliteral">&#39;not&#39;</span>)? <span class="stringliteral">&#39;in&#39;</span> range_list</div>
-<div class="line">within_relation = expr (<span class="stringliteral">&#39;not&#39;</span>)? <span class="stringliteral">&#39;within&#39;</span> range</div>
+<div class="line">within_relation = expr (<span class="stringliteral">&#39;not&#39;</span>)? <span class="stringliteral">&#39;within&#39;</span> <a class="code" href="utfiterator_8h.html#afb839c10d925301c6dad1daeb23be6d0">range</a></div>
 <div class="line">expr          = (<span class="charliteral">&#39;n&#39;</span> | <span class="charliteral">&#39;i&#39;</span> | <span class="charliteral">&#39;f&#39;</span> | <span class="charliteral">&#39;v&#39;</span> | <span class="charliteral">&#39;j&#39;</span>) (<span class="stringliteral">&#39;mod&#39;</span> value)?</div>
-<div class="line">range_list    = (range | value) (<span class="charliteral">&#39;,&#39;</span> range_list)*</div>
+<div class="line">range_list    = (<a class="code" href="utfiterator_8h.html#afb839c10d925301c6dad1daeb23be6d0">range</a> | value) (<span class="charliteral">&#39;,&#39;</span> range_list)*</div>
 <div class="line">value         = digit+  (<span class="charliteral">&#39;.&#39;</span> digit+)?</div>
 <div class="line">digit         = 0|1|2|3|4|5|6|7|8|9</div>
 <div class="line">range         = value<span class="stringliteral">&#39;..&#39;</span>value</div>
+<div class="ttc" id="autfiterator_8h_html_afb839c10d925301c6dad1daeb23be6d0"><div class="ttname"><a href="utfiterator_8h.html#afb839c10d925301c6dad1daeb23be6d0">U_HEADER_ONLY_NAMESPACE::prv::range</a></div><div class="ttdeci">constexpr bool range</div><div class="ttdef"><b>Definition:</b> <a href="utfiterator_8h_source.html#l00232">utfiterator.h:232</a></div></div>
 </div><!-- fragment -->
  </pre><p>&lt;/p</p><blockquote class="doxtable">
 <p></p>
@@ -287,7 +288,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005171">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005266">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -308,7 +309,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
 </div><div class="memdoc">
 
 <p>Copy constructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005172">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005267">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -336,7 +337,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
 </div><div class="memdoc">
 
 <p>Destructor. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005173">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005268">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -357,7 +358,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
 </div><div class="memdoc">
 
 <p>Clone. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005174">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005269">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -393,7 +394,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new <a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords.">PluralRules</a> pointer. nullptr if there is an error. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005177">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005272">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -440,7 +441,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new <a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords.">PluralRules</a> pointer. nullptr if there is an error. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005176">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005271">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -485,7 +486,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
 </div><div class="memdoc">
 
 <p>For ICU use only. </p>
-<p>Returns handle to the shared, cached <a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords.">PluralRules</a> instance. Caller must call removeRef() on returned value once it is done with the shared instance. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000808">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>Returns handle to the shared, cached <a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords.">PluralRules</a> instance. Caller must call removeRef() on returned value once it is done with the shared instance. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000834">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -533,7 +534,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The predefined <code><a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords.">PluralRules</a></code> object pointer for this locale. If there's no predefined rules for this locale, the rules for the closest parent in the locale hierarchy that has one will be returned. The final fallback always returns the default 'other' rules. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005178">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005273">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -587,7 +588,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The predefined <code><a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords.">PluralRules</a></code> object pointer for this locale. If there's no predefined rules for this locale, the rules for the closest parent in the locale hierarchy that has one will be returned. The final fallback always returns the default 'other' rules. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005179">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005274">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 
 </div>
 </div>
@@ -642,7 +643,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The count of values available, or -1. This count can be larger than destCapacity, but no more than destCapacity values will be written. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000680">Deprecated:</a></b></dt><dd>ICU 55 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000688">Deprecated:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -672,7 +673,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
 
 <p>Return a <a class="el" href="classicu_1_1StringEnumeration.html" title="Base class for &#39;pure&#39; C++ implementations of uenum api.">StringEnumeration</a> over the locales for which there is plurals data. </p>
 <dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="classicu_1_1StringEnumeration.html" title="Base class for &#39;pure&#39; C++ implementations of uenum api.">StringEnumeration</a> over the locales available. </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000806">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000832">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -700,7 +701,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
 </div><div class="memdoc">
 
 <p>ICU "poor man's RTTI", returns a UClassID for the actual class. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005191">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005286">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classicu_1_1UObject.html#aca1169c4978c52ce2b76eda104e9a214">icu::UObject</a>.</p>
 
@@ -723,7 +724,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
 
 <p>Returns keyword for default plural form. </p>
 <dl class="section return"><dt>Returns</dt><dd>keyword for default plural form. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005187">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005282">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -752,7 +753,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classicu_1_1StringEnumeration.html" title="Base class for &#39;pure&#39; C++ implementations of uenum api.">StringEnumeration</a> with the keywords. The caller must delete the object. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005184">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005279">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -770,7 +771,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000812">Internal:</a></b></dt><dd>Do not use.</dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000838">Internal:</a></b></dt><dd>Do not use.</dd></dl>
 <p>This API is for internal use only. </p>
 
 </div>
@@ -826,7 +827,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The count of values written. If more than destCapacity samples are available, then only destCapacity are written, and destCapacity is returned as the count, rather than setting a U_BUFFER_OVERFLOW_ERROR. (The actual number of keyword values could be unlimited.) </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000811">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000837">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -881,7 +882,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The count of values written. If more than destCapacity samples are available, then only destCapacity are written, and destCapacity is returned as the count, rather than setting a U_BUFFER_OVERFLOW_ERROR. (The actual number of keyword values could be unlimited.) </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005185">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005280">Stable:</a></b></dt><dd>ICU 4.8 </dd></dl>
 
 </div>
 </div>
@@ -909,7 +910,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
 </div><div class="memdoc">
 
 <p>ICU "poor man's RTTI", returns a UClassID for this class. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005190">Stable:</a></b></dt><dd>ICU 4.0</dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005285">Stable:</a></b></dt><dd>ICU 4.0</dd></dl>
 
 </div>
 </div>
@@ -938,7 +939,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Stub deprecated function returns UPLRULES_NO_UNIQUE_VALUE always. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000679">Deprecated:</a></b></dt><dd>ICU 55 </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000687">Deprecated:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -983,7 +984,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
 </div><div class="memdoc">
 
 <p>For ICU use only. </p>
-<p>creates a SharedPluralRules object </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000807">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>creates a SharedPluralRules object </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000833">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 </div>
 </div>
@@ -1011,7 +1012,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the input keyword is defined. Otherwise, return false. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005186">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005281">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -1047,11 +1048,11 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the given <a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords.">PluralRules</a> is not the same as this <a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords.">PluralRules</a>; false otherwise. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005189">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005284">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="plurrule_8h_source.html#l00547">547</a> of file <a class="el" href="plurrule_8h_source.html">plurrule.h</a>.</p>
 
-<p class="reference">References <a class="el" href="namespaceicu.html#a1c2f6ca43e636f38d1a3291eb851e9f0">icu::operator==()</a>.</p>
+<p class="reference">References <a class="el" href="namespaceicu.html#a5e840c3254f3b18f2b2f2662b8495d52">icu::operator==()</a>.</p>
 
 </div>
 </div>
@@ -1072,7 +1073,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
 </div><div class="memdoc">
 
 <p>Assignment operator. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005175">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005270">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -1108,7 +1109,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the given <a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords.">PluralRules</a> is the same as this <a class="el" href="classicu_1_1PluralRules.html" title="Defines rules for mapping non-negative numeric values onto a small set of keywords.">PluralRules</a>; false otherwise. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005188">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005283">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -1127,7 +1128,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000809">Internal:</a></b></dt><dd>Do not use.</dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000835">Internal:</a></b></dt><dd>Do not use.</dd></dl>
 <p>This API is for internal use only. </p>
 
 </div>
@@ -1169,7 +1170,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The keyword of the selected rule. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005182">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005277">Stable:</a></b></dt><dd>ICU 64 </dd></dl>
 
 </div>
 </div>
@@ -1211,7 +1212,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The keyword of the selected rule. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005183">Stable:</a></b></dt><dd>ICU 68 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005278">Stable:</a></b></dt><dd>ICU 68 </dd></dl>
 
 </div>
 </div>
@@ -1240,7 +1241,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000810">Internal:</a></b></dt><dd>Do not use.</dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000836">Internal:</a></b></dt><dd>Do not use.</dd></dl>
 <p>This API is for internal use only. </p>
 
 </div>
@@ -1270,7 +1271,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The keyword of the selected rule. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005181">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005276">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>
@@ -1299,7 +1300,7 @@ j is defined to only match integers. That is j is 3 fails if v != 0 (eg for 3.1 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The keyword of the selected rule. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005180">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable005275">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 </div>
 </div>

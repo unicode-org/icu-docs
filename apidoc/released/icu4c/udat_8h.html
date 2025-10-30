@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 77.1: i18n/unicode/udat.h File Reference</title>
+<title>ICU 78.1: i18n/unicode/udat.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 77.1
-   &#160;<span id="projectnumber">77.1</span>
+   <div id="projectname">ICU 78.1
+   &#160;<span id="projectnumber">78.1</span>
    </div>
   </td>
  </tr>
@@ -408,6 +408,8 @@ Enumerations</h2></td></tr>
 , <br />
 &#160;&#160;<a class="el" href="udat_8h.html#a5eefb511a1a2cdc12bcbd06ed29880f4a2be651459a5db2761a7d45a6c4acb7ed">UDAT_NARROW_QUARTERS</a>
 , <a class="el" href="udat_8h.html#a5eefb511a1a2cdc12bcbd06ed29880f4a35f957d6327a5c0df79ab2144688d654">UDAT_STANDALONE_NARROW_QUARTERS</a>
+, <a class="el" href="udat_8h.html#a5eefb511a1a2cdc12bcbd06ed29880f4ade0018d442c458ec5d43cb608f7da89b">UDAT_AM_PMS_NARROW</a>
+, <a class="el" href="udat_8h.html#a5eefb511a1a2cdc12bcbd06ed29880f4a9a2f5374fc02212d227d9c5bf02ebd9b">UDAT_AM_PMS_WIDE</a>
 <br />
  }</td></tr>
 <tr class="memdesc:a5eefb511a1a2cdc12bcbd06ed29880f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The possible types of date format symbols.  <a href="udat_8h.html#a5eefb511a1a2cdc12bcbd06ed29880f4">More...</a><br /></td></tr>
@@ -550,11 +552,11 @@ Functions</h2></td></tr>
 <div class="ttc" id="audat_8h_html_a4261e9fd5382197c3d86a00211c48079"><div class="ttname"><a href="udat_8h.html#a4261e9fd5382197c3d86a00211c48079">udat_open</a></div><div class="ttdeci">U_CAPI UDateFormat * udat_open(UDateFormatStyle timeStyle, UDateFormatStyle dateStyle, const char *locale, const UChar *tzID, int32_t tzIDLength, const UChar *pattern, int32_t patternLength, UErrorCode *status)</div><div class="ttdoc">Open a new UDateFormat for formatting and parsing dates and times.</div></div>
 <div class="ttc" id="audat_8h_html_aac3747dd8edb53fc5652bdd383142bac"><div class="ttname"><a href="udat_8h.html#aac3747dd8edb53fc5652bdd383142bac">udat_format</a></div><div class="ttdeci">U_CAPI int32_t udat_format(const UDateFormat *format, UDate dateToFormat, UChar *result, int32_t resultLength, UFieldPosition *position, UErrorCode *status)</div><div class="ttdoc">Format a date using a UDateFormat.</div></div>
 <div class="ttc" id="audat_8h_html_adb4c5a95efb888d04d38db7b3efff0c5a4972c793a63b7972a1ed4a3f13b185f5"><div class="ttname"><a href="udat_8h.html#adb4c5a95efb888d04d38db7b3efff0c5a4972c793a63b7972a1ed4a3f13b185f5">UDAT_DEFAULT</a></div><div class="ttdeci">@ UDAT_DEFAULT</div><div class="ttdoc">Default style.</div><div class="ttdef"><b>Definition:</b> <a href="udat_8h_source.html#l00172">udat.h:172</a></div></div>
-<div class="ttc" id="aumachine_8h_html_a6bb9fad572d65b305324ef288165e2ac"><div class="ttname"><a href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a></div><div class="ttdeci">char16_t UChar</div><div class="ttdoc">The base type for UTF-16 code units and pointers.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00378">umachine.h:378</a></div></div>
+<div class="ttc" id="aumachine_8h_html_a6bb9fad572d65b305324ef288165e2ac"><div class="ttname"><a href="umachine_8h.html#a6bb9fad572d65b305324ef288165e2ac">UChar</a></div><div class="ttdeci">char16_t UChar</div><div class="ttdoc">The base type for UTF-16 code units and pointers.</div><div class="ttdef"><b>Definition:</b> <a href="umachine_8h_source.html#l00400">umachine.h:400</a></div></div>
 <div class="ttc" id="autypes_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="utypes_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Define NULL if necessary, to nullptr for C++ and to ((void *)0) for C.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00203">utypes.h:203</a></div></div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00430">utypes.h:430</a></div></div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78ca294424f5f497a3161ed08b63ac962135"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78ca294424f5f497a3161ed08b63ac962135">U_BUFFER_OVERFLOW_ERROR</a></div><div class="ttdeci">@ U_BUFFER_OVERFLOW_ERROR</div><div class="ttdoc">A result would not fit in the supplied buffer.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00481">utypes.h:481</a></div></div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a></div><div class="ttdeci">@ U_ZERO_ERROR</div><div class="ttdoc">No error, no warning.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00465">utypes.h:465</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00509">utypes.h:509</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78ca294424f5f497a3161ed08b63ac962135"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78ca294424f5f497a3161ed08b63ac962135">U_BUFFER_OVERFLOW_ERROR</a></div><div class="ttdeci">@ U_BUFFER_OVERFLOW_ERROR</div><div class="ttdoc">A result would not fit in the supplied buffer.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00560">utypes.h:560</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a></div><div class="ttdeci">@ U_ZERO_ERROR</div><div class="ttdoc">No error, no warning.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00544">utypes.h:544</a></div></div>
 </div><!-- fragment -->
 </pre><p> If you are formatting multiple numbers, it is more efficient to get the format and use it multiple times so that the system doesn't have to fetch the information about the local language and country conventions multiple times. </p><pre>
 <div class="fragment"><div class="line"><a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a> status = <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78caa43dbfc9499c5f911d04e1a0ca3bf6f9">U_ZERO_ERROR</a>;</div>
@@ -645,7 +647,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for Unicode string name of new (in 2019) Japanese calendar era, Japanese abbreviated version (Han, or fullwidth Latin for testing). </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000877">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000902">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00501">501</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -664,7 +666,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for Unicode string name of new (in 2019) Japanese calendar era, root and Japanese narrow version (ASCII-range characters). </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000878">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000903">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00507">507</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -683,7 +685,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for Unicode string name of new (in 2019) Japanese calendar era, root/English abbreviated version (ASCII-range characters). </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000876">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000901">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00495">495</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -705,7 +707,7 @@ Align any particular field, or find out where it is for selection on the screen.
 <dl class="section see"><dt>See also</dt><dd><a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a> </dd>
 <dd>
 <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006232">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006333">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00427">427</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -724,7 +726,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with abbreviated month. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006201">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006302">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00238">238</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -743,7 +745,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with abbreviated month and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006216">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006317">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00321">321</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -762,7 +764,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with abbreviated month, weekday, and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006219">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006320">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00339">339</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -781,7 +783,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with abbreviated quarter. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006197">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006298">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00218">218</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -803,7 +805,7 @@ Align any particular field, or find out where it is for selection on the screen.
 <dl class="section see"><dt>See also</dt><dd><a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a> </dd>
 <dd>
 <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006234">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006335">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00443">443</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -822,7 +824,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with standalone abbreviated month. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000734">Deprecated:</a></b></dt><dd>ICU 50 Use UDAT_ABBR_MONTH instead. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000742">Deprecated:</a></b></dt><dd>ICU 50 Use UDAT_ABBR_MONTH instead. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00465">465</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -844,7 +846,7 @@ Align any particular field, or find out where it is for selection on the screen.
 <dl class="section see"><dt>See also</dt><dd><a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a> </dd>
 <dd>
 <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006235">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006336">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00451">451</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -863,7 +865,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with abbreviated weekday. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006211">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006312">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00291">291</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -882,7 +884,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with day. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006206">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006307">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00263">263</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -904,7 +906,7 @@ Align any particular field, or find out where it is for selection on the screen.
 <dl class="section see"><dt>See also</dt><dd><a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a> </dd>
 <dd>
 <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006231">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006332">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00419">419</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -923,7 +925,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Is a pattern character defined for UDAT_TIME_SEPARATOR_FIELD? In ICU 55 it was COLON, but that was withdrawn in ICU 56. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000879">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU 56 </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000904">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU 56 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00833">833</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -942,7 +944,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with hour, with the locale's preferred hour format (12 or 24). </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006221">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006322">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00353">353</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -961,7 +963,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with hour in 24-hour presentation. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006222">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006323">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00358">358</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -980,7 +982,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with hour and minute in 24-hour presentation. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006225">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006326">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00375">375</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -999,7 +1001,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with hour, minute, and second in 24-hour presentation. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006228">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006329">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00394">394</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1018,7 +1020,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with hour and generic timezone. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000737">Deprecated:</a></b></dt><dd>ICU 50 Use instead UDAT_HOUR UDAT_ABBR_GENERIC_TZ or some other timezone presentation. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000745">Deprecated:</a></b></dt><dd>ICU 50 Use instead UDAT_HOUR UDAT_ABBR_GENERIC_TZ or some other timezone presentation. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00481">481</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1037,7 +1039,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with hour and minute, with the locale's preferred hour format (12 or 24). </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006224">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006325">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00369">369</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1056,7 +1058,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with hour, minute, and generic timezone. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000735">Deprecated:</a></b></dt><dd>ICU 50 Use instead UDAT_HOUR_MINUTE UDAT_ABBR_GENERIC_TZ or some other timezone presentation. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000743">Deprecated:</a></b></dt><dd>ICU 50 Use instead UDAT_HOUR_MINUTE UDAT_ABBR_GENERIC_TZ or some other timezone presentation. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00471">471</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1075,7 +1077,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with hour, minute, and second, with the locale's preferred hour format (12 or 24). </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006227">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006328">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00387">387</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1094,7 +1096,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with hour, minute, and timezone. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000736">Deprecated:</a></b></dt><dd>ICU 50 Use instead UDAT_HOUR_MINUTE UDAT_ABBR_SPECIFIC_TZ or some other timezone presentation. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000744">Deprecated:</a></b></dt><dd>ICU 50 Use instead UDAT_HOUR_MINUTE UDAT_ABBR_SPECIFIC_TZ or some other timezone presentation. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00476">476</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1113,7 +1115,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with hour and timezone. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000738">Deprecated:</a></b></dt><dd>ICU 50 Use instead UDAT_HOUR UDAT_ABBR_SPECIFIC_TZ or some other timezone presentation. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000746">Deprecated:</a></b></dt><dd>ICU 50 Use instead UDAT_HOUR UDAT_ABBR_SPECIFIC_TZ or some other timezone presentation. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00486">486</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1135,7 +1137,7 @@ Align any particular field, or find out where it is for selection on the screen.
 <dl class="section see"><dt>See also</dt><dd><a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a> </dd>
 <dd>
 <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006230">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006331">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00411">411</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1154,7 +1156,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with minute. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006223">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006324">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00363">363</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1173,7 +1175,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with minute and second. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006229">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006330">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00400">400</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1192,7 +1194,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with month. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006200">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006301">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00233">233</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1211,7 +1213,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with long month and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006215">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006316">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00315">315</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1230,7 +1232,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with month, weekday, and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006218">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006319">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00333">333</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1249,7 +1251,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with numeric month. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006202">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006303">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00243">243</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1268,7 +1270,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with numeric month and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006217">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006318">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00327">327</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1287,7 +1289,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with numeric month, weekday, and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006220">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006321">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00345">345</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1306,7 +1308,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with quarter. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006196">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006297">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00213">213</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1325,7 +1327,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with second. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006226">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006327">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00380">380</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1347,7 +1349,7 @@ Align any particular field, or find out where it is for selection on the screen.
 <dl class="section see"><dt>See also</dt><dd><a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a> </dd>
 <dd>
 <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006233">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006334">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00435">435</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1366,7 +1368,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with standalone month. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000733">Deprecated:</a></b></dt><dd>ICU 50 Use UDAT_MONTH instead. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000741">Deprecated:</a></b></dt><dd>ICU 50 Use UDAT_MONTH instead. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00460">460</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1385,7 +1387,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with weekday. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006210">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006311">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00286">286</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1404,7 +1406,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006195">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006296">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00208">208</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1423,7 +1425,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year and abbreviated month. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006204">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006305">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00253">253</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1442,7 +1444,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year, abbreviated month, and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006208">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006309">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00275">275</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1461,7 +1463,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year, abbreviated month, weekday, and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006213">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006314">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00303">303</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1480,7 +1482,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year and abbreviated quarter. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006199">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006300">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00228">228</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1499,7 +1501,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year and month. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006203">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006304">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00248">248</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1518,7 +1520,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year, month, and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006207">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006308">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00269">269</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1537,7 +1539,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year, month, weekday, and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006212">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006313">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00297">297</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1556,7 +1558,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year and numeric month. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006205">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006306">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00258">258</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1575,7 +1577,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year, numeric month, and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006209">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006310">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00281">281</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1594,7 +1596,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year, numeric month, weekday, and day. </p>
-<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006214">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<p>Used in combinations date + time, date + time + zone, or time + zone. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006315">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00309">309</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1613,7 +1615,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Constant for date skeleton with year and quarter. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006198">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006299">Stable:</a></b></dt><dd>ICU 4.0 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00223">223</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1633,7 +1635,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>A date formatter. </p>
-<p>For usage in C programs. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006193">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<p>For usage in C programs. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006294">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l00157">157</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1652,7 +1654,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>DateFormat boolean attributes. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006240">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006341">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -1669,7 +1671,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selectors for format fields defined by DateFormat and UDateFormat. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006236">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006337">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 
 </div>
 </div>
@@ -1686,7 +1688,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Hour Cycle. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006243">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006344">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
 
 </div>
 </div>
@@ -1701,10 +1703,10 @@ Align any particular field, or find out where it is for selection on the screen.
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000883">Internal:</a></b></dt><dd>Do not use.</dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000908">Internal:</a></b></dt><dd>Do not use.</dd></dl>
 <p>This API is for internal use only. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#a4261e9fd5382197c3d86a00211c48079" title="Open a new UDateFormat for formatting and parsing dates and times.">udat_open</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l01714">1714</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l01728">1728</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
 </div>
 </div>
@@ -1721,7 +1723,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>The possible date/time format styles. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006194">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006295">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 
 </div>
 </div>
@@ -1738,7 +1740,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Date format symbols. </p>
-<p>For usage in C programs. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006267">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<p>For usage in C programs. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006368">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="udat_8h_source.html#l01434">1434</a> of file <a class="el" href="udat_8h_source.html">udat.h</a>.</p>
 
@@ -1757,7 +1759,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>The possible types of date format symbols. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006266">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006367">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 
 </div>
 </div>
@@ -1775,22 +1777,22 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>DateFormat boolean attributes. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006240">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006341">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afb77ea9256f65ea466b4c9b73f33bbaaa128d32ad221c08b8c4c4ecf2b7c8e68c"></a>UDAT_PARSE_ALLOW_WHITESPACE&#160;</td><td class="fielddoc"><p>indicates whether whitespace is allowed. </p>
-<p>Includes trailing dot tolerance. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006310">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<p>Includes trailing dot tolerance. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006411">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="afb77ea9256f65ea466b4c9b73f33bbaaae27f901f106cf25b39d5b6f4ac8e0d19"></a>UDAT_PARSE_ALLOW_NUMERIC&#160;</td><td class="fielddoc"><p>indicates tolerance of numeric data when String data may be assumed. </p>
-<p>eg: UDAT_YEAR_NAME_FIELD, UDAT_STANDALONE_MONTH_FIELD, UDAT_DAY_OF_WEEK_FIELD </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006311">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<p>eg: UDAT_YEAR_NAME_FIELD, UDAT_STANDALONE_MONTH_FIELD, UDAT_DAY_OF_WEEK_FIELD </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006412">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="afb77ea9256f65ea466b4c9b73f33bbaaa9c2e2d61237c5ae8be11e3207a14ee82"></a>UDAT_PARSE_PARTIAL_LITERAL_MATCH&#160;</td><td class="fielddoc"><p>indicates tolerance of a partial literal match e.g. </p>
-<p>accepting "--mon-02-march-2011" for a pattern of "'--: 'EEE-WW-MMMM-yyyy" </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006312">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
+<p>accepting "--mon-02-march-2011" for a pattern of "'--: 'EEE-WW-MMMM-yyyy" </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006413">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="afb77ea9256f65ea466b4c9b73f33bbaaa49b197432792af7cc2a6b1ddb86b90b3"></a>UDAT_PARSE_MULTIPLE_PATTERNS_FOR_MATCH&#160;</td><td class="fielddoc"><p>indicates tolerance of pattern mismatch between input data and specified format pattern. </p>
-<p>e.g. accepting "September" for a month pattern of MMM ("Sep") </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006313">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
+<p>e.g. accepting "September" for a month pattern of MMM ("Sep") </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006414">Stable:</a></b></dt><dd>ICU 56 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="afb77ea9256f65ea466b4c9b73f33bbaaa91ed820b55c1ebddc7c6c2afe8cfc33b"></a>UDAT_BOOLEAN_ATTRIBUTE_COUNT&#160;</td><td class="fielddoc"><p>One more than the highest normal UDateFormatBooleanAttribute value. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000740">Deprecated:</a></b></dt><dd>ICU 58 The numeric value may change over time, see ICU ticket #12420. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000748">Deprecated:</a></b></dt><dd>ICU 58 The numeric value may change over time, see ICU ticket #12420. </dd></dl>
 </td></tr>
 </table>
 
@@ -1811,121 +1813,121 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selectors for format fields defined by DateFormat and UDateFormat. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006236">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006337">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a7b9dc14d6e8dbb3ae0ca14397c843419"></a>UDAT_ERA_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'G' field alignment, corresponding to the UCAL_ERA field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006275">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006376">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a750478092f23a7c078b3ed1cd24df854"></a>UDAT_YEAR_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'y' field alignment, corresponding to the UCAL_YEAR field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006276">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006377">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a3ea582085a5a962fadbcfa28becd499d"></a>UDAT_MONTH_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'M' field alignment, corresponding to the UCAL_MONTH field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006277">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006378">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a2d5073e5d56ac063b4987d1c4377eb5f"></a>UDAT_DATE_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'd' field alignment, corresponding to the UCAL_DATE field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006278">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006379">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2afd96102e0a2e8a4400c19dc5eaaf2f26"></a>UDAT_HOUR_OF_DAY1_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'k' field alignment, corresponding to the UCAL_HOUR_OF_DAY field. </p>
-<p>UDAT_HOUR_OF_DAY1_FIELD is used for the one-based 24-hour clock. For example, 23:59 + 01:00 results in 24:59. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006279">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<p>UDAT_HOUR_OF_DAY1_FIELD is used for the one-based 24-hour clock. For example, 23:59 + 01:00 results in 24:59. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006380">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2ae7769f40d8715667739098650b8f295d"></a>UDAT_HOUR_OF_DAY0_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'H' field alignment, corresponding to the UCAL_HOUR_OF_DAY field. </p>
-<p>UDAT_HOUR_OF_DAY0_FIELD is used for the zero-based 24-hour clock. For example, 23:59 + 01:00 results in 00:59. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006280">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<p>UDAT_HOUR_OF_DAY0_FIELD is used for the zero-based 24-hour clock. For example, 23:59 + 01:00 results in 00:59. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006381">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2ab3ae4f1a655e29ba328a5655615e84b2"></a>UDAT_MINUTE_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'm' field alignment, corresponding to the UCAL_MINUTE field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006281">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006382">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2aacac57ee221ca3fc2d77017174102575"></a>UDAT_SECOND_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 's' field alignment, corresponding to the UCAL_SECOND field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006282">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006383">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a8b3e23d274c00057bb59072b9e79f537"></a>UDAT_FRACTIONAL_SECOND_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'S' field alignment, corresponding to the UCAL_MILLISECOND field. </p>
-<p>Note: Time formats that use 'S' can display a maximum of three significant digits for fractional seconds, corresponding to millisecond resolution and a fractional seconds sub-pattern of SSS. If the sub-pattern is S or SS, the fractional seconds value will be truncated (not rounded) to the number of display places specified. If the fractional seconds sub-pattern is longer than SSS, the additional display places will be filled with zeros. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006283">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<p>Note: Time formats that use 'S' can display a maximum of three significant digits for fractional seconds, corresponding to millisecond resolution and a fractional seconds sub-pattern of SSS. If the sub-pattern is S or SS, the fractional seconds value will be truncated (not rounded) to the number of display places specified. If the fractional seconds sub-pattern is longer than SSS, the additional display places will be filled with zeros. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006384">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a6b1e5ebf71b28539c0a3fcf9b8523bed"></a>UDAT_DAY_OF_WEEK_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'E' field alignment, corresponding to the UCAL_DAY_OF_WEEK field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006284">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006385">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a861a2b15e89a15657ba310adf3c0aecc"></a>UDAT_DAY_OF_YEAR_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'D' field alignment, corresponding to the UCAL_DAY_OF_YEAR field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006285">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006386">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2aa0a19a9f4ffd5e77b9492769bed5a265"></a>UDAT_DAY_OF_WEEK_IN_MONTH_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'F' field alignment, corresponding to the UCAL_DAY_OF_WEEK_IN_MONTH field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006286">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006387">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2ad0d5bd40929516f78356aa44dadbe831"></a>UDAT_WEEK_OF_YEAR_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'w' field alignment, corresponding to the UCAL_WEEK_OF_YEAR field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006287">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006388">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a874399459c1b2960852d407e41a126b3"></a>UDAT_WEEK_OF_MONTH_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'W' field alignment, corresponding to the UCAL_WEEK_OF_MONTH field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006288">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006389">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a0d598f4d4a10991bba38caa7202b6b58"></a>UDAT_AM_PM_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'a' field alignment, corresponding to the UCAL_AM_PM field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006289">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006390">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2aafe6cd2e2e49e22447c7b524484b822d"></a>UDAT_HOUR1_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'h' field alignment, corresponding to the UCAL_HOUR field. </p>
-<p>UDAT_HOUR1_FIELD is used for the one-based 12-hour clock. For example, 11:30 PM + 1 hour results in 12:30 AM. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006290">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<p>UDAT_HOUR1_FIELD is used for the one-based 12-hour clock. For example, 11:30 PM + 1 hour results in 12:30 AM. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006391">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2abe3f2cf1247aada106b0ab1270e1e9c8"></a>UDAT_HOUR0_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'K' field alignment, corresponding to the UCAL_HOUR field. </p>
-<p>UDAT_HOUR0_FIELD is used for the zero-based 12-hour clock. For example, 11:30 PM + 1 hour results in 00:30 AM. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006291">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<p>UDAT_HOUR0_FIELD is used for the zero-based 12-hour clock. For example, 11:30 PM + 1 hour results in 00:30 AM. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006392">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a1e5c8255271b95117bad5bf8515a646c"></a>UDAT_TIMEZONE_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'z' field alignment, corresponding to the UCAL_ZONE_OFFSET and UCAL_DST_OFFSET fields. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006292">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006393">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2ac09a069a84b14d7559c5d7e34b08df35"></a>UDAT_YEAR_WOY_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'Y' field alignment, corresponding to the UCAL_YEAR_WOY field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006293">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006394">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a1f0d0b3a3282c4be930bed3b76a3e686"></a>UDAT_DOW_LOCAL_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'e' field alignment, corresponding to the UCAL_DOW_LOCAL field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006294">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006395">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a54f345c72f8cb6329ded6af16df0625f"></a>UDAT_EXTENDED_YEAR_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'u' field alignment, corresponding to the UCAL_EXTENDED_YEAR field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006295">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006396">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a4ffdbeb31bc6e02bd18cd94605eb4a3e"></a>UDAT_JULIAN_DAY_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'g' field alignment, corresponding to the UCAL_JULIAN_DAY field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006296">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006397">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a6bbea5dc13d36a9b024582e35150cc2b"></a>UDAT_MILLISECONDS_IN_DAY_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'A' field alignment, corresponding to the UCAL_MILLISECONDS_IN_DAY field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006297">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006398">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a8458900160a4ef3ce3e44a15fe771c08"></a>UDAT_TIMEZONE_RFC_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'Z' field alignment, corresponding to the UCAL_ZONE_OFFSET and UCAL_DST_OFFSET fields. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006298">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006399">Stable:</a></b></dt><dd>ICU 3.0 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2ab5b7da969581745e5546f14f8b49f136"></a>UDAT_TIMEZONE_GENERIC_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'v' field alignment, corresponding to the UCAL_ZONE_OFFSET field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006299">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006400">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a8fcdf1e4ea11f9912c2951ca2e38bcea"></a>UDAT_STANDALONE_DAY_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition selector for 'c' field alignment, corresponding to the <a class="el" href="ucal_8h.html#a02fe23bf33319052733c00c7a09ea912afdf3076e740fbe439f89dd3214f0704b">UCAL_DOW_LOCAL</a> field. </p>
-<p>This displays the stand alone day name, if available. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006300">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<p>This displays the stand alone day name, if available. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006401">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2aeb1f400437caed50238ce8e3e725bd3c"></a>UDAT_STANDALONE_MONTH_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition selector for 'L' field alignment, corresponding to the <a class="el" href="ucal_8h.html#a02fe23bf33319052733c00c7a09ea912a9546c33a33caefb88822bd22d4667fe1">UCAL_MONTH</a> field. </p>
-<p>This displays the stand alone month name, if available. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006301">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
+<p>This displays the stand alone month name, if available. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006402">Stable:</a></b></dt><dd>ICU 3.4 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a8295f12f838fbf81a6d15b70741be647"></a>UDAT_QUARTER_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition selector for "Q" field alignment, corresponding to quarters. </p>
-<p>This is implemented using the <a class="el" href="ucal_8h.html#a02fe23bf33319052733c00c7a09ea912a9546c33a33caefb88822bd22d4667fe1">UCAL_MONTH</a> field. This displays the quarter. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006302">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<p>This is implemented using the <a class="el" href="ucal_8h.html#a02fe23bf33319052733c00c7a09ea912a9546c33a33caefb88822bd22d4667fe1">UCAL_MONTH</a> field. This displays the quarter. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006403">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a8130dc0ba4e257483a6f82442fa0e5d1"></a>UDAT_STANDALONE_QUARTER_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition selector for the "q" field alignment, corresponding to stand-alone quarters. </p>
-<p>This is implemented using the <a class="el" href="ucal_8h.html#a02fe23bf33319052733c00c7a09ea912a9546c33a33caefb88822bd22d4667fe1">UCAL_MONTH</a> field. This displays the stand-alone quarter. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006303">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
+<p>This is implemented using the <a class="el" href="ucal_8h.html#a02fe23bf33319052733c00c7a09ea912a9546c33a33caefb88822bd22d4667fe1">UCAL_MONTH</a> field. This displays the stand-alone quarter. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006404">Stable:</a></b></dt><dd>ICU 3.6 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a7145398de7511b5b61fb0c5810b04c43"></a>UDAT_TIMEZONE_SPECIAL_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'V' field alignment, corresponding to the UCAL_ZONE_OFFSET field. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006304">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006405">Stable:</a></b></dt><dd>ICU 3.8 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2ab15e42a6def565977ba0fa86cda77b49"></a>UDAT_YEAR_NAME_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition selector for "U" field alignment, corresponding to cyclic year names. </p>
-<p>This is implemented using the <a class="el" href="ucal_8h.html#a02fe23bf33319052733c00c7a09ea912a3e2b44660e01084c8b4990f281554ae1">UCAL_YEAR</a> field. This displays the cyclic year name, if available. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006305">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
+<p>This is implemented using the <a class="el" href="ucal_8h.html#a02fe23bf33319052733c00c7a09ea912a3e2b44660e01084c8b4990f281554ae1">UCAL_YEAR</a> field. This displays the cyclic year name, if available. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006406">Stable:</a></b></dt><dd>ICU 49 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a97283d0e8a1032df20bf5a3a86aad512"></a>UDAT_TIMEZONE_LOCALIZED_GMT_OFFSET_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition selector for 'O' field alignment, corresponding to the UCAL_ZONE_OFFSET and UCAL_DST_OFFSETfields. </p>
-<p>This displays the localized GMT format. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006306">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<p>This displays the localized GMT format. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006407">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2ad2e0e508cc69de24076b37ec3e45c8a3"></a>UDAT_TIMEZONE_ISO_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition selector for 'X' field alignment, corresponding to the UCAL_ZONE_OFFSET and UCAL_DST_OFFSETfields. </p>
-<p>This displays the ISO 8601 local time offset format or UTC indicator ("Z"). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006307">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<p>This displays the ISO 8601 local time offset format or UTC indicator ("Z"). </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006408">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2aaa3678d1db868b5ee663ffb1371e12a0"></a>UDAT_TIMEZONE_ISO_LOCAL_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition selector for 'x' field alignment, corresponding to the UCAL_ZONE_OFFSET and UCAL_DST_OFFSET fields. </p>
-<p>This displays the ISO 8601 local time offset format. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006308">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<p>This displays the ISO 8601 local time offset format. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006409">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a683ff5ad25bc2260a209138096553036"></a>UDAT_RELATED_YEAR_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for 'r' field alignment, no directly corresponding UCAL_ field. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000887">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU 53 </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000912">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU 53 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2ab37758c6b7d248e5f913755a11998cae"></a>UDAT_AM_PM_MIDNIGHT_NOON_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition selector for 'b' field alignment. </p>
-<p>Displays midnight and noon for 12am and 12pm, respectively, if available; otherwise fall back to AM / PM. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006309">Stable:</a></b></dt><dd>ICU 57 </dd></dl>
+<p>Displays midnight and noon for 12am and 12pm, respectively, if available; otherwise fall back to AM / PM. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006410">Stable:</a></b></dt><dd>ICU 57 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a948cc45ccae55dcf5c094e3c33a2c3d7"></a>UDAT_TIME_SEPARATOR_FIELD&#160;</td><td class="fielddoc"><p>FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selector for time separator, no corresponding UCAL_ field. </p>
-<p>No pattern character is currently defined for this. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000888">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
+<p>No pattern character is currently defined for this. </p><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000913">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adb09b47d4576513229f83f2e8f507fc2a5114893ce2cb9b449b3e700b9dfb99a6"></a>UDAT_FIELD_COUNT&#160;</td><td class="fielddoc"><p>Number of FieldPosition and <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> selectors for DateFormat and UDateFormat. </p>
-<p>Valid selectors range from 0 to UDAT_FIELD_COUNT-1. </p><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000739">Deprecated:</a></b></dt><dd>ICU 58 The numeric value may change over time, see ICU ticket #12420. </dd></dl>
+<p>Valid selectors range from 0 to UDAT_FIELD_COUNT-1. </p><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000747">Deprecated:</a></b></dt><dd>ICU 58 The numeric value may change over time, see ICU ticket #12420. </dd></dl>
 </td></tr>
 </table>
 
@@ -1946,19 +1948,19 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>Hour Cycle. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006243">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006344">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="adbadd2be9a80fe5b53ba52d72aeb256ba4089d026039a670be24c43061f982fde"></a>UDAT_HOUR_CYCLE_11&#160;</td><td class="fielddoc"><p>Hour in am/pm (0~11) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006314">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006415">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adbadd2be9a80fe5b53ba52d72aeb256bafe9f5c4de1512aa01d8755f8c9e04261"></a>UDAT_HOUR_CYCLE_12&#160;</td><td class="fielddoc"><p>Hour in am/pm (1~12) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006315">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006416">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adbadd2be9a80fe5b53ba52d72aeb256ba9d83e7eb0b68b97c6feb9460ebdaf7bc"></a>UDAT_HOUR_CYCLE_23&#160;</td><td class="fielddoc"><p>Hour in day (0~23) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006316">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006417">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="adbadd2be9a80fe5b53ba52d72aeb256baeaa26ab4277a10491bd1728d31e2240c"></a>UDAT_HOUR_CYCLE_24&#160;</td><td class="fielddoc"><p>Hour in day (1~24) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006317">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006418">Stable:</a></b></dt><dd>ICU 67 </dd></dl>
 </td></tr>
 </table>
 
@@ -1979,7 +1981,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>The possible date/time format styles. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006194">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006295">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="adb4c5a95efb888d04d38db7b3efff0c5aa443b8f36bc7fcde51135f5603f47ca5"></a>UDAT_FULL&#160;</td><td class="fielddoc"><p>Full style. </p>
 </td></tr>
@@ -1997,9 +1999,9 @@ Align any particular field, or find out where it is for selection on the screen.
 </td></tr>
 <tr><td class="fieldname"><a id="adb4c5a95efb888d04d38db7b3efff0c5a3a811f7860e3e6c4e9b9592f5234c627"></a>UDAT_PATTERN&#160;</td><td class="fielddoc"><p>Use the pattern given in the parameter to udat_open. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#a4261e9fd5382197c3d86a00211c48079" title="Open a new UDateFormat for formatting and parsing dates and times.">udat_open</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006274">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006375">Stable:</a></b></dt><dd>ICU 50 </dd></dl>
 </td></tr>
-<tr><td class="fieldname"><a id="adb4c5a95efb888d04d38db7b3efff0c5a5fdf996e633ee3ba6fd6293dd4d6675d"></a>UDAT_IGNORE&#160;</td><td class="fielddoc"><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000886">Internal:</a></b></dt><dd>Do not use.</dd></dl>
+<tr><td class="fieldname"><a id="adb4c5a95efb888d04d38db7b3efff0c5a5fdf996e633ee3ba6fd6293dd4d6675d"></a>UDAT_IGNORE&#160;</td><td class="fielddoc"><dl class="internal"><dt><b><a class="el" href="internal.html#_internal000911">Internal:</a></b></dt><dd>Do not use.</dd></dl>
 <p>This API is for internal use only. alias to UDAT_PATTERN </p>
 </td></tr>
 </table>
@@ -2021,7 +2023,7 @@ Align any particular field, or find out where it is for selection on the screen.
 </div><div class="memdoc">
 
 <p>The possible types of date format symbols. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006266">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006367">Stable:</a></b></dt><dd>ICU 2.6 </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a08c254470a3ccf54601366a382c4096d"></a>UDAT_ERAS&#160;</td><td class="fielddoc"><p>The era names, for example AD. </p>
 </td></tr>
@@ -2060,34 +2062,40 @@ Align any particular field, or find out where it is for selection on the screen.
 </td></tr>
 <tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a870aeba92c724911d8261c3badb3ffb7"></a>UDAT_SHORTER_WEEKDAYS&#160;</td><td class="fielddoc"><p>The CLDR-style short weekday names, e.g. </p>
 <p>"Su", Mo", etc.
-These are named "SHORTER" to contrast with the constants using <em>SHORT</em> above, which actually get the CLDR-style <em>abbreviated</em> versions of the corresponding names. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006319">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+These are named "SHORTER" to contrast with the constants using <em>SHORT</em> above, which actually get the CLDR-style <em>abbreviated</em> versions of the corresponding names. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable006420">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a548634c8124a6b2bf942531671923576"></a>UDAT_STANDALONE_SHORTER_WEEKDAYS&#160;</td><td class="fielddoc"><p>Standalone version of UDAT_SHORTER_WEEKDAYS. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006320">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006421">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a21d175a80f1c76c7d83c31fd55e6940f"></a>UDAT_CYCLIC_YEARS_WIDE&#160;</td><td class="fielddoc"><p>Cyclic year names (only supported for some calendars, and only for FORMAT usage; udat_setSymbols not supported for UDAT_CYCLIC_YEARS_WIDE) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006321">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006422">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4ac2889591d6b57582b57497263cc6ec01"></a>UDAT_CYCLIC_YEARS_ABBREVIATED&#160;</td><td class="fielddoc"><p>Cyclic year names (only supported for some calendars, and only for FORMAT usage) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006322">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006423">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a230be229b683374ae12005993f482844"></a>UDAT_CYCLIC_YEARS_NARROW&#160;</td><td class="fielddoc"><p>Cyclic year names (only supported for some calendars, and only for FORMAT usage; udat_setSymbols not supported for UDAT_CYCLIC_YEARS_NARROW) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006323">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006424">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a9abe885f0131c8bd9dd42228b4f0a01e"></a>UDAT_ZODIAC_NAMES_WIDE&#160;</td><td class="fielddoc"><p>Calendar zodiac names (only supported for some calendars, and only for FORMAT usage; udat_setSymbols not supported for UDAT_ZODIAC_NAMES_WIDE) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006324">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006425">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a8f3601a97a0b61207d7a20d08fbe1705"></a>UDAT_ZODIAC_NAMES_ABBREVIATED&#160;</td><td class="fielddoc"><p>Calendar zodiac names (only supported for some calendars, and only for FORMAT usage) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006325">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006426">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a476ee906ff9a55a3953d64d45d7ff986"></a>UDAT_ZODIAC_NAMES_NARROW&#160;</td><td class="fielddoc"><p>Calendar zodiac names (only supported for some calendars, and only for FORMAT usage; udat_setSymbols not supported for UDAT_ZODIAC_NAMES_NARROW) </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006326">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006427">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a2be651459a5db2761a7d45a6c4acb7ed"></a>UDAT_NARROW_QUARTERS&#160;</td><td class="fielddoc"><p>The narrow quarter names, for example 1. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006327">Stable:</a></b></dt><dd>ICU 70 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006428">Stable:</a></b></dt><dd>ICU 70 </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a35f957d6327a5c0df79ab2144688d654"></a>UDAT_STANDALONE_NARROW_QUARTERS&#160;</td><td class="fielddoc"><p>The narrow standalone quarter names, for example 1. </p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006328">Stable:</a></b></dt><dd>ICU 70 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006429">Stable:</a></b></dt><dd>ICU 70 </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4ade0018d442c458ec5d43cb608f7da89b"></a>UDAT_AM_PMS_NARROW&#160;</td><td class="fielddoc"><p>Narrow AM/PM names. </p>
+<p>For example: "A" and "P". </p><dl class="draft"><dt><b><a class="el" href="draft.html#_draft000219">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 78 </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="a5eefb511a1a2cdc12bcbd06ed29880f4a9a2f5374fc02212d227d9c5bf02ebd9b"></a>UDAT_AM_PMS_WIDE&#160;</td><td class="fielddoc"><p>Wide AM/PM names. </p>
+<p>For example: "Ante Meridiem" and "Post Meridiem". </p><dl class="draft"><dt><b><a class="el" href="draft.html#_draft000220">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 78 </dd></dl>
 </td></tr>
 </table>
 
@@ -2131,7 +2139,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#aa128c166154b3e13c39802daa7b01496" title="Get the UNumberFormat associated with an UDateFormat.">udat_getNumberFormat</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006259">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006360">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 
 </div>
 </div>
@@ -2185,7 +2193,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#a40d71ea58699da6d438c96531a3be439" title="Get the UNumberFormat for specific field associated with an UDateFormat.">udat_getNumberFormatForField</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006257">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006358">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 
 </div>
 </div>
@@ -2238,7 +2246,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#aa60f82527d4cdf4212820ed9e2d7c2fb" title="Extract the pattern from a UDateFormat.">udat_toPattern</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006265">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006366">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2305,7 +2313,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#ac1138c381a94ac5d4cb265338825db91" title="Extract the date pattern from a UDateFormat set for relative date formatting.">udat_toPatternRelativeDate</a>, <a class="el" href="udat_8h.html#af0bb47fb591d1088e4f8985339c6889c" title="Extract the time pattern from a UDateFormat set for relative date formatting.">udat_toPatternRelativeTime</a> </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000882">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU 4.2 technology preview </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000907">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU 4.2 technology preview </dd></dl>
 
 </div>
 </div>
@@ -2344,7 +2352,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to a UDateFormat identical to fmt. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006244">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006345">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2371,7 +2379,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006239">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006340">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2394,7 +2402,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 <p>Determine how many locales have date/time formatting patterns available. </p>
 <p>This function is most useful as determining the loop ending condition for calls to <a class="el" href="udat_8h.html#ac0f13e8d6610127692e87508d47015c8">udat_getAvailable</a>. </p><dl class="section return"><dt>Returns</dt><dd>The number of locales for which date/time formatting patterns are available. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#ac0f13e8d6610127692e87508d47015c8" title="Get a locale for which date/time formatting patterns are available.">udat_getAvailable</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006261">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006362">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2436,7 +2444,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#ace803b4e8bb37e63fe7eefad7bd3a435" title="Get the symbols associated with an UDateFormat.">udat_getSymbols</a> </dd>
 <dd>
 <a class="el" href="udat_8h.html#ad5540dc0cb856e7acd40e62ea4c37553" title="Set the symbols associated with an UDateFormat.">udat_setSymbols</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006269">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006370">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2506,7 +2514,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#a86fd11a05b4586a3076eef4553cea1f0" title="Parse a string into an date/time using a UDateFormat.">udat_parse</a> </dd>
 <dd>
 <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006245">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006346">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2578,7 +2586,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 <a class="el" href="udat_8h.html#a0b3290425869da222034e737dd45a62d" title="Parse a string into an date/time using a UDateFormat.">udat_parseCalendar</a> </dd>
 <dd>
 <a class="el" href="structUFieldPosition.html" title="A struct representing a range of text containing a specific field.">UFieldPosition</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006246">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006347">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -2650,7 +2658,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 <a class="el" href="udat_8h.html#a0b3290425869da222034e737dd45a62d" title="Parse a string into an date/time using a UDateFormat.">udat_parseCalendar</a> </dd>
 <dd>
 <a class="el" href="ufieldpositer_8h.html#ae6dcb81a72e2304609d93ad389c16d19" title="C typedef for struct UFieldPositionIterator.">UFieldPositionIterator</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006248">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006349">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -2720,7 +2728,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#a86fd11a05b4586a3076eef4553cea1f0" title="Parse a string into an date/time using a UDateFormat.">udat_parse</a> </dd>
 <dd>
 <a class="el" href="ufieldpositer_8h.html#ae6dcb81a72e2304609d93ad389c16d19" title="C typedef for struct UFieldPositionIterator.">UFieldPositionIterator</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006247">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006348">Stable:</a></b></dt><dd>ICU 55 </dd></dl>
 
 </div>
 </div>
@@ -2760,7 +2768,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The year relative to which all 2-digit years are interpreted. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>udat_Set2DigitYearStart </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006262">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006363">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2789,7 +2797,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A locale for which date/time formatting patterns are available, or 0 if none. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#a8770a3c397b928ff0f8eaaa10a821b93" title="Determine how many locales have date/time formatting patterns available.">udat_countAvailable</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006260">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006361">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2835,7 +2843,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The value of attr. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006241">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006342">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -2864,7 +2872,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the UCalendar used by fmt. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#adad378b9e4488902b0b3a04f3a98ebcc" title="Set the UCalendar associated with an UDateFormat.">udat_setCalendar</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006253">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006354">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -2910,7 +2918,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The UDisplayContextValue for the specified type. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006273">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006374">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -2956,7 +2964,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the locale name </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006271">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006372">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
 </div>
 </div>
@@ -2985,7 +2993,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the UNumberFormat used by fmt to format numbers. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#a774ff23472c77e74de65f6898b1d3ea4" title="Set the UNumberFormat associated with an UDateFormat.">udat_setNumberFormat</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006255">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006356">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3025,7 +3033,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the UNumberFormat used by fmt to format field numbers. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>udat_setNumberFormatForField </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006256">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006357">Stable:</a></b></dt><dd>ICU 54 </dd></dl>
 
 </div>
 </div>
@@ -3095,7 +3103,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#abe0f779a9577b47350e6b25c69f37e96" title="Count the number of particular symbols for an UDateFormat.">udat_countSymbols</a> </dd>
 <dd>
 <a class="el" href="udat_8h.html#ad5540dc0cb856e7acd40e62ea4c37553" title="Set the symbols associated with an UDateFormat.">udat_setSymbols</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006268">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006369">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3124,7 +3132,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if fmt is set to perform lenient parsing, false otherwise. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#a87496218f77f4be131a1b8d0d3950032" title="Specify whether an UDateFormat will perform lenient parsing.">udat_setLenient</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006251">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006352">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3205,7 +3213,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to a UDateFormat to use for formatting dates and times, or 0 if an error occurred. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006238">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006339">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3268,7 +3276,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The value of the parsed date/time </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#aac3747dd8edb53fc5652bdd383142bac" title="Format a date using a UDateFormat.">udat_format</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006249">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006350">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3335,7 +3343,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#aac3747dd8edb53fc5652bdd383142bac" title="Format a date using a UDateFormat.">udat_format</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006250">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006351">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3366,7 +3374,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 </div><div class="memdoc">
 
 <p>Register a provider factory. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000884">Internal:</a></b></dt><dd>Do not use.</dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000909">Internal:</a></b></dt><dd>Do not use.</dd></dl>
 <p>This API is for internal use only. ICU 49 </p>
 
 </div>
@@ -3413,7 +3421,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>udat_Set2DigitYearStart </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006263">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006364">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3465,7 +3473,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006242">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006343">Stable:</a></b></dt><dd>ICU 53 </dd></dl>
 
 </div>
 </div>
@@ -3504,7 +3512,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#adad378b9e4488902b0b3a04f3a98ebcc" title="Set the UCalendar associated with an UDateFormat.">udat_setCalendar</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006254">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006355">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3549,7 +3557,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </table>
   </dd>
 </dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006272">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006373">Stable:</a></b></dt><dd>ICU 51 </dd></dl>
 
 </div>
 </div>
@@ -3588,7 +3596,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>dat_isLenient </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006252">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006353">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3630,7 +3638,7 @@ These are named "SHORTER" to contrast with the constants using <em>SHORT</em> ab
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#aa128c166154b3e13c39802daa7b01496" title="Get the UNumberFormat associated with an UDateFormat.">udat_getNumberFormat</a> </dd>
 <dd>
 udat_setNumberFormatForField </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006258">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006359">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3699,7 +3707,7 @@ udat_setNumberFormatForField </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#ace803b4e8bb37e63fe7eefad7bd3a435" title="Get the symbols associated with an UDateFormat.">udat_getSymbols</a> </dd>
 <dd>
 <a class="el" href="udat_8h.html#abe0f779a9577b47350e6b25c69f37e96" title="Count the number of particular symbols for an UDateFormat.">udat_countSymbols</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006270">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006371">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3729,7 +3737,7 @@ udat_setNumberFormatForField </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the UCalendarDateField. In case of error (UDateFormatField is unknown or has no corresponding UCalendarDateFields value) this will be the current value of UCAL_FIELD_COUNT, but that value may change from release to release. See Note 2 above. </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006237">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006338">Stable:</a></b></dt><dd>ICU 4.4 </dd></dl>
 
 </div>
 </div>
@@ -3790,7 +3798,7 @@ udat_setNumberFormatForField </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total buffer size needed; if greater than resultLength, the output was truncated. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#aec8fec00194f20da6276c99cb7006296" title="Set the pattern used by an UDateFormat.">udat_applyPattern</a> </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006264">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable006365">Stable:</a></b></dt><dd>ICU 2.0 </dd></dl>
 
 </div>
 </div>
@@ -3844,7 +3852,7 @@ udat_setNumberFormatForField </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total buffer size needed; if greater than resultLength, the output was truncated. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#a1e8a1f4985e13bd8248524ed8e82068a" title="Set the date &amp; time patterns used by a UDateFormat set for relative date formatting.">udat_applyPatternRelative</a> </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000880">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU 4.2 technology preview </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000905">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU 4.2 technology preview </dd></dl>
 
 </div>
 </div>
@@ -3898,7 +3906,7 @@ udat_setNumberFormatForField </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total buffer size needed; if greater than resultLength, the output was truncated. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="udat_8h.html#a1e8a1f4985e13bd8248524ed8e82068a" title="Set the date &amp; time patterns used by a UDateFormat set for relative date formatting.">udat_applyPatternRelative</a> </dd></dl>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000881">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU 4.2 technology preview </dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000906">Internal:</a></b></dt><dd>Do not use. This API is for internal use only. ICU 4.2 technology preview </dd></dl>
 
 </div>
 </div>
@@ -3929,7 +3937,7 @@ udat_setNumberFormatForField </dd></dl>
 </div><div class="memdoc">
 
 <p>Un-Register a provider factory. </p>
-<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000885">Internal:</a></b></dt><dd>Do not use.</dd></dl>
+<dl class="internal"><dt><b><a class="el" href="internal.html#_internal000910">Internal:</a></b></dt><dd>Do not use.</dd></dl>
 <p>This API is for internal use only. ICU 49 </p>
 
 </div>

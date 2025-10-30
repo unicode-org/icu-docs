@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 77.1: common/unicode/utf.h File Reference</title>
+<title>ICU 78.1: common/unicode/utf.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 77.1
-   &#160;<span id="projectnumber">77.1</span>
+   <div id="projectname">ICU 78.1
+   &#160;<span id="projectnumber">78.1</span>
    </div>
   </td>
  </tr>
@@ -84,8 +84,14 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a96111ace4e49f68025274c6febc5ec73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf_8h.html#a96111ace4e49f68025274c6febc5ec73">U_IS_CODE_POINT</a>(c)&#160;&#160;&#160;((uint32_t)(c)&lt;=0x10ffff)</td></tr>
+<tr class="memdesc:a96111ace4e49f68025274c6febc5ec73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is c a Unicode code point U+0000..U+10FFFF? <a href="https://www.unicode.org/glossary/#code_point">https://www.unicode.org/glossary/#code_point</a>.  <a href="utf_8h.html#a96111ace4e49f68025274c6febc5ec73">More...</a><br /></td></tr>
+<tr class="separator:a96111ace4e49f68025274c6febc5ec73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11496302e8ef16918b5d3f34ec5ab7c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf_8h.html#a11496302e8ef16918b5d3f34ec5ab7c2">U_IS_SCALAR_VALUE</a>(c)&#160;&#160;&#160;((uint32_t)(c)&lt;0xd800 || (0xe000&lt;=(c) &amp;&amp; (c)&lt;=0x10ffff))</td></tr>
+<tr class="memdesc:a11496302e8ef16918b5d3f34ec5ab7c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is c a Unicode scalar value, that is, a non-surrogate code point? Only scalar values can be represented in well-formed UTF-8/16/32.  <a href="utf_8h.html#a11496302e8ef16918b5d3f34ec5ab7c2">More...</a><br /></td></tr>
+<tr class="separator:a11496302e8ef16918b5d3f34ec5ab7c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d794df2276384e748f2836b25b58f7d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf_8h.html#a7d794df2276384e748f2836b25b58f7d">U_IS_UNICODE_NONCHAR</a>(c)</td></tr>
-<tr class="memdesc:a7d794df2276384e748f2836b25b58f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this code point a Unicode noncharacter?  <a href="utf_8h.html#a7d794df2276384e748f2836b25b58f7d">More...</a><br /></td></tr>
+<tr class="memdesc:a7d794df2276384e748f2836b25b58f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this code point a Unicode noncharacter? <a href="https://www.unicode.org/glossary/#noncharacter">https://www.unicode.org/glossary/#noncharacter</a>.  <a href="utf_8h.html#a7d794df2276384e748f2836b25b58f7d">More...</a><br /></td></tr>
 <tr class="separator:a7d794df2276384e748f2836b25b58f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd1d72b6c7a8a90ad13cdf5a4553ca3a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utf_8h.html#acd1d72b6c7a8a90ad13cdf5a4553ca3a">U_IS_UNICODE_CHAR</a>(c)</td></tr>
 <tr class="memdesc:acd1d72b6c7a8a90ad13cdf5a4553ca3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is c a Unicode code point value (0..U+10ffff) that can be assigned a character?  <a href="utf_8h.html#acd1d72b6c7a8a90ad13cdf5a4553ca3a">More...</a><br /></td></tr>
@@ -134,7 +140,7 @@ Macros</h2></td></tr>
 <p>Unlike with UTF-16, malformed sequences cannot be expressed with distinct code point values (0..U+10ffff). They are indicated with negative values instead.</p>
 <p>For more information see the ICU User Guide Strings chapter (<a href="https://unicode-org.github.io/icu/userguide/strings">https://unicode-org.github.io/icu/userguide/strings</a>).</p>
 <p><em>Usage:</em> ICU coding guidelines for if() statements should be followed when using these macros. Compound statements (curly braces {}) must be used for if-else-while... bodies and all macro statements should be terminated with semicolon.</p>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003417">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003506">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -162,9 +168,42 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003420">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003509">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00161">161</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00192">192</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+
+</div>
+</div>
+<a id="a96111ace4e49f68025274c6febc5ec73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96111ace4e49f68025274c6febc5ec73">&#9670;&nbsp;</a></span>U_IS_CODE_POINT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U_IS_CODE_POINT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">c</td><td>)</td>
+          <td>&#160;&#160;&#160;((uint32_t)(c)&lt;=0x10ffff)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is c a Unicode code point U+0000..U+10FFFF? <a href="https://www.unicode.org/glossary/#code_point">https://www.unicode.org/glossary/#code_point</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>32-bit code point </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
+<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000021">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 78 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>AllCodePoints </dd>
+<dd>
+<a class="el" href="utf_8h.html#a11496302e8ef16918b5d3f34ec5ab7c2" title="Is c a Unicode scalar value, that is, a non-surrogate code point? Only scalar values can be represent...">U_IS_SCALAR_VALUE</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00136">136</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
 
 </div>
 </div>
@@ -192,9 +231,43 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003422">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003511">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00177">177</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00208">208</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+
+</div>
+</div>
+<a id="a11496302e8ef16918b5d3f34ec5ab7c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11496302e8ef16918b5d3f34ec5ab7c2">&#9670;&nbsp;</a></span>U_IS_SCALAR_VALUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U_IS_SCALAR_VALUE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">c</td><td>)</td>
+          <td>&#160;&#160;&#160;((uint32_t)(c)&lt;0xd800 || (0xe000&lt;=(c) &amp;&amp; (c)&lt;=0x10ffff))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is c a Unicode scalar value, that is, a non-surrogate code point? Only scalar values can be represented in well-formed UTF-8/16/32. </p>
+<p><a href="https://www.unicode.org/glossary/#unicode_scalar_value">https://www.unicode.org/glossary/#unicode_scalar_value</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>32-bit code point </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
+<dl class="draft"><dt><b><a class="el" href="draft.html#_draft000022">Draft:</a></b></dt><dd>This API may be changed in the future versions and was introduced in ICU 78 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>AllScalarValues </dd>
+<dd>
+<a class="el" href="utf_8h.html#a96111ace4e49f68025274c6febc5ec73" title="Is c a Unicode code point U+0000..U+10FFFF? https://www.unicode.org/glossary/#code_point.">U_IS_CODE_POINT</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00149">149</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
 
 </div>
 </div>
@@ -222,9 +295,9 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003421">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003510">Stable:</a></b></dt><dd>ICU 2.8 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00169">169</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00200">200</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
 
 </div>
 </div>
@@ -252,9 +325,9 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003424">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003513">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00193">193</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00224">224</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
 
 </div>
 </div>
@@ -282,9 +355,9 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003425">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003514">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00202">202</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00233">233</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
 
 </div>
 </div>
@@ -312,9 +385,9 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003426">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003515">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00211">211</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00242">242</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
 
 </div>
 </div>
@@ -342,9 +415,9 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003423">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003512">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00185">185</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00216">216</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
 
 </div>
 </div>
@@ -364,8 +437,8 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    ((uint32_t)(c)&lt;0xd800 || \</div>
-<div class="line">        (0xdfff&lt;(c) &amp;&amp; (c)&lt;=0x10ffff &amp;&amp; !<a class="code" href="utf_8h.html#a7d794df2276384e748f2836b25b58f7d">U_IS_UNICODE_NONCHAR</a>(c)))</div>
-<div class="ttc" id="autf_8h_html_a7d794df2276384e748f2836b25b58f7d"><div class="ttname"><a href="utf_8h.html#a7d794df2276384e748f2836b25b58f7d">U_IS_UNICODE_NONCHAR</a></div><div class="ttdeci">#define U_IS_UNICODE_NONCHAR(c)</div><div class="ttdoc">Is this code point a Unicode noncharacter?</div><div class="ttdef"><b>Definition:</b> <a href="utf_8h_source.html#l00130">utf.h:130</a></div></div>
+<div class="line">        (0xe000&lt;=(c) &amp;&amp; (c)&lt;=0x10ffff &amp;&amp; !<a class="code" href="utf_8h.html#a7d794df2276384e748f2836b25b58f7d">U_IS_UNICODE_NONCHAR</a>(c)))</div>
+<div class="ttc" id="autf_8h_html_a7d794df2276384e748f2836b25b58f7d"><div class="ttname"><a href="utf_8h.html#a7d794df2276384e748f2836b25b58f7d">U_IS_UNICODE_NONCHAR</a></div><div class="ttdeci">#define U_IS_UNICODE_NONCHAR(c)</div><div class="ttdoc">Is this code point a Unicode noncharacter? https://www.unicode.org/glossary/#noncharacter.</div><div class="ttdef"><b>Definition:</b> <a href="utf_8h_source.html#l00161">utf.h:161</a></div></div>
 </div><!-- fragment -->
 <p>Is c a Unicode code point value (0..U+10ffff) that can be assigned a character? </p>
 <p>Code points that are not characters include:</p><ul>
@@ -382,9 +455,9 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003419">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003508">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00151">151</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00182">182</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
 
 </div>
 </div>
@@ -406,7 +479,7 @@ Macros</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">    ((c)&gt;=0xfdd0 &amp;&amp; \</div>
 <div class="line">     ((c)&lt;=0xfdef || ((c)&amp;0xfffe)==0xfffe) &amp;&amp; (c)&lt;=0x10ffff)</div>
 </div><!-- fragment -->
-<p>Is this code point a Unicode noncharacter? </p>
+<p>Is this code point a Unicode noncharacter? <a href="https://www.unicode.org/glossary/#noncharacter">https://www.unicode.org/glossary/#noncharacter</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>32-bit code point </td></tr>
@@ -414,9 +487,9 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false </dd></dl>
-<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003418">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
+<dl class="stable"><dt><b><a class="el" href="stable.html#_stable003507">Stable:</a></b></dt><dd>ICU 2.4 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00130">130</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf_8h_source.html#l00161">161</a> of file <a class="el" href="utf_8h_source.html">utf.h</a>.</p>
 
 </div>
 </div>

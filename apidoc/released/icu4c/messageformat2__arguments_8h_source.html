@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 77.1: i18n/unicode/messageformat2_arguments.h Source File</title>
+<title>ICU 78.1: i18n/unicode/messageformat2_arguments.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 77.1
-   &#160;<span id="projectnumber">77.1</span>
+   <div id="projectname">ICU 78.1
+   &#160;<span id="projectnumber">78.1</span>
    </div>
   </td>
  </tr>
@@ -96,91 +96,78 @@ $(function() {
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;U_NAMESPACE_BEGIN</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// Export an explicit template instantiation of the LocalPointer that is used as a</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// data member of various MessageFormatDataModel classes.</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// (When building DLLs for Windows this is required.)</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">// (See measunit_impl.h, datefmt.h, collationiterator.h, erarules.h and others</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">// for similar examples.)</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#if U_PF_WINDOWS &lt;= U_PLATFORM &amp;&amp; U_PLATFORM &lt;= U_PF_CYGWIN</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">template</span> <span class="keyword">class </span><a class="code" href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a> LocalPointerBase&lt;UnicodeString&gt;;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">template</span> <span class="keyword">class </span><a class="code" href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a> LocalPointerBase&lt;message2::Formattable&gt;;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">template</span> <span class="keyword">class </span><a class="code" href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a> LocalArray&lt;UnicodeString&gt;;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">template</span> <span class="keyword">class </span><a class="code" href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a> LocalArray&lt;message2::Formattable&gt;;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">namespace </span>message2 {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">class </span>MessageFormatter;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Arguments</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// ----------</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classicu_1_1message2_1_1MessageArguments.html">   61</a></span>&#160;    <span class="keyword">class </span><a class="code" href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a> <a class="code" href="classicu_1_1message2_1_1MessageArguments.html">MessageArguments</a> : <span class="keyword">public</span> <a class="code" href="classicu_1_1UObject.html">UObject</a> {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classicu_1_1message2_1_1MessageArguments.html#a37e01172efda0e213eb4fe93947b351f">   74</a></span>&#160;        <a class="code" href="classicu_1_1message2_1_1MessageArguments.html#a37e01172efda0e213eb4fe93947b351f">MessageArguments</a>(<span class="keyword">const</span> std::map&lt;UnicodeString, Formattable&gt;&amp; args, <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a>&amp; status) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f">U_FAILURE</a>(status)) {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            argumentNames = <a class="code" href="classicu_1_1LocalArray.html">LocalArray&lt;UnicodeString&gt;</a>(<span class="keyword">new</span> <a class="code" href="classicu_1_1UnicodeString.html">UnicodeString</a>[argsLen = <span class="keyword">static_cast&lt;</span>int32_t<span class="keyword">&gt;</span>(args.size())]);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            arguments = <a class="code" href="classicu_1_1LocalArray.html">LocalArray&lt;Formattable&gt;</a>(<span class="keyword">new</span> <a class="code" href="classicu_1_1message2_1_1Formattable.html">Formattable</a>[argsLen]);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">if</span> (!argumentNames.isValid() || !arguments.isValid()) {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                status = <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78ca243253eeb4885e17158b876849063269">U_MEMORY_ALLOCATION_ERROR</a>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            int32_t i = 0;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> iter = args.begin(); iter != args.end(); ++iter) {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                argumentNames[i] = iter-&gt;first;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                arguments[i] = iter-&gt;second;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                i++;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classicu_1_1message2_1_1MessageArguments.html#ae96848c85db9de3e27f9ccb1a2b45f36">   98</a></span>&#160;        <a class="code" href="classicu_1_1message2_1_1MessageArguments.html">MessageArguments</a>&amp; <a class="code" href="classicu_1_1message2_1_1MessageArguments.html#ae96848c85db9de3e27f9ccb1a2b45f36">operator=</a>(<a class="code" href="classicu_1_1message2_1_1MessageArguments.html">MessageArguments</a>&amp;&amp;) noexcept;</div>
-<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classicu_1_1message2_1_1MessageArguments.html#aa1753f45d1937c2fae1734be93cf9299">  106</a></span>&#160;        <a class="code" href="classicu_1_1message2_1_1MessageArguments.html">MessageArguments</a>() = default;</div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classicu_1_1message2_1_1MessageArguments.html#af048ac48280667da054fb38a51774dc8">  113</a></span>&#160;        virtual ~<a class="code" href="classicu_1_1message2_1_1MessageArguments.html">MessageArguments</a>();</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    private:</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        friend class MessageContext;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span>message2 {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">class </span>MessageFormatter;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Arguments</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// ----------</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classicu_1_1message2_1_1MessageArguments.html">   47</a></span>&#160;    <span class="keyword">class </span><a class="code" href="utypes_8h.html#aab9c32f472a54ec81629b5b031f5741c">U_I18N_API_CLASS</a> <a class="code" href="classicu_1_1message2_1_1MessageArguments.html">MessageArguments</a> : <span class="keyword">public</span> <a class="code" href="classicu_1_1UObject.html">UObject</a> {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classicu_1_1message2_1_1MessageArguments.html#a56db8342cfdd965a2606786f1579f681">   60</a></span>&#160;        <a class="code" href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a> <a class="code" href="classicu_1_1message2_1_1MessageArguments.html#a56db8342cfdd965a2606786f1579f681">MessageArguments</a>(<span class="keyword">const</span> std::map&lt;UnicodeString, Formattable&gt;&amp; args, <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a>&amp; status) {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f">U_FAILURE</a>(status)) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            argumentNames = <a class="code" href="classicu_1_1LocalArray.html">LocalArray&lt;UnicodeString&gt;</a>(<span class="keyword">new</span> <a class="code" href="classicu_1_1UnicodeString.html">UnicodeString</a>[argsLen = <span class="keyword">static_cast&lt;</span>int32_t<span class="keyword">&gt;</span>(args.size())]);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            arguments = <a class="code" href="classicu_1_1LocalArray.html">LocalArray&lt;Formattable&gt;</a>(<span class="keyword">new</span> <a class="code" href="classicu_1_1message2_1_1Formattable.html">Formattable</a>[argsLen]);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">if</span> (!argumentNames.isValid() || !arguments.isValid()) {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                status = <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78ca243253eeb4885e17158b876849063269">U_MEMORY_ALLOCATION_ERROR</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            int32_t i = 0;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> iter = args.begin(); iter != args.end(); ++iter) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                argumentNames[i] = iter-&gt;first;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                arguments[i] = iter-&gt;second;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                i++;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classicu_1_1message2_1_1MessageArguments.html#a687925adac65272049c0d25d015a79aa">   84</a></span>&#160;        <a class="code" href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a> <a class="code" href="classicu_1_1message2_1_1MessageArguments.html">MessageArguments</a>&amp; <a class="code" href="classicu_1_1message2_1_1MessageArguments.html#a687925adac65272049c0d25d015a79aa">operator=</a>(<a class="code" href="classicu_1_1message2_1_1MessageArguments.html">MessageArguments</a>&amp;&amp;) noexcept;</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classicu_1_1message2_1_1MessageArguments.html#ac0df3386d9f421f17d8cb7cd7b5d564b">   92</a></span>&#160;        <a class="code" href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a> <a class="code" href="classicu_1_1message2_1_1MessageArguments.html">MessageArguments</a>() = default;</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classicu_1_1message2_1_1MessageArguments.html#ad9d62ef0b73f3167bb85ba04518730f8">   99</a></span>&#160;        <a class="code" href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a> virtual ~<a class="code" href="classicu_1_1message2_1_1MessageArguments.html">MessageArguments</a>();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    private:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        friend class MessageContext;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        const <a class="code" href="classicu_1_1message2_1_1Formattable.html">Formattable</a>* getArgument(const data_model::<a class="code" href="classicu_1_1UnicodeString.html">VariableName</a>&amp;,</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                                       <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a>&amp;) const;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="comment">// Avoids using Hashtable so that code constructing a Hashtable</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment">// doesn&#39;t have to appear in this header file</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <a class="code" href="classicu_1_1LocalArray.html">LocalArray</a>&lt;<a class="code" href="classicu_1_1UnicodeString.html">UnicodeString</a>&gt; argumentNames;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="classicu_1_1LocalArray.html">LocalArray</a>&lt;<a class="code" href="classicu_1_1message2_1_1Formattable.html">Formattable</a>&gt; arguments;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        int32_t argsLen = 0;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }; <span class="comment">// class MessageArguments</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;} <span class="comment">// namespace message2</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;U_NAMESPACE_END</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        const <a class="code" href="classicu_1_1message2_1_1Formattable.html">Formattable</a>* getArgument(const <a class="code" href="classicu_1_1message2_1_1MessageFormatter.html">MessageFormatter</a>&amp;,</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                                       const data_model::<a class="code" href="classicu_1_1UnicodeString.html">VariableName</a>&amp;,</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                                       <a class="code" href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a>&amp;) const;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// U_HIDE_DEPRECATED_API</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* #if !UCONFIG_NO_MF2 */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="comment">// Avoids using Hashtable so that code constructing a Hashtable</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="comment">// doesn&#39;t have to appear in this header file</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <a class="code" href="classicu_1_1LocalArray.html">LocalArray</a>&lt;<a class="code" href="classicu_1_1UnicodeString.html">UnicodeString</a>&gt; argumentNames;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <a class="code" href="classicu_1_1LocalArray.html">LocalArray</a>&lt;<a class="code" href="classicu_1_1message2_1_1Formattable.html">Formattable</a>&gt; arguments;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        int32_t argsLen = 0;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }; <span class="comment">// class MessageArguments</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;} <span class="comment">// namespace message2</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;U_NAMESPACE_END</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// U_HIDE_DEPRECATED_API</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* #if !UCONFIG_NO_MF2 */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* #if !UCONFIG_NO_FORMATTING */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* #if !UCONFIG_NO_NORMALIZATION */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* U_SHOW_CPLUSPLUS_API */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// MESSAGEFORMAT2_ARGUMENTS_H</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">// eof</span></div>
-<div class="ttc" id="aclassicu_1_1LocalArray_html"><div class="ttname"><a href="classicu_1_1LocalArray.html">icu::LocalArray</a></div><div class="ttdoc">&quot;Smart pointer&quot; class, deletes objects via the C++ array delete[] operator.</div><div class="ttdef"><b>Definition:</b> <a href="localpointer_8h_source.html#l00366">localpointer.h:366</a></div></div>
-<div class="ttc" id="aclassicu_1_1UObject_html"><div class="ttname"><a href="classicu_1_1UObject.html">icu::UObject</a></div><div class="ttdoc">UObject is the common ICU &quot;boilerplate&quot; class.</div><div class="ttdef"><b>Definition:</b> <a href="uobject_8h_source.html#l00223">uobject.h:223</a></div></div>
-<div class="ttc" id="aclassicu_1_1UnicodeString_html"><div class="ttname"><a href="classicu_1_1UnicodeString.html">icu::UnicodeString</a></div><div class="ttdoc">UnicodeString is a string class that stores Unicode characters directly and provides similar function...</div><div class="ttdef"><b>Definition:</b> <a href="unistr_8h_source.html#l00295">unistr.h:296</a></div></div>
-<div class="ttc" id="aclassicu_1_1message2_1_1Formattable_html"><div class="ttname"><a href="classicu_1_1message2_1_1Formattable.html">icu::message2::Formattable</a></div><div class="ttdoc">The Formattable class represents a typed value that can be formatted, originating either from a messa...</div><div class="ttdef"><b>Definition:</b> <a href="messageformat2__formattable_8h_source.html#l00118">messageformat2_formattable.h:118</a></div></div>
-<div class="ttc" id="aclassicu_1_1message2_1_1MessageArguments_html"><div class="ttname"><a href="classicu_1_1message2_1_1MessageArguments.html">icu::message2::MessageArguments</a></div><div class="ttdoc">The MessageArguments class represents the named arguments to a message.</div><div class="ttdef"><b>Definition:</b> <a href="messageformat2__arguments_8h_source.html#l00061">messageformat2_arguments.h:61</a></div></div>
-<div class="ttc" id="aclassicu_1_1message2_1_1MessageArguments_html_a37e01172efda0e213eb4fe93947b351f"><div class="ttname"><a href="classicu_1_1message2_1_1MessageArguments.html#a37e01172efda0e213eb4fe93947b351f">icu::message2::MessageArguments::MessageArguments</a></div><div class="ttdeci">MessageArguments(const std::map&lt; UnicodeString, Formattable &gt; &amp;args, UErrorCode &amp;status)</div><div class="ttdoc">Message arguments constructor, which takes a map and returns a container of arguments that can be pas...</div><div class="ttdef"><b>Definition:</b> <a href="messageformat2__arguments_8h_source.html#l00074">messageformat2_arguments.h:74</a></div></div>
-<div class="ttc" id="aclassicu_1_1message2_1_1MessageArguments_html_ae96848c85db9de3e27f9ccb1a2b45f36"><div class="ttname"><a href="classicu_1_1message2_1_1MessageArguments.html#ae96848c85db9de3e27f9ccb1a2b45f36">icu::message2::MessageArguments::operator=</a></div><div class="ttdeci">MessageArguments &amp; operator=(MessageArguments &amp;&amp;) noexcept</div><div class="ttdoc">Move operator: The source MessageArguments will be left in a valid but undefined state.</div></div>
-<div class="ttc" id="aclassicu_1_1message2_1_1MessageFormatter_html"><div class="ttname"><a href="classicu_1_1message2_1_1MessageFormatter.html">icu::message2::MessageFormatter</a></div><div class="ttdef"><b>Definition:</b> <a href="messageformat2_8h_source.html#l00054">messageformat2.h:54</a></div></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* #if !UCONFIG_NO_FORMATTING */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* #if !UCONFIG_NO_NORMALIZATION */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* U_SHOW_CPLUSPLUS_API */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// MESSAGEFORMAT2_ARGUMENTS_H</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">// eof</span></div>
+<div class="ttc" id="aclassicu_1_1LocalArray_html"><div class="ttname"><a href="classicu_1_1LocalArray.html">icu::LocalArray</a></div><div class="ttdoc">&quot;Smart pointer&quot; class, deletes objects via the C++ array delete[] operator.</div><div class="ttdef"><b>Definition:</b> <a href="localpointer_8h_source.html#l00364">localpointer.h:364</a></div></div>
+<div class="ttc" id="aclassicu_1_1UObject_html"><div class="ttname"><a href="classicu_1_1UObject.html">icu::UObject</a></div><div class="ttdoc">UObject is the common ICU &quot;boilerplate&quot; class.</div><div class="ttdef"><b>Definition:</b> <a href="uobject_8h_source.html#l00222">uobject.h:222</a></div></div>
+<div class="ttc" id="aclassicu_1_1UnicodeString_html"><div class="ttname"><a href="classicu_1_1UnicodeString.html">icu::UnicodeString</a></div><div class="ttdoc">UnicodeString is a string class that stores Unicode characters directly and provides similar function...</div><div class="ttdef"><b>Definition:</b> <a href="unistr_8h_source.html#l00302">unistr.h:303</a></div></div>
+<div class="ttc" id="aclassicu_1_1message2_1_1Formattable_html"><div class="ttname"><a href="classicu_1_1message2_1_1Formattable.html">icu::message2::Formattable</a></div><div class="ttdoc">The Formattable class represents a typed value that can be formatted, originating either from a messa...</div><div class="ttdef"><b>Definition:</b> <a href="messageformat2__formattable_8h_source.html#l00113">messageformat2_formattable.h:113</a></div></div>
+<div class="ttc" id="aclassicu_1_1message2_1_1MessageArguments_html"><div class="ttname"><a href="classicu_1_1message2_1_1MessageArguments.html">icu::message2::MessageArguments</a></div><div class="ttdoc">The MessageArguments class represents the named arguments to a message.</div><div class="ttdef"><b>Definition:</b> <a href="messageformat2__arguments_8h_source.html#l00047">messageformat2_arguments.h:47</a></div></div>
+<div class="ttc" id="aclassicu_1_1message2_1_1MessageArguments_html_a56db8342cfdd965a2606786f1579f681"><div class="ttname"><a href="classicu_1_1message2_1_1MessageArguments.html#a56db8342cfdd965a2606786f1579f681">icu::message2::MessageArguments::MessageArguments</a></div><div class="ttdeci">U_I18N_API MessageArguments(const std::map&lt; UnicodeString, Formattable &gt; &amp;args, UErrorCode &amp;status)</div><div class="ttdoc">Message arguments constructor, which takes a map and returns a container of arguments that can be pas...</div><div class="ttdef"><b>Definition:</b> <a href="messageformat2__arguments_8h_source.html#l00060">messageformat2_arguments.h:60</a></div></div>
+<div class="ttc" id="aclassicu_1_1message2_1_1MessageArguments_html_a687925adac65272049c0d25d015a79aa"><div class="ttname"><a href="classicu_1_1message2_1_1MessageArguments.html#a687925adac65272049c0d25d015a79aa">icu::message2::MessageArguments::operator=</a></div><div class="ttdeci">U_I18N_API MessageArguments &amp; operator=(MessageArguments &amp;&amp;) noexcept</div><div class="ttdoc">Move operator: The source MessageArguments will be left in a valid but undefined state.</div></div>
 <div class="ttc" id="aunistr_8h_html"><div class="ttname"><a href="unistr_8h.html">unistr.h</a></div><div class="ttdoc">C++ API: Unicode String.</div></div>
 <div class="ttc" id="autypes_8h_html"><div class="ttname"><a href="utypes_8h.html">utypes.h</a></div><div class="ttdoc">Basic definitions for ICU, for both C and C++ APIs.</div></div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00430">utypes.h:430</a></div></div>
-<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78ca243253eeb4885e17158b876849063269"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78ca243253eeb4885e17158b876849063269">U_MEMORY_ALLOCATION_ERROR</a></div><div class="ttdeci">@ U_MEMORY_ALLOCATION_ERROR</div><div class="ttdoc">Memory allocation error.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00473">utypes.h:473</a></div></div>
-<div class="ttc" id="autypes_8h_html_a4d202200b6aa6f3c965ea370e0c8155f"><div class="ttname"><a href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f">U_FAILURE</a></div><div class="ttdeci">#define U_FAILURE(x)</div><div class="ttdoc">Does the error code indicate a failure?</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00748">utypes.h:748</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78c"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78c">UErrorCode</a></div><div class="ttdeci">UErrorCode</div><div class="ttdoc">Standard ICU4C error code type, a substitute for exceptions.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00509">utypes.h:509</a></div></div>
+<div class="ttc" id="autypes_8h_html_a3343c1c8a8377277046774691c98d78ca243253eeb4885e17158b876849063269"><div class="ttname"><a href="utypes_8h.html#a3343c1c8a8377277046774691c98d78ca243253eeb4885e17158b876849063269">U_MEMORY_ALLOCATION_ERROR</a></div><div class="ttdeci">@ U_MEMORY_ALLOCATION_ERROR</div><div class="ttdoc">Memory allocation error.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00552">utypes.h:552</a></div></div>
+<div class="ttc" id="autypes_8h_html_a4d202200b6aa6f3c965ea370e0c8155f"><div class="ttname"><a href="utypes_8h.html#a4d202200b6aa6f3c965ea370e0c8155f">U_FAILURE</a></div><div class="ttdeci">#define U_FAILURE(x)</div><div class="ttdoc">Does the error code indicate a failure?</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00827">utypes.h:827</a></div></div>
+<div class="ttc" id="autypes_8h_html_aab9c32f472a54ec81629b5b031f5741c"><div class="ttname"><a href="utypes_8h.html#aab9c32f472a54ec81629b5b031f5741c">U_I18N_API_CLASS</a></div><div class="ttdeci">#define U_I18N_API_CLASS</div><div class="ttdoc">Set to export library symbols from inside the i18n library, and to import them from outside,...</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00457">utypes.h:457</a></div></div>
 <div class="ttc" id="autypes_8h_html_ab9d90a30137b6ec046fe59e79b09745a"><div class="ttname"><a href="utypes_8h.html#ab9d90a30137b6ec046fe59e79b09745a">U_I18N_API</a></div><div class="ttdeci">#define U_I18N_API</div><div class="ttdoc">Set to export library symbols from inside the i18n library, and to import them from outside.</div><div class="ttdef"><b>Definition:</b> <a href="utypes_8h_source.html#l00316">utypes.h:316</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

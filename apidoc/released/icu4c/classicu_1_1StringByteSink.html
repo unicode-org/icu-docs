@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ICU 77.1: icu::StringByteSink&lt; StringClass &gt; Class Template Reference</title>
+<title>ICU 78.1: icu::StringByteSink&lt; StringClass &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ICU 77.1
-   &#160;<span id="projectnumber">77.1</span>
+   <div id="projectname">ICU 78.1
+   &#160;<span id="projectnumber">78.1</span>
    </div>
   </td>
  </tr>
@@ -124,9 +124,9 @@ Public Member Functions</h2></td></tr>
 class icu::StringByteSink&lt; StringClass &gt;</h3>
 
 <p>Implementation of <a class="el" href="classicu_1_1ByteSink.html" title="A ByteSink can be filled with bytes.">ByteSink</a> that writes to a "string". </p>
-<p>The StringClass is usually instantiated with a std::string. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000052">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
+<p>The StringClass is usually instantiated with a std::string or a std::u8string. StringClass must have public member functions reserve(integer type), capacity(), length(), and append(value type, integer type) with the same semantics as those of std::basic_string, and must have an 8-bit value type. If the value type is not char, it must be a public member type StringClass::value_type. </p><dl class="stable"><dt><b><a class="el" href="stable.html#_stable000052">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00267">267</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00291">291</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acf5001ee1201ba4821defafcc409250d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acf5001ee1201ba4821defafcc409250d">&#9670;&nbsp;</a></span>StringByteSink() <span class="overload">[1/2]</span></h2>
@@ -163,7 +163,7 @@ template&lt;typename StringClass &gt; </div>
 </dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000068">Stable:</a></b></dt><dd>ICU 4.2 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00274">274</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00299">299</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
 
 </div>
 </div>
@@ -213,7 +213,7 @@ template&lt;typename StringClass &gt; </div>
 </dl>
 <dl class="stable"><dt><b><a class="el" href="stable.html#_stable000069">Stable:</a></b></dt><dd>ICU 60 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00282">282</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00307">307</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
 
 </div>
 </div>
@@ -266,7 +266,7 @@ template&lt;typename StringClass &gt; </div>
 
 <p>Implements <a class="el" href="classicu_1_1ByteSink.html#a61fe994281322e8a3e3ed2e50c910e41">icu::ByteSink</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00294">294</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bytestream_8h_source.html#l00319">319</a> of file <a class="el" href="bytestream_8h_source.html">bytestream.h</a>.</p>
 
 </div>
 </div>

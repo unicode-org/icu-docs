@@ -7,10 +7,10 @@
 
 ## API docs
 
-|           |   C                              |             J                    |
-|-----------|----------------------------------|----------------------------------|
-| Released  | [icu4c 77.1](./apidoc/released/icu4c) | [icu4j 77.1](./apidoc/released/icu4j) |
-| Dev       | [icu4c 78rc](./apidoc/dev/icu4c)      | [icu4j 78rc](./apidoc/dev/icu4j)      |
+|           |   C                                   |             J                         |
+|-----------|---------------------------------------|---------------------------------------|
+| Released  | [icu4c 78.1](./apidoc/released/icu4c) | [icu4j 78.1](./apidoc/released/icu4j) |
+| Dev       | [icu4c 78.1rc](./apidoc/dev/icu4c)    | [icu4j 78.1rc](./apidoc/dev/icu4j)    |
 
 ## Other Docs
 

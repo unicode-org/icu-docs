@@ -12880,8 +12880,8 @@
       <type>UnicodeString</type>
       <name>operator+</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ab0415b6d64978e4bb1d6af50cfeb6473</anchor>
-      <arglist>(const UnicodeString &amp;s1, const S &amp;s2)</arglist>
+      <anchor>ad901535715411f250020aa6c65e34341</anchor>
+      <arglist>(const US &amp;s1, const S &amp;s2)</arglist>
     </member>
     <member kind="function">
       <type>U_COMMON_API UnicodeString</type>
@@ -69418,8 +69418,8 @@
       <type>UnicodeString</type>
       <name>operator+</name>
       <anchorfile>namespaceicu.html</anchorfile>
-      <anchor>ab0415b6d64978e4bb1d6af50cfeb6473</anchor>
-      <arglist>(const UnicodeString &amp;s1, const S &amp;s2)</arglist>
+      <anchor>ad901535715411f250020aa6c65e34341</anchor>
+      <arglist>(const US &amp;s1, const S &amp;s2)</arglist>
     </member>
     <member kind="function">
       <type>U_COMMON_API UnicodeString</type>

@@ -9,7 +9,7 @@
 
 |           |   C                                   |             J                         |
 |-----------|---------------------------------------|---------------------------------------|
-| Released  | [icu4c 78.2](./apidoc/released/icu4c) | [icu4j 78.2](./apidoc/released/icu4j) |
+| Released  | [icu4c 78.3](./apidoc/released/icu4c) | [icu4j 78.3](./apidoc/released/icu4j) |
 | Dev       | [icu4c 78.1rc](./apidoc/dev/icu4c)    | [icu4j 78.1rc](./apidoc/dev/icu4j)    |
 
 ## Other Docs
@@ -26,7 +26,7 @@
 
 ### Copyright & Licenses
 
-Copyright © 2016-2025 Unicode, Inc. Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the United States and other countries.
+Copyright © 2016-2026 Unicode, Inc. Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the United States and other countries.
 
 A CLA is required to contribute to this project - please refer to the [CONTRIBUTING.md](https://github.com/unicode-org/.github/blob/main/.github/CONTRIBUTING.md) file (or start a Pull Request) for more information.
 

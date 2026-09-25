@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['less_11481',['less',['../ucol_8h.html#a242f290e5d3c8f8a5b1340570cb908c5',1,'U_HEADER_ONLY_NAMESPACE::collator']]],
-  ['less_5fequal_11482',['less_equal',['../ucol_8h.html#aaba43ebf6513b75d64d1a9c33cb85700',1,'U_HEADER_ONLY_NAMESPACE::collator']]]
+  ['less_0',['less',['../ucol_8h.html#a0d9895b82a8ebbae0d447c18257ef320',1,'U_HEADER_ONLY_NAMESPACE::collator']]],
+  ['less_5fequal_1',['less_equal',['../ucol_8h.html#a5657975f21f9e87badb4d53df741289a',1,'U_HEADER_ONLY_NAMESPACE::collator']]]
 ];

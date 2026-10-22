@@ -25,12 +25,11 @@
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
 {text:"Related Pages",url:"pages.html"},
-{text:"Modules",url:"modules.html"},
+{text:"Topics",url:"topics.html"},
 {text:"Namespaces",url:"namespaces.html",children:[
 {text:"Namespace List",url:"namespaces.html"},
 {text:"Namespace Members",url:"namespacemembers.html",children:[
 {text:"All",url:"namespacemembers.html",children:[
-{text:"c",url:"namespacemembers.html#index_c"},
 {text:"d",url:"namespacemembers.html#index_d"},
 {text:"g",url:"namespacemembers.html#index_g"},
 {text:"k",url:"namespacemembers.html#index_k"},
@@ -128,7 +127,12 @@ var menudata={children:[
 {text:"u",url:"functions_vars.html#index_u"},
 {text:"z",url:"functions_vars.html#index_z"}]},
 {text:"Typedefs",url:"functions_type.html"},
-{text:"Enumerations",url:"functions_enum.html"},
+{text:"Enumerations",url:"functions_enum.html",children:[
+{text:"d",url:"functions_enum.html#index_d"},
+{text:"e",url:"functions_enum.html#index_e"},
+{text:"i",url:"functions_enum.html#index_i"},
+{text:"t",url:"functions_enum.html#index_t"},
+{text:"u",url:"functions_enum.html#index_u"}]},
 {text:"Enumerator",url:"functions_eval.html",children:[
 {text:"d",url:"functions_eval.html#index_d"},
 {text:"f",url:"functions_eval.html#index_f"},
@@ -141,14 +145,7 @@ var menudata={children:[
 {text:"s",url:"functions_eval.html#index_s"},
 {text:"u",url:"functions_eval.html#index_u"},
 {text:"w",url:"functions_eval.html#index_w"}]},
-{text:"Related Functions",url:"functions_rela.html",children:[
-{text:"c",url:"functions_rela.html#index_c"},
-{text:"d",url:"functions_rela.html#index_d"},
-{text:"g",url:"functions_rela.html#index_g"},
-{text:"l",url:"functions_rela.html#index_l"},
-{text:"o",url:"functions_rela.html#index_o"},
-{text:"r",url:"functions_rela.html#index_r"},
-{text:"s",url:"functions_rela.html#index_s"}]}]}]},
+{text:"Related Symbols",url:"functions_rela.html"}]}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"},
 {text:"Globals",url:"globals.html",children:[
